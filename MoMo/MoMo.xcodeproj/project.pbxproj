@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,8 @@
 		568764162599AD3C009CB486 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 568764152599AD3C009CB486 /* Assets.xcassets */; };
 		568764192599AD3C009CB486 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 568764172599AD3C009CB486 /* LaunchScreen.storyboard */; };
 		568764242599E32B009CB486 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 568764232599E32B009CB486 /* Colors.xcassets */; };
+		568764362599EEC9009CB486 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 568764352599EEC9009CB486 /* .swiftlint.yml */; };
+		9360320992DCEB38E63381C5 /* Pods_MoMo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF70C440F3CE67275FF3023 /* Pods_MoMo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		568764182599AD3C009CB486 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5687641A2599AD3C009CB486 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		568764232599E32B009CB486 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		568764352599EEC9009CB486 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		596A64056F40D8E627DE76D5 /* Pods-MoMo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoMo.debug.xcconfig"; path = "Target Support Files/Pods-MoMo/Pods-MoMo.debug.xcconfig"; sourceTree = "<group>"; };
+		BC74336F4AB884589C6C3095 /* Pods-MoMo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoMo.release.xcconfig"; path = "Target Support Files/Pods-MoMo/Pods-MoMo.release.xcconfig"; sourceTree = "<group>"; };
+		FCF70C440F3CE67275FF3023 /* Pods_MoMo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoMo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9360320992DCEB38E63381C5 /* Pods_MoMo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,8 +49,11 @@
 		568764002599AD3A009CB486 = {
 			isa = PBXGroup;
 			children = (
+				568764352599EEC9009CB486 /* .swiftlint.yml */,
 				5687640B2599AD3A009CB486 /* MoMo */,
 				5687640A2599AD3A009CB486 /* Products */,
+				94E4DFA10283C6B39BB18E35 /* Pods */,
+				6693926120D847343D0048A0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,6 +160,23 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		6693926120D847343D0048A0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FCF70C440F3CE67275FF3023 /* Pods_MoMo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		94E4DFA10283C6B39BB18E35 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				596A64056F40D8E627DE76D5 /* Pods-MoMo.debug.xcconfig */,
+				BC74336F4AB884589C6C3095 /* Pods-MoMo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -157,9 +184,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5687641D2599AD3C009CB486 /* Build configuration list for PBXNativeTarget "MoMo" */;
 			buildPhases = (
+				963E274CD155CC7F21D63911 /* [CP] Check Pods Manifest.lock */,
 				568764052599AD3A009CB486 /* Sources */,
 				568764062599AD3A009CB486 /* Frameworks */,
 				568764072599AD3A009CB486 /* Resources */,
+				504B83BF132A5FD3B0B249F9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -207,6 +236,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				568764362599EEC9009CB486 /* .swiftlint.yml in Resources */,
 				568764192599AD3C009CB486 /* LaunchScreen.storyboard in Resources */,
 				568764242599E32B009CB486 /* Colors.xcassets in Resources */,
 				568764162599AD3C009CB486 /* Assets.xcassets in Resources */,
@@ -215,6 +245,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		504B83BF132A5FD3B0B249F9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MoMo/Pods-MoMo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MoMo/Pods-MoMo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MoMo/Pods-MoMo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		963E274CD155CC7F21D63911 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MoMo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		568764052599AD3A009CB486 /* Sources */ = {
@@ -367,12 +439,13 @@
 		};
 		5687641E2599AD3C009CB486 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 596A64056F40D8E627DE76D5 /* Pods-MoMo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EQ7Z68Z2F2;
-				INFOPLIST_FILE = MoMo/Info.plist;
+				INFOPLIST_FILE = MoMo/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -386,12 +459,13 @@
 		};
 		5687641F2599AD3C009CB486 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC74336F4AB884589C6C3095 /* Pods-MoMo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EQ7Z68Z2F2;
-				INFOPLIST_FILE = MoMo/Info.plist;
+				INFOPLIST_FILE = MoMo/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
