@@ -1,5 +1,10 @@
 disabled_rules:
 - line_length
+- trailing_whitespace
+- orphaned_doc_comment
+- nesting
 included:
 excluded:
 - Pods
+- MoMo/Sources/AppDelegate.swift
+- MoMo/Sources/SceneDelegate.swift

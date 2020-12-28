@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -203,6 +203,7 @@
 				568764062599AD3A009CB486 /* Frameworks */,
 				568764072599AD3A009CB486 /* Resources */,
 				504B83BF132A5FD3B0B249F9 /* [CP] Embed Pods Frameworks */,
+				56876463259A012F009CB486 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -277,6 +278,25 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MoMo/Pods-MoMo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		56876463259A012F009CB486 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		963E274CD155CC7F21D63911 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
