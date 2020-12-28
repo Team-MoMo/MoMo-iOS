@@ -1,0 +1,13 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'MoMo' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for MoMo
+	pod 'SwiftLint'
+	pod 'Alamofire', '~> 5.2'
+	pod 'Moya', '~> 14.0'
+
+end
