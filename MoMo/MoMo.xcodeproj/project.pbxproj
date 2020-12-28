@@ -15,8 +15,8 @@
 		568764192599AD3C009CB486 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 568764172599AD3C009CB486 /* LaunchScreen.storyboard */; };
 		568764242599E32B009CB486 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 568764232599E32B009CB486 /* Colors.xcassets */; };
 		568764362599EEC9009CB486 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 568764352599EEC9009CB486 /* .swiftlint.yml */; };
-		5687643B2599F180009CB486 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5687643A2599F180009CB486 /* AppConstants.swift */; };
-		5687643F2599F21B009CB486 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5687643E2599F21B009CB486 /* APIConstants.swift */; };
+		5687645E2599FB48009CB486 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5687645D2599FB48009CB486 /* AppConstants.swift */; };
+		568764612599FB56009CB486 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568764602599FB56009CB486 /* APIConstants.swift */; };
 		9360320992DCEB38E63381C5 /* Pods_MoMo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF70C440F3CE67275FF3023 /* Pods_MoMo.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,8 +31,8 @@
 		5687641A2599AD3C009CB486 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		568764232599E32B009CB486 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		568764352599EEC9009CB486 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		5687643A2599F180009CB486 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
-		5687643E2599F21B009CB486 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		5687645D2599FB48009CB486 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		568764602599FB56009CB486 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		596A64056F40D8E627DE76D5 /* Pods-MoMo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoMo.debug.xcconfig"; path = "Target Support Files/Pods-MoMo/Pods-MoMo.debug.xcconfig"; sourceTree = "<group>"; };
 		BC74336F4AB884589C6C3095 /* Pods-MoMo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoMo.release.xcconfig"; path = "Target Support Files/Pods-MoMo/Pods-MoMo.release.xcconfig"; sourceTree = "<group>"; };
 		FCF70C440F3CE67275FF3023 /* Pods_MoMo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoMo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,7 +84,7 @@
 				5687641A2599AD3C009CB486 /* Info.plist */,
 				568764152599AD3C009CB486 /* Assets.xcassets */,
 				568764232599E32B009CB486 /* Colors.xcassets */,
-				568764392599F16E009CB486 /* Constants */,
+				5687645B2599FB39009CB486 /* Constants */,
 				5687642B2599E36B009CB486 /* Storyboards */,
 			);
 			path = Resources;
@@ -165,11 +165,11 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		568764392599F16E009CB486 /* Constants */ = {
+		5687645B2599FB39009CB486 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				5687643A2599F180009CB486 /* AppConstants.swift */,
-				5687643E2599F21B009CB486 /* APIConstants.swift */,
+				5687645D2599FB48009CB486 /* AppConstants.swift */,
+				568764602599FB56009CB486 /* APIConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -308,10 +308,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				568764112599AD3A009CB486 /* ViewController.swift in Sources */,
-				5687643F2599F21B009CB486 /* APIConstants.swift in Sources */,
+				568764612599FB56009CB486 /* APIConstants.swift in Sources */,
 				5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */,
 				5687640F2599AD3A009CB486 /* SceneDelegate.swift in Sources */,
-				5687643B2599F180009CB486 /* AppConstants.swift in Sources */,
+				5687645E2599FB48009CB486 /* AppConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
