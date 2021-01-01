@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1068FFDC259DE77D0027AFF8 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1068FFDB259DE77D0027AFF8 /* List.swift */; };
 		1092420F259B452600BBFBFE /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1092420E259B452600BBFBFE /* ListViewController.swift */; };
 		10924217259B469100BBFBFE /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10924215259B469100BBFBFE /* ListTableViewCell.swift */; };
 		10924218259B469100BBFBFE /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10924216259B469100BBFBFE /* ListTableViewCell.xib */; };
@@ -26,7 +25,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1068FFDB259DE77D0027AFF8 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		1092420E259B452600BBFBFE /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		10924215259B469100BBFBFE /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListTableViewCell.swift; path = MoMo/Sources/ViewControllers/ListTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		10924216259B469100BBFBFE /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ListTableViewCell.xib; path = MoMo/Sources/ViewControllers/ListTableViewCell.xib; sourceTree = SOURCE_ROOT; };
@@ -175,7 +173,6 @@
 			children = (
 				1092420E259B452600BBFBFE /* ListViewController.swift */,
 				568764102599AD3A009CB486 /* ViewController.swift */,
-				1068FFDB259DE77D0027AFF8 /* List.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -351,7 +348,6 @@
 				5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */,
 				5687640F2599AD3A009CB486 /* SceneDelegate.swift in Sources */,
 				5687645E2599FB48009CB486 /* AppConstants.swift in Sources */,
-				1068FFDC259DE77D0027AFF8 /* List.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

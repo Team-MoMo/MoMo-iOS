@@ -7,7 +7,26 @@
 
 import UIKit
 
+struct List {
+    var iconImage: String
+    var category: String
+    var date: String
+    var day: String
+    var depth: String
+    var quote: String
+    var author: String
+    var title: String
+    var publisher: String
+    var journal: String
+    
+    func makeImage() -> UIImage? {
+        return UIImage(named: iconImage)
+    }
+}
+
 class ListViewController: UIViewController {
+    
+    // MARK:- Properities
     
     @IBOutlet weak var filteredDate: UILabel!
     @IBOutlet weak var listTableView: UITableView!
@@ -27,6 +46,8 @@ class ListViewController: UIViewController {
         setData()
     }
     
+    // MARK:- Xib
+    
     private func registerXib() {
         let listcellnib = UINib(nibName: "ListTableViewCell", bundle: nil)
         listTableView.register(listcellnib, forCellReuseIdentifier: "ListTableViewCell")
@@ -44,7 +65,7 @@ class ListViewController: UIViewController {
                  author: "박연준",
                  title: "<인생은 이상하게 흐른다>",
                  publisher: "(달)",
-                 journal: "오늘 새벽엔 눈이 내렸다. 창문을 열어 창문을 열어 흰눈이. 망했다 ㄹㅇ"),
+                 journal: "오늘 새벽엔 눈이 내렸다. 창문을 열어 창문을 열어 흰눈이."),
             List(
                 iconImage: "icLoveBlue",
                  category: "사랑",
@@ -122,6 +143,8 @@ class ListViewController: UIViewController {
     }
 }
 
+// MARK:- TableView
+
 extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dummyData.count
@@ -140,6 +163,8 @@ extension ListViewController: UITableViewDataSource {
         return cell
     }
 }
+
+// MARK:- View BorderRadius
 
 extension UIView {
     

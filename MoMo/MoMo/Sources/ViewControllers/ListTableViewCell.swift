@@ -43,7 +43,6 @@ class ListTableViewCell: UITableViewCell {
         authorLabel.text = list.author
         titleLabel.text = list.title
         publisherLabel.text = list.publisher
-        
         }
     
     func quoteSpacing(_ text: String) {
@@ -58,8 +57,11 @@ class ListTableViewCell: UITableViewCell {
     
     func journaltext(_ text: String, _ size: CGFloat) {
         let labelSize: CGSize = text.size(withAttributes: [.font: UIFont.systemFont(ofSize: 13, weight: .regular)])
-        let verify = "힣".size(withAttributes: [.font: UIFont.systemFont(ofSize: 13, weight: .regular)]).width
+        let verify = "힣".size(withAttributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular)]).width
         let breakpoint: Int
+        print(verify)
+        print(labelSize.width)
+        print(size)
         
         if labelSize.width > size {
             breakpoint = Int(size/verify)+1
