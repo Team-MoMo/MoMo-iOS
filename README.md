@@ -24,7 +24,7 @@
 
 ## Develop Environment
 
-![SWIFT](https://img.shields.io/static/v1?style=for-the-badge&logo=swift&message=SWIFT 5&label=&color=FA7343&labelColor=000000)
+![SWIFT](https://img.shields.io/static/v1?style=for-the-badge&logo=swift&message=SWIFT5&label=&color=FA7343&labelColor=000000)
 
 <center>iOS Deployment Target : <b>iOS 14.3</b></center>
 
