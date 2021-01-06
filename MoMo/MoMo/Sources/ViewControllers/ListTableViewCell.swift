@@ -59,9 +59,6 @@ class ListTableViewCell: UITableViewCell {
         let labelSize: CGSize = text.size(withAttributes: [.font: UIFont.systemFont(ofSize: 13, weight: .regular)])
         let verify = "힣".size(withAttributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular)]).width
         let breakpoint: Int
-        print(verify)
-        print(labelSize.width)
-        print(size)
         
         if labelSize.width > size {
             breakpoint = Int(size/verify)+1

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		107919B325A4830B0024C711 /* ListDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107919B125A4830B0024C711 /* ListDateTableViewCell.swift */; };
+		107919B425A4830B0024C711 /* ListDateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 107919B225A4830B0024C711 /* ListDateTableViewCell.xib */; };
+		107919BC25A484510024C711 /* ListFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107919BA25A484510024C711 /* ListFilterTableViewCell.swift */; };
+		107919BD25A484510024C711 /* ListFilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 107919BB25A484510024C711 /* ListFilterTableViewCell.xib */; };
+		107919C125A484E60024C711 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107919BF25A484E60024C711 /* FilterCollectionViewCell.swift */; };
+		107919C225A484E60024C711 /* FilterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 107919C025A484E60024C711 /* FilterCollectionViewCell.xib */; };
 		1092420F259B452600BBFBFE /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1092420E259B452600BBFBFE /* ListViewController.swift */; };
 		10924217259B469100BBFBFE /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10924215259B469100BBFBFE /* ListTableViewCell.swift */; };
 		10924218259B469100BBFBFE /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10924216259B469100BBFBFE /* ListTableViewCell.xib */; };
@@ -26,6 +32,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		107919B125A4830B0024C711 /* ListDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDateTableViewCell.swift; sourceTree = "<group>"; };
+		107919B225A4830B0024C711 /* ListDateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListDateTableViewCell.xib; sourceTree = "<group>"; };
+		107919BA25A484510024C711 /* ListFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterTableViewCell.swift; sourceTree = "<group>"; };
+		107919BB25A484510024C711 /* ListFilterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListFilterTableViewCell.xib; sourceTree = "<group>"; };
+		107919BF25A484E60024C711 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
+		107919C025A484E60024C711 /* FilterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCollectionViewCell.xib; sourceTree = "<group>"; };
 		1092420E259B452600BBFBFE /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		10924215259B469100BBFBFE /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListTableViewCell.swift; path = MoMo/Sources/ViewControllers/ListTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		10924216259B469100BBFBFE /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ListTableViewCell.xib; path = MoMo/Sources/ViewControllers/ListTableViewCell.xib; sourceTree = SOURCE_ROOT; };
@@ -160,6 +172,12 @@
 			children = (
 				10924215259B469100BBFBFE /* ListTableViewCell.swift */,
 				10924216259B469100BBFBFE /* ListTableViewCell.xib */,
+				107919B125A4830B0024C711 /* ListDateTableViewCell.swift */,
+				107919B225A4830B0024C711 /* ListDateTableViewCell.xib */,
+				107919BA25A484510024C711 /* ListFilterTableViewCell.swift */,
+				107919BB25A484510024C711 /* ListFilterTableViewCell.xib */,
+				107919BF25A484E60024C711 /* FilterCollectionViewCell.swift */,
+				107919C025A484E60024C711 /* FilterCollectionViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -269,10 +287,13 @@
 				568764CE259F6A80009CB486 /* Colors.xcassets in Resources */,
 				568764362599EEC9009CB486 /* .swiftlint.yml in Resources */,
 				568764192599AD3C009CB486 /* LaunchScreen.storyboard in Resources */,
+				107919BD25A484510024C711 /* ListFilterTableViewCell.xib in Resources */,
 				568764162599AD3C009CB486 /* Assets.xcassets in Resources */,
 				568764142599AD3A009CB486 /* Main.storyboard in Resources */,
+				107919C225A484E60024C711 /* FilterCollectionViewCell.xib in Resources */,
 				10F12B10259B2C4C003CAA9E /* ListStoryboard.storyboard in Resources */,
 				10924218259B469100BBFBFE /* ListTableViewCell.xib in Resources */,
+				107919B425A4830B0024C711 /* ListDateTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,9 +368,12 @@
 				10924217259B469100BBFBFE /* ListTableViewCell.swift in Sources */,
 				568764112599AD3A009CB486 /* ViewController.swift in Sources */,
 				568764612599FB56009CB486 /* APIConstants.swift in Sources */,
+				107919BC25A484510024C711 /* ListFilterTableViewCell.swift in Sources */,
+				107919C125A484E60024C711 /* FilterCollectionViewCell.swift in Sources */,
 				1092420F259B452600BBFBFE /* ListViewController.swift in Sources */,
 				5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */,
 				568764D1259F6EDE009CB486 /* UIColor+Extension.swift in Sources */,
+				107919B325A4830B0024C711 /* ListDateTableViewCell.swift in Sources */,
 				5687640F2599AD3A009CB486 /* SceneDelegate.swift in Sources */,
 				5687645E2599FB48009CB486 /* AppConstants.swift in Sources */,
 			);

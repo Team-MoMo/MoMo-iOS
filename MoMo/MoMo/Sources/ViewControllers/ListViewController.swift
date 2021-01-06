@@ -28,11 +28,12 @@ class ListViewController: UIViewController {
     
     // MARK:- Properities
     
-    @IBOutlet weak var filteredDate: UILabel!
     @IBOutlet weak var listTableView: UITableView!
     var widthSize: CGFloat = 0.0
     var secondWidthSize: CGFloat = 0.0
     var dummyData: [List] = []
+    var date = [2021,02]
+    var filter: [String] = ["2021년 02", "배고파", "심해"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,9 +41,9 @@ class ListViewController: UIViewController {
         self.listTableView.rowHeight  = UITableView.automaticDimension
         self.listTableView.estimatedRowHeight = 266
         self.listTableView.dataSource = self
+//        self.listTableView.delegate = self
         widthSize = CGFloat(self.view.bounds.width * (325/414))
         secondWidthSize = CGFloat(self.view.bounds.width * (237/414))
-
         setData()
     }
     
@@ -51,6 +52,8 @@ class ListViewController: UIViewController {
     private func registerXib() {
         let listcellnib = UINib(nibName: "ListTableViewCell", bundle: nil)
         listTableView.register(listcellnib, forCellReuseIdentifier: "ListTableViewCell")
+        listTableView.register(UINib(nibName: "ListDateTableViewCell", bundle: nil), forCellReuseIdentifier: "ListDateTableViewCell")
+        listTableView.register(UINib(nibName: "ListFilterTableViewCell", bundle: nil), forCellReuseIdentifier: "ListFilterTableViewCell")
     }
     
     func setData() {
@@ -141,25 +144,84 @@ class ListViewController: UIViewController {
                  journal: "오늘 새벽엔 눈이 내렸다. 창문을 열어 창문을 열어 흰눈이내린다. 크리스마스가 끝이 났다. 모모와 ...")
         ])
     }
+    
+//    @objc func cancelButtonAction(sender : UIButton) {
+//        collectionview.deleteItems(at: [IndexPath.init(row: sender.tag, section: 0)])
+//        dataArray.remove(at: sender.tag) }
+//
+//    출처: https://archijude.tistory.com/232 [글 쓰는 프로그래머]
 }
 
 // MARK:- TableView
 
 extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummyData.count
+        return section == 2 ? dummyData.count : 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListTableViewCell") as? ListTableViewCell else {
+        switch indexPath.section {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListDateTableViewCell") as? ListDateTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.setDate("\(date[0])년 \(date[1])월")
+            return cell
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListFilterTableViewCell") as? ListFilterTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.filterCollectionView.register(UINib(nibName: "FilterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FilterCollectionViewCell")
+            cell.filterCollectionView.delegate = self
+            cell.filterCollectionView.dataSource = self
+            return cell
+        case 2:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListTableViewCell") as? ListTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.setCell(list: dummyData[indexPath.row])
+            cell.quoteSpacing(dummyData[indexPath.row].quote)
+            cell.journalView.round(corners: [.topLeft, .bottomLeft], cornerRadius: 20)
+            cell.journaltext(dummyData[indexPath.row].journal, widthSize)
+            cell.setLabelUnderline(widthSize,secondWidthSize)
+            cell.selectionStyle = .none
+            return cell
+        default:
             return UITableViewCell()
         }
-        cell.setCell(list: dummyData[indexPath.row])
-        cell.quoteSpacing(dummyData[indexPath.row].quote)
-        cell.journalView.round(corners: [.topLeft, .bottomLeft], cornerRadius: 20)
-        cell.journaltext(dummyData[indexPath.row].journal, widthSize)
-        cell.setLabelUnderline(widthSize,secondWidthSize)
-        cell.selectionStyle = .none
+        return UITableViewCell()
+    }
+        
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+}
+
+extension ListViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let tempWidth = filter[indexPath.row].size(withAttributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular)]).width + 34
+        return CGSize(width: Int(tempWidth), height : 24)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 3
+    }
+    
+}
+
+extension ListViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return filter.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCollectionViewCell", for: indexPath) as? FilterCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.filterLabel.text = filter[indexPath.row]
+        cell.cancelButton.tag = indexPath.row
+//        cell.cancelButton.addTarget(self, action: #selector(touchCancelButton(sender:)), for: .touchUpInside)
         return cell
     }
 }
@@ -167,7 +229,6 @@ extension ListViewController: UITableViewDataSource {
 // MARK:- View BorderRadius
 
 extension UIView {
-    
     func round(corners: UIRectCorner, cornerRadius: Double) {
         
         let size = CGSize(width: cornerRadius, height: cornerRadius)
@@ -178,3 +239,5 @@ extension UIView {
         self.layer.mask = shapeLayer
     }
 }
+
+

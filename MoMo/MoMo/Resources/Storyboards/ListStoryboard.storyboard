@@ -16,14 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020년 12월" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bO9-Ww-W1B">
-                                <rect key="frame" x="24.000000000000007" y="114" width="122.66666666666669" height="26.333333333333343"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                <color key="textColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="M7o-aG-rAF">
-                                <rect key="frame" x="0.0" y="156.33333333333331" width="428" height="769.66666666666674"/>
+                                <rect key="frame" x="0.0" y="114" width="428" height="812"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListTableViewCell" rowHeight="104" id="zf4-d9-dzo" customClass="ListTableViewCell" customModule="MoMo" customModuleProvider="target">
@@ -40,16 +34,13 @@
                         <viewLayoutGuide key="safeArea" id="Fbq-4F-Xkr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="M7o-aG-rAF" firstAttribute="top" secondItem="bO9-Ww-W1B" secondAttribute="bottom" constant="16" id="5XE-RB-51u"/>
-                            <constraint firstItem="bO9-Ww-W1B" firstAttribute="leading" secondItem="Fbq-4F-Xkr" secondAttribute="leading" constant="24" id="OY1-ri-fKN"/>
+                            <constraint firstItem="M7o-aG-rAF" firstAttribute="top" secondItem="Fbq-4F-Xkr" secondAttribute="top" constant="70" id="N92-am-bA0"/>
                             <constraint firstItem="M7o-aG-rAF" firstAttribute="trailing" secondItem="Fbq-4F-Xkr" secondAttribute="trailing" id="a9a-2P-FYH"/>
-                            <constraint firstItem="bO9-Ww-W1B" firstAttribute="top" secondItem="Fbq-4F-Xkr" secondAttribute="top" constant="70" id="f3c-E7-koJ"/>
                             <constraint firstAttribute="bottom" secondItem="M7o-aG-rAF" secondAttribute="bottom" id="k1t-tN-wAW"/>
                             <constraint firstItem="M7o-aG-rAF" firstAttribute="leading" secondItem="Fbq-4F-Xkr" secondAttribute="leading" id="zYj-6s-MSD"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="filteredDate" destination="bO9-Ww-W1B" id="VIf-h3-6fb"/>
                         <outlet property="listTableView" destination="M7o-aG-rAF" id="quH-QJ-8Bf"/>
                     </connections>
                 </viewController>
