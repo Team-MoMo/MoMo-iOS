@@ -261,4 +261,10 @@ extension UIView {
     }
 }
 
-
+extension String {
+    func wordSpacing(_ spacing: Float) -> NSMutableAttributedString {
+        let attributedString = NSMutableAttributedString(string: self)
+        attributedString.addAttribute(NSAttributedString.Key.kern, value: spacing, range: NSRange(location: 0, length: attributedString.length))
+        return attributedString
+    }
+}

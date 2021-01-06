@@ -36,13 +36,13 @@ class ListTableViewCell: UITableViewCell {
     
     func setCell(list: List) {
         iconImage.image = list.makeImage()
-        categoryLabel.text = list.category
-        dateLabel.text = list.date
-        dayLabel.text = list.day
-        depthLabel.text = list.depth
-        authorLabel.text = list.author
-        titleLabel.text = list.title
-        publisherLabel.text = list.publisher
+        categoryLabel.attributedText = list.category.wordSpacing(0.6)
+        dateLabel.attributedText = list.date.wordSpacing(0.6)
+        dayLabel.attributedText = list.day.wordSpacing(0.6)
+        depthLabel.attributedText = list.depth.wordSpacing(0.6)
+        authorLabel.attributedText = list.author.wordSpacing(0.6)
+        titleLabel.attributedText = list.title.wordSpacing(0.6)
+        publisherLabel.attributedText = list.publisher.wordSpacing(0.6)
         }
     
     func quoteSpacing(_ text: String) {
