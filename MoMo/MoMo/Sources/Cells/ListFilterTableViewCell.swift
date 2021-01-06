@@ -10,8 +10,8 @@ import UIKit
 class ListFilterTableViewCell: UITableViewCell {
 
     @IBOutlet weak var filterCollectionView: UICollectionView!
-    
-    
+    @IBOutlet weak var listFilterTableViewCellHeight: NSLayoutConstraint!
+    @IBOutlet weak var filterCollectionViewBottom: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()

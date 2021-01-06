@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		105661ED25A5F79300E111B2 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105661EB25A5F79300E111B2 /* EmptyTableViewCell.swift */; };
+		105661EE25A5F79300E111B2 /* EmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105661EC25A5F79300E111B2 /* EmptyTableViewCell.xib */; };
 		107919B325A4830B0024C711 /* ListDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107919B125A4830B0024C711 /* ListDateTableViewCell.swift */; };
 		107919B425A4830B0024C711 /* ListDateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 107919B225A4830B0024C711 /* ListDateTableViewCell.xib */; };
 		107919BC25A484510024C711 /* ListFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107919BA25A484510024C711 /* ListFilterTableViewCell.swift */; };
@@ -32,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		105661EB25A5F79300E111B2 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
+		105661EC25A5F79300E111B2 /* EmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableViewCell.xib; sourceTree = "<group>"; };
 		107919B125A4830B0024C711 /* ListDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDateTableViewCell.swift; sourceTree = "<group>"; };
 		107919B225A4830B0024C711 /* ListDateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListDateTableViewCell.xib; sourceTree = "<group>"; };
 		107919BA25A484510024C711 /* ListFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterTableViewCell.swift; sourceTree = "<group>"; };
@@ -178,6 +182,8 @@
 				107919BB25A484510024C711 /* ListFilterTableViewCell.xib */,
 				107919BF25A484E60024C711 /* FilterCollectionViewCell.swift */,
 				107919C025A484E60024C711 /* FilterCollectionViewCell.xib */,
+				105661EB25A5F79300E111B2 /* EmptyTableViewCell.swift */,
+				105661EC25A5F79300E111B2 /* EmptyTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -294,6 +300,7 @@
 				10F12B10259B2C4C003CAA9E /* ListStoryboard.storyboard in Resources */,
 				10924218259B469100BBFBFE /* ListTableViewCell.xib in Resources */,
 				107919B425A4830B0024C711 /* ListDateTableViewCell.xib in Resources */,
+				105661EE25A5F79300E111B2 /* EmptyTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +377,7 @@
 				568764612599FB56009CB486 /* APIConstants.swift in Sources */,
 				107919BC25A484510024C711 /* ListFilterTableViewCell.swift in Sources */,
 				107919C125A484E60024C711 /* FilterCollectionViewCell.swift in Sources */,
+				105661ED25A5F79300E111B2 /* EmptyTableViewCell.swift in Sources */,
 				1092420F259B452600BBFBFE /* ListViewController.swift in Sources */,
 				5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */,
 				568764D1259F6EDE009CB486 /* UIColor+Extension.swift in Sources */,

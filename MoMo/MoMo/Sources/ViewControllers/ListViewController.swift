@@ -34,6 +34,7 @@ class ListViewController: UIViewController {
     var dummyData: [List] = []
     var date = [2021,02]
     var filter: [String] = ["2021년 02", "배고파", "심해"]
+    var pattern: Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,7 @@ class ListViewController: UIViewController {
         self.listTableView.rowHeight  = UITableView.automaticDimension
         self.listTableView.estimatedRowHeight = 266
         self.listTableView.dataSource = self
+        self.listTableView.separatorStyle = .none
 //        self.listTableView.delegate = self
         widthSize = CGFloat(self.view.bounds.width * (325/414))
         secondWidthSize = CGFloat(self.view.bounds.width * (237/414))
@@ -54,6 +56,8 @@ class ListViewController: UIViewController {
         listTableView.register(listcellnib, forCellReuseIdentifier: "ListTableViewCell")
         listTableView.register(UINib(nibName: "ListDateTableViewCell", bundle: nil), forCellReuseIdentifier: "ListDateTableViewCell")
         listTableView.register(UINib(nibName: "ListFilterTableViewCell", bundle: nil), forCellReuseIdentifier: "ListFilterTableViewCell")
+        listTableView.register(UINib(nibName: "EmptyTableViewCell", bundle: nil), forCellReuseIdentifier: "EmptyTableViewCell")
+
     }
     
     func setData() {
@@ -145,11 +149,20 @@ class ListViewController: UIViewController {
         ])
     }
     
-//    @objc func cancelButtonAction(sender : UIButton) {
-//        collectionview.deleteItems(at: [IndexPath.init(row: sender.tag, section: 0)])
-//        dataArray.remove(at: sender.tag) }
-//
-//    출처: https://archijude.tistory.com/232 [글 쓰는 프로그래머]
+    @objc func touchCancelButton(sender : UIButton) {
+        let indexPath = IndexPath(row: 0, section: 1)
+        guard let cell = listTableView.cellForRow(at: indexPath) as? ListFilterTableViewCell else {
+            return
+        }
+        filter.remove(at: sender.tag)
+//        cell.filterCollectionView.deleteItems(at: [IndexPath.init(row: sender.tag, section: 0)])
+        cell.filterCollectionView.reloadData()
+        if filter.count == 0 {
+            pattern.toggle()
+            listTableView.reloadData()
+        }
+        
+    }
 }
 
 // MARK:- TableView
@@ -162,35 +175,42 @@ extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListDateTableViewCell") as? ListDateTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier:  "ListDateTableViewCell") as? ListDateTableViewCell else {
                 return UITableViewCell()
             }
             cell.setDate("\(date[0])년 \(date[1])월")
             return cell
         case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListFilterTableViewCell") as? ListFilterTableViewCell else {
+            if pattern {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListFilterTableViewCell") as? ListFilterTableViewCell else {
+                return UITableViewCell()
+                }
+                cell.filterCollectionView.register(UINib(nibName: "FilterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FilterCollectionViewCell")
+                cell.filterCollectionView.delegate = self
+                cell.filterCollectionView.dataSource = self
+                return cell
+            }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyTableViewCell") as? EmptyTableViewCell else {
                 return UITableViewCell()
             }
-            cell.filterCollectionView.register(UINib(nibName: "FilterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FilterCollectionViewCell")
-            cell.filterCollectionView.delegate = self
-            cell.filterCollectionView.dataSource = self
             return cell
+                
         case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListTableViewCell") as? ListTableViewCell else {
                 return UITableViewCell()
             }
-            cell.setCell(list: dummyData[indexPath.row])
-            cell.quoteSpacing(dummyData[indexPath.row].quote)
-            cell.journalView.round(corners: [.topLeft, .bottomLeft], cornerRadius: 20)
-            cell.journaltext(dummyData[indexPath.row].journal, widthSize)
-            cell.setLabelUnderline(widthSize,secondWidthSize)
-            cell.selectionStyle = .none
-            return cell
-        default:
-            return UITableViewCell()
+                cell.setCell(list: dummyData[indexPath.row])
+                cell.quoteSpacing(dummyData[indexPath.row].quote)
+                cell.journalView.round(corners: [.topLeft, .bottomLeft], cornerRadius: 20)
+                cell.journaltext(dummyData[indexPath.row].journal, widthSize)
+                cell.setLabelUnderline(widthSize,secondWidthSize)
+                cell.selectionStyle = .none
+                return cell
+            default:
+                return UITableViewCell()
+            }
         }
-        return UITableViewCell()
-    }
+
         
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -205,7 +225,7 @@ extension ListViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 3
+        return self.view.frame.width * 8/375
     }
     
 }
@@ -219,9 +239,10 @@ extension ListViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCollectionViewCell", for: indexPath) as? FilterCollectionViewCell else {
             return UICollectionViewCell()
         }
+        cell.layer.cornerRadius = 10
         cell.filterLabel.text = filter[indexPath.row]
         cell.cancelButton.tag = indexPath.row
-//        cell.cancelButton.addTarget(self, action: #selector(touchCancelButton(sender:)), for: .touchUpInside)
+        cell.cancelButton.addTarget(self, action: #selector(touchCancelButton(sender:)), for: .touchUpInside)
         return cell
     }
 }
