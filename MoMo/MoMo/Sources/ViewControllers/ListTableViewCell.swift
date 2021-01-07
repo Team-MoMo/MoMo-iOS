@@ -24,10 +24,22 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var journalLabel1: UILabel!
     @IBOutlet weak var journalLabel2: UILabel!
     
+    // 재사용할 때
     override func prepareForReuse() {
         super.prepareForReuse()
         journalLabel1.layer.sublayers = nil
         journalLabel2.layer.sublayers = nil
+        journalLabel1.text = ""
+        journalLabel2.text = ""
+        categoryLabel.text = ""
+        dateLabel.text = ""
+        dayLabel.text = ""
+        depthLabel.text = ""
+        quoteLabel.text = ""
+        authorLabel.text = ""
+        titleLabel.text = ""
+        publisherLabel.text = ""
+        
         self.setNeedsLayout()
         self.layoutIfNeeded()
     }
@@ -67,7 +79,7 @@ class ListTableViewCell: UITableViewCell {
     
     // 일기 분리 작업
     func journaltext(_ text: String, _ size: CGFloat) {
-        let labelSize: CGSize = text.size(withAttributes: [.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
+        let labelSize: CGSize = text.size(withAttributes: [.font: UIFont.systemFont(ofSize: 13, weight: .regular)])
         let verify = "힣".size(withAttributes: [.font: UIFont.systemFont(ofSize: 12, weight: .regular)]).width
         let breakpoint: Int
         
