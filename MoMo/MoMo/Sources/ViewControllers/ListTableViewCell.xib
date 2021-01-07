@@ -151,10 +151,19 @@
                             <constraint firstAttribute="height" constant="10" id="w58-kf-yCx"/>
                         </constraints>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3DU-eR-q5i">
+                        <rect key="frame" x="44" y="251" width="370" height="1"/>
+                        <color key="backgroundColor" name="LineLightGray"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="xUt-lG-WBp"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="gXZ-9s-cei" firstAttribute="top" secondItem="6In-cK-Ism" secondAttribute="bottom" constant="16" id="0Dx-b7-xhq"/>
                     <constraint firstItem="yvB-uF-DGS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="32" id="0ZA-hL-sTH"/>
+                    <constraint firstItem="3DU-eR-q5i" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="24" id="25P-4M-moh"/>
+                    <constraint firstAttribute="trailing" secondItem="3DU-eR-q5i" secondAttribute="trailing" id="49V-o7-Oqt"/>
                     <constraint firstItem="6In-cK-Ism" firstAttribute="leading" secondItem="N8k-nt-gds" secondAttribute="trailing" constant="6" id="4zO-LX-31b"/>
                     <constraint firstItem="yvB-uF-DGS" firstAttribute="leading" secondItem="yMW-U8-qip" secondAttribute="trailing" constant="6" id="6eJ-xD-fgt"/>
                     <constraint firstItem="mcB-X1-Nss" firstAttribute="trailing" secondItem="6In-cK-Ism" secondAttribute="trailing" id="C46-u1-TQX"/>
@@ -170,6 +179,7 @@
                     <constraint firstItem="Egf-nS-7UG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="70" id="Xf7-rs-Lai"/>
                     <constraint firstItem="gXZ-9s-cei" firstAttribute="top" secondItem="yvB-uF-DGS" secondAttribute="bottom" constant="16" id="Z0J-TH-5l4"/>
                     <constraint firstItem="6In-cK-Ism" firstAttribute="trailing" secondItem="gXZ-9s-cei" secondAttribute="trailing" id="cgt-1L-3pG"/>
+                    <constraint firstItem="3DU-eR-q5i" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="ebP-sp-25n"/>
                     <constraint firstItem="Egf-nS-7UG" firstAttribute="top" secondItem="gXZ-9s-cei" secondAttribute="bottom" constant="16" id="efr-iE-kvk"/>
                     <constraint firstItem="knD-eZ-Mjc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="32" id="lDJ-AO-ELq"/>
                     <constraint firstAttribute="bottom" secondItem="Erv-fW-23n" secondAttribute="bottom" constant="26" id="mEY-0C-vT6"/>
@@ -202,6 +212,9 @@
         <image name="iosIcDepth" width="12" height="10"/>
         <namedColor name="Blue7">
             <color red="0.96100002527236938" green="0.97600001096725464" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LineLightGray">
+            <color red="0.87800002098083496" green="0.87800002098083496" blue="0.87800002098083496" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

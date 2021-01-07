@@ -39,7 +39,6 @@ class ListTableViewCell: UITableViewCell {
         authorLabel.text = ""
         titleLabel.text = ""
         publisherLabel.text = ""
-        
         self.setNeedsLayout()
         self.layoutIfNeeded()
     }

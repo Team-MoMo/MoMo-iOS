@@ -18,6 +18,8 @@
 		1092420F259B452600BBFBFE /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1092420E259B452600BBFBFE /* ListViewController.swift */; };
 		10924217259B469100BBFBFE /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10924215259B469100BBFBFE /* ListTableViewCell.swift */; };
 		10924218259B469100BBFBFE /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10924216259B469100BBFBFE /* ListTableViewCell.xib */; };
+		10B6731D25A771560046AA97 /* UiView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B6731C25A771560046AA97 /* UiView+Extension.swift */; };
+		10B6732025A771700046AA97 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B6731F25A771700046AA97 /* String+Extension.swift */; };
 		10F12B10259B2C4C003CAA9E /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10F12B0F259B2C4C003CAA9E /* List.storyboard */; };
 		5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5687640C2599AD3A009CB486 /* AppDelegate.swift */; };
 		5687640F2599AD3A009CB486 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5687640E2599AD3A009CB486 /* SceneDelegate.swift */; };
@@ -45,6 +47,8 @@
 		1092420E259B452600BBFBFE /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		10924215259B469100BBFBFE /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListTableViewCell.swift; path = MoMo/Sources/ViewControllers/ListTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		10924216259B469100BBFBFE /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ListTableViewCell.xib; path = MoMo/Sources/ViewControllers/ListTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		10B6731C25A771560046AA97 /* UiView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UiView+Extension.swift"; path = "../../../../../../../Applications/UiView+Extension.swift"; sourceTree = "<group>"; };
+		10B6731F25A771700046AA97 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		10F12B0F259B2C4C003CAA9E /* List.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
 		568764092599AD3A009CB486 /* MoMo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoMo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5687640C2599AD3A009CB486 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -143,6 +147,8 @@
 			isa = PBXGroup;
 			children = (
 				568764D0259F6EDE009CB486 /* UIColor+Extension.swift */,
+				10B6731C25A771560046AA97 /* UiView+Extension.swift */,
+				10B6731F25A771700046AA97 /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -380,7 +386,9 @@
 				105661ED25A5F79300E111B2 /* EmptyTableViewCell.swift in Sources */,
 				1092420F259B452600BBFBFE /* ListViewController.swift in Sources */,
 				5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */,
+				10B6732025A771700046AA97 /* String+Extension.swift in Sources */,
 				568764D1259F6EDE009CB486 /* UIColor+Extension.swift in Sources */,
+				10B6731D25A771560046AA97 /* UiView+Extension.swift in Sources */,
 				107919B325A4830B0024C711 /* ListDateTableViewCell.swift in Sources */,
 				5687640F2599AD3A009CB486 /* SceneDelegate.swift in Sources */,
 				5687645E2599FB48009CB486 /* AppConstants.swift in Sources */,

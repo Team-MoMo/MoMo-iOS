@@ -253,26 +253,3 @@ extension ListViewController: UICollectionViewDataSource {
         return cell
     }
 }
-
-// MARK: - Extension
-
-extension UIView {
-    // 선택한 꼭짓점 Rounding
-    func round(corners: UIRectCorner, cornerRadius: Double) {
-        let size = CGSize(width: cornerRadius, height: cornerRadius)
-        let bezierPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: size)
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.frame = self.bounds
-        shapeLayer.path = bezierPath.cgPath
-        self.layer.mask = shapeLayer
-    }
-}
-
-extension String {
-    // 자간 설정
-    func wordSpacing(_ spacing: Float) -> NSMutableAttributedString {
-        let attributedString = NSMutableAttributedString(string: self)
-        attributedString.addAttribute(NSAttributedString.Key.kern, value: spacing, range: NSRange(location: 0, length: attributedString.length))
-        return attributedString
-    }
-}
