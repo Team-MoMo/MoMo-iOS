@@ -188,7 +188,7 @@
                 <outlet property="iconImage" destination="eM3-1y-MKc" id="7uf-kV-Pak"/>
                 <outlet property="journalLabel1" destination="mcB-X1-Nss" id="zPV-rh-fse"/>
                 <outlet property="journalLabel2" destination="ISp-Vs-3LR" id="BfP-Ab-BFK"/>
-                <outlet property="journalView" destination="Erv-fW-23n" id="70p-yQ-yer"/>
+                <outlet property="journalView" destination="Erv-fW-23n" id="8dk-Bh-VEq"/>
                 <outlet property="publisherLabel" destination="XqV-tW-TbB" id="dtj-s2-N56"/>
                 <outlet property="quoteLabel" destination="gXZ-9s-cei" id="vMf-pU-9cY"/>
                 <outlet property="titleLabel" destination="vx6-iG-hvb" id="ZXJ-U6-15g"/>

@@ -26,7 +26,7 @@ struct List {
 
 class ListViewController: UIViewController {
     
-    // MARK: Properities
+    // MARK: - Properities
     
     @IBOutlet weak var listTableView: UITableView!
     var widthSize: CGFloat = 0.0
@@ -48,7 +48,7 @@ class ListViewController: UIViewController {
         setData()
     }
     
-    // MARK: Register TableView Cell
+    // MARK: - Register TableView Cell
     
     private func registerXib() {
         let listcellnib = UINib(nibName: "ListTableViewCell", bundle: nil)
@@ -164,7 +164,8 @@ class ListViewController: UIViewController {
     }
 }
 
-// MARK: TableViewDataSource
+
+// MARK: - TableViewDataSource
 
 extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -201,13 +202,16 @@ extension ListViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListTableViewCell") as? ListTableViewCell else {
                 return UITableViewCell()
             }
-                cell.setCell(list: dummyData[indexPath.row])
-                cell.quoteSpacing(dummyData[indexPath.row].quote)
+            DispatchQueue.main.async {
+                cell.setCell(list: self.dummyData[indexPath.row])
+                cell.quoteSpacing(self.dummyData[indexPath.row].quote)
                 cell.journalView.round(corners: [.topLeft, .bottomLeft], cornerRadius: 20)
-                cell.journaltext(dummyData[indexPath.row].journal, widthSize)
-                cell.setLabelUnderline(widthSize, secondWidthSize)
+                cell.journaltext(self.dummyData[indexPath.row].journal, self.widthSize)
+                cell.setLabelUnderline(self.widthSize, self.secondWidthSize)
                 cell.selectionStyle = .none
-                return cell
+                
+            }
+            return cell
         default:
             return UITableViewCell()
             }
@@ -217,6 +221,8 @@ extension ListViewController: UITableViewDataSource {
         return 3
     }
 }
+
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension ListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -228,6 +234,8 @@ extension ListViewController: UICollectionViewDelegateFlowLayout {
         return self.view.frame.width * 8/375
     }
 }
+
+// MARK: - UICollectionViewDataSource
 
 extension ListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -247,7 +255,7 @@ extension ListViewController: UICollectionViewDataSource {
     }
 }
 
-    // MARK: Extension
+    // MARK: - Extension
 
 extension UIView {
     // 선택한 꼭짓점 Rounding

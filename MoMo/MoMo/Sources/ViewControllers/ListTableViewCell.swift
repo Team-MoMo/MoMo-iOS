@@ -9,7 +9,7 @@ import UIKit
 
 class ListTableViewCell: UITableViewCell {
     
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
     
     @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
@@ -23,6 +23,14 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var publisherLabel: UILabel!
     @IBOutlet weak var journalLabel1: UILabel!
     @IBOutlet weak var journalLabel2: UILabel!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        journalLabel1.layer.sublayers = nil
+        journalLabel2.layer.sublayers = nil
+        self.setNeedsLayout()
+        self.layoutIfNeeded()
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -84,26 +92,28 @@ class ListTableViewCell: UITableViewCell {
     
     // 일기 라벨에 밑줄 처리
     func setLabelUnderline(_ size1: CGFloat, _ size2: CGFloat) {
-        let firstString = journalLabel1.text!
-        let secondString = journalLabel2.text!
-        let firstLabelSize: CGSize = firstString.size(withAttributes: [.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
-        let secondLabelSize: CGSize = secondString.size(withAttributes: [.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
+        DispatchQueue.main.async {
+            let firstString = self.journalLabel1.text!
+            let secondString = self.journalLabel2.text!
+            let firstLabelSize: CGSize = firstString.size(withAttributes: [.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
+            let secondLabelSize: CGSize = secondString.size(withAttributes: [.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
 
-        let border1 = CALayer()
-        let border2 = CALayer()
-        
-        border1.frame = CGRect(x: 0, y: Int(self.journalLabel1.frame.height) - 1, width: Int(firstLabelSize.width), height: 1)
-        border1.backgroundColor = UIColor.LineLightGray.cgColor
-        
-        if secondLabelSize.width < size2 {
-            border2.frame = CGRect(x: 0, y: self.journalLabel2.frame.height - 1, width: secondLabelSize.width, height: 1)
-        } else {
-            border2.frame = CGRect(x: 0, y: self.journalLabel2.frame.height - 1, width: size2, height: 1)
+            let border1 = CALayer()
+            let border2 = CALayer()
+            
+            border1.frame = CGRect(x: 0, y: Int(self.journalLabel1.frame.height) - 1, width: Int(firstLabelSize.width), height: 1)
+            border1.backgroundColor = UIColor.LineLightGray.cgColor
+            
+            if secondLabelSize.width < size2 {
+                border2.frame = CGRect(x: 0, y: self.journalLabel2.frame.height - 1, width: secondLabelSize.width, height: 1)
+            } else {
+                border2.frame = CGRect(x: 0, y: self.journalLabel2.frame.height - 1, width: size2, height: 1)
+            }
+            border2.backgroundColor = UIColor.LineLightGray.cgColor
+
+            self.journalLabel1.layer.addSublayer(border1)
+            self.journalLabel2.layer.addSublayer(border2)
         }
-        border2.backgroundColor = UIColor.LineLightGray.cgColor
-
-        journalLabel1.layer.addSublayer(border1)
-        journalLabel2.layer.addSublayer(border2)
     }
 
 }
