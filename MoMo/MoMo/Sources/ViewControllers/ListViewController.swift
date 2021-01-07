@@ -202,15 +202,14 @@ extension ListViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListTableViewCell") as? ListTableViewCell else {
                 return UITableViewCell()
             }
-            DispatchQueue.main.async {
-                cell.setCell(list: self.dummyData[indexPath.row])
-                cell.quoteSpacing(self.dummyData[indexPath.row].quote)
-                cell.journalView.round(corners: [.topLeft, .bottomLeft], cornerRadius: 20)
-                cell.journaltext(self.dummyData[indexPath.row].journal, self.widthSize)
-                cell.setLabelUnderline(self.widthSize, self.secondWidthSize)
-                cell.selectionStyle = .none
+            
+            cell.setCell(list: self.dummyData[indexPath.row])
+            cell.quoteSpacing(self.dummyData[indexPath.row].quote)
+            cell.journalView.round(corners: [.topLeft, .bottomLeft], cornerRadius: 20)
+            cell.journaltext(self.dummyData[indexPath.row].journal, self.widthSize)
+            cell.setLabelUnderline(self.widthSize, self.secondWidthSize)
+            cell.selectionStyle = .none
                 
-            }
             return cell
         default:
             return UITableViewCell()
@@ -226,8 +225,8 @@ extension ListViewController: UITableViewDataSource {
 
 extension ListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let tempWidth = filter[indexPath.row].size(withAttributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular)]).width + 34
-        return CGSize(width: Int(tempWidth), height: 24)
+        let filterOptionCellWidth = filter[indexPath.row].size(withAttributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular)]).width + 34
+        return CGSize(width: Int(filterOptionCellWidth), height: 24)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -255,7 +254,7 @@ extension ListViewController: UICollectionViewDataSource {
     }
 }
 
-    // MARK: - Extension
+// MARK: - Extension
 
 extension UIView {
     // 선택한 꼭짓점 Rounding
