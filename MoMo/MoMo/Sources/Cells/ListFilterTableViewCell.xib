@@ -51,8 +51,6 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="filterCollectionView" destination="iTv-RU-OLc" id="J2t-cB-bMQ"/>
-                <outlet property="filterCollectionViewBottom" destination="IAe-4G-lAK" id="zpl-Rk-20v"/>
-                <outlet property="listFilterTableViewCellHeight" destination="zHi-m9-scx" id="OPr-ZT-bBs"/>
             </connections>
             <point key="canvasLocation" x="-263.04347826086956" y="75"/>
         </tableViewCell>

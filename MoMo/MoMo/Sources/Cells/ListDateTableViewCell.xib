@@ -22,7 +22,7 @@
                         <rect key="frame" x="24" y="0.0" width="207" height="84"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Toq-po-mmP">
-                                <rect key="frame" x="0.0" y="0.0" width="55.5" height="72"/>
+                                <rect key="frame" x="0.0" y="0.0" width="55.5" height="79"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                                 <color key="textColor" name="Black1"/>
                                 <nil key="highlightedColor"/>
@@ -31,7 +31,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Toq-po-mmP" firstAttribute="top" secondItem="48X-SI-i2f" secondAttribute="top" id="GNC-4f-MYG"/>
-                            <constraint firstAttribute="bottom" secondItem="Toq-po-mmP" secondAttribute="bottom" constant="12" id="IHx-hU-8y1"/>
+                            <constraint firstAttribute="bottom" secondItem="Toq-po-mmP" secondAttribute="bottom" constant="5" id="IHx-hU-8y1"/>
                             <constraint firstItem="Toq-po-mmP" firstAttribute="leading" secondItem="48X-SI-i2f" secondAttribute="leading" id="IxU-Tl-AC3"/>
                         </constraints>
                     </view>

@@ -9,7 +9,6 @@ import UIKit
 
 class FilterCollectionViewCell: UICollectionViewCell {
     
-    
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var filterLabel: UILabel!
     

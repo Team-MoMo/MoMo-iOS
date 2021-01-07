@@ -9,6 +9,8 @@ import UIKit
 
 class ListTableViewCell: UITableViewCell {
     
+    // MARK: IBOutlets
+    
     @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -25,39 +27,40 @@ class ListTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.translatesAutoresizingMaskIntoConstraints = false
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
+    // 리스트테이블뷰셀 데이터 입력
     func setCell(list: List) {
         iconImage.image = list.makeImage()
-        categoryLabel.attributedText = list.category.wordSpacing(0.6)
-        dateLabel.attributedText = list.date.wordSpacing(0.6)
-        dayLabel.attributedText = list.day.wordSpacing(0.6)
-        depthLabel.attributedText = list.depth.wordSpacing(0.6)
-        authorLabel.attributedText = list.author.wordSpacing(0.6)
-        titleLabel.attributedText = list.title.wordSpacing(0.6)
-        publisherLabel.attributedText = list.publisher.wordSpacing(0.6)
+        categoryLabel.attributedText = list.category.wordSpacing(-0.6)
+        dateLabel.attributedText = list.date.wordSpacing(-0.6)
+        dayLabel.attributedText = list.day.wordSpacing(-0.6)
+        depthLabel.attributedText = list.depth.wordSpacing(-0.6)
+        authorLabel.attributedText = list.author.wordSpacing(-0.6)
+        titleLabel.attributedText = list.title.wordSpacing(-0.6)
+        publisherLabel.attributedText = list.publisher.wordSpacing(-0.6)
         }
     
+    // 문구 텍스트 작업
     func quoteSpacing(_ text: String) {
         let attributedString = NSMutableAttributedString(string: text)
         let paragraphStyle = NSMutableParagraphStyle()
         
         paragraphStyle.lineSpacing = 4
-        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
         attributedString.addAttribute(NSAttributedString.Key.kern, value: -0.6, range: NSRange(location: 0, length: attributedString.length))
+
         quoteLabel.attributedText = attributedString
     }
     
+    // 일기 분리 작업
     func journaltext(_ text: String, _ size: CGFloat) {
-        let labelSize: CGSize = text.size(withAttributes: [.font: UIFont.systemFont(ofSize: 13, weight: .regular)])
-        let verify = "힣".size(withAttributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular)]).width
+        let labelSize: CGSize = text.size(withAttributes: [.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
+        let verify = "힣".size(withAttributes: [.font: UIFont.systemFont(ofSize: 12, weight: .regular)]).width
         let breakpoint: Int
         
         if labelSize.width > size {
@@ -71,17 +74,15 @@ class ListTableViewCell: UITableViewCell {
             journalLabel1.attributedText = firstString
             journalLabel2.attributedText = secondString
         } else {
-            let firstString = NSMutableAttributedString(string: text)
-            firstString.addAttribute(NSAttributedString.Key.kern, value: -0.6, range: NSRange(location: 0, length: firstString.length))
-            journalLabel1.attributedText = firstString
-            
+            journalLabel1.attributedText = text.wordSpacing(-0.6)
         }
     }
     
-    @IBAction func touchButton(_ sender: Any) {
+    @IBAction func touchButton(_ sender: UIButton) {
         print(1)
     }
     
+    // 일기 라벨에 밑줄 처리
     func setLabelUnderline(_ size1: CGFloat, _ size2: CGFloat) {
         let firstString = journalLabel1.text!
         let secondString = journalLabel2.text!
@@ -92,14 +93,14 @@ class ListTableViewCell: UITableViewCell {
         let border2 = CALayer()
         
         border1.frame = CGRect(x: 0, y: Int(self.journalLabel1.frame.height) - 1, width: Int(firstLabelSize.width), height: 1)
-        border1.backgroundColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1).cgColor
+        border1.backgroundColor = UIColor.LineLightGray.cgColor
         
         if secondLabelSize.width < size2 {
             border2.frame = CGRect(x: 0, y: self.journalLabel2.frame.height - 1, width: secondLabelSize.width, height: 1)
         } else {
             border2.frame = CGRect(x: 0, y: self.journalLabel2.frame.height - 1, width: size2, height: 1)
         }
-        border2.backgroundColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1).cgColor
+        border2.backgroundColor = UIColor.LineLightGray.cgColor
 
         journalLabel1.layer.addSublayer(border1)
         journalLabel2.layer.addSublayer(border2)

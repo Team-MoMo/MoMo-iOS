@@ -26,15 +26,15 @@ struct List {
 
 class ListViewController: UIViewController {
     
-    // MARK:- Properities
+    // MARK: Properities
     
     @IBOutlet weak var listTableView: UITableView!
     var widthSize: CGFloat = 0.0
     var secondWidthSize: CGFloat = 0.0
     var dummyData: [List] = []
-    var date = [2021,02]
+    var date = [2021, 02]
     var filter: [String] = ["2021년 02", "배고파", "심해"]
-    var pattern: Bool = true
+    var pattern: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,13 +43,12 @@ class ListViewController: UIViewController {
         self.listTableView.estimatedRowHeight = 266
         self.listTableView.dataSource = self
         self.listTableView.separatorStyle = .none
-//        self.listTableView.delegate = self
         widthSize = CGFloat(self.view.bounds.width * (325/414))
         secondWidthSize = CGFloat(self.view.bounds.width * (237/414))
         setData()
     }
     
-    // MARK:- Xib
+    // MARK: Register TableView Cell
     
     private func registerXib() {
         let listcellnib = UINib(nibName: "ListTableViewCell", bundle: nil)
@@ -60,6 +59,7 @@ class ListViewController: UIViewController {
 
     }
     
+    // dummyData 설정
     func setData() {
         dummyData.append(contentsOf: [
             List(
@@ -72,7 +72,7 @@ class ListViewController: UIViewController {
                  author: "박연준",
                  title: "<인생은 이상하게 흐른다>",
                  publisher: "(달)",
-                 journal: "오늘 새벽엔 눈이 내렸다. 창문을 열어 창문을 열어 흰눈이."),
+                 journal: "오늘 새벽엔 눈이 내렸다. 와 ㄹㅇ 이게 머야 ㅋ ㅋㅋㅗ 포ㅓ ㅏ ㅓㅎ"),
             List(
                 iconImage: "icLoveBlue",
                  category: "사랑",
@@ -149,23 +149,22 @@ class ListViewController: UIViewController {
         ])
     }
     
-    @objc func touchCancelButton(sender : UIButton) {
+    // filter x버튼 클릭시 발생하는 함수
+    @objc func touchCancelButton(sender: UIButton) {
         let indexPath = IndexPath(row: 0, section: 1)
         guard let cell = listTableView.cellForRow(at: indexPath) as? ListFilterTableViewCell else {
             return
         }
         filter.remove(at: sender.tag)
-//        cell.filterCollectionView.deleteItems(at: [IndexPath.init(row: sender.tag, section: 0)])
         cell.filterCollectionView.reloadData()
         if filter.count == 0 {
             pattern.toggle()
             listTableView.reloadData()
         }
-        
     }
 }
 
-// MARK:- TableView
+// MARK: TableViewDataSource
 
 extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -175,10 +174,11 @@ extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier:  "ListDateTableViewCell") as? ListDateTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListDateTableViewCell") as? ListDateTableViewCell else {
                 return UITableViewCell()
             }
             cell.setDate("\(date[0])년 \(date[1])월")
+            cell.selectionStyle = .none
             return cell
         case 1:
             if pattern {
@@ -188,11 +188,13 @@ extension ListViewController: UITableViewDataSource {
                 cell.filterCollectionView.register(UINib(nibName: "FilterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FilterCollectionViewCell")
                 cell.filterCollectionView.delegate = self
                 cell.filterCollectionView.dataSource = self
+                cell.selectionStyle = .none
                 return cell
             }
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyTableViewCell") as? EmptyTableViewCell else {
                 return UITableViewCell()
             }
+            cell.selectionStyle = .none
             return cell
                 
         case 2:
@@ -203,16 +205,14 @@ extension ListViewController: UITableViewDataSource {
                 cell.quoteSpacing(dummyData[indexPath.row].quote)
                 cell.journalView.round(corners: [.topLeft, .bottomLeft], cornerRadius: 20)
                 cell.journaltext(dummyData[indexPath.row].journal, widthSize)
-                cell.setLabelUnderline(widthSize,secondWidthSize)
+                cell.setLabelUnderline(widthSize, secondWidthSize)
                 cell.selectionStyle = .none
                 return cell
-            default:
-                return UITableViewCell()
+        default:
+            return UITableViewCell()
             }
         }
 
-        
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
@@ -221,13 +221,12 @@ extension ListViewController: UITableViewDataSource {
 extension ListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let tempWidth = filter[indexPath.row].size(withAttributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular)]).width + 34
-        return CGSize(width: Int(tempWidth), height : 24)
+        return CGSize(width: Int(tempWidth), height: 24)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return self.view.frame.width * 8/375
     }
-    
 }
 
 extension ListViewController: UICollectionViewDataSource {
@@ -241,17 +240,18 @@ extension ListViewController: UICollectionViewDataSource {
         }
         cell.layer.cornerRadius = 10
         cell.filterLabel.text = filter[indexPath.row]
+        // index 값을 tag에 넣어서 배열에 쉽게 접근
         cell.cancelButton.tag = indexPath.row
         cell.cancelButton.addTarget(self, action: #selector(touchCancelButton(sender:)), for: .touchUpInside)
         return cell
     }
 }
 
-// MARK:- View BorderRadius
+    // MARK: Extension
 
 extension UIView {
+    // 선택한 꼭짓점 Rounding
     func round(corners: UIRectCorner, cornerRadius: Double) {
-        
         let size = CGSize(width: cornerRadius, height: cornerRadius)
         let bezierPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: size)
         let shapeLayer = CAShapeLayer()
@@ -262,6 +262,7 @@ extension UIView {
 }
 
 extension String {
+    // 자간 설정
     func wordSpacing(_ spacing: Float) -> NSMutableAttributedString {
         let attributedString = NSMutableAttributedString(string: self)
         attributedString.addAttribute(NSAttributedString.Key.kern, value: spacing, range: NSRange(location: 0, length: attributedString.length))

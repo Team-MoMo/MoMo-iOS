@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -122,7 +123,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.96470588235294119" green="0.96862745098039216" blue="0.9882352941176471" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" name="Blue7"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="ISp-Vs-3LR" secondAttribute="bottom" constant="22" id="Elf-PF-qWY"/>
                             <constraint firstItem="hS3-gL-hIJ" firstAttribute="centerY" secondItem="ISp-Vs-3LR" secondAttribute="centerY" id="IVn-6y-L4p"/>
@@ -143,15 +144,24 @@
                         <color key="textColor" red="0.1843137255" green="0.25098039220000001" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iosIcDepth" translatesAutoresizingMaskIntoConstraints="NO" id="N8k-nt-gds">
+                        <rect key="frame" x="314" y="36" width="12" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="12" id="Esy-2q-W1s"/>
+                            <constraint firstAttribute="height" constant="10" id="w58-kf-yCx"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="gXZ-9s-cei" firstAttribute="top" secondItem="6In-cK-Ism" secondAttribute="bottom" constant="16" id="0Dx-b7-xhq"/>
                     <constraint firstItem="yvB-uF-DGS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="32" id="0ZA-hL-sTH"/>
+                    <constraint firstItem="6In-cK-Ism" firstAttribute="leading" secondItem="N8k-nt-gds" secondAttribute="trailing" constant="6" id="4zO-LX-31b"/>
                     <constraint firstItem="yvB-uF-DGS" firstAttribute="leading" secondItem="yMW-U8-qip" secondAttribute="trailing" constant="6" id="6eJ-xD-fgt"/>
                     <constraint firstItem="mcB-X1-Nss" firstAttribute="trailing" secondItem="6In-cK-Ism" secondAttribute="trailing" id="C46-u1-TQX"/>
                     <constraint firstItem="gXZ-9s-cei" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="70" id="EM3-IO-q0y"/>
                     <constraint firstItem="Erv-fW-23n" firstAttribute="top" secondItem="Egf-nS-7UG" secondAttribute="bottom" constant="22" id="EP4-vL-pLe"/>
                     <constraint firstItem="Erv-fW-23n" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="72" id="F9v-Hc-pgc"/>
+                    <constraint firstItem="N8k-nt-gds" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="36" id="FNe-fs-RtF"/>
                     <constraint firstAttribute="trailing" secondItem="Erv-fW-23n" secondAttribute="trailing" id="IOk-Le-f3y"/>
                     <constraint firstItem="6In-cK-Ism" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="32" id="IuP-1y-qpm"/>
                     <constraint firstItem="yMW-U8-qip" firstAttribute="leading" secondItem="gXZ-9s-cei" secondAttribute="leading" id="OrL-No-mSa"/>
@@ -189,5 +199,9 @@
     <resources>
         <image name="icArrowRight" width="24" height="24"/>
         <image name="icBoredBlue" width="30" height="30"/>
+        <image name="iosIcDepth" width="12" height="10"/>
+        <namedColor name="Blue7">
+            <color red="0.96100002527236938" green="0.97600001096725464" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
