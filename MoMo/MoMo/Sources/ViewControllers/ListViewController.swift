@@ -157,6 +157,7 @@ class ListViewController: UIViewController {
         }
         filter.remove(at: sender.tag)
         cell.filterCollectionView.reloadData()
+        
         if filter.count == 0 {
             pattern.toggle()
             listTableView.reloadData()
