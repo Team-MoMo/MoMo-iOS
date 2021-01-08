@@ -7,6 +7,13 @@
 
 import UIKit
 
+struct Sentence {
+    var author: String?
+    var bookTitle: String?
+    var publisher: String?
+    var sentence: String?
+}
+
 class OnboardingSentenceViewController: UIViewController {
 
     @IBOutlet weak var firstButton: UIButton!
@@ -33,7 +40,7 @@ class OnboardingSentenceViewController: UIViewController {
     @IBOutlet weak var thirdSentenceLabel: UILabel!
     
     private var buttons: [Button] = []
-    var mood: Mood?
+    var selectedMood: Mood?
     var date: String?
     
     override func viewDidLoad() {
@@ -46,17 +53,51 @@ class OnboardingSentenceViewController: UIViewController {
             button.buttonsAddShadow()
         }
         
-        self.moodLabel.text = self.mood?.toString()
-        self.moodIcon.image = self.mood?.toIcon()
+        self.moodLabel.text = self.selectedMood?.toString()
+        self.moodIcon.image = self.selectedMood?.toIcon()
         self.dateLabel.text = self.date
         
     }
 
     @IBAction func firstButtonTouchUp(_ sender: UIButton) {
+        pushToOnboardingWrite1ViewController(
+            sentence: Sentence(
+                author: self.firstAuthorLabel.text,
+                bookTitle: self.firstBookTitleLabel.text,
+                publisher: self.firstPublisherLabel.text,
+                sentence: self.firstSentenceLabel.text
+            )
+        )
     }
     
     @IBAction func secondButtonTouchUp(_ sender: UIButton) {
+        pushToOnboardingWrite1ViewController(
+            sentence: Sentence(
+                author: self.secondAuthorLabel.text,
+                bookTitle: self.secondBookTitleLabel.text,
+                publisher: self.secondPublisherLabel.text,
+                sentence: self.secondSentenceLabel.text
+            )
+        )
     }
     @IBAction func thirdButtonTouchUp(_ sender: UIButton) {
+        pushToOnboardingWrite1ViewController(
+            sentence: Sentence(
+                author: self.thirdAuthorLabel.text,
+                bookTitle: self.thirdBookTitleLabel.text,
+                publisher: self.thirdPublisherLabel.text,
+                sentence: self.thirdSentenceLabel.text
+            )
+        )
+    }
+    
+    func pushToOnboardingWrite1ViewController(sentence: Sentence) {
+        
+        guard let onboardingWrite1ViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.onboardingWrite1ViewController) as? OnboardingWrite1ViewController else { return }
+        
+        onboardingWrite1ViewController.selectedSentence = sentence
+        
+        self.navigationController?.pushViewController(onboardingWrite1ViewController, animated: true)
+        
     }
 }
