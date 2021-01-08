@@ -18,20 +18,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
-        if !UserDefaults.standard.bool(forKey: "didLaunch") {
-            UserDefaults.standard.set(true, forKey: "didLaunch")
-            
-            let onboardingStoryboard = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
-            let onboardingViewController = onboardingStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.onboardingViewController)
-            
-            navigationController = UINavigationController(rootViewController: onboardingViewController)
-        }
-        else {
-            let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
-            let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.homeViewController)
-            
-            navigationController = UINavigationController(rootViewController: homeViewController)
-        }
+        let onboardingStoryboard = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
+        let onboardingViewController = onboardingStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.onboardingViewController)
+        
+        navigationController = UINavigationController(rootViewController: onboardingViewController)
+        
+//        if !UserDefaults.standard.bool(forKey: "didLaunch") {
+//            UserDefaults.standard.set(true, forKey: "didLaunch")
+//
+//            let onboardingStoryboard = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
+//            let onboardingViewController = onboardingStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.onboardingViewController)
+//
+//            navigationController = UINavigationController(rootViewController: onboardingViewController)
+//        }
+//        else {
+//            let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
+//            let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.homeViewController)
+//
+//            navigationController = UINavigationController(rootViewController: homeViewController)
+//        }
         
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
