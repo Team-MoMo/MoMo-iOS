@@ -5,7 +5,6 @@
 //  Created by 초이 on 2021/01/01.
 //
 
-import Foundation
 import UIKit
 
 extension UIColor {
