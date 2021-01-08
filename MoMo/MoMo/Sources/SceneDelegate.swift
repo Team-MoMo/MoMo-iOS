@@ -21,13 +21,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if !UserDefaults.standard.bool(forKey: "didLaunch") {
             UserDefaults.standard.set(true, forKey: "didLaunch")
             
-            let onboardingStoryboard = UIStoryboard(name: Constants.StoryboardName.onboardingStoryboardName, bundle: nil)
+            let onboardingStoryboard = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
             let onboardingViewController = onboardingStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.onboardingViewController)
             
             navigationController = UINavigationController(rootViewController: onboardingViewController)
         }
         else {
-            let homeStoryboard = UIStoryboard(name: Constants.StoryboardName.homeStoryboardName, bundle: nil)
+            let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
             let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.homeViewController)
             
             navigationController = UINavigationController(rootViewController: homeViewController)

@@ -10,18 +10,16 @@ import UIKit
 
 struct Constants {
     
-    // MARK: - Storyboard Name Contants
-    struct StoryboardName {
-        static let homeStoryboardName: String = "Home"
-        static let onboardingStoryboardName: String = "Onboarding"
-    }
-    
-    
-    // MARK: - Xib Name Contants
-    struct XibName {
+    // MARK: - Name Contants
+    struct Name {
+        
+        // MARK: - Storyboard Name Constants
+        static let homeStoryboard: String = "Home"
+        static let onboardingStoryboard: String = "Onboarding"
+        
+        // MARK: - Nib Name Constants
         
     }
-    
     
     // MARK: - Identifier Contants
     
