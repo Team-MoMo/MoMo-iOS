@@ -10,6 +10,7 @@ import UIKit
 class HomeDayNightView: UIView {
 
     // MARK: - @IBOutlet Properties
+    
     // empty view
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var noDiaryStackView: UIStackView!
