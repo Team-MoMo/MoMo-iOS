@@ -27,6 +27,9 @@ struct Constants {
         static let homeViewController: String = "HomeViewController"
         static let onboardingViewController: String = "OnboardingViewController"
         static let onboardingMoodViewController: String = "OnboardingMoodViewController"
+        static let onboardingSentenceViewController: String = "OnboardingSentenceViewController"
+        static let onboardingWrite1ViewController: String = "OnboardingWrite1ViewController"
+        static let onboardingWrite2ViewController: String = "onboardingWrite1ViewController"
     }
     
     // MARK: - Design Constants
