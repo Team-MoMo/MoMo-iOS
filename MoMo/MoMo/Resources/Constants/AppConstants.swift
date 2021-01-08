@@ -11,13 +11,16 @@ import UIKit
 struct Constants {
     
     // MARK: - Name Contants
+    
     struct Name {
         
         // MARK: - Storyboard Name Constants
+        
         static let homeStoryboard: String = "Home"
         static let onboardingStoryboard: String = "Onboarding"
         
         // MARK: - Nib Name Constants
+        
         static let homeDayNightViewXib: String = "HomeDayNightView"
         
     }
@@ -26,11 +29,13 @@ struct Constants {
     
     struct Identifier {
         // MARK: - ViewController
+        
         static let homeViewController: String = "HomeViewController"
         static let onboardingViewController: String = "OnboardingViewController"
         static let onboardingMoodViewController: String = "OnboardingMoodViewController"
         
         // MARK: - UIView
+        
         static let homeDayNightView: String = "HomeDayNightView"
     }
     

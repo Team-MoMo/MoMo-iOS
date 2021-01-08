@@ -35,10 +35,10 @@ class HomeDayNightView: UIView {
     // MARK: - Functions
     
     func createGradientLayer() {
-            gradientLayer = CAGradientLayer()
-            gradientLayer.frame = self.backgroundView.bounds
-            gradientLayer.colors = [UIColor.HomeDay1.cgColor, UIColor.HomeDay2.cgColor]
-            self.backgroundView.layer.addSublayer(gradientLayer)
+        gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.backgroundView.bounds
+        gradientLayer.colors = [UIColor.HomeDay1.cgColor, UIColor.HomeDay2.cgColor]
+        self.backgroundView.layer.addSublayer(gradientLayer)
     }
     
     // MARK: - View Life Cycle
