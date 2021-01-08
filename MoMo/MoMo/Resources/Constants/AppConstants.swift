@@ -13,7 +13,7 @@ struct Constants {
     // MARK: - Identifier Contants
     
     struct Identifier {
-        static let onboardingMoodController: String = "OnboardingMoodController"
+        static let onboardingMoodViewController: String = "OnboardingMoodViewController"
     }
     
     // MARK: - Design Constants
