@@ -541,6 +541,8 @@
 				2546CFA557877F5926EFBFE5D9425439 /* URLRequest+Encoding.swift */,
 				0054B70358218FAE1F97C4AA78843440 /* ValidationType.swift */,
 			);
+			name = Moya;
+			path = Moya;
 			name = Core;
 			sourceTree = "<group>";
 		};
@@ -668,6 +670,8 @@
 				4C81F5F3C9B9F43D65AB178D9DC03DC9 /* Core */,
 				EAEEF69257B0C1E406871646F16ABAE2 /* Support Files */,
 			);
+			name = SwiftLint;
+			path = SwiftLint;
 			name = Moya;
 			path = Moya;
 			sourceTree = "<group>";

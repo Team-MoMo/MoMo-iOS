@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="ListFilterTableViewCell" customModule="MoMo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="331" height="42"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="331" height="42"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RsN-20-9OP">
+                        <rect key="frame" x="24" y="0.0" width="283" height="42"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="iTv-RU-OLc">
+                                <rect key="frame" x="0.0" y="0.0" width="283" height="24"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HkG-2t-wDv">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="iTv-RU-OLc" secondAttribute="bottom" constant="18" id="IAe-4G-lAK"/>
+                            <constraint firstAttribute="trailing" secondItem="iTv-RU-OLc" secondAttribute="trailing" id="Lfb-me-T8D"/>
+                            <constraint firstItem="iTv-RU-OLc" firstAttribute="leading" secondItem="RsN-20-9OP" secondAttribute="leading" id="dKf-wL-Ir8"/>
+                            <constraint firstItem="iTv-RU-OLc" firstAttribute="top" secondItem="RsN-20-9OP" secondAttribute="top" id="ddV-si-eSh"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="42" id="zHi-m9-scx"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="RsN-20-9OP" secondAttribute="bottom" id="75B-e6-S8e"/>
+                    <constraint firstAttribute="trailing" secondItem="RsN-20-9OP" secondAttribute="trailing" constant="24" id="9BD-9C-feK"/>
+                    <constraint firstItem="RsN-20-9OP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="HvW-VL-zVe"/>
+                    <constraint firstItem="RsN-20-9OP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cK0-rR-dnG"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="filterCollectionView" destination="iTv-RU-OLc" id="J2t-cB-bMQ"/>
+            </connections>
+            <point key="canvasLocation" x="-263.04347826086956" y="75"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
