@@ -61,8 +61,10 @@ class HomeDayNightView: UIView {
         super.awakeFromNib()
         
         // gradient 배경 지정
-        createGradientLayer()
-        
+        DispatchQueue.main.async {
+            self.createGradientLayer()
+        }
+    
         // TODO: - 줄 간격, 자간 extension으로 빼기 - 리팩토링 필요
         // 자간은 앱 내 통일이나, 행간은 다름
         
@@ -76,5 +78,15 @@ class HomeDayNightView: UIView {
         textSpacing(labelName: diaryLabel, lineSpacing: 10)
         
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
 
+        if #available(iOS 13.0, *),
+            let hasUserInterfaceStyleChanged = previousTraitCollection?.hasDifferentColorAppearance(comparedTo: traitCollection),
+            hasUserInterfaceStyleChanged {
+            // update layer
+            createGradientLayer()
+        }
+    }
 }
