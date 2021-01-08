@@ -95,7 +95,7 @@ class OnboardingSentenceViewController: UIViewController {
         
         guard let onboardingWrite1ViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.onboardingWrite1ViewController) as? OnboardingWrite1ViewController else { return }
         
-        onboardingWrite1ViewController.selectedSentence = sentence
+        onboardingWrite1ViewController.selectedSentence = sentence 
         
         self.navigationController?.pushViewController(onboardingWrite1ViewController, animated: true)
         
