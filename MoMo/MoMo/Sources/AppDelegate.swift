@@ -11,6 +11,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     internal var window: UIWindow?
+    var navigationController: UINavigationController?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -18,15 +19,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // SceneDelegate에서 UI 관련작업 처리
         }
         else {
+            
             if !UserDefaults.standard.bool(forKey: "didLaunch") {
                 UserDefaults.standard.set(true, forKey: "didLaunch")
                 
-                let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
-                let onboardingViewController = storyboard.instantiateViewController(withIdentifier: "OnboardingViewController")
+                let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
+                let onboardingViewController = onboardingStoryboard.instantiateViewController(withIdentifier: "OnboardingViewController")
                 
-                self.window?.rootViewController = onboardingViewController
-                self.window?.makeKeyAndVisible()
+                navigationController = UINavigationController(rootViewController: onboardingViewController)
             }
+            else {
+                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let mainViewController = mainStoryboard.instantiateViewController(withIdentifier: "MainViewController")
+                
+                navigationController = UINavigationController(rootViewController: mainViewController)
+            }
+            
+            self.window?.rootViewController = navigationController
+            self.window?.makeKeyAndVisible()
         }
         
         return true

@@ -10,6 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var navigationController: UINavigationController?
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -17,16 +18,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
-        if !UserDefaults.standard.bool(forKey: "didLaunch") {
-            UserDefaults.standard.set(true, forKey: "didLaunch")
-            
-            let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
-            
-            let onboardingViewController = storyboard.instantiateViewController(withIdentifier: "OnboardingViewController")
-            
-            self.window?.rootViewController = onboardingViewController
-            self.window?.makeKeyAndVisible()
-        }
+        
+        let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
+        let onboardingViewController = onboardingStoryboard.instantiateViewController(withIdentifier: "OnboardingViewController")
+        
+        navigationController = UINavigationController(rootViewController: onboardingViewController)
+        
+        
+//        if !UserDefaults.standard.bool(forKey: "didLaunch") {
+//            UserDefaults.standard.set(true, forKey: "didLaunch")
+//
+//            let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
+//            let onboardingViewController = onboardingStoryboard.instantiateViewController(withIdentifier: "OnboardingViewController")
+//
+//            navigationController = UINavigationController(rootViewController: onboardingViewController)
+//        }
+//        else {
+//            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//            let mainViewController = mainStoryboard.instantiateViewController(withIdentifier: "MainViewController")
+//
+//            navigationController = UINavigationController(rootViewController: mainViewController)
+//        }
+        
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
         
         guard let _ = (scene as? UIWindowScene) else { return }
     }

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1CEF46BF25A6DA7600AF3D81 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46BE25A6DA7600AF3D81 /* OnboardingViewController.swift */; };
 		1CEF46C225A6DAA000AF3D81 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CEF46C125A6DAA000AF3D81 /* Onboarding.storyboard */; };
+		1CEF46C525A6E09100AF3D81 /* OnboardingMoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46C425A6E09100AF3D81 /* OnboardingMoodViewController.swift */; };
+		1CEF46C825A6E0A000AF3D81 /* OnboardingSentenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46C725A6E0A000AF3D81 /* OnboardingSentenceViewController.swift */; };
+		1CEF46CB25A6E0B200AF3D81 /* OnboardingWrite1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46CA25A6E0B200AF3D81 /* OnboardingWrite1ViewController.swift */; };
+		1CEF46CE25A6E0C100AF3D81 /* OnboardingWrite2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46CD25A6E0C100AF3D81 /* OnboardingWrite2ViewController.swift */; };
 		5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5687640C2599AD3A009CB486 /* AppDelegate.swift */; };
 		5687640F2599AD3A009CB486 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5687640E2599AD3A009CB486 /* SceneDelegate.swift */; };
 		568764112599AD3A009CB486 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568764102599AD3A009CB486 /* ViewController.swift */; };
@@ -26,6 +30,10 @@
 /* Begin PBXFileReference section */
 		1CEF46BE25A6DA7600AF3D81 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		1CEF46C125A6DAA000AF3D81 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		1CEF46C425A6E09100AF3D81 /* OnboardingMoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingMoodViewController.swift; sourceTree = "<group>"; };
+		1CEF46C725A6E0A000AF3D81 /* OnboardingSentenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSentenceViewController.swift; sourceTree = "<group>"; };
+		1CEF46CA25A6E0B200AF3D81 /* OnboardingWrite1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWrite1ViewController.swift; sourceTree = "<group>"; };
+		1CEF46CD25A6E0C100AF3D81 /* OnboardingWrite2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWrite2ViewController.swift; sourceTree = "<group>"; };
 		568764092599AD3A009CB486 /* MoMo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoMo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5687640C2599AD3A009CB486 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5687640E2599AD3A009CB486 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -170,6 +178,10 @@
 			children = (
 				568764102599AD3A009CB486 /* ViewController.swift */,
 				1CEF46BE25A6DA7600AF3D81 /* OnboardingViewController.swift */,
+				1CEF46C425A6E09100AF3D81 /* OnboardingMoodViewController.swift */,
+				1CEF46C725A6E0A000AF3D81 /* OnboardingSentenceViewController.swift */,
+				1CEF46CA25A6E0B200AF3D81 /* OnboardingWrite1ViewController.swift */,
+				1CEF46CD25A6E0C100AF3D81 /* OnboardingWrite2ViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -338,11 +350,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				568764112599AD3A009CB486 /* ViewController.swift in Sources */,
+				1CEF46CB25A6E0B200AF3D81 /* OnboardingWrite1ViewController.swift in Sources */,
+				1CEF46CE25A6E0C100AF3D81 /* OnboardingWrite2ViewController.swift in Sources */,
 				568764612599FB56009CB486 /* APIConstants.swift in Sources */,
 				5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */,
 				568764D1259F6EDE009CB486 /* UIColor+Extension.swift in Sources */,
 				1CEF46BF25A6DA7600AF3D81 /* OnboardingViewController.swift in Sources */,
+				1CEF46C825A6E0A000AF3D81 /* OnboardingSentenceViewController.swift in Sources */,
 				5687640F2599AD3A009CB486 /* SceneDelegate.swift in Sources */,
+				1CEF46C525A6E09100AF3D81 /* OnboardingMoodViewController.swift in Sources */,
 				5687645E2599FB48009CB486 /* AppConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

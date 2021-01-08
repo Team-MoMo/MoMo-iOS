@@ -1,5 +1,5 @@
 //
-//  OnboardingViewController.swift
+//  OnboardingSentenceViewController.swift
 //  MoMo
 //
 //  Created by Haeseok Lee on 2021/01/07.
@@ -7,10 +7,7 @@
 
 import UIKit
 
-class OnboardingViewController: UIViewController {
-
-
-    @IBOutlet weak var tutorialStartButton: UIButton!
+class OnboardingSentenceViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,13 +15,7 @@ class OnboardingViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func tutorialButtonTouchUp(_ sender: UIButton) {
-        
-        guard let onboardingMoodViewController = self.storyboard?.instantiateViewController(identifier: "OnboardingMoodViewController") else { return }
-        
-        self.navigationController?.pushViewController(onboardingMoodViewController, animated: true)
-        
-    }
+
     /*
     // MARK: - Navigation
 
