@@ -128,10 +128,9 @@ class OnboardingMoodViewController: UIViewController, UIGestureRecognizerDelegat
         
         let formattedDate = dateFormatter.string(from: date)
         var dateArray = formattedDate.components(separatedBy: ". ")
-        let weekday = dateArray[dateArray.count - 1]
+        let weekday = dateArray.popLast()
         
-        _ = dateArray.popLast()
-        dateArray.append(weekdayEnglishToKorean(weekday: weekday))
+        dateArray.append(weekdayEnglishToKorean(weekday: weekday ?? "Monday"))
         
         let formattedDateWithKorean = dateArray.joined(separator: ". ")
         
@@ -201,7 +200,7 @@ class OnboardingMoodViewController: UIViewController, UIGestureRecognizerDelegat
         
         guard let onboardingSentenceViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.onboardingSentenceViewController) as? OnboardingSentenceViewController else { return }
         
-        onboardingSentenceViewController.mood = mood
+        onboardingSentenceViewController.selectedMood = mood
         onboardingSentenceViewController.date = self.date
         
         self.navigationController?.pushViewController(onboardingSentenceViewController, animated: true)
