@@ -10,6 +10,12 @@ import UIKit
 
 struct Constants {
     
+    // MARK: - Identifier Contants
+    
+    struct Identifier {
+        static let onboardingMoodViewController: String = "OnboardingMoodViewController"
+    }
+    
     // MARK: - Design Constants
     
     struct Design {
