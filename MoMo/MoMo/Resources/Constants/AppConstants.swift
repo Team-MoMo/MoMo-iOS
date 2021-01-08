@@ -18,15 +18,20 @@ struct Constants {
         static let onboardingStoryboard: String = "Onboarding"
         
         // MARK: - Nib Name Constants
+        static let homeDayNightViewXib: String = "HomeDayNightView"
         
     }
     
     // MARK: - Identifier Contants
     
     struct Identifier {
+        // MARK: - ViewController
         static let homeViewController: String = "HomeViewController"
         static let onboardingViewController: String = "OnboardingViewController"
         static let onboardingMoodViewController: String = "OnboardingMoodViewController"
+        
+        // MARK: - UIView
+        static let homeDayNightView: String = "HomeDayNightView"
     }
     
     // MARK: - Design Constants
@@ -42,6 +47,8 @@ struct Constants {
         
         struct Image {
             /// 예시 : static let IconHome = UIImage(named: "ico_category")
+            static let homeIcSwipeDown = UIImage(named: "homeIcSwipeDown")
+            static let btnIcMyBlue = UIImage(named: "btnIcMyBlue")
         }
         
         struct Font {
