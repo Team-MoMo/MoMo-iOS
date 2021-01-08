@@ -24,9 +24,11 @@ class HomeViewController: UIViewController {
         // tableHeaderView register
         let headerView = Bundle.main.loadNibNamed(Constants.Name.homeDayNightViewXib, owner: self, options: nil)?.last as? UIView ?? UIView()
         
-        // tableHeaderView 지정
-        homeTableView.tableHeaderView = headerView
-        homeTableView.tableHeaderView?.frame.size.height = UIScreen.main.bounds.height
+        DispatchQueue.main.async {
+            // tableHeaderView 지정
+            self.homeTableView.tableHeaderView = headerView
+            self.homeTableView.tableHeaderView?.frame.size.height = UIScreen.main.bounds.height
+        }
         
         // tableView separator 없애기
         homeTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
@@ -38,6 +40,7 @@ class HomeViewController: UIViewController {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
+        
     }
 
 }
