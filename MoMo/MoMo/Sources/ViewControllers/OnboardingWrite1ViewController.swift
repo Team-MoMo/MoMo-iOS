@@ -9,6 +9,16 @@ import UIKit
 
 class OnboardingWrite1ViewController: UIViewController {
 
+    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var publisherLabel: UILabel!
+    @IBOutlet weak var sentenceLabel: UILabel!
+    
+    @IBOutlet weak var onboardingCircleSmall: UIImageView!
+    @IBOutlet weak var onboardingCircleBig: UIImageView!
+    
+    var selectedSentence: Sentence?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -16,14 +26,6 @@ class OnboardingWrite1ViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }
