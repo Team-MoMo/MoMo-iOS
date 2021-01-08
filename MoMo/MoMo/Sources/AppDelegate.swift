@@ -23,16 +23,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if !UserDefaults.standard.bool(forKey: "didLaunch") {
                 UserDefaults.standard.set(true, forKey: "didLaunch")
                 
-                let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
-                let onboardingViewController = onboardingStoryboard.instantiateViewController(withIdentifier: "OnboardingViewController")
+                let onboardingStoryboard = UIStoryboard(name: Constants.StoryboardName.onboardingStoryboardName, bundle: nil)
+                let onboardingViewController = onboardingStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.onboardingViewController)
                 
                 navigationController = UINavigationController(rootViewController: onboardingViewController)
             }
             else {
-                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let mainViewController = mainStoryboard.instantiateViewController(withIdentifier: "MainViewController")
+                let homeStoryboard = UIStoryboard(name: Constants.StoryboardName.homeStoryboardName, bundle: nil)
+                let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.homeViewController)
                 
-                navigationController = UINavigationController(rootViewController: mainViewController)
+                navigationController = UINavigationController(rootViewController: homeViewController)
             }
             
             self.window?.rootViewController = navigationController
