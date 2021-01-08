@@ -10,6 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var navigationController: UINavigationController?
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -20,13 +21,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if !UserDefaults.standard.bool(forKey: "didLaunch") {
             UserDefaults.standard.set(true, forKey: "didLaunch")
             
-            let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
+            let onboardingStoryboard = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
+            let onboardingViewController = onboardingStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.onboardingViewController)
             
-            let onboardingViewController = storyboard.instantiateViewController(withIdentifier: "OnboardingViewController")
-            
-            self.window?.rootViewController = onboardingViewController
-            self.window?.makeKeyAndVisible()
+            navigationController = UINavigationController(rootViewController: onboardingViewController)
         }
+        else {
+            let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
+            let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.homeViewController)
+            
+            navigationController = UINavigationController(rootViewController: homeViewController)
+        }
+        
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
         
         guard let _ = (scene as? UIWindowScene) else { return }
     }
