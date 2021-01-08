@@ -11,6 +11,8 @@ class HomeDayNightView: UIView {
 
     // MARK: - @IBOutlet Properties
     
+    @IBOutlet weak var backgroundView: UIView!
+    
     // empty view
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var noDiaryStackView: UIStackView!
@@ -26,5 +28,26 @@ class HomeDayNightView: UIView {
     @IBOutlet weak var diaryLabel: UILabel!
     @IBOutlet weak var filledDiaryView: UIView!
     
+    // MARK: - Properties
+    
+    var gradientLayer: CAGradientLayer!
+    
+    // MARK: - Functions
+    
+    func createGradientLayer() {
+            gradientLayer = CAGradientLayer()
+            gradientLayer.frame = self.backgroundView.bounds
+            gradientLayer.colors = [UIColor.HomeDay1.cgColor, UIColor.HomeDay2.cgColor]
+            self.backgroundView.layer.addSublayer(gradientLayer)
+    }
+    
+    // MARK: - View Life Cycle
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        print("asd")
+        createGradientLayer()
+    }
 
 }
