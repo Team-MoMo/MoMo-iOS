@@ -30,6 +30,7 @@ struct Constants {
         static let onboardingSentenceViewController: String = "OnboardingSentenceViewController"
         static let onboardingWrite1ViewController: String = "OnboardingWrite1ViewController"
         static let onboardingWrite2ViewController: String = "onboardingWrite1ViewController"
+        static let onboardingWriteViewController: String = "OnboardingWriteViewController"
     }
     
     // MARK: - Design Constants
