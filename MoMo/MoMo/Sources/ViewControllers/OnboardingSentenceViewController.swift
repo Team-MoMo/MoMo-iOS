@@ -146,4 +146,22 @@ class OnboardingSentenceViewController: UIViewController {
         self.navigationController?.pushViewController(onboardingWriteViewController, animated: true)
         
     }
+    
+    func hideButtons() {
+        for button in self.buttons {
+            button.button?.alpha = 0.0
+        }
+    }
+    
+    func showButtonsWithAnimation() {
+        UIView.animate(
+            withDuration: 0.8,
+            delay: 0,
+            animations: {
+                for button in self.buttons {
+                    button.button?.alpha = 1.0
+                }
+            }
+        )
+    }
 }
