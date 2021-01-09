@@ -12,6 +12,13 @@ class HomeViewController: UIViewController {
     // MARK: - @IBOutlet Properties
     
     @IBOutlet weak var homeTableView: UITableView!
+    @IBOutlet weak var myPageButton: UIButton!
+    @IBOutlet weak var calendarButton: UIButton!
+    @IBOutlet weak var swipeUpButton: UIButton!
+    @IBOutlet weak var swipeDownButton: UIButton!
+    @IBOutlet weak var homeTopButton: UIButton!
+    @IBOutlet weak var uploadButton: UIButton!
+    @IBOutlet weak var listButton: UIButton!
     
     // MARK: - View Life Cycle
     
