@@ -16,7 +16,8 @@ class ListFilterModalViewController: UIViewController {
     var depth: Int? = nil
     var hasSetPointOrigin = false
     var pointOrigin: CGPoint?
-    
+    var year: [String] = []
+    var month: [String] = []
     let emotionArray: [String] = ["iosFilterLoveUnselected",
                                   "iosFilterHappyUnselected",
                                   "iosFilterConsoleUnselected",
@@ -55,6 +56,13 @@ class ListFilterModalViewController: UIViewController {
     @IBOutlet weak var depthCollectionView: UICollectionView!
     @IBOutlet weak var depthCollectionViewTrailing: NSLayoutConstraint!
     @IBOutlet weak var depthCollectionViewBottom: NSLayoutConstraint!
+    @IBOutlet weak var datePickerStackView: UIStackView!
+    @IBOutlet weak var yearPickerView: UIPickerView!
+    @IBOutlet weak var monthPickerView: UIPickerView!
+    @IBOutlet weak var yearLabel: UILabel!
+    @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var datePickerStackViewLeading: NSLayoutConstraint!
+    @IBOutlet weak var datePickerStackViewTrailing: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,6 +98,60 @@ class ListFilterModalViewController: UIViewController {
         topLayer.backgroundColor = UIColor.LineLightGray.cgColor
         emotionView.layer.addSublayer(bottomLayer)
         emotionView.layer.addSublayer(topLayer)
+        yearPickerView.delegate = self
+        yearPickerView.dataSource = self
+        monthPickerView.delegate = self
+        monthPickerView.dataSource = self
+        self.addData()
+        self.datePickerStackView.isHidden = true
+        
+        DispatchQueue.main.async {
+            print(self.yearPickerView.subviews.count)
+//
+            
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.main.async {
+            self.yearPickerView.subviews[1].backgroundColor = UIColor.clear
+//
+//            print(self.yearPickerView.subviews.count)
+//            let topLayer1 = CALayer()
+//            topLayer1.frame = CGRect(x: 0,
+//                                     y: 0,
+//                                     width: self.yearPickerView.subviews[1].frame.width,
+//                                     height: 1)
+//            topLayer1.backgroundColor = UIColor.black.cgColor
+//            let bottomLayer1 = CALayer()
+//            bottomLayer1.frame = CGRect(x: 0,
+//                                        y: self.yearPickerView.subviews[1].frame.height - 1,
+//                                        width: self.yearPickerView.subviews[1].frame.width,
+//                                        height: 1)
+//            bottomLayer1.backgroundColor = UIColor.black.cgColor
+//            self.yearPickerView.subviews[1].layer.addSublayer(topLayer1)
+//            self.yearPickerView.subviews[1].layer.addSublayer(bottomLayer1)
+//
+//
+//
+//            let topLayer2 = CALayer()
+//            topLayer2.frame = CGRect(x: 0,
+//                                    y: 0,
+//                                    width: self.monthPickerView.subviews[1].frame.width,
+//                                    height: 1)
+//            topLayer2.backgroundColor = UIColor.black.cgColor
+//                        let bottomLayer2 = CALayer()
+//            bottomLayer2.frame = CGRect(x: 0,
+//                                        y: self.monthPickerView.subviews[1].frame.height - 1,
+//                                        width: self.monthPickerView.subviews[1].frame.width,
+//                                        height: 1)
+//            bottomLayer2.backgroundColor = UIColor.Black4.cgColor
+//            self.monthPickerView.subviews[1].layer.addSublayer(topLayer2)
+//            self.monthPickerView.subviews[1].layer.addSublayer(bottomLayer2)
+            self.monthPickerView.subviews[1].backgroundColor = UIColor.clear
+//        }
+        
     }
 
     @IBAction func touchMoreButton(_ sender: Any) {
@@ -100,6 +162,7 @@ class ListFilterModalViewController: UIViewController {
                 self.moreButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2.0)
             }
             pointOrigin = self.view.frame.origin
+            datePickerStackView.isHidden = false
             verify.toggle()
         } else {
             self.view.frame = CGRect(origin: CGPoint(x:0, y: self.height*0.27), size: CGSize(width: self.width, height: self.height * 0.73))
@@ -108,6 +171,7 @@ class ListFilterModalViewController: UIViewController {
                 self.moreButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 100.0)
             }
             pointOrigin = self.view.frame.origin
+            datePickerStackView.isHidden = true
             verify.toggle()
         }
     }
@@ -120,13 +184,22 @@ class ListFilterModalViewController: UIViewController {
     }
     
     func enableButton() {
-        if (emotion != nil || depth != nil) {
+        if emotion != nil || depth != nil {
             applyButton.isEnabled = true
             applyButton.backgroundColor = .BlueModalAble
         } else {
             applyButton.isEnabled = false
             applyButton.backgroundColor = .Black6
 
+        }
+    }
+    
+    func addData() {
+        for num in 2020...3000 {
+            year.append(String(num))
+        }
+        for num in 1...12 {
+            month.append(String(num))
         }
     }
     
@@ -258,4 +331,52 @@ extension ListFilterModalViewController: UICollectionViewDelegateFlowLayout {
         }
         enableButton()
     }
+}
+
+extension ListFilterModalViewController: UIPickerViewDelegate {
+//    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+//        return self.view.frame.height * 40/812
+//    }
+//
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView == self.yearPickerView {
+            return year[row]
+        }
+        return month[row]
+    }
+ 
+//    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+//        print(view?.frame)
+//
+//        var label = UILabel()
+//        if let tempView = view as? UILabel {
+//            label = tempView
+//        }
+//        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+//        if pickerView == self.yearPickerView {
+//            label.text = year[row]
+//        } else {
+//            label.text = month[row]
+//        }
+//        label.frame = pickerView.subviews[1].bounds
+//        label.sizeToFit()
+//        label.textAlignment = .center
+//        print("label frmae ")
+//        print(label.frame)
+//        return label
+//    }
+}
+
+extension ListFilterModalViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView == self.yearPickerView {
+            return year.count
+        }
+        return month.count
+    }
+
 }
