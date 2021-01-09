@@ -39,6 +39,15 @@ class HomeViewController: UIViewController {
         
         // tableView separator 없애기
         homeTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+        
+        // 첫 화면 버튼 hidden 처리
+        calendarButton.isHidden = true
+        swipeUpButton.isHidden = true
+        homeTopButton.isHidden = true
+        
+        // 오늘 작성한 일기가 없을 때
+        // uploadButton.isHidden = true
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -49,5 +58,4 @@ class HomeViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         
     }
-
 }
