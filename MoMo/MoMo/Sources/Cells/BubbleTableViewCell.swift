@@ -11,6 +11,7 @@ class BubbleTableViewCell: UITableViewCell {
     
     // MARK: - @IBOutlet Properties
 
+    @IBOutlet weak var bubbleView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var emotionLabel: UILabel!
     @IBOutlet weak var bubbleSize: NSLayoutConstraint!
@@ -29,15 +30,21 @@ class BubbleTableViewCell: UITableViewCell {
     
     // MARK: - Functions
     
-    func setCell(bubble: Bubble){
+    func setCell(bubble: Bubble) {
         dateLabel.text = bubble.date
         emotionLabel.text = bubble.cate
         bubbleLeading.constant = calculateLeadingOffset(num: bubble.leadingNum)
     }
     
-    func calculateLeadingOffset(num: Int) -> CGFloat{
-        let viewWidth = UIScreen.main.bounds.width - 62
-        let leadingOffset = CGFloat(Int(viewWidth) / 10 * num + 0)
+    func calculateLeadingOffset(num: Int) -> CGFloat {
+        if num == -1 {
+            bubbleView.isHidden = true
+        } else {
+            bubbleView.isHidden = false
+        }
+        
+        let viewWidth = UIScreen.main.bounds.width - 32 - bubbleSize.constant
+        let leadingOffset = CGFloat(Int(viewWidth) / 10 * num + 32)
         
         return leadingOffset
     }

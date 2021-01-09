@@ -64,6 +64,7 @@
             <connections>
                 <outlet property="bubbleLeading" destination="iz2-XA-F9s" id="7mL-Vj-mgz"/>
                 <outlet property="bubbleSize" destination="YA9-8G-BOI" id="ZvO-Yg-9MV"/>
+                <outlet property="bubbleView" destination="VBT-BL-pqH" id="mgl-Ou-kV7"/>
                 <outlet property="dateLabel" destination="bEK-Dy-3La" id="33P-zh-Ybo"/>
                 <outlet property="emotionLabel" destination="40T-wU-l1J" id="xHL-pI-5cQ"/>
             </connections>
