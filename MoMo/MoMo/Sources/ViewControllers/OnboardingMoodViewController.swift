@@ -119,9 +119,17 @@ class OnboardingMoodViewController: UIViewController, UIGestureRecognizerDelegat
             button.buttonsAddShadow()
         }
         
+        self.hideButtons()
+        
         self.date = self.getCurrentFormattedDate()
         self.dateLabel.text = self.date
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.showButtonsWithAnimation()
     }
     
     // MARK: - Functions
@@ -168,8 +176,6 @@ class OnboardingMoodViewController: UIViewController, UIGestureRecognizerDelegat
     
     func navigationControllerSetUp() {
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-        self.navigationController?.navigationBar.topItem?.title = ""
-        self.navigationController?.isNavigationBarHidden = true
     }
     
     @IBAction func loveButtonTouchUp(_ sender: UIButton) {
@@ -213,6 +219,24 @@ class OnboardingMoodViewController: UIViewController, UIGestureRecognizerDelegat
         
         self.navigationController?.pushViewController(onboardingSentenceViewController, animated: true)
         
+    }
+    
+    func hideButtons() {
+        for button in self.buttons {
+            button.button?.alpha = 0.0
+        }
+    }
+    
+    func showButtonsWithAnimation() {
+        UIView.animate(
+            withDuration: 0.8,
+            delay: 0,
+            animations: {
+                for button in self.buttons {
+                    button.button?.alpha = 1.0
+                }
+            }
+        )
     }
 }
 
