@@ -73,6 +73,14 @@ class OnboardingSentenceViewController: UIViewController {
         self.dateLabel.text = self.date
         
         self.getSentenceDataFromAPI(completion: setSentenceLabel)
+        
+        self.hideButtons()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.showButtonsWithAnimation()
     }
     
     // MARK: - Functions
