@@ -28,6 +28,8 @@
 		563B034325A8970E00DA74C5 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 563B034225A8970E00DA74C5 /* Home.storyboard */; };
 		563B034725A8973100DA74C5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B034625A8973100DA74C5 /* HomeViewController.swift */; };
 		563B037625AA0F3500DA74C5 /* BubbleDummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B037525AA0F3500DA74C5 /* BubbleDummyData.swift */; };
+		563B037B25AA106F00DA74C5 /* BubbleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B037925AA106F00DA74C5 /* BubbleTableViewCell.swift */; };
+		563B037C25AA106F00DA74C5 /* BubbleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 563B037A25AA106F00DA74C5 /* BubbleTableViewCell.xib */; };
 		5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5687640C2599AD3A009CB486 /* AppDelegate.swift */; };
 		5687640F2599AD3A009CB486 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5687640E2599AD3A009CB486 /* SceneDelegate.swift */; };
 		568764112599AD3A009CB486 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568764102599AD3A009CB486 /* ViewController.swift */; };
@@ -64,6 +66,8 @@
 		563B034225A8970E00DA74C5 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		563B034625A8973100DA74C5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		563B037525AA0F3500DA74C5 /* BubbleDummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleDummyData.swift; sourceTree = "<group>"; };
+		563B037925AA106F00DA74C5 /* BubbleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleTableViewCell.swift; sourceTree = "<group>"; };
+		563B037A25AA106F00DA74C5 /* BubbleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BubbleTableViewCell.xib; sourceTree = "<group>"; };
 		568764092599AD3A009CB486 /* MoMo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoMo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5687640C2599AD3A009CB486 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5687640E2599AD3A009CB486 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -216,6 +220,8 @@
 				107919C025A484E60024C711 /* FilterCollectionViewCell.xib */,
 				105661EB25A5F79300E111B2 /* EmptyTableViewCell.swift */,
 				105661EC25A5F79300E111B2 /* EmptyTableViewCell.xib */,
+				563B037925AA106F00DA74C5 /* BubbleTableViewCell.swift */,
+				563B037A25AA106F00DA74C5 /* BubbleTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -321,6 +327,7 @@
 				568764362599EEC9009CB486 /* .swiftlint.yml in Resources */,
 				568764192599AD3C009CB486 /* LaunchScreen.storyboard in Resources */,
 				107919BD25A484510024C711 /* ListFilterTableViewCell.xib in Resources */,
+				563B037C25AA106F00DA74C5 /* BubbleTableViewCell.xib in Resources */,
 				1CEF46C225A6DAA000AF3D81 /* Onboarding.storyboard in Resources */,
 				568764162599AD3C009CB486 /* Assets.xcassets in Resources */,
 				568764142599AD3A009CB486 /* Main.storyboard in Resources */,
@@ -408,6 +415,7 @@
 				563B034725A8973100DA74C5 /* HomeViewController.swift in Sources */,
 				107919BC25A484510024C711 /* ListFilterTableViewCell.swift in Sources */,
 				107919C125A484E60024C711 /* FilterCollectionViewCell.swift in Sources */,
+				563B037B25AA106F00DA74C5 /* BubbleTableViewCell.swift in Sources */,
 				105661ED25A5F79300E111B2 /* EmptyTableViewCell.swift in Sources */,
 				1092420F259B452600BBFBFE /* ListViewController.swift in Sources */,
 				5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */,

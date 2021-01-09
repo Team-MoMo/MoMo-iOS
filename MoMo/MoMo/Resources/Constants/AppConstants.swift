@@ -22,6 +22,7 @@ struct Constants {
         // MARK: - Nib Name Constants
         
         static let homeDayNightViewXib: String = "HomeDayNightView"
+        static let bubbleTableViewCell: String = "BubbleTableViewCell"
         
     }
     
@@ -37,6 +38,10 @@ struct Constants {
         // MARK: - UIView
         
         static let homeDayNightView: String = "HomeDayNightView"
+        
+        // MARK: - Xib Cell
+        
+        static let bubbleTableViewCell: String = "BubbleTableViewCell"
     }
     
     // MARK: - Design Constants
