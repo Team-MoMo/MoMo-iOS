@@ -18,6 +18,7 @@ class HomeDayNightView: UIView {
     // empty view
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var noDiaryStackView: UIStackView!
+    @IBOutlet weak var writeButton: UIButton!
     
     // filled view
     @IBOutlet weak var emotionImageView: UIImageView!
@@ -29,6 +30,7 @@ class HomeDayNightView: UIView {
     @IBOutlet weak var publisherLabel: UILabel!
     @IBOutlet weak var diaryLabel: UILabel!
     @IBOutlet weak var filledDiaryView: UIView!
+    @IBOutlet weak var showAllButton: UIButton!
     
     // MARK: - Properties
     
@@ -76,6 +78,12 @@ class HomeDayNightView: UIView {
         textSpacing(labelName: bookTitleLabel, lineSpacing: 10)
         textSpacing(labelName: publisherLabel, lineSpacing: 10)
         textSpacing(labelName: diaryLabel, lineSpacing: 10)
+        
+        // 버튼 rounding 처리
+        writeButton.clipsToBounds = true
+        writeButton.layer.cornerRadius = 8
+        showAllButton.clipsToBounds = true
+        showAllButton.layer.cornerRadius = 8
         
     }
     
