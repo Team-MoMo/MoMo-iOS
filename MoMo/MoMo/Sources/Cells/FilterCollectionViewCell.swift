@@ -11,6 +11,7 @@ class FilterCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var filterLabel: UILabel!
+    @IBOutlet weak var touchView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

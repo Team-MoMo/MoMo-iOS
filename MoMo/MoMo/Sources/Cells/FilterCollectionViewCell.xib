@@ -26,16 +26,28 @@
                                 <color key="textColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8RM-Gv-287">
-                                <rect key="frame" x="206" y="26" width="10" height="22"/>
-                                <state key="normal" image="filterBtnDelete"/>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PDf-1P-SXf">
+                                <rect key="frame" x="42.5" y="0.0" width="180.5" height="74"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8RM-Gv-287">
+                                        <rect key="frame" x="163.5" y="26" width="10" height="22"/>
+                                        <state key="normal" image="filterBtnDelete"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="BlueModalAble"/>
+                                <constraints>
+                                    <constraint firstItem="8RM-Gv-287" firstAttribute="centerY" secondItem="PDf-1P-SXf" secondAttribute="centerY" id="Ca4-wt-KuK"/>
+                                    <constraint firstAttribute="trailing" secondItem="8RM-Gv-287" secondAttribute="trailing" constant="7" id="OoQ-XK-err"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="BlueModalAble"/>
                         <constraints>
-                            <constraint firstItem="8RM-Gv-287" firstAttribute="centerY" secondItem="GEv-KJ-oZM" secondAttribute="centerY" id="Blx-H9-mD1"/>
+                            <constraint firstAttribute="bottom" secondItem="PDf-1P-SXf" secondAttribute="bottom" id="9bM-DO-X6t"/>
+                            <constraint firstAttribute="trailing" secondItem="PDf-1P-SXf" secondAttribute="trailing" id="AiS-3a-bqp"/>
+                            <constraint firstItem="PDf-1P-SXf" firstAttribute="top" secondItem="GEv-KJ-oZM" secondAttribute="top" id="IY4-iq-e9I"/>
                             <constraint firstItem="mtQ-6J-rZg" firstAttribute="centerY" secondItem="GEv-KJ-oZM" secondAttribute="centerY" id="MO4-n5-xvl"/>
-                            <constraint firstAttribute="trailing" secondItem="8RM-Gv-287" secondAttribute="trailing" constant="7" id="gCP-fx-fyN"/>
+                            <constraint firstItem="PDf-1P-SXf" firstAttribute="leading" secondItem="mtQ-6J-rZg" secondAttribute="trailing" id="nra-wo-xra"/>
                             <constraint firstItem="mtQ-6J-rZg" firstAttribute="leading" secondItem="GEv-KJ-oZM" secondAttribute="leading" constant="7" id="wFD-B7-wdf"/>
                         </constraints>
                     </view>
@@ -52,6 +64,7 @@
             <connections>
                 <outlet property="cancelButton" destination="8RM-Gv-287" id="gpM-u5-LiO"/>
                 <outlet property="filterLabel" destination="mtQ-6J-rZg" id="zkX-Wp-WLG"/>
+                <outlet property="touchView" destination="PDf-1P-SXf" id="wmN-lu-AyG"/>
             </connections>
             <point key="canvasLocation" x="155.79710144927537" y="72.991071428571431"/>
         </collectionViewCell>
