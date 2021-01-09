@@ -9,12 +9,13 @@ import UIKit
 
 class OnboardingViewController: UIViewController {
 
+    // MARK: - @IBOutlet Properties
+    
     @IBOutlet weak var tutorialStartButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
     
     @IBAction func tutorialButtonTouchUp(_ sender: UIButton) {

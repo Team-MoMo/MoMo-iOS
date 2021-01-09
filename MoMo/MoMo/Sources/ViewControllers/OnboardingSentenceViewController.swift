@@ -15,6 +15,8 @@ struct Sentence {
 }
 
 class OnboardingSentenceViewController: UIViewController {
+    
+    // MARK: - @IBOutlet Properties
 
     @IBOutlet weak var firstButton: UIButton!
     @IBOutlet weak var secondButton: UIButton!
@@ -39,9 +41,22 @@ class OnboardingSentenceViewController: UIViewController {
     @IBOutlet weak var thirdPublisherLabel: UILabel!
     @IBOutlet weak var thirdSentenceLabel: UILabel!
     
+    // MARK: - Properties
+    
     private var buttons: [Button] = []
     var selectedMood: Mood?
     var date: String?
+    let defaultSentence: Sentence = Sentence(
+        author: "김모모",
+        bookTitle: "모모책",
+        publisher: "모모출판사",
+        sentence: "모모 사랑해요"
+    )
+    var firstSentence: Sentence?
+    var secondSentence: Sentence?
+    var thirdSentence: Sentence?
+    
+    // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,47 +72,78 @@ class OnboardingSentenceViewController: UIViewController {
         self.moodIcon.image = self.selectedMood?.toIcon()
         self.dateLabel.text = self.date
         
+        self.getSentenceDataFromAPI(completion: setSentenceLabel)
     }
-
+    
+    // MARK: - Functions
+    
+    func getSentenceDataFromAPI(completion: @escaping () -> Void) {
+        
+        // 네트워크 통신으로 받아와야 할 부분
+        self.firstSentence = Sentence(
+            author: "구병모",
+            bookTitle: "파과",
+            publisher: "위즈덤 하우스",
+            sentence: "\"우드스탁!\" 그 애는 우리 둘만 있을 땐 나를 꼭 우드스탁이라고 불렀다. 시간이 지날수록 그 호칭은 나를 꽤나 들뜨게 했다."
+        )
+        
+        self.secondSentence = Sentence(
+            author: "구병모",
+            bookTitle: "파과",
+            publisher: "위즈덤 하우스",
+            sentence: "\"우드스탁!\" 그 애는 우리 둘만 있을 땐 나를 꼭 우드스탁이라고 불렀다. 시간이 지날수록 그 호칭은 나를 꽤나 들뜨게 했다."
+        )
+        
+        self.thirdSentence = Sentence(
+            author: "구병모",
+            bookTitle: "파과",
+            publisher: "위즈덤 하우스",
+            sentence: "\"우드스탁!\" 그 애는 우리 둘만 있을 땐 나를 꼭 우드스탁이라고 불렀다. 시간이 지날수록 그 호칭은 나를 꽤나 들뜨게 했다."
+        )
+        
+    }
+    
+    func setSentenceLabel() {
+        self.firstAuthorLabel.text = self.firstSentence?.author
+        self.firstBookTitleLabel.text = self.firstSentence?.bookTitle
+        self.firstPublisherLabel.text = self.firstSentence?.publisher
+        self.firstSentenceLabel.text = self.firstSentence?.sentence
+        
+        self.secondAuthorLabel.text = self.secondSentence?.author
+        self.secondBookTitleLabel.text = self.secondSentence?.bookTitle
+        self.secondPublisherLabel.text = self.secondSentence?.publisher
+        self.secondSentenceLabel.text = self.secondSentence?.sentence
+        
+        self.thirdAuthorLabel.text = self.thirdSentence?.author
+        self.thirdBookTitleLabel.text = self.thirdSentence?.bookTitle
+        self.thirdPublisherLabel.text = self.thirdSentence?.publisher
+        self.thirdSentenceLabel.text = self.thirdSentence?.sentence
+    }
+    
     @IBAction func firstButtonTouchUp(_ sender: UIButton) {
         pushToOnboardingWrite1ViewController(
-            sentence: Sentence(
-                author: self.firstAuthorLabel.text,
-                bookTitle: self.firstBookTitleLabel.text,
-                publisher: self.firstPublisherLabel.text,
-                sentence: self.firstSentenceLabel.text
-            )
+            sentence: self.firstSentence ?? self.defaultSentence
         )
     }
     
     @IBAction func secondButtonTouchUp(_ sender: UIButton) {
         pushToOnboardingWrite1ViewController(
-            sentence: Sentence(
-                author: self.secondAuthorLabel.text,
-                bookTitle: self.secondBookTitleLabel.text,
-                publisher: self.secondPublisherLabel.text,
-                sentence: self.secondSentenceLabel.text
-            )
+            sentence: self.secondSentence ?? self.defaultSentence
         )
     }
     @IBAction func thirdButtonTouchUp(_ sender: UIButton) {
         pushToOnboardingWrite1ViewController(
-            sentence: Sentence(
-                author: self.thirdAuthorLabel.text,
-                bookTitle: self.thirdBookTitleLabel.text,
-                publisher: self.thirdPublisherLabel.text,
-                sentence: self.thirdSentenceLabel.text
-            )
+            sentence: self.thirdSentence ?? self.defaultSentence
         )
     }
     
     func pushToOnboardingWrite1ViewController(sentence: Sentence) {
         
-        guard let onboardingWrite1ViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.onboardingWrite1ViewController) as? OnboardingWrite1ViewController else { return }
+        guard let onboardingWriteViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.onboardingWriteViewController) as? OnboardingWriteViewController else { return }
         
-        onboardingWrite1ViewController.selectedSentence = sentence 
+        onboardingWriteViewController.selectedSentence = sentence
         
-        self.navigationController?.pushViewController(onboardingWrite1ViewController, animated: true)
+        self.navigationController?.pushViewController(onboardingWriteViewController, animated: true)
         
     }
 }

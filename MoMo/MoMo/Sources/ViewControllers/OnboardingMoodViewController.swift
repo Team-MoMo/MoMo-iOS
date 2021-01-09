@@ -79,6 +79,8 @@ struct Button {
 
 class OnboardingMoodViewController: UIViewController, UIGestureRecognizerDelegate {
     
+    // MARK: - @IBOutlet Properties
+    
     @IBOutlet weak var loveButton: UIButton!
     @IBOutlet weak var happyButton: UIButton!
     @IBOutlet weak var consoleButton: UIButton!
@@ -89,8 +91,12 @@ class OnboardingMoodViewController: UIViewController, UIGestureRecognizerDelegat
     @IBOutlet weak var dailyButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
     
+    // MARK: - Properties
+    
     private var buttons: [Button] = []
     var date: String?
+    
+    // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,6 +123,8 @@ class OnboardingMoodViewController: UIViewController, UIGestureRecognizerDelegat
         self.dateLabel.text = self.date
         
     }
+    
+    // MARK: - Functions
     
     func getCurrentFormattedDate() -> String? {
         
@@ -207,6 +215,8 @@ class OnboardingMoodViewController: UIViewController, UIGestureRecognizerDelegat
         
     }
 }
+
+// MARK: - UINavigationControllerDelegate
 
 extension OnboardingMoodViewController: UINavigationControllerDelegate {
     
