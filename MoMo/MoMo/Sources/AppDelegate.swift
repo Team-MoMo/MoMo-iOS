@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 navigationController = UINavigationController(rootViewController: onboardingViewController)
             }
-            else {
+            else {      
 
                 let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
                 let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.homeViewController)
