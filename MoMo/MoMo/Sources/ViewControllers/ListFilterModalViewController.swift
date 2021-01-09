@@ -85,11 +85,9 @@ class ListFilterModalViewController: UIViewController {
         depthCollectionView.register(UINib(nibName: "DepthCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "DepthCollectionViewCell")
         depthCollectionView.dataSource = self
         depthCollectionView.delegate = self
-        applyButton.isEnabled = false
         applyButton.layer.cornerRadius = 20
-        applyButton.backgroundColor = .Black6
-        applyButton.setTitleColor(UIColor.white, for: .disabled)
         applyButton.setTitleColor(UIColor.white, for: .normal)
+        applyButton.backgroundColor = .BlueModalAble
         let bottomLayer = CALayer()
         let topLayer = CALayer()
         bottomLayer.frame = CGRect(x: 0, y: 0, width: Int(width * 335/375), height: 1)
@@ -144,16 +142,6 @@ class ListFilterModalViewController: UIViewController {
         }
     }
     
-    func enableButton() {
-        if emotion != nil || depth != nil {
-            applyButton.isEnabled = true
-            applyButton.backgroundColor = .BlueModalAble
-        } else {
-            applyButton.isEnabled = false
-            applyButton.backgroundColor = .Black6
-
-        }
-    }
     
     func addData() {
         for num in 2020...3000 {
@@ -272,7 +260,6 @@ extension ListFilterModalViewController: UICollectionViewDelegateFlowLayout {
                 depth = indexPath.row
             }
         }
-        enableButton()
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -289,7 +276,6 @@ extension ListFilterModalViewController: UICollectionViewDelegateFlowLayout {
             cell.depthLabel.textColor = UIColor.Black6
             cell.backView.backgroundColor = UIColor.white
         }
-        enableButton()
     }
 }
 
