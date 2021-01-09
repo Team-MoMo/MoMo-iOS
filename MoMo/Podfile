@@ -11,5 +11,6 @@ target 'MoMo' do
 	pod 'Moya', '~> 14.0'
   pod 'SnapKit', '~> 5.0.0'
   pod 'AlamofireImage', '~> 4.1'
+  pod 'CLTypingLabel'
 
 end
