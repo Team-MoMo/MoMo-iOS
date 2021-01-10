@@ -30,6 +30,7 @@ struct Constants {
         
         static let moodViewController: String = "MoodViewController"
         static let sentenceViewController: String = "SentenceViewController"
+        static let deepViewController: String = "DeepViewController"
     }
     
     // MARK: - Design Constants
