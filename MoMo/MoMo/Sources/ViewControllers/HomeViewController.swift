@@ -228,11 +228,9 @@ extension HomeViewController: UITableViewDelegate {
     
     // 각 cell의 배경 투명화
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // 각 cell의 배경 투명화
         cell.backgroundColor = UIColor.clear
-    }
-    
-    // z Position main thread에서 조정
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // z Position main thread에서 조정
         DispatchQueue.main.async {
             for index in 0 ..< tableView.visibleCells.count {
                 let zPosition = CGFloat(tableView.visibleCells.count - index)
