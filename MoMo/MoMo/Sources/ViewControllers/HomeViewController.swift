@@ -154,6 +154,10 @@ class HomeViewController: UIViewController {
         currentColorSet = 0
     }
     
+    @IBAction func touchUpHomeTopButton(_ sender: Any) {
+        homeTableView.setContentOffset(.zero, animated: true)
+        swipeUpButton.isHidden = true
+    }
 }
 
 // MARK: - UITableViewDataSource

@@ -43,6 +43,9 @@
                                     <constraint firstAttribute="width" constant="30" id="f42-eh-xvE"/>
                                 </constraints>
                                 <state key="normal" image="homeBtnTop"/>
+                                <connections>
+                                    <action selector="touchUpHomeTopButton:" destination="svO-LC-Z4h" eventType="touchUpInside" id="wgz-c1-Bm9"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDa-wu-kJP">
                                 <rect key="frame" x="368" y="826" width="30" height="30"/>
