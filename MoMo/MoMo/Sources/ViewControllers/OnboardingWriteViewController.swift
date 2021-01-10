@@ -49,21 +49,6 @@ class OnboardingWriteViewController: UIViewController {
         self.hideTypingLabel()
     }
     
-    func pushToDeepViewController(finished: Bool) {
-        
-        guard let deepViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.deepViewController) as? DeepViewController else { return }
-        
-        self.navigationController?.pushViewController(deepViewController, animated: true)
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.showOnboardingCircleSmallImage()
-        self.showOnboardingCircleBigImage()
-    }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
