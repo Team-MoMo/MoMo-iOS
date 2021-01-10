@@ -37,12 +37,14 @@ class BubbleTableViewCell: UITableViewCell {
     }
     
     func calculateLeadingOffset(num: Int) -> CGFloat {
+        // 최소 개수를 채우기 위한 빈 cell일 때 view hidden 처리
         if num == -1 {
             bubbleView.isHidden = true
         } else {
             bubbleView.isHidden = false
         }
         
+        // 좌우여백 고려 bubble x 좌표 계산
         let viewWidth = UIScreen.main.bounds.width - 32 - bubbleSize.constant
         let leadingOffset = CGFloat(Int(viewWidth) / 10 * num + 32)
         
