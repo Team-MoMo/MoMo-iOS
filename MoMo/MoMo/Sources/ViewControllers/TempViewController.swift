@@ -28,6 +28,7 @@ class TempViewController: UIViewController, UIViewControllerTransitioningDelegat
         showModal()
     }
     
+    // self.present 했을때 실행되는 함수
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         ModalPresentationController(presentedViewController: presented, presenting: presenting)
     }

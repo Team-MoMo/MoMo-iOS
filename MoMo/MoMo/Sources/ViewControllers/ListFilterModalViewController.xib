@@ -32,6 +32,7 @@
                 <outlet property="monthLabel" destination="Jxa-m7-Hay" id="azq-Av-ITG"/>
                 <outlet property="monthPickerView" destination="QnM-NS-17A" id="Pax-42-ORf"/>
                 <outlet property="moreButton" destination="FAp-Og-c5I" id="bi4-GS-z6x"/>
+                <outlet property="superView" destination="i5M-Pr-FkT" id="8JT-Xb-K7P"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="yearLabel" destination="isJ-po-TOl" id="X2d-gF-ENB"/>
                 <outlet property="yearPickerView" destination="nBY-GO-ebX" id="ZoO-Bh-FrP"/>
