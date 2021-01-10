@@ -26,6 +26,11 @@ class BubbleTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        if UIScreen.main.bounds.height <= 812 {
+            bubbleSize.constant = 80
+        } else {
+            bubbleSize.constant = 90
+        }
     }
     
     // MARK: - Functions
