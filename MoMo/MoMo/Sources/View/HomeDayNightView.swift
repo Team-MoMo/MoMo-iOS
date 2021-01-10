@@ -46,17 +46,6 @@ class HomeDayNightView: UIView {
         self.backgroundView.layer.addSublayer(gradientLayer)
     }
     
-    func textSpacing(labelName: UILabel, lineSpacing: Int) {
-        let attributedString = NSMutableAttributedString(string: labelName.text ?? "")
-        let paragraphStyle = NSMutableParagraphStyle()
-        
-        paragraphStyle.lineSpacing = CGFloat(lineSpacing)
-        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
-        attributedString.addAttribute(NSAttributedString.Key.kern, value: -0.6, range: NSRange(location: 0, length: attributedString.length))
-
-        labelName.attributedText = attributedString
-    }
-    
     // MARK: - View Life Cycle
     
     override func awakeFromNib() {
@@ -67,17 +56,15 @@ class HomeDayNightView: UIView {
             self.createGradientLayer()
         }
     
-        // TODO: - 줄 간격, 자간 extension으로 빼기 - 리팩토링 필요
-        // 자간은 앱 내 통일이나, 행간은 다름
-        
-        textSpacing(labelName: dateLabel, lineSpacing: 7)
-        textSpacing(labelName: emotionLabel, lineSpacing: 10)
-        textSpacing(labelName: depthLabel, lineSpacing: 10)
-        textSpacing(labelName: quoteLabel, lineSpacing: 10)
-        textSpacing(labelName: writerLabel, lineSpacing: 10)
-        textSpacing(labelName: bookTitleLabel, lineSpacing: 10)
-        textSpacing(labelName: publisherLabel, lineSpacing: 10)
-        textSpacing(labelName: diaryLabel, lineSpacing: 10)
+        // 자간, 행간 지정
+        dateLabel.text?.textSpacing(lineSpacing: 7)
+        emotionLabel.text?.textSpacing(lineSpacing: 10)
+        depthLabel.text?.textSpacing(lineSpacing: 10)
+        quoteLabel.text?.textSpacing(lineSpacing: 10)
+        writerLabel.text?.textSpacing(lineSpacing: 10)
+        bookTitleLabel.text?.textSpacing(lineSpacing: 10)
+        publisherLabel.text?.textSpacing(lineSpacing: 10)
+        diaryLabel.text?.textSpacing(lineSpacing: 10)
         
         // 버튼 rounding 처리
         writeButton.clipsToBounds = true
