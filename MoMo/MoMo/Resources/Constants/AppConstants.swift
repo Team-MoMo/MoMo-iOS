@@ -59,6 +59,7 @@ struct Constants {
             /// 예시 : static let IconHome = UIImage(named: "ico_category")
             static let homeIcSwipeDown = UIImage(named: "homeIcSwipeDown")
             static let btnIcMyBlue = UIImage(named: "btnIcMyBlue")
+            static let btnIcMy = UIImage(named: "btnIcMy")
         }
         
         struct Font {

@@ -267,8 +267,12 @@ extension HomeViewController: UITableViewDelegate {
         // 화면 전체가 gradient 일 때만
         if scrollView.contentOffset.y >= sectionFrameArray[0].origin.y {
             homeTopButton.isHidden = false
+            myPageButton.setImage(Constants.Design.Image.btnIcMy, for: .normal)
+            calendarButton.isHidden = false
         } else {
             homeTopButton.isHidden = true
+            myPageButton.setImage(Constants.Design.Image.btnIcMyBlue, for: .normal)
+            calendarButton.isHidden = true
         }
     }
     
