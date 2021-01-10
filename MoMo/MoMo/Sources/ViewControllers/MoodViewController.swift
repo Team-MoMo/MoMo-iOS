@@ -239,12 +239,3 @@ class MoodViewController: UIViewController, UIGestureRecognizerDelegate {
         )
     }
 }
-
-// MARK: - UINavigationControllerDelegate
-
-extension MoodViewController: UINavigationControllerDelegate {
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
-}
