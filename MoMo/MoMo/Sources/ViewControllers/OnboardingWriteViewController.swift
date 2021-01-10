@@ -33,6 +33,10 @@ class OnboardingWriteViewController: UIViewController {
     let defaultTypingLabelText: String = "새로운 인연이 기대되는 하루였다. "
     var selectedSentence: Sentence?
     var sentenceWasShown: Bool = false
+    let verticalSpaingInfoLabelAndFeatherImage: CGFloat = 74
+    let verticalSpaingInfoLabelAndSentenceInfoStackView: CGFloat = 116
+    let verticalSpaingInfoLabelAndSentenceLabel: CGFloat = 147
+    let fontSizeSentenceLabelAfterAnimation: CGFloat = 14
     
     // MARK: - View Life Cycle
     
@@ -47,6 +51,8 @@ class OnboardingWriteViewController: UIViewController {
         self.hideFeatherImage()
         self.hideSentenceLabel()
         self.hideTypingLabel()
+        self.hideOnboardingCircleSmallImage()
+        self.hideOnboardingCircleBigImage()
     }
     
     override func viewDidLayoutSubviews() {
@@ -216,16 +222,16 @@ extension OnboardingWriteViewController {
         let infoLabelHeight = self.infoLabel.frame.size.height
         
         self.featherImage.frame.origin.x = infoLabelXpos
-        self.featherImage.frame.origin.y = infoLabelYpos + infoLabelHeight + 74
+        self.featherImage.frame.origin.y = infoLabelYpos + infoLabelHeight + self.verticalSpaingInfoLabelAndFeatherImage
         
         self.sentenceInfoStackView.frame.origin.x = infoLabelXpos
-        self.sentenceInfoStackView.frame.origin.y = infoLabelYpos + infoLabelHeight + 116
+        self.sentenceInfoStackView.frame.origin.y = infoLabelYpos + infoLabelHeight + self.verticalSpaingInfoLabelAndSentenceInfoStackView
         
         self.sentenceLabel.frame.origin.x = infoLabelXpos
-        self.sentenceLabel.frame.origin.y = infoLabelYpos + infoLabelHeight + 147
+        self.sentenceLabel.frame.origin.y = infoLabelYpos + infoLabelHeight + self.verticalSpaingInfoLabelAndSentenceLabel
         
         self.sentenceLabel.textColor = UIColor.Black4
-        self.sentenceLabel.font = self.sentenceLabel.font.withSize(14)
+        self.sentenceLabel.font = self.sentenceLabel.font.withSize(self.fontSizeSentenceLabelAfterAnimation)
         self.sentenceLabel.textAlignment = .left
     }
     
