@@ -28,14 +28,15 @@ class OnboardingWriteViewController: UIViewController {
     
     // MARK: - Properties
     
+    let defaultInfo: String = "문장이 감성을 자극하고\n깊이있는 기록을 도와줄 거예요"
     let defaultBookTitle: String = "책제목"
     let defaultPublisher: String = "출판사이름"
     let defaultTypingLabelText: String = "새로운 인연이 기대되는 하루였다. "
     var selectedSentence: Sentence?
     var sentenceWasShown: Bool = false
-    let verticalSpaingInfoLabelAndFeatherImage: CGFloat = 74
-    let verticalSpaingInfoLabelAndSentenceInfoStackView: CGFloat = 116
-    let verticalSpaingInfoLabelAndSentenceLabel: CGFloat = 147
+    let vspaingInfoLabelFeatherImage: CGFloat = 74
+    let vspaingInfoLabelSentenceInfoStackView: CGFloat = 116
+    let vspaingInfoLabelSentenceLabel: CGFloat = 147
     let fontSizeSentenceLabelAfterAnimation: CGFloat = 14
     
     // MARK: - View Life Cycle
@@ -43,6 +44,7 @@ class OnboardingWriteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.infoLabel.text = self.defaultInfo
         self.setTypingLabel()
         self.typingLabel.pauseTyping()
         self.hideTypingCursorLabel()
@@ -222,13 +224,13 @@ extension OnboardingWriteViewController {
         let infoLabelHeight = self.infoLabel.frame.size.height
         
         self.featherImage.frame.origin.x = infoLabelXpos
-        self.featherImage.frame.origin.y = infoLabelYpos + infoLabelHeight + self.verticalSpaingInfoLabelAndFeatherImage
+        self.featherImage.frame.origin.y = infoLabelYpos + infoLabelHeight + self.vspaingInfoLabelFeatherImage
         
         self.sentenceInfoStackView.frame.origin.x = infoLabelXpos
-        self.sentenceInfoStackView.frame.origin.y = infoLabelYpos + infoLabelHeight + self.verticalSpaingInfoLabelAndSentenceInfoStackView
+        self.sentenceInfoStackView.frame.origin.y = infoLabelYpos + infoLabelHeight + self.vspaingInfoLabelSentenceInfoStackView
         
         self.sentenceLabel.frame.origin.x = infoLabelXpos
-        self.sentenceLabel.frame.origin.y = infoLabelYpos + infoLabelHeight + self.verticalSpaingInfoLabelAndSentenceLabel
+        self.sentenceLabel.frame.origin.y = infoLabelYpos + infoLabelHeight + self.vspaingInfoLabelSentenceLabel
         
         self.sentenceLabel.textColor = UIColor.Black4
         self.sentenceLabel.font = self.sentenceLabel.font.withSize(self.fontSizeSentenceLabelAfterAnimation)
