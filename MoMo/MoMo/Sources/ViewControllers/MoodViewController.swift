@@ -34,21 +34,21 @@ enum Mood {
     func toIcon() -> UIImage {
         switch self {
         case .love:
-            return UIImage(named: "icLove14Black")!
+            return Constants.Design.Image.icLove14Black!
         case .happy:
-            return UIImage(named: "icHappy14Black")!
+            return Constants.Design.Image.icHappy14Black!
         case .console:
-            return UIImage(named: "icConsole14Black")!
+            return Constants.Design.Image.icConsole14Black!
         case .angry:
-            return UIImage(named: "icAngry14Black")!
+            return Constants.Design.Image.icAngry14Black!
         case .sad:
-            return UIImage(named: "icSad14Black")!
+            return Constants.Design.Image.icSad14Black!
         case .bored:
-            return UIImage(named: "icBored14Black")!
+            return Constants.Design.Image.icBored14Black!
         case .memory:
-            return UIImage(named: "icMemory14Black")!
+            return Constants.Design.Image.icMemory14Black!
         case .daily:
-            return UIImage(named: "icDaily14Black")!
+            return Constants.Design.Image.icDaily14Black!
         }
     }
 }
