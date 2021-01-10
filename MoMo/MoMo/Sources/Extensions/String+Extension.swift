@@ -18,7 +18,7 @@ extension String {
     
     // 자간, 행간 지정
     // 앱 내 모든 자간 -0.6으로 통일, 행간은 Int값으로 지정 가능
-    func textSpacing(labelName: UILabel, lineSpacing: Int) {
+    func textSpacing(lineSpacing: Int) {
         let attributedString = NSMutableAttributedString(string: labelName.text ?? "")
         let paragraphStyle = NSMutableParagraphStyle()
         
