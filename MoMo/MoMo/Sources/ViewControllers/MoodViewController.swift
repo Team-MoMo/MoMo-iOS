@@ -58,7 +58,7 @@ struct Button {
     let button: UIButton?
     let cornerRadius: CGFloat = 12
     var shadowColor: CGColor = UIColor.NavWhite.cgColor
-    var shadowOffset: CGSize = CGSize(width: 3, height: 3)
+    var shadowOffset: CGSize = CGSize(width: 5, height: 5)
     var shadowOpacity: Float = 0.7
     var shadowRadius: CGFloat = 4.0
     
@@ -89,12 +89,14 @@ class MoodViewController: UIViewController {
     @IBOutlet weak var boredButton: UIButton!
     @IBOutlet weak var memoryButton: UIButton!
     @IBOutlet weak var dailyButton: UIButton!
+    @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
     // MARK: - Properties
     
     private var buttons: [Button] = []
     var date: String?
+    let defaultInfo: String = "먼저 오늘의\n감정을 선택해 주세요"
     
     // MARK: - View Life Cycle
     
@@ -119,6 +121,7 @@ class MoodViewController: UIViewController {
         
         self.hideButtons()
         
+        self.infoLabel.text = self.defaultInfo
         self.date = self.getCurrentFormattedDate()
         self.dateLabel.text = self.date
         
