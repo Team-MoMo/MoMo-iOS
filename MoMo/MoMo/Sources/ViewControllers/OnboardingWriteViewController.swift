@@ -85,7 +85,7 @@ extension OnboardingWriteViewController {
     func setSentenceLabel() {
         self.authorLabel.text = self.selectedSentence?.author
         self.bookTitleLabel.text = "<\(self.selectedSentence?.bookTitle ?? self.defaultBookTitle)>"
-        self.publisherLabel.text = "(\(self.selectedSentence?.publisher?.first! ?? self.defaultPublisher.first!))"
+        self.publisherLabel.text = "(\(self.selectedSentence?.publisher.first! ?? self.defaultPublisher.first!))"
         self.sentenceLabel.text = self.selectedSentence?.sentence
     }
     
