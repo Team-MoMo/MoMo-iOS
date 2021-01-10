@@ -30,6 +30,7 @@
 		563B037625AA0F3500DA74C5 /* BubbleDummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B037525AA0F3500DA74C5 /* BubbleDummyData.swift */; };
 		563B037B25AA106F00DA74C5 /* BubbleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B037925AA106F00DA74C5 /* BubbleTableViewCell.swift */; };
 		563B037C25AA106F00DA74C5 /* BubbleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 563B037A25AA106F00DA74C5 /* BubbleTableViewCell.xib */; };
+		563B037F25AA348C00DA74C5 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B037E25AA348C00DA74C5 /* UIImage+Extension.swift */; };
 		5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5687640C2599AD3A009CB486 /* AppDelegate.swift */; };
 		5687640F2599AD3A009CB486 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5687640E2599AD3A009CB486 /* SceneDelegate.swift */; };
 		568764112599AD3A009CB486 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568764102599AD3A009CB486 /* ViewController.swift */; };
@@ -68,6 +69,7 @@
 		563B037525AA0F3500DA74C5 /* BubbleDummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleDummyData.swift; sourceTree = "<group>"; };
 		563B037925AA106F00DA74C5 /* BubbleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleTableViewCell.swift; sourceTree = "<group>"; };
 		563B037A25AA106F00DA74C5 /* BubbleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BubbleTableViewCell.xib; sourceTree = "<group>"; };
+		563B037E25AA348C00DA74C5 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		568764092599AD3A009CB486 /* MoMo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoMo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5687640C2599AD3A009CB486 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5687640E2599AD3A009CB486 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				568764D0259F6EDE009CB486 /* UIColor+Extension.swift */,
 				10B6731F25A771700046AA97 /* String+Extension.swift */,
 				10B6732C25A775DE0046AA97 /* UIView+Extension.swift */,
+				563B037E25AA348C00DA74C5 /* UIImage+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 				107919BC25A484510024C711 /* ListFilterTableViewCell.swift in Sources */,
 				107919C125A484E60024C711 /* FilterCollectionViewCell.swift in Sources */,
 				563B037B25AA106F00DA74C5 /* BubbleTableViewCell.swift in Sources */,
+				563B037F25AA348C00DA74C5 /* UIImage+Extension.swift in Sources */,
 				105661ED25A5F79300E111B2 /* EmptyTableViewCell.swift in Sources */,
 				1092420F259B452600BBFBFE /* ListViewController.swift in Sources */,
 				5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */,
