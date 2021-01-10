@@ -22,6 +22,7 @@ class SentenceViewController: UIViewController {
     @IBOutlet weak var secondButton: UIButton!
     @IBOutlet weak var thirdButton: UIButton!
     
+    @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var moodLabel: UILabel!
     @IBOutlet weak var moodIcon: UIImageView!
@@ -46,12 +47,14 @@ class SentenceViewController: UIViewController {
     private var buttons: [Button] = []
     var selectedMood: Mood?
     var date: String?
+    let defaultInfo: String = "감정과 어울리는 문장을\n매일 3개씩 소개해드릴게요"
     let defaultSentence: Sentence = Sentence(
         author: "김모모",
         bookTitle: "모모책",
         publisher: "모모출판사",
         sentence: "모모 사랑해요"
     )
+    let shadowOffsetButton: CGSize = CGSize(width: 2, height: 2)
     var firstSentence: Sentence?
     var secondSentence: Sentence?
     var thirdSentence: Sentence?
@@ -61,12 +64,18 @@ class SentenceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.buttons = [Button(button: firstButton), Button(button: secondButton), Button(button: thirdButton)]
+        self.buttons = [
+            Button(button: firstButton, shadowOffset: shadowOffsetButton),
+            Button(button: secondButton, shadowOffset: shadowOffsetButton),
+            Button(button: thirdButton, shadowOffset: shadowOffsetButton)
+        ]
         
         for button in buttons {
             button.buttonsRoundedUp()
             button.buttonsAddShadow()
         }
+        
+        self.infoLabel.text = self.defaultInfo
         
         self.moodLabel.text = self.selectedMood?.toString()
         self.moodIcon.image = self.selectedMood?.toIcon()
