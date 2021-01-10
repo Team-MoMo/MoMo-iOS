@@ -57,10 +57,10 @@ struct Button {
     
     let button: UIButton?
     let cornerRadius: CGFloat = 12
-    let shadowColor: CGColor = UIColor.NavWhite.cgColor
-    let shadowOffset: CGSize = CGSize(width: 3, height: 3)
-    let shadowOpacity: Float = 0.7
-    let shadowRadius: CGFloat = 4.0
+    var shadowColor: CGColor = UIColor.NavWhite.cgColor
+    var shadowOffset: CGSize = CGSize(width: 3, height: 3)
+    var shadowOpacity: Float = 0.7
+    var shadowRadius: CGFloat = 4.0
     
     func buttonsRoundedUp() {
         self.button?.layer.cornerRadius = self.cornerRadius
