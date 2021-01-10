@@ -77,7 +77,7 @@ struct Button {
     
 }
 
-class OnboardingMoodViewController: UIViewController, UIGestureRecognizerDelegate {
+class MoodViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // MARK: - @IBOutlet Properties
     
@@ -212,12 +212,12 @@ class OnboardingMoodViewController: UIViewController, UIGestureRecognizerDelegat
     
     func pushToOnboardingSentenceViewController(mood: Mood) {
         
-        guard let onboardingSentenceViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.onboardingSentenceViewController) as? OnboardingSentenceViewController else { return }
+        guard let sentenceViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.sentenceViewController) as? SentenceViewController else { return }
         
-        onboardingSentenceViewController.selectedMood = mood
-        onboardingSentenceViewController.date = self.date
+        sentenceViewController.selectedMood = mood
+        sentenceViewController.date = self.date
         
-        self.navigationController?.pushViewController(onboardingSentenceViewController, animated: true)
+        self.navigationController?.pushViewController(sentenceViewController, animated: true)
         
     }
     
@@ -242,7 +242,7 @@ class OnboardingMoodViewController: UIViewController, UIGestureRecognizerDelegat
 
 // MARK: - UINavigationControllerDelegate
 
-extension OnboardingMoodViewController: UINavigationControllerDelegate {
+extension MoodViewController: UINavigationControllerDelegate {
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true

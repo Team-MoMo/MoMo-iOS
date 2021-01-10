@@ -14,7 +14,7 @@ struct Sentence {
     var sentence: String?
 }
 
-class OnboardingSentenceViewController: UIViewController {
+class SentenceViewController: UIViewController {
     
     // MARK: - @IBOutlet Properties
 
@@ -109,6 +109,10 @@ class OnboardingSentenceViewController: UIViewController {
             sentence: "\"우드스탁!\" 그 애는 우리 둘만 있을 땐 나를 꼭 우드스탁이라고 불렀다. 시간이 지날수록 그 호칭은 나를 꽤나 들뜨게 했다."
         )
         
+        DispatchQueue.main.async {
+            completion()
+        }
+        
     }
     
     func setSentenceLabel() {
@@ -129,23 +133,23 @@ class OnboardingSentenceViewController: UIViewController {
     }
     
     @IBAction func firstButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingWrite1ViewController(
+        pushToOnboardingWriteViewController(
             sentence: self.firstSentence ?? self.defaultSentence
         )
     }
     
     @IBAction func secondButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingWrite1ViewController(
+        pushToOnboardingWriteViewController(
             sentence: self.secondSentence ?? self.defaultSentence
         )
     }
     @IBAction func thirdButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingWrite1ViewController(
+        pushToOnboardingWriteViewController(
             sentence: self.thirdSentence ?? self.defaultSentence
         )
     }
     
-    func pushToOnboardingWrite1ViewController(sentence: Sentence) {
+    func pushToOnboardingWriteViewController(sentence: Sentence) {
         
         guard let onboardingWriteViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.onboardingWriteViewController) as? OnboardingWriteViewController else { return }
         
