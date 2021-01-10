@@ -19,6 +19,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var homeTopButton: UIButton!
     @IBOutlet weak var uploadButton: UIButton!
     @IBOutlet weak var listButton: UIButton!
+    @IBOutlet weak var swipeUpButtonTop: NSLayoutConstraint!
+    @IBOutlet weak var homeTopButtonBottom: NSLayoutConstraint!
     
     // MARK: - Properties
     
@@ -31,6 +33,8 @@ class HomeViewController: UIViewController {
     
     var rowHeight: CGFloat = 150
     var sectionHeight: CGFloat = 100
+    
+    var statusBarHeight: CGFloat = 0
     
     // MARK: - View Life Cycle
     
@@ -72,6 +76,14 @@ class HomeViewController: UIViewController {
         
         // contentOffset 0부터 시작하도록 조정
         homeTableView.contentInsetAdjustmentBehavior = .never
+        
+        // statusbar 높이 가져오기
+        if #available(iOS 13.0, *) {
+            let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+            statusBarHeight = window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        } else {
+            statusBarHeight = UIApplication.shared.statusBarFrame.height
+        }
     }
     
     // viewDidAppear
@@ -82,6 +94,14 @@ class HomeViewController: UIViewController {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
+        
+        // notch가 없는 기종을 위한 autolayout 설정
+        swipeUpButtonTop.constant = statusBarHeight + 16
+        if view.safeAreaInsets.bottom == 0 {
+            homeTopButtonBottom.constant = 16
+        } else {
+            homeTopButtonBottom.constant = view.safeAreaInsets.bottom + 8
+        }
         
         // section 별 frame 값 계산
         for sectionIndex in 0..<7 {

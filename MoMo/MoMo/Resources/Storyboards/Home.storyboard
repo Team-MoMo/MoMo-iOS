@@ -12,7 +12,7 @@
         <scene sceneID="MCc-yh-6tA">
             <objects>
                 <viewController storyboardIdentifier="HomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="svO-LC-Z4h" customClass="HomeViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ohf-eY-Tj1">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ohf-eY-Tj1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -21,7 +21,7 @@
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wTF-lg-nqf">
-                                <rect key="frame" x="189" y="828" width="36" height="26"/>
+                                <rect key="frame" x="189" y="844" width="36" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="36" id="7af-UH-hxj"/>
                                     <constraint firstAttribute="height" constant="26" id="HGe-og-Yaj"/>
@@ -37,7 +37,7 @@
                                 <state key="normal" image="homeIcSwipeUp"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5an-dN-IuA">
-                                <rect key="frame" x="16" y="826" width="30" height="30"/>
+                                <rect key="frame" x="16" y="842" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="0Af-dA-R9g"/>
                                     <constraint firstAttribute="width" constant="30" id="f42-eh-xvE"/>
@@ -48,7 +48,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDa-wu-kJP">
-                                <rect key="frame" x="368" y="826" width="30" height="30"/>
+                                <rect key="frame" x="368" y="842" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="39J-3B-XwW"/>
                                     <constraint firstAttribute="width" constant="30" id="g0B-hC-luG"/>
@@ -56,7 +56,7 @@
                                 <state key="normal" image="homeBtnList"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qKw-vH-1av">
-                                <rect key="frame" x="322" y="826" width="30" height="30"/>
+                                <rect key="frame" x="322" y="842" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="QnH-MT-Yyv"/>
                                     <constraint firstAttribute="width" constant="30" id="wzZ-E6-25G"/>
@@ -88,11 +88,11 @@
                             <constraint firstItem="CkZ-yj-6GS" firstAttribute="top" secondItem="ohf-eY-Tj1" secondAttribute="top" constant="68" id="25I-ex-d2G"/>
                             <constraint firstItem="j0z-cg-GOC" firstAttribute="top" secondItem="ohf-eY-Tj1" secondAttribute="top" id="2Dp-KV-xWR"/>
                             <constraint firstItem="wTF-lg-nqf" firstAttribute="centerX" secondItem="W7t-UN-yPD" secondAttribute="centerX" id="4pp-cf-9wm"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="5an-dN-IuA" secondAttribute="bottom" constant="6" id="6Wd-8I-mxB"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="5an-dN-IuA" secondAttribute="bottom" constant="24" id="6Wd-8I-mxB"/>
                             <constraint firstItem="5an-dN-IuA" firstAttribute="leading" secondItem="W7t-UN-yPD" secondAttribute="leading" constant="16" id="6lW-ym-eWi"/>
                             <constraint firstItem="hDa-wu-kJP" firstAttribute="leading" secondItem="qKw-vH-1av" secondAttribute="trailing" constant="16" id="H8B-TF-DA4"/>
                             <constraint firstItem="W7t-UN-yPD" firstAttribute="trailing" secondItem="hDa-wu-kJP" secondAttribute="trailing" constant="16" id="L6a-9R-VFm"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="hDa-wu-kJP" secondAttribute="bottom" constant="6" id="MDK-a7-P8s"/>
+                            <constraint firstItem="wTF-lg-nqf" firstAttribute="centerY" secondItem="5an-dN-IuA" secondAttribute="centerY" id="LSk-jG-71V"/>
                             <constraint firstAttribute="trailing" secondItem="CkZ-yj-6GS" secondAttribute="trailing" constant="24" id="NxX-dH-30Q"/>
                             <constraint firstItem="j0z-cg-GOC" firstAttribute="leading" secondItem="W7t-UN-yPD" secondAttribute="leading" id="QsX-lz-dBB"/>
                             <constraint firstItem="0bO-SE-8qf" firstAttribute="top" secondItem="ohf-eY-Tj1" secondAttribute="top" constant="52" id="TWI-Ti-wG1"/>
@@ -100,17 +100,19 @@
                             <constraint firstItem="qKw-vH-1av" firstAttribute="centerY" secondItem="hDa-wu-kJP" secondAttribute="centerY" id="bYn-aB-xRs"/>
                             <constraint firstItem="0bO-SE-8qf" firstAttribute="centerX" secondItem="W7t-UN-yPD" secondAttribute="centerX" id="eJl-Yj-pf3"/>
                             <constraint firstItem="j0z-cg-GOC" firstAttribute="trailing" secondItem="W7t-UN-yPD" secondAttribute="trailing" id="hGg-sv-zhA"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="wTF-lg-nqf" secondAttribute="bottom" constant="8" id="nmH-b8-3Mj"/>
+                            <constraint firstItem="hDa-wu-kJP" firstAttribute="centerY" secondItem="5an-dN-IuA" secondAttribute="centerY" id="xbc-YR-PTN"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="calendarButton" destination="Kqd-lh-9gO" id="4MO-jy-K1K"/>
                         <outlet property="homeTableView" destination="j0z-cg-GOC" id="ITQ-tS-0Zr"/>
                         <outlet property="homeTopButton" destination="5an-dN-IuA" id="Zgk-SH-hfq"/>
+                        <outlet property="homeTopButtonBottom" destination="6Wd-8I-mxB" id="X6c-Za-RoB"/>
                         <outlet property="listButton" destination="hDa-wu-kJP" id="gUo-FU-ZQL"/>
                         <outlet property="myPageButton" destination="4wx-YL-KmU" id="zwP-91-Trg"/>
                         <outlet property="swipeDownButton" destination="wTF-lg-nqf" id="7Hz-cj-iUl"/>
                         <outlet property="swipeUpButton" destination="0bO-SE-8qf" id="sc7-dc-XAx"/>
+                        <outlet property="swipeUpButtonTop" destination="TWI-Ti-wG1" id="J2o-1j-uOO"/>
                         <outlet property="uploadButton" destination="qKw-vH-1av" id="ixz-6h-c6z"/>
                     </connections>
                 </viewController>
