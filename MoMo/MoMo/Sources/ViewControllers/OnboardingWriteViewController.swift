@@ -249,4 +249,12 @@ extension OnboardingWriteViewController {
         self.sentenceLabel.font = self.sentenceLabel.font.withSize(14)
         self.sentenceLabel.textAlignment = .left
     }
+    
+    func pushToDeepViewController(finished: Bool) {
+        
+        guard let deepViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.deepViewController) as? DeepViewController else { return }
+        
+        self.navigationController?.pushViewController(deepViewController, animated: true)
+        
+    }
 }
