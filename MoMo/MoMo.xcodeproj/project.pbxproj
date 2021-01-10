@@ -8,8 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		104E685E25AAF8410019B29E /* UploadWrite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 104E685D25AAF8410019B29E /* UploadWrite.storyboard */; };
+		104E687225AAFDE60019B29E /* UploadTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104E687125AAFDE60019B29E /* UploadTableViewHeaderView.swift */; };
+		104E687525AAFE010019B29E /* UploadTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 104E687425AAFE010019B29E /* UploadTableViewHeaderView.xib */; };
+		104E687C25AB005E0019B29E /* UploadWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104E687B25AB005E0019B29E /* UploadWriteViewController.swift */; };
 		105661ED25A5F79300E111B2 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105661EB25A5F79300E111B2 /* EmptyTableViewCell.swift */; };
 		105661EE25A5F79300E111B2 /* EmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105661EC25A5F79300E111B2 /* EmptyTableViewCell.xib */; };
+		106EFB9925AB0CB400ADD4C2 /* UploadQuoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106EFB9725AB0CB400ADD4C2 /* UploadQuoteTableViewCell.swift */; };
+		106EFB9A25AB0CB400ADD4C2 /* UploadQuoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 106EFB9825AB0CB400ADD4C2 /* UploadQuoteTableViewCell.xib */; };
 		107919B325A4830B0024C711 /* ListDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107919B125A4830B0024C711 /* ListDateTableViewCell.swift */; };
 		107919B425A4830B0024C711 /* ListDateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 107919B225A4830B0024C711 /* ListDateTableViewCell.xib */; };
 		107919BC25A484510024C711 /* ListFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107919BA25A484510024C711 /* ListFilterTableViewCell.swift */; };
@@ -44,8 +49,13 @@
 
 /* Begin PBXFileReference section */
 		104E685D25AAF8410019B29E /* UploadWrite.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UploadWrite.storyboard; sourceTree = "<group>"; };
+		104E687125AAFDE60019B29E /* UploadTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTableViewHeaderView.swift; sourceTree = "<group>"; };
+		104E687425AAFE010019B29E /* UploadTableViewHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadTableViewHeaderView.xib; sourceTree = "<group>"; };
+		104E687B25AB005E0019B29E /* UploadWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadWriteViewController.swift; sourceTree = "<group>"; };
 		105661EB25A5F79300E111B2 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		105661EC25A5F79300E111B2 /* EmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableViewCell.xib; sourceTree = "<group>"; };
+		106EFB9725AB0CB400ADD4C2 /* UploadQuoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadQuoteTableViewCell.swift; sourceTree = "<group>"; };
+		106EFB9825AB0CB400ADD4C2 /* UploadQuoteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadQuoteTableViewCell.xib; sourceTree = "<group>"; };
 		107919B125A4830B0024C711 /* ListDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDateTableViewCell.swift; sourceTree = "<group>"; };
 		107919B225A4830B0024C711 /* ListDateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListDateTableViewCell.xib; sourceTree = "<group>"; };
 		107919BA25A484510024C711 /* ListFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterTableViewCell.swift; sourceTree = "<group>"; };
@@ -99,6 +109,8 @@
 			children = (
 				563B032F25A8849300DA74C5 /* HomeDayNightView.xib */,
 				563B033225A884A200DA74C5 /* HomeDayNightView.swift */,
+				104E687125AAFDE60019B29E /* UploadTableViewHeaderView.swift */,
+				104E687425AAFE010019B29E /* UploadTableViewHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -216,6 +228,8 @@
 				107919C025A484E60024C711 /* FilterCollectionViewCell.xib */,
 				105661EB25A5F79300E111B2 /* EmptyTableViewCell.swift */,
 				105661EC25A5F79300E111B2 /* EmptyTableViewCell.xib */,
+				106EFB9725AB0CB400ADD4C2 /* UploadQuoteTableViewCell.swift */,
+				106EFB9825AB0CB400ADD4C2 /* UploadQuoteTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -227,6 +241,7 @@
 				563B034625A8973100DA74C5 /* HomeViewController.swift */,
 				568764102599AD3A009CB486 /* ViewController.swift */,
 				1CEF46BE25A6DA7600AF3D81 /* OnboardingViewController.swift */,
+				104E687B25AB005E0019B29E /* UploadWriteViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -327,6 +342,8 @@
 				563B034325A8970E00DA74C5 /* Home.storyboard in Resources */,
 				107919C225A484E60024C711 /* FilterCollectionViewCell.xib in Resources */,
 				104E685E25AAF8410019B29E /* UploadWrite.storyboard in Resources */,
+				106EFB9A25AB0CB400ADD4C2 /* UploadQuoteTableViewCell.xib in Resources */,
+				104E687525AAFE010019B29E /* UploadTableViewHeaderView.xib in Resources */,
 				10F12B10259B2C4C003CAA9E /* List.storyboard in Resources */,
 				10924218259B469100BBFBFE /* ListTableViewCell.xib in Resources */,
 				107919B425A4830B0024C711 /* ListDateTableViewCell.xib in Resources */,
@@ -403,10 +420,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				104E687225AAFDE60019B29E /* UploadTableViewHeaderView.swift in Sources */,
 				10924217259B469100BBFBFE /* ListTableViewCell.swift in Sources */,
 				568764112599AD3A009CB486 /* ViewController.swift in Sources */,
 				568764612599FB56009CB486 /* APIConstants.swift in Sources */,
 				563B034725A8973100DA74C5 /* HomeViewController.swift in Sources */,
+				104E687C25AB005E0019B29E /* UploadWriteViewController.swift in Sources */,
 				107919BC25A484510024C711 /* ListFilterTableViewCell.swift in Sources */,
 				107919C125A484E60024C711 /* FilterCollectionViewCell.swift in Sources */,
 				105661ED25A5F79300E111B2 /* EmptyTableViewCell.swift in Sources */,
@@ -420,6 +439,7 @@
 				563B033325A884A200DA74C5 /* HomeDayNightView.swift in Sources */,
 				5687640F2599AD3A009CB486 /* SceneDelegate.swift in Sources */,
 				5687645E2599FB48009CB486 /* AppConstants.swift in Sources */,
+				106EFB9925AB0CB400ADD4C2 /* UploadQuoteTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

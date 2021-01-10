@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WUj-wO-rSa">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -8,16 +8,31 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Upload Write View Controller-->
         <scene sceneID="WVR-aT-dQq">
             <objects>
-                <viewController id="WUj-wO-rSa" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UploadWriteViewController" id="WUj-wO-rSa" customClass="UploadWriteViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="evU-g6-yPA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hwi-ef-GhL">
+                                <rect key="frame" x="0.0" y="138" width="414" height="724"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="egk-AJ-HZi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Hwi-ef-GhL" firstAttribute="top" secondItem="egk-AJ-HZi" secondAttribute="top" constant="94" id="LP1-Ml-LTc"/>
+                            <constraint firstItem="egk-AJ-HZi" firstAttribute="trailing" secondItem="Hwi-ef-GhL" secondAttribute="trailing" id="fOV-cs-akc"/>
+                            <constraint firstItem="egk-AJ-HZi" firstAttribute="bottom" secondItem="Hwi-ef-GhL" secondAttribute="bottom" id="xbz-68-4IG"/>
+                            <constraint firstItem="Hwi-ef-GhL" firstAttribute="leading" secondItem="egk-AJ-HZi" secondAttribute="leading" id="ycV-Y2-CME"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="uploadTableView" destination="Hwi-ef-GhL" id="pNH-eX-I6X"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AcG-Fh-kua" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
