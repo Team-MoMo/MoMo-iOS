@@ -49,6 +49,14 @@ class OnboardingWriteViewController: UIViewController {
         self.hideTypingLabel()
     }
     
+    func pushToDeepViewController(finished: Bool) {
+        
+        guard let deepViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.deepViewController) as? DeepViewController else { return }
+        
+        self.navigationController?.pushViewController(deepViewController, animated: true)
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -172,11 +180,19 @@ extension OnboardingWriteViewController {
     
     func showTypingCursorBlinkWithAnimation () {
         self.typingCursorLabel.startBlink()
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1500), execute: { () -> Void in
-            UIView.animate(withDuration: 0.1, delay: 0, animations: {
-                self.typingCursorLabel.stopBlink()
-            })
-        })
+        DispatchQueue.main.asyncAfter(
+            deadline: DispatchTime.now() + .milliseconds(1500),
+            execute: { () -> Void in
+                UIView.animate(
+                    withDuration: 0.1,
+                    delay: 0,
+                    animations: {
+                        self.typingCursorLabel.stopBlink()
+                    },
+                    completion: self.pushToDeepViewController(finished:)
+                )
+            }
+        )
     }
     
     func moveOnboardingCirclesWithAnimation() {

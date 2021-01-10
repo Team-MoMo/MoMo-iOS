@@ -116,10 +116,10 @@
             </objects>
             <point key="canvasLocation" x="-1078.2608695652175" y="-225"/>
         </scene>
-        <!--Onboarding Mood View Controller-->
+        <!--Mood View Controller-->
         <scene sceneID="WOF-Qx-JPm">
             <objects>
-                <viewController storyboardIdentifier="MoodViewController" id="Ykz-9x-Zzr" customClass="OnboardingMoodViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MoodViewController" id="Ykz-9x-Zzr" customClass="MoodViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vNo-1s-Kol">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -435,10 +435,10 @@
             </objects>
             <point key="canvasLocation" x="-184.05797101449278" y="-225"/>
         </scene>
-        <!--Onboarding Sentence View Controller-->
+        <!--Sentence View Controller-->
         <scene sceneID="xOC-2k-ERG">
             <objects>
-                <viewController storyboardIdentifier="SentenceViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Mb6-je-E0a" customClass="OnboardingSentenceViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SentenceViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Mb6-je-E0a" customClass="SentenceViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="604-kH-Ycg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -863,25 +863,42 @@
         <!--Deep View Controller-->
         <scene sceneID="IYC-F4-DZu">
             <objects>
-                <viewController id="u0i-qW-CIe" customClass="DeepViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeepViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="u0i-qW-CIe" customClass="DeepViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kuc-O0-FKP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g8e-nN-vav">
-                                <rect key="frame" x="12" y="101" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <viewLayoutGuide key="contentLayoutGuide" id="UE0-rR-tg3"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="72H-oe-iih"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g8e-nN-vav">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bMY-nT-BLJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="bMY-nT-BLJ" secondAttribute="trailing" id="Dxj-V7-fvV"/>
+                                    <constraint firstItem="bMY-nT-BLJ" firstAttribute="leading" secondItem="g8e-nN-vav" secondAttribute="leading" id="Zhw-O2-aK0"/>
+                                    <constraint firstItem="bMY-nT-BLJ" firstAttribute="top" secondItem="g8e-nN-vav" secondAttribute="top" id="kRY-hw-f3V"/>
+                                    <constraint firstAttribute="bottom" secondItem="bMY-nT-BLJ" secondAttribute="bottom" id="oTz-xT-ui5"/>
+                                </constraints>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="y5O-ia-2fH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="g8e-nN-vav" firstAttribute="top" secondItem="kuc-O0-FKP" secondAttribute="top" id="9UH-f8-tVr"/>
+                            <constraint firstAttribute="bottom" secondItem="g8e-nN-vav" secondAttribute="bottom" id="HBb-vS-IBt"/>
+                            <constraint firstItem="g8e-nN-vav" firstAttribute="trailing" secondItem="y5O-ia-2fH" secondAttribute="trailing" id="W3C-7f-az7"/>
+                            <constraint firstItem="bMY-nT-BLJ" firstAttribute="width" secondItem="kuc-O0-FKP" secondAttribute="width" id="YvN-5v-6kf"/>
+                            <constraint firstItem="bMY-nT-BLJ" firstAttribute="height" secondItem="kuc-O0-FKP" secondAttribute="height" priority="250" id="dBn-jO-BED"/>
+                            <constraint firstItem="g8e-nN-vav" firstAttribute="leading" secondItem="kuc-O0-FKP" secondAttribute="leading" id="kXI-2k-7xf"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ctw-z8-QmU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2507" y="-225"/>
+            <point key="canvasLocation" x="2505.7971014492755" y="-225"/>
         </scene>
     </scenes>
     <designables>
