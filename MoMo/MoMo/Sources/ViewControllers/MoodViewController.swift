@@ -77,7 +77,7 @@ struct Button {
     
 }
 
-class MoodViewController: UIViewController, UIGestureRecognizerDelegate {
+class MoodViewController: UIViewController {
     
     // MARK: - @IBOutlet Properties
     
@@ -111,8 +111,6 @@ class MoodViewController: UIViewController, UIGestureRecognizerDelegate {
             Button(button: self.memoryButton),
             Button(button: self.dailyButton)
         ]
-        
-        self.navigationControllerSetUp()
         
         for button in self.buttons {
             button.buttonsRoundedUp()
@@ -172,10 +170,6 @@ class MoodViewController: UIViewController, UIGestureRecognizerDelegate {
         default:
             return "월요일"
         }
-    }
-    
-    func navigationControllerSetUp() {
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     @IBAction func loveButtonTouchUp(_ sender: UIButton) {
