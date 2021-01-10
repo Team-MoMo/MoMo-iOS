@@ -119,15 +119,15 @@
         <!--Onboarding Mood View Controller-->
         <scene sceneID="WOF-Qx-JPm">
             <objects>
-                <viewController storyboardIdentifier="OnboardingMoodViewController" id="Ykz-9x-Zzr" customClass="OnboardingMoodViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="vNo-1s-Kol">
+                <viewController storyboardIdentifier="MoodViewController" id="Ykz-9x-Zzr" customClass="OnboardingMoodViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vNo-1s-Kol">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q6p-az-0Fw">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6p-az-0Fw">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lWh-6I-dEs">
+                                    <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWh-6I-dEs">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="먼저 오늘의 감정을 선택해주세요" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHn-Jh-Hfk" userLabel="InfoLabel">
@@ -438,7 +438,7 @@
         <!--Onboarding Sentence View Controller-->
         <scene sceneID="xOC-2k-ERG">
             <objects>
-                <viewController storyboardIdentifier="OnboardingSentenceViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Mb6-je-E0a" customClass="OnboardingSentenceViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SentenceViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Mb6-je-E0a" customClass="OnboardingSentenceViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="604-kH-Ycg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -859,6 +859,29 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZVq-fr-7eK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1624.6376811594205" y="-225"/>
+        </scene>
+        <!--Deep View Controller-->
+        <scene sceneID="IYC-F4-DZu">
+            <objects>
+                <viewController id="u0i-qW-CIe" customClass="DeepViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kuc-O0-FKP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g8e-nN-vav">
+                                <rect key="frame" x="12" y="101" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="UE0-rR-tg3"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="72H-oe-iih"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="y5O-ia-2fH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ctw-z8-QmU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2507" y="-225"/>
         </scene>
     </scenes>
     <designables>
