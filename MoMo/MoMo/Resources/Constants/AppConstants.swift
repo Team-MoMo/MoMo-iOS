@@ -33,10 +33,12 @@ struct Constants {
         static let homeViewController: String = "HomeViewController"
         static let onboardingViewController: String = "OnboardingViewController"
         static let onboardingWriteViewController: String = "OnboardingWriteViewController"
-        
         static let moodViewController: String = "MoodViewController"
         static let sentenceViewController: String = "SentenceViewController"
         static let deepViewController: String = "DeepViewController"
+        
+        // MARK: - UIView
+        
         static let homeDayNightView: String = "HomeDayNightView"
     }
     
