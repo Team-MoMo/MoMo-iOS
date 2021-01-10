@@ -234,4 +234,42 @@ extension HomeViewController: UITableViewDelegate {
 
         return sectionHeaderView
     }
+    
+    // scroll이 시작됐을 때
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        // 화면 전체가 gradient 일 때만
+        if scrollView.contentOffset.y >= sectionFrameArray[0].origin.y {
+            homeTopButton.isHidden = false
+        } else {
+            homeTopButton.isHidden = true
+        }
+    }
+    
+    // scroll 감속이 시작됐을 때
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        swipeUpButton.isHidden = true
+        swipeDownButton.isHidden = true
+    }
+    
+    // scroll 감속이 끝나고 정지 상태일 때
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
+        let yOffset = scrollView.contentOffset.y
+        
+        if yOffset == 0 {
+            swipeDownButton.isHidden = false
+        }
+        
+        if yOffset >= sectionFrameArray[0].origin.y {
+            swipeUpButton.isHidden = false
+            swipeDownButton.isHidden = false
+        }
+        
+        if yOffset + UIScreen.main.bounds.height >= sectionFrameArray[6].origin.y + sectionFrameArray[6].size.height {
+            swipeUpButton.isHidden = false
+            swipeDownButton.isHidden = true
+        }
+        
+    }
 }
