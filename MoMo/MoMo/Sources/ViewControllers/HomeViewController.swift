@@ -271,5 +271,28 @@ extension HomeViewController: UITableViewDelegate {
             swipeDownButton.isHidden = true
         }
         
+        if yOffset < sectionFrameArray[0].origin.y {
+            let contentOffset = CGPoint(x: 0, y: 0)
+            scrollView.setContentOffset(contentOffset, animated: true)
+            swipeUpButton.isHidden = true
+            swipeDownButton.isHidden = false
+        }
+    }
+    
+    // 손을 뗐을 때 한 번만 호출
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        let yOffset = scrollView.contentOffset.y
+        
+        if yOffset > 0 && yOffset < sectionFrameArray[0].origin.y {
+            // 내려갈 때
+            if velocity.y > 0 {
+                targetContentOffset.pointee = CGPoint(x: 0, y: sectionFrameArray[0].origin.y)
+                
+            // 올라갈 때
+            } else if velocity.y < 0 {
+                targetContentOffset.pointee = CGPoint(x: 0, y: 0)
+            }
+        }
     }
 }
