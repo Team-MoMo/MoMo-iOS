@@ -31,10 +31,18 @@ class HomeViewController: UIViewController {
     var currentColorSet: Int = 0
     var sectionFrameArray: [CGRect]  = [] // section 별 background frame 배열
     
-    var rowHeight: CGFloat = 150
-    var sectionHeight: CGFloat = 100
+    let rowHeight: CGFloat = 150
+    let sectionHeight: CGFloat = 100
     
     var statusBarHeight: CGFloat = 0
+    let swipeButtonTopBottomMargin: CGFloat = 16
+    let swipeButtonBottomMarginWithNotch: CGFloat = 8
+    
+    // section header
+    let depthLabelFrameX: CGFloat = 32
+    let depthLabelFrameY: CGFloat = 51
+    let depthLabelFrameHeight: CGFloat = 42
+    let depthLabelFontSize: CGFloat = 28
     
     // MARK: - View Life Cycle
     
@@ -96,11 +104,11 @@ class HomeViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         
         // notch가 없는 기종을 위한 autolayout 설정
-        swipeUpButtonTop.constant = statusBarHeight + 16
+        swipeUpButtonTop.constant = statusBarHeight + swipeButtonTopBottomMargin
         if view.safeAreaInsets.bottom == 0 {
-            homeTopButtonBottom.constant = 16
+            homeTopButtonBottom.constant = swipeButtonTopBottomMargin
         } else {
-            homeTopButtonBottom.constant = view.safeAreaInsets.bottom + 8
+            homeTopButtonBottom.constant = view.safeAreaInsets.bottom + swipeButtonBottomMarginWithNotch
         }
         
         // section 별 frame 값 계산
@@ -242,8 +250,8 @@ extension HomeViewController: UITableViewDelegate {
     // secion header view에 label 붙이기
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let sectionHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: sectionHeight))
-        let depthLabel = UILabel(frame: CGRect(x: 32, y: 51, width: tableView.frame.size.width, height: 42))
-        depthLabel.font = UIFont.systemFont(ofSize: 28, weight: .light)
+        let depthLabel = UILabel(frame: CGRect(x: depthLabelFrameX, y: depthLabelFrameY, width: tableView.frame.size.width, height: depthLabelFrameHeight))
+        depthLabel.font = UIFont.systemFont(ofSize: depthLabelFontSize, weight: .light)
         depthLabel.textColor = UIColor.white
         depthLabel.text = Constants.Content.depthNameArray[section]
         // depthLabel.attributedText = depthLabel.text?.textSpacing(lineSpacing: 7)
