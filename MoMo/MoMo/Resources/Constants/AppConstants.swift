@@ -72,6 +72,8 @@ struct Constants {
     
     struct Content {
         /// 예시 : static let Category = "category"
+        
+        static let depthNameArray: [String] = ["2m", "30m", "100m", "300m", "700m", "1,005m", "심해"]
     }
     
 }

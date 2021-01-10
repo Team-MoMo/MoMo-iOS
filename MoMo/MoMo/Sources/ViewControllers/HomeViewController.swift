@@ -122,6 +122,7 @@ class HomeViewController: UIViewController {
     
     // MARK: - Functions
 
+    // 단계 별 bubble data 배열 생성
     func devideArrayByDepth() {
         let totalArray = bubbleDataArray.objectsArray
         for sectionIndex in 0..<homeTableView.numberOfSections {
@@ -140,6 +141,7 @@ class HomeViewController: UIViewController {
         }
     }
     
+    // gradient 단계 별 color 배열
     func createGradientColorSets() {
         colorSets.append([UIColor.Gradient1.cgColor, UIColor.Gradient2.cgColor]) // 1단계
         colorSets.append([UIColor.Gradient2.cgColor, UIColor.Gradient3.cgColor]) // 2단계
@@ -213,5 +215,19 @@ extension HomeViewController: UITableViewDelegate {
                 tableView.visibleCells[index].layer.zPosition = zPosition
             }
         }
+    }
+    
+    // secion header view에 label 붙이기
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let sectionHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: sectionHeight))
+        let depthLabel = UILabel(frame: CGRect(x: 32, y: 51, width: tableView.frame.size.width, height: 42))
+        depthLabel.font = UIFont.systemFont(ofSize: 28, weight: .light)
+        depthLabel.textColor = UIColor.white
+        depthLabel.text = Constants.Content.depthNameArray[section]
+        // depthLabel.attributedText = depthLabel.text?.textSpacing(lineSpacing: 7)
+        sectionHeaderView.addSubview(depthLabel)
+        sectionHeaderView.backgroundColor = UIColor.clear // 투명화
+
+        return sectionHeaderView
     }
 }
