@@ -76,19 +76,13 @@ class OnboardingWriteViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        self.showOnboardingCircleSmallImage()
+        self.showOnboardingCircleBigImage()
         self.showSentenceLabelAndFeatherImageWithAnimation(
             completion: moveSentenceLabelAndFeatherImageWithAnimation
         )
         self.moveOnboardingCirclesWithAnimation()
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        self.hideOnboardingCircleSmallImage()
-        self.hideOnboardingCircleBigImage()
-    }
-    
 }
 
 // MARK: - Functions
