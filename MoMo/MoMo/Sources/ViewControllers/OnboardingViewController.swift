@@ -21,13 +21,13 @@ class OnboardingViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationControllerSetUp()
-        self.buttonRoundedUp()
         self.hideDesciptionLabelWithAnimation()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        self.buttonRoundedUp()
         self.showDesciptionLabelWithAnimation()
     }
     
