@@ -8,10 +8,10 @@
 import UIKit
 
 struct Sentence {
-    var author: String?
-    var bookTitle: String?
-    var publisher: String?
-    var sentence: String?
+    var author: String
+    var bookTitle: String
+    var publisher: String
+    var sentence: String
 }
 
 class SentenceViewController: UIViewController {
@@ -54,7 +54,7 @@ class SentenceViewController: UIViewController {
         publisher: "모모출판사",
         sentence: "모모 사랑해요"
     )
-    let shadowOffsetButton: CGSize = CGSize(width: 2, height: 2)
+    let shadowOffsetButton: CGSize = CGSize(width: 4, height: 4)
     var firstSentence: Sentence?
     var secondSentence: Sentence?
     var thirdSentence: Sentence?
@@ -126,19 +126,27 @@ class SentenceViewController: UIViewController {
     
     func setSentenceLabel() {
         self.firstAuthorLabel.text = self.firstSentence?.author
-        self.firstBookTitleLabel.text = self.firstSentence?.bookTitle
-        self.firstPublisherLabel.text = self.firstSentence?.publisher
+        self.firstBookTitleLabel.text = self.getFormattedBookTitle(self.firstSentence?.bookTitle)
+        self.firstPublisherLabel.text = self.getFormattedPublisher(self.firstSentence?.publisher)
         self.firstSentenceLabel.text = self.firstSentence?.sentence
         
         self.secondAuthorLabel.text = self.secondSentence?.author
-        self.secondBookTitleLabel.text = self.secondSentence?.bookTitle
-        self.secondPublisherLabel.text = self.secondSentence?.publisher
+        self.secondBookTitleLabel.text = self.getFormattedBookTitle(self.secondSentence?.bookTitle)
+        self.secondPublisherLabel.text = self.getFormattedPublisher(self.secondSentence?.publisher)
         self.secondSentenceLabel.text = self.secondSentence?.sentence
         
         self.thirdAuthorLabel.text = self.thirdSentence?.author
-        self.thirdBookTitleLabel.text = self.thirdSentence?.bookTitle
-        self.thirdPublisherLabel.text = self.thirdSentence?.publisher
+        self.thirdBookTitleLabel.text = self.getFormattedBookTitle(self.thirdSentence?.bookTitle)
+        self.thirdPublisherLabel.text = self.getFormattedPublisher(self.thirdSentence?.publisher)
         self.thirdSentenceLabel.text = self.thirdSentence?.sentence
+    }
+    
+    func getFormattedBookTitle(_ bookTitle: String?) -> String {
+        return "<\(bookTitle ?? self.defaultSentence.bookTitle)>"
+    }
+    
+    func getFormattedPublisher(_ publisher: String?) -> String {
+        return "(\(publisher ?? self.defaultSentence.publisher))"
     }
     
     @IBAction func firstButtonTouchUp(_ sender: UIButton) {
