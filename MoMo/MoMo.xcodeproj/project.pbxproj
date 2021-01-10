@@ -22,10 +22,11 @@
 		10B6732D25A775DE0046AA97 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B6732C25A775DE0046AA97 /* UIView+Extension.swift */; };
 		10F12B10259B2C4C003CAA9E /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10F12B0F259B2C4C003CAA9E /* List.storyboard */; };
 		1CAD05A225A9C98F007ECA40 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD05A125A9C98F007ECA40 /* UILabel+Extension.swift */; };
+		1CAD05A525AACB36007ECA40 /* DeepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD05A425AACB36007ECA40 /* DeepViewController.swift */; };
 		1CEF46BF25A6DA7600AF3D81 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46BE25A6DA7600AF3D81 /* OnboardingViewController.swift */; };
 		1CEF46C225A6DAA000AF3D81 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CEF46C125A6DAA000AF3D81 /* Onboarding.storyboard */; };
-		1CEF46C525A6E09100AF3D81 /* OnboardingMoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46C425A6E09100AF3D81 /* OnboardingMoodViewController.swift */; };
-		1CEF46C825A6E0A000AF3D81 /* OnboardingSentenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46C725A6E0A000AF3D81 /* OnboardingSentenceViewController.swift */; };
+		1CEF46C525A6E09100AF3D81 /* MoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46C425A6E09100AF3D81 /* MoodViewController.swift */; };
+		1CEF46C825A6E0A000AF3D81 /* SentenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46C725A6E0A000AF3D81 /* SentenceViewController.swift */; };
 		1CEF46CB25A6E0B200AF3D81 /* OnboardingWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46CA25A6E0B200AF3D81 /* OnboardingWriteViewController.swift */; };
 		5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5687640C2599AD3A009CB486 /* AppDelegate.swift */; };
 		5687640F2599AD3A009CB486 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5687640E2599AD3A009CB486 /* SceneDelegate.swift */; };
@@ -57,10 +58,11 @@
 		10B6732C25A775DE0046AA97 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		10F12B0F259B2C4C003CAA9E /* List.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
 		1CAD05A125A9C98F007ECA40 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		1CAD05A425AACB36007ECA40 /* DeepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepViewController.swift; sourceTree = "<group>"; };
 		1CEF46BE25A6DA7600AF3D81 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		1CEF46C125A6DAA000AF3D81 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
-		1CEF46C425A6E09100AF3D81 /* OnboardingMoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingMoodViewController.swift; sourceTree = "<group>"; };
-		1CEF46C725A6E0A000AF3D81 /* OnboardingSentenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSentenceViewController.swift; sourceTree = "<group>"; };
+		1CEF46C425A6E09100AF3D81 /* MoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewController.swift; sourceTree = "<group>"; };
+		1CEF46C725A6E0A000AF3D81 /* SentenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceViewController.swift; sourceTree = "<group>"; };
 		1CEF46CA25A6E0B200AF3D81 /* OnboardingWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWriteViewController.swift; sourceTree = "<group>"; };
 		568764092599AD3A009CB486 /* MoMo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoMo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5687640C2599AD3A009CB486 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -221,9 +223,10 @@
 				1092420E259B452600BBFBFE /* ListViewController.swift */,
 				568764102599AD3A009CB486 /* ViewController.swift */,
 				1CEF46BE25A6DA7600AF3D81 /* OnboardingViewController.swift */,
-				1CEF46C425A6E09100AF3D81 /* OnboardingMoodViewController.swift */,
-				1CEF46C725A6E0A000AF3D81 /* OnboardingSentenceViewController.swift */,
+				1CEF46C425A6E09100AF3D81 /* MoodViewController.swift */,
+				1CEF46C725A6E0A000AF3D81 /* SentenceViewController.swift */,
 				1CEF46CA25A6E0B200AF3D81 /* OnboardingWriteViewController.swift */,
+				1CAD05A425AACB36007ECA40 /* DeepViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				568764112599AD3A009CB486 /* ViewController.swift in Sources */,
 				1CEF46CB25A6E0B200AF3D81 /* OnboardingWriteViewController.swift in Sources */,
 				568764612599FB56009CB486 /* APIConstants.swift in Sources */,
+				1CAD05A525AACB36007ECA40 /* DeepViewController.swift in Sources */,
 				107919BC25A484510024C711 /* ListFilterTableViewCell.swift in Sources */,
 				107919C125A484E60024C711 /* FilterCollectionViewCell.swift in Sources */,
 				105661ED25A5F79300E111B2 /* EmptyTableViewCell.swift in Sources */,
@@ -412,9 +416,9 @@
 				568764D1259F6EDE009CB486 /* UIColor+Extension.swift in Sources */,
 				107919B325A4830B0024C711 /* ListDateTableViewCell.swift in Sources */,
 				1CEF46BF25A6DA7600AF3D81 /* OnboardingViewController.swift in Sources */,
-				1CEF46C825A6E0A000AF3D81 /* OnboardingSentenceViewController.swift in Sources */,
+				1CEF46C825A6E0A000AF3D81 /* SentenceViewController.swift in Sources */,
 				5687640F2599AD3A009CB486 /* SceneDelegate.swift in Sources */,
-				1CEF46C525A6E09100AF3D81 /* OnboardingMoodViewController.swift in Sources */,
+				1CEF46C525A6E09100AF3D81 /* MoodViewController.swift in Sources */,
 				5687645E2599FB48009CB486 /* AppConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
