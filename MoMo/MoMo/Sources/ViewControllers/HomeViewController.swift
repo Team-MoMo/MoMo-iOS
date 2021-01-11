@@ -153,6 +153,7 @@ class HomeViewController: UIViewController {
         attachDepth3Objet()
         attachDepth4Objet()
         attachDepth5Objet()
+        attachDepth6Objet()
         
     }
     
@@ -198,6 +199,17 @@ class HomeViewController: UIViewController {
         homeTableView.addSubview(imgView)
     }
     
+    // bottom 오브제 배치
+    func attachBottomObjet(frameX: CGFloat, frameY: CGFloat, img: UIImage) {
+        let imgWidth = img.size.width
+        let imgHeight = img.size.height
+        let width = UIScreen.main.bounds.width
+        let height = (imgHeight * width) / imgWidth
+        let imgView = UIImageView(frame: CGRect(x: frameX, y: frameY, width: UIScreen.main.bounds.width, height: height))
+        imgView.image = img
+        
+        homeTableView.addSubview(imgView)
+    }
     // MARK: objet 붙이기
     
     // 0단계 - 2m
@@ -330,6 +342,29 @@ class HomeViewController: UIViewController {
         attachObjet(frameX: screenWidth - (seaweed2?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - (seaweed2?.size.height ?? CGFloat(0)), img: seaweed2 ?? UIImage())
         attachObjet(frameX: screenWidth - (shark?.size.width ?? CGFloat(0)), frameY: sectionFrameY + 62, img: shark ?? UIImage())
         attachObjet(frameX: 0, frameY: sectionFrameBottom - (rock1?.size.height ?? CGFloat(0)), img: rock1 ?? UIImage())
+    }
+    
+    // 6단계 - 심해
+    func attachDepth6Objet() {
+        let sectionFrameY = sectionFrameArray[6].origin.y
+        let sectionFrameBottom = sectionFrameArray[6].origin.y + sectionFrameArray[6].size.height
+        let screenWidth = UIScreen.main.bounds.width
+        
+        // img 변수 선언
+        let rock1 = Constants.Design.Image.depth6Rock1
+        let seaweed1 = Constants.Design.Image.depth6Seaweed1
+        let sea = Constants.Design.Image.depth6Sea
+        
+        // sea 이미지 높이 계산
+        let imgWidth = sea?.size.width ?? CGFloat(0)
+        let imgHeight = sea?.size.height ?? CGFloat(0)
+        let width = UIScreen.main.bounds.width
+        let height = (imgHeight * width) / imgWidth
+        
+        // objet 붙이기
+        attachObjet(frameX: 0, frameY: sectionFrameY, img: rock1 ?? UIImage())
+        attachObjet(frameX: screenWidth - (seaweed1?.size.width ?? CGFloat(0)), frameY: sectionFrameY, img: seaweed1 ?? UIImage())
+        attachBottomObjet(frameX: 0, frameY: sectionFrameBottom - height, img: sea ?? UIImage())
     }
     
     // MARK: - @IBAction Properties
