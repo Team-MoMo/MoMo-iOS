@@ -150,6 +150,7 @@ class HomeViewController: UIViewController {
         attachDepth0Objet()
         attachDepth1Objet()
         attachDepth2Objet()
+        attachDepth3Objet()
         
     }
     
@@ -262,6 +263,31 @@ class HomeViewController: UIViewController {
         attachObjet(frameX: 9, frameY: sectionFrameBottom - 148 - (turtle2?.size.height ?? CGFloat(0)), img: turtle2 ?? UIImage())
         attachObjet(frameX: 0, frameY: sectionFrameBottom - (seaweed1?.size.height ?? CGFloat(0)), img: seaweed1 ?? UIImage())
         attachObjet(frameX: screenWidth - (seaweed2?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - (seaweed2?.size.height ?? CGFloat(0)), img: seaweed2 ?? UIImage())
+    }
+    
+    // 3단계 - 300m
+    func attachDepth3Objet() {
+        let sectionFrameY = sectionFrameArray[3].origin.y
+        let sectionFrameBottom = sectionFrameArray[4].origin.y
+        let screenWidth = UIScreen.main.bounds.width
+        
+        // img 변수 선언
+        let seaweed1 = Constants.Design.Image.depth3Seaweed1
+        let seaweed2 = Constants.Design.Image.depth3Seaweed2
+        let seaweed3 = Constants.Design.Image.depth3Seaweed3
+        let fish1 = Constants.Design.Image.depth3Fish1
+        let fish2 = Constants.Design.Image.depth3Fish2
+        let stingray1 = Constants.Design.Image.depth3Stingray1
+        let rock1 = Constants.Design.Image.depth3Rock1
+        
+        // objet 붙이기
+        attachObjet(frameX: 0, frameY: sectionFrameY, img: seaweed1 ?? UIImage())
+        attachObjet(frameX: screenWidth - (seaweed2?.size.width ?? CGFloat(0)), frameY: sectionFrameY, img: seaweed2 ?? UIImage())
+        attachObjet(frameX: 0, frameY: sectionFrameBottom - (seaweed3?.size.height ?? CGFloat(0)), img: seaweed3 ?? UIImage())
+        attachObjet(frameX: 88, frameY: sectionFrameY + 7, img: fish1 ?? UIImage())
+        attachObjet(frameX: 0, frameY: sectionFrameBottom - 24 - (fish2?.size.height ?? CGFloat(0)), img: fish2 ?? UIImage())
+        attachObjet(frameX: screenWidth - 44 - (stingray1?.size.width ?? CGFloat(0)), frameY: sectionFrameY + 148, img: stingray1 ?? UIImage())
+        attachObjet(frameX: screenWidth - (rock1?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - (rock1?.size.height ?? CGFloat(0)), img: rock1 ?? UIImage())
     }
     
     // MARK: - @IBAction Properties
