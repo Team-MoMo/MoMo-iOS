@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DeepSliderView" customModule="MoMo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="a0D-zR-8Jz" userLabel="Deep Label Slider">
+                    <rect key="frame" x="29" y="227.5" width="356" height="31"/>
+                    <connections>
+                        <action selector="deepLabelSliderValueChanged:" destination="iN0-l3-epB" eventType="valueChanged" id="Rlb-XT-WeV"/>
+                    </connections>
+                </slider>
+                <slider opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="tXO-q0-7zH" userLabel="Deep Line Slider">
+                    <rect key="frame" x="46.5" y="385" width="321" height="31"/>
+                </slider>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="uvv-VO-nVq" userLabel="Deep Point Slider">
+                    <rect key="frame" x="29" y="438" width="356" height="31"/>
+                    <connections>
+                        <action selector="deepPointSliderValueChanged:" destination="iN0-l3-epB" eventType="valueChanged" id="rrt-HS-YvY"/>
+                    </connections>
+                </slider>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <constraints>
+                <constraint firstItem="uvv-VO-nVq" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="HSC-c3-p7O"/>
+                <constraint firstItem="a0D-zR-8Jz" firstAttribute="centerX" secondItem="uvv-VO-nVq" secondAttribute="centerX" id="KOy-MQ-XnT"/>
+                <constraint firstItem="uvv-VO-nVq" firstAttribute="top" secondItem="tXO-q0-7zH" secondAttribute="bottom" multiplier="1.055" id="Ogu-hJ-fES"/>
+                <constraint firstItem="uvv-VO-nVq" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.85" id="ZBd-dz-X8u"/>
+                <constraint firstItem="a0D-zR-8Jz" firstAttribute="width" secondItem="uvv-VO-nVq" secondAttribute="width" id="dgw-bI-4Jl"/>
+                <constraint firstItem="uvv-VO-nVq" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="eQe-Ab-tGC"/>
+                <constraint firstItem="uvv-VO-nVq" firstAttribute="top" secondItem="a0D-zR-8Jz" secondAttribute="bottom" multiplier="1.7" id="oKI-7g-eMy"/>
+                <constraint firstItem="tXO-q0-7zH" firstAttribute="width" secondItem="uvv-VO-nVq" secondAttribute="width" multiplier="0.9" id="peq-Jc-5g7"/>
+                <constraint firstItem="tXO-q0-7zH" firstAttribute="centerX" secondItem="uvv-VO-nVq" secondAttribute="centerX" id="xrP-Z7-2fp"/>
+            </constraints>
+            <connections>
+                <outlet property="deepLabelSlider" destination="a0D-zR-8Jz" id="ep2-36-ddR"/>
+                <outlet property="deepLineSlider" destination="tXO-q0-7zH" id="PyM-N3-Imx"/>
+                <outlet property="deepPointSlider" destination="uvv-VO-nVq" id="X1K-jG-fQB"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="149"/>
+        </view>
+    </objects>
+</document>
