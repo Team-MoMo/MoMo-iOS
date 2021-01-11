@@ -5,7 +5,6 @@
 //  Created by 초이 on 2021/01/01.
 //
 
-import Foundation
 import UIKit
 
 extension UIColor {
@@ -31,4 +30,6 @@ extension UIColor {
     static let ListSubGray: UIColor = UIColor(named: "ListSubGray")!
     static let NavWhite: UIColor = UIColor(named: "NavWhite")!
     static let TitleNavy: UIColor = UIColor(named: "TitleNavy")!
+    static let HomeDay1: UIColor = UIColor(named: "HomeDay1")!
+    static let HomeDay2: UIColor = UIColor(named: "HomeDay2")!
 }
