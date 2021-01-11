@@ -64,7 +64,7 @@
             <connections>
                 <outlet property="cancelButton" destination="8RM-Gv-287" id="gpM-u5-LiO"/>
                 <outlet property="filterLabel" destination="mtQ-6J-rZg" id="zkX-Wp-WLG"/>
-                <outlet property="touchView" destination="PDf-1P-SXf" id="wmN-lu-AyG"/>
+                <outlet property="filterTouchAreaView" destination="PDf-1P-SXf" id="Ozb-kx-vGn"/>
             </connections>
             <point key="canvasLocation" x="155.79710144927537" y="72.991071428571431"/>
         </collectionViewCell>

@@ -182,7 +182,6 @@ class ListViewController: UIViewController {
     }
 }
 
-
 // MARK: - TableViewDataSource
 
 extension ListViewController: UITableViewDataSource {
@@ -263,14 +262,15 @@ extension ListViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCollectionViewCell", for: indexPath) as? FilterCollectionViewCell else {
             return UICollectionViewCell()
         }
+        cell.clipsToBounds = true
         cell.layer.cornerRadius = 10
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapEmptySpace(_:)))
         cell.filterLabel.text = filter[indexPath.row]
         // index 값을 tag에 넣어서 배열에 쉽게 접근
         cell.cancelButton.tag = indexPath.row
         cell.cancelButton.addTarget(self, action: #selector(touchCancelButton(sender:)), for: .touchUpInside)
-        cell.touchView.tag = indexPath.row
-        cell.touchView.addGestureRecognizer(tapRecognizer)
+        cell.filterTouchAreaView.tag = indexPath.row
+        cell.filterTouchAreaView.addGestureRecognizer(tapRecognizer)
         return cell
     }
 }
