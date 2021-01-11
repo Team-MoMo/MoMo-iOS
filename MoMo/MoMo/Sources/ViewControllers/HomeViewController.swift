@@ -151,6 +151,7 @@ class HomeViewController: UIViewController {
         attachDepth1Objet()
         attachDepth2Objet()
         attachDepth3Objet()
+        attachDepth4Objet()
         
     }
     
@@ -288,6 +289,27 @@ class HomeViewController: UIViewController {
         attachObjet(frameX: 0, frameY: sectionFrameBottom - 24 - (fish2?.size.height ?? CGFloat(0)), img: fish2 ?? UIImage())
         attachObjet(frameX: screenWidth - 44 - (stingray1?.size.width ?? CGFloat(0)), frameY: sectionFrameY + 148, img: stingray1 ?? UIImage())
         attachObjet(frameX: screenWidth - (rock1?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - (rock1?.size.height ?? CGFloat(0)), img: rock1 ?? UIImage())
+    }
+    
+    // 4단계 - 700m
+    func attachDepth4Objet() {
+        let sectionFrameY = sectionFrameArray[4].origin.y
+        let sectionFrameBottom = sectionFrameArray[5].origin.y
+        let screenWidth = UIScreen.main.bounds.width
+        
+        // img 변수 선언
+        let seaweed1 = Constants.Design.Image.depth4Seaweed1
+        let seaweed2 = Constants.Design.Image.depth4Seaweed2
+        let rock1 = Constants.Design.Image.depth4Rock1
+        let whale1 = Constants.Design.Image.depth4Whale1
+        let fish1 = Constants.Design.Image.depth4Fish1
+        
+        // objet 붙이기
+        attachObjet(frameX: 0, frameY: sectionFrameY, img: seaweed1 ?? UIImage())
+        attachObjet(frameX: 0, frameY: sectionFrameBottom - (seaweed2?.size.width ?? CGFloat(0)), img: seaweed2 ?? UIImage())
+        attachObjet(frameX: screenWidth - (rock1?.size.width ?? CGFloat(0)), frameY: sectionFrameY, img: rock1 ?? UIImage())
+        attachObjet(frameX: 0, frameY: sectionFrameY + 67, img: whale1 ?? UIImage())
+        attachObjet(frameX: screenWidth - (fish1?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - (fish1?.size.height ?? CGFloat(0)), img: fish1 ?? UIImage())
     }
     
     // MARK: - @IBAction Properties
