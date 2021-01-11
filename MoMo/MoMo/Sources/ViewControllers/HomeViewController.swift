@@ -152,6 +152,7 @@ class HomeViewController: UIViewController {
         attachDepth2Objet()
         attachDepth3Objet()
         attachDepth4Objet()
+        attachDepth5Objet()
         
     }
     
@@ -306,11 +307,29 @@ class HomeViewController: UIViewController {
         
         // objet 붙이기
         attachObjet(frameX: 0, frameY: sectionFrameY, img: seaweed1 ?? UIImage())
-        attachObjet(frameX: 0, frameY: sectionFrameBottom - (seaweed2?.size.width ?? CGFloat(0)), img: seaweed2 ?? UIImage())
         attachObjet(frameX: 0, frameY: sectionFrameBottom - (seaweed2?.size.height ?? CGFloat(0)), img: seaweed2 ?? UIImage())
         attachObjet(frameX: screenWidth - (rock1?.size.width ?? CGFloat(0)), frameY: sectionFrameY, img: rock1 ?? UIImage())
         attachObjet(frameX: 0, frameY: sectionFrameY + 67, img: whale1 ?? UIImage())
         attachObjet(frameX: screenWidth - (fish1?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - (fish1?.size.height ?? CGFloat(0)), img: fish1 ?? UIImage())
+    }
+    
+    // 5단계 - 1005m
+    func attachDepth5Objet() {
+        let sectionFrameY = sectionFrameArray[5].origin.y
+        let sectionFrameBottom = sectionFrameArray[6].origin.y
+        let screenWidth = UIScreen.main.bounds.width
+                
+        // img 변수 선언
+        let seaweed1 = Constants.Design.Image.depth5Seaweed1
+        let seaweed2 = Constants.Design.Image.depth5Seaweed2
+        let shark = Constants.Design.Image.depth5Shark
+        let rock1 = Constants.Design.Image.depth5Rock1
+        
+        // objet 붙이기
+        attachObjet(frameX: 0, frameY: sectionFrameY, img: seaweed1 ?? UIImage())
+        attachObjet(frameX: screenWidth - (seaweed2?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - (seaweed2?.size.height ?? CGFloat(0)), img: seaweed2 ?? UIImage())
+        attachObjet(frameX: screenWidth - (shark?.size.width ?? CGFloat(0)), frameY: sectionFrameY + 62, img: shark ?? UIImage())
+        attachObjet(frameX: 0, frameY: sectionFrameBottom - (rock1?.size.height ?? CGFloat(0)), img: rock1 ?? UIImage())
     }
     
     // MARK: - @IBAction Properties
