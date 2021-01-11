@@ -42,11 +42,6 @@ class DeepViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 임시
-        self.navigationController?.navigationBar.isHidden = true
-        self.navigationController?.navigationBar.alpha = 0.0
-        // 임시
-        
         self.infoLabel.text = self.dafaultInfoLabel
         self.buttonRoundedUp()
         self.getViewContraints()
@@ -149,8 +144,8 @@ class DeepViewController: UIViewController {
     }
     
     func pushToHomeViewController() {
-        
-        guard let homeViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.homeViewController) as? HomeViewController else { return }
+        let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
+        guard let homeViewController = homeStoryboard.instantiateViewController(identifier: Constants.Identifier.homeViewController) as? HomeViewController else { return }
         
         self.navigationController?.pushViewController(homeViewController, animated: true)
         
