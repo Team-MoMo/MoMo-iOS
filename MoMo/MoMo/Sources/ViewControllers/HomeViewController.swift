@@ -82,6 +82,12 @@ class HomeViewController: UIViewController {
             self.homeTableView.tableHeaderView?.frame.size.height = UIScreen.main.bounds.height
         }
         
+        // tableFooterView 지정
+        let footer = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 120))
+        let footerImageVIew = attachFooterObjet()
+        footer.addSubview(footerImageVIew)
+        homeTableView.tableFooterView = footer
+        
         // contentOffset 0부터 시작하도록 조정
         homeTableView.contentInsetAdjustmentBehavior = .never
         
@@ -210,6 +216,20 @@ class HomeViewController: UIViewController {
         
         homeTableView.addSubview(imgView)
     }
+    
+    // footer 오브제 배치
+    func attachFooterObjet() -> UIImageView {
+        let img = Constants.Design.Image.depth6bottom ?? UIImage()
+        let imgWidth = img.size.width
+        let imgHeight = img.size.height
+        let width = UIScreen.main.bounds.width
+        let height = (imgHeight * width) / imgWidth
+        let imgView = UIImageView(frame: CGRect(x: 0, y: -1, width: UIScreen.main.bounds.width, height: height))
+        imgView.image = img
+        
+        return imgView
+    }
+    
     // MARK: objet 붙이기
     
     // 0단계 - 2m
