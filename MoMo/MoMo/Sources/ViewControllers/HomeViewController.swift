@@ -307,6 +307,7 @@ class HomeViewController: UIViewController {
         // objet 붙이기
         attachObjet(frameX: 0, frameY: sectionFrameY, img: seaweed1 ?? UIImage())
         attachObjet(frameX: 0, frameY: sectionFrameBottom - (seaweed2?.size.width ?? CGFloat(0)), img: seaweed2 ?? UIImage())
+        attachObjet(frameX: 0, frameY: sectionFrameBottom - (seaweed2?.size.height ?? CGFloat(0)), img: seaweed2 ?? UIImage())
         attachObjet(frameX: screenWidth - (rock1?.size.width ?? CGFloat(0)), frameY: sectionFrameY, img: rock1 ?? UIImage())
         attachObjet(frameX: 0, frameY: sectionFrameY + 67, img: whale1 ?? UIImage())
         attachObjet(frameX: screenWidth - (fish1?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - (fish1?.size.height ?? CGFloat(0)), img: fish1 ?? UIImage())
