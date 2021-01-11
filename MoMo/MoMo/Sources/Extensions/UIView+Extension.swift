@@ -17,4 +17,18 @@ extension UIView {
         shapeLayer.path = bezierPath.cgPath
         self.layer.mask = shapeLayer
     }
+    
+    // Nib 생성
+    static func initFromNib<T: UIView>() -> T? {
+        return Bundle.main.loadNibNamed(String(describing: self), owner: nil, options: nil)?[0] as? T
+    }
+    
+    // UIView를 UIImage로 변환
+    func asImage() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        return renderer.image { rendererContext in
+            layer.render(in: rendererContext.cgContext)
+        }
+    }
+
 }
