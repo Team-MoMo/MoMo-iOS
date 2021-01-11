@@ -11,13 +11,11 @@
 		1014895925AC4F5900639F98 /* ListFilterModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1014895725AC4F5900639F98 /* ListFilterModalViewController.xib */; };
 		105661ED25A5F79300E111B2 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105661EB25A5F79300E111B2 /* EmptyTableViewCell.swift */; };
 		105661EE25A5F79300E111B2 /* EmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105661EC25A5F79300E111B2 /* EmptyTableViewCell.xib */; };
-		1079197125A44C4A0024C711 /* ListFilterModalStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1079197025A44C4A0024C711 /* ListFilterModalStoryboard.storyboard */; };
 		1079197D25A44D1B0024C711 /* DepthCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079197B25A44D1B0024C711 /* DepthCollectionViewCell.swift */; };
 		1079197E25A44D1B0024C711 /* DepthCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1079197C25A44D1B0024C711 /* DepthCollectionViewCell.xib */; };
 		1079198225A44D9E0024C711 /* EmotionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079198025A44D9E0024C711 /* EmotionCollectionViewCell.swift */; };
 		1079198325A44D9E0024C711 /* EmotionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1079198125A44D9E0024C711 /* EmotionCollectionViewCell.xib */; };
 		1079198C25A44F200024C711 /* ModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079198B25A44F200024C711 /* ModalPresentationController.swift */; };
-		1079198F25A452BE0024C711 /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079198E25A452BE0024C711 /* TempViewController.swift */; };
 		107919B325A4830B0024C711 /* ListDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107919B125A4830B0024C711 /* ListDateTableViewCell.swift */; };
 		107919B425A4830B0024C711 /* ListDateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 107919B225A4830B0024C711 /* ListDateTableViewCell.xib */; };
 		107919BC25A484510024C711 /* ListFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107919BA25A484510024C711 /* ListFilterTableViewCell.swift */; };
@@ -60,13 +58,11 @@
 		1014895725AC4F5900639F98 /* ListFilterModalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListFilterModalViewController.xib; sourceTree = "<group>"; };
 		105661EB25A5F79300E111B2 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		105661EC25A5F79300E111B2 /* EmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableViewCell.xib; sourceTree = "<group>"; };
-		1079197025A44C4A0024C711 /* ListFilterModalStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ListFilterModalStoryboard.storyboard; sourceTree = "<group>"; };
 		1079197B25A44D1B0024C711 /* DepthCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthCollectionViewCell.swift; sourceTree = "<group>"; };
 		1079197C25A44D1B0024C711 /* DepthCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DepthCollectionViewCell.xib; sourceTree = "<group>"; };
 		1079198025A44D9E0024C711 /* EmotionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionCollectionViewCell.swift; sourceTree = "<group>"; };
 		1079198125A44D9E0024C711 /* EmotionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmotionCollectionViewCell.xib; sourceTree = "<group>"; };
 		1079198B25A44F200024C711 /* ModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPresentationController.swift; sourceTree = "<group>"; };
-		1079198E25A452BE0024C711 /* TempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 		107919B125A4830B0024C711 /* ListDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDateTableViewCell.swift; sourceTree = "<group>"; };
 		107919B225A4830B0024C711 /* ListDateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListDateTableViewCell.xib; sourceTree = "<group>"; };
 		107919BA25A484510024C711 /* ListFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterTableViewCell.swift; sourceTree = "<group>"; };
@@ -225,7 +221,6 @@
 			children = (
 				568764172599AD3C009CB486 /* LaunchScreen.storyboard */,
 				568764122599AD3A009CB486 /* Main.storyboard */,
-				1079197025A44C4A0024C711 /* ListFilterModalStoryboard.storyboard */,
 				10F12B0F259B2C4C003CAA9E /* List.storyboard */,
 				1CEF46C125A6DAA000AF3D81 /* Onboarding.storyboard */,
 				563B034225A8970E00DA74C5 /* Home.storyboard */,
@@ -260,7 +255,6 @@
 				1092420E259B452600BBFBFE /* ListViewController.swift */,
 				563B034625A8973100DA74C5 /* HomeViewController.swift */,
 				568764102599AD3A009CB486 /* ViewController.swift */,
-				1079198E25A452BE0024C711 /* TempViewController.swift */,
 				1CEF46BE25A6DA7600AF3D81 /* OnboardingViewController.swift */,
 				1CEF46C425A6E09100AF3D81 /* MoodViewController.swift */,
 				1CEF46C725A6E0A000AF3D81 /* SentenceViewController.swift */,
@@ -366,7 +360,6 @@
 				1CEF46C225A6DAA000AF3D81 /* Onboarding.storyboard in Resources */,
 				568764162599AD3C009CB486 /* Assets.xcassets in Resources */,
 				568764142599AD3A009CB486 /* Main.storyboard in Resources */,
-				1079197125A44C4A0024C711 /* ListFilterModalStoryboard.storyboard in Resources */,
 				563B034325A8970E00DA74C5 /* Home.storyboard in Resources */,
 				107919C225A484E60024C711 /* FilterCollectionViewCell.xib in Resources */,
 				10F12B10259B2C4C003CAA9E /* List.storyboard in Resources */,
@@ -461,7 +454,6 @@
 				5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */,
 				10B6732D25A775DE0046AA97 /* UIView+Extension.swift in Sources */,
 				10B6732025A771700046AA97 /* String+Extension.swift in Sources */,
-				1079198F25A452BE0024C711 /* TempViewController.swift in Sources */,
 				1079197D25A44D1B0024C711 /* DepthCollectionViewCell.swift in Sources */,
 				568764D1259F6EDE009CB486 /* UIColor+Extension.swift in Sources */,
 				107919B325A4830B0024C711 /* ListDateTableViewCell.swift in Sources */,
