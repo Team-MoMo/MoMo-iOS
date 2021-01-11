@@ -1,5 +1,5 @@
 //
-//  UploadWriteViewController.swift
+//  DiaryWriteViewController.swift
 //  MoMo
 //
 //  Created by 이정엽 on 2021/01/10.
@@ -7,7 +7,10 @@
 
 import UIKit
 
-class UploadWriteViewController: UIViewController {
+class DiaryWriteViewController: UIViewController {
+    
+    // MARK: - Properties
+    
     var date: String = "2020. 12. 26 토요일"
     var emotionImageName: String = "icAngry14Black"
     var emotion: String = "화남"
@@ -16,7 +19,9 @@ class UploadWriteViewController: UIViewController {
     var publisher: String = "위즈덤 하우스"
     var quote: String = "접입가경, 이게 웬 심장이 콧구멍으로 쏟아질 얘긴가 싶지만 그저 지레짐작이나 얻어걸린 이야기일 가능성이 더 많으니 조각은 표정을 바꾸지 않는다."
     var journal: String = ""
-    var placeHolder : NSMutableAttributedString = NSMutableAttributedString()
+    var placeHolder: NSMutableAttributedString = NSMutableAttributedString()
+    
+    // MARK: - IBOutlet
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var emotionImage: UIImageView!
@@ -35,7 +40,10 @@ class UploadWriteViewController: UIViewController {
         journalTextView.delegate = self
         setPlaceholder()
         journalTextView.attributedText = placeHolder
+        setWordSpace()
         }
+    
+    // MARK: - IBAction
     
     @IBAction func tapBackground(_ sender: Any) {
         self.journalTextView.endEditing(true)
@@ -44,6 +52,8 @@ class UploadWriteViewController: UIViewController {
     @IBAction func touchMoreButton(_ sender: Any) {
         shrinkQuoteLabel()
     }
+    
+    // MARK: - Private function for settings
     
     private func setWordSpace() {
         dateLabel.attributedText = date.wordSpacing(-0.6)
@@ -58,7 +68,6 @@ class UploadWriteViewController: UIViewController {
         let paragraphStyle = NSMutableParagraphStyle()
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
         paragraphStyle.lineSpacing = 4
-        
         
         quoteLabel.attributedText = attributedString
     }
@@ -80,7 +89,6 @@ class UploadWriteViewController: UIViewController {
             .kern: -0.6,
             .paragraphStyle: paragraphStyle,
             .foregroundColor: UIColor.Black3List]
-        
         
         return attribute
     }
@@ -104,7 +112,9 @@ class UploadWriteViewController: UIViewController {
     }
 }
 
-extension UploadWriteViewController: UITextViewDelegate {
+// MARK: - UITextViewDelegate
+
+extension DiaryWriteViewController: UITextViewDelegate {
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         if journalTextView.text == "파동을 충분히 느낀 후, 감정을 기록해보세요." {
             journalTextView.text = ""

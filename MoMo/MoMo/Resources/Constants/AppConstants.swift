@@ -33,6 +33,7 @@ struct Constants {
         static let homeViewController: String = "HomeViewController"
         static let onboardingViewController: String = "OnboardingViewController"
         static let onboardingMoodViewController: String = "OnboardingMoodViewController"
+        static let DiaryWirteViewController: String = "DiaryWirteViewController"
         
         // MARK: - UIView
         
@@ -54,6 +55,7 @@ struct Constants {
             /// 예시 : static let IconHome = UIImage(named: "ico_category")
             static let homeIcSwipeDown = UIImage(named: "homeIcSwipeDown")
             static let btnIcMyBlue = UIImage(named: "btnIcMyBlue")
+            static let icFeatherBlack = UIImage(named: "icFeatherBlack")
         }
         
         struct Font {
