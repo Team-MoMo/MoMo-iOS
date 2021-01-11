@@ -145,7 +145,10 @@ class HomeViewController: UIViewController {
             homeTableView.addSubview(view)
             homeTableView.sendSubviewToBack(view)
         }
+        
+        // 단계별 objet 배치
         attachDepth0Objet()
+        attachDepth1Objet()
         
     }
     
@@ -213,6 +216,28 @@ class HomeViewController: UIViewController {
         attachObjet(frameX: screenWidth - 47 - (fish2?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - 197 - (fish2?.size.height ?? CGFloat(0)), img: fish2 ?? UIImage())
         attachObjet(frameX: screenWidth - (seaweed1?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - (seaweed1?.size.height ?? CGFloat(0)), img: seaweed1 ?? UIImage())
     }
+    
+    // 1단계 - 30m
+    func attachDepth1Objet() {
+        let sectionFrameY = sectionFrameArray[1].origin.y
+        let sectionFrameBottom = sectionFrameArray[2].origin.y
+        let screenWidth = UIScreen.main.bounds.width
+        
+        // img 변수 선언
+        let rock1 = Constants.Design.Image.depth1Rock1
+        let seaweed = Constants.Design.Image.depth1Seaweed
+        let dolphin1 = Constants.Design.Image.depth1Dolphin1
+        let dolphin2 = Constants.Design.Image.depth1Dolphin2
+        let coral1 = Constants.Design.Image.depth1Coral1
+        let fish1 = Constants.Design.Image.depth1Fish1
+        
+        // objet 붙이기
+        attachObjet(frameX: 0, frameY: sectionFrameY, img: rock1 ?? UIImage())
+        attachObjet(frameX: screenWidth - (seaweed?.size.width ?? CGFloat(0)), frameY: sectionFrameY, img: seaweed ?? UIImage())
+        attachObjet(frameX: 9, frameY: sectionFrameY + 260, img: dolphin1 ?? UIImage())
+        attachObjet(frameX: screenWidth - 22 - (dolphin2?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - 143 - (dolphin2?.size.width ?? CGFloat(0)), img: dolphin2 ?? UIImage())
+        attachObjet(frameX: 0, frameY: sectionFrameBottom, img: coral1 ?? UIImage())
+        attachObjet(frameX: screenWidth - (fish1?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom, img: fish1 ?? UIImage())
     }
     
     // MARK: - @IBAction Properties
