@@ -11,7 +11,7 @@
         <!--Temp View Controller-->
         <scene sceneID="fMd-Ei-9M1">
             <objects>
-                <viewController id="f7p-Bb-MTS" customClass="TempViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TempViewController" id="f7p-Bb-MTS" customClass="TempViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Yba-B8-clb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

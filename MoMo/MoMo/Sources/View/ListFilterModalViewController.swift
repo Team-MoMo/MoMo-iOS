@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ModalPassDataDelegate: class {
+    func sendData(num: Int, text: String)
+}
+
 class ListFilterModalViewController: UIViewController {
     
     // MARK: - Properties
@@ -22,6 +26,9 @@ class ListFilterModalViewController: UIViewController {
     var month: [String] = []
     var selectedYear: String = ""
     var selectedMonth: String = ""
+    
+    var modalPassDataDelegate : ModalPassDataDelegate?
+    
     
     let emotionArray: [String] = ["iosFilterLoveUnselected",
                                   "iosFilterHappyUnselected",
@@ -175,7 +182,7 @@ class ListFilterModalViewController: UIViewController {
         if sender.state == .ended {
             let dragVelocity = sender.velocity(in: view)
             if dragVelocity.y >= 1330 {
-                self.dismiss(animated: true, completion: nil)
+                self.presentingViewController?.dismiss(animated: true, completion: nil)
             } else {
                 UIView.animate(withDuration: 0.3) {
                     self.view.frame.origin = self.pointOrigin!
@@ -183,7 +190,7 @@ class ListFilterModalViewController: UIViewController {
             }
         }
     }
-    
+
     // MARK: - IBAction
     
     @IBAction func touchMoreButton(_ sender: Any) {
@@ -218,6 +225,11 @@ class ListFilterModalViewController: UIViewController {
     @IBAction func touchCloseButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func touchApplyButton(_ sender: Any) {
+//        self.shitDelegate?.sendData(num: 1000, text: "cba")
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension ListFilterModalViewController: UICollectionViewDataSource {
@@ -238,9 +250,11 @@ extension ListFilterModalViewController: UICollectionViewDataSource {
             cell.tag = indexPath.row
             return cell
         }
+        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DepthCollectionViewCell", for: indexPath) as? DepthCollectionViewCell else {
             return UICollectionViewCell()
         }
+        
         cell.setLabel(depthArray[indexPath.row])
         cell.backView.layer.borderColor = UIColor.Black6.cgColor
         cell.backView.layer.borderWidth = 1
@@ -252,15 +266,18 @@ extension ListFilterModalViewController: UICollectionViewDataSource {
 
 extension ListFilterModalViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         if collectionView == self.emotionCollectionView {
             // 늘어나는 너비와 높이에 맞게 만들기 위해 가중치를 둬서 구함
             return CGSize(width: (width*(20/375)) + (height*(50/812)), height: (width*(20/375)) + (height*(50/812)))
         }
+        
         let stringWidth = depthArray[indexPath.row].size(withAttributes: [.font: UIFont.systemFont(ofSize: 16, weight: .semibold)])
         return CGSize(width: stringWidth.width + pow(width * 6 / 375, 2), height: height * (33/812))
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
         if collectionView == self.emotionCollectionView {
             return height * (8/375)
         }
@@ -268,6 +285,7 @@ extension ListFilterModalViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
         if collectionView == self.emotionCollectionView {
             return width * (7.5/375)
         }
@@ -276,6 +294,7 @@ extension ListFilterModalViewController: UICollectionViewDelegateFlowLayout {
     
     // 셀 하나를 선택했을 때
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         if collectionView == self.emotionCollectionView {
             guard let cell = collectionView.cellForItem(at: indexPath) as? EmotionCollectionViewCell else {
                 return
@@ -307,6 +326,7 @@ extension ListFilterModalViewController: UICollectionViewDelegateFlowLayout {
     
     // 선택이 해제 됐을 때
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
         if collectionView == self.emotionCollectionView {
             guard let cell = collectionView.cellForItem(at: indexPath) as? EmotionCollectionViewCell else {
                 return
@@ -324,6 +344,7 @@ extension ListFilterModalViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension ListFilterModalViewController: UIPickerViewDelegate {
+    
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return self.view.frame.height * 40/812
     }
@@ -331,23 +352,26 @@ extension ListFilterModalViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
         return self.view.frame.width * 70/375
     }
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == self.yearPickerView {
             return year[row]
         }
         return month[row]
     }
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        if pickerView == self.yearPickerView {
-//            selectedYear = year[row]
-//            return
-//        }
-//        selectedMonth = month[row]
-//        return
-//    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == self.yearPickerView {
+            selectedYear = year[row]
+            return
+        }
+        selectedMonth = month[row]
+        return
+    }
 }
 
 extension ListFilterModalViewController: UIPickerViewDataSource {
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

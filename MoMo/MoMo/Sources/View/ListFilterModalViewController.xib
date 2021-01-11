@@ -199,6 +199,9 @@
                         <constraint firstAttribute="height" constant="42" id="IZs-Bv-iRJ"/>
                     </constraints>
                     <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="touchApplyButton:" destination="-1" eventType="touchUpInside" id="ZZJ-K2-a2f"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

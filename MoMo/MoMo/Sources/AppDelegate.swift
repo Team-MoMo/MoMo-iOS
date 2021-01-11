@@ -19,29 +19,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // SceneDelegate에서 UI 관련작업 처리
         }
         else {
-            
+
             if !UserDefaults.standard.bool(forKey: "didLaunch") {
                 UserDefaults.standard.set(true, forKey: "didLaunch")
-                
+
 
                 let onboardingStoryboard = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
                 let onboardingViewController = onboardingStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.onboardingViewController)
-                
+
                 navigationController = UINavigationController(rootViewController: onboardingViewController)
             }
-            else {      
+            else {
 
                 let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
                 let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.homeViewController)
-                
+
                 navigationController = UINavigationController(rootViewController: homeViewController)
 
             }
-            
+
             self.window?.rootViewController = navigationController
             self.window?.makeKeyAndVisible()
         }
-        
+
         return true
     }
     
