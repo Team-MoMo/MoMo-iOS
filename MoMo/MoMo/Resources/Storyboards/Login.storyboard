@@ -32,13 +32,40 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="objectLoginSeaweedTopBlur" translatesAutoresizingMaskIntoConstraints="NO" id="mQe-ci-ebL">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="461.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="mQe-ci-ebL" secondAttribute="height" multiplier="375:418" id="Mvt-wP-QKH"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="objectLoginShiningBlur" translatesAutoresizingMaskIntoConstraints="NO" id="Xh9-F7-0ZL">
+                                        <rect key="frame" x="85" y="0.0" width="329" height="453"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="453" id="2Bx-Fj-JRN"/>
+                                            <constraint firstAttribute="width" constant="329" id="Ezm-R7-kND"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="objectSeaweedBottomBlur" translatesAutoresizingMaskIntoConstraints="NO" id="BMK-So-9Sv">
+                                        <rect key="frame" x="0.0" y="659.5" width="414" height="236.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="BMK-So-9Sv" secondAttribute="height" multiplier="375:214" id="Mnj-fu-Nub"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="mQe-ci-ebL" secondAttribute="trailing" id="RMx-aX-h2x"/>
+                                    <constraint firstItem="BMK-So-9Sv" firstAttribute="leading" secondItem="bs6-O4-lpE" secondAttribute="leading" id="Rb2-ij-3la"/>
                                     <constraint firstItem="Vtf-gu-oLq" firstAttribute="top" secondItem="bs6-O4-lpE" secondAttribute="top" constant="284" id="S7i-i4-qds"/>
+                                    <constraint firstAttribute="trailing" secondItem="Xh9-F7-0ZL" secondAttribute="trailing" id="VGU-0K-HVK"/>
                                     <constraint firstItem="rIk-S6-Tdg" firstAttribute="centerX" secondItem="bs6-O4-lpE" secondAttribute="centerX" id="aBy-Oi-POc"/>
                                     <constraint firstItem="Vtf-gu-oLq" firstAttribute="centerX" secondItem="bs6-O4-lpE" secondAttribute="centerX" id="aTM-IG-3bd"/>
+                                    <constraint firstAttribute="bottom" secondItem="BMK-So-9Sv" secondAttribute="bottom" id="hhE-o6-QR6"/>
+                                    <constraint firstItem="Xh9-F7-0ZL" firstAttribute="top" secondItem="bs6-O4-lpE" secondAttribute="top" id="pC3-Uc-yFj"/>
+                                    <constraint firstItem="mQe-ci-ebL" firstAttribute="top" secondItem="bs6-O4-lpE" secondAttribute="top" id="sAO-fu-c53"/>
+                                    <constraint firstItem="mQe-ci-ebL" firstAttribute="leading" secondItem="bs6-O4-lpE" secondAttribute="leading" id="sqd-t7-fux"/>
                                     <constraint firstItem="rIk-S6-Tdg" firstAttribute="top" secondItem="Vtf-gu-oLq" secondAttribute="bottom" constant="28" id="vGs-Cd-62e"/>
+                                    <constraint firstAttribute="trailing" secondItem="BMK-So-9Sv" secondAttribute="trailing" id="wL3-ya-tft"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JUk-Ox-tIB">
@@ -109,6 +136,9 @@
         <image name="icKakaoLogo" width="19" height="18"/>
         <image name="icMomoLogo" width="17" height="16"/>
         <image name="momoTextLogo" width="179" height="33"/>
+        <image name="objectLoginSeaweedTopBlur" width="375" height="418"/>
+        <image name="objectLoginShiningBlur" width="329" height="453"/>
+        <image name="objectSeaweedBottomBlur" width="375" height="214"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
