@@ -8,8 +8,13 @@
 import UIKit
 
 class UploadWriteViewController: UIViewController {
-    
-    let quote: String = "접입가경, 이게 웬 심장이 콧구멍으로 쏟아질 얘긴가 싶지만 그저 지레짐작이나 얻어걸린 이야기일 가능성이 더 많으니 조각은 표정을 바꾸지 않는다."
+    var date: String = "2020. 12. 26 토요일"
+    var emotionImageName: String = "icAngry14Black"
+    var emotion: String = "화남"
+    var author: String = "구병모"
+    var book: String = "파괴"
+    var publisher: String = "위즈덤 하우스"
+    var quote: String = "접입가경, 이게 웬 심장이 콧구멍으로 쏟아질 얘긴가 싶지만 그저 지레짐작이나 얻어걸린 이야기일 가능성이 더 많으니 조각은 표정을 바꾸지 않는다."
     var journal: String = ""
     var placeHolder : NSMutableAttributedString = NSMutableAttributedString()
     
@@ -30,7 +35,7 @@ class UploadWriteViewController: UIViewController {
         journalTextView.delegate = self
         setPlaceholder()
         journalTextView.attributedText = placeHolder
-    }
+        }
     
     @IBAction func tapBackground(_ sender: Any) {
         self.journalTextView.endEditing(true)
@@ -38,6 +43,24 @@ class UploadWriteViewController: UIViewController {
     
     @IBAction func touchMoreButton(_ sender: Any) {
         shrinkQuoteLabel()
+    }
+    
+    private func setWordSpace() {
+        dateLabel.attributedText = date.wordSpacing(-0.6)
+        emotionImage.image = UIImage(named: emotionImageName)
+        emotionLabel.attributedText = emotion.wordSpacing(-0.6)
+        authorLabel.attributedText = author.wordSpacing(-0.6)
+        bookLabel.attributedText = "<\(book)>".wordSpacing(-0.6)
+        publisherLabel.attributedText = "(\(publisher))".wordSpacing(-0.6)
+        
+        let attributedString = NSMutableAttributedString(string: quote)
+        attributedString.addAttribute(NSAttributedString.Key.kern, value: -0.6, range: NSRange(location: 0, length: attributedString.length))
+        let paragraphStyle = NSMutableParagraphStyle()
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
+        paragraphStyle.lineSpacing = 4
+        
+        
+        quoteLabel.attributedText = attributedString
     }
     
     private func setPlaceholder() {
@@ -55,7 +78,9 @@ class UploadWriteViewController: UIViewController {
     
         let attribute: [NSAttributedString.Key: Any] = [
             .kern: -0.6,
-            .paragraphStyle: paragraphStyle]
+            .paragraphStyle: paragraphStyle,
+            .foregroundColor: UIColor.Black3List]
+        
         
         return attribute
     }

@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bxo-SG-ApH">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="278.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="275"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="접입가경, 이게 웬 심장이 콧구멍으로 쏟아질 얘긴가 싶지만 그저 지레짐작이나 얻어걸린 이야기일 가능성이 더 많으니 조각은 표정을 바꾸지 않는다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1C-K4-oQ0">
                                                 <rect key="frame" x="24" y="150.5" width="366" height="50.5"/>
@@ -74,7 +74,7 @@
                                                 </constraints>
                                             </view>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CjR-iA-mcL">
-                                                <rect key="frame" x="24" y="248.5" width="366" height="30"/>
+                                                <rect key="frame" x="24" y="245" width="366" height="30"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <attributedString key="attributedText"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -88,7 +88,7 @@
                                             <constraint firstItem="PGF-qJ-oLP" firstAttribute="centerY" secondItem="Zrh-dy-r4K" secondAttribute="centerY" id="GVm-Uc-1BJ"/>
                                             <constraint firstItem="PGF-qJ-oLP" firstAttribute="leading" secondItem="Zrh-dy-r4K" secondAttribute="trailing" constant="12" id="Jue-hc-xFc"/>
                                             <constraint firstItem="Zrh-dy-r4K" firstAttribute="top" secondItem="EVO-l0-N4k" secondAttribute="bottom" constant="26" id="KPb-er-c8h"/>
-                                            <constraint firstItem="CjR-iA-mcL" firstAttribute="top" secondItem="kiq-RU-rF6" secondAttribute="bottom" constant="23.5" id="P96-re-Aa3"/>
+                                            <constraint firstItem="CjR-iA-mcL" firstAttribute="top" secondItem="kiq-RU-rF6" secondAttribute="bottom" constant="20" id="P96-re-Aa3"/>
                                             <constraint firstAttribute="trailing" secondItem="a1C-K4-oQ0" secondAttribute="trailing" constant="24" id="PJw-uY-05Z"/>
                                             <constraint firstAttribute="trailing" secondItem="kiq-RU-rF6" secondAttribute="trailing" constant="24" id="QJn-aP-z3y"/>
                                             <constraint firstItem="a1C-K4-oQ0" firstAttribute="leading" secondItem="bxo-SG-ApH" secondAttribute="leading" constant="24" id="ZiW-Uc-ZV7"/>
