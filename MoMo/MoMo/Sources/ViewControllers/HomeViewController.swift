@@ -196,7 +196,6 @@ class HomeViewController: UIViewController {
     // 0단계 - 2m
     func attachDepth0Objet() {
         let sectionFrameY = sectionFrameArray[0].origin.y
-        let sectionFrameRight = sectionFrameArray[0].origin.x + sectionFrameArray[0].size.width
         let sectionFrameBottom = sectionFrameArray[1].origin.y
         let screenWidth = UIScreen.main.bounds.width
         
@@ -211,7 +210,7 @@ class HomeViewController: UIViewController {
         attachObjet(frameX: screenWidth - (rock1?.size.width ?? CGFloat(0)), frameY: sectionFrameY, img: rock1 ?? UIImage())
         attachObjet(frameX: 0, frameY: sectionFrameBottom - (rock2?.size.height ?? CGFloat(0)), img: rock2 ?? UIImage())
         attachObjet(frameX: 64, frameY: sectionFrameY + 161, img: fish1 ?? UIImage())
-        attachObjet(frameX: sectionFrameRight - 47 - (fish2?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - 197 - (fish2?.size.height ?? CGFloat(0)), img: fish2 ?? UIImage())
+        attachObjet(frameX: screenWidth - 47 - (fish2?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - 197 - (fish2?.size.height ?? CGFloat(0)), img: fish2 ?? UIImage())
         attachObjet(frameX: screenWidth - (seaweed1?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - (seaweed1?.size.height ?? CGFloat(0)), img: seaweed1 ?? UIImage())
     }
     }
