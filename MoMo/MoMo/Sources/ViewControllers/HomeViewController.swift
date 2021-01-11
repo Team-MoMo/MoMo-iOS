@@ -145,6 +145,7 @@ class HomeViewController: UIViewController {
             homeTableView.addSubview(view)
             homeTableView.sendSubviewToBack(view)
         }
+        attachDepth0Objet()
         
     }
     
@@ -181,6 +182,41 @@ class HomeViewController: UIViewController {
         
         currentColorSet = 0
     }
+    
+    // 전달받은 img, frame의 x, y값에 맞게 오브제 배치
+    func makeImageViewWithImage(frameX: CGFloat, frameY: CGFloat, img: UIImage) {
+        let imgView = UIImageView(frame: CGRect(x: frameX, y: frameY, width: img.size.width, height: img.size.height))
+        imgView.image = img
+        
+        homeTableView.addSubview(imgView)
+    }
+    
+    // MARK: objet 붙이기
+    
+    // 0단계 - 2m
+    func attachDepth0Objet() {
+        let sectionFrameX = sectionFrameArray[0].origin.x
+        let sectionFrameY = sectionFrameArray[0].origin.y
+        let sectionFrameRight = sectionFrameArray[0].origin.x + sectionFrameArray[0].size.width
+        let sectionFrameBottom = sectionFrameArray[1].origin.y
+        let screenWidth = UIScreen.main.bounds.width
+        
+        // img 변수 선언
+        let rock1 = Constants.Design.Image.depth0Rock1
+        let rock2 = Constants.Design.Image.depth0Rock2
+        let fish1 = Constants.Design.Image.depth0Fish1
+        let fish2 = Constants.Design.Image.depth0Fish2
+        let seaweed1 = Constants.Design.Image.depth0Seaweed1
+        
+        // objet 붙이기
+        makeImageViewWithImage(frameX: screenWidth - (rock1?.size.width ?? CGFloat(0)), frameY: sectionFrameY, img: rock1 ?? UIImage())
+        makeImageViewWithImage(frameX: 0, frameY: sectionFrameBottom - (rock2?.size.height ?? CGFloat(0)), img: rock2 ?? UIImage())
+        makeImageViewWithImage(frameX: 64, frameY: sectionFrameY + 161, img: fish1 ?? UIImage())
+        makeImageViewWithImage(frameX: sectionFrameRight - 47 - (fish2?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - 197 - (fish2?.size.height ?? CGFloat(0)), img: fish2 ?? UIImage())
+        makeImageViewWithImage(frameX: screenWidth - (seaweed1?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - (seaweed1?.size.height ?? CGFloat(0)), img: seaweed1 ?? UIImage())
+    }
+    
+    // MARK: - @IBAction Properties
     
     @IBAction func touchUpHomeTopButton(_ sender: Any) {
         homeTableView.setContentOffset(.zero, animated: true)

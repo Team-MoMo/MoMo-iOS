@@ -60,6 +60,13 @@ struct Constants {
             static let homeIcSwipeDown = UIImage(named: "homeIcSwipeDown")
             static let btnIcMyBlue = UIImage(named: "btnIcMyBlue")
             static let btnIcMy = UIImage(named: "btnIcMy")
+            
+            // objet - depth number 0
+            static let depth0Seaweed1 = UIImage(named: "2MSeaweed1")
+            static let depth0Rock1 = UIImage(named: "2MRock1")
+            static let depth0Rock2 = UIImage(named: "2MRock2")
+            static let depth0Fish1 = UIImage(named: "2MFish1")
+            static let depth0Fish2 = UIImage(named: "2MFish2")
         }
         
         struct Font {
