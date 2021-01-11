@@ -8,6 +8,48 @@
 import UIKit
 import SnapKit
 
+enum Depth: Int {
+    case depth2m = 0, depth30m, depth100m, depth300m, depth700m, depth1005m, depthSimhae
+    
+    func toString() -> String {
+        switch self {
+        case .depth2m:
+            return "2m"
+        case .depth30m:
+            return "30m"
+        case .depth100m:
+            return "100m"
+        case .depth300m:
+            return "300m"
+        case .depth700m:
+            return "700m"
+        case .depth1005m:
+            return "1005"
+        case .depthSimhae:
+            return "심해"
+        }
+    }
+    
+    func toGradientColor() -> [CGColor] {
+        switch self {
+        case .depth2m:
+            return [UIColor.Gradient1.cgColor, UIColor.Gradient2.cgColor]
+        case .depth30m:
+            return [UIColor.Gradient2.cgColor, UIColor.Gradient3.cgColor]
+        case .depth100m:
+            return [UIColor.Gradient3.cgColor, UIColor.Gradient4.cgColor]
+        case .depth300m:
+            return [UIColor.Gradient4.cgColor, UIColor.Gradient5.cgColor]
+        case .depth700m:
+            return [UIColor.Gradient5.cgColor, UIColor.Gradient6.cgColor]
+        case .depth1005m:
+            return [UIColor.Gradient6.cgColor, UIColor.Gradient7.cgColor]
+        case .depthSimhae:
+            return [UIColor.Gradient7.cgColor, UIColor.Gradient8.cgColor]
+        }
+    }
+}
+
 class DeepViewController: UIViewController {
 
     // MARK: - @IBOutlet Properties
@@ -21,17 +63,9 @@ class DeepViewController: UIViewController {
     // MARK: - Properties
     
     let dafaultInfoLabel: String = "오늘의 감정은\n잔잔한가요, 깊은가요?\n스크롤을 움직여서 기록해보세요"
-    let gradientColors = [
-        [UIColor.Gradient1.cgColor, UIColor.Gradient2.cgColor],
-        [UIColor.Gradient2.cgColor, UIColor.Gradient3.cgColor],
-        [UIColor.Gradient3.cgColor, UIColor.Gradient4.cgColor],
-        [UIColor.Gradient4.cgColor, UIColor.Gradient5.cgColor],
-        [UIColor.Gradient5.cgColor, UIColor.Gradient6.cgColor],
-        [UIColor.Gradient6.cgColor, UIColor.Gradient7.cgColor],
-        [UIColor.Gradient7.cgColor, UIColor.Gradient8.cgColor]
-    ]
     var deepSliderView: DeepSliderView?
     var deepSliderValue: Float = 0
+    var initialDepth: Depth?
     var viewWidth: CGFloat?
     var viewHeight: CGFloat?
     var viewXpos: CGFloat?
@@ -47,7 +81,8 @@ class DeepViewController: UIViewController {
         self.getViewContraints()
         self.resizeGradientBackgroundView()
         self.addBlurEffectOnBlurView()
-        self.deepSliderView = DeepSliderView.instantiate()
+        self.deepSliderView = DeepSliderView.instantiate(initialDepth: self.initialDepth ?? .depth2m)
+        self.deepSliderValue = Float(self.initialDepth?.rawValue ?? 0) / 6
         
         if let deepSliderView = self.deepSliderView {
             
@@ -66,13 +101,13 @@ class DeepViewController: UIViewController {
             }
             
         }
-        
+        self.addGradientOnGradientBackgroundView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.addCircleIndicatorsOnDeepPointSliderview()
-        self.addGradientOnGradientBackgroundView()
+        self.changeBackground(value: self.deepSliderValue)
     }
     
     // MARK: - Functions
@@ -137,7 +172,7 @@ class DeepViewController: UIViewController {
             ))
             let gradientLayer = CAGradientLayer()
             gradientLayer.frame = gradientView.bounds
-            gradientLayer.colors = self.gradientColors[index]
+            gradientLayer.colors = Depth(rawValue: index)?.toGradientColor()
             gradientView.layer.addSublayer(gradientLayer)
             self.gradientBackgroundView.addSubview(gradientView)
         }
@@ -171,8 +206,6 @@ extension DeepViewController: SliderDelegate {
         
         self.deepSliderValue = round(sliderValue * 6) / 6
         
-        slider.isContinuous = true
-        
         DispatchQueue.main.async {
             self.changeBackgroundWithAnimation(value: self.deepSliderValue)
         }
@@ -192,10 +225,14 @@ extension DeepViewController: SliderDelegate {
             duration: 0.3,
             options: .transitionCrossDissolve,
             animations: {
-                self.gradientBackgroundView.frame.origin.y = -CGFloat(self.deepSliderValue) * 6 * self.viewHeight!
+                self.changeBackground(value: value)
             },
             completion: nil
         )
+    }
+    
+    func changeBackground(value: Float) {
+        self.gradientBackgroundView.frame.origin.y = -CGFloat(self.deepSliderValue) * 6 * self.viewHeight!
     }
     
     func labelChanged(value: Float) {
