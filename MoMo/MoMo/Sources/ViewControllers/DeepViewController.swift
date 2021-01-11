@@ -178,7 +178,9 @@ extension DeepViewController: SliderDelegate {
         
         slider.isContinuous = true
         
-        self.changeBackgroundWithAnimation(value: self.deepSliderValue)
+        DispatchQueue.main.async {
+            self.changeBackgroundWithAnimation(value: self.deepSliderValue)
+        }
         self.labelChanged(value: self.deepSliderValue)
         
         let value = slider.isTracking ? sliderValue : self.deepSliderValue
