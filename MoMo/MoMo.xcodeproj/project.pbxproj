@@ -23,6 +23,10 @@
 		10F12B10259B2C4C003CAA9E /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10F12B0F259B2C4C003CAA9E /* List.storyboard */; };
 		1CAD05A225A9C98F007ECA40 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD05A125A9C98F007ECA40 /* UILabel+Extension.swift */; };
 		1CAD05A525AACB36007ECA40 /* DeepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD05A425AACB36007ECA40 /* DeepViewController.swift */; };
+		1CAD05B125AC3DC4007ECA40 /* DeepSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD05B025AC3DC4007ECA40 /* DeepSliderView.swift */; };
+		1CAD05B425AC3DEF007ECA40 /* DeepSliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CAD05B325AC3DEF007ECA40 /* DeepSliderView.xib */; };
+		1CAD05B725AC5969007ECA40 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD05B625AC5969007ECA40 /* UIImage+Extension.swift */; };
+		1CAD05BA25AC59C1007ECA40 /* UISlider+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD05B925AC59C1007ECA40 /* UISlider+Extension.swift */; };
 		1CEF46BF25A6DA7600AF3D81 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46BE25A6DA7600AF3D81 /* OnboardingViewController.swift */; };
 		1CEF46C225A6DAA000AF3D81 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CEF46C125A6DAA000AF3D81 /* Onboarding.storyboard */; };
 		1CEF46C525A6E09100AF3D81 /* MoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46C425A6E09100AF3D81 /* MoodViewController.swift */; };
@@ -63,6 +67,10 @@
 		10F12B0F259B2C4C003CAA9E /* List.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
 		1CAD05A125A9C98F007ECA40 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		1CAD05A425AACB36007ECA40 /* DeepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepViewController.swift; sourceTree = "<group>"; };
+		1CAD05B025AC3DC4007ECA40 /* DeepSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepSliderView.swift; sourceTree = "<group>"; };
+		1CAD05B325AC3DEF007ECA40 /* DeepSliderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeepSliderView.xib; sourceTree = "<group>"; };
+		1CAD05B625AC5969007ECA40 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		1CAD05B925AC59C1007ECA40 /* UISlider+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISlider+Extension.swift"; sourceTree = "<group>"; };
 		1CEF46BE25A6DA7600AF3D81 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		1CEF46C125A6DAA000AF3D81 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		1CEF46C425A6E09100AF3D81 /* MoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +115,8 @@
 			children = (
 				563B032F25A8849300DA74C5 /* HomeDayNightView.xib */,
 				563B033225A884A200DA74C5 /* HomeDayNightView.swift */,
+				1CAD05B025AC3DC4007ECA40 /* DeepSliderView.swift */,
+				1CAD05B325AC3DEF007ECA40 /* DeepSliderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -181,6 +191,8 @@
 				10B6731F25A771700046AA97 /* String+Extension.swift */,
 				10B6732C25A775DE0046AA97 /* UIView+Extension.swift */,
 				1CAD05A125A9C98F007ECA40 /* UILabel+Extension.swift */,
+				1CAD05B625AC5969007ECA40 /* UIImage+Extension.swift */,
+				1CAD05B925AC59C1007ECA40 /* UISlider+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -329,6 +341,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CAD05B425AC3DEF007ECA40 /* DeepSliderView.xib in Resources */,
 				568764CE259F6A80009CB486 /* Colors.xcassets in Resources */,
 				568764362599EEC9009CB486 /* .swiftlint.yml in Resources */,
 				568764192599AD3C009CB486 /* LaunchScreen.storyboard in Resources */,
@@ -415,8 +428,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				10924217259B469100BBFBFE /* ListTableViewCell.swift in Sources */,
+				1CAD05BA25AC59C1007ECA40 /* UISlider+Extension.swift in Sources */,
 				568764112599AD3A009CB486 /* ViewController.swift in Sources */,
 				1CEF46CB25A6E0B200AF3D81 /* OnboardingWriteViewController.swift in Sources */,
+				1CAD05B725AC5969007ECA40 /* UIImage+Extension.swift in Sources */,
 				568764612599FB56009CB486 /* APIConstants.swift in Sources */,
 				1CAD05A525AACB36007ECA40 /* DeepViewController.swift in Sources */,
 				563B034725A8973100DA74C5 /* HomeViewController.swift in Sources */,
@@ -425,6 +440,7 @@
 				105661ED25A5F79300E111B2 /* EmptyTableViewCell.swift in Sources */,
 				1092420F259B452600BBFBFE /* ListViewController.swift in Sources */,
 				1CAD05A225A9C98F007ECA40 /* UILabel+Extension.swift in Sources */,
+				1CAD05B125AC3DC4007ECA40 /* DeepSliderView.swift in Sources */,
 				5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */,
 				10B6732D25A775DE0046AA97 /* UIView+Extension.swift in Sources */,
 				10B6732025A771700046AA97 /* String+Extension.swift in Sources */,
