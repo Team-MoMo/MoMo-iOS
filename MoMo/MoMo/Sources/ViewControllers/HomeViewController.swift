@@ -149,6 +149,7 @@ class HomeViewController: UIViewController {
         // 단계별 objet 배치
         attachDepth0Objet()
         attachDepth1Objet()
+        attachDepth2Objet()
         
     }
     
@@ -238,6 +239,29 @@ class HomeViewController: UIViewController {
         attachObjet(frameX: screenWidth - 22 - (dolphin2?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - 143 - (dolphin2?.size.width ?? CGFloat(0)), img: dolphin2 ?? UIImage())
         attachObjet(frameX: 0, frameY: sectionFrameBottom, img: coral1 ?? UIImage())
         attachObjet(frameX: screenWidth - (fish1?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom, img: fish1 ?? UIImage())
+    }
+    
+    // 2단계 - 100m
+    func attachDepth2Objet() {
+        let sectionFrameY = sectionFrameArray[2].origin.y
+        let sectionFrameBottom = sectionFrameArray[3].origin.y
+        let screenWidth = UIScreen.main.bounds.width
+        
+        // img 변수 선언
+        let fish1 = Constants.Design.Image.depth2Fish1
+        let fish2 = Constants.Design.Image.depth2Fish2
+        let turtle1 = Constants.Design.Image.depth2Turtle1
+        let turtle2 = Constants.Design.Image.depth2Turtle2
+        let seaweed1 = Constants.Design.Image.depth2Seaweed1
+        let seaweed2 = Constants.Design.Image.depth2Seaweed2
+        
+        // objet 붙이기
+        attachObjet(frameX: screenWidth - (fish1?.size.width ?? CGFloat(0)), frameY: sectionFrameY, img: fish1 ?? UIImage())
+        attachObjet(frameX: 0, frameY: sectionFrameY + 147, img: fish2 ?? UIImage())
+        attachObjet(frameX: screenWidth - 68 - (turtle1?.size.width ?? CGFloat(0)), frameY: sectionFrameY + 118, img: turtle1 ?? UIImage())
+        attachObjet(frameX: 9, frameY: sectionFrameBottom - 148 - (turtle2?.size.height ?? CGFloat(0)), img: turtle2 ?? UIImage())
+        attachObjet(frameX: 0, frameY: sectionFrameBottom - (seaweed1?.size.height ?? CGFloat(0)), img: seaweed1 ?? UIImage())
+        attachObjet(frameX: screenWidth - (seaweed2?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - (seaweed2?.size.height ?? CGFloat(0)), img: seaweed2 ?? UIImage())
     }
     
     // MARK: - @IBAction Properties
