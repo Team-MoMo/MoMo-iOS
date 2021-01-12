@@ -25,7 +25,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" name="Blue2"/>
+                        <color key="backgroundColor" name="BlutSplash"/>
                         <constraints>
                             <constraint firstItem="87Z-aS-hti" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="bOL-It-Ieb"/>
                             <constraint firstItem="87Z-aS-hti" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="bsn-5H-Kae"/>
@@ -39,8 +39,8 @@
     </scenes>
     <resources>
         <image name="logoLottie" width="101" height="132"/>
-        <namedColor name="Blue2">
-            <color red="0.27799999713897705" green="0.48199999332427979" blue="0.72200000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="BlutSplash">
+            <color red="0.28627450980392155" green="0.57647058823529407" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

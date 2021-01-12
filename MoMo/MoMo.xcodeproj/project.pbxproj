@@ -25,6 +25,9 @@
 		10E5CD8025ADF145004FDC24 /* UploadModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10E5CD7E25ADF145004FDC24 /* UploadModalViewController.xib */; };
 		10E5CD8325ADF1D5004FDC24 /* UploadModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E5CD8225ADF1D5004FDC24 /* UploadModalPresentationController.swift */; };
 		10F12B10259B2C4C003CAA9E /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10F12B0F259B2C4C003CAA9E /* List.storyboard */; };
+		1C42357325AE26B9008FB838 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C42357225AE26B9008FB838 /* SplashViewController.swift */; };
+		1C42357625AE26D2008FB838 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C42357525AE26D2008FB838 /* Splash.storyboard */; };
+		1C42358F25AE2E31008FB838 /* momo_splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C42358E25AE2E31008FB838 /* momo_splash.json */; };
 		10F8723425AAF2D9009FE6F1 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10F8723225AAF2D9009FE6F1 /* ListTableViewCell.xib */; };
 		10F8723525AAF2D9009FE6F1 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F8723325AAF2D9009FE6F1 /* ListTableViewCell.swift */; };
 		1C52BE0525AD655300D02771 /* AlertModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C52BE0425AD655300D02771 /* AlertModalView.swift */; };
@@ -90,6 +93,9 @@
 		10E5CD7E25ADF145004FDC24 /* UploadModalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadModalViewController.xib; sourceTree = "<group>"; };
 		10E5CD8225ADF1D5004FDC24 /* UploadModalPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadModalPresentationController.swift; sourceTree = "<group>"; };
 		10F12B0F259B2C4C003CAA9E /* List.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
+		1C42357225AE26B9008FB838 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		1C42357525AE26D2008FB838 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
+		1C42358E25AE2E31008FB838 /* momo_splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = momo_splash.json; sourceTree = "<group>"; };
 		10F8723225AAF2D9009FE6F1 /* ListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
 		10F8723325AAF2D9009FE6F1 /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		1C52BE0425AD655300D02771 /* AlertModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModalView.swift; sourceTree = "<group>"; };
@@ -217,6 +223,7 @@
 				5687641A2599AD3C009CB486 /* Info.plist */,
 				568764152599AD3C009CB486 /* Assets.xcassets */,
 				568764CD259F6A80009CB486 /* Colors.xcassets */,
+				1C42358E25AE2E31008FB838 /* momo_splash.json */,
 				1C52BE0E25AD7A9500D02771 /* onboarding_wave_ios.json */,
 				5687645B2599FB39009CB486 /* Constants */,
 				5687642B2599E36B009CB486 /* Storyboards */,
@@ -276,6 +283,7 @@
 				10F12B0F259B2C4C003CAA9E /* List.storyboard */,
 				1CEF46C125A6DAA000AF3D81 /* Onboarding.storyboard */,
 				563B034225A8970E00DA74C5 /* Home.storyboard */,
+				1C42357525AE26D2008FB838 /* Splash.storyboard */,
 				1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */,
 				563B040125AD5F1800DA74C5 /* Join.storyboard */,
 				563B03FA25ACCDF700DA74C5 /* EmailLogin.storyboard */,
@@ -318,6 +326,7 @@
 				1CEF46C725A6E0A000AF3D81 /* SentenceViewController.swift */,
 				1CEF46CA25A6E0B200AF3D81 /* OnboardingWriteViewController.swift */,
 				1CAD05A425AACB36007ECA40 /* DeepViewController.swift */,
+				1C42357225AE26B9008FB838 /* SplashViewController.swift */,
 				1C7CD80625ACA5EC00B7CB60 /* DiaryViewController.swift */,
 				563B040425AD5F3100DA74C5 /* JoinViewController.swift */,
 				563B03FD25ACCE0200DA74C5 /* EmailLoginViewController.swift */,
@@ -416,6 +425,7 @@
 				1CAD05B425AC3DEF007ECA40 /* DeepSliderView.xib in Resources */,
 				568764CE259F6A80009CB486 /* Colors.xcassets in Resources */,
 				568764362599EEC9009CB486 /* .swiftlint.yml in Resources */,
+				1C42357625AE26D2008FB838 /* Splash.storyboard in Resources */,
 				1C7CD82825ACEBAB00B7CB60 /* MenuView.xib in Resources */,
 				568764192599AD3C009CB486 /* LaunchScreen.storyboard in Resources */,
 				107919BD25A484510024C711 /* ListFilterTableViewCell.xib in Resources */,
@@ -423,6 +433,7 @@
 				563B037C25AA106F00DA74C5 /* BubbleTableViewCell.xib in Resources */,
 				1CEF46C225A6DAA000AF3D81 /* Onboarding.storyboard in Resources */,
 				568764162599AD3C009CB486 /* Assets.xcassets in Resources */,
+				1C42358F25AE2E31008FB838 /* momo_splash.json in Resources */,
 				568764142599AD3A009CB486 /* Main.storyboard in Resources */,
 				563B034325A8970E00DA74C5 /* Home.storyboard in Resources */,
 				1C52BE0825AD656700D02771 /* AlertModalView.xib in Resources */,
@@ -536,6 +547,7 @@
 				1006505D25AAF3320016B796 /* ViewController.swift in Sources */,
 				568764D1259F6EDE009CB486 /* UIColor+Extension.swift in Sources */,
 				107919B325A4830B0024C711 /* ListDateTableViewCell.swift in Sources */,
+				1C42357325AE26B9008FB838 /* SplashViewController.swift in Sources */,
 				1CEF46BF25A6DA7600AF3D81 /* OnboardingViewController.swift in Sources */,
 				1014894425AC417E00639F98 /* DIaryWriteViewController.swift in Sources */,
 				563B033325A884A200DA74C5 /* HomeDayNightView.swift in Sources */,
