@@ -171,6 +171,7 @@ class SentenceViewController: UIViewController {
         guard let onboardingWriteViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.onboardingWriteViewController) as? OnboardingWriteViewController else { return }
         
         onboardingWriteViewController.selectedSentence = sentence
+        onboardingWriteViewController.selectedMood = self.selectedMood
         
         self.navigationController?.pushViewController(onboardingWriteViewController, animated: true)
         

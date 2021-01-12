@@ -65,6 +65,14 @@ struct Constants {
             static let icBored14Black = UIImage(named: "icBored14Black")
             static let icMemory14Black = UIImage(named: "icMemory14Black")
             static let icDaily14Black = UIImage(named: "icDaily14Black")
+            static let icStep = UIImage(named: "icStep")
+            static let label2m = UIImage(named: "2M")
+            static let label30m = UIImage(named: "30M")
+            static let label100m = UIImage(named: "100M")
+            static let label300m = UIImage(named: "300M")
+            static let label700m = UIImage(named: "700M")
+            static let label1005m = UIImage(named: "1005M")
+            static let labelDeepSea = UIImage(named: "deepSea")
         }
         
         struct Font {
