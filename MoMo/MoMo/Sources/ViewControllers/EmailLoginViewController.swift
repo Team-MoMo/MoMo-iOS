@@ -8,7 +8,6 @@
 import UIKit
 
 class EmailLoginViewController: UIViewController {
-
     
     // MARK: - @IBOutlet Properties
     
@@ -29,17 +28,6 @@ class EmailLoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
         // 로그인 버튼 rounding
         loginButton.clipsToBounds = true
         loginButton.layer.cornerRadius = loginButton.frame.height / 2
@@ -55,6 +43,4 @@ class EmailLoginViewController: UIViewController {
             loginButtonTop.constant = 0
         }
     }
-    */
-
 }
