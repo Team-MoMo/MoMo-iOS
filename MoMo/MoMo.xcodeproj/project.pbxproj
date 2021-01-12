@@ -38,6 +38,8 @@
 		563B033325A884A200DA74C5 /* HomeDayNightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B033225A884A200DA74C5 /* HomeDayNightView.swift */; };
 		563B034325A8970E00DA74C5 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 563B034225A8970E00DA74C5 /* Home.storyboard */; };
 		563B034725A8973100DA74C5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B034625A8973100DA74C5 /* HomeViewController.swift */; };
+		563B03FB25ACCDF700DA74C5 /* EmailLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 563B03FA25ACCDF700DA74C5 /* EmailLogin.storyboard */; };
+		563B03FE25ACCE0200DA74C5 /* EmailLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B03FD25ACCE0200DA74C5 /* EmailLoginViewController.swift */; };
 		563B03DF25ACB59800DA74C5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 563B03DE25ACB59800DA74C5 /* Login.storyboard */; };
 		563B03E225ACBB1200DA74C5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B03E125ACBB1200DA74C5 /* LoginViewController.swift */; };
 		563B037625AA0F3500DA74C5 /* BubbleDummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B037525AA0F3500DA74C5 /* BubbleDummyData.swift */; };
@@ -89,6 +91,8 @@
 		563B033225A884A200DA74C5 /* HomeDayNightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDayNightView.swift; sourceTree = "<group>"; };
 		563B034225A8970E00DA74C5 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		563B034625A8973100DA74C5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		563B03FA25ACCDF700DA74C5 /* EmailLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmailLogin.storyboard; sourceTree = "<group>"; };
+		563B03FD25ACCE0200DA74C5 /* EmailLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginViewController.swift; sourceTree = "<group>"; };
 		563B03DE25ACB59800DA74C5 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		563B03E125ACBB1200DA74C5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		563B037525AA0F3500DA74C5 /* BubbleDummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleDummyData.swift; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 				10F12B0F259B2C4C003CAA9E /* List.storyboard */,
 				1CEF46C125A6DAA000AF3D81 /* Onboarding.storyboard */,
 				563B034225A8970E00DA74C5 /* Home.storyboard */,
+				563B03FA25ACCDF700DA74C5 /* EmailLogin.storyboard */,
 				563B03DE25ACB59800DA74C5 /* Login.storyboard */,
 				104E685D25AAF8410019B29E /* DiaryWrite.storyboard */,
 			);
@@ -279,6 +284,7 @@
 				1CEF46C725A6E0A000AF3D81 /* SentenceViewController.swift */,
 				1CEF46CA25A6E0B200AF3D81 /* OnboardingWriteViewController.swift */,
 				1CAD05A425AACB36007ECA40 /* DeepViewController.swift */,
+				563B03FD25ACCE0200DA74C5 /* EmailLoginViewController.swift */,
 				563B03E125ACBB1200DA74C5 /* LoginViewController.swift */,
 			);
 			path = ViewControllers;
@@ -388,6 +394,7 @@
 				107919B425A4830B0024C711 /* ListDateTableViewCell.xib in Resources */,
 				563B033025A8849300DA74C5 /* HomeDayNightView.xib in Resources */,
 				105661EE25A5F79300E111B2 /* EmptyTableViewCell.xib in Resources */,
+				563B03FB25ACCDF700DA74C5 /* EmailLogin.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,6 +482,7 @@
 				10F8723525AAF2D9009FE6F1 /* ListTableViewCell.swift in Sources */,
 				1006505E25AAF3320016B796 /* ListViewController.swift in Sources */,
 				10B6732D25A775DE0046AA97 /* UIView+Extension.swift in Sources */,
+				563B03FE25ACCE0200DA74C5 /* EmailLoginViewController.swift in Sources */,
 				563B044525ADB57600DA74C5 /* UIImage+Extension.swift in Sources */,
 				563B037625AA0F3500DA74C5 /* BubbleDummyData.swift in Sources */,
 				10B6732025A771700046AA97 /* String+Extension.swift in Sources */,
