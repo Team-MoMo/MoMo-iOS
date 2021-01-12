@@ -107,7 +107,7 @@ class DeepViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.addCircleIndicatorsOnDeepPointSliderview()
-        self.changeBackground(value: self.deepSliderValue)
+        self.changeBackgroundWithAnimation(value: self.deepSliderValue)
     }
     
     // MARK: - Functions
