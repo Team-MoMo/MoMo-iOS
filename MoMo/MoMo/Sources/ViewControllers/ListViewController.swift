@@ -25,7 +25,7 @@ struct List {
 }
 
 class ListViewController: UIViewController {
-    
+
     // MARK: - Properities
     
     @IBOutlet weak var listTableView: UITableView!
@@ -34,7 +34,7 @@ class ListViewController: UIViewController {
     var dummyData: [List] = []
     var date = [2021, 02]
     var filter: [String] = ["2021년 02", "배고파", "심해"]
-    var pattern: Bool = false
+    var pattern: Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +46,23 @@ class ListViewController: UIViewController {
         widthSize = CGFloat(self.view.bounds.width * (325/414))
         secondWidthSize = CGFloat(self.view.bounds.width * (237/414))
         setData()
+    }
+    
+    @objc func tapEmptySpace(_ sender: UITapGestureRecognizer) {
+        guard let tagNumber = sender.view?.tag else {
+            return
+        }
+        let indexPath = IndexPath(row: 0, section: 1)
+        guard let cell = listTableView.cellForRow(at: indexPath) as? ListFilterTableViewCell else {
+            return
+        }
+        filter.remove(at: tagNumber)
+        cell.filterCollectionView.reloadData()
+        
+        if filter.count == 0 {
+            pattern.toggle()
+            listTableView.reloadData()
+        }
     }
     
     // MARK: - Register TableView Cell
@@ -245,11 +262,15 @@ extension ListViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCollectionViewCell", for: indexPath) as? FilterCollectionViewCell else {
             return UICollectionViewCell()
         }
+        cell.clipsToBounds = true
         cell.layer.cornerRadius = 10
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapEmptySpace(_:)))
         cell.filterLabel.text = filter[indexPath.row]
         // index 값을 tag에 넣어서 배열에 쉽게 접근
         cell.cancelButton.tag = indexPath.row
         cell.cancelButton.addTarget(self, action: #selector(touchCancelButton(sender:)), for: .touchUpInside)
+        cell.filterTouchAreaView.tag = indexPath.row
+        cell.filterTouchAreaView.addGestureRecognizer(tapRecognizer)
         return cell
     }
 }
