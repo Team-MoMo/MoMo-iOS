@@ -18,6 +18,9 @@ struct Constants {
         
         static let homeStoryboard: String = "Home"
         static let onboardingStoryboard: String = "Onboarding"
+        static let joinStoryboard: String = "Join"
+        static let emailLoginStoryboard: String = "EmailLogin"
+        static let loginStoryboard: String = "Login"
         
         // MARK: - Nib Name Constants
         
@@ -33,7 +36,14 @@ struct Constants {
         
         static let homeViewController: String = "HomeViewController"
         static let onboardingViewController: String = "OnboardingViewController"
-        static let onboardingMoodViewController: String = "OnboardingMoodViewController"
+        static let DiaryWirteViewController: String = "DiaryWirteViewController"
+        static let onboardingWriteViewController: String = "OnboardingWriteViewController"
+        static let moodViewController: String = "MoodViewController"
+        static let sentenceViewController: String = "SentenceViewController"
+        static let deepViewController: String = "DeepViewController"
+        static let joinViewController: String = "JoinViewController"
+        static let emailLoginViewController: String = "EmailLoginViewController"
+        static let loginViewController: String = "LoginViewController"
         
         // MARK: - UIView
         
@@ -59,6 +69,7 @@ struct Constants {
             /// 예시 : static let IconHome = UIImage(named: "ico_category")
             static let homeIcSwipeDown = UIImage(named: "homeIcSwipeDown")
             static let btnIcMyBlue = UIImage(named: "btnIcMyBlue")
+            static let icFeatherBlack = UIImage(named: "icFeatherBlack")
             static let btnIcMy = UIImage(named: "btnIcMy")
             
             // objet - depth number 0
@@ -111,6 +122,28 @@ struct Constants {
             static let depth6Seaweed1 = UIImage(named: "underSeaweed1")
             static let depth6Sea = UIImage(named: "underSea")
             static let depth6bottom = UIImage(named: "bottomSea")
+
+            static let icLove14Black = UIImage(named: "icLove14Black")
+            static let icHappy14Black = UIImage(named: "icHappy14Black")
+            static let icConsole14Black = UIImage(named: "icConsole14Black")
+            static let icAngry14Black = UIImage(named: "icAngry14Black")
+            static let icSad14Black = UIImage(named: "icSad14Black")
+            static let icBored14Black = UIImage(named: "icBored14Black")
+            static let icMemory14Black = UIImage(named: "icMemory14Black")
+            static let icDaily14Black = UIImage(named: "icDaily14Black")
+            static let textfieldDelete = UIImage(named: "textfieldDelete")
+            
+            // join checkbox
+            static let loginCheckboxIntermediate = UIImage(named: "loginCheckboxIntermediate")
+            static let loginCheckbox = UIImage(named: "loginCheckbox")
+            static let icStep = UIImage(named: "icStep")
+            static let label2m = UIImage(named: "2M")
+            static let label30m = UIImage(named: "30M")
+            static let label100m = UIImage(named: "100M")
+            static let label300m = UIImage(named: "300M")
+            static let label700m = UIImage(named: "700M")
+            static let label1005m = UIImage(named: "1005M")
+            static let labelDeepSea = UIImage(named: "deepSea")
         }
         
         struct Font {
