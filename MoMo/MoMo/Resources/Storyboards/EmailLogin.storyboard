@@ -156,6 +156,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="kvH-fd-0D3" firstAttribute="top" secondItem="OeH-qi-FYr" secondAttribute="bottom" constant="76" id="2Gj-oO-06f"/>
+                            <constraint firstItem="rvg-id-Qt7" firstAttribute="bottom" secondItem="bqn-8K-fJF" secondAttribute="bottom" constant="244.5" id="3Mj-9a-ZHH"/>
                             <constraint firstItem="l77-5c-r7B" firstAttribute="top" secondItem="rvg-id-Qt7" secondAttribute="top" constant="36" id="EfN-Ne-YNN"/>
                             <constraint firstItem="bqn-8K-fJF" firstAttribute="top" secondItem="5B5-Ny-8Bp" secondAttribute="bottom" constant="16" id="JV6-4P-D57"/>
                             <constraint firstItem="bKJ-mu-Zyd" firstAttribute="top" secondItem="yYV-29-XbK" secondAttribute="bottom" constant="30" id="Jap-dP-qMk"/>
@@ -174,6 +175,7 @@
                         <outlet property="emailTextField" destination="SHW-Cz-qBE" id="Cao-o8-KGB"/>
                         <outlet property="errorMessageLabel" destination="kvH-fd-0D3" id="PqC-Yw-Wz5"/>
                         <outlet property="errorMessageTop" destination="2Gj-oO-06f" id="h70-PN-Ped"/>
+                        <outlet property="joinStackViewBottom" destination="3Mj-9a-ZHH" id="Sli-tA-GQe"/>
                         <outlet property="loginButton" destination="5B5-Ny-8Bp" id="7gz-vC-xuq"/>
                         <outlet property="loginButtonTop" destination="myQ-hb-Zfl" id="EZy-kh-pFd"/>
                         <outlet property="passwordTextField" destination="OeH-qi-FYr" id="ma1-xB-xc0"/>

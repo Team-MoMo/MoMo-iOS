@@ -17,6 +17,7 @@ class EmailLoginViewController: UIViewController {
     @IBOutlet weak var errorMessageTop: NSLayoutConstraint!
     @IBOutlet weak var errorMessageLabel: UILabel!
     @IBOutlet weak var loginButtonTop: NSLayoutConstraint!
+    @IBOutlet weak var joinStackViewBottom: NSLayoutConstraint!
     
     // MARK: - Properties
     
@@ -36,11 +37,16 @@ class EmailLoginViewController: UIViewController {
         if isEmailCheckError {
             errorMessageTop.constant = 76
             errorMessageLabel.isHidden = false
+            loginButtonTop.isActive = true
             loginButtonTop.constant = 72
+            joinStackViewBottom.isActive = false
+            
         } else {
             errorMessageTop.constant = 0
             errorMessageLabel.isHidden = true
-            loginButtonTop.constant = 0
+            loginButtonTop.isActive = false
+            joinStackViewBottom.isActive = true
+            joinStackViewBottom.constant = 69
         }
         
         // placeholder
