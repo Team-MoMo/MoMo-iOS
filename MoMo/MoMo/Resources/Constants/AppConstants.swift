@@ -18,6 +18,7 @@ struct Constants {
         
         static let homeStoryboard: String = "Home"
         static let onboardingStoryboard: String = "Onboarding"
+        static let joinStoryboard: String = "Join"
         static let emailLoginStoryboard: String = "EmailLogin"
         static let loginStoryboard: String = "Login"
         
@@ -40,6 +41,7 @@ struct Constants {
         static let moodViewController: String = "MoodViewController"
         static let sentenceViewController: String = "SentenceViewController"
         static let deepViewController: String = "DeepViewController"
+        static let joinViewController: String = "JoinViewController"
         static let emailLoginViewController: String = "EmailLoginViewController"
         static let loginViewController: String = "LoginViewController"
         
@@ -77,6 +79,11 @@ struct Constants {
             static let icBored14Black = UIImage(named: "icBored14Black")
             static let icMemory14Black = UIImage(named: "icMemory14Black")
             static let icDaily14Black = UIImage(named: "icDaily14Black")
+            static let textfieldDelete = UIImage(named: "textfieldDelete")
+            
+            // join checkbox
+            static let loginCheckboxIntermediate = UIImage(named: "loginCheckboxIntermediate")
+            static let loginCheckbox = UIImage(named: "loginCheckbox")
             static let icStep = UIImage(named: "icStep")
             static let label2m = UIImage(named: "2M")
             static let label30m = UIImage(named: "30M")

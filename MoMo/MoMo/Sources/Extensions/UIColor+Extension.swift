@@ -40,6 +40,7 @@ extension UIColor {
     static let Gradient8: UIColor = UIColor(named: "Gradient8")!
     static let HomeDay1: UIColor = UIColor(named: "HomeDay1")!
     static let HomeDay2: UIColor = UIColor(named: "HomeDay2")!
+    static let RedError: UIColor = UIColor(named: "RedError")!
     
     // Gradient Color
     static let Gradient1: UIColor = UIColor(named: "Gradient1")!
