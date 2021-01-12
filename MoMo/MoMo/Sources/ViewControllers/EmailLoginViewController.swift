@@ -40,6 +40,10 @@ class EmailLoginViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        // 로그인 버튼 rounding
+        loginButton.clipsToBounds = true
+        loginButton.layer.cornerRadius = loginButton.frame.height / 2
+        
         // 가입하지 않은 회원 label 분기 처리
         if isEmailCheckError {
             errorMessageTop.constant = 76
