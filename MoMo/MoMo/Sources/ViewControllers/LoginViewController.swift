@@ -83,19 +83,3 @@ class LoginViewController: UIViewController {
         backgroundView.sendSubviewToBack(view)
     }
 }
-
-// TODO: - 기존 PR 머지되면 삭제
-// MARK: - extension UIImage - gradient
-extension UIImage {
-    static func gradientImageWithBounds(bounds: CGRect, colors: [CGColor]) -> UIImage {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = bounds
-        gradientLayer.colors = colors
-
-        UIGraphicsBeginImageContext(gradientLayer.bounds.size)
-        gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image!
-    }
-}
