@@ -47,7 +47,11 @@ class DiaryViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = self.rightButton
         
         self.menuView = MenuView.instantiate()
-        self.alertModalView = AlertModalView.instantiate()
+        self.alertModalView = AlertModalView.instantiate(
+            alertLabelText: "소중한 일기가 삭제됩니다.\n정말 삭제하시겠어요?",
+            leftButtonTitle: "취소",
+            rightButtonTitle: "삭제"
+        )
     }
     
     func attachMenuView() {
@@ -61,7 +65,8 @@ class DiaryViewController: UIViewController {
     func attachAlertModalView() {
         if let alertModalView = self.alertModalView {
             alertModalView.alertModalDelegate = self
-            self.view.addSubview(alertModalView)
+            self.view.insertSubview(alertModalView, aboveSubview: self.view)
+            alertModalView.setConstraints(view: alertModalView, superView: self.view)
         }
     }
     
@@ -143,11 +148,11 @@ extension DiaryViewController: MenuDelegate {
 
 extension DiaryViewController: AlertModalDelegate {
     
-    func cancelButtonTouchUp(button: UIButton) {
+    func leftButtonTouchUp(button: UIButton) {
         self.alertModalView?.removeFromSuperview()
     }
     
-    func deleteButtonTouchUp(button: UIButton) {
+    func rightButtonTouchUp(button: UIButton) {
         print("일기삭제")
     }
 }
