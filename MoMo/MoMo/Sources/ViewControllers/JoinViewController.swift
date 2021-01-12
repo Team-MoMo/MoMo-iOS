@@ -79,6 +79,26 @@ class JoinViewController: UIViewController {
         emailTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
         passwordTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
         passwordCheckTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
+        
+        // 약관 동의 체크박스 부분 bold처리
+        let boldText = "[필수]"
+        let attrs = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)]
+        let infoTermAttributedString = NSMutableAttributedString(string: boldText, attributes: attrs)
+        let serviceTermAttributedString = NSMutableAttributedString(string: boldText, attributes: attrs)
+
+        let infoTerm = " 개인정보 수집이용 동의"
+        let infoTermString = NSMutableAttributedString(string: infoTerm)
+        
+        let serviceTerm = " 서비스 이용약관 동의"
+        let serviceTermString = NSMutableAttributedString(string: serviceTerm)
+
+        infoTermAttributedString.append(infoTermString)
+        serviceTermAttributedString.append(serviceTermString)
+        
+        infoTermButton.setAttributedTitle(infoTermAttributedString, for: .normal)
+        serviceTermButton.setAttributedTitle(serviceTermAttributedString, for: .normal)
+    }
+    
     // MARK: - @IBAction Properties
     
     @IBAction func infoButtonTouchUp(_ sender: Any) {
