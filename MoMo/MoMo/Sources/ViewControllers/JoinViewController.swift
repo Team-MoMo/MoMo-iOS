@@ -109,6 +109,77 @@ class JoinViewController: UIViewController {
         serviceAgreeButton.isSelected.toggle()
     }
     
+    // MARK: - Functions
+    
+    // Email Errors
+    func showEmailFormatError() {
+        emailErrorLabel.isHidden = false
+        emailErrorLabel.text = "올바른 이메일 형식이 아닙니다"
+        
+        emailLabel.textColor = UIColor.RedError
+        emailView.layer.borderColor = UIColor.RedError.cgColor
+    }
+    
+    func showEmailBlankError() {
+        emailErrorLabel.isHidden = false
+        emailErrorLabel.text = "이메일을 입력해 주세요"
+        
+        emailLabel.textColor = UIColor.RedError
+        emailView.layer.borderColor = UIColor.RedError.cgColor
+    }
+    
+    func showEmailDuplicateError() {
+        emailErrorLabel.isHidden = false
+        emailErrorLabel.text = "MOMO에 이미 가입된 이메일이에요!"
+        
+        emailLabel.textColor = UIColor.RedError
+        emailView.layer.borderColor = UIColor.RedError.cgColor
+    }
+    
+    // 약관 Errors
+    func showInfoTermUncheckedError() {
+        infoTermButton.setTitleColor(UIColor.RedError, for: .normal)
+    }
+    
+    func showServiceTermUncheckedError() {
+        serviceTermButton.setTitleColor(UIColor.RedError, for: .normal)
+    }
+    
+    // 비밀번호 Errors
+    func showPasswordFormatError() {
+        passwordErrorLabel.isHidden = false
+        passwordErrorLabel.text = "영문 + 숫자 6자리 이상 입력해 주세요"
+        
+        passwordLabel.textColor = UIColor.RedError
+        passwordView.layer.borderColor = UIColor.RedError.cgColor
+    }
+    
+    func showPasswordBlankError() {
+        passwordErrorLabel.isHidden = false
+        passwordErrorLabel.text = "비밀번호를 입력해 주세요"
+        
+        passwordLabel.textColor = UIColor.RedError
+        passwordView.layer.borderColor = UIColor.RedError.cgColor
+    }
+    
+    // 비밀번호 체크 Errors
+    func showPasswordCheckFormatError() {
+        passwordCheckErrorLabel.isHidden = false
+        passwordCheckErrorLabel.text = "비밀번호가 일치하지 않습니다"
+        
+        passwordLabel.textColor = UIColor.RedError
+        passwordCheckView.layer.borderColor = UIColor.RedError.cgColor
+    }
+    
+    func showPasswordCheckBlankError() {
+        passwordCheckErrorLabel.isHidden = false
+        passwordCheckErrorLabel.text = "비밀번호를 다시 입력해 주세요"
+        
+        passwordLabel.textColor = UIColor.RedError
+        passwordCheckView.layer.borderColor = UIColor.RedError.cgColor
+    }
+}
+
 extension UITextField {
     func modifyClearButtonWithImage(image: UIImage) {
         let clearButton = UIButton(type: .custom)
