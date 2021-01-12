@@ -57,10 +57,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQb-7L-Dg6" userLabel="StartButton">
-                                        <rect key="frame" x="103.5" y="527.5" width="207" height="51.5"/>
+                                        <rect key="frame" x="103.5" y="532" width="207" height="47"/>
                                         <color key="backgroundColor" name="Blue7"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="pQb-7L-Dg6" secondAttribute="height" multiplier="4:1" id="v9l-zS-lMj"/>
+                                            <constraint firstAttribute="width" secondItem="pQb-7L-Dg6" secondAttribute="height" multiplier="220:50" id="v9l-zS-lMj"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <state key="normal" title="시작하기">
@@ -910,10 +910,23 @@
                                     <constraint firstAttribute="bottom" secondItem="bMY-nT-BLJ" secondAttribute="bottom" id="oTz-xT-ui5"/>
                                 </constraints>
                             </scrollView>
-                            <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="poR-7a-CZ5" userLabel="BlurView">
+                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="poR-7a-CZ5" userLabel="BlurView">
                                 <rect key="frame" x="0.0" y="267" width="414" height="629"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZXG-od-vzd" userLabel="StartButton">
+                                <rect key="frame" x="103.5" y="803" width="207" height="47"/>
+                                <color key="backgroundColor" name="Blue7"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ZXG-od-vzd" secondAttribute="height" multiplier="220:50" id="2b7-42-Yky"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="시작하기">
+                                    <color key="titleColor" name="Blue2"/>
+                                </state>
+                                <connections>
+                                    <action selector="startButtonTouchUp:" destination="u0i-qW-CIe" eventType="touchUpInside" id="Ktl-qT-JPW"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBR-vZ-nwc" userLabel="InfoLabel">
                                 <rect key="frame" x="32" y="113" width="276.5" height="79"/>
                                 <string key="text">오늘의 감정은
@@ -923,19 +936,13 @@
                                 <color key="textColor" name="Blue7"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ceF-ne-9cQ">
-                                <rect key="frame" x="51" y="433" width="311" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="depthPointSliderValueChanged:" destination="u0i-qW-CIe" eventType="valueChanged" id="4ow-ba-nBe"/>
-                                </connections>
-                            </slider>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="c2l-Tu-1Pv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="sBR-vZ-nwc" firstAttribute="top" secondItem="c2l-Tu-1Pv" secondAttribute="top" constant="69" id="04Z-cD-5x4"/>
                             <constraint firstAttribute="top" secondItem="g8e-nN-vav" secondAttribute="top" id="0gu-Sf-Kvs"/>
+                            <constraint firstItem="ZXG-od-vzd" firstAttribute="bottom" secondItem="c2l-Tu-1Pv" secondAttribute="bottom" constant="-12" id="8YA-FW-L0t"/>
                             <constraint firstItem="sBR-vZ-nwc" firstAttribute="leading" secondItem="kuc-O0-FKP" secondAttribute="leading" constant="32" id="Cua-ib-BwO"/>
                             <constraint firstAttribute="bottom" secondItem="g8e-nN-vav" secondAttribute="bottom" id="HBb-vS-IBt"/>
                             <constraint firstAttribute="bottom" secondItem="poR-7a-CZ5" secondAttribute="bottom" id="MFE-Vo-hWq"/>
@@ -944,16 +951,18 @@
                             <constraint firstItem="bMY-nT-BLJ" firstAttribute="width" secondItem="kuc-O0-FKP" secondAttribute="width" id="YvN-5v-6kf"/>
                             <constraint firstItem="bMY-nT-BLJ" firstAttribute="height" secondItem="kuc-O0-FKP" secondAttribute="height" priority="250" id="dBn-jO-BED"/>
                             <constraint firstAttribute="trailing" secondItem="poR-7a-CZ5" secondAttribute="trailing" id="fZe-1j-9zY"/>
+                            <constraint firstItem="ZXG-od-vzd" firstAttribute="width" secondItem="c2l-Tu-1Pv" secondAttribute="width" multiplier="0.5" id="jwh-Kp-9U5"/>
                             <constraint firstItem="g8e-nN-vav" firstAttribute="leading" secondItem="kuc-O0-FKP" secondAttribute="leading" id="kXI-2k-7xf"/>
                             <constraint firstItem="poR-7a-CZ5" firstAttribute="top" secondItem="sBR-vZ-nwc" secondAttribute="bottom" constant="75" id="pS7-Uv-bzn"/>
+                            <constraint firstItem="ZXG-od-vzd" firstAttribute="centerX" secondItem="c2l-Tu-1Pv" secondAttribute="centerX" id="rqj-TX-cFT"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="blurView" destination="poR-7a-CZ5" id="BHa-tJ-Jbz"/>
-                        <outlet property="depthPointSlider" destination="ceF-ne-9cQ" id="nKt-af-2q6"/>
                         <outlet property="gradientBackgroundView" destination="bMY-nT-BLJ" id="Yl2-LH-fMb"/>
                         <outlet property="gradientScrollView" destination="g8e-nN-vav" id="ZyS-z0-eDH"/>
                         <outlet property="infoLabel" destination="sBR-vZ-nwc" id="Tge-4Z-zGf"/>
+                        <outlet property="startButton" destination="ZXG-od-vzd" id="A9h-ge-ob9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ctw-z8-QmU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
