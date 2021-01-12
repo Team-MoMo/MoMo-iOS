@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1014894425AC417E00639F98 /* DIaryWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1014894325AC417E00639F98 /* DIaryWriteViewController.swift */; };
+		104E685E25AAF8410019B29E /* DiaryWrite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 104E685D25AAF8410019B29E /* DiaryWrite.storyboard */; };
 		1006505D25AAF3320016B796 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1006505B25AAF3320016B796 /* ViewController.swift */; };
 		1006505E25AAF3320016B796 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1006505C25AAF3320016B796 /* ListViewController.swift */; };
 		105661ED25A5F79300E111B2 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105661EB25A5F79300E111B2 /* EmptyTableViewCell.swift */; };
@@ -55,6 +57,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1014894325AC417E00639F98 /* DIaryWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIaryWriteViewController.swift; sourceTree = "<group>"; };
+		104E685D25AAF8410019B29E /* DiaryWrite.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DiaryWrite.storyboard; sourceTree = "<group>"; };
 		1006505B25AAF3320016B796 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1006505C25AAF3320016B796 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		105661EB25A5F79300E111B2 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
@@ -228,6 +232,7 @@
 				10F12B0F259B2C4C003CAA9E /* List.storyboard */,
 				1CEF46C125A6DAA000AF3D81 /* Onboarding.storyboard */,
 				563B034225A8970E00DA74C5 /* Home.storyboard */,
+				104E685D25AAF8410019B29E /* DiaryWrite.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 				563B034625A8973100DA74C5 /* HomeViewController.swift */,
 				568764102599AD3A009CB486 /* ViewController.swift */,
 				1CEF46BE25A6DA7600AF3D81 /* OnboardingViewController.swift */,
+				1014894325AC417E00639F98 /* DIaryWriteViewController.swift */,
 				1CEF46C425A6E09100AF3D81 /* MoodViewController.swift */,
 				1CEF46C725A6E0A000AF3D81 /* SentenceViewController.swift */,
 				1CEF46CA25A6E0B200AF3D81 /* OnboardingWriteViewController.swift */,
@@ -365,6 +371,7 @@
 				568764142599AD3A009CB486 /* Main.storyboard in Resources */,
 				563B034325A8970E00DA74C5 /* Home.storyboard in Resources */,
 				107919C225A484E60024C711 /* FilterCollectionViewCell.xib in Resources */,
+				104E685E25AAF8410019B29E /* DiaryWrite.storyboard in Resources */,
 				10F12B10259B2C4C003CAA9E /* List.storyboard in Resources */,
 				10F8723425AAF2D9009FE6F1 /* ListTableViewCell.xib in Resources */,
 				107919B425A4830B0024C711 /* ListDateTableViewCell.xib in Resources */,
@@ -467,6 +474,7 @@
 				568764D1259F6EDE009CB486 /* UIColor+Extension.swift in Sources */,
 				107919B325A4830B0024C711 /* ListDateTableViewCell.swift in Sources */,
 				1CEF46BF25A6DA7600AF3D81 /* OnboardingViewController.swift in Sources */,
+				1014894425AC417E00639F98 /* DIaryWriteViewController.swift in Sources */,
 				563B033325A884A200DA74C5 /* HomeDayNightView.swift in Sources */,
 				1CEF46C825A6E0A000AF3D81 /* SentenceViewController.swift in Sources */,
 				5687640F2599AD3A009CB486 /* SceneDelegate.swift in Sources */,
