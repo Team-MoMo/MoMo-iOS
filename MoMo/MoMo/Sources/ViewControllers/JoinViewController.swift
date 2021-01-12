@@ -40,5 +40,12 @@ class JoinViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // view border
+        emailView.layer.borderColor = UIColor.Black5Publish.cgColor
+        emailView.layer.borderWidth = 1
+        passwordView.layer.borderColor = UIColor.Black5Publish.cgColor
+        passwordView.layer.borderWidth = 1
+        passwordCheckView.layer.borderColor = UIColor.Black5Publish.cgColor
+        passwordCheckView.layer.borderWidth = 1
     }
 }
