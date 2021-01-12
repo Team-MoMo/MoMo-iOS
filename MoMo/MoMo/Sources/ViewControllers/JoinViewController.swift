@@ -69,5 +69,10 @@ class JoinViewController: UIViewController {
         infoAgreeButton.setImage(Constants.Design.Image.loginCheckbox, for: .selected)
         serviceAgreeButton.setImage(Constants.Design.Image.loginCheckboxIntermediate, for: .normal)
         serviceAgreeButton.setImage(Constants.Design.Image.loginCheckbox, for: .selected)
+        
+        // 처음 뷰 로드 시 error label hidden 처리
+        emailErrorLabel.isHidden = true
+        passwordErrorLabel.isHidden = true
+        passwordCheckErrorLabel.isHidden = true
     }
 }
