@@ -72,7 +72,7 @@ struct Constants {
             static let label300m = UIImage(named: "300M")
             static let label700m = UIImage(named: "700M")
             static let label1005m = UIImage(named: "1005M")
-            static let labelSimhae = UIImage(named: "simhae")
+            static let labelDeepSea = UIImage(named: "deepSea")
         }
         
         struct Font {

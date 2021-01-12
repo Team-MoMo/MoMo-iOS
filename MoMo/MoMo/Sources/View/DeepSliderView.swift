@@ -30,7 +30,7 @@ class DeepSliderView: UIView {
         Constants.Design.Image.label300m,
         Constants.Design.Image.label700m,
         Constants.Design.Image.label1005m,
-        Constants.Design.Image.labelSimhae
+        Constants.Design.Image.labelDeepSea
     ]
     
     // MARK: - View Life Cycle
