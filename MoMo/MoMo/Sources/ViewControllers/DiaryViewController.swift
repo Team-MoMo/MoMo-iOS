@@ -30,7 +30,7 @@ class DiaryViewController: UIViewController {
     lazy var rightButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: UIImage(named: "icSubtab"), style: .done, target: self, action: #selector(buttonPressed(sender:)))
         button.tag = 2
-        button.tintColor = UIColor.black
+        button.tintColor = UIColor.white
         return button
     }()
     
@@ -45,6 +45,9 @@ class DiaryViewController: UIViewController {
         self.addBlurEffectOnBlurView(view: self.blurView)
         
         self.navigationItem.rightBarButtonItem = self.rightButton
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
         
         self.menuView = MenuView.instantiate()
         self.alertModalView = AlertModalView.instantiate(
