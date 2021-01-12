@@ -18,6 +18,7 @@ struct Constants {
         
         static let homeStoryboard: String = "Home"
         static let onboardingStoryboard: String = "Onboarding"
+        static let loginStoryboard: String = "Login"
         
         // MARK: - Nib Name Constants
         
@@ -38,6 +39,7 @@ struct Constants {
         static let moodViewController: String = "MoodViewController"
         static let sentenceViewController: String = "SentenceViewController"
         static let deepViewController: String = "DeepViewController"
+        static let loginViewController: String = "LoginViewController"
         
         // MARK: - UIView
         

@@ -38,6 +38,8 @@
 		563B033325A884A200DA74C5 /* HomeDayNightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B033225A884A200DA74C5 /* HomeDayNightView.swift */; };
 		563B034325A8970E00DA74C5 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 563B034225A8970E00DA74C5 /* Home.storyboard */; };
 		563B034725A8973100DA74C5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B034625A8973100DA74C5 /* HomeViewController.swift */; };
+		563B03DF25ACB59800DA74C5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 563B03DE25ACB59800DA74C5 /* Login.storyboard */; };
+		563B03E225ACBB1200DA74C5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B03E125ACBB1200DA74C5 /* LoginViewController.swift */; };
 		563B037625AA0F3500DA74C5 /* BubbleDummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B037525AA0F3500DA74C5 /* BubbleDummyData.swift */; };
 		563B037B25AA106F00DA74C5 /* BubbleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B037925AA106F00DA74C5 /* BubbleTableViewCell.swift */; };
 		563B037C25AA106F00DA74C5 /* BubbleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 563B037A25AA106F00DA74C5 /* BubbleTableViewCell.xib */; };
@@ -87,6 +89,8 @@
 		563B033225A884A200DA74C5 /* HomeDayNightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDayNightView.swift; sourceTree = "<group>"; };
 		563B034225A8970E00DA74C5 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		563B034625A8973100DA74C5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		563B03DE25ACB59800DA74C5 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		563B03E125ACBB1200DA74C5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		563B037525AA0F3500DA74C5 /* BubbleDummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleDummyData.swift; sourceTree = "<group>"; };
 		563B037925AA106F00DA74C5 /* BubbleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleTableViewCell.swift; sourceTree = "<group>"; };
 		563B037A25AA106F00DA74C5 /* BubbleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BubbleTableViewCell.xib; sourceTree = "<group>"; };
@@ -238,6 +242,7 @@
 				10F12B0F259B2C4C003CAA9E /* List.storyboard */,
 				1CEF46C125A6DAA000AF3D81 /* Onboarding.storyboard */,
 				563B034225A8970E00DA74C5 /* Home.storyboard */,
+				563B03DE25ACB59800DA74C5 /* Login.storyboard */,
 				104E685D25AAF8410019B29E /* DiaryWrite.storyboard */,
 			);
 			path = Storyboards;
@@ -274,6 +279,7 @@
 				1CEF46C725A6E0A000AF3D81 /* SentenceViewController.swift */,
 				1CEF46CA25A6E0B200AF3D81 /* OnboardingWriteViewController.swift */,
 				1CAD05A425AACB36007ECA40 /* DeepViewController.swift */,
+				563B03E125ACBB1200DA74C5 /* LoginViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -374,6 +380,7 @@
 				568764162599AD3C009CB486 /* Assets.xcassets in Resources */,
 				568764142599AD3A009CB486 /* Main.storyboard in Resources */,
 				563B034325A8970E00DA74C5 /* Home.storyboard in Resources */,
+				563B03DF25ACB59800DA74C5 /* Login.storyboard in Resources */,
 				107919C225A484E60024C711 /* FilterCollectionViewCell.xib in Resources */,
 				104E685E25AAF8410019B29E /* DiaryWrite.storyboard in Resources */,
 				10F12B10259B2C4C003CAA9E /* List.storyboard in Resources */,
@@ -454,6 +461,7 @@
 			files = (
 				1CAD05BA25AC59C1007ECA40 /* UISlider+Extension.swift in Sources */,
 				1CEF46CB25A6E0B200AF3D81 /* OnboardingWriteViewController.swift in Sources */,
+				563B03E225ACBB1200DA74C5 /* LoginViewController.swift in Sources */,
 				568764612599FB56009CB486 /* APIConstants.swift in Sources */,
 				1CAD05A525AACB36007ECA40 /* DeepViewController.swift in Sources */,
 				563B034725A8973100DA74C5 /* HomeViewController.swift in Sources */,
