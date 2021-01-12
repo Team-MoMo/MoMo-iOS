@@ -6,16 +6,18 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol AlertModalDelegate: class {
-    func cancelButtonTouchUp(button: UIButton)
-    func deleteButtonTouchUp(button: UIButton)
+    func leftButtonTouchUp(button: UIButton)
+    func rightButtonTouchUp(button: UIButton)
 }
 
 class AlertModalView: UIView {
     
-    @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var leftButton: UIButton!
+    @IBOutlet weak var rightButton: UIButton!
+    @IBOutlet weak var alertLabel: UILabel!
     @IBOutlet weak var modalContainerView: UIView!
     
     weak var alertModalDelegate: AlertModalDelegate?
@@ -24,7 +26,6 @@ class AlertModalView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,20 +34,34 @@ class AlertModalView: UIView {
     
     // MARK: - Functions
     
-    static func instantiate() -> AlertModalView? {
+    static func instantiate(alertLabelText: String, leftButtonTitle: String, rightButtonTitle: String) -> AlertModalView? {
         
         let alertModalView: AlertModalView? = initFromNib()
         
+        alertModalView?.leftButton.setTitle(leftButtonTitle, for: .normal)
+        alertModalView?.rightButton.setTitle(rightButtonTitle, for: .normal)
+        alertModalView?.alertLabel.text = alertLabelText
         alertModalView?.modalContainerView.layer.cornerRadius = 10
         alertModalView?.modalContainerView.clipsToBounds = true
         alertModalView?.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         
         return alertModalView
     }
-    @IBAction func cancelButtonTouchUp(_ sender: UIButton) {
-        self.alertModalDelegate?.cancelButtonTouchUp(button: sender)
+    
+    func setConstraints(view: UIView, superView: UIView) {
+        view.snp.makeConstraints({ (make) in
+            make.width.equalTo(superView)
+            make.height.equalTo(superView)
+            make.centerX.equalTo(superView)
+            make.centerY.equalTo(superView)
+        })
     }
-    @IBAction func deleteButtonTouchUp(_ sender: UIButton) {
-        self.alertModalDelegate?.deleteButtonTouchUp(button: sender)
+    
+    @IBAction func leftButtonTouchUp(_ sender: UIButton) {
+        self.alertModalDelegate?.leftButtonTouchUp(button: sender)
+    }
+    
+    @IBAction func rightButtonTouchUp(_ sender: UIButton) {
+        self.alertModalDelegate?.rightButtonTouchUp(button: sender)
     }
 }
