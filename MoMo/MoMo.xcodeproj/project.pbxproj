@@ -22,6 +22,10 @@
 		10B6732025A771700046AA97 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B6731F25A771700046AA97 /* String+Extension.swift */; };
 		10B6732D25A775DE0046AA97 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B6732C25A775DE0046AA97 /* UIView+Extension.swift */; };
 		10F12B10259B2C4C003CAA9E /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10F12B0F259B2C4C003CAA9E /* List.storyboard */; };
+		1C7CD80725ACA5EC00B7CB60 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CD80625ACA5EC00B7CB60 /* DiaryViewController.swift */; };
+		1C7CD80A25ACA5FD00B7CB60 /* Diary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */; };
+		1C7CD82525ACEB9E00B7CB60 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CD82425ACEB9E00B7CB60 /* MenuView.swift */; };
+		1C7CD82825ACEBAB00B7CB60 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C7CD82725ACEBAB00B7CB60 /* MenuView.xib */; };
 		10F8723425AAF2D9009FE6F1 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10F8723225AAF2D9009FE6F1 /* ListTableViewCell.xib */; };
 		10F8723525AAF2D9009FE6F1 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F8723325AAF2D9009FE6F1 /* ListTableViewCell.swift */; };
 		1CAD05A225A9C98F007ECA40 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD05A125A9C98F007ECA40 /* UILabel+Extension.swift */; };
@@ -77,6 +81,10 @@
 		10B6731F25A771700046AA97 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		10B6732C25A775DE0046AA97 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		10F12B0F259B2C4C003CAA9E /* List.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
+		1C7CD80625ACA5EC00B7CB60 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
+		1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Diary.storyboard; sourceTree = "<group>"; };
+		1C7CD82425ACEB9E00B7CB60 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		1C7CD82725ACEBAB00B7CB60 /* MenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
 		10F8723225AAF2D9009FE6F1 /* ListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
 		10F8723325AAF2D9009FE6F1 /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		1CAD05A125A9C98F007ECA40 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -139,6 +147,8 @@
 				563B033225A884A200DA74C5 /* HomeDayNightView.swift */,
 				1CAD05B025AC3DC4007ECA40 /* DeepSliderView.swift */,
 				1CAD05B325AC3DEF007ECA40 /* DeepSliderView.xib */,
+				1C7CD82425ACEB9E00B7CB60 /* MenuView.swift */,
+				1C7CD82725ACEBAB00B7CB60 /* MenuView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -250,6 +260,7 @@
 				10F12B0F259B2C4C003CAA9E /* List.storyboard */,
 				1CEF46C125A6DAA000AF3D81 /* Onboarding.storyboard */,
 				563B034225A8970E00DA74C5 /* Home.storyboard */,
+				1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */,
 				563B040125AD5F1800DA74C5 /* Join.storyboard */,
 				563B03FA25ACCDF700DA74C5 /* EmailLogin.storyboard */,
 				563B03DE25ACB59800DA74C5 /* Login.storyboard */,
@@ -289,6 +300,7 @@
 				1CEF46C725A6E0A000AF3D81 /* SentenceViewController.swift */,
 				1CEF46CA25A6E0B200AF3D81 /* OnboardingWriteViewController.swift */,
 				1CAD05A425AACB36007ECA40 /* DeepViewController.swift */,
+				1C7CD80625ACA5EC00B7CB60 /* DiaryViewController.swift */,
 				563B040425AD5F3100DA74C5 /* JoinViewController.swift */,
 				563B03FD25ACCE0200DA74C5 /* EmailLoginViewController.swift */,
 				563B03E125ACBB1200DA74C5 /* LoginViewController.swift */,
@@ -382,9 +394,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C7CD80A25ACA5FD00B7CB60 /* Diary.storyboard in Resources */,
 				1CAD05B425AC3DEF007ECA40 /* DeepSliderView.xib in Resources */,
 				568764CE259F6A80009CB486 /* Colors.xcassets in Resources */,
 				568764362599EEC9009CB486 /* .swiftlint.yml in Resources */,
+				1C7CD82825ACEBAB00B7CB60 /* MenuView.xib in Resources */,
 				568764192599AD3C009CB486 /* LaunchScreen.storyboard in Resources */,
 				107919BD25A484510024C711 /* ListFilterTableViewCell.xib in Resources */,
 				563B037C25AA106F00DA74C5 /* BubbleTableViewCell.xib in Resources */,
@@ -501,6 +515,8 @@
 				1014894425AC417E00639F98 /* DIaryWriteViewController.swift in Sources */,
 				563B033325A884A200DA74C5 /* HomeDayNightView.swift in Sources */,
 				1CEF46C825A6E0A000AF3D81 /* SentenceViewController.swift in Sources */,
+				1C7CD82525ACEB9E00B7CB60 /* MenuView.swift in Sources */,
+				1C7CD80725ACA5EC00B7CB60 /* DiaryViewController.swift in Sources */,
 				5687640F2599AD3A009CB486 /* SceneDelegate.swift in Sources */,
 				1CEF46C525A6E09100AF3D81 /* MoodViewController.swift in Sources */,
 				5687645E2599FB48009CB486 /* AppConstants.swift in Sources */,
