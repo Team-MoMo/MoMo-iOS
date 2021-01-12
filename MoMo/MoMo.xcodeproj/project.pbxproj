@@ -22,13 +22,13 @@
 		10B6732025A771700046AA97 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B6731F25A771700046AA97 /* String+Extension.swift */; };
 		10B6732D25A775DE0046AA97 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B6732C25A775DE0046AA97 /* UIView+Extension.swift */; };
 		10F12B10259B2C4C003CAA9E /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10F12B0F259B2C4C003CAA9E /* List.storyboard */; };
+		10F8723425AAF2D9009FE6F1 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10F8723225AAF2D9009FE6F1 /* ListTableViewCell.xib */; };
+		10F8723525AAF2D9009FE6F1 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F8723325AAF2D9009FE6F1 /* ListTableViewCell.swift */; };
 		1C52BE0F25AD7A9500D02771 /* onboarding_wave_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C52BE0E25AD7A9500D02771 /* onboarding_wave_ios.json */; };
 		1C7CD80725ACA5EC00B7CB60 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CD80625ACA5EC00B7CB60 /* DiaryViewController.swift */; };
 		1C7CD80A25ACA5FD00B7CB60 /* Diary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */; };
 		1C7CD82525ACEB9E00B7CB60 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CD82425ACEB9E00B7CB60 /* MenuView.swift */; };
 		1C7CD82825ACEBAB00B7CB60 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C7CD82725ACEBAB00B7CB60 /* MenuView.xib */; };
-		10F8723425AAF2D9009FE6F1 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10F8723225AAF2D9009FE6F1 /* ListTableViewCell.xib */; };
-		10F8723525AAF2D9009FE6F1 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F8723325AAF2D9009FE6F1 /* ListTableViewCell.swift */; };
 		1CAD05A225A9C98F007ECA40 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD05A125A9C98F007ECA40 /* UILabel+Extension.swift */; };
 		1CAD05A525AACB36007ECA40 /* DeepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD05A425AACB36007ECA40 /* DeepViewController.swift */; };
 		1CAD05B125AC3DC4007ECA40 /* DeepSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD05B025AC3DC4007ECA40 /* DeepSliderView.swift */; };
@@ -43,16 +43,19 @@
 		563B033325A884A200DA74C5 /* HomeDayNightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B033225A884A200DA74C5 /* HomeDayNightView.swift */; };
 		563B034325A8970E00DA74C5 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 563B034225A8970E00DA74C5 /* Home.storyboard */; };
 		563B034725A8973100DA74C5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B034625A8973100DA74C5 /* HomeViewController.swift */; };
-		563B040225AD5F1800DA74C5 /* Join.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 563B040125AD5F1800DA74C5 /* Join.storyboard */; };
-		563B040525AD5F3100DA74C5 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B040425AD5F3100DA74C5 /* JoinViewController.swift */; };
-		563B03FB25ACCDF700DA74C5 /* EmailLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 563B03FA25ACCDF700DA74C5 /* EmailLogin.storyboard */; };
-		563B03FE25ACCE0200DA74C5 /* EmailLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B03FD25ACCE0200DA74C5 /* EmailLoginViewController.swift */; };
-		563B03DF25ACB59800DA74C5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 563B03DE25ACB59800DA74C5 /* Login.storyboard */; };
-		563B03E225ACBB1200DA74C5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B03E125ACBB1200DA74C5 /* LoginViewController.swift */; };
 		563B037625AA0F3500DA74C5 /* BubbleDummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B037525AA0F3500DA74C5 /* BubbleDummyData.swift */; };
 		563B037B25AA106F00DA74C5 /* BubbleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B037925AA106F00DA74C5 /* BubbleTableViewCell.swift */; };
 		563B037C25AA106F00DA74C5 /* BubbleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 563B037A25AA106F00DA74C5 /* BubbleTableViewCell.xib */; };
+		563B03DF25ACB59800DA74C5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 563B03DE25ACB59800DA74C5 /* Login.storyboard */; };
+		563B03E225ACBB1200DA74C5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B03E125ACBB1200DA74C5 /* LoginViewController.swift */; };
+		563B03FB25ACCDF700DA74C5 /* EmailLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 563B03FA25ACCDF700DA74C5 /* EmailLogin.storyboard */; };
+		563B03FE25ACCE0200DA74C5 /* EmailLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B03FD25ACCE0200DA74C5 /* EmailLoginViewController.swift */; };
+		563B040225AD5F1800DA74C5 /* Join.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 563B040125AD5F1800DA74C5 /* Join.storyboard */; };
+		563B040525AD5F3100DA74C5 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B040425AD5F3100DA74C5 /* JoinViewController.swift */; };
 		563B044525ADB57600DA74C5 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B044425ADB57600DA74C5 /* UIImage+Extension.swift */; };
+		563B047425ADF46200DA74C5 /* FindPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 563B047325ADF46200DA74C5 /* FindPassword.storyboard */; };
+		563B047725ADF47200DA74C5 /* FindPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B047625ADF47200DA74C5 /* FindPasswordViewController.swift */; };
+		563B047A25ADF63900DA74C5 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B047925ADF63900DA74C5 /* UITextField+Extension.swift */; };
 		5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5687640C2599AD3A009CB486 /* AppDelegate.swift */; };
 		5687640F2599AD3A009CB486 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5687640E2599AD3A009CB486 /* SceneDelegate.swift */; };
 		568764142599AD3A009CB486 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 568764122599AD3A009CB486 /* Main.storyboard */; };
@@ -82,13 +85,13 @@
 		10B6731F25A771700046AA97 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		10B6732C25A775DE0046AA97 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		10F12B0F259B2C4C003CAA9E /* List.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
+		10F8723225AAF2D9009FE6F1 /* ListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
+		10F8723325AAF2D9009FE6F1 /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		1C52BE0E25AD7A9500D02771 /* onboarding_wave_ios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_wave_ios.json; sourceTree = "<group>"; };
 		1C7CD80625ACA5EC00B7CB60 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Diary.storyboard; sourceTree = "<group>"; };
 		1C7CD82425ACEB9E00B7CB60 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		1C7CD82725ACEBAB00B7CB60 /* MenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
-		10F8723225AAF2D9009FE6F1 /* ListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
-		10F8723325AAF2D9009FE6F1 /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		1CAD05A125A9C98F007ECA40 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		1CAD05A425AACB36007ECA40 /* DeepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepViewController.swift; sourceTree = "<group>"; };
 		1CAD05B025AC3DC4007ECA40 /* DeepSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepSliderView.swift; sourceTree = "<group>"; };
@@ -103,16 +106,19 @@
 		563B033225A884A200DA74C5 /* HomeDayNightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDayNightView.swift; sourceTree = "<group>"; };
 		563B034225A8970E00DA74C5 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		563B034625A8973100DA74C5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		563B040125AD5F1800DA74C5 /* Join.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Join.storyboard; sourceTree = "<group>"; };
-		563B040425AD5F3100DA74C5 /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
-		563B03FA25ACCDF700DA74C5 /* EmailLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmailLogin.storyboard; sourceTree = "<group>"; };
-		563B03FD25ACCE0200DA74C5 /* EmailLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginViewController.swift; sourceTree = "<group>"; };
-		563B03DE25ACB59800DA74C5 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
-		563B03E125ACBB1200DA74C5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		563B037525AA0F3500DA74C5 /* BubbleDummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleDummyData.swift; sourceTree = "<group>"; };
 		563B037925AA106F00DA74C5 /* BubbleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleTableViewCell.swift; sourceTree = "<group>"; };
 		563B037A25AA106F00DA74C5 /* BubbleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BubbleTableViewCell.xib; sourceTree = "<group>"; };
+		563B03DE25ACB59800DA74C5 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		563B03E125ACBB1200DA74C5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		563B03FA25ACCDF700DA74C5 /* EmailLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmailLogin.storyboard; sourceTree = "<group>"; };
+		563B03FD25ACCE0200DA74C5 /* EmailLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginViewController.swift; sourceTree = "<group>"; };
+		563B040125AD5F1800DA74C5 /* Join.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Join.storyboard; sourceTree = "<group>"; };
+		563B040425AD5F3100DA74C5 /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		563B044425ADB57600DA74C5 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		563B047325ADF46200DA74C5 /* FindPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FindPassword.storyboard; sourceTree = "<group>"; };
+		563B047625ADF47200DA74C5 /* FindPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordViewController.swift; sourceTree = "<group>"; };
+		563B047925ADF63900DA74C5 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		568764092599AD3A009CB486 /* MoMo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoMo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5687640C2599AD3A009CB486 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5687640E2599AD3A009CB486 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -244,6 +250,7 @@
 				10B6732C25A775DE0046AA97 /* UIView+Extension.swift */,
 				1CAD05A125A9C98F007ECA40 /* UILabel+Extension.swift */,
 				1CAD05B925AC59C1007ECA40 /* UISlider+Extension.swift */,
+				563B047925ADF63900DA74C5 /* UITextField+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -268,6 +275,7 @@
 				563B03FA25ACCDF700DA74C5 /* EmailLogin.storyboard */,
 				563B03DE25ACB59800DA74C5 /* Login.storyboard */,
 				104E685D25AAF8410019B29E /* DiaryWrite.storyboard */,
+				563B047325ADF46200DA74C5 /* FindPassword.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -307,6 +315,7 @@
 				563B040425AD5F3100DA74C5 /* JoinViewController.swift */,
 				563B03FD25ACCE0200DA74C5 /* EmailLoginViewController.swift */,
 				563B03E125ACBB1200DA74C5 /* LoginViewController.swift */,
+				563B047625ADF47200DA74C5 /* FindPasswordViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -407,6 +416,7 @@
 				563B037C25AA106F00DA74C5 /* BubbleTableViewCell.xib in Resources */,
 				1CEF46C225A6DAA000AF3D81 /* Onboarding.storyboard in Resources */,
 				568764162599AD3C009CB486 /* Assets.xcassets in Resources */,
+				563B047425ADF46200DA74C5 /* FindPassword.storyboard in Resources */,
 				568764142599AD3A009CB486 /* Main.storyboard in Resources */,
 				563B034325A8970E00DA74C5 /* Home.storyboard in Resources */,
 				563B03DF25ACB59800DA74C5 /* Login.storyboard in Resources */,
@@ -521,6 +531,8 @@
 				1CEF46C825A6E0A000AF3D81 /* SentenceViewController.swift in Sources */,
 				1C7CD82525ACEB9E00B7CB60 /* MenuView.swift in Sources */,
 				1C7CD80725ACA5EC00B7CB60 /* DiaryViewController.swift in Sources */,
+				563B047A25ADF63900DA74C5 /* UITextField+Extension.swift in Sources */,
+				563B047725ADF47200DA74C5 /* FindPasswordViewController.swift in Sources */,
 				5687640F2599AD3A009CB486 /* SceneDelegate.swift in Sources */,
 				1CEF46C525A6E09100AF3D81 /* MoodViewController.swift in Sources */,
 				5687645E2599FB48009CB486 /* AppConstants.swift in Sources */,
