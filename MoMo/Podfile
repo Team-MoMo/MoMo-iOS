@@ -12,6 +12,5 @@ target 'MoMo' do
 	pod 'IQKeyboardManagerSwift'
   pod 'SnapKit', '~> 5.0.0'
   pod 'CLTypingLabel'
-
-
+  pod 'lottie-ios'
 end
