@@ -47,5 +47,11 @@ class JoinViewController: UIViewController {
         passwordView.layer.borderWidth = 1
         passwordCheckView.layer.borderColor = UIColor.Black5Publish.cgColor
         passwordCheckView.layer.borderWidth = 1
+        
+        // navigation bar 투명화
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        
     }
 }
