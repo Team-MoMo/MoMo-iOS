@@ -98,6 +98,7 @@ class MoodViewController: UIViewController {
     private var buttons: [Button] = []
     var date: String?
     let defaultInfo: String = "먼저 오늘의\n감정을 선택해 주세요"
+    //false == upload모드
     var changeUsage: Bool = false
     
     // MARK: - View Life Cycle
