@@ -61,5 +61,13 @@ class FindPasswordViewController: UIViewController {
         emailLabel.textColor = UIColor.RedError
         emailView.layer.borderColor = UIColor.RedError.cgColor
     }
+    
+    func showEmailNotFoundError() {
+        emailErrorLabel.isHidden = false
+        emailErrorLabel.text = "가입된 이메일이 없습니다"
+        
+        emailLabel.textColor = UIColor.RedError
+        emailView.layer.borderColor = UIColor.RedError.cgColor
+    }
 
 }
