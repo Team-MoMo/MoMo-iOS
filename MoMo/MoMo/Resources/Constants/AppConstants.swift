@@ -22,6 +22,7 @@ struct Constants {
         // MARK: - Nib Name Constants
         
         static let homeDayNightViewXib: String = "HomeDayNightView"
+        static let bubbleTableViewCell: String = "BubbleTableViewCell"
         
     }
     
@@ -40,6 +41,10 @@ struct Constants {
         // MARK: - UIView
         
         static let homeDayNightView: String = "HomeDayNightView"
+        
+        // MARK: - Xib Cell
+        
+        static let bubbleTableViewCell: String = "BubbleTableViewCell"
     }
     
     // MARK: - Design Constants
@@ -57,6 +62,7 @@ struct Constants {
             /// 예시 : static let IconHome = UIImage(named: "ico_category")
             static let homeIcSwipeDown = UIImage(named: "homeIcSwipeDown")
             static let btnIcMyBlue = UIImage(named: "btnIcMyBlue")
+            static let btnIcMy = UIImage(named: "btnIcMy")
             static let icLove14Black = UIImage(named: "icLove14Black")
             static let icHappy14Black = UIImage(named: "icHappy14Black")
             static let icConsole14Black = UIImage(named: "icConsole14Black")
@@ -86,6 +92,8 @@ struct Constants {
     
     struct Content {
         /// 예시 : static let Category = "category"
+        
+        static let depthNameArray: [String] = ["2m", "30m", "100m", "300m", "700m", "1,005m", "심해"]
     }
     
 }

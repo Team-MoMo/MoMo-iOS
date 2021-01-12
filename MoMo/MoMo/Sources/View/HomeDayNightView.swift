@@ -72,6 +72,8 @@ class HomeDayNightView: UIView {
         showAllButton.clipsToBounds = true
         showAllButton.layer.cornerRadius = 8
         
+        diaryLabel.lineBreakMode = .byTruncatingTail
+        
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
