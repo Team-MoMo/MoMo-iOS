@@ -79,6 +79,16 @@ class JoinViewController: UIViewController {
         emailTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
         passwordTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
         passwordCheckTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
+    // MARK: - @IBAction Properties
+    
+    @IBAction func infoButtonTouchUp(_ sender: Any) {
+        // 약관 동의 시 checkbox toggle
+        infoAgreeButton.isSelected.toggle()
+    }
+    @IBAction func serviceButtonTouchUp(_ sender: Any) {
+        serviceAgreeButton.isSelected.toggle()
+    }
+    
 extension UITextField {
     func modifyClearButtonWithImage(image: UIImage) {
         let clearButton = UIButton(type: .custom)
