@@ -42,5 +42,9 @@ class EmailLoginViewController: UIViewController {
             errorMessageLabel.isHidden = true
             loginButtonTop.constant = 0
         }
+        // navigation bar 투명화
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
     }
 }
