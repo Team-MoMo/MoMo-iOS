@@ -24,6 +24,7 @@ class DiaryViewController: UIViewController {
     
     var currentDepth: Depth?
     var menuView: MenuView?
+    var alertModalView: AlertModalView?
     var menuToggleFlag: Bool = false
     
     lazy var rightButton: UIBarButtonItem = {
@@ -46,6 +47,7 @@ class DiaryViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = self.rightButton
         
         self.menuView = MenuView.instantiate()
+        self.alertModalView = AlertModalView.instantiate()
     }
     
     func attachMenuView() {
@@ -53,6 +55,13 @@ class DiaryViewController: UIViewController {
             self.addBlurEffectOnMenuView(view: menuView.menuContainerView)
             menuView.menuDelegate = self
             self.view.addSubview(menuView)
+        }
+    }
+    
+    func attachAlertModalView() {
+        if let alertModalView = self.alertModalView {
+            alertModalView.alertModalDelegate = self
+            self.view.addSubview(alertModalView)
         }
     }
     
@@ -89,7 +98,6 @@ class DiaryViewController: UIViewController {
             case 1:
                 self.view.backgroundColor = .blue
             case 2:
-                print("메뉴버튼")
                 if self.menuToggleFlag {
                     self.menuView?.removeFromSuperview()
                 } else {
@@ -119,7 +127,7 @@ extension DiaryViewController: MenuDelegate {
     }
     
     func deleteMenubuttonTouchUp(sender: UIButton) {
-        print("삭제를 물어보는 센터 모달 띄우기")
+        self.attachAlertModalView()
     }
     
     func pushToDeepViewController() {
@@ -130,5 +138,16 @@ extension DiaryViewController: MenuDelegate {
         
         self.navigationController?.pushViewController(deepViewController, animated: true)
         
+    }
+}
+
+extension DiaryViewController: AlertModalDelegate {
+    
+    func cancelButtonTouchUp(button: UIButton) {
+        self.alertModalView?.removeFromSuperview()
+    }
+    
+    func deleteButtonTouchUp(button: UIButton) {
+        print("일기삭제")
     }
 }
