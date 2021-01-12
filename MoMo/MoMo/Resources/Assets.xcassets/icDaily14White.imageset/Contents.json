@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "icLove14White.png",
+      "filename" : "icDaily14White.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "icLove14White@2x.png",
+      "filename" : "icDaily14White@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "icLove14White@3x.png",
+      "filename" : "icDaily14White@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
