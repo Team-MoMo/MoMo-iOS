@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class OnboardingViewController: UIViewController {
 
@@ -14,6 +15,7 @@ class OnboardingViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet var waveAnimationView: AnimationView!
     
     // MARK: - Life Cycles
     
@@ -22,6 +24,7 @@ class OnboardingViewController: UIViewController {
         
         self.navigationControllerSetUp()
         self.hideDesciptionLabelWithAnimation()
+        self.startWaveAnimation()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -32,6 +35,13 @@ class OnboardingViewController: UIViewController {
     }
     
     // MARK: - Functions
+    
+    func startWaveAnimation() {
+        self.waveAnimationView.contentMode = .scaleAspectFit
+        self.waveAnimationView.loopMode = .loop
+        self.waveAnimationView.animationSpeed = 0.5
+        self.waveAnimationView.play()
+    }
     
     func navigationControllerSetUp() {
         self.navigationController?.navigationBar.topItem?.title = ""
