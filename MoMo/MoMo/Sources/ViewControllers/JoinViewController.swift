@@ -74,5 +74,24 @@ class JoinViewController: UIViewController {
         emailErrorLabel.isHidden = true
         passwordErrorLabel.isHidden = true
         passwordCheckErrorLabel.isHidden = true
+        
+        // clear button 만들기
+        emailTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
+        passwordTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
+        passwordCheckTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
+extension UITextField {
+    func modifyClearButtonWithImage(image: UIImage) {
+        let clearButton = UIButton(type: .custom)
+        clearButton.setImage(image, for: .normal)
+        clearButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        clearButton.contentMode = .scaleAspectFit
+        clearButton.addTarget(self, action: #selector(UITextField.clear(sender:) ), for: .touchUpInside)
+        self.rightView = clearButton
+        self.rightViewMode = .whileEditing
+    }
+
+    @objc func clear(sender: AnyObject) {
+        self.text = ""
+        sendActions(for: .editingChanged)
     }
 }
