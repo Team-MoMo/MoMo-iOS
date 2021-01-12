@@ -57,5 +57,11 @@ class JoinViewController: UIViewController {
         joinButton.clipsToBounds = true
         joinButton.layer.cornerRadius = joinButton.frame.height / 2
         
+        // placeholder
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "이메일을 입력해 주세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Blue5, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
+
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "영문 + 숫자 6자리 이상 입력해 주세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Blue5, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
+        
+        passwordCheckTextField.attributedPlaceholder = NSAttributedString(string: "비밀번호를 다시 한 번 입력해 주세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Blue5, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
     }
 }
