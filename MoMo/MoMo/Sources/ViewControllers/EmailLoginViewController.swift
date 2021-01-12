@@ -9,6 +9,17 @@ import UIKit
 
 class EmailLoginViewController: UIViewController {
 
+    
+    // MARK: - @IBOutlet Properties
+    
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var errorMessageTop: NSLayoutConstraint!
+    @IBOutlet weak var errorMessageLabel: UILabel!
+    @IBOutlet weak var loginButtonTop: NSLayoutConstraint!
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
