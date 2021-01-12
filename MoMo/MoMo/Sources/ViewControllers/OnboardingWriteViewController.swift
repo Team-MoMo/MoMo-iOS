@@ -31,8 +31,17 @@ class OnboardingWriteViewController: UIViewController {
     let defaultInfo: String = "문장이 감성을 자극하고\n깊이있는 기록을 도와줄 거예요"
     let defaultBookTitle: String = "책제목"
     let defaultPublisher: String = "출판사이름"
-    let defaultTypingLabelText: String = "새로운 인연이 기대되는 하루였다. "
+    let typingLabelTexts: [Mood: String] = [
+        Mood.love: "새로운 인연이 기대되는 하루였다. ",
+        Mood.happy: "삶의 소중함을 느낀 하루였다. ",
+        Mood.console: "나를 위한 진한 위로가 필요한 하루였다. ",
+        Mood.angry: "끓어오르는 속을 진정시켜야 하는 하루였다. ",
+        Mood.sad: "마음이 찌릿하게 아픈 하루였다. ",
+        Mood.memory: "오래된 기억이 되살아나는 하루였다. ",
+        Mood.daily: "평안한 하루가 감사한 날이었다."
+    ]
     var selectedSentence: Sentence?
+    var selectedMood: Mood?
     var sentenceWasShown: Bool = false
     let vspaingInfoLabelFeatherImage: CGFloat = 74
     let vspaingInfoLabelSentenceInfoStackView: CGFloat = 116
@@ -90,7 +99,7 @@ extension OnboardingWriteViewController {
     }
     
     func setTypingLabel() {
-        self.typingLabel.text = self.defaultTypingLabelText
+        self.typingLabel.text = self.typingLabelTexts[self.selectedMood ?? Mood.love]
     }
     
     func hideFeatherImage() {

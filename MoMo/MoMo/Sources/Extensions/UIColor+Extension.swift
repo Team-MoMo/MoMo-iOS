@@ -30,7 +30,25 @@ extension UIColor {
     static let ListSubGray: UIColor = UIColor(named: "ListSubGray")!
     static let NavWhite: UIColor = UIColor(named: "NavWhite")!
     static let TitleNavy: UIColor = UIColor(named: "TitleNavy")!
+    static let Gradient1: UIColor = UIColor(named: "Gradient1")!
+    static let Gradient2: UIColor = UIColor(named: "Gradient2")!
+    static let Gradient3: UIColor = UIColor(named: "Gradient3")!
+    static let Gradient4: UIColor = UIColor(named: "Gradient4")!
+    static let Gradient5: UIColor = UIColor(named: "Gradient5")!
+    static let Gradient6: UIColor = UIColor(named: "Gradient6")!
+    static let Gradient7: UIColor = UIColor(named: "Gradient7")!
+    static let Gradient8: UIColor = UIColor(named: "Gradient8")!
     static let HomeDay1: UIColor = UIColor(named: "HomeDay1")!
     static let HomeDay2: UIColor = UIColor(named: "HomeDay2")!
     static let RedError: UIColor = UIColor(named: "RedError")!
+    
+    // Gradient Color
+    static let Gradient1: UIColor = UIColor(named: "Gradient1")!
+    static let Gradient2: UIColor = UIColor(named: "Gradient2")!
+    static let Gradient3: UIColor = UIColor(named: "Gradient3")!
+    static let Gradient4: UIColor = UIColor(named: "Gradient4")!
+    static let Gradient5: UIColor = UIColor(named: "Gradient5")!
+    static let Gradient6: UIColor = UIColor(named: "Gradient6")!
+    static let Gradient7: UIColor = UIColor(named: "Gradient7")!
+    static let Gradient8: UIColor = UIColor(named: "Gradient8")!
 }
