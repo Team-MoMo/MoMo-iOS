@@ -24,6 +24,7 @@ class DiaryViewController: UIViewController {
     
     var currentDepth: Depth?
     var menuView: MenuView?
+    var alertModalView: AlertModalView?
     var menuToggleFlag: Bool = false
     
     lazy var rightButton: UIBarButtonItem = {
@@ -49,6 +50,11 @@ class DiaryViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         
         self.menuView = MenuView.instantiate()
+        self.alertModalView = AlertModalView.instantiate(
+            alertLabelText: "소중한 일기가 삭제됩니다.\n정말 삭제하시겠어요?",
+            leftButtonTitle: "취소",
+            rightButtonTitle: "삭제"
+        )
     }
     
     func attachMenuView() {
@@ -56,6 +62,14 @@ class DiaryViewController: UIViewController {
             self.addBlurEffectOnMenuView(view: menuView.menuContainerView)
             menuView.menuDelegate = self
             self.view.addSubview(menuView)
+        }
+    }
+    
+    func attachAlertModalView() {
+        if let alertModalView = self.alertModalView {
+            alertModalView.alertModalDelegate = self
+            self.view.insertSubview(alertModalView, aboveSubview: self.view)
+            alertModalView.setConstraints(view: alertModalView, superView: self.view)
         }
     }
     
@@ -92,7 +106,6 @@ class DiaryViewController: UIViewController {
             case 1:
                 self.view.backgroundColor = .blue
             case 2:
-                print("메뉴버튼")
                 if self.menuToggleFlag {
                     self.menuView?.removeFromSuperview()
                 } else {
@@ -122,7 +135,7 @@ extension DiaryViewController: MenuDelegate {
     }
     
     func deleteMenubuttonTouchUp(sender: UIButton) {
-        print("삭제를 물어보는 센터 모달 띄우기")
+        self.attachAlertModalView()
     }
     
     func pushToDeepViewController() {
@@ -133,5 +146,16 @@ extension DiaryViewController: MenuDelegate {
         
         self.navigationController?.pushViewController(deepViewController, animated: true)
         
+    }
+}
+
+extension DiaryViewController: AlertModalDelegate {
+    
+    func leftButtonTouchUp(button: UIButton) {
+        self.alertModalView?.removeFromSuperview()
+    }
+    
+    func rightButtonTouchUp(button: UIButton) {
+        print("일기삭제")
     }
 }

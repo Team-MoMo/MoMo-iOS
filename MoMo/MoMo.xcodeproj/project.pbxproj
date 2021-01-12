@@ -27,6 +27,8 @@
 		10F12B10259B2C4C003CAA9E /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10F12B0F259B2C4C003CAA9E /* List.storyboard */; };
 		10F8723425AAF2D9009FE6F1 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10F8723225AAF2D9009FE6F1 /* ListTableViewCell.xib */; };
 		10F8723525AAF2D9009FE6F1 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F8723325AAF2D9009FE6F1 /* ListTableViewCell.swift */; };
+		1C52BE0525AD655300D02771 /* AlertModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C52BE0425AD655300D02771 /* AlertModalView.swift */; };
+		1C52BE0825AD656700D02771 /* AlertModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C52BE0725AD656700D02771 /* AlertModalView.xib */; };
 		1C52BE0F25AD7A9500D02771 /* onboarding_wave_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C52BE0E25AD7A9500D02771 /* onboarding_wave_ios.json */; };
 		1C7CD80725ACA5EC00B7CB60 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CD80625ACA5EC00B7CB60 /* DiaryViewController.swift */; };
 		1C7CD80A25ACA5FD00B7CB60 /* Diary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */; };
@@ -90,6 +92,8 @@
 		10F12B0F259B2C4C003CAA9E /* List.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
 		10F8723225AAF2D9009FE6F1 /* ListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
 		10F8723325AAF2D9009FE6F1 /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		1C52BE0425AD655300D02771 /* AlertModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModalView.swift; sourceTree = "<group>"; };
+		1C52BE0725AD656700D02771 /* AlertModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertModalView.xib; sourceTree = "<group>"; };
 		1C52BE0E25AD7A9500D02771 /* onboarding_wave_ios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_wave_ios.json; sourceTree = "<group>"; };
 		1C7CD80625ACA5EC00B7CB60 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Diary.storyboard; sourceTree = "<group>"; };
@@ -157,6 +161,8 @@
 				1CAD05B325AC3DEF007ECA40 /* DeepSliderView.xib */,
 				1C7CD82425ACEB9E00B7CB60 /* MenuView.swift */,
 				1C7CD82725ACEBAB00B7CB60 /* MenuView.xib */,
+				1C52BE0425AD655300D02771 /* AlertModalView.swift */,
+				1C52BE0725AD656700D02771 /* AlertModalView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -419,6 +425,7 @@
 				568764162599AD3C009CB486 /* Assets.xcassets in Resources */,
 				568764142599AD3A009CB486 /* Main.storyboard in Resources */,
 				563B034325A8970E00DA74C5 /* Home.storyboard in Resources */,
+				1C52BE0825AD656700D02771 /* AlertModalView.xib in Resources */,
 				563B03DF25ACB59800DA74C5 /* Login.storyboard in Resources */,
 				107919C225A484E60024C711 /* FilterCollectionViewCell.xib in Resources */,
 				563B040225AD5F1800DA74C5 /* Join.storyboard in Resources */,
@@ -511,6 +518,8 @@
 				107919C125A484E60024C711 /* FilterCollectionViewCell.swift in Sources */,
 				563B037B25AA106F00DA74C5 /* BubbleTableViewCell.swift in Sources */,
 				105661ED25A5F79300E111B2 /* EmptyTableViewCell.swift in Sources */,
+				1092420F259B452600BBFBFE /* ListViewController.swift in Sources */,
+				1C52BE0525AD655300D02771 /* AlertModalView.swift in Sources */,
 				1CAD05A225A9C98F007ECA40 /* UILabel+Extension.swift in Sources */,
 				1CAD05B125AC3DC4007ECA40 /* DeepSliderView.swift in Sources */,
 				5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */,
