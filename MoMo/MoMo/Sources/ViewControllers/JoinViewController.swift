@@ -53,5 +53,9 @@ class JoinViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         
+        // joinButton rounding
+        joinButton.clipsToBounds = true
+        joinButton.layer.cornerRadius = joinButton.frame.height / 2
+        
     }
 }
