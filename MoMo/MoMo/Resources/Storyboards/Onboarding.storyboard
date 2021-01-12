@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ykz-9x-Zzr">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -17,6 +17,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rIQ-3J-AWL" userLabel="Wave Animation View" customClass="AnimationView" customModule="Lottie">
+                                <rect key="frame" x="0.0" y="217" width="414" height="102"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="onboarding_wave_ios"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tzr-4V-2qZ" userLabel="InfoLabel">
                                 <rect key="frame" x="32" y="110" width="256" height="64"/>
                                 <constraints>
@@ -29,8 +36,8 @@
                                 <color key="textColor" name="Blue2"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ybM-6V-Bhf" userLabel="LottieView">
-                                <rect key="frame" x="0.0" y="217" width="414" height="679"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ybM-6V-Bhf" userLabel="BackGroundView">
+                                <rect key="frame" x="0.0" y="319" width="414" height="577"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00Z-tE-UjX" userLabel="DescriptionLabel">
                                         <rect key="frame" x="40" y="40" width="302.5" height="76.5"/>
@@ -57,7 +64,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQb-7L-Dg6" userLabel="StartButton">
-                                        <rect key="frame" x="103.5" y="532" width="207" height="47"/>
+                                        <rect key="frame" x="103.5" y="430" width="207" height="47"/>
                                         <color key="backgroundColor" name="Blue7"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="pQb-7L-Dg6" secondAttribute="height" multiplier="220:50" id="v9l-zS-lMj"/>
@@ -71,7 +78,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Stl-fv-u4C" userLabel="LoginButton">
-                                        <rect key="frame" x="147.5" y="594" width="119" height="32"/>
+                                        <rect key="frame" x="147.5" y="492" width="119" height="32"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                         <state key="normal" title="이미 계정이 있어요">
                                             <color key="titleColor" name="Blue7"/>
@@ -81,7 +88,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" name="Blue3"/>
+                                <color key="backgroundColor" name="Gradient1"/>
                                 <constraints>
                                     <constraint firstItem="00Z-tE-UjX" firstAttribute="leading" secondItem="ybM-6V-Bhf" secondAttribute="leading" constant="40" id="FgR-68-qkh"/>
                                     <constraint firstItem="Stl-fv-u4C" firstAttribute="top" secondItem="pQb-7L-Dg6" secondAttribute="bottom" constant="15" id="KtT-de-ziT"/>
@@ -96,11 +103,15 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ybM-6V-Bhf" firstAttribute="leading" secondItem="NzE-KR-8tl" secondAttribute="leading" id="47c-6h-bDJ"/>
-                            <constraint firstItem="ybM-6V-Bhf" firstAttribute="top" secondItem="Tzr-4V-2qZ" secondAttribute="bottom" constant="43" id="GFf-9t-9qQ"/>
+                            <constraint firstItem="rIQ-3J-AWL" firstAttribute="top" secondItem="Tzr-4V-2qZ" secondAttribute="bottom" constant="43" id="69g-ga-M0p"/>
+                            <constraint firstItem="NzE-KR-8tl" firstAttribute="trailing" secondItem="rIQ-3J-AWL" secondAttribute="trailing" id="FjL-O1-6NP"/>
+                            <constraint firstItem="ybM-6V-Bhf" firstAttribute="top" secondItem="Tzr-4V-2qZ" secondAttribute="bottom" constant="145" id="GFf-9t-9qQ"/>
                             <constraint firstItem="Tzr-4V-2qZ" firstAttribute="leading" secondItem="NzE-KR-8tl" secondAttribute="leading" constant="32" id="ODp-bM-dGk"/>
+                            <constraint firstItem="rIQ-3J-AWL" firstAttribute="leading" secondItem="NzE-KR-8tl" secondAttribute="leading" id="Rph-RL-Qvb"/>
                             <constraint firstItem="NzE-KR-8tl" firstAttribute="trailing" secondItem="ybM-6V-Bhf" secondAttribute="trailing" id="RxY-38-4Du"/>
                             <constraint firstItem="Tzr-4V-2qZ" firstAttribute="top" secondItem="NzE-KR-8tl" secondAttribute="top" constant="66" id="apW-EV-JqW"/>
                             <constraint firstItem="pQb-7L-Dg6" firstAttribute="width" secondItem="NzE-KR-8tl" secondAttribute="width" multiplier="0.5" id="nda-uT-QYw"/>
+                            <constraint firstItem="rIQ-3J-AWL" firstAttribute="bottom" secondItem="ybM-6V-Bhf" secondAttribute="top" id="vDt-Uo-egP"/>
                             <constraint firstItem="ybM-6V-Bhf" firstAttribute="bottom" secondItem="f3q-cn-bRc" secondAttribute="bottom" id="wa1-bG-r1c"/>
                         </constraints>
                     </view>
@@ -109,6 +120,7 @@
                         <outlet property="descriptionLabel" destination="00Z-tE-UjX" id="rEm-Tq-IM2"/>
                         <outlet property="loginButton" destination="Stl-fv-u4C" id="NEl-L0-2IG"/>
                         <outlet property="startButton" destination="pQb-7L-Dg6" id="XAp-Zm-CL0"/>
+                        <outlet property="waveAnimationView" destination="rIQ-3J-AWL" id="e1a-WT-Kgl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rXN-Hb-OM3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -386,12 +398,21 @@
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vt0-tw-gbG">
+                                                <rect key="frame" x="182.5" y="151" width="16" height="22"/>
+                                                <state key="normal" image="btnIcCalender16"/>
+                                                <connections>
+                                                    <action selector="touchCalendarButton:" destination="Ykz-9x-Zzr" eventType="touchUpInside" id="3yb-VH-RGT"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
+                                            <constraint firstItem="vt0-tw-gbG" firstAttribute="centerY" secondItem="Sp6-o4-go3" secondAttribute="centerY" id="Ctf-iq-pac"/>
                                             <constraint firstItem="hHn-Jh-Hfk" firstAttribute="top" secondItem="lWh-6I-dEs" secondAttribute="top" constant="66" id="Em1-sK-Ci2"/>
                                             <constraint firstItem="awt-ju-kKU" firstAttribute="leading" secondItem="lWh-6I-dEs" secondAttribute="leading" constant="32" id="Kme-af-c1O"/>
                                             <constraint firstAttribute="trailing" secondItem="awt-ju-kKU" secondAttribute="trailing" constant="32" id="NJZ-TY-A88"/>
+                                            <constraint firstItem="vt0-tw-gbG" firstAttribute="leading" secondItem="Sp6-o4-go3" secondAttribute="trailing" constant="6" id="Ofy-Qx-NBR"/>
                                             <constraint firstItem="Sp6-o4-go3" firstAttribute="leading" secondItem="lWh-6I-dEs" secondAttribute="leading" constant="32" id="lvt-gs-DCT"/>
                                             <constraint firstAttribute="bottom" secondItem="awt-ju-kKU" secondAttribute="bottom" constant="109" id="mJV-jp-cM2"/>
                                             <constraint firstItem="Sp6-o4-go3" firstAttribute="top" secondItem="hHn-Jh-Hfk" secondAttribute="bottom" constant="22" id="n4C-vh-le9"/>
@@ -422,6 +443,7 @@
                     <connections>
                         <outlet property="angryButton" destination="7tF-hv-4Go" id="Wob-b1-EIB"/>
                         <outlet property="boredButton" destination="Yca-XF-yfr" id="Ac2-gf-1m7"/>
+                        <outlet property="calendarButton" destination="vt0-tw-gbG" id="9fR-6J-Iam"/>
                         <outlet property="consoleButton" destination="F2J-h9-f0H" id="bzj-XJ-vXd"/>
                         <outlet property="dailyButton" destination="Zlw-AO-650" id="eDT-qK-g5H"/>
                         <outlet property="dateLabel" destination="Sp6-o4-go3" id="6Jh-Cf-xJ3"/>
@@ -972,8 +994,10 @@
     </scenes>
     <designables>
         <designable name="hue-vy-02C"/>
+        <designable name="rIQ-3J-AWL"/>
     </designables>
     <resources>
+        <image name="btnIcCalender16" width="16" height="16"/>
         <image name="icAngry14Black" width="14" height="14"/>
         <image name="icFeatherBlack" width="16.5" height="17.5"/>
         <image name="icFeatherColor" width="16.5" height="17.5"/>
@@ -1015,7 +1039,7 @@
             <color red="0.96100002527236938" green="0.97600001096725464" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Gradient1">
-            <color red="0.44299998879432678" green="0.72899997234344482" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.41999998688697815" green="0.71799999475479126" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
