@@ -33,7 +33,10 @@ struct Constants {
         
         static let homeViewController: String = "HomeViewController"
         static let onboardingViewController: String = "OnboardingViewController"
-        static let onboardingMoodViewController: String = "OnboardingMoodViewController"
+        static let onboardingWriteViewController: String = "OnboardingWriteViewController"
+        static let moodViewController: String = "MoodViewController"
+        static let sentenceViewController: String = "SentenceViewController"
+        static let deepViewController: String = "DeepViewController"
         
         // MARK: - UIView
         
@@ -60,6 +63,22 @@ struct Constants {
             static let homeIcSwipeDown = UIImage(named: "homeIcSwipeDown")
             static let btnIcMyBlue = UIImage(named: "btnIcMyBlue")
             static let btnIcMy = UIImage(named: "btnIcMy")
+            static let icLove14Black = UIImage(named: "icLove14Black")
+            static let icHappy14Black = UIImage(named: "icHappy14Black")
+            static let icConsole14Black = UIImage(named: "icConsole14Black")
+            static let icAngry14Black = UIImage(named: "icAngry14Black")
+            static let icSad14Black = UIImage(named: "icSad14Black")
+            static let icBored14Black = UIImage(named: "icBored14Black")
+            static let icMemory14Black = UIImage(named: "icMemory14Black")
+            static let icDaily14Black = UIImage(named: "icDaily14Black")
+            static let icStep = UIImage(named: "icStep")
+            static let label2m = UIImage(named: "2M")
+            static let label30m = UIImage(named: "30M")
+            static let label100m = UIImage(named: "100M")
+            static let label300m = UIImage(named: "300M")
+            static let label700m = UIImage(named: "700M")
+            static let label1005m = UIImage(named: "1005M")
+            static let labelDeepSea = UIImage(named: "deepSea")
         }
         
         struct Font {
