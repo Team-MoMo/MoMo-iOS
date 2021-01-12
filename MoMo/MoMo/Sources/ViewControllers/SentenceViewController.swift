@@ -42,6 +42,10 @@ class SentenceViewController: UIViewController {
     @IBOutlet weak var thirdPublisherLabel: UILabel!
     @IBOutlet weak var thirdSentenceLabel: UILabel!
     
+    @IBOutlet weak var animateImage: UIImageView!
+    @IBOutlet weak var animateImageTop: NSLayoutConstraint!
+    @IBOutlet weak var animateImageBottom: NSLayoutConstraint!
+    
     // MARK: - Properties
     
     private var buttons: [Button] = []
@@ -58,6 +62,7 @@ class SentenceViewController: UIViewController {
     var firstSentence: Sentence?
     var secondSentence: Sentence?
     var thirdSentence: Sentence?
+    var change: Bool = false
     
     // MARK: - View Life Cycle
     
@@ -88,7 +93,7 @@ class SentenceViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        hideimage()
         self.showButtonsWithAnimation()
     }
     
@@ -193,5 +198,16 @@ class SentenceViewController: UIViewController {
                 }
             }
         )
+    }
+    func hideimage() {
+        if change {
+            animateImage.isHidden = true
+        } else {
+            UIView.animate(withDuration: 1.0, animations: {
+                self.animateImage.transform = CGAffineTransform(translationX: 0, y: 30)
+                
+            })
+    
+        }
     }
 }

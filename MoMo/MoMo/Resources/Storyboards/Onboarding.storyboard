@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mb6-je-E0a">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -462,6 +462,12 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vye-hx-rAi">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="781"/>
                                         <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uploadCircle" translatesAutoresizingMaskIntoConstraints="NO" id="xzK-Ir-zf5">
+                                                <rect key="frame" x="137" y="190" width="277" height="551"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="xzK-Ir-zf5" secondAttribute="height" multiplier="248:493" id="zWc-pf-Mmh"/>
+                                                </constraints>
+                                            </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="감정과 어울리는 문장을 매일 3개씩 소개해드릴게요" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXU-gG-AVz" userLabel="InfoLabel">
                                                 <rect key="frame" x="32" y="66" width="256" height="64"/>
                                                 <constraints>
@@ -707,10 +713,14 @@
                                             <constraint firstItem="a02-xn-NZ2" firstAttribute="leading" secondItem="Vye-hx-rAi" secondAttribute="leading" constant="29" id="7AJ-hd-3C1"/>
                                             <constraint firstItem="kGb-fF-h0A" firstAttribute="leading" secondItem="a02-xn-NZ2" secondAttribute="trailing" constant="12" id="7MF-K9-Gl2"/>
                                             <constraint firstAttribute="bottom" secondItem="7RL-Gy-HJL" secondAttribute="bottom" constant="91" id="8Vm-C5-SxC"/>
+                                            <constraint firstItem="xzK-Ir-zf5" firstAttribute="top" secondItem="a02-xn-NZ2" secondAttribute="bottom" constant="24.5" id="J46-4A-3y6"/>
                                             <constraint firstItem="7RL-Gy-HJL" firstAttribute="leading" secondItem="Vye-hx-rAi" secondAttribute="leading" constant="24" id="JFf-kh-CP3"/>
+                                            <constraint firstAttribute="trailing" secondItem="xzK-Ir-zf5" secondAttribute="trailing" id="MH0-LT-5Zd"/>
                                             <constraint firstItem="a02-xn-NZ2" firstAttribute="top" secondItem="LXU-gG-AVz" secondAttribute="bottom" constant="16" id="NKd-9o-hNh"/>
                                             <constraint firstItem="kGb-fF-h0A" firstAttribute="centerY" secondItem="a02-xn-NZ2" secondAttribute="centerY" id="U7C-PF-aWn"/>
                                             <constraint firstItem="LXU-gG-AVz" firstAttribute="top" secondItem="Vye-hx-rAi" secondAttribute="top" constant="66" id="eCu-bf-1BV"/>
+                                            <constraint firstAttribute="trailing" secondItem="xzK-Ir-zf5" secondAttribute="trailing" id="fK8-r7-BtV"/>
+                                            <constraint firstAttribute="bottom" secondItem="xzK-Ir-zf5" secondAttribute="bottom" constant="40" id="id3-ha-vV9"/>
                                             <constraint firstItem="7RL-Gy-HJL" firstAttribute="top" secondItem="a02-xn-NZ2" secondAttribute="bottom" constant="56" id="nzd-Xx-7yu"/>
                                             <constraint firstItem="LXU-gG-AVz" firstAttribute="leading" secondItem="Vye-hx-rAi" secondAttribute="leading" constant="32" id="pEj-H5-4cN"/>
                                             <constraint firstAttribute="trailing" secondItem="7RL-Gy-HJL" secondAttribute="trailing" constant="24" id="pP6-S7-f42"/>
@@ -740,6 +750,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="animateImage" destination="xzK-Ir-zf5" id="WfU-TS-C7B"/>
+                        <outlet property="animateImageBottom" destination="id3-ha-vV9" id="dQI-xy-24F"/>
+                        <outlet property="animateImageTop" destination="J46-4A-3y6" id="bK6-cU-a1P"/>
                         <outlet property="dateLabel" destination="a02-xn-NZ2" id="d8f-vB-4X5"/>
                         <outlet property="firstAuthorLabel" destination="BhW-6x-Jml" id="e5X-j5-U7a"/>
                         <outlet property="firstBookTitleLabel" destination="6IA-uL-0Kw" id="J9u-4z-FN9"/>
@@ -992,6 +1005,7 @@
         <image name="icFeatherColor" width="16.5" height="17.5"/>
         <image name="onboardingCircleBig" width="393" height="393"/>
         <image name="onboardingCircleSmall" width="141" height="141"/>
+        <image name="uploadCircle" width="254" height="447"/>
         <image name="uploadIcAngry" width="148" height="100"/>
         <image name="uploadIcBored" width="148" height="100"/>
         <image name="uploadIcConsole" width="148" height="100"/>
@@ -1028,7 +1042,7 @@
             <color red="0.96100002527236938" green="0.97600001096725464" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Gradient1">
-            <color red="0.44299998879432678" green="0.72899997234344482" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.41999998688697815" green="0.71799999475479126" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
