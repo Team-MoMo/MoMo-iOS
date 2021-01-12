@@ -63,5 +63,11 @@ class JoinViewController: UIViewController {
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "영문 + 숫자 6자리 이상 입력해 주세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Blue5, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
         
         passwordCheckTextField.attributedPlaceholder = NSAttributedString(string: "비밀번호를 다시 한 번 입력해 주세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Blue5, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
+        
+        // 약관 동의 시 checkbox toggle
+        infoAgreeButton.setImage(Constants.Design.Image.loginCheckboxIntermediate, for: .normal)
+        infoAgreeButton.setImage(Constants.Design.Image.loginCheckbox, for: .selected)
+        serviceAgreeButton.setImage(Constants.Design.Image.loginCheckboxIntermediate, for: .normal)
+        serviceAgreeButton.setImage(Constants.Design.Image.loginCheckbox, for: .selected)
     }
 }
