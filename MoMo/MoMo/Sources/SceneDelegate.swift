@@ -32,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
             navigationController = UINavigationController(rootViewController: homeViewController)
         }
-        
+
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
         
