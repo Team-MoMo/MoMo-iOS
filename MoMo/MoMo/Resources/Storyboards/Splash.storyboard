@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Splash View Controller-->
+        <scene sceneID="FQq-F8-sm7">
+            <objects>
+                <viewController storyboardIdentifier="SplashViewController" id="KkO-jL-AJX" customClass="SplashViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oOU-wb-TVz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pqa-70-CQF" customClass="AnimationView" customModule="Lottie">
+                                <rect key="frame" x="156.5" y="387" width="101" height="132"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="101" id="j4a-b0-PiP"/>
+                                    <constraint firstAttribute="height" constant="132" id="saA-UF-Zhs"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="momo_splash"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="m0h-9c-gGN"/>
+                        <color key="backgroundColor" name="BlutSplash"/>
+                        <constraints>
+                            <constraint firstItem="Pqa-70-CQF" firstAttribute="centerY" secondItem="m0h-9c-gGN" secondAttribute="centerY" id="kFP-g3-BDT"/>
+                            <constraint firstItem="Pqa-70-CQF" firstAttribute="centerX" secondItem="m0h-9c-gGN" secondAttribute="centerX" id="ntE-b8-Rp9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="momoSplashAnimationView" destination="Pqa-70-CQF" id="wkC-hy-kPb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TSF-uh-Zfc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-272" y="202"/>
+        </scene>
+    </scenes>
+    <designables>
+        <designable name="Pqa-70-CQF"/>
+    </designables>
+    <resources>
+        <namedColor name="BlutSplash">
+            <color red="0.28627450980392155" green="0.57647058823529407" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
