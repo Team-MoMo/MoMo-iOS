@@ -10,6 +10,38 @@ import UIKit
 
 struct Constants {
     
+    // MARK: - Name Contants
+    
+    struct Name {
+        
+        // MARK: - Storyboard Name Constants
+        
+        static let homeStoryboard: String = "Home"
+        static let onboardingStoryboard: String = "Onboarding"
+        
+        // MARK: - Nib Name Constants
+        
+        static let homeDayNightViewXib: String = "HomeDayNightView"
+        
+    }
+    
+    // MARK: - Identifier Contants
+    
+    struct Identifier {
+        // MARK: - ViewController
+        
+        static let homeViewController: String = "HomeViewController"
+        static let onboardingViewController: String = "OnboardingViewController"
+        static let onboardingWriteViewController: String = "OnboardingWriteViewController"
+        static let moodViewController: String = "MoodViewController"
+        static let sentenceViewController: String = "SentenceViewController"
+        static let deepViewController: String = "DeepViewController"
+        
+        // MARK: - UIView
+        
+        static let homeDayNightView: String = "HomeDayNightView"
+    }
+    
     // MARK: - Design Constants
     
     struct Design {
@@ -23,6 +55,16 @@ struct Constants {
         
         struct Image {
             /// 예시 : static let IconHome = UIImage(named: "ico_category")
+            static let homeIcSwipeDown = UIImage(named: "homeIcSwipeDown")
+            static let btnIcMyBlue = UIImage(named: "btnIcMyBlue")
+            static let icLove14Black = UIImage(named: "icLove14Black")
+            static let icHappy14Black = UIImage(named: "icHappy14Black")
+            static let icConsole14Black = UIImage(named: "icConsole14Black")
+            static let icAngry14Black = UIImage(named: "icAngry14Black")
+            static let icSad14Black = UIImage(named: "icSad14Black")
+            static let icBored14Black = UIImage(named: "icBored14Black")
+            static let icMemory14Black = UIImage(named: "icMemory14Black")
+            static let icDaily14Black = UIImage(named: "icDaily14Black")
         }
         
         struct Font {
