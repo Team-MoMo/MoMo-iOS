@@ -18,6 +18,12 @@ class EmailLoginViewController: UIViewController {
     @IBOutlet weak var errorMessageTop: NSLayoutConstraint!
     @IBOutlet weak var errorMessageLabel: UILabel!
     @IBOutlet weak var loginButtonTop: NSLayoutConstraint!
+    
+    // MARK: - Properties
+    
+    // 가입하지 않은 회원일 때
+    let isEmailCheckError: Bool = false
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -34,6 +40,16 @@ class EmailLoginViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        // 가입하지 않은 회원 label 분기 처리
+        if isEmailCheckError {
+            errorMessageTop.constant = 76
+            errorMessageLabel.isHidden = false
+            loginButtonTop.constant = 72
+        } else {
+            errorMessageTop.constant = 0
+            errorMessageLabel.isHidden = true
+            loginButtonTop.constant = 0
+        }
     }
     */
 
