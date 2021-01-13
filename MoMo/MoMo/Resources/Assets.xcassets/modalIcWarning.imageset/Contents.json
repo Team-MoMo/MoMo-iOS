@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "btnCloseBlack.png",
+      "filename" : "modalIcWarning.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "btnCloseBlack@2x.png",
+      "filename" : "modalIcWarning@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "btnCloseBlack@3x.png",
+      "filename" : "modalIcWarning@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
@@ -19,8 +19,5 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "template-rendering-intent" : "original"
   }
 }

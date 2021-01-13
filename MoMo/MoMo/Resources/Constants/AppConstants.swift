@@ -147,6 +147,9 @@ struct Constants {
             static let label1005m = UIImage(named: "1005M")
             static let labelDeepSea = UIImage(named: "deepSea")
             
+
+            //button
+          
             static let btnCloseBlack = UIImage(named: "btnCloseBlack")
         }
         
