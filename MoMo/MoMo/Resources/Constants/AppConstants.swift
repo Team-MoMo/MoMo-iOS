@@ -42,6 +42,7 @@ struct Constants {
         static let moodViewController: String = "MoodViewController"
         static let sentenceViewController: String = "SentenceViewController"
         static let deepViewController: String = "DeepViewController"
+        static let ListFilterModalViewController: String = "ListFilterModalViewController"
         static let diaryViewController: String = "DiaryViewController"
         static let joinViewController: String = "JoinViewController"
         static let emailLoginViewController: String = "EmailLoginViewController"

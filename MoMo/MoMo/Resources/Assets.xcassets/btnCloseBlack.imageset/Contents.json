@@ -6,9 +6,9 @@
       "scale" : "1x"
     },
     {
-      "filename" : "btnCloseBlack@2x.png",
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "btnCloseBlack@2x.png"
     },
     {
       "filename" : "btnCloseBlack@3x.png",
@@ -24,3 +24,4 @@
     "template-rendering-intent" : "original"
   }
 }
+
