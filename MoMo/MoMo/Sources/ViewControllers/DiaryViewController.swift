@@ -132,7 +132,14 @@ class DiaryViewController: UIViewController {
         print(weekday)
         return weekdayArray[weekday - 1]
     }
+    
+    // TODO: - 선택한 날짜 서버에 저장
+    func postNewDateWithAPI(newDate: String) {
+        print("\(newDate) 서버에 저장필요")
+    }
 }
+
+// MARK: - MenuDelegate
 
 extension DiaryViewController: MenuDelegate {
     
@@ -171,6 +178,8 @@ extension DiaryViewController: MenuDelegate {
     }
 }
 
+// MARK: - AlertModalDelegate
+
 extension DiaryViewController: AlertModalDelegate {
     
     func leftButtonTouchUp(button: UIButton) {
@@ -182,20 +191,25 @@ extension DiaryViewController: AlertModalDelegate {
     }
 }
 
+// MARK: - UIViewControllerTransitioningDelegate
+
 extension DiaryViewController: UIViewControllerTransitioningDelegate {
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         UploadModalPresentationController(presentedViewController: presented, presenting: presenting)
     }
 }
 
+
+// MARK: - UploadModalViewControllerDelegate
+
 extension DiaryViewController: UploadModalViewControllerDelegate {
     func applyButtonTouchUp(button: UIButton, year: Int, month: Int, day: Int) {
-        print(year)
-        print(month)
-        print(day)
         let date = "\(year). \(month). \(day)"
         let weekDay = self.getWeekDayFromYearMonthDay(today: date)
-        self.dateLabel.text = "\(date). \(weekDay)"
+        let newDate = "\(date). \(weekDay)"
+        
+        self.dateLabel.text = newDate
         self.menuView?.removeFromSuperview()
+        self.postNewDateWithAPI(newDate: newDate)
     }
 }
