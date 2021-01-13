@@ -123,7 +123,6 @@ class DiaryViewController: UIViewController {
         self.authorLabel.text = diaryInfo?.sentence.author
         self.publisherLabel.text = diaryInfo?.sentence.publisher
         self.diaryLabel.text = diaryInfo?.diary
-        self.setBackgroundColorByDepth(depth: diaryInfo?.depth)
     }
     
     func attachMenuView() {
