@@ -68,6 +68,8 @@
 		563B040225AD5F1800DA74C5 /* Join.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 563B040125AD5F1800DA74C5 /* Join.storyboard */; };
 		563B040525AD5F3100DA74C5 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B040425AD5F3100DA74C5 /* JoinViewController.swift */; };
 		563B044525ADB57600DA74C5 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B044425ADB57600DA74C5 /* UIImage+Extension.swift */; };
+		563B048A25AE0BA900DA74C5 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B048925AE0BA900DA74C5 /* GenericResponse.swift */; };
+		563B048D25AE0BD500DA74C5 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B048C25AE0BD500DA74C5 /* NetworkResult.swift */; };
 		5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5687640C2599AD3A009CB486 /* AppDelegate.swift */; };
 		5687640F2599AD3A009CB486 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5687640E2599AD3A009CB486 /* SceneDelegate.swift */; };
 		568764142599AD3A009CB486 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 568764122599AD3A009CB486 /* Main.storyboard */; };
@@ -143,6 +145,8 @@
 		563B040125AD5F1800DA74C5 /* Join.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Join.storyboard; sourceTree = "<group>"; };
 		563B040425AD5F3100DA74C5 /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		563B044425ADB57600DA74C5 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		563B048925AE0BA900DA74C5 /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
+		563B048C25AE0BD500DA74C5 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		568764092599AD3A009CB486 /* MoMo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoMo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5687640C2599AD3A009CB486 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5687640E2599AD3A009CB486 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -202,6 +206,15 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		563B048725AE06F700DA74C5 /* APIServices */ = {
+			isa = PBXGroup;
+			children = (
+				563B048925AE0BA900DA74C5 /* GenericResponse.swift */,
+				563B048C25AE0BD500DA74C5 /* NetworkResult.swift */,
+			);
+			path = APIServices;
+			sourceTree = "<group>";
+		};
 		568764002599AD3A009CB486 = {
 			isa = PBXGroup;
 			children = (
@@ -250,7 +263,7 @@
 			children = (
 				5687640C2599AD3A009CB486 /* AppDelegate.swift */,
 				5687640E2599AD3A009CB486 /* SceneDelegate.swift */,
-				568764272599E339009CB486 /* APIServices */,
+				563B048725AE06F700DA74C5 /* APIServices */,
 				568764282599E33F009CB486 /* Extensions */,
 				563B037425AA0B7F00DA74C5 /* Models */,
 				5687642A2599E350009CB486 /* Protocols */,
@@ -259,13 +272,6 @@
 				5687642E2599E38B009CB486 /* ViewControllers */,
 			);
 			path = Sources;
-			sourceTree = "<group>";
-		};
-		568764272599E339009CB486 /* APIServices */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = APIServices;
 			sourceTree = "<group>";
 		};
 		568764282599E33F009CB486 /* Extensions */ = {
@@ -546,6 +552,7 @@
 				1CAD05BA25AC59C1007ECA40 /* UISlider+Extension.swift in Sources */,
 				1CEF46CB25A6E0B200AF3D81 /* OnboardingWriteViewController.swift in Sources */,
 				563B03E225ACBB1200DA74C5 /* LoginViewController.swift in Sources */,
+				563B048D25AE0BD500DA74C5 /* NetworkResult.swift in Sources */,
 				568764612599FB56009CB486 /* APIConstants.swift in Sources */,
 				10DDA34225AF09A900620C41 /* EmotionCollectionViewCell.swift in Sources */,
 				1CAD05A525AACB36007ECA40 /* DeepViewController.swift in Sources */,
@@ -565,6 +572,7 @@
 				10B6732D25A775DE0046AA97 /* UIView+Extension.swift in Sources */,
 				563B03FE25ACCE0200DA74C5 /* EmailLoginViewController.swift in Sources */,
 				563B044525ADB57600DA74C5 /* UIImage+Extension.swift in Sources */,
+				563B048A25AE0BA900DA74C5 /* GenericResponse.swift in Sources */,
 				563B037625AA0F3500DA74C5 /* BubbleDummyData.swift in Sources */,
 				10DDA33925AF099A00620C41 /* ListFilterModalViewController.swift in Sources */,
 				10B6732025A771700046AA97 /* String+Extension.swift in Sources */,
