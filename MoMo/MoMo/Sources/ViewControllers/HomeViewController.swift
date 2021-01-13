@@ -44,6 +44,7 @@ class HomeViewController: UIViewController {
     let depthLabelFrameHeight: CGFloat = 42
     let depthLabelFontSize: CGFloat = 28
     
+    
     // MARK: - View Life Cycle
     
     // viewDidLoad
@@ -97,6 +98,32 @@ class HomeViewController: UIViewController {
             statusBarHeight = window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
         } else {
             statusBarHeight = UIApplication.shared.statusBarFrame.height
+        }
+        
+        // 통신
+        DiariesService.shared.getDiaries(userId: "2",
+                                         year: "2021",
+                                         month: "12",
+                                         order: nil,
+                                         emotionId: nil,
+                                         depth: nil
+        ) { (networkResult) -> (Void) in
+            switch networkResult {
+            case .success(let data):
+                if let diary = data as? [Diary] {
+                    print("ㅊㅋ")
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
         }
     }
     
