@@ -102,6 +102,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="   이메일 로그인" image="icMomoLogo"/>
+                                        <connections>
+                                            <action selector="emailLoginTouchUp:" destination="hFo-W1-rx6" eventType="touchUpInside" id="jT5-Te-cI6"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>

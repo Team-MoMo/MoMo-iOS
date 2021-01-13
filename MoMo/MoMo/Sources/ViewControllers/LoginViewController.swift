@@ -82,4 +82,12 @@ class LoginViewController: UIViewController {
         backgroundView.addSubview(view)
         backgroundView.sendSubviewToBack(view)
     }
+    
+    // MARK: - @IBAction Properties
+    
+    @IBAction func emailLoginTouchUp(_ sender: Any) {
+        let emailLoginStoryboard = UIStoryboard(name: Constants.Name.emailLoginStoryboard, bundle: nil)
+        let dvc = emailLoginStoryboard.instantiateViewController(identifier: Constants.Identifier.emailLoginViewController)
+        self.navigationController?.pushViewController(dvc, animated: true)
+    }
 }
