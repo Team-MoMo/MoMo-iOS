@@ -194,11 +194,11 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iu0-gp-aKf">
-                    <rect key="frame" x="151.5" y="603" width="46" height="42"/>
+                    <rect key="frame" x="159.5" y="603" width="30" height="42"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="42" id="IZs-Bv-iRJ"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
+                    <state key="normal" title="적용"/>
                     <connections>
                         <action selector="touchApplyButton:" destination="-1" eventType="touchUpInside" id="ZZJ-K2-a2f"/>
                     </connections>
