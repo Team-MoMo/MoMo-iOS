@@ -43,9 +43,6 @@
             <point key="canvasLocation" x="-272" y="202"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="Pqa-70-CQF"/>
-    </designables>
     <resources>
         <namedColor name="BlutSplash">
             <color red="0.28627450980392155" green="0.57647058823529407" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
