@@ -91,18 +91,21 @@ class MoodViewController: UIViewController {
     @IBOutlet weak var dailyButton: UIButton!
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var calendarButton: UIButton!
     
     // MARK: - Properties
     
     private var buttons: [Button] = []
     var date: String?
     let defaultInfo: String = "먼저 오늘의\n감정을 선택해 주세요"
+    //false == upload모드
+    var changeUsage: Bool = false
     
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         self.buttons = [
             Button(button: self.loveButton),
             Button(button: self.happyButton),
@@ -125,6 +128,11 @@ class MoodViewController: UIViewController {
         self.date = self.getCurrentFormattedDate()
         self.dateLabel.text = self.date
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        hideCalendarButton()
+        hideNavigationButton()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -175,6 +183,14 @@ class MoodViewController: UIViewController {
         }
     }
     
+    
+    @IBAction func touchCalendarButton(_ sender: Any) {
+        let modalView = UploadModalViewController()
+        modalView.modalPresentationStyle = .custom
+        modalView.transitioningDelegate = self
+        self.present(modalView, animated: true, completion: nil)
+    }
+    
     @IBAction func loveButtonTouchUp(_ sender: UIButton) {
         pushToOnboardingSentenceViewController(mood: Mood.love)
     }
@@ -207,6 +223,10 @@ class MoodViewController: UIViewController {
         pushToOnboardingSentenceViewController(mood: Mood.daily)
     }
     
+    @objc func touchCloseButton() {
+        print(1)
+    }
+    
     func pushToOnboardingSentenceViewController(mood: Mood) {
         
         guard let sentenceViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.sentenceViewController) as? SentenceViewController else { return }
@@ -216,6 +236,19 @@ class MoodViewController: UIViewController {
         
         self.navigationController?.pushViewController(sentenceViewController, animated: true)
         
+    }
+    
+    func hideNavigationButton() {
+        if !self.changeUsage {
+            let rightButton = UIBarButtonItem(image: Constants.Design.Image.btnCloseBlack, style: .plain, target: self, action: #selector(touchCloseButton))
+            self.navigationItem.rightBarButtonItems = [rightButton]
+        }
+    }
+    
+    func hideCalendarButton() {
+        if self.changeUsage {
+            self.calendarButton.isHidden = true
+        }
     }
     
     func hideButtons() {
@@ -235,4 +268,13 @@ class MoodViewController: UIViewController {
             }
         )
     }
+    
 }
+
+extension MoodViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        UploadModalPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
+
+

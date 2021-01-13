@@ -42,6 +42,10 @@ class SentenceViewController: UIViewController {
     @IBOutlet weak var thirdPublisherLabel: UILabel!
     @IBOutlet weak var thirdSentenceLabel: UILabel!
     
+    @IBOutlet weak var animateImage: UIImageView!
+    @IBOutlet weak var animateImageTop: NSLayoutConstraint!
+    @IBOutlet weak var animateImageBottom: NSLayoutConstraint!
+    
     // MARK: - Properties
     
     private var buttons: [Button] = []
@@ -58,6 +62,9 @@ class SentenceViewController: UIViewController {
     var firstSentence: Sentence?
     var secondSentence: Sentence?
     var thirdSentence: Sentence?
+    
+    // false일 때 upload
+    var changeUsage: Bool = false
     
     // MARK: - View Life Cycle
     
@@ -88,7 +95,8 @@ class SentenceViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        self.hideNavigationButton()
+        self.hideimage()
         self.showButtonsWithAnimation()
     }
     
@@ -193,5 +201,27 @@ class SentenceViewController: UIViewController {
                 }
             }
         )
+    }
+    
+    func hideNavigationButton() {
+            if !self.changeUsage {
+                let rightButton = UIBarButtonItem(image: Constants.Design.Image.btnCloseBlack, style: .plain, target: self, action: #selector(touchCloseButton))
+                self.navigationItem.rightBarButtonItems = [rightButton]
+            }
+        }
+    
+    func hideimage() {
+        if changeUsage {
+            animateImage.isHidden = true
+        } else {
+            UIView.animate(withDuration: 1.0, animations: {
+                self.animateImage.transform = CGAffineTransform(translationX: 0, y: 30)
+            })
+    
+        }
+    }
+    
+    @objc func touchCloseButton() {
+        print(1)
     }
 }
