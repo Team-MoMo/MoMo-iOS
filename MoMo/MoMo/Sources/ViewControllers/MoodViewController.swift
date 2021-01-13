@@ -100,12 +100,16 @@ class MoodViewController: UIViewController {
     let defaultInfo: String = "먼저 오늘의\n감정을 선택해 주세요"
     //false == upload모드
     var changeUsage: Bool = false
-    
+    var modalView: UploadModalViewController? = nil
+
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        self.modalView = UploadModalViewController()
+        self.modalView?.uploadModalDataDelegate = self
+        
         self.buttons = [
             Button(button: self.loveButton),
             Button(button: self.happyButton),
@@ -185,10 +189,9 @@ class MoodViewController: UIViewController {
     
     
     @IBAction func touchCalendarButton(_ sender: Any) {
-        let modalView = UploadModalViewController()
-        modalView.modalPresentationStyle = .custom
-        modalView.transitioningDelegate = self
-        self.present(modalView, animated: true, completion: nil)
+        modalView?.modalPresentationStyle = .custom
+        modalView?.transitioningDelegate = self
+        self.present(modalView!, animated: true, completion: nil)
     }
     
     @IBAction func loveButtonTouchUp(_ sender: UIButton) {
@@ -279,4 +282,8 @@ extension MoodViewController: UIViewControllerTransitioningDelegate {
     }
 }
 
-
+extension MoodViewController: UploadModalPassDataDelegate {
+    func sendData(_ date: String) {
+        self.dateLabel.text = date
+    }
+}
