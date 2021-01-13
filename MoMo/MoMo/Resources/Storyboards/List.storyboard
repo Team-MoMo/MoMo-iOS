@@ -30,14 +30,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TmW-IB-DKo">
-                                <rect key="frame" x="167" y="84" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="touch:" destination="Z0R-FH-3wf" eventType="touchUpInside" id="duS-Q3-Ycs"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Fbq-4F-Xkr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
