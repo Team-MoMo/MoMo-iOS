@@ -22,10 +22,12 @@ class DiaryViewController: UIViewController {
     
     @IBOutlet weak var blurView: UIView!
     
+    let weekdayArray: [String] = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"]
     var currentDepth: Depth?
     var menuView: MenuView?
     var alertModalView: AlertModalView?
     var menuToggleFlag: Bool = false
+    var uploadModalViewController: UploadModalViewController?
     
     lazy var rightButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: UIImage(named: "icSubtab"), style: .done, target: self, action: #selector(buttonPressed(sender:)))
@@ -118,12 +120,32 @@ class DiaryViewController: UIViewController {
         }
     }
     
+    func getWeekDayFromYearMonthDay(today: String) -> String {
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy. MM. dd"
+        dateFormatter.locale = Locale.current
+        guard let todayDate = dateFormatter.date(from: today) else { return ""}
+        let myCalendar = Calendar(identifier: .gregorian)
+        let weekday = myCalendar.component(.weekday, from: todayDate)
+        print(weekday)
+        return weekdayArray[weekday - 1]
+    }
 }
 
 extension DiaryViewController: MenuDelegate {
     
     func dateMenuButtonTouchUp(sender: UIButton) {
-        print("날짜 수정 모달 팝업")
+        self.uploadModalViewController = UploadModalViewController()
+        
+        if let uploadModalViewController = self.uploadModalViewController {
+            uploadModalViewController.modalPresentationStyle = .custom
+            uploadModalViewController.transitioningDelegate = self
+            uploadModalViewController.uploadModalViewControllerDelegate = self
+            self.present(uploadModalViewController, animated: true, completion: nil)
+        }
+        
     }
     
     func depthMenuButtonTouchUp(sender: UIButton) {
@@ -157,5 +179,23 @@ extension DiaryViewController: AlertModalDelegate {
     
     func rightButtonTouchUp(button: UIButton) {
         print("일기삭제")
+    }
+}
+
+extension DiaryViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        UploadModalPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
+
+extension DiaryViewController: UploadModalViewControllerDelegate {
+    func applyButtonTouchUp(button: UIButton, year: Int, month: Int, day: Int) {
+        print(year)
+        print(month)
+        print(day)
+        let date = "\(year). \(month). \(day)"
+        let weekDay = self.getWeekDayFromYearMonthDay(today: date)
+        self.dateLabel.text = "\(date). \(weekDay)"
+        self.menuView?.removeFromSuperview()
     }
 }
