@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mb6-je-E0a">
-
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -946,6 +945,18 @@
                                     <constraint firstAttribute="bottom" secondItem="bMY-nT-BLJ" secondAttribute="bottom" id="oTz-xT-ui5"/>
                                 </constraints>
                             </scrollView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="objectDeepSeaweedBottom" translatesAutoresizingMaskIntoConstraints="NO" id="Ezr-HK-uSU">
+                                <rect key="frame" x="0.0" y="667.5" width="414" height="228.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Ezr-HK-uSU" secondAttribute="height" multiplier="375:207" id="CoJ-5j-KmR"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="objectDeepSeaweedTop" translatesAutoresizingMaskIntoConstraints="NO" id="hup-je-MfH">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="453.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="hup-je-MfH" secondAttribute="height" multiplier="375:411" id="LSB-Ol-kmv"/>
+                                </constraints>
+                            </imageView>
                             <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="poR-7a-CZ5" userLabel="BlurView">
                                 <rect key="frame" x="0.0" y="267" width="414" height="629"/>
                             </view>
@@ -979,18 +990,24 @@
                             <constraint firstItem="sBR-vZ-nwc" firstAttribute="top" secondItem="c2l-Tu-1Pv" secondAttribute="top" constant="69" id="04Z-cD-5x4"/>
                             <constraint firstAttribute="top" secondItem="g8e-nN-vav" secondAttribute="top" id="0gu-Sf-Kvs"/>
                             <constraint firstItem="ZXG-od-vzd" firstAttribute="bottom" secondItem="c2l-Tu-1Pv" secondAttribute="bottom" constant="-12" id="8YA-FW-L0t"/>
+                            <constraint firstItem="hup-je-MfH" firstAttribute="top" secondItem="kuc-O0-FKP" secondAttribute="top" id="93D-k4-Sh4"/>
+                            <constraint firstItem="Ezr-HK-uSU" firstAttribute="trailing" secondItem="c2l-Tu-1Pv" secondAttribute="trailing" id="Blv-5C-xpx"/>
                             <constraint firstItem="sBR-vZ-nwc" firstAttribute="leading" secondItem="kuc-O0-FKP" secondAttribute="leading" constant="32" id="Cua-ib-BwO"/>
                             <constraint firstAttribute="bottom" secondItem="g8e-nN-vav" secondAttribute="bottom" id="HBb-vS-IBt"/>
+                            <constraint firstAttribute="bottom" secondItem="Ezr-HK-uSU" secondAttribute="bottom" id="JAs-Gs-Azq"/>
                             <constraint firstAttribute="bottom" secondItem="poR-7a-CZ5" secondAttribute="bottom" id="MFE-Vo-hWq"/>
                             <constraint firstItem="g8e-nN-vav" firstAttribute="trailing" secondItem="kuc-O0-FKP" secondAttribute="trailing" id="W3C-7f-az7"/>
                             <constraint firstItem="poR-7a-CZ5" firstAttribute="leading" secondItem="kuc-O0-FKP" secondAttribute="leading" id="YXC-iH-FEC"/>
                             <constraint firstItem="bMY-nT-BLJ" firstAttribute="width" secondItem="kuc-O0-FKP" secondAttribute="width" id="YvN-5v-6kf"/>
                             <constraint firstItem="bMY-nT-BLJ" firstAttribute="height" secondItem="kuc-O0-FKP" secondAttribute="height" priority="250" id="dBn-jO-BED"/>
                             <constraint firstAttribute="trailing" secondItem="poR-7a-CZ5" secondAttribute="trailing" id="fZe-1j-9zY"/>
+                            <constraint firstItem="hup-je-MfH" firstAttribute="leading" secondItem="c2l-Tu-1Pv" secondAttribute="leading" id="fgk-xO-ep4"/>
+                            <constraint firstItem="c2l-Tu-1Pv" firstAttribute="trailing" secondItem="hup-je-MfH" secondAttribute="trailing" id="iOQ-UY-fi9"/>
                             <constraint firstItem="ZXG-od-vzd" firstAttribute="width" secondItem="c2l-Tu-1Pv" secondAttribute="width" multiplier="0.5" id="jwh-Kp-9U5"/>
                             <constraint firstItem="g8e-nN-vav" firstAttribute="leading" secondItem="kuc-O0-FKP" secondAttribute="leading" id="kXI-2k-7xf"/>
                             <constraint firstItem="poR-7a-CZ5" firstAttribute="top" secondItem="sBR-vZ-nwc" secondAttribute="bottom" constant="75" id="pS7-Uv-bzn"/>
                             <constraint firstItem="ZXG-od-vzd" firstAttribute="centerX" secondItem="c2l-Tu-1Pv" secondAttribute="centerX" id="rqj-TX-cFT"/>
+                            <constraint firstItem="Ezr-HK-uSU" firstAttribute="leading" secondItem="c2l-Tu-1Pv" secondAttribute="leading" id="wRd-M5-Do0"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1015,6 +1032,8 @@
         <image name="icAngry14Black" width="14" height="14"/>
         <image name="icFeatherBlack" width="16.5" height="17.5"/>
         <image name="icFeatherColor" width="16.5" height="17.5"/>
+        <image name="objectDeepSeaweedBottom" width="375" height="207"/>
+        <image name="objectDeepSeaweedTop" width="375" height="411"/>
         <image name="onboardingCircleBig" width="393" height="393"/>
         <image name="onboardingCircleSmall" width="141" height="141"/>
         <image name="uploadCircle" width="254" height="447"/>
