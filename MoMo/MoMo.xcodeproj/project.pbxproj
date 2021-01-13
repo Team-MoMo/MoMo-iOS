@@ -71,6 +71,7 @@
 		563B048A25AE0BA900DA74C5 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B048925AE0BA900DA74C5 /* GenericResponse.swift */; };
 		563B048D25AE0BD500DA74C5 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B048C25AE0BD500DA74C5 /* NetworkResult.swift */; };
 		563B04EE25AF71BF00DA74C5 /* SignUpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B04ED25AF71BF00DA74C5 /* SignUpService.swift */; };
+		563B04FC25AF742100DA74C5 /* MessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B04FB25AF742100DA74C5 /* MessageResponse.swift */; };
 		563B050025AF765500DA74C5 /* SignUpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B04FF25AF765500DA74C5 /* SignUpData.swift */; };
 		5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5687640C2599AD3A009CB486 /* AppDelegate.swift */; };
 		5687640F2599AD3A009CB486 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5687640E2599AD3A009CB486 /* SceneDelegate.swift */; };
@@ -150,6 +151,7 @@
 		563B048925AE0BA900DA74C5 /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
 		563B048C25AE0BD500DA74C5 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		563B04ED25AF71BF00DA74C5 /* SignUpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpService.swift; sourceTree = "<group>"; };
+		563B04FB25AF742100DA74C5 /* MessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponse.swift; sourceTree = "<group>"; };
 		563B04FF25AF765500DA74C5 /* SignUpData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpData.swift; sourceTree = "<group>"; };
 		568764092599AD3A009CB486 /* MoMo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoMo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5687640C2599AD3A009CB486 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				563B048925AE0BA900DA74C5 /* GenericResponse.swift */,
+				563B04FB25AF742100DA74C5 /* MessageResponse.swift */,
 				563B048C25AE0BD500DA74C5 /* NetworkResult.swift */,
 				563B04F025AF71CD00DA74C5 /* Users */,
 			);
@@ -603,6 +606,7 @@
 				10DDA34625AF09C500620C41 /* ModalPresentationController.swift in Sources */,
 				1C7CD82525ACEB9E00B7CB60 /* MenuView.swift in Sources */,
 				1C7CD80725ACA5EC00B7CB60 /* DiaryViewController.swift in Sources */,
+				563B04FC25AF742100DA74C5 /* MessageResponse.swift in Sources */,
 				5687640F2599AD3A009CB486 /* SceneDelegate.swift in Sources */,
 				1CEF46C525A6E09100AF3D81 /* MoodViewController.swift in Sources */,
 				5687645E2599FB48009CB486 /* AppConstants.swift in Sources */,
