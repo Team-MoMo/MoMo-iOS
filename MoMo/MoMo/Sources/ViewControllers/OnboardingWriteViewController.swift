@@ -40,7 +40,7 @@ class OnboardingWriteViewController: UIViewController {
         Mood.memory: "오래된 기억이 되살아나는 하루였다. ",
         Mood.daily: "평안한 하루가 감사한 날이었다."
     ]
-    var selectedSentence: Sentence?
+    var selectedSentence: MoodSentence?
     var selectedMood: Mood?
     var sentenceWasShown: Bool = false
     let vspaingInfoLabelFeatherImage: CGFloat = 74
