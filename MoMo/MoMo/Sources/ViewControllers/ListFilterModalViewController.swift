@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ModalPassDataDelegate: class {
-    func sendData(num: Int, text: String)
+    func sendData(year: Int, month: Int, filterArray: [String], filteredStatus: Bool )
 }
 
 class ListFilterModalViewController: UIViewController {
@@ -24,8 +24,9 @@ class ListFilterModalViewController: UIViewController {
     var pointOrigin: CGPoint?
     var year: [String] = []
     var month: [String] = []
-    var selectedYear: String = ""
-    var selectedMonth: String = ""
+    var selectedYear: Int = 0
+    var selectedMonth: Int = 0
+    var dateText: String = ""
     
     var modalPassDataDelegate : ModalPassDataDelegate?
     
@@ -49,6 +50,8 @@ class ListFilterModalViewController: UIViewController {
                                           "iosFilterMemorySelected",
                                           "iosFilterDailySelected"
      ]
+    
+    let koreanEmotionArray: [String] = ["사랑","행복","위로", "화남", "슬픔", "우울", "추억", "일상"]
     
     let depthArray: [String] = ["2m", "30m", "100m", "300m", "700m", "1005m", "심해"]
     
@@ -78,6 +81,7 @@ class ListFilterModalViewController: UIViewController {
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var datePickerStackViewLeading: NSLayoutConstraint!
     @IBOutlet weak var datePickerStackViewTrailing: NSLayoutConstraint!
+    @IBOutlet weak var dateLabel: UILabel!
     
     // MARK: - Override
     
@@ -96,6 +100,13 @@ class ListFilterModalViewController: UIViewController {
         setLayer(0)
         self.addData()
         self.datePickerStackView.isHidden = true
+        setPickerInitialSetting()
+        setDate()
+    }
+    
+    private func setPickerInitialSetting() {
+        self.yearPickerView.selectRow(selectedYear - 2020, inComponent: 0, animated: true)
+        self.monthPickerView.selectRow(selectedMonth-1, inComponent: 0, animated: true)
     }
     
     func setLayer(_ ySize: Int) {
@@ -139,6 +150,11 @@ class ListFilterModalViewController: UIViewController {
         depthLabelTop.constant = height * (20/812)
         depthLabelBottom.constant = height * (16/812)
         depthCollectionViewTrailing.constant = width * (21/375)
+    }
+    
+    private func setDate() {
+        dateText = "\(selectedYear)년 \(selectedMonth)월"
+        dateLabel.text = dateText
     }
     
     private func setDelegate() {
@@ -228,7 +244,16 @@ class ListFilterModalViewController: UIViewController {
     
     @IBAction func touchApplyButton(_ sender: Any) {
 //        self.shitDelegate?.sendData(num: 1000, text: "cba")
+        var tempFilterArray: [String] = []
+        if emotion != nil {
+            tempFilterArray.append(koreanEmotionArray[emotion!])
+        }
+        if depth != nil {
+            tempFilterArray.append(depthArray[depth!])
+        }
+        modalPassDataDelegate?.sendData(year: selectedYear, month: selectedMonth, filterArray: tempFilterArray, filteredStatus: true)
         self.presentingViewController?.dismiss(animated: true, completion: nil)
+        
     }
 }
 
@@ -362,11 +387,11 @@ extension ListFilterModalViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == self.yearPickerView {
-            selectedYear = year[row]
-            return
+            selectedYear = Int(year[row])!
+        } else {
+            selectedMonth = Int(month[row])!
         }
-        selectedMonth = month[row]
-        return
+        setDate()
     }
 }
 
