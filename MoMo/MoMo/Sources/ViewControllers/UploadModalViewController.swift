@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol UploadModalViewControllerDelegate: class {
+    func applyButtonTouchUp(button: UIButton, year: Int, month: Int, day: Int)
+}
+
 class UploadModalViewController: UIViewController {
 
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -19,12 +23,15 @@ class UploadModalViewController: UIViewController {
     var year: Int = 0
     var month: Int = 0
     var day: Int = 0
-    
     var yearArray: [String] = [""]
     var monthArray: [String] = [""]
-    var dayArray: [[String]] = [["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"],
-["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"],["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29"]]
+    var dayArray: [[String]] = [
+        (1...31).map {String($0)},
+        (1...30).map {String($0)},
+        (1...29).map {String($0)}
+    ]
     var dayIndex: Int = 0
+    var uploadModalViewControllerDelegate: UploadModalViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +47,6 @@ class UploadModalViewController: UIViewController {
         applyButton.backgroundColor = UIColor.BlueModalAble
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         DispatchQueue.main.async {
@@ -52,6 +58,12 @@ class UploadModalViewController: UIViewController {
 
     @IBAction func touchCloseButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func applyButtonTouchUp(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: {
+            self.uploadModalViewControllerDelegate?.applyButtonTouchUp(button: sender, year: self.year, month: self.month, day: self.day)
+        })
     }
     
     private func setPickerInitialSetting() {
