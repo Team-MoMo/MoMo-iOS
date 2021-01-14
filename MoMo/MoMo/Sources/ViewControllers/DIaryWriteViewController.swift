@@ -68,8 +68,8 @@ class DiaryWriteViewController: UIViewController {
         
         self.alertModalView = AlertModalView.instantiate(
             alertLabelText: "수정한 일기가 저장되지 않습니다.\n정말 뒤로 가시겠어요?",
-            leftButtonTitle: "취소",
-            rightButtonTitle: "확인"
+            leftButtonTitle: NSMutableAttributedString(string: "취소"),
+            rightButtonTitle: NSMutableAttributedString(string: "확인")
         )
         
         self.journalTextView.delegate = self

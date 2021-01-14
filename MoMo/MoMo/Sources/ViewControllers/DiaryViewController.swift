@@ -58,8 +58,8 @@ class DiaryViewController: UIViewController {
         self.menuView = MenuView.instantiate()
         self.alertModalView = AlertModalView.instantiate(
             alertLabelText: "소중한 일기가 삭제됩니다.\n정말 삭제하시겠어요?",
-            leftButtonTitle: "취소",
-            rightButtonTitle: "삭제"
+            leftButtonTitle: NSMutableAttributedString(string: "취소"),
+            rightButtonTitle: NSMutableAttributedString(string: "삭제")
         )
     }
     
