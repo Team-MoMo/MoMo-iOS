@@ -72,7 +72,7 @@ class HomeViewController: UIViewController {
         // 오늘 작성한 일기가 없을 때
         // uploadButton.isHidden = true
         
-        DiariesService.shared.getDiaries(userId: "2",
+        DiariesService.shared.getDiaries(userId: "\(APIConstants.userId)",
                                          year: "2019",
                                          month: "12",
                                          order: "depth",
