@@ -68,10 +68,13 @@ class OnboardingViewController: UIViewController {
     
     @IBAction func startButtonTouchUp(_ sender: UIButton) {
         guard let moodViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.moodViewController) as? MoodViewController else { return }
-        
+        moodViewController.changeUsage = true
         self.navigationController?.pushViewController(moodViewController, animated: true)
     }
     
     @IBAction func loginButtonTouchUp(_ sender: UIButton) {
+        let loginStoryboard = UIStoryboard(name: Constants.Name.loginStoryboard, bundle: nil)
+        let dvc = loginStoryboard.instantiateViewController(identifier: Constants.Identifier.loginViewController)
+        self.navigationController?.pushViewController(dvc, animated: true)
     }
 }

@@ -93,12 +93,15 @@ class SentenceViewController: UIViewController {
         self.getSentenceDataFromAPI(completion: setSentenceLabel)
         
         self.hideButtons()
+        
+        if changeUsage {
+            hideimage()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.hideNavigationButton()
-        self.hideimage()
         self.showButtonsWithAnimation()
     }
     
