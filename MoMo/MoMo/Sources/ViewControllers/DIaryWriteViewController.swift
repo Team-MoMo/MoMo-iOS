@@ -66,12 +66,6 @@ class DiaryWriteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.alertModalView = AlertModalView.instantiate(
-            alertLabelText: "수정한 일기가 저장되지 않습니다.\n정말 뒤로 가시겠어요?",
-            leftButtonTitle: NSMutableAttributedString(string: "취소"),
-            rightButtonTitle: NSMutableAttributedString(string: "확인")
-        )
-        
         self.journalTextView.delegate = self
         
         self.setWordSpace()
@@ -82,9 +76,9 @@ class DiaryWriteViewController: UIViewController {
             self.depthImage.isHidden = false
             self.depthLabel.isHidden = false
         } else {
+            self.emotionImage.image = self.emotionOriginalImage
             self.setPlaceholder()
             self.setNavigationButton()
-            self.setAlertModal()
             self.journalTextView.attributedText = self.placeHolder
             self.depthImage.isHidden = true
             self.depthLabel.isHidden = true
@@ -114,26 +108,6 @@ class DiaryWriteViewController: UIViewController {
         self.journalTextView.text = diaryInfo?.diary
     }
     
-    private func setWordSpace() {
-        self.dateLabel.attributedText = self.date.wordSpacing(-0.6)
-        self.emotionImage.image = UIImage(named: self.emotionImageName)
-        self.emotionLabel.attributedText = self.emotion.wordSpacing(-0.6)
-        self.authorLabel.attributedText = self.author.wordSpacing(-0.6)
-        self.bookLabel.attributedText = "<\(book)>".wordSpacing(-0.6)
-        self.publisherLabel.attributedText = "(\(publisher))".wordSpacing(-0.6)
-        
-        let attributedString = NSMutableAttributedString(string: self.quote)
-    
-    func setAlertModal() {
-        let attributedString = NSMutableAttributedString(string: "확인")
-    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(red: 119/255, green: 119/255, blue: 119/255, alpha: 1.0), range: NSRange(location: 0, length: attributedString.length))
-        self.alertModalView = AlertModalView.instantiate(
-            alertLabelText: "작성한 일기가 저장되지 않습니다.\n정말 뒤로 가시겠어요?",
-            leftButtonTitle: NSMutableAttributedString(string: "취소"),
-            rightButtonTitle: attributedString
-        )
-    }
-    
     func setNavigationButton() {
         self.navigationItem.hidesBackButton = true
 
@@ -160,7 +134,6 @@ class DiaryWriteViewController: UIViewController {
     
     private func setWordSpace() {
         dateLabel.attributedText = date.wordSpacing(-0.6)
-        emotionImage.image = emotionOriginalImage
         emotionLabel.attributedText = emotion.wordSpacing(-0.6)
         authorLabel.attributedText = author.wordSpacing(-0.6)
         bookLabel.attributedText = "<\(book)>".wordSpacing(-0.6)
@@ -262,6 +235,15 @@ class DiaryWriteViewController: UIViewController {
     }
     
     func attachAlertModalView() {
+        let attributedString = NSMutableAttributedString(string: "확인")
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(red: 119/255, green: 119/255, blue: 119/255, alpha: 1.0), range: NSRange(location: 0, length: attributedString.length))
+        
+        self.alertModalView = AlertModalView.instantiate(
+            alertLabelText: "작성한 일기가 저장되지 않습니다.\n정말 뒤로 가시겠어요?",
+            leftButtonTitle: NSMutableAttributedString(string: "취소"),
+            rightButtonTitle: attributedString
+        )
+
         if let alertModalView = self.alertModalView {
             alertModalView.alertModalDelegate = self
             self.view.insertSubview(alertModalView, aboveSubview: self.view)
@@ -311,22 +293,20 @@ extension DiaryWriteViewController: UITextViewDelegate {
 extension DiaryWriteViewController: AlertModalDelegate {
     
     func leftButtonTouchUp(button: UIButton) {
-        self.alertModalView?.removeFromSuperview()
+        if isFromDiary {
+            self.alertModalView?.removeFromSuperview()
+        } else {
+            self.alertModalView?.removeFromSuperview()
+        }
+        
     }
     
     func rightButtonTouchUp(button: UIButton) {
-        self.passDataAndPopViewController()
-    }
-}
-
-extension DiaryWriteViewController: AlertModalDelegate {
-    
-    func leftButtonTouchUp(button: UIButton) {
-        self.alertModalView?.removeFromSuperview()
-    }
-    
-    func rightButtonTouchUp(button: UIButton) {
-        self.alertModalView?.removeFromSuperview()
-        self.navigationController?.popViewController(animated: true)
+        if isFromDiary {
+            self.passDataAndPopViewController()
+        } else {
+            self.alertModalView?.removeFromSuperview()
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }
