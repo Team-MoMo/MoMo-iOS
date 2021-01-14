@@ -24,10 +24,10 @@ class UploadModalViewController: UIViewController {
     var month: Int = 0
     var day: Int = 0
     
+    var yearArray: [String] = []
+    var monthArray: [String] = []
     var uploadModalDataDelegate : UploadModalPassDataDelegate?
-    
-    var yearArray: [String] = [""]
-    var monthArray: [String] = [""]
+ 
     var dayArray: [[String]] = [["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"],
 ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"],["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29"]]
     let weekdayArray = ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"]
@@ -62,8 +62,8 @@ class UploadModalViewController: UIViewController {
     }
     
     private func setPickerInitialSetting() {
-        self.yearPickerView.selectRow(year - 2019, inComponent: 0, animated: true)
-        self.monthPickerView.selectRow(month, inComponent: 0, animated: true)
+        self.yearPickerView.selectRow(year - 2020, inComponent: 0, animated: true)
+        self.monthPickerView.selectRow(month - 1, inComponent: 0, animated: true)
         coordinateDay()
         self.dayPickerView.selectRow(day - 1, inComponent: 0, animated: true)
     }

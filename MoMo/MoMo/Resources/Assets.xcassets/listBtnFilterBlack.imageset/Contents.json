@@ -1,19 +1,19 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "filename" : "listBtnFilterBlack.png",
       "scale" : "1x",
-      "filename" : "btnBackBlack.png"
+      "idiom" : "universal"
     },
     {
-      "filename" : "btnBackBlack@2x.png",
+      "filename" : "listBtnFilterBlack@2x.png",
       "scale" : "2x",
       "idiom" : "universal"
     },
     {
       "scale" : "3x",
       "idiom" : "universal",
-      "filename" : "btnBackBlack@3x.png"
+      "filename" : "listBtnFilterBlack@3x.png"
     }
   ],
   "info" : {
