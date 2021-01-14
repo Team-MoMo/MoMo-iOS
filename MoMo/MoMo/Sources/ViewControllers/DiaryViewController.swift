@@ -52,6 +52,8 @@ class DiaryViewController: UIViewController {
     var uploadModalViewController: UploadModalViewController?
     var diaryInfo: DiaryInfo?
     
+    var diaryId: Int = 0
+    
     lazy var rightButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: UIImage(named: "icSubtab"), style: .done, target: self, action: #selector(buttonPressed(sender:)))
         button.tag = 1
