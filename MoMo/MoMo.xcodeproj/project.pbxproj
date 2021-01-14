@@ -32,6 +32,7 @@
 		10E5CD8025ADF145004FDC24 /* UploadModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10E5CD7E25ADF145004FDC24 /* UploadModalViewController.xib */; };
 		10E5CD8325ADF1D5004FDC24 /* UploadModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E5CD8225ADF1D5004FDC24 /* UploadModalPresentationController.swift */; };
 		10F12B10259B2C4C003CAA9E /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10F12B0F259B2C4C003CAA9E /* List.storyboard */; };
+		10F1F73625B053A900BF7D37 /* CreateDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F1F73525B053A900BF7D37 /* CreateDiary.swift */; };
 		10F1F72D25B04ADD00BF7D37 /* SentencesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F1F72C25B04ADD00BF7D37 /* SentencesService.swift */; };
 		10F8723425AAF2D9009FE6F1 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10F8723225AAF2D9009FE6F1 /* ListTableViewCell.xib */; };
 		10F8723525AAF2D9009FE6F1 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F8723325AAF2D9009FE6F1 /* ListTableViewCell.swift */; };
@@ -123,6 +124,7 @@
 		10E5CD7E25ADF145004FDC24 /* UploadModalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadModalViewController.xib; sourceTree = "<group>"; };
 		10E5CD8225ADF1D5004FDC24 /* UploadModalPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadModalPresentationController.swift; sourceTree = "<group>"; };
 		10F12B0F259B2C4C003CAA9E /* List.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
+		10F1F73525B053A900BF7D37 /* CreateDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiary.swift; sourceTree = "<group>"; };
 		10F1F72C25B04ADD00BF7D37 /* SentencesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentencesService.swift; sourceTree = "<group>"; };
 		10F8723225AAF2D9009FE6F1 /* ListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
 		10F8723325AAF2D9009FE6F1 /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				563B049525AE0E6800DA74C5 /* Diary.swift */,
 				563B049825AE0E8C00DA74C5 /* Emotion.swift */,
 				563B049B25AE0E9B00DA74C5 /* Sentence.swift */,
+				10F1F73525B053A900BF7D37 /* CreateDiary.swift */,
 				5637607525B0519F00651EAA /* PasswordData.swift */,
 			);
 			path = Models;
@@ -626,6 +629,7 @@
 				10DDA34225AF09A900620C41 /* EmotionCollectionViewCell.swift in Sources */,
 				1CAD05A525AACB36007ECA40 /* DeepViewController.swift in Sources */,
 				563B034725A8973100DA74C5 /* HomeViewController.swift in Sources */,
+				10F1F73625B053A900BF7D37 /* CreateDiary.swift in Sources */,
 				107919BC25A484510024C711 /* ListFilterTableViewCell.swift in Sources */,
 				107919C125A484E60024C711 /* FilterCollectionViewCell.swift in Sources */,
 				563B037B25AA106F00DA74C5 /* BubbleTableViewCell.swift in Sources */,
