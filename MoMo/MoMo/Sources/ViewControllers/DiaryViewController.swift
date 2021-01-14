@@ -406,7 +406,7 @@ extension DiaryViewController: DeepViewControllerDelegate {
 
 extension DiaryViewController {
     func getDiaryWithAPI(completion: @escaping (DiaryInfo?) -> Void) {
-        DiariesWithIDService.shared.getDiaryWithDiaryId(diaryId: 2) { (result) in
+        DiariesWithIDService.shared.getDiaryWithDiaryId(diaryId: self.diaryId) { (result) in
             switch(result) {
             case .success(let data):
                 if let diaryData = data as? Diary {
@@ -454,7 +454,7 @@ extension DiaryViewController {
 //        print("wroteAt: \(self.getFormattedDateForServer(date: newDiary.date, by: ". "))")
         
         DiariesWithIDService.shared.putDiaryWithDiaryId(
-            diaryId: 2,
+            diaryId: self.diaryId,
             depth: newDiary.depth.rawValue,
             contents: newDiary.diary,
             userId: APIConstants.userId,
@@ -480,7 +480,7 @@ extension DiaryViewController {
     
     func deleteDiaryWithAPI(completion: @escaping () -> Void) {
         
-        DiariesWithIDService.shared.deleteDiaryWithDiaryId(diaryId: 2) { (result) in
+        DiariesWithIDService.shared.deleteDiaryWithDiaryId(diaryId: self.diaryId) { (result) in
             switch(result) {
             case .success(let data):
                 print("다이어리 삭제성공")
