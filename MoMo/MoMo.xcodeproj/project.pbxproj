@@ -38,6 +38,7 @@
 		1C42357325AE26B9008FB838 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C42357225AE26B9008FB838 /* SplashViewController.swift */; };
 		1C42357625AE26D2008FB838 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C42357525AE26D2008FB838 /* Splash.storyboard */; };
 		1C42358F25AE2E31008FB838 /* momo_splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C42358E25AE2E31008FB838 /* momo_splash.json */; };
+		1C4235EC25B04CD5008FB838 /* DiariesWithIDService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4235EB25B04CD5008FB838 /* DiariesWithIDService.swift */; };
 		1C52BE0525AD655300D02771 /* AlertModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C52BE0425AD655300D02771 /* AlertModalView.swift */; };
 		1C52BE0825AD656700D02771 /* AlertModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C52BE0725AD656700D02771 /* AlertModalView.xib */; };
 		1C52BE0F25AD7A9500D02771 /* onboarding_wave_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C52BE0E25AD7A9500D02771 /* onboarding_wave_ios.json */; };
@@ -126,6 +127,7 @@
 		1C42357225AE26B9008FB838 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		1C42357525AE26D2008FB838 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		1C42358E25AE2E31008FB838 /* momo_splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = momo_splash.json; sourceTree = "<group>"; };
+		1C4235EB25B04CD5008FB838 /* DiariesWithIDService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiariesWithIDService.swift; sourceTree = "<group>"; };
 		1C52BE0425AD655300D02771 /* AlertModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModalView.swift; sourceTree = "<group>"; };
 		1C52BE0725AD656700D02771 /* AlertModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertModalView.xib; sourceTree = "<group>"; };
 		1C52BE0E25AD7A9500D02771 /* onboarding_wave_ios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_wave_ios.json; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				563B049025AE0D9F00DA74C5 /* DiariesService.swift */,
+				1C4235EB25B04CD5008FB838 /* DiariesWithIDService.swift */,
 			);
 			path = Diaries;
 			sourceTree = "<group>";
@@ -611,6 +614,7 @@
 				1CEF46CB25A6E0B200AF3D81 /* OnboardingWriteViewController.swift in Sources */,
 				563B03E225ACBB1200DA74C5 /* LoginViewController.swift in Sources */,
 				563B048D25AE0BD500DA74C5 /* NetworkResult.swift in Sources */,
+				1C4235EC25B04CD5008FB838 /* DiariesWithIDService.swift in Sources */,
 				568764612599FB56009CB486 /* APIConstants.swift in Sources */,
 				563B049625AE0E6800DA74C5 /* Diary.swift in Sources */,
 				10DDA34225AF09A900620C41 /* EmotionCollectionViewCell.swift in Sources */,
