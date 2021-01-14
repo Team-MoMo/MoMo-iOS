@@ -39,12 +39,13 @@ class EmailLoginViewController: UIViewController {
             errorMessageLabel.isHidden = false
             loginButtonTop.isActive = true
             loginButtonTop.constant = 72
-            joinStackViewBottom.isActive = false
-            
+            //joinStackViewBottom.isActive = false
+            joinStackViewBottom.constant = 0
         } else {
             errorMessageTop.constant = 0
             errorMessageLabel.isHidden = true
-            loginButtonTop.isActive = false
+            //loginButtonTop.isActive = false
+            loginButtonTop.constant = 0
             joinStackViewBottom.isActive = true
             joinStackViewBottom.constant = 69
         }
@@ -73,6 +74,11 @@ class EmailLoginViewController: UIViewController {
             switch networkResult {
             case .success(let data):
                 if let signInData = data as? AuthData {
+                    self.errorMessageTop.constant = 0
+                    self.errorMessageLabel.isHidden = true
+                    self.loginButtonTop.isActive = false
+                    self.joinStackViewBottom.isActive = true
+                    self.joinStackViewBottom.constant = 69
                     print("로그인 성공")
                     UserDefaults.standard.setValue(signInData.token, forKey: "token")
                     UserDefaults.standard.setValue(signInData.user.id, forKey: "userId")
@@ -85,6 +91,13 @@ class EmailLoginViewController: UIViewController {
                 print("400")
                 if let message = msg as? String {
                     print(message)
+                    
+                    self.errorMessageTop.constant = 76
+                    self.errorMessageLabel.isHidden = false
+                    self.loginButtonTop.isActive = true
+                    self.loginButtonTop.constant = 72
+                    //joinStackViewBottom.isActive = false
+                    self.joinStackViewBottom.constant = 0
                 }
             case .pathErr:
                 print("pathErr")
