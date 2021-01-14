@@ -23,7 +23,6 @@ struct DiariesService {
                      emotionId: Int?,
                      depth: Int?,
                      completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        
         let url = APIConstants.diariesURL
         let header: HTTPHeaders = [
             "Content-Type": "application/json",
@@ -53,7 +52,6 @@ struct DiariesService {
                                      headers: header)
         
         dataRequest.responseData { (response) in
-            
             switch response.result {
             case .success:
                 guard let statusCode = response.response?.statusCode else {
