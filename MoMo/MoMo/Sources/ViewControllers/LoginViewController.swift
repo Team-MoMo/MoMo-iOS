@@ -52,13 +52,13 @@ class LoginViewController: UIViewController {
     // MARK: - Functions
     // TODO: - gradient color 머지되면 수정
     func createGradientColorSets() {
-        colorSets.append([UIColor.Blue1.cgColor, UIColor.Blue4.cgColor]) // 1단계
-        colorSets.append([UIColor.yellow.cgColor, UIColor.yellow.cgColor]) // 2단계
-        colorSets.append([UIColor.red.cgColor, UIColor.red.cgColor]) // 3단계
-        colorSets.append([UIColor.yellow.cgColor, UIColor.yellow.cgColor]) // 4단계
-        colorSets.append([UIColor.red.cgColor, UIColor.red.cgColor]) // 5단계
-        colorSets.append([UIColor.yellow.cgColor, UIColor.yellow.cgColor]) // 6단계
-        colorSets.append([UIColor.red.cgColor, UIColor.red.cgColor]) // 7단계
+        colorSets.append([UIColor.Gradient1.cgColor, UIColor.Gradient2.cgColor]) // 1단계
+        colorSets.append([UIColor.Gradient2.cgColor, UIColor.Gradient3.cgColor]) // 2단계
+        colorSets.append([UIColor.Gradient3.cgColor, UIColor.Gradient4.cgColor]) // 3단계
+        colorSets.append([UIColor.Gradient4.cgColor, UIColor.Gradient5.cgColor]) // 4단계
+        colorSets.append([UIColor.Gradient5.cgColor, UIColor.Gradient6.cgColor]) // 5단계
+        colorSets.append([UIColor.Gradient6.cgColor, UIColor.Gradient7.cgColor]) // 6단계
+        colorSets.append([UIColor.Gradient7.cgColor, UIColor.Gradient8.cgColor]) // 7단계
     }
     
     func setGradientBackground(depth: Int) {

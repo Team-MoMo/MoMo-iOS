@@ -195,11 +195,21 @@ class DeepViewController: UIViewController {
         }
     }
     
-    func pushToHomeViewController() {
-        let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
-        guard let homeViewController = homeStoryboard.instantiateViewController(identifier: Constants.Identifier.homeViewController) as? HomeViewController else { return }
+    func pushToLoginViewController() {
+        let loginStoryboard = UIStoryboard(name: Constants.Name.loginStoryboard, bundle: nil)
+        guard let loginViewController = loginStoryboard.instantiateViewController(identifier: Constants.Identifier.loginViewController) as? LoginViewController else { return }
+        loginViewController.currentColorSet = Int(round(self.deepSliderValue * 6))
+        self.navigationController?.pushViewController(loginViewController, animated: true)
         
-        self.navigationController?.pushViewController(homeViewController, animated: true)
+    }
+    
+    func pushToDiaryViewController() {
+        let diaryStoryboard = UIStoryboard(name: Constants.Name.diaryStoryboard, bundle: nil)
+        guard let diaryViewController = diaryStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryViewController) as? DiaryViewController else { return }
+        // TODO: - 서버에서 받아오기
+        diaryViewController.diaryId = 2
+        diaryViewController.currentDepth = Depth(rawValue: Int(round(self.deepSliderValue * 6))) ?? Depth.depth2m
+        self.navigationController?.pushViewController(diaryViewController, animated: true)
         
     }
     
@@ -208,10 +218,9 @@ class DeepViewController: UIViewController {
             return
         }
         if text == "시작하기" {
-            self.pushToHomeViewController()
+            self.pushToLoginViewController()
         } else if text == "기록하기" {
-            // TODO: - 나중에 구조체에 담아서 DiaryVC에 넘겨주는 걸로 리팩토링
-            // 정엽이가 diaryId 넘겨주면 됨
+            self.pushToDiaryViewController()
         } else { // text == "수정하기"
             self.deepViewControllerDelegate?.passData(
                 selectedDepth: Depth(rawValue: Int(round(self.deepSliderValue * 6))) ?? Depth.depth2m)

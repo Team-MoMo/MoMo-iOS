@@ -245,7 +245,7 @@ class MoodViewController: UIViewController {
     }
     
     @IBAction func consoleButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: Mood.console,usage: changeUsage)
+        pushToOnboardingSentenceViewController(mood: Mood.console, usage: changeUsage)
     }
     
     @IBAction func angryButtonTouchUp(_ sender: UIButton) {

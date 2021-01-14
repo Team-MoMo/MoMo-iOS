@@ -160,6 +160,14 @@ class HomeViewController: UIViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(false)
+        
+        // navi bar button 만들기
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     // MARK: - Functions
     
     // section 별 frame에 맞게 gradient 입히기
