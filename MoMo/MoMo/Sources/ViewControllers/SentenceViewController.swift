@@ -8,6 +8,7 @@
 import UIKit
 
 struct MoodSentence {
+    var id: Int?
     var author: String
     var bookTitle: String
     var publisher: String
