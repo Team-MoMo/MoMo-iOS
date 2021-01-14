@@ -13,7 +13,7 @@ struct DiariesWithIDService {
     // 싱글톤 객체 생성
     static let shared = DiariesWithIDService()
     
-    func getDiaryWithID (
+    func getDiaryWithId (
         completion: @escaping (NetworkResult<Any>) -> Void
     ) {
         let url = APIConstants.diaryWithIdURL
@@ -41,7 +41,7 @@ struct DiariesWithIDService {
                 guard let data = response.value else {
                     return
                 }
-                completion(judgeGetDiaryData(status: statusCode, data: data))
+                completion(judgeGetDiaryWithIdData(status: statusCode, data: data))
                 
             case .failure(let err): print(err)
                 completion(.networkFail)
@@ -49,9 +49,10 @@ struct DiariesWithIDService {
         }
     }
     
-    func putDiaryWithID (
+    func putDiaryWithId (
         depth: Int,
         contents: String,
+        userId: Int,
         sentenceId: Int,
         emotionId: Int,
         wroteAt: String,
@@ -66,7 +67,7 @@ struct DiariesWithIDService {
         let body: Parameters = [
             "depth": depth,
             "contents": contents,
-            "userId": APIConstants.id,
+            "userId": userId,
             "sentenceId": sentenceId,
             "emotionId": emotionId,
             "wroteAt": wroteAt
@@ -90,7 +91,7 @@ struct DiariesWithIDService {
                 guard let data = response.value else {
                     return
                 }
-                completion(judgePutDiaryData(status: statusCode, data: data))
+                completion(judgePutDiaryWithIdData(status: statusCode, data: data))
                 
             case .failure(let err): print(err)
                 completion(.networkFail)
@@ -98,7 +99,7 @@ struct DiariesWithIDService {
         }
     }
     
-    func deleteDiaryWithID (
+    func deleteDiaryWithId (
         completion: @escaping (NetworkResult<Any>) -> Void
     ) {
         
@@ -127,7 +128,7 @@ struct DiariesWithIDService {
                 guard let data = response.value else {
                     return
                 }
-                completion(judgeDeleteDiaryData(status: statusCode, data: data))
+                completion(judgeDeleteDiaryWithIdData(status: statusCode, data: data))
                 
             case .failure(let err): print(err)
                 completion(.networkFail)
@@ -135,7 +136,7 @@ struct DiariesWithIDService {
         }
     }
     
-    private func judgeGetDiaryData(status: Int, data: Data) -> NetworkResult<Any> {
+    private func judgeGetDiaryWithIdData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<Diary>.self, from: data) else {
             return .pathErr
@@ -153,7 +154,7 @@ struct DiariesWithIDService {
         }
     }
     
-    private func judgePutDiaryData(status: Int, data: Data) -> NetworkResult<Any> {
+    private func judgePutDiaryWithIdData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<Diary>.self, from: data) else {
             return .pathErr
@@ -171,7 +172,7 @@ struct DiariesWithIDService {
         }
     }
     
-    private func judgeDeleteDiaryData(status: Int, data: Data) -> NetworkResult<Any> {
+    private func judgeDeleteDiaryWithIdData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<Diary>.self, from: data) else {
             return .pathErr
