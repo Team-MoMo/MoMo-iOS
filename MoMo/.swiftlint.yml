@@ -8,3 +8,4 @@ excluded:
 - Pods
 - MoMo/Sources/AppDelegate.swift
 - MoMo/Sources/SceneDelegate.swift
+- MoMo/Resources/Constants/APIConstants.swift

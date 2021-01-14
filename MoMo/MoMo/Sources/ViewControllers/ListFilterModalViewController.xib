@@ -12,9 +12,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListFilterModalViewController" customModule="MoMo" customModuleProvider="target">
             <connections>
                 <outlet property="applyButton" destination="iu0-gp-aKf" id="yTf-Rw-uK2"/>
+                <outlet property="dateLabel" destination="0yQ-cc-lwq" id="L0d-Wa-M6C"/>
                 <outlet property="datePickerStackView" destination="X5n-B8-kqT" id="ZlO-Kc-gBa"/>
                 <outlet property="datePickerStackViewLeading" destination="Amq-au-oLe" id="yvf-ai-SkG"/>
-                <outlet property="datePickerStackViewTrailing" destination="qFi-Kw-fh4" id="NT2-Q0-Vjp"/>
                 <outlet property="dateView" destination="95D-Hc-PLk" id="3eV-N2-VKb"/>
                 <outlet property="dateViewTop" destination="Jhs-O9-4Z8" id="48g-D0-RbZ"/>
                 <outlet property="depthCollectionView" destination="vgM-bY-KpF" id="fQd-1R-57x"/>

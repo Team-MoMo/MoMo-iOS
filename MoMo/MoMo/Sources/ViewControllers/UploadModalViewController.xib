@@ -35,14 +35,14 @@
                     <color key="textColor" name="Blue1"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WoL-6R-Lr2">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WoL-6R-Lr2" userLabel="Cancel Button">
                     <rect key="frame" x="348" y="24" width="24" height="24"/>
                     <state key="normal" image="btnCloseBlack"/>
                     <connections>
                         <action selector="touchCloseButton:" destination="-1" eventType="touchUpInside" id="xRP-8U-hdD"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SAD-sT-VrO">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SAD-sT-VrO" userLabel="Apply Button">
                     <rect key="frame" x="96" y="299" width="204" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Tjy-8e-p52"/>
@@ -52,7 +52,7 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
-                        <action selector="touchApplyButton:" destination="-1" eventType="touchUpInside" id="dnT-wX-YID"/>
+                        <action selector="touchApplyButton:" destination="-1" eventType="touchUpInside" id="1vQ-0T-732"/>
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BFb-gB-cjt">
@@ -148,7 +148,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BFb-gB-cjt" secondAttribute="trailing" id="xvp-Hb-IXU"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-133" y="-92"/>
+            <point key="canvasLocation" x="-133.33333333333334" y="-92.075892857142847"/>
         </view>
     </objects>
     <resources>

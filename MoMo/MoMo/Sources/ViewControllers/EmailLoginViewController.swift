@@ -59,4 +59,21 @@ class EmailLoginViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
     }
+    
+    // MARK: - @IBAction Properties
+    @IBAction func touchUpLoginButton(_ sender: Any) {
+        
+    }
+    @IBAction func touchUpJoinButton(_ sender: Any) {
+        let joinStoryboard = UIStoryboard(name: Constants.Name.joinStoryboard, bundle: nil)
+        let dvc = joinStoryboard.instantiateViewController(identifier: Constants.Identifier.joinViewController)
+        self.navigationController?.pushViewController(dvc, animated: true)
+    }
+    @IBAction func touchUpFindPasswordButton(_ sender: Any) {
+        // let findPasswordStoryboard = UIStoryboard(name: Constants.Name.findPasswordStoryboard, bundle: nil)
+        // let dvc = emailLoginStoryboard.instantiateViewController(identifier: Constants.Identifier.emailLoginViewController)
+        // self.navigationController?.pushViewController(dvc, animated: true)
+    }
+    
+    
 }
