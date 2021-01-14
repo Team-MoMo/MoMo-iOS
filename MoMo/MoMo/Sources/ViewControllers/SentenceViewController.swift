@@ -71,6 +71,8 @@ class SentenceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.hidesBackButton = true
+
         self.buttons = [
             Button(button: firstButton, shadowOffset: shadowOffsetButton),
             Button(button: secondButton, shadowOffset: shadowOffsetButton),
@@ -158,20 +160,49 @@ class SentenceViewController: UIViewController {
     }
     
     @IBAction func firstButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingWriteViewController(
-            sentence: self.firstSentence ?? self.defaultSentence
-        )
+        if changeUsage {
+            pushToOnboardingWriteViewController(
+                sentence: self.firstSentence ?? self.defaultSentence
+            )
+        } else {
+            pushToDiaryWriteViewController(self.dateLabel.text ?? "",
+                                           self.moodLabel.text ?? "",
+                                           self.moodIcon.image ?? UIImage(),
+                                           self.firstAuthorLabel.text ?? "",
+                                           self.firstBookTitleLabel.text ?? "",
+                                           self.firstPublisherLabel.text ?? "",
+                                           self.firstSentenceLabel.text ?? "")        }
     }
     
     @IBAction func secondButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingWriteViewController(
-            sentence: self.secondSentence ?? self.defaultSentence
-        )
+        if changeUsage {
+            pushToOnboardingWriteViewController(
+                sentence: self.firstSentence ?? self.defaultSentence
+            )
+        } else {
+            pushToDiaryWriteViewController(self.dateLabel.text ?? "",
+                                           self.moodLabel.text ?? "",
+                                           self.moodIcon.image ?? UIImage(),
+                                           self.secondAuthorLabel.text ?? "",
+                                           self.secondBookTitleLabel.text ?? "",
+                                           self.secondPublisherLabel.text ?? "",
+                                           self.secondSentenceLabel.text ?? "")
+        }
     }
     @IBAction func thirdButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingWriteViewController(
-            sentence: self.thirdSentence ?? self.defaultSentence
-        )
+        if changeUsage {
+            pushToOnboardingWriteViewController(
+                sentence: self.firstSentence ?? self.defaultSentence
+            )
+        } else {
+            pushToDiaryWriteViewController(self.dateLabel.text ?? "",
+                                           self.moodLabel.text ?? "",
+                                           self.moodIcon.image ?? UIImage(),
+                                           self.thirdAuthorLabel.text ?? "",
+                                           self.thirdBookTitleLabel.text ?? "",
+                                           self.thirdPublisherLabel.text ?? "",
+                                           self.thirdSentenceLabel.text ?? "")
+        }
     }
     
     func pushToOnboardingWriteViewController(sentence: Sentence) {
@@ -183,6 +214,27 @@ class SentenceViewController: UIViewController {
         
         self.navigationController?.pushViewController(onboardingWriteViewController, animated: true)
         
+    }
+    
+    func pushToDiaryWriteViewController(_ date: String,
+                                        _ mood: String,
+                                        _ moodImage: UIImage,
+                                        _ author: String,
+                                        _ book: String,
+                                        _ publisher: String,
+                                        _ sentence: String){
+        let writeStorybaord = UIStoryboard(name: Constants.Name.diaryWriteStoryboard, bundle: nil)
+        guard let uploadWriteViewController = writeStorybaord.instantiateViewController(identifier: Constants.Identifier.diaryWriteViewController) as? DiaryWriteViewController else {
+            return
+        }
+        uploadWriteViewController.date = date
+        uploadWriteViewController.emotionOriginalImage = moodImage
+        uploadWriteViewController.emotion = mood
+        uploadWriteViewController.author = author
+        uploadWriteViewController.book = book
+        uploadWriteViewController.publisher = publisher
+        uploadWriteViewController.quote = sentence
+        self.navigationController?.pushViewController(uploadWriteViewController, animated: true)
     }
     
     func hideButtons() {
@@ -207,6 +259,9 @@ class SentenceViewController: UIViewController {
             if !self.changeUsage {
                 let rightButton = UIBarButtonItem(image: Constants.Design.Image.btnCloseBlack, style: .plain, target: self, action: #selector(touchCloseButton))
                 self.navigationItem.rightBarButtonItems = [rightButton]
+                let leftButton = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchBackButton))
+                leftButton.tintColor = .black
+                self.navigationItem.leftBarButtonItems = [leftButton]
             }
         }
     
@@ -222,6 +277,10 @@ class SentenceViewController: UIViewController {
     }
     
     @objc func touchCloseButton() {
-        print(1)
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    @objc func touchBackButton() {
+        self.navigationController?.popViewController(animated: true)
     }
 }

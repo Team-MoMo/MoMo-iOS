@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let splashViewController = splashStoryboard.instantiateViewController(withIdentifier: "SplashViewController")
         self.window?.rootViewController = splashViewController
         self.window?.makeKeyAndVisible()
-        
+
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(3)) {
             if !UserDefaults.standard.bool(forKey: "didLaunch") {
                 UserDefaults.standard.set(true, forKey: "didLaunch")

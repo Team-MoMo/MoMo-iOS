@@ -53,6 +53,7 @@
                     </state>
                     <connections>
                         <action selector="applyButtonTouchUp:" destination="-1" eventType="touchUpInside" id="9vV-zH-hk4"/>
+                        <action selector="touchApplyButton:" destination="-1" eventType="touchUpInside" id="1vQ-0T-732"/>
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BFb-gB-cjt">
@@ -148,7 +149,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BFb-gB-cjt" secondAttribute="trailing" id="xvp-Hb-IXU"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-133" y="-92"/>
+            <point key="canvasLocation" x="-133.33333333333334" y="-92.075892857142847"/>
         </view>
     </objects>
     <resources>
