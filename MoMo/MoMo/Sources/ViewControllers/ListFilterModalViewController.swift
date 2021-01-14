@@ -86,6 +86,7 @@ class ListFilterModalViewController: UIViewController {
     // MARK: - Override
     
     override func viewDidLoad() {
+        print("real")
         super.viewDidLoad()
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerAction))
         view.addGestureRecognizer(panGesture)
@@ -102,6 +103,7 @@ class ListFilterModalViewController: UIViewController {
         self.datePickerStackView.isHidden = true
         setPickerInitialSetting()
         setDate()
+        DiariesService.shared.getDiaries(userId: "2", year: 2020, month: 11, order: <#T##String?#>, emotionId: <#T##String?#>, depth: <#T##String?#>, completion: <#T##(NetworkResult<Any>) -> (Void)#>)
     }
     
     private func setPickerInitialSetting() {
@@ -187,6 +189,14 @@ class ListFilterModalViewController: UIViewController {
         }
     }
     
+    func checkDismissModal() {
+        if verify == true {
+            self.moreButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 100.0)
+            datePickerStackView.isHidden = true
+            verify = false
+        }
+    }
+    
     @objc func panGestureRecognizerAction(sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
         guard translation.y >= 0 else {
@@ -198,6 +208,7 @@ class ListFilterModalViewController: UIViewController {
         if sender.state == .ended {
             let dragVelocity = sender.velocity(in: view)
             if dragVelocity.y >= 1330 {
+                checkDismissModal()
                 self.presentingViewController?.dismiss(animated: true, completion: nil)
             } else {
                 UIView.animate(withDuration: 0.3) {
@@ -239,6 +250,7 @@ class ListFilterModalViewController: UIViewController {
     }
     
     @IBAction func touchCloseButton(_ sender: Any) {
+        checkDismissModal()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -252,6 +264,7 @@ class ListFilterModalViewController: UIViewController {
             tempFilterArray.append(depthArray[depth!])
         }
         modalPassDataDelegate?.sendData(year: selectedYear, month: selectedMonth, filterArray: tempFilterArray, filteredStatus: true)
+        checkDismissModal()
         self.presentingViewController?.dismiss(animated: true, completion: nil)
         
     }

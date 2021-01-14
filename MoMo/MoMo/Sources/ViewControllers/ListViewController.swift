@@ -371,12 +371,22 @@ extension ListViewController: ModalPassDataDelegate {
         self.month = month
         setDate()
         self.filter = filterArray
+        self.pattern = filterArray.count == 0 ? false : true
         if year == standardYear && month == standardMonth && filterArray.count == 0 {
             setNavigationBarButton()
+            let indexPath = IndexPath(row: 0, section: 1)
+            guard let cell = listTableView.cellForRow(at: indexPath) as? ListFilterTableViewCell else {
+                return
+            }
+            cell.filterCollectionView.reloadData()
         } else {
             setNavigationBarButton()
-            self.pattern = filteredStatus
             self.listTableView.reloadData()
+            let indexPath = IndexPath(row: 0, section: 1)
+            guard let cell = listTableView.cellForRow(at: indexPath) as? ListFilterTableViewCell else {
+                return
+            }
+            cell.filterCollectionView.reloadData()
         }
     }
 }
