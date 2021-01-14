@@ -8,7 +8,7 @@
 import UIKit
 
 protocol UploadModalPassDataDelegate: class {
-    func sendData(_ date: String)
+    func passData(_ date: String)
 }
 
 class UploadModalViewController: UIViewController {
@@ -136,7 +136,7 @@ class UploadModalViewController: UIViewController {
         }
         let date = gregorianCalendar.date(from: dateComponents as DateComponents)
         let weekday = gregorianCalendar.component(.weekday, from: date!)
-        self.uploadModalDataDelegate?.sendData("\(year). \(month). \(day). \(weekdayArray[weekday-1])")
+        self.uploadModalDataDelegate?.passData("\(year). \(month). \(day). \(weekdayArray[weekday-1])")
         self.presentingViewController?.dismiss(animated: true, completion: nil)
 
     }

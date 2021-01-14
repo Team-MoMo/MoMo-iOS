@@ -100,9 +100,6 @@
                                     <constraint firstAttribute="width" secondItem="hS3-gL-hIJ" secondAttribute="height" multiplier="1:1" id="Coi-ng-hC7"/>
                                 </constraints>
                                 <state key="normal" image="icArrowRight"/>
-                                <connections>
-                                    <action selector="touchButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gCW-GD-9zn"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fdsafsfsd  dfdsf dsf sda fdf dsfdsfdsfdsf ffd df d" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcB-X1-Nss">
                                 <rect key="frame" x="18" y="18" width="279" height="20"/>
@@ -199,6 +196,7 @@
                 <outlet property="journalLabel1" destination="mcB-X1-Nss" id="zPV-rh-fse"/>
                 <outlet property="journalLabel2" destination="ISp-Vs-3LR" id="BfP-Ab-BFK"/>
                 <outlet property="journalView" destination="Erv-fW-23n" id="8dk-Bh-VEq"/>
+                <outlet property="moreButton" destination="hS3-gL-hIJ" id="A8b-c6-Dsq"/>
                 <outlet property="publisherLabel" destination="XqV-tW-TbB" id="dtj-s2-N56"/>
                 <outlet property="quoteLabel" destination="gXZ-9s-cei" id="vMf-pU-9cY"/>
                 <outlet property="titleLabel" destination="vx6-iG-hvb" id="ZXJ-U6-15g"/>

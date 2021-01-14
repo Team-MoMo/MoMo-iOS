@@ -23,6 +23,7 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var publisherLabel: UILabel!
     @IBOutlet weak var journalLabel1: UILabel!
     @IBOutlet weak var journalLabel2: UILabel!
+    @IBOutlet weak var moreButton: UIButton!
     
     // 재사용할 때
     override func prepareForReuse() {
@@ -95,10 +96,6 @@ class ListTableViewCell: UITableViewCell {
         } else {
             journalLabel1.attributedText = text.wordSpacing(-0.6)
         }
-    }
-    
-    @IBAction func touchButton(_ sender: UIButton) {
-        print(1)
     }
     
     // 일기 라벨에 밑줄 처리

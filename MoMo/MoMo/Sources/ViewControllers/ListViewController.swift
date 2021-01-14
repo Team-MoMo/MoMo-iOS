@@ -250,6 +250,18 @@ class ListViewController: UIViewController {
             setNavigationBarButton()
         }
     }
+    
+    @objc func touchMoreButton(sender: UIButton) {
+        let diaryStoryboard = UIStoryboard(name: Constants.Name.diaryStoryboard, bundle: nil)
+        
+        guard let diaryViewController = diaryStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryViewController) as? DiaryViewController else {
+            return
+        }
+        
+        diaryViewController.diaryId = sender.tag
+        
+        self.navigationController?.pushViewController(diaryViewController, animated: true)
+    }
 }
 
 // MARK: - TableViewDataSource
@@ -295,6 +307,8 @@ extension ListViewController: UITableViewDataSource {
             cell.journalView.round(corners: [.topLeft, .bottomLeft], cornerRadius: 20)
             cell.journaltext(self.dummyData[indexPath.row].journal, self.widthSize)
             cell.setLabelUnderline(self.widthSize, self.secondWidthSize)
+            cell.moreButton.tag = 0
+            cell.moreButton.addTarget(self, action: #selector(touchMoreButton(sender:)), for: .touchUpInside)
             cell.selectionStyle = .none
                 
             return cell

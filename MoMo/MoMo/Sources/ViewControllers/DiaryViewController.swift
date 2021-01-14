@@ -51,6 +51,9 @@ class DiaryViewController: UIViewController {
     var menuToggleFlag: Bool = false
     var uploadModalViewController: UploadModalViewController?
     var diaryInfo: DiaryInfo?
+    var gradientView: UIView?
+    
+    var diaryId: Int = 0
     
     lazy var rightButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: UIImage(named: "icSubtab"), style: .done, target: self, action: #selector(buttonPressed(sender:)))
@@ -63,8 +66,14 @@ class DiaryViewController: UIViewController {
         super.viewDidLoad()
         
         self.seaObjets = [
-            self.fish1: "fish1", self.fish2: "fish2", self.dolphin1: "dolphin1", self.dolphin2: "dolphin2",
-            self.turtle1: "turtle1", self.turtle2: "turtle2", self.stingray1: "stingray1", self.whale1: "whale1",
+            self.fish1: "fish1",
+            self.fish2: "fish2",
+            self.dolphin1: "dolphin1",
+            self.dolphin2: "dolphin2",
+            self.turtle1: "turtle1",
+            self.turtle2: "turtle2",
+            self.stingray1: "stingray1",
+            self.whale1: "whale1",
             self.shark1: "shark1"
         ]
         self.getDiaryFromAPI(completion: updateValues(diaryInfo:))
@@ -76,17 +85,16 @@ class DiaryViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         
-        self.menuView = MenuView.instantiate()
-        self.alertModalView = AlertModalView.instantiate(
-            alertLabelText: "소중한 일기가 삭제됩니다.\n정말 삭제하시겠어요?",
-            leftButtonTitle: NSMutableAttributedString(string: "취소"),
-            rightButtonTitle: NSMutableAttributedString(string: "삭제")
-        )
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.setBackgroundColorByDepth(depth: self.currentDepth)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.setBackgroundColorByDepth(depth: self.currentDepth)
+//        self.setBackgroundColorByDepth(depth: self.currentDepth)
     }
     
     func getDiaryFromAPI(completion: @escaping (DiaryInfo?) -> Void) {
@@ -155,6 +163,7 @@ class DiaryViewController: UIViewController {
     }
     
     func attachMenuView() {
+        self.menuView = MenuView.instantiate()
         if let menuView = self.menuView {
             self.addBlurEffectOnMenuView(view: menuView.menuContainerView)
             menuView.menuDelegate = self
@@ -163,6 +172,11 @@ class DiaryViewController: UIViewController {
     }
     
     func attachAlertModalView() {
+        self.alertModalView = AlertModalView.instantiate(
+            alertLabelText: "소중한 일기가 삭제됩니다.\n정말 삭제하시겠어요?",
+            leftButtonTitle: NSMutableAttributedString(string: "취소"),
+            rightButtonTitle: NSMutableAttributedString(string: "삭제")
+        )
         if let alertModalView = self.alertModalView {
             alertModalView.alertModalDelegate = self
             self.view.insertSubview(alertModalView, aboveSubview: self.view)
@@ -189,12 +203,18 @@ class DiaryViewController: UIViewController {
     }
     
     func setBackgroundColorByDepth(depth: Depth?) {
-        let gradientView = UIView(frame: self.view.frame)
+        let defaultGradientView = UIView(frame: self.view.frame)
+        if self.view.subviews.contains(gradientView ?? defaultGradientView) {
+            self.gradientView?.removeFromSuperview()
+        }
+        
+        gradientView = UIView(frame: self.view.frame)
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
         gradientLayer.colors = depth?.toGradientColor()
-        gradientView.layer.addSublayer(gradientLayer)
-        self.view.insertSubview(gradientView, at: 0)
+        gradientView?.layer.addSublayer(gradientLayer)
+        
+        self.view.insertSubview(gradientView ?? defaultGradientView, at: 0)
     }
     
     func setObjects(keyword: String) {
@@ -249,9 +269,26 @@ class DiaryViewController: UIViewController {
         }
     }
     
-    // TODO: - 선택한 날짜 서버에 저장
-    func postNewDateWithAPI(newDate: String) {
-        print("\(newDate) 서버에 저장필요")
+    // TODO: - 선택한 다이어리 서버에 저장요청
+    func postNewDiaryWithAPI(newDiary: DiaryInfo) {
+        print("서버에 저장필요")
+        
+        // TODO: - 서버에 저장 요청
+        
+        // TODO: - 서버에 저장 끝
+        
+    }
+    
+    // TODO: - 선택한 다이어리 서버에서 삭제요청
+    func postDeleteDiaryWithAPI(completion: @escaping () -> Void) {
+
+        // TODO: - 삭제요청
+        print("일기삭제")
+        
+        // TODO: - 삭제끝
+        DispatchQueue.main.async {
+            completion()
+        }
     }
 }
 
@@ -263,12 +300,16 @@ extension DiaryViewController: MenuDelegate {
         self.uploadModalViewController = UploadModalViewController()
         
         if let uploadModalViewController = self.uploadModalViewController {
+            
             uploadModalViewController.modalPresentationStyle = .custom
+            
             uploadModalViewController.transitioningDelegate = self
             uploadModalViewController.uploadModalDataDelegate = self
+            
             uploadModalViewController.year = self.diaryInfo?.year ?? 0
             uploadModalViewController.month = self.diaryInfo?.month ?? 0
             uploadModalViewController.day = self.diaryInfo?.day ?? 0
+            
             self.present(uploadModalViewController, animated: true, completion: nil)
         }
         
@@ -290,7 +331,9 @@ extension DiaryViewController: MenuDelegate {
         let onboardingStoryboard = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
         guard let deepViewController = onboardingStoryboard.instantiateViewController(identifier: Constants.Identifier.deepViewController) as? DeepViewController else { return }
         
+        deepViewController.deepViewControllerDelegate = self
         deepViewController.initialDepth = self.currentDepth
+        deepViewController.buttonText = "수정하기"
         
         self.navigationController?.pushViewController(deepViewController, animated: true)
         
@@ -321,22 +364,9 @@ extension DiaryViewController: AlertModalDelegate {
     }
     
     func rightButtonTouchUp(button: UIButton) {
-        
         self.postDeleteDiaryWithAPI(completion: {
-            self.alertModalView?.removeFromSuperview()
-            self.menuView?.removeFromSuperview()
+            self.navigationController?.popViewController(animated: true)
         })
-    }
-    
-    func postDeleteDiaryWithAPI(completion: @escaping () -> Void) {
-
-        // TODO: - 삭제요청
-        print("일기삭제")
-        
-        // TODO: - 삭제끝
-        DispatchQueue.main.async {
-            completion()
-        }
     }
 }
 
@@ -351,24 +381,46 @@ extension DiaryViewController: UIViewControllerTransitioningDelegate {
 // MARK: - UploadModalViewControllerDelegate
 
 extension DiaryViewController: UploadModalPassDataDelegate {
-    func sendData(_ date: String) {
-        self.dateLabel.text = date
-        self.menuView?.removeFromSuperview()
-        self.postNewDateWithAPI(newDate: date)
+    func passData(_ date: String) {
+        // TODO: - 리팩토링 필요
         let dateArray = date.components(separatedBy: ". ")
+        self.diaryInfo?.date = date
         self.diaryInfo?.year = Int(dateArray[0])!
         self.diaryInfo?.month = Int(dateArray[1])!
         self.diaryInfo?.day = Int(dateArray[2])!
         self.diaryInfo?.date = date
+        
+        // TODO: - 리팩토링 필요
+        self.menuView?.removeFromSuperview()
+        self.updateValues(diaryInfo: self.diaryInfo)
+        self.postNewDiaryWithAPI(newDiary: self.diaryInfo!)
     }
 }
 
 // MARK: - DiaryWriteViewControllerDelegate
 
 extension DiaryViewController: DiaryWriteViewControllerDelegate {
-    func popDiaryWirteViewController(data: DiaryInfo) {
-        self.updateValues(diaryInfo: data)
+    func popDiaryWirteViewController(diaryInfo: DiaryInfo) {
+        // TODO: - 리팩토링 필요
         self.menuView?.removeFromSuperview()
+        self.updateValues(diaryInfo: diaryInfo)
     }
 
+}
+
+// MARK: - DeepViewControllerDelegate
+
+extension DiaryViewController: DeepViewControllerDelegate {
+    func passData(selectedDepth: Depth) {
+        // TODO: - 리팩토링 필요
+        self.currentDepth = selectedDepth
+        self.diaryInfo?.depth = selectedDepth
+        self.setObjetsByDepth(depth: selectedDepth)
+        self.setBackgroundColorByDepth(depth: selectedDepth)
+        
+        // TODO: - 리팩토링 필요
+        self.menuView?.removeFromSuperview()
+        self.updateValues(diaryInfo: self.diaryInfo)
+        self.postNewDiaryWithAPI(newDiary: self.diaryInfo!)
+    }
 }
