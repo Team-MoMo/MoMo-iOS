@@ -321,10 +321,8 @@ extension DiaryViewController: AlertModalDelegate {
     }
     
     func rightButtonTouchUp(button: UIButton) {
-        
         self.postDeleteDiaryWithAPI(completion: {
-            self.alertModalView?.removeFromSuperview()
-            self.menuView?.removeFromSuperview()
+            self.navigationController?.popViewController(animated: true)
         })
     }
     
