@@ -73,6 +73,9 @@
 		563B047A25ADF63900DA74C5 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B047925ADF63900DA74C5 /* UITextField+Extension.swift */; };
 		563B048A25AE0BA900DA74C5 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B048925AE0BA900DA74C5 /* GenericResponse.swift */; };
 		563B048D25AE0BD500DA74C5 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B048C25AE0BD500DA74C5 /* NetworkResult.swift */; };
+		563B04EE25AF71BF00DA74C5 /* SignUpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B04ED25AF71BF00DA74C5 /* SignUpService.swift */; };
+		563B04FC25AF742100DA74C5 /* MessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B04FB25AF742100DA74C5 /* MessageResponse.swift */; };
+		563B050025AF765500DA74C5 /* SignUpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B04FF25AF765500DA74C5 /* SignUpData.swift */; };
 		563B049125AE0D9F00DA74C5 /* DiariesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B049025AE0D9F00DA74C5 /* DiariesService.swift */; };
 		563B049625AE0E6800DA74C5 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B049525AE0E6800DA74C5 /* Diary.swift */; };
 		563B049925AE0E8C00DA74C5 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B049825AE0E8C00DA74C5 /* Emotion.swift */; };
@@ -157,6 +160,9 @@
 		563B047925ADF63900DA74C5 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		563B048925AE0BA900DA74C5 /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
 		563B048C25AE0BD500DA74C5 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		563B04ED25AF71BF00DA74C5 /* SignUpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpService.swift; sourceTree = "<group>"; };
+		563B04FB25AF742100DA74C5 /* MessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponse.swift; sourceTree = "<group>"; };
+		563B04FF25AF765500DA74C5 /* SignUpData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpData.swift; sourceTree = "<group>"; };
 		563B049025AE0D9F00DA74C5 /* DiariesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiariesService.swift; sourceTree = "<group>"; };
 		563B049525AE0E6800DA74C5 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
 		563B049825AE0E8C00DA74C5 /* Emotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emotion.swift; sourceTree = "<group>"; };
@@ -209,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				563B037525AA0F3500DA74C5 /* BubbleDummyData.swift */,
+				563B04FF25AF765500DA74C5 /* SignUpData.swift */,
 				563B049525AE0E6800DA74C5 /* Diary.swift */,
 				563B049825AE0E8C00DA74C5 /* Emotion.swift */,
 				563B049B25AE0E9B00DA74C5 /* Sentence.swift */,
@@ -227,12 +234,20 @@
 			isa = PBXGroup;
 			children = (
 				563B048925AE0BA900DA74C5 /* GenericResponse.swift */,
+				563B04FB25AF742100DA74C5 /* MessageResponse.swift */,
 				563B048C25AE0BD500DA74C5 /* NetworkResult.swift */,
+				563B04F025AF71CD00DA74C5 /* Users */,
 				563B048F25AE0D7800DA74C5 /* Diaries */,
 			);
 			path = APIServices;
 			sourceTree = "<group>";
 		};
+		563B04F025AF71CD00DA74C5 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				563B04ED25AF71BF00DA74C5 /* SignUpService.swift */,
+			);
+			path = Users;
 		563B048F25AE0D7800DA74C5 /* Diaries */ = {
 			isa = PBXGroup;
 			children = (
@@ -602,6 +617,7 @@
 				10F8723525AAF2D9009FE6F1 /* ListTableViewCell.swift in Sources */,
 				1006505E25AAF3320016B796 /* ListViewController.swift in Sources */,
 				10B6732D25A775DE0046AA97 /* UIView+Extension.swift in Sources */,
+				563B04EE25AF71BF00DA74C5 /* SignUpService.swift in Sources */,
 				563B03FE25ACCE0200DA74C5 /* EmailLoginViewController.swift in Sources */,
 				563B049C25AE0E9B00DA74C5 /* Sentence.swift in Sources */,
 				563B044525ADB57600DA74C5 /* UIImage+Extension.swift in Sources */,
@@ -622,12 +638,14 @@
 				10DDA34625AF09C500620C41 /* ModalPresentationController.swift in Sources */,
 				1C7CD82525ACEB9E00B7CB60 /* MenuView.swift in Sources */,
 				1C7CD80725ACA5EC00B7CB60 /* DiaryViewController.swift in Sources */,
+				563B04FC25AF742100DA74C5 /* MessageResponse.swift in Sources */,
 				563B047A25ADF63900DA74C5 /* UITextField+Extension.swift in Sources */,
 				563B047725ADF47200DA74C5 /* FindPasswordViewController.swift in Sources */,
 				5687640F2599AD3A009CB486 /* SceneDelegate.swift in Sources */,
 				1CEF46C525A6E09100AF3D81 /* MoodViewController.swift in Sources */,
 				5687645E2599FB48009CB486 /* AppConstants.swift in Sources */,
 				10DDA34025AF09A900620C41 /* DepthCollectionViewCell.swift in Sources */,
+				563B050025AF765500DA74C5 /* SignUpData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
