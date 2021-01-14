@@ -7,8 +7,8 @@
 
 import UIKit
 
-enum Mood {
-    case love, happy, console, angry, sad, bored, memory, daily
+enum Mood: Int {
+    case love = 1, happy, console, angry, sad, bored, memory, daily
     
     func toString() -> String {
         switch self {
