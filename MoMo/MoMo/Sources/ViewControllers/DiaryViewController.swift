@@ -14,7 +14,7 @@ struct DiaryInfo {
     var day: Int
     var mood: Mood
     var depth: Depth
-    var sentence: Sentence
+    var sentence: MoodSentence
     var diary: String
 }
 
@@ -99,7 +99,7 @@ class DiaryViewController: UIViewController {
             day: 26,
             mood: Mood.love,
             depth: Depth.depth300m,
-            sentence: Sentence(
+            sentence: MoodSentence(
                 author: "모모",
                 bookTitle: "모모책",
                 publisher: "모모출판사",
