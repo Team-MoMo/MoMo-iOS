@@ -47,6 +47,11 @@ class HomeViewController: UIViewController {
     let depthLabelFrameHeight: CGFloat = 42
     let depthLabelFontSize: CGFloat = 28
     
+    // date
+    var dateArray: [String] = []
+    
+    var objView = UIImageView()
+    
     // MARK: - View Life Cycle
     
     // viewDidLoad
@@ -70,7 +75,7 @@ class HomeViewController: UIViewController {
         homeTopButton.isHidden = true
         
         // 오늘 작성한 일기가 없을 때
-         uploadButton.isHidden = true
+        // uploadButton.isHidden = true
         
         DiariesService.shared.getDiaries(userId: "\(APIConstants.userId)",
                                          year: "2020",
@@ -102,7 +107,7 @@ class HomeViewController: UIViewController {
             self.paintGradientWithFrame()
             self.homeTableView.reloadData()
             
-            // 단계별 objet 배치
+             // 단계별 objet 배치
             self.attachDepth0Objet()
             self.attachDepth1Objet()
             self.attachDepth2Objet()
@@ -110,6 +115,10 @@ class HomeViewController: UIViewController {
             self.attachDepth4Objet()
             self.attachDepth5Objet()
             self.attachDepth6Objet()
+            
+            let pleaseView = UIView(frame: CGRect(x: 0, y: self.sectionFrameArray[0].origin.y, width: UIScreen.main.bounds.width, height: 500))
+            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.touchBubble(_:)))
+            pleaseView.addGestureRecognizer(tapRecognizer)
         }
         
         // 권한 위임
@@ -140,6 +149,9 @@ class HomeViewController: UIViewController {
         } else {
             statusBarHeight = UIApplication.shared.statusBarFrame.height
         }
+        
+        // 오늘 날짜 가져오기
+        getCurrentFormattedDate()
     }
     
     // viewDidAppear
@@ -190,6 +202,8 @@ class HomeViewController: UIViewController {
             
             self.homeTableView.addSubview(view)
             self.homeTableView.sendSubviewToBack(view)
+            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.touchBubble(_:)))
+            view.addGestureRecognizer(tapRecognizer)
         }
     }
     
@@ -293,10 +307,10 @@ class HomeViewController: UIViewController {
         let imgHeight = img.size.height
         let width = UIScreen.main.bounds.width
         let height = (imgHeight * width) / imgWidth
-        let imgView = UIImageView(frame: CGRect(x: frameX, y: frameY, width: UIScreen.main.bounds.width, height: height))
-        imgView.image = img
+        objView = UIImageView(frame: CGRect(x: frameX, y: frameY, width: UIScreen.main.bounds.width, height: height))
+        objView.image = img
         
-        homeTableView.addSubview(imgView)
+        homeTableView.addSubview(objView)
     }
     
     // footer 오브제 배치
@@ -313,6 +327,21 @@ class HomeViewController: UIViewController {
     }
     
     // MARK: objet 붙이기
+    
+    // TODO: - 근데 맨 밑에꺼만 떼짐
+    // 다 떼기
+    func removeAllObjets() {
+        print(self.homeTableView.subviews.contains(objView))
+        while self.homeTableView.subviews.contains(objView) {
+            print(self.homeTableView.subviews.contains(objView))
+            self.objView.removeFromSuperview()
+            print(self.homeTableView.subviews.contains(objView))
+        }
+//        if self.homeTableView.subviews.contains(objView) {
+//            print(objView)
+//            self.objView.removeFromSuperview()
+//        }
+    }
     
     // 0단계 - 2m
     func attachDepth0Objet() {
@@ -469,6 +498,30 @@ class HomeViewController: UIViewController {
         attachBottomObjet(frameX: 0, frameY: sectionFrameBottom - height, img: sea ?? UIImage())
     }
     
+    // MARK: 해찌꺼뽀려옴2
+    func getCurrentFormattedDate() {
+        
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy. MM. dd. EEEE"
+        dateFormatter.locale = Locale.current
+        
+        let formattedDate = dateFormatter.string(from: date)
+        dateArray = formattedDate.components(separatedBy: ". ")
+    }
+    
+    @objc func touchBubble(_ sender: UITapGestureRecognizer) {
+        print("fuck")
+        
+        let diaryStoryboard = UIStoryboard(name: Constants.Name.diaryStoryboard, bundle: nil)
+        guard let dvc = diaryStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryViewController) as? DiaryViewController else {
+            return
+        }
+        //dvc.diaryId = bubbleDepthArray[indexPath.section][indexPath.row].id
+        self.navigationController?.pushViewController(dvc, animated: true)
+    }
+    
     // MARK: - @IBAction Properties
     
     @IBAction func touchUpHomeTopButton(_ sender: Any) {
@@ -489,6 +542,76 @@ class HomeViewController: UIViewController {
         let listStoryboard = UIStoryboard(name: Constants.Name.listStoryboard, bundle: nil)
         let dvc = listStoryboard.instantiateViewController(identifier: Constants.Identifier.listViewController)
         self.navigationController?.pushViewController(dvc, animated: true)
+    }
+    @IBAction func touchUpCalendarButton(_ sender: Any) {
+        let uploadModalViewController = UploadModalViewController()
+        
+        
+        uploadModalViewController.modalPresentationStyle = .custom
+        
+        uploadModalViewController.transitioningDelegate = self
+        uploadModalViewController.uploadModalDataDelegate = self
+        
+        uploadModalViewController.year = Int(dateArray[0]) ?? 0
+        uploadModalViewController.month = Int(dateArray[1]) ?? 0
+        uploadModalViewController.day = Int(dateArray[2]) ?? 0
+        
+        self.present(uploadModalViewController, animated: true, completion: nil)
+        
+    }
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension HomeViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        UploadModalPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
+
+extension HomeViewController: UploadModalPassDataDelegate {
+    func passData(_ date: String) {
+        dateArray = date.components(separatedBy: ". ")
+        DiariesService.shared.getDiaries(userId: "\(APIConstants.userId)",
+                                         year: "\(dateArray[0])",
+                                         month: "\(dateArray[1])",
+                                         order: "depth",
+                                         day: nil,
+                                         emotionId: nil,
+                                         depth: nil
+        ) { (networkResult) -> (Void) in
+            switch networkResult {
+            case .success(let data):
+                if let diary = data as? [Diary] {
+                    self.diaryArray = diary
+                    self.devideArrayByDepth()
+
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+            self.calculateFramesOfSections()
+            self.paintGradientWithFrame()
+            self.homeTableView.reloadData()
+            
+            // 단계별 objet 배치
+            self.removeAllObjets()
+//            self.attachDepth0Objet()
+//            self.attachDepth1Objet()
+//            self.attachDepth2Objet()
+//            self.attachDepth3Objet()
+//            self.attachDepth4Objet()
+//            self.attachDepth5Objet()
+//            self.attachDepth6Objet()
+        }
     }
 }
 
@@ -523,6 +646,9 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = homeTableView.dequeueReusableCell(withIdentifier: Constants.Identifier.bubbleTableViewCell) as? BubbleTableViewCell {
             
+            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(touchBubble(_:)))
+            cell.superview?.addGestureRecognizer(tapRecognizer)
+            
             // table view cell에게 데이터 전달
             let rowArray = bubbleDepthArray[indexPath.section]
             cell.setCell(bubble: rowArray[indexPath.row])
@@ -534,6 +660,16 @@ extension HomeViewController: UITableViewDataSource {
     // 각 cell의 높이
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return rowHeight
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("zz")
+        let diaryStoryboard = UIStoryboard(name: Constants.Name.diaryStoryboard, bundle: nil)
+        guard let dvc = diaryStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryViewController) as? DiaryViewController else {
+            return
+        }
+        dvc.diaryId = bubbleDepthArray[indexPath.section][indexPath.row].id
+        self.navigationController?.pushViewController(dvc, animated: true)
     }
     
 }
@@ -549,8 +685,11 @@ extension HomeViewController: UITableViewDelegate {
         // z Position main thread에서 조정
         DispatchQueue.main.async {
             for index in 0 ..< tableView.visibleCells.count {
-                let zPosition = CGFloat(tableView.visibleCells.count - index)
+                let zPosition = CGFloat(tableView.visibleCells.count + 999)
                 tableView.visibleCells[index].layer.zPosition = zPosition
+                // print(index)
+                let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.touchBubble(_:)))
+                cell.contentView.addGestureRecognizer(tapRecognizer)
             }
         }
     }

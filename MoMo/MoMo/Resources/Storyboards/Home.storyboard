@@ -81,6 +81,9 @@
                                         <rect key="frame" x="0.0" y="40" width="24" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="btnIcCalender"/>
+                                        <connections>
+                                            <action selector="touchUpCalendarButton:" destination="svO-LC-Z4h" eventType="touchUpInside" id="ZHs-w0-JJ9"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>

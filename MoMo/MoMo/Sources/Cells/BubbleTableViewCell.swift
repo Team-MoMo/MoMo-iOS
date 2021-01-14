@@ -31,6 +31,14 @@ class BubbleTableViewCell: UITableViewCell {
         } else {
             bubbleSize.constant = 90
         }
+        
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.touchBubble(_:)))
+        self.bubbleView.addGestureRecognizer(tapRecognizer)
+        self.contentView.addGestureRecognizer(tapRecognizer)
+    }
+    
+    @objc func touchBubble(_ sender: UITapGestureRecognizer) {
+        print("")
     }
     
     // MARK: - Functions
@@ -69,6 +77,9 @@ class BubbleTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(touchBubble(_:)))
+        self.bubbleView.addGestureRecognizer(tapRecognizer)
+        print("zzas")
     }
     
 }
