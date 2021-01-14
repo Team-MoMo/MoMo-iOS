@@ -207,19 +207,7 @@ class DiaryWriteViewController: UIViewController {
     
     func saveDiary() {
         self.diaryInfo?.diary = journalTextView.text
-        self.postDiaryWithAPI {
-            self.navigationItem.rightBarButtonItem = nil
-        }
-    }
-    
-    // MARK: - 서버로 다이어리 저장해야함
-    
-    func postDiaryWithAPI(completion: @escaping () -> Void) {
-        // 저장이 완료되면 실행함
-        DispatchQueue.main.async {
-            print("텍스트 업데이트 완료")
-            completion()
-        }
+        self.navigationItem.rightBarButtonItem = nil
     }
     
     func popDiaryWirteViewController() {
