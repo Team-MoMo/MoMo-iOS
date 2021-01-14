@@ -76,6 +76,16 @@ class ListViewController: UIViewController {
 
     }
     
+    @IBAction func touch(_ sender: Any) {
+        let modalView = ListFilterModalViewController()
+        modalView.width = view.bounds.width
+        modalView.height = view.bounds.height
+        modalView.modalPresentationStyle = .custom
+        modalView.transitioningDelegate = self
+                
+        self.present(modalView, animated: true, completion:nil)
+        
+    }
     // dummyData 설정
     func setData() {
         dummyData.append(contentsOf: [
@@ -272,5 +282,11 @@ extension ListViewController: UICollectionViewDataSource {
         cell.filterTouchAreaView.tag = indexPath.row
         cell.filterTouchAreaView.addGestureRecognizer(tapRecognizer)
         return cell
+    }
+}
+
+extension ListViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        ModalPresentationController(presentedViewController: presented, presenting: presenting)
     }
 }

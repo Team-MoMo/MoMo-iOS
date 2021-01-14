@@ -935,7 +935,6 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMY-nT-BLJ">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                        <color key="backgroundColor" name="Gradient1"/>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -973,7 +972,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="c2l-Tu-1Pv"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="Gradient1"/>
                         <constraints>
                             <constraint firstItem="sBR-vZ-nwc" firstAttribute="top" secondItem="c2l-Tu-1Pv" secondAttribute="top" constant="69" id="04Z-cD-5x4"/>
                             <constraint firstAttribute="top" secondItem="g8e-nN-vav" secondAttribute="top" id="0gu-Sf-Kvs"/>

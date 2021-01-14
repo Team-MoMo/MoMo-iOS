@@ -95,7 +95,7 @@ class DeepViewController: UIViewController {
             
             deepSliderView.snp.makeConstraints { (make) in
                 make.height.equalTo(self.view.frame.size.width * 2)
-                make.width.equalTo(self.view.frame.size.height * 0.6)
+                make.width.equalTo(self.view.frame.size.height * 0.5)
             }
             
             deepSliderView.snp.makeConstraints { (make) in
@@ -105,6 +105,9 @@ class DeepViewController: UIViewController {
             
         }
         self.addGradientOnGradientBackgroundView()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
