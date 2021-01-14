@@ -6,15 +6,18 @@
 //
 
 struct CreateDiary: Codable {
+    let id: Int
     let contents: String
     let depth, userID, sentenceID, emotionID: Int
     let wroteAt: String
-    
+    let position: Int
+    let createdAt, updatedAt: String
+
     enum CodingKeys: String, CodingKey {
-            case contents, depth
-            case userID = "userId"
-            case sentenceID = "sentenceId"
-            case emotionID = "emotionId"
-            case wroteAt
-        }
+        case id, contents, depth
+        case userID = "userId"
+        case sentenceID = "sentenceId"
+        case emotionID = "emotionId"
+        case wroteAt, position, createdAt, updatedAt
+    }
 }

@@ -134,7 +134,7 @@ struct DiariesService {
         }
             
         switch status{
-        case 200:
+        case 201:
             return .success(decodedData.data)
         case 400:
             return .requestErr(decodedData.message)
