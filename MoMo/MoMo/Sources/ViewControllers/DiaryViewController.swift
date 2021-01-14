@@ -9,6 +9,9 @@ import UIKit
 
 struct DiaryInfo {
     var date: String
+    var year: Int
+    var month: Int
+    var day: Int
     var mood: Mood
     var depth: Depth
     var sentence: Sentence
@@ -34,6 +37,7 @@ class DiaryViewController: UIViewController {
     var menuView: MenuView?
     var alertModalView: AlertModalView?
     var menuToggleFlag: Bool = false
+    var uploadModalViewController: UploadModalViewController?
     var diaryInfo: DiaryInfo?
     
     lazy var rightButton: UIBarButtonItem = {
@@ -73,6 +77,9 @@ class DiaryViewController: UIViewController {
         // MARK: - 이전뷰에서 받아오거나 네트워크에서 받아야 할 부분
         let defaultDiaryInfo: DiaryInfo = DiaryInfo(
             date: "2020. 12. 26. 토요일",
+            year: 2020,
+            month: 12,
+            day: 26,
             mood: Mood.love,
             depth: Depth.depth300m,
             sentence: Sentence(
@@ -184,6 +191,10 @@ class DiaryViewController: UIViewController {
         }
     }
     
+    // TODO: - 선택한 날짜 서버에 저장
+    func postNewDateWithAPI(newDate: String) {
+        print("\(newDate) 서버에 저장필요")
+    }
 }
 
 // MARK: - MenuDelegate
@@ -191,7 +202,18 @@ class DiaryViewController: UIViewController {
 extension DiaryViewController: MenuDelegate {
     
     func dateMenuButtonTouchUp(sender: UIButton) {
-        print("날짜 수정 모달 팝업")
+        self.uploadModalViewController = UploadModalViewController()
+        
+        if let uploadModalViewController = self.uploadModalViewController {
+            uploadModalViewController.modalPresentationStyle = .custom
+            uploadModalViewController.transitioningDelegate = self
+            uploadModalViewController.uploadModalDataDelegate = self
+            uploadModalViewController.year = self.diaryInfo?.year ?? 0
+            uploadModalViewController.month = self.diaryInfo?.month ?? 0
+            uploadModalViewController.day = self.diaryInfo?.day ?? 0
+            self.present(uploadModalViewController, animated: true, completion: nil)
+        }
+        
     }
     
     func depthMenuButtonTouchUp(sender: UIButton) {
@@ -260,6 +282,29 @@ extension DiaryViewController: AlertModalDelegate {
     }
 }
 
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension DiaryViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        UploadModalPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
+
+// MARK: - UploadModalViewControllerDelegate
+
+extension DiaryViewController: UploadModalPassDataDelegate {
+    func sendData(_ date: String) {
+        self.dateLabel.text = date
+        self.menuView?.removeFromSuperview()
+        self.postNewDateWithAPI(newDate: date)
+        let dateArray = date.components(separatedBy: ". ")
+        self.diaryInfo?.year = Int(dateArray[0])!
+        self.diaryInfo?.month = Int(dateArray[1])!
+        self.diaryInfo?.day = Int(dateArray[2])!
+        self.diaryInfo?.date = date
+    }
+}
+
 // MARK: - DiaryWriteViewControllerDelegate
 
 extension DiaryViewController: DiaryWriteViewControllerDelegate {
@@ -267,5 +312,5 @@ extension DiaryViewController: DiaryWriteViewControllerDelegate {
         self.updateValues(diaryInfo: data)
         self.menuView?.removeFromSuperview()
     }
-    
+
 }
