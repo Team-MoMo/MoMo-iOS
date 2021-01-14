@@ -62,6 +62,38 @@ class EmailLoginViewController: UIViewController {
     
     // MARK: - @IBAction Properties
     @IBAction func touchUpLoginButton(_ sender: Any) {
+        guard let emailText = emailTextField.text,
+              let passwordText = passwordTextField.text else {
+            return
+        }
+        print(emailText)
+        print(passwordText)
+        
+        SignInService.shared.postSignIn(email: emailText, password: passwordText) { (networkResult) -> (Void) in
+            switch networkResult {
+            case .success(let data):
+                if let signInData = data as? AuthData {
+                    print("로그인 성공")
+                    UserDefaults.standard.setValue(signInData.token, forKey: "token")
+                    UserDefaults.standard.setValue(signInData.user.id, forKey: "userId")
+                    // TODO: 뷰전환
+                    let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
+                    let dvc = homeStoryboard.instantiateViewController(identifier: Constants.Identifier.homeViewController)
+                    self.navigationController?.pushViewController(dvc, animated: true)
+                }
+            case .requestErr(let msg):
+                print("400")
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
         
     }
     @IBAction func touchUpJoinButton(_ sender: Any) {

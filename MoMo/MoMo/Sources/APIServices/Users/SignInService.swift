@@ -12,7 +12,7 @@ struct SignInService {
     
     static let shared = SignInService()
     
-    // MARK: - GET
+    // MARK: - POST
     
     func postSignIn(email: String,
                    password: String,
@@ -29,7 +29,7 @@ struct SignInService {
         let dataRequest = AF.request(url,
                                      method: .post,
                                      parameters: body,
-                                     encoding: URLEncoding.default,
+                                     encoding: JSONEncoding.default,
                                      headers: header)
         dataRequest.responseData { (response) in
             switch response.result {
@@ -53,18 +53,23 @@ struct SignInService {
         guard let decodedData = try? decoder.decode(GenericResponse<AuthData>.self, from: data) else {
             return .pathErr
         }
+        print(decodedData)
         
         switch status {
         case 200:
             // 로그인 성공
-            return .success(decodedData.message)
+            //print(decodedData.data)
+            return .success(decodedData.data)
         case 400:
             // 존재하지 않는 회원
+            print("400")
             return .requestErr(decodedData.message)
         case 500:
             // 서버 내부 에러
+            print("500")
             return .serverErr
         default:
+            print("default")
             return .networkFail
             
         }

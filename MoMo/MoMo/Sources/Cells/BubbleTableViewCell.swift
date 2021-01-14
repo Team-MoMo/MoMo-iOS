@@ -31,14 +31,6 @@ class BubbleTableViewCell: UITableViewCell {
         } else {
             bubbleSize.constant = 90
         }
-        
-        // 오늘 날짜 받아오기
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy년 m월 dd일"
-        let result = formatter.string(from: date)
-        dateLabel.text = result
-        print(result)
     }
     
     // MARK: - Functions
