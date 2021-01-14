@@ -167,6 +167,16 @@ struct Constants {
             static let listBtnFilterBlue = UIImage(named: "listBtnFilterBlue")
             static let listBtnGraph = UIImage(named: "listBtnGraph")
             static let listBtnFilterBlack = UIImage(named: "listBtnFilterBlack")
+            
+            // listView icon
+            static let icLoveBlue = UIImage(named: "icLoveBlue")
+            static let icHappyBlue = UIImage(named: "icHappyBlue")
+            static let icConsoleBlue = UIImage(named: "icConsoleBlue")
+            static let icAngryBlue = UIImage(named: "icAngryBlue")
+            static let icSadBlue = UIImage(named: "icSadBlue")
+            static let icBoredBlue = UIImage(named: "icBoredBlue")
+            static let icMemoryBlue = UIImage(named: "icMemoryBlue")
+            static let icDailyBlue = UIImage(named: "icDailyBlue")
         }
         
         struct Font {
