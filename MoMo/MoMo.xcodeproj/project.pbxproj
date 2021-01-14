@@ -56,6 +56,8 @@
 		1CEF46CB25A6E0B200AF3D81 /* OnboardingWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46CA25A6E0B200AF3D81 /* OnboardingWriteViewController.swift */; };
 		5637606725B04AA800651EAA /* SignUpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5637606625B04AA800651EAA /* SignUpService.swift */; };
 		5637606A25B04ABC00651EAA /* SignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5637606925B04ABC00651EAA /* SignInService.swift */; };
+		5637607325B04F6400651EAA /* PasswordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5637607225B04F6400651EAA /* PasswordService.swift */; };
+		5637607625B0519F00651EAA /* PasswordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5637607525B0519F00651EAA /* PasswordData.swift */; };
 		563B033025A8849300DA74C5 /* HomeDayNightView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 563B032F25A8849300DA74C5 /* HomeDayNightView.xib */; };
 		563B033325A884A200DA74C5 /* HomeDayNightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B033225A884A200DA74C5 /* HomeDayNightView.swift */; };
 		563B034325A8970E00DA74C5 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 563B034225A8970E00DA74C5 /* Home.storyboard */; };
@@ -143,6 +145,8 @@
 		1CEF46CA25A6E0B200AF3D81 /* OnboardingWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWriteViewController.swift; sourceTree = "<group>"; };
 		5637606625B04AA800651EAA /* SignUpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpService.swift; sourceTree = "<group>"; };
 		5637606925B04ABC00651EAA /* SignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInService.swift; sourceTree = "<group>"; };
+		5637607225B04F6400651EAA /* PasswordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordService.swift; sourceTree = "<group>"; };
+		5637607525B0519F00651EAA /* PasswordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordData.swift; sourceTree = "<group>"; };
 		563B032F25A8849300DA74C5 /* HomeDayNightView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDayNightView.xib; sourceTree = "<group>"; };
 		563B033225A884A200DA74C5 /* HomeDayNightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDayNightView.swift; sourceTree = "<group>"; };
 		563B034225A8970E00DA74C5 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 			children = (
 				5637606625B04AA800651EAA /* SignUpService.swift */,
 				5637606925B04ABC00651EAA /* SignInService.swift */,
+				5637607225B04F6400651EAA /* PasswordService.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -228,6 +233,7 @@
 				563B049525AE0E6800DA74C5 /* Diary.swift */,
 				563B049825AE0E8C00DA74C5 /* Emotion.swift */,
 				563B049B25AE0E9B00DA74C5 /* Sentence.swift */,
+				5637607525B0519F00651EAA /* PasswordData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -610,6 +616,7 @@
 				563B037B25AA106F00DA74C5 /* BubbleTableViewCell.swift in Sources */,
 				563B049925AE0E8C00DA74C5 /* Emotion.swift in Sources */,
 				105661ED25A5F79300E111B2 /* EmptyTableViewCell.swift in Sources */,
+				5637607625B0519F00651EAA /* PasswordData.swift in Sources */,
 				1C52BE0525AD655300D02771 /* AlertModalView.swift in Sources */,
 				1CAD05A225A9C98F007ECA40 /* UILabel+Extension.swift in Sources */,
 				1CAD05B125AC3DC4007ECA40 /* DeepSliderView.swift in Sources */,
@@ -618,6 +625,7 @@
 				563B040525AD5F3100DA74C5 /* JoinViewController.swift in Sources */,
 				10F8723525AAF2D9009FE6F1 /* ListTableViewCell.swift in Sources */,
 				1006505E25AAF3320016B796 /* ListViewController.swift in Sources */,
+				5637607325B04F6400651EAA /* PasswordService.swift in Sources */,
 				10B6732D25A775DE0046AA97 /* UIView+Extension.swift in Sources */,
 				563B03FE25ACCE0200DA74C5 /* EmailLoginViewController.swift in Sources */,
 				563B049C25AE0E9B00DA74C5 /* Sentence.swift in Sources */,
