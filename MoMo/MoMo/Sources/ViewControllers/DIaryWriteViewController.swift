@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DiaryWriteViewControllerDelegate: class {
-    func popDiaryWirteViewController(data: DiaryInfo)
+    func popDiaryWirteViewController(diaryInfo: DiaryInfo)
 }
 
 enum NavigationButton: Int {
@@ -229,7 +229,7 @@ class DiaryWriteViewController: UIViewController {
     
     func passDataAndPopViewController() {
         if let diaryInfo = self.diaryInfo {
-            self.diaryWriteViewControllerDelegate?.popDiaryWirteViewController(data: diaryInfo)
+            self.diaryWriteViewControllerDelegate?.popDiaryWirteViewController(diaryInfo: diaryInfo)
         }
         self.navigationController?.popViewController(animated: true)
     }
