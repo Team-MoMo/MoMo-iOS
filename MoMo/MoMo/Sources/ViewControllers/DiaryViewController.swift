@@ -9,6 +9,9 @@ import UIKit
 
 struct DiaryInfo {
     var date: String
+    var year: Int
+    var month: Int
+    var day: Int
     var mood: Mood
     var depth: Depth
     var sentence: Sentence
@@ -29,7 +32,6 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var diaryLabel: UILabel!
     @IBOutlet weak var blurView: UIView!
     
-    let weekdayArray: [String] = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"]
     var diaryWriteViewController: DiaryWriteViewController?
     var currentDepth: Depth?
     var menuView: MenuView?
@@ -75,6 +77,9 @@ class DiaryViewController: UIViewController {
         // MARK: - 이전뷰에서 받아오거나 네트워크에서 받아야 할 부분
         let defaultDiaryInfo: DiaryInfo = DiaryInfo(
             date: "2020. 12. 26. 토요일",
+            year: 2020,
+            month: 12,
+            day: 26,
             mood: Mood.love,
             depth: Depth.depth300m,
             sentence: Sentence(
@@ -186,19 +191,6 @@ class DiaryViewController: UIViewController {
         }
     }
     
-    func getWeekDayFromYearMonthDay(today: String) -> String {
-        
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy. MM. dd"
-        dateFormatter.locale = Locale.current
-        guard let todayDate = dateFormatter.date(from: today) else { return ""}
-        let myCalendar = Calendar(identifier: .gregorian)
-        let weekday = myCalendar.component(.weekday, from: todayDate)
-        print(weekday)
-        return weekdayArray[weekday - 1]
-    }
-    
     // TODO: - 선택한 날짜 서버에 저장
     func postNewDateWithAPI(newDate: String) {
         print("\(newDate) 서버에 저장필요")
@@ -215,7 +207,10 @@ extension DiaryViewController: MenuDelegate {
         if let uploadModalViewController = self.uploadModalViewController {
             uploadModalViewController.modalPresentationStyle = .custom
             uploadModalViewController.transitioningDelegate = self
-            uploadModalViewController.uploadModalViewControllerDelegate = self
+            uploadModalViewController.uploadModalDataDelegate = self
+            uploadModalViewController.year = self.diaryInfo?.year ?? 0
+            uploadModalViewController.month = self.diaryInfo?.month ?? 0
+            uploadModalViewController.day = self.diaryInfo?.day ?? 0
             self.present(uploadModalViewController, animated: true, completion: nil)
         }
         
@@ -287,7 +282,6 @@ extension DiaryViewController: AlertModalDelegate {
     }
 }
 
-
 // MARK: - UIViewControllerTransitioningDelegate
 
 extension DiaryViewController: UIViewControllerTransitioningDelegate {
@@ -296,19 +290,20 @@ extension DiaryViewController: UIViewControllerTransitioningDelegate {
     }
 }
 
-
 // MARK: - UploadModalViewControllerDelegate
 
-extension DiaryViewController: UploadModalViewControllerDelegate {
-    func applyButtonTouchUp(button: UIButton, year: Int, month: Int, day: Int) {
-        let date = "\(year). \(month). \(day)"
-        let weekDay = self.getWeekDayFromYearMonthDay(today: date)
-        let newDate = "\(date). \(weekDay)"
-        
-        self.dateLabel.text = newDate
+extension DiaryViewController: UploadModalPassDataDelegate {
+    func sendData(_ date: String) {
+        self.dateLabel.text = date
         self.menuView?.removeFromSuperview()
-        self.postNewDateWithAPI(newDate: newDate)
+        self.postNewDateWithAPI(newDate: date)
+        let dateArray = date.components(separatedBy: ". ")
+        self.diaryInfo?.year = Int(dateArray[0])!
+        self.diaryInfo?.month = Int(dateArray[1])!
+        self.diaryInfo?.day = Int(dateArray[2])!
+        self.diaryInfo?.date = date
     }
+}
 
 // MARK: - DiaryWriteViewControllerDelegate
 

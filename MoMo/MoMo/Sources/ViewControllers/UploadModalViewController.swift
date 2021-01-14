@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol UploadModalViewControllerDelegate: class {
-    func applyButtonTouchUp(button: UIButton, year: Int, month: Int, day: Int)
-}
-
 protocol UploadModalPassDataDelegate: class {
     func sendData(_ date: String)
 }
@@ -35,10 +31,9 @@ class UploadModalViewController: UIViewController {
         (1...30).map {String($0)},
         (1...29).map {String($0)}
     ]
-    var uploadModalDataDelegate : UploadModalPassDataDelegate?
+    var uploadModalDataDelegate: UploadModalPassDataDelegate?
     let weekdayArray = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"]
     var dayIndex: Int = 0
-    var uploadModalViewControllerDelegate: UploadModalViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +47,7 @@ class UploadModalViewController: UIViewController {
         descriptionLabel.attributedText = "날짜 변경".wordSpacing(-0.6)
         applyButton.layer.cornerRadius = 20
         applyButton.backgroundColor = UIColor.BlueModalAble
+        print(year)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,17 +63,11 @@ class UploadModalViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func applyButtonTouchUp(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: {
-            self.uploadModalViewControllerDelegate?.applyButtonTouchUp(button: sender, year: self.year, month: self.month, day: self.day)
-        })
-    }
-    
     private func setPickerInitialSetting() {
-        self.yearPickerView.selectRow(year - 2020, inComponent: 0, animated: true)
-        self.monthPickerView.selectRow(month - 1, inComponent: 0, animated: true)
+        self.yearPickerView.selectRow(self.year - 2020, inComponent: 0, animated: true)
+        self.monthPickerView.selectRow(self.month - 1, inComponent: 0, animated: true)
         coordinateDay()
-        self.dayPickerView.selectRow(day - 1, inComponent: 0, animated: true)
+        self.dayPickerView.selectRow(self.day - 1, inComponent: 0, animated: true)
     }
     
     private func setData() {
@@ -100,8 +90,8 @@ class UploadModalViewController: UIViewController {
         monthPickerView.dataSource = self
         yearPickerView.dataSource = self
     }
+    
     func calculateToday() {
-            
         let date = Date()
         let dateFormatter = DateFormatter()
             
@@ -146,7 +136,7 @@ class UploadModalViewController: UIViewController {
         }
         let date = gregorianCalendar.date(from: dateComponents as DateComponents)
         let weekday = gregorianCalendar.component(.weekday, from: date!)
-        self.uploadModalDataDelegate?.sendData("\(year). \(month). \(day). \(weekdayArray[weekday])")
+        self.uploadModalDataDelegate?.sendData("\(year). \(month). \(day). \(weekdayArray[weekday-1])")
         self.presentingViewController?.dismiss(animated: true, completion: nil)
 
     }
