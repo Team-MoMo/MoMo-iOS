@@ -20,6 +20,17 @@ struct DiaryInfo {
 
 class DiaryViewController: UIViewController {
     
+    @IBOutlet weak var fish1: UIImageView!
+    @IBOutlet weak var fish2: UIImageView!
+    @IBOutlet weak var dolphin1: UIImageView!
+    @IBOutlet weak var dolphin2: UIImageView!
+    @IBOutlet weak var turtle1: UIImageView!
+    @IBOutlet weak var turtle2: UIImageView!
+    @IBOutlet weak var stingray1: UIImageView!
+    @IBOutlet weak var whale1: UIImageView!
+    @IBOutlet weak var shark1: UIImageView!
+    @IBOutlet weak var diarySeaweed: UIImageView!
+    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var moodImage: UIImageView!
     @IBOutlet weak var moodLabel: UILabel!
@@ -32,6 +43,7 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var diaryLabel: UILabel!
     @IBOutlet weak var blurView: UIView!
     
+    var seaObjets: [UIImageView: String]?
     var diaryWriteViewController: DiaryWriteViewController?
     var currentDepth: Depth?
     var menuView: MenuView?
@@ -50,6 +62,11 @@ class DiaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.seaObjets = [
+            self.fish1: "fish1", self.fish2: "fish2", self.dolphin1: "dolphin1", self.dolphin2: "dolphin2",
+            self.turtle1: "turtle1", self.turtle2: "turtle2", self.stingray1: "stingray1", self.whale1: "whale1",
+            self.shark1: "shark1"
+        ]
         self.getDiaryFromAPI(completion: updateValues(diaryInfo:))
         
         self.addBlurEffectOnBlurView(view: self.blurView)
@@ -132,6 +149,11 @@ class DiaryViewController: UIViewController {
         self.diaryLabel.text = diaryInfo?.diary
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setObjetsByDepth(depth: self.currentDepth ?? Depth.depth2m)
+    }
+    
     func attachMenuView() {
         if let menuView = self.menuView {
             self.addBlurEffectOnMenuView(view: menuView.menuContainerView)
@@ -173,6 +195,42 @@ class DiaryViewController: UIViewController {
         gradientLayer.colors = depth?.toGradientColor()
         gradientView.layer.addSublayer(gradientLayer)
         self.view.insertSubview(gradientView, at: 0)
+    }
+    
+    func setObjects(keyword: String) {
+        let showImages = self.seaObjets?.filter { (image) -> Bool in
+            return image.value.contains(keyword)
+        }
+        let hideImages = self.seaObjets?.filter { (image) -> Bool in
+            return !image.value.contains(keyword)
+        }
+        
+        for image in showImages! {
+            image.key.isHidden = false
+        }
+        
+        for image in hideImages! {
+            image.key.isHidden = true
+        }
+    }
+    
+    func setObjetsByDepth(depth: Depth) {
+        switch depth {
+        case .depth2m:
+            self.setObjects(keyword: "fish")
+        case .depth30m:
+            setObjects(keyword: "dolphin")
+        case .depth100m:
+            setObjects(keyword: "turtle")
+        case .depth300m:
+            setObjects(keyword: "stingray")
+        case .depth700m:
+            setObjects(keyword: "whale")
+        case .depth1005m:
+            setObjects(keyword: "shark")
+        case .depthSimhae:
+            setObjects(keyword: "nothing")
+        }
     }
     
     @objc private func buttonPressed(sender: Any) {
