@@ -24,24 +24,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.makeKeyAndVisible()
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(3)) {
-            let onboardingStoryboard = UIStoryboard(name: Constants.Name.listStoryboard, bundle: nil)
-            let onboardingViewController = onboardingStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.listViewController)
+            if !UserDefaults.standard.bool(forKey: "didLaunch") {
+                UserDefaults.standard.set(true, forKey: "didLaunch")
 
-            self.navigationController = UINavigationController(rootViewController: onboardingViewController)
-//            if !UserDefaults.standard.bool(forKey: "didLaunch") {
-//                UserDefaults.standard.set(true, forKey: "didLaunch")
-//
-//                let onboardingStoryboard = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
-//                let onboardingViewController = onboardingStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.onboardingViewController)
-//
-//                self.navigationController = UINavigationController(rootViewController: onboardingViewController)
-//            }
-//            else {
-//                let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
-//                let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.homeViewController)
-//
-//                self.navigationController = UINavigationController(rootViewController: homeViewController)
-//            }
+                let onboardingStoryboard = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
+                let onboardingViewController = onboardingStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.onboardingViewController)
+
+                self.navigationController = UINavigationController(rootViewController: onboardingViewController)
+            }
+            else {
+                let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
+                let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.homeViewController)
+
+                self.navigationController = UINavigationController(rootViewController: homeViewController)
+            }
             self.window?.rootViewController = self.navigationController
             self.window?.makeKeyAndVisible()
         }
