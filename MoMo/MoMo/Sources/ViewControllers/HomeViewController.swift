@@ -70,47 +70,47 @@ class HomeViewController: UIViewController {
         homeTopButton.isHidden = true
         
         // 오늘 작성한 일기가 없을 때
-        // uploadButton.isHidden = true
+         uploadButton.isHidden = true
         
-//        DiariesService.shared.getDiaries(userId: "2",
-//                                         year: "2019",
-//                                         month: "12",
-//                                         order: "depth",
-//                                         day: nil,
-//                                         emotionId: nil,
-//                                         depth: nil
-//        ) { (networkResult) -> (Void) in
-//            switch networkResult {
-//            case .success(let data):
-//                if let diary = data as? [Diary] {
-//                    self.diaryArray = diary
-//                    self.devideArrayByDepth()
-//
-//                }
-//            case .requestErr(let msg):
-//                if let message = msg as? String {
-//                    print(message)
-//                }
-//            case .pathErr:
-//                print("pathErr")
-//            case .serverErr:
-//                print("serverErr")
-//            case .networkFail:
-//                print("networkFail")
-//            }
-//            self.calculateFramesOfSections()
-//            self.paintGradientWithFrame()
-//            self.homeTableView.reloadData()
-//            
-//            // 단계별 objet 배치
-//            self.attachDepth0Objet()
-//            self.attachDepth1Objet()
-//            self.attachDepth2Objet()
-//            self.attachDepth3Objet()
-//            self.attachDepth4Objet()
-//            self.attachDepth5Objet()
-//            self.attachDepth6Objet()
-//        }
+        DiariesService.shared.getDiaries(userId: "2",
+                                         year: "2019",
+                                         month: "12",
+                                         order: "depth",
+                                         day: nil,
+                                         emotionId: nil,
+                                         depth: nil
+        ) { (networkResult) -> (Void) in
+            switch networkResult {
+            case .success(let data):
+                if let diary = data as? [Diary] {
+                    self.diaryArray = diary
+                    self.devideArrayByDepth()
+
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+            self.calculateFramesOfSections()
+            self.paintGradientWithFrame()
+            self.homeTableView.reloadData()
+            
+            // 단계별 objet 배치
+            self.attachDepth0Objet()
+            self.attachDepth1Objet()
+            self.attachDepth2Objet()
+            self.attachDepth3Objet()
+            self.attachDepth4Objet()
+            self.attachDepth5Objet()
+            self.attachDepth6Objet()
+        }
         
         // 권한 위임
         homeTableView.dataSource = self
