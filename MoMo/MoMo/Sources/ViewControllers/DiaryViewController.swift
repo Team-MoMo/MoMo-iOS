@@ -7,6 +7,17 @@
 
 import UIKit
 
+struct DiaryInfo {
+    var date: String
+    var year: Int
+    var month: Int
+    var day: Int
+    var mood: Mood
+    var depth: Depth
+    var sentence: Sentence
+    var diary: String
+}
+
 class DiaryViewController: UIViewController {
     
     @IBOutlet weak var fish1: UIImageView!
@@ -30,18 +41,20 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var publisherLabel: UILabel!
     @IBOutlet weak var diaryLabel: UILabel!
-    
     @IBOutlet weak var blurView: UIView!
     
     var seaObjets: [UIImageView: String]?
+    var diaryWriteViewController: DiaryWriteViewController?
     var currentDepth: Depth?
     var menuView: MenuView?
     var alertModalView: AlertModalView?
     var menuToggleFlag: Bool = false
+    var uploadModalViewController: UploadModalViewController?
+    var diaryInfo: DiaryInfo?
     
     lazy var rightButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: UIImage(named: "icSubtab"), style: .done, target: self, action: #selector(buttonPressed(sender:)))
-        button.tag = 2
+        button.tag = 1
         button.tintColor = UIColor.white
         return button
     }()
@@ -54,12 +67,8 @@ class DiaryViewController: UIViewController {
             self.turtle1: "turtle1", self.turtle2: "turtle2", self.stingray1: "stingray1", self.whale1: "whale1",
             self.shark1: "shark1"
         ]
+        self.getDiaryFromAPI(completion: updateValues(diaryInfo:))
         
-        //테스트
-        self.currentDepth = Depth(rawValue: 6)
-        //테스트
-        
-        self.setBackgroundColorOnViewByDepth()
         self.addBlurEffectOnBlurView(view: self.blurView)
         
         self.navigationItem.rightBarButtonItem = self.rightButton
@@ -70,9 +79,74 @@ class DiaryViewController: UIViewController {
         self.menuView = MenuView.instantiate()
         self.alertModalView = AlertModalView.instantiate(
             alertLabelText: "소중한 일기가 삭제됩니다.\n정말 삭제하시겠어요?",
-            leftButtonTitle: "취소",
-            rightButtonTitle: "삭제"
+            leftButtonTitle: NSMutableAttributedString(string: "취소"),
+            rightButtonTitle: NSMutableAttributedString(string: "삭제")
         )
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.setBackgroundColorByDepth(depth: self.currentDepth)
+    }
+    
+    func getDiaryFromAPI(completion: @escaping (DiaryInfo?) -> Void) {
+        
+        // MARK: - 이전뷰에서 받아오거나 네트워크에서 받아야 할 부분
+        let defaultDiaryInfo: DiaryInfo = DiaryInfo(
+            date: "2020. 12. 26. 토요일",
+            year: 2020,
+            month: 12,
+            day: 26,
+            mood: Mood.love,
+            depth: Depth.depth300m,
+            sentence: Sentence(
+                author: "모모",
+                bookTitle: "모모책",
+                publisher: "모모출판사",
+                sentence: "모모사랑해"
+            ),
+            diary:
+                """
+                오늘 새벽엔 눈이 내렸다. 창문을 열어 창문을 열어 흰 눈이 내린다. 그럼에도 어김없이 오피스로 출근을 했다.
+                벌써 연말이 다가왔다는 것을 느낀다.
+
+                집에 들어와서 물을 한 잔 마시고 다시 침대에 누워서 왓챠를 틀고 보던 미드를 이어서 보기 시작했다. 오늘은 계속 크리스마스란 참 좋다 오늘 새벽엔 눈이 내렸다. 창문을 열어 창문을 열어 흰 눈이 내린다. 그럼에도 어김없이 오피스로 출근을 했다.
+                벌써 연말이 다가왔다는 것을 느낀다.
+
+                집에 들어와서 물을 한 잔 마시고 다시 침대에 누워서 왓챠를 틀고 보던 미드를 이어서 보기 시작했다. 오늘은 계속 크리스마스란 참 좋다오늘 새벽엔 눈이 내렸다. 창문을 열어 창문을 열어 흰 눈이 내린다. 그럼에도 어김없이 오피스로 출근을 했다.
+                벌써 연말이 다가왔다는 것을 느낀다.
+
+                집에 들어와서 물을 한 잔 마시고 다시 침대에 누워서 왓챠를 틀고 보던 미드를 이어서 보기 시작했다. 오늘은 계속 크리스마스란 참 좋다
+
+                집에 들어와서 물을 한 잔 마시고 다시 침대에 누워서 왓챠를 틀고 보던 미드를 이어서 보기 시작했다. 오늘은 계속 크리스마스란 참 좋다
+
+                집에 들어와서 물을 한 잔 마시고 다시 침대에 누워서 왓챠를 틀고 보던 미드를 이어서 보기 시작했다. 오늘은 계속 크리스마스란 참 좋다
+
+                집에 들어와서 물을 한 잔 마시고 다시 침대에 누워서 왓챠를 틀고 보던 미드를 이어서 보기 시작했다. 오늘은 계속 크리스마스란 참 좋다
+
+                집에 들어와서 물을 한 잔 마시고 다시 침대에 누워서 왓챠를 틀고 보던 미드를 이어서 보기 시작했다. 오늘은 계속 크리스마스란 참 좋다
+                """
+        )
+        
+        self.diaryInfo = defaultDiaryInfo
+        
+        DispatchQueue.main.async {
+            completion(self.diaryInfo)
+        }
+    }
+    
+    func updateValues(diaryInfo: DiaryInfo?) {
+        self.currentDepth = diaryInfo?.depth
+        self.dateLabel.text = diaryInfo?.date
+        self.moodImage.image = diaryInfo?.mood.toWhiteIcon()
+        self.moodLabel.text = diaryInfo?.mood.toString()
+        self.depthLabel.text = diaryInfo?.depth.toString()
+        self.sentenceLabel.text = diaryInfo?.sentence.sentence
+        self.authorLabel.text = diaryInfo?.sentence.author
+        self.bookTitleLabel.text = diaryInfo?.sentence.bookTitle
+        self.authorLabel.text = diaryInfo?.sentence.author
+        self.publisherLabel.text = diaryInfo?.sentence.publisher
+        self.diaryLabel.text = diaryInfo?.diary
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -114,11 +188,11 @@ class DiaryViewController: UIViewController {
         view.insertSubview(blurEffectView, at: 0)
     }
     
-    func setBackgroundColorOnViewByDepth() {
+    func setBackgroundColorByDepth(depth: Depth?) {
         let gradientView = UIView(frame: self.view.frame)
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
-        gradientLayer.colors = self.currentDepth?.toGradientColor()
+        gradientLayer.colors = depth?.toGradientColor()
         gradientView.layer.addSublayer(gradientLayer)
         self.view.insertSubview(gradientView, at: 0)
     }
@@ -163,26 +237,41 @@ class DiaryViewController: UIViewController {
         if let button = sender as? UIBarButtonItem {
             switch button.tag {
             case 1:
-                self.view.backgroundColor = .blue
-            case 2:
                 if self.menuToggleFlag {
                     self.menuView?.removeFromSuperview()
                 } else {
                     self.attachMenuView()
                 }
-                self.menuToggleFlag = !self.menuToggleFlag
+                self.menuToggleFlag.toggle()
             default:
                 print("error")
             }
         }
     }
     
+    // TODO: - 선택한 날짜 서버에 저장
+    func postNewDateWithAPI(newDate: String) {
+        print("\(newDate) 서버에 저장필요")
+    }
 }
+
+// MARK: - MenuDelegate
 
 extension DiaryViewController: MenuDelegate {
     
     func dateMenuButtonTouchUp(sender: UIButton) {
-        print("날짜 수정 모달 팝업")
+        self.uploadModalViewController = UploadModalViewController()
+        
+        if let uploadModalViewController = self.uploadModalViewController {
+            uploadModalViewController.modalPresentationStyle = .custom
+            uploadModalViewController.transitioningDelegate = self
+            uploadModalViewController.uploadModalDataDelegate = self
+            uploadModalViewController.year = self.diaryInfo?.year ?? 0
+            uploadModalViewController.month = self.diaryInfo?.month ?? 0
+            uploadModalViewController.day = self.diaryInfo?.day ?? 0
+            self.present(uploadModalViewController, animated: true, completion: nil)
+        }
+        
     }
     
     func depthMenuButtonTouchUp(sender: UIButton) {
@@ -190,7 +279,7 @@ extension DiaryViewController: MenuDelegate {
     }
     
     func diaryMenuButtonTouchUp(sender: UIButton) {
-        print("다이어리 수정 페이지로 이동")
+        self.pushToDiaryWriteController()
     }
     
     func deleteMenubuttonTouchUp(sender: UIButton) {
@@ -206,15 +295,80 @@ extension DiaryViewController: MenuDelegate {
         self.navigationController?.pushViewController(deepViewController, animated: true)
         
     }
+    
+    func pushToDiaryWriteController() {
+        let diaryWriteStoryboard = UIStoryboard(name: Constants.Name.diaryWriteStoryboard, bundle: nil)
+        guard let diaryWriteViewController = diaryWriteStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryWriteViewController) as? DiaryWriteViewController else { return }
+        
+        self.diaryWriteViewController = diaryWriteViewController
+        self.diaryWriteViewController?.diaryWriteViewControllerDelegate = self
+        
+        diaryWriteViewController.diaryInfo = self.diaryInfo
+        diaryWriteViewController.isFromDiary = true
+        
+        self.navigationController?.pushViewController(diaryWriteViewController, animated: true)
+        
+    }
 }
+
+// MARK: - AlertModalDelegate
 
 extension DiaryViewController: AlertModalDelegate {
     
     func leftButtonTouchUp(button: UIButton) {
         self.alertModalView?.removeFromSuperview()
+        self.menuView?.removeFromSuperview()
     }
     
     func rightButtonTouchUp(button: UIButton) {
-        print("일기삭제")
+        
+        self.postDeleteDiaryWithAPI(completion: {
+            self.alertModalView?.removeFromSuperview()
+            self.menuView?.removeFromSuperview()
+        })
     }
+    
+    func postDeleteDiaryWithAPI(completion: @escaping () -> Void) {
+
+        // TODO: - 삭제요청
+        print("일기삭제")
+        
+        // TODO: - 삭제끝
+        DispatchQueue.main.async {
+            completion()
+        }
+    }
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension DiaryViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        UploadModalPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
+
+// MARK: - UploadModalViewControllerDelegate
+
+extension DiaryViewController: UploadModalPassDataDelegate {
+    func sendData(_ date: String) {
+        self.dateLabel.text = date
+        self.menuView?.removeFromSuperview()
+        self.postNewDateWithAPI(newDate: date)
+        let dateArray = date.components(separatedBy: ". ")
+        self.diaryInfo?.year = Int(dateArray[0])!
+        self.diaryInfo?.month = Int(dateArray[1])!
+        self.diaryInfo?.day = Int(dateArray[2])!
+        self.diaryInfo?.date = date
+    }
+}
+
+// MARK: - DiaryWriteViewControllerDelegate
+
+extension DiaryViewController: DiaryWriteViewControllerDelegate {
+    func popDiaryWirteViewController(data: DiaryInfo) {
+        self.updateValues(diaryInfo: data)
+        self.menuView?.removeFromSuperview()
+    }
+
 }
