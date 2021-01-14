@@ -71,6 +71,9 @@ class DeepViewController: UIViewController {
     var viewXpos: CGFloat?
     var viewYpos: CGFloat?
     
+    // 버튼 텍스트가 시작하기일때 그리고 기록하기를 기준으로 분기할거예요
+    var buttonText: String = ""
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -92,7 +95,7 @@ class DeepViewController: UIViewController {
             
             deepSliderView.snp.makeConstraints { (make) in
                 make.height.equalTo(self.view.frame.size.width * 2)
-                make.width.equalTo(self.view.frame.size.height * 0.6)
+                make.width.equalTo(self.view.frame.size.height * 0.5)
             }
             
             deepSliderView.snp.makeConstraints { (make) in
@@ -102,6 +105,14 @@ class DeepViewController: UIViewController {
             
         }
         self.addGradientOnGradientBackgroundView()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startButton.setTitle(buttonText, for: .normal)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -187,7 +198,15 @@ class DeepViewController: UIViewController {
     }
     
     @IBAction func startButtonTouchUp(_ sender: UIButton) {
-        self.pushToHomeViewController()
+        guard let text = sender.titleLabel?.text else {
+            return
+        }
+        if text == "시작하기" {
+            self.pushToHomeViewController()
+        } else if text == "기록하기"{
+            //상의하고 하겠음
+        }
+        
     }
     
 }

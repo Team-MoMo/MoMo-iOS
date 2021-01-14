@@ -18,7 +18,7 @@ struct List {
     var title: String
     var publisher: String
     var journal: String
-    
+        
     func makeImage() -> UIImage? {
         return UIImage(named: iconImage)
     }
@@ -29,12 +29,23 @@ class ListViewController: UIViewController {
     // MARK: - Properities
     
     @IBOutlet weak var listTableView: UITableView!
+    
+    @IBOutlet weak var warningLabel: UILabel!
+    @IBOutlet weak var warningPlusButton: UIButton!
+    @IBOutlet weak var filterWarningLabel: UILabel!
+    
     var widthSize: CGFloat = 0.0
     var secondWidthSize: CGFloat = 0.0
     var dummyData: [List] = []
-    var date = [2021, 02]
-    var filter: [String] = ["2021년 02", "배고파", "심해"]
-    var pattern: Bool = true
+    var date = ""
+    var filter: [String] = []
+    var pattern: Bool = false
+    var standardYear: Int = 0
+    var standardMonth: Int = 0
+    var year: Int = 2021
+    var month: Int = 1
+    var modalView: ListFilterModalViewController? = nil
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +57,20 @@ class ListViewController: UIViewController {
         widthSize = CGFloat(self.view.bounds.width * (325/414))
         secondWidthSize = CGFloat(self.view.bounds.width * (237/414))
         setData()
+        setDate()
+        standardYear = year
+        standardMonth = month
+        setNavigationBarButton()
+        self.modalView = ListFilterModalViewController()
+        self.modalView?.modalPassDataDelegate = self
+        warningLabel.text = "아직 작성된 일기가 없습니다.\n새로운 문장을 만나러 가볼까요?"
+        warningLabel.isHidden = true
+        warningPlusButton.isHidden = true
+        filterWarningLabel.text = "검색된 결과가 없습니다"
+        filterWarningLabel.isHidden = true
+        
     }
+    
     
     @objc func tapEmptySpace(_ sender: UITapGestureRecognizer) {
         guard let tagNumber = sender.view?.tag else {
@@ -62,6 +86,7 @@ class ListViewController: UIViewController {
         if filter.count == 0 {
             pattern.toggle()
             listTableView.reloadData()
+            setNavigationBarButton()
         }
     }
     
@@ -74,6 +99,50 @@ class ListViewController: UIViewController {
         listTableView.register(UINib(nibName: "ListFilterTableViewCell", bundle: nil), forCellReuseIdentifier: "ListFilterTableViewCell")
         listTableView.register(UINib(nibName: "EmptyTableViewCell", bundle: nil), forCellReuseIdentifier: "EmptyTableViewCell")
 
+    }
+    
+    private func setNavigationBarButton() {
+        let statButton = UIBarButtonItem(image: Constants.Design.Image.listBtnGraph, style: .plain, target: self, action: #selector(touchStatButton))
+        statButton.tintColor = .black
+        let backButton = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchBackButton))
+        backButton.tintColor = .black
+        let filterButton: UIBarButtonItem
+        if year == standardYear && month == standardMonth && filter.count == 0 {
+            filterButton = UIBarButtonItem(image: Constants.Design.Image.listBtnFilterBlack, style: .plain, target: self, action: #selector(touchFilterButton))
+            filterButton.tintColor = .black
+        } else {
+            print(3)
+            filterButton = UIBarButtonItem(image: Constants.Design.Image.listBtnFilterBlue, style: .plain, target: self, action: #selector(touchFilterButton))
+        }
+        self.navigationItem.rightBarButtonItems = [statButton, filterButton]
+        self.navigationItem.leftBarButtonItem = backButton
+    }
+    
+    @objc func touchFilterButton() {
+        showModal()
+    }
+    @objc func touchStatButton() {
+        
+    }
+    @objc func touchBackButton() {
+        navigationController?.popViewController(animated: true)
+        
+    }
+    
+    func setDate() {
+        date = "\(year)년 \(month)월"
+        
+    }
+    
+    func showModal() {
+        modalView?.selectedYear = self.year
+        modalView?.selectedMonth = self.month
+        modalView?.width = view.bounds.width
+        modalView?.height = view.bounds.height
+        modalView?.modalPresentationStyle = .custom
+        modalView?.transitioningDelegate = self
+        
+        self.present(modalView!, animated: true, completion:nil)
     }
     
     // dummyData 설정
@@ -178,6 +247,7 @@ class ListViewController: UIViewController {
         if filter.count == 0 {
             pattern.toggle()
             listTableView.reloadData()
+            setNavigationBarButton()
         }
     }
 }
@@ -195,7 +265,7 @@ extension ListViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListDateTableViewCell") as? ListDateTableViewCell else {
                 return UITableViewCell()
             }
-            cell.setDate("\(date[0])년 \(date[1])월")
+            cell.setDate(date)
             cell.selectionStyle = .none
             return cell
         case 1:
@@ -274,3 +344,26 @@ extension ListViewController: UICollectionViewDataSource {
         return cell
     }
 }
+
+extension ListViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        ModalPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
+
+extension ListViewController: ModalPassDataDelegate {
+    func sendData(year: Int, month: Int, filterArray: [String], filteredStatus: Bool) {
+        self.year = year
+        self.month = month
+        setDate()
+        self.filter = filterArray
+        if year == standardYear && month == standardMonth && filterArray.count == 0 {
+            setNavigationBarButton()
+        } else {
+            setNavigationBarButton()
+            self.pattern = filteredStatus
+            self.listTableView.reloadData()
+        }
+    }
+}
+

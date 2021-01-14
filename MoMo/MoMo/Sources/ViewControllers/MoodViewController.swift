@@ -121,12 +121,16 @@ class MoodViewController: UIViewController {
     let defaultInfo: String = "먼저 오늘의\n감정을 선택해 주세요"
     //false == upload모드
     var changeUsage: Bool = false
-    
+    var modalView: UploadModalViewController? = nil
+
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        self.modalView = UploadModalViewController()
+        self.modalView?.uploadModalDataDelegate = self
+        
         self.buttons = [
             Button(button: self.loveButton),
             Button(button: self.happyButton),
@@ -206,54 +210,54 @@ class MoodViewController: UIViewController {
     
     
     @IBAction func touchCalendarButton(_ sender: Any) {
-        let modalView = UploadModalViewController()
-        modalView.modalPresentationStyle = .custom
-        modalView.transitioningDelegate = self
-        self.present(modalView, animated: true, completion: nil)
+        modalView?.modalPresentationStyle = .custom
+        modalView?.transitioningDelegate = self
+        self.present(modalView!, animated: true, completion: nil)
     }
     
     @IBAction func loveButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: Mood.love)
+        pushToOnboardingSentenceViewController(mood: Mood.love, usage: changeUsage)
     }
     
     @IBAction func happyButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: Mood.happy)
+        pushToOnboardingSentenceViewController(mood: Mood.happy, usage: changeUsage)
     }
     
     @IBAction func consoleButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: Mood.console)
+        pushToOnboardingSentenceViewController(mood: Mood.console,usage: changeUsage)
     }
     
     @IBAction func angryButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: Mood.angry)
+        pushToOnboardingSentenceViewController(mood: Mood.angry, usage: changeUsage)
     }
     
     @IBAction func sadButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: Mood.sad)
+        pushToOnboardingSentenceViewController(mood: Mood.sad, usage: changeUsage)
     }
     
     @IBAction func boredButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: Mood.bored)
+        pushToOnboardingSentenceViewController(mood: Mood.bored, usage: changeUsage)
     }
     
     @IBAction func memoryButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: Mood.memory)
+        pushToOnboardingSentenceViewController(mood: Mood.memory, usage: changeUsage)
     }
     
     @IBAction func dailyButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: Mood.daily)
+        pushToOnboardingSentenceViewController(mood: Mood.daily, usage: changeUsage)
     }
     
     @objc func touchCloseButton() {
-        print(1)
+        self.navigationController?.popViewController(animated: true)
     }
     
-    func pushToOnboardingSentenceViewController(mood: Mood) {
+    func pushToOnboardingSentenceViewController(mood: Mood, usage: Bool) {
         
         guard let sentenceViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.sentenceViewController) as? SentenceViewController else { return }
         
         sentenceViewController.selectedMood = mood
         sentenceViewController.date = self.date
+        sentenceViewController.changeUsage = self.changeUsage
         
         self.navigationController?.pushViewController(sentenceViewController, animated: true)
         
@@ -263,6 +267,7 @@ class MoodViewController: UIViewController {
         if !self.changeUsage {
             let rightButton = UIBarButtonItem(image: Constants.Design.Image.btnCloseBlack, style: .plain, target: self, action: #selector(touchCloseButton))
             self.navigationItem.rightBarButtonItems = [rightButton]
+            self.navigationItem.hidesBackButton = true
         }
     }
     
@@ -298,4 +303,8 @@ extension MoodViewController: UIViewControllerTransitioningDelegate {
     }
 }
 
-
+extension MoodViewController: UploadModalPassDataDelegate {
+    func sendData(_ date: String) {
+        self.dateLabel.text = date
+    }
+}

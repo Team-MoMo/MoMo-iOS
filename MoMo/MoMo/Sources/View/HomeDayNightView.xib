@@ -18,6 +18,18 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <color key="backgroundColor" name="HomeDay1"/>
                 </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dayCloud" translatesAutoresizingMaskIntoConstraints="NO" id="f51-lL-qV3">
+                    <rect key="frame" x="0.0" y="77" width="414" height="165.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="f51-lL-qV3" secondAttribute="height" multiplier="5:2" id="UnV-9R-8LQ"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="daySea" translatesAutoresizingMaskIntoConstraints="NO" id="OaN-tO-Ogn">
+                    <rect key="frame" x="0.0" y="573.5" width="414" height="322.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="OaN-tO-Ogn" secondAttribute="height" multiplier="375:292" id="Zca-3r-1dp"/>
+                    </constraints>
+                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3UG-bR-TNI">
                     <rect key="frame" x="40" y="68" width="109" height="41"/>
                     <string key="text">2021년
@@ -181,14 +193,20 @@
             <constraints>
                 <constraint firstItem="vVg-lQ-ThP" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-14" id="4NV-sS-Ckd"/>
                 <constraint firstAttribute="trailing" secondItem="vVg-lQ-ThP" secondAttribute="trailing" constant="56" id="7xu-co-XOS"/>
+                <constraint firstItem="OaN-tO-Ogn" firstAttribute="leading" secondItem="PpA-N6-IxJ" secondAttribute="leading" id="K3G-UX-3eJ"/>
                 <constraint firstAttribute="bottom" secondItem="UFb-Oe-Tmf" secondAttribute="bottom" id="Ke3-qx-P9w"/>
                 <constraint firstItem="3UG-bR-TNI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="Q5e-b3-J4w"/>
                 <constraint firstItem="vxG-9j-TIb" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-36" id="YEA-SQ-oAJ"/>
+                <constraint firstItem="f51-lL-qV3" firstAttribute="trailing" secondItem="PpA-N6-IxJ" secondAttribute="trailing" id="Zst-bg-ghn"/>
+                <constraint firstAttribute="bottom" secondItem="OaN-tO-Ogn" secondAttribute="bottom" id="bdp-jP-7yq"/>
+                <constraint firstItem="f51-lL-qV3" firstAttribute="leading" secondItem="PpA-N6-IxJ" secondAttribute="leading" id="cQR-hM-Oic"/>
                 <constraint firstItem="UFb-Oe-Tmf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cf7-5v-zyN"/>
                 <constraint firstItem="vVg-lQ-ThP" firstAttribute="leading" secondItem="3UG-bR-TNI" secondAttribute="leading" id="e1F-KZ-H8a"/>
+                <constraint firstItem="f51-lL-qV3" firstAttribute="top" secondItem="PpA-N6-IxJ" secondAttribute="top" constant="33" id="gkX-V5-gDM"/>
                 <constraint firstItem="3UG-bR-TNI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="68" id="ja1-dC-Q3T"/>
                 <constraint firstItem="vxG-9j-TIb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="lXv-Ni-fKv"/>
                 <constraint firstItem="UFb-Oe-Tmf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="o4I-f6-h3X"/>
+                <constraint firstItem="OaN-tO-Ogn" firstAttribute="trailing" secondItem="PpA-N6-IxJ" secondAttribute="trailing" id="qbQ-sw-MqK"/>
                 <constraint firstAttribute="trailing" secondItem="UFb-Oe-Tmf" secondAttribute="trailing" id="v3G-Ol-WJO"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
@@ -214,6 +232,8 @@
         </view>
     </objects>
     <resources>
+        <image name="dayCloud" width="375" height="162"/>
+        <image name="daySea" width="375" height="292"/>
         <image name="icLoveBlue" width="30" height="30"/>
         <image name="iosIcDepth" width="12" height="10"/>
         <namedColor name="Black5Publish">

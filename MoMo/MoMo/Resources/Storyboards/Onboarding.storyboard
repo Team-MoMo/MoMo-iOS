@@ -849,7 +849,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새로운 인연이 기대되는 하루였다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hue-vy-02C" userLabel="TypingLabel" customClass="CLTypingLabel" customModule="CLTypingLabel">
-                                <rect key="frame" x="207" y="505" width="0.0" height="0.0"/>
+                                <rect key="frame" x="89" y="505" width="236.5" height="21.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <color key="textColor" name="Blue2"/>
                                 <nil key="highlightedColor"/>
@@ -860,7 +860,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="|" textAlignment="natural" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZz-or-IGh" userLabel="TypingCursorLabel">
-                                <rect key="frame" x="207" y="498.5" width="7" height="30"/>
+                                <rect key="frame" x="325.5" y="498" width="7" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
                                 <color key="textColor" name="Blue3"/>
                                 <nil key="highlightedColor"/>
@@ -935,7 +935,6 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMY-nT-BLJ">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                        <color key="backgroundColor" name="Gradient1"/>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -973,7 +972,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="c2l-Tu-1Pv"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="Gradient1"/>
                         <constraints>
                             <constraint firstItem="sBR-vZ-nwc" firstAttribute="top" secondItem="c2l-Tu-1Pv" secondAttribute="top" constant="69" id="04Z-cD-5x4"/>
                             <constraint firstAttribute="top" secondItem="g8e-nN-vav" secondAttribute="top" id="0gu-Sf-Kvs"/>
@@ -1006,8 +1005,9 @@
         </scene>
     </scenes>
     <designables>
-        <designable name="hue-vy-02C"/>
-        <designable name="rIQ-3J-AWL"/>
+        <designable name="hue-vy-02C">
+            <size key="intrinsicContentSize" width="236.5" height="21.5"/>
+        </designable>
     </designables>
     <resources>
         <image name="btnIcCalender16" width="16" height="16"/>
