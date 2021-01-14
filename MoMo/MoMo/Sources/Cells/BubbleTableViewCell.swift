@@ -31,7 +31,6 @@ class BubbleTableViewCell: UITableViewCell {
         } else {
             bubbleSize.constant = 90
         }
-        
     }
     
     // MARK: - Functions

@@ -73,8 +73,8 @@ class HomeViewController: UIViewController {
         // uploadButton.isHidden = true
         
         DiariesService.shared.getDiaries(userId: "\(APIConstants.userId)",
-                                         year: "2019",
-                                         month: "12",
+                                         year: "2020",
+                                         month: "1",
                                          order: "depth",
                                          day: nil,
                                          emotionId: nil,

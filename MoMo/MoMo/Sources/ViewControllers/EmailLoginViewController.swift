@@ -39,12 +39,13 @@ class EmailLoginViewController: UIViewController {
             errorMessageLabel.isHidden = false
             loginButtonTop.isActive = true
             loginButtonTop.constant = 72
-            joinStackViewBottom.isActive = false
-            
+            //joinStackViewBottom.isActive = false
+            joinStackViewBottom.constant = 0
         } else {
             errorMessageTop.constant = 0
             errorMessageLabel.isHidden = true
-            loginButtonTop.isActive = false
+            //loginButtonTop.isActive = false
+            loginButtonTop.constant = 0
             joinStackViewBottom.isActive = true
             joinStackViewBottom.constant = 69
         }
@@ -62,6 +63,50 @@ class EmailLoginViewController: UIViewController {
     
     // MARK: - @IBAction Properties
     @IBAction func touchUpLoginButton(_ sender: Any) {
+        guard let emailText = emailTextField.text,
+              let passwordText = passwordTextField.text else {
+            return
+        }
+        print(emailText)
+        print(passwordText)
+        
+        SignInService.shared.postSignIn(email: emailText, password: passwordText) { (networkResult) -> (Void) in
+            switch networkResult {
+            case .success(let data):
+                if let signInData = data as? AuthData {
+                    self.errorMessageTop.constant = 0
+                    self.errorMessageLabel.isHidden = true
+                    self.loginButtonTop.isActive = false
+                    self.joinStackViewBottom.isActive = true
+                    self.joinStackViewBottom.constant = 69
+                    print("로그인 성공")
+                    UserDefaults.standard.setValue(signInData.token, forKey: "token")
+                    UserDefaults.standard.setValue(signInData.user.id, forKey: "userId")
+                    // TODO: 뷰전환
+                    let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
+                    let dvc = homeStoryboard.instantiateViewController(identifier: Constants.Identifier.homeViewController)
+                    self.navigationController?.pushViewController(dvc, animated: true)
+                }
+            case .requestErr(let msg):
+                print("400")
+                if let message = msg as? String {
+                    print(message)
+                    
+                    self.errorMessageTop.constant = 76
+                    self.errorMessageLabel.isHidden = false
+                    self.loginButtonTop.isActive = true
+                    self.loginButtonTop.constant = 72
+                    //joinStackViewBottom.isActive = false
+                    self.joinStackViewBottom.constant = 0
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
         
     }
     @IBAction func touchUpJoinButton(_ sender: Any) {
