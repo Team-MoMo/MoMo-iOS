@@ -48,7 +48,7 @@ struct SignUpService {
     
     private func verifyEmail(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(MessageResponse.self, from: data) else {
+        guard let decodedData = try? decoder.decode(GenericResponse<AuthData>.self, from: data) else {
             return .pathErr
         }
         
