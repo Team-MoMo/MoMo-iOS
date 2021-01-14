@@ -304,7 +304,7 @@ extension MoodViewController: UIViewControllerTransitioningDelegate {
 }
 
 extension MoodViewController: UploadModalPassDataDelegate {
-    func sendData(_ date: String) {
+    func passData(_ date: String) {
         self.dateLabel.text = date
     }
 }

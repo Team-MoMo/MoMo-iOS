@@ -249,7 +249,7 @@ extension OnboardingWriteViewController {
     func pushToDeepViewController(finished: Bool) {
         
         guard let deepViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.deepViewController) as? DeepViewController else { return }
-        
+        deepViewController.buttonText = "시작하기"
         self.navigationController?.pushViewController(deepViewController, animated: true)
         
     }

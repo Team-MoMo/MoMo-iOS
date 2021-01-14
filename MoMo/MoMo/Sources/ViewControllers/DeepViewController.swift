@@ -8,6 +8,10 @@
 import UIKit
 import SnapKit
 
+protocol DeepViewControllerDelegate: class {
+    func passData(selectedDepth: Depth)
+}
+
 enum Depth: Int {
     case depth2m = 0, depth30m, depth100m, depth300m, depth700m, depth1005m, depthSimhae
     
@@ -70,9 +74,10 @@ class DeepViewController: UIViewController {
     var viewHeight: CGFloat?
     var viewXpos: CGFloat?
     var viewYpos: CGFloat?
+    weak var deepViewControllerDelegate: DeepViewControllerDelegate?
     
     // 버튼 텍스트가 시작하기일때 그리고 기록하기를 기준으로 분기할거예요
-    var buttonText: String = ""
+    var buttonText: String = "시작하기"
     
     // MARK: - View Life Cycle
     
@@ -81,6 +86,7 @@ class DeepViewController: UIViewController {
         
         self.infoLabel.text = self.dafaultInfoLabel
         self.buttonRoundedUp()
+        self.startButton.titleLabel?.text = self.buttonText
         self.getViewContraints()
         self.resizeGradientBackgroundView()
         self.addBlurEffectOnBlurView()
@@ -203,8 +209,13 @@ class DeepViewController: UIViewController {
         }
         if text == "시작하기" {
             self.pushToHomeViewController()
-        } else if text == "기록하기"{
-            //상의하고 하겠음
+        } else if text == "기록하기" {
+            // TODO: - 나중에 구조체에 담아서 DiaryVC에 넘겨주는 걸로 리팩토링
+            // 정엽이가 diaryId 넘겨주면 됨
+        } else { // text == "수정하기"
+            self.deepViewControllerDelegate?.passData(
+                selectedDepth: Depth(rawValue: Int(round(self.deepSliderValue * 6))) ?? Depth.depth2m)
+            self.navigationController?.popViewController(animated: true)
         }
         
     }
