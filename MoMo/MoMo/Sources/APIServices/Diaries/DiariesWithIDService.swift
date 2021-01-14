@@ -79,7 +79,7 @@ struct DiariesWithIDService {
             url,
             method: .put,
             parameters: body,
-            encoding: URLEncoding.default,
+            encoding: JSONEncoding.default,
             headers: header
         )
         
@@ -166,7 +166,7 @@ struct DiariesWithIDService {
         switch status {
         case 200:
             return .success(decodedData.data)
-        case 400:
+        case 400...401:
             return .requestErr(decodedData.message)
         case 500:
             return .serverErr
