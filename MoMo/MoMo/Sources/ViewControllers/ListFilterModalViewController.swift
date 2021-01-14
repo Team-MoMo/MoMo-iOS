@@ -103,7 +103,7 @@ class ListFilterModalViewController: UIViewController {
         self.datePickerStackView.isHidden = true
         setPickerInitialSetting()
         setDate()
-        DiariesService.shared.getDiaries(userId: "2", year: 2020, month: 11, order: <#T##String?#>, emotionId: <#T##String?#>, depth: <#T##String?#>, completion: <#T##(NetworkResult<Any>) -> (Void)#>)
+//        DiariesService.shared.getDiaries(userId: "2", year: 2020, month: 11, order: <#T##String?#>, emotionId: <#T##String?#>, depth: <#T##String?#>, completion: <#T##(NetworkResult<Any>) -> (Void)#>)
     }
     
     private func setPickerInitialSetting() {
