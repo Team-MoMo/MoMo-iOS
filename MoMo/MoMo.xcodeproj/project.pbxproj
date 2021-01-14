@@ -32,14 +32,15 @@
 		10E5CD8025ADF145004FDC24 /* UploadModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10E5CD7E25ADF145004FDC24 /* UploadModalViewController.xib */; };
 		10E5CD8325ADF1D5004FDC24 /* UploadModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E5CD8225ADF1D5004FDC24 /* UploadModalPresentationController.swift */; };
 		10F12B10259B2C4C003CAA9E /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10F12B0F259B2C4C003CAA9E /* List.storyboard */; };
-		10F1F73625B053A900BF7D37 /* CreateDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F1F73525B053A900BF7D37 /* CreateDiary.swift */; };
 		10F1F72D25B04ADD00BF7D37 /* SentencesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F1F72C25B04ADD00BF7D37 /* SentencesService.swift */; };
+		10F1F73625B053A900BF7D37 /* CreateDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F1F73525B053A900BF7D37 /* CreateDiary.swift */; };
 		10F8723425AAF2D9009FE6F1 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10F8723225AAF2D9009FE6F1 /* ListTableViewCell.xib */; };
 		10F8723525AAF2D9009FE6F1 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F8723325AAF2D9009FE6F1 /* ListTableViewCell.swift */; };
 		1C42357325AE26B9008FB838 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C42357225AE26B9008FB838 /* SplashViewController.swift */; };
 		1C42357625AE26D2008FB838 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C42357525AE26D2008FB838 /* Splash.storyboard */; };
 		1C42358F25AE2E31008FB838 /* momo_splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C42358E25AE2E31008FB838 /* momo_splash.json */; };
 		1C4235EC25B04CD5008FB838 /* DiariesWithIDService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4235EB25B04CD5008FB838 /* DiariesWithIDService.swift */; };
+		1C4235F125B0D5A8008FB838 /* DiaryWithId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4235F025B0D5A8008FB838 /* DiaryWithId.swift */; };
 		1C52BE0525AD655300D02771 /* AlertModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C52BE0425AD655300D02771 /* AlertModalView.swift */; };
 		1C52BE0825AD656700D02771 /* AlertModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C52BE0725AD656700D02771 /* AlertModalView.xib */; };
 		1C52BE0F25AD7A9500D02771 /* onboarding_wave_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C52BE0E25AD7A9500D02771 /* onboarding_wave_ios.json */; };
@@ -124,14 +125,15 @@
 		10E5CD7E25ADF145004FDC24 /* UploadModalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadModalViewController.xib; sourceTree = "<group>"; };
 		10E5CD8225ADF1D5004FDC24 /* UploadModalPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadModalPresentationController.swift; sourceTree = "<group>"; };
 		10F12B0F259B2C4C003CAA9E /* List.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
-		10F1F73525B053A900BF7D37 /* CreateDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiary.swift; sourceTree = "<group>"; };
 		10F1F72C25B04ADD00BF7D37 /* SentencesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentencesService.swift; sourceTree = "<group>"; };
+		10F1F73525B053A900BF7D37 /* CreateDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiary.swift; sourceTree = "<group>"; };
 		10F8723225AAF2D9009FE6F1 /* ListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
 		10F8723325AAF2D9009FE6F1 /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		1C42357225AE26B9008FB838 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		1C42357525AE26D2008FB838 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		1C42358E25AE2E31008FB838 /* momo_splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = momo_splash.json; sourceTree = "<group>"; };
 		1C4235EB25B04CD5008FB838 /* DiariesWithIDService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiariesWithIDService.swift; sourceTree = "<group>"; };
+		1C4235F025B0D5A8008FB838 /* DiaryWithId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryWithId.swift; sourceTree = "<group>"; };
 		1C52BE0425AD655300D02771 /* AlertModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModalView.swift; sourceTree = "<group>"; };
 		1C52BE0725AD656700D02771 /* AlertModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertModalView.xib; sourceTree = "<group>"; };
 		1C52BE0E25AD7A9500D02771 /* onboarding_wave_ios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_wave_ios.json; sourceTree = "<group>"; };
@@ -212,7 +214,7 @@
 				10F1F72C25B04ADD00BF7D37 /* SentencesService.swift */,
 			);
 			path = Sentences;
-      sourceTree = "<group>";
+			sourceTree = "<group>";
 		};
 		5637606525B04A9D00651EAA /* Users */ = {
 			isa = PBXGroup;
@@ -222,7 +224,7 @@
 				5637607225B04F6400651EAA /* PasswordService.swift */,
 			);
 			path = Users;
-      sourceTree = "<group>";
+			sourceTree = "<group>";
 		};
 		563B032E25A8845A00DA74C5 /* View */ = {
 			isa = PBXGroup;
@@ -249,6 +251,7 @@
 				563B049B25AE0E9B00DA74C5 /* Sentence.swift */,
 				10F1F73525B053A900BF7D37 /* CreateDiary.swift */,
 				5637607525B0519F00651EAA /* PasswordData.swift */,
+				1C4235F025B0D5A8008FB838 /* DiaryWithId.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				10DDA34225AF09A900620C41 /* EmotionCollectionViewCell.swift in Sources */,
 				1CAD05A525AACB36007ECA40 /* DeepViewController.swift in Sources */,
 				563B034725A8973100DA74C5 /* HomeViewController.swift in Sources */,
+				1C4235F125B0D5A8008FB838 /* DiaryWithId.swift in Sources */,
 				10F1F73625B053A900BF7D37 /* CreateDiary.swift in Sources */,
 				107919BC25A484510024C711 /* ListFilterTableViewCell.swift in Sources */,
 				107919C125A484E60024C711 /* FilterCollectionViewCell.swift in Sources */,
