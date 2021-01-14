@@ -18,7 +18,7 @@ struct SignUpService {
                    completion: @escaping (NetworkResult<Any>) -> (Void)) {
         let url = APIConstants.signUpURL
         let header: HTTPHeaders = [
-            "Content-Type":"application/json"
+            "Content-Type": "application/json"
         ]
         let body: Parameters = [
             "email": email
@@ -72,10 +72,10 @@ struct SignUpService {
     
     func postSignUp(email: String,
                     password: String,
-                    completion: @escaping (NetworkResult<Any>) -> (Void)){
+                    completion: @escaping (NetworkResult<Any>) -> (Void)) {
         let url = APIConstants.signUpURL
         let header: HTTPHeaders = [
-            "Content-Type":"application/json"
+            "Content-Type": "application/json"
         ]
         let body: Parameters = [
             "email": email,
@@ -108,7 +108,7 @@ struct SignUpService {
     
     private func doSignUp(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<SignUpData>.self, from: data) else {
+        guard let decodedData = try? decoder.decode(GenericResponse<AuthData>.self, from: data) else {
             return .pathErr
         }
         

@@ -54,7 +54,8 @@
 		1CEF46C525A6E09100AF3D81 /* MoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46C425A6E09100AF3D81 /* MoodViewController.swift */; };
 		1CEF46C825A6E0A000AF3D81 /* SentenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46C725A6E0A000AF3D81 /* SentenceViewController.swift */; };
 		1CEF46CB25A6E0B200AF3D81 /* OnboardingWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46CA25A6E0B200AF3D81 /* OnboardingWriteViewController.swift */; };
-		5637606125B039AF00651EAA /* Users in Resources */ = {isa = PBXBuildFile; fileRef = 5637606025B039AF00651EAA /* Users */; };
+		5637606725B04AA800651EAA /* SignUpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5637606625B04AA800651EAA /* SignUpService.swift */; };
+		5637606A25B04ABC00651EAA /* SignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5637606925B04ABC00651EAA /* SignInService.swift */; };
 		563B033025A8849300DA74C5 /* HomeDayNightView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 563B032F25A8849300DA74C5 /* HomeDayNightView.xib */; };
 		563B033325A884A200DA74C5 /* HomeDayNightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B033225A884A200DA74C5 /* HomeDayNightView.swift */; };
 		563B034325A8970E00DA74C5 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 563B034225A8970E00DA74C5 /* Home.storyboard */; };
@@ -78,8 +79,7 @@
 		563B049625AE0E6800DA74C5 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B049525AE0E6800DA74C5 /* Diary.swift */; };
 		563B049925AE0E8C00DA74C5 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B049825AE0E8C00DA74C5 /* Emotion.swift */; };
 		563B049C25AE0E9B00DA74C5 /* Sentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B049B25AE0E9B00DA74C5 /* Sentence.swift */; };
-		563B04FC25AF742100DA74C5 /* MessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B04FB25AF742100DA74C5 /* MessageResponse.swift */; };
-		563B050025AF765500DA74C5 /* SignUpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B04FF25AF765500DA74C5 /* SignUpData.swift */; };
+		563B050025AF765500DA74C5 /* AuthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563B04FF25AF765500DA74C5 /* AuthData.swift */; };
 		5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5687640C2599AD3A009CB486 /* AppDelegate.swift */; };
 		5687640F2599AD3A009CB486 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5687640E2599AD3A009CB486 /* SceneDelegate.swift */; };
 		568764142599AD3A009CB486 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 568764122599AD3A009CB486 /* Main.storyboard */; };
@@ -141,7 +141,8 @@
 		1CEF46C425A6E09100AF3D81 /* MoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewController.swift; sourceTree = "<group>"; };
 		1CEF46C725A6E0A000AF3D81 /* SentenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceViewController.swift; sourceTree = "<group>"; };
 		1CEF46CA25A6E0B200AF3D81 /* OnboardingWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWriteViewController.swift; sourceTree = "<group>"; };
-		5637606025B039AF00651EAA /* Users */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Users; sourceTree = "<group>"; };
+		5637606625B04AA800651EAA /* SignUpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpService.swift; sourceTree = "<group>"; };
+		5637606925B04ABC00651EAA /* SignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInService.swift; sourceTree = "<group>"; };
 		563B032F25A8849300DA74C5 /* HomeDayNightView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeDayNightView.xib; sourceTree = "<group>"; };
 		563B033225A884A200DA74C5 /* HomeDayNightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDayNightView.swift; sourceTree = "<group>"; };
 		563B034225A8970E00DA74C5 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -165,8 +166,7 @@
 		563B049525AE0E6800DA74C5 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
 		563B049825AE0E8C00DA74C5 /* Emotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emotion.swift; sourceTree = "<group>"; };
 		563B049B25AE0E9B00DA74C5 /* Sentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sentence.swift; sourceTree = "<group>"; };
-		563B04FB25AF742100DA74C5 /* MessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponse.swift; sourceTree = "<group>"; };
-		563B04FF25AF765500DA74C5 /* SignUpData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpData.swift; sourceTree = "<group>"; };
+		563B04FF25AF765500DA74C5 /* AuthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthData.swift; sourceTree = "<group>"; };
 		568764092599AD3A009CB486 /* MoMo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoMo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5687640C2599AD3A009CB486 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5687640E2599AD3A009CB486 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -196,6 +196,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5637606525B04A9D00651EAA /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				5637606625B04AA800651EAA /* SignUpService.swift */,
+				5637606925B04ABC00651EAA /* SignInService.swift */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
 		563B032E25A8845A00DA74C5 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,7 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				563B037525AA0F3500DA74C5 /* BubbleDummyData.swift */,
-				563B04FF25AF765500DA74C5 /* SignUpData.swift */,
+				563B04FF25AF765500DA74C5 /* AuthData.swift */,
 				563B049525AE0E6800DA74C5 /* Diary.swift */,
 				563B049825AE0E8C00DA74C5 /* Emotion.swift */,
 				563B049B25AE0E9B00DA74C5 /* Sentence.swift */,
@@ -234,9 +243,8 @@
 			isa = PBXGroup;
 			children = (
 				563B048925AE0BA900DA74C5 /* GenericResponse.swift */,
-				563B04FB25AF742100DA74C5 /* MessageResponse.swift */,
 				563B048C25AE0BD500DA74C5 /* NetworkResult.swift */,
-				5637606025B039AF00651EAA /* Users */,
+				5637606525B04A9D00651EAA /* Users */,
 				563B048F25AE0D7800DA74C5 /* Diaries */,
 			);
 			path = APIServices;
@@ -509,7 +517,6 @@
 				563B040225AD5F1800DA74C5 /* Join.storyboard in Resources */,
 				10DDA34325AF09A900620C41 /* EmotionCollectionViewCell.xib in Resources */,
 				104E685E25AAF8410019B29E /* DiaryWrite.storyboard in Resources */,
-				5637606125B039AF00651EAA /* Users in Resources */,
 				10DDA33A25AF099A00620C41 /* ListFilterModalViewController.xib in Resources */,
 				10F12B10259B2C4C003CAA9E /* List.storyboard in Resources */,
 				10F8723425AAF2D9009FE6F1 /* ListTableViewCell.xib in Resources */,
@@ -618,6 +625,7 @@
 				563B048A25AE0BA900DA74C5 /* GenericResponse.swift in Sources */,
 				563B037625AA0F3500DA74C5 /* BubbleDummyData.swift in Sources */,
 				10DDA33925AF099A00620C41 /* ListFilterModalViewController.swift in Sources */,
+				5637606725B04AA800651EAA /* SignUpService.swift in Sources */,
 				10B6732025A771700046AA97 /* String+Extension.swift in Sources */,
 				10E5CD7F25ADF145004FDC24 /* UploadModalViewController.swift in Sources */,
 				1006505D25AAF3320016B796 /* ViewController.swift in Sources */,
@@ -632,14 +640,14 @@
 				10DDA34625AF09C500620C41 /* ModalPresentationController.swift in Sources */,
 				1C7CD82525ACEB9E00B7CB60 /* MenuView.swift in Sources */,
 				1C7CD80725ACA5EC00B7CB60 /* DiaryViewController.swift in Sources */,
-				563B04FC25AF742100DA74C5 /* MessageResponse.swift in Sources */,
+				5637606A25B04ABC00651EAA /* SignInService.swift in Sources */,
 				563B047A25ADF63900DA74C5 /* UITextField+Extension.swift in Sources */,
 				563B047725ADF47200DA74C5 /* FindPasswordViewController.swift in Sources */,
 				5687640F2599AD3A009CB486 /* SceneDelegate.swift in Sources */,
 				1CEF46C525A6E09100AF3D81 /* MoodViewController.swift in Sources */,
 				5687645E2599FB48009CB486 /* AppConstants.swift in Sources */,
 				10DDA34025AF09A900620C41 /* DepthCollectionViewCell.swift in Sources */,
-				563B050025AF765500DA74C5 /* SignUpData.swift in Sources */,
+				563B050025AF765500DA74C5 /* AuthData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
