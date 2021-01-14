@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - SignUpData
 
-struct SignUpData: Codable {
+struct AuthData: Codable {
     let user: User
     let token: String
 }
