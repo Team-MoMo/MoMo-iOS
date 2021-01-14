@@ -7,8 +7,8 @@
 
 import UIKit
 
-enum Mood {
-    case love, happy, console, angry, sad, bored, memory, daily
+enum Mood: Int {
+    case love = 1, happy, console, angry, sad, bored, memory, daily
     
     func toString() -> String {
         switch self {
@@ -70,6 +70,27 @@ enum Mood {
             return Constants.Design.Image.icMemory14White!
         case .daily:
             return Constants.Design.Image.icDaily14White!
+        }
+    }
+    
+    func toBlueIcon() -> UIImage {
+        switch self {
+        case .love:
+            return Constants.Design.Image.icLove14Blue!
+        case .happy:
+            return Constants.Design.Image.icHappy14Blue!
+        case .console:
+            return Constants.Design.Image.icConsole14Blue!
+        case .angry:
+            return Constants.Design.Image.icAngry14Blue!
+        case .sad:
+            return Constants.Design.Image.icSad14Blue!
+        case .bored:
+            return Constants.Design.Image.icBored14Blue!
+        case .memory:
+            return Constants.Design.Image.icMemory14Blue!
+        case .daily:
+            return Constants.Design.Image.icDaily14Blue!
         }
     }
 }

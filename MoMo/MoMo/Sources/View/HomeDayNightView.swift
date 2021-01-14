@@ -42,74 +42,6 @@ class HomeDayNightView: UIView {
     var moodArray = ["", "love", "happy", "console", "angry", "sad", "bored", "memory", "daily"]
     var depthArray = ["2m", "30m", "100m", "300m", "700m", "1,005m", "심해"]
     
-    // MARK: 해찌꺼뽀려옴
-    enum Mood {
-        case love, happy, console, angry, sad, bored, memory, daily
-        
-        func toString() -> String {
-            switch self {
-            case .love:
-                return "사랑"
-            case .happy:
-                return "행복"
-            case .console:
-                return "위로"
-            case .angry:
-                return "화남"
-            case .sad:
-                return "슬픔"
-            case .bored:
-                return "우울"
-            case .memory:
-                return "추억"
-            case .daily:
-                return "일상"
-            }
-        }
-        
-        func toIcon() -> UIImage {
-            switch self {
-            case .love:
-                return Constants.Design.Image.icLove14Black!
-            case .happy:
-                return Constants.Design.Image.icHappy14Black!
-            case .console:
-                return Constants.Design.Image.icConsole14Black!
-            case .angry:
-                return Constants.Design.Image.icAngry14Black!
-            case .sad:
-                return Constants.Design.Image.icSad14Black!
-            case .bored:
-                return Constants.Design.Image.icBored14Black!
-            case .memory:
-                return Constants.Design.Image.icMemory14Black!
-            case .daily:
-                return Constants.Design.Image.icDaily14Black!
-            }
-        }
-        
-        func toWhiteIcon() -> UIImage {
-            switch self {
-            case .love:
-                return Constants.Design.Image.icLove14White!
-            case .happy:
-                return Constants.Design.Image.icHappy14White!
-            case .console:
-                return Constants.Design.Image.icConsole14White!
-            case .angry:
-                return Constants.Design.Image.icAngry14White!
-            case .sad:
-                return Constants.Design.Image.icSad14White!
-            case .bored:
-                return Constants.Design.Image.icBored14White!
-            case .memory:
-                return Constants.Design.Image.icMemory14White!
-            case .daily:
-                return Constants.Design.Image.icDaily14White!
-            }
-        }
-    }
-    
     // MARK: - Functions
     
     // gradient 생성 후 배경 지정
@@ -208,20 +140,21 @@ class HomeDayNightView: UIView {
             case .success(let data):
                 if let diary = data as? [Diary] {
                     self.todayDiary = diary
-                    print(self.todayDiary[0])
-                    let moodEnumCase = self.moodArray[self.todayDiary[0].emotionID]
-                    
-                    
+                    //print(self.todayDiary[0])
+                       
                     if self.todayDiary.count == 1 {
-                        // TODO: - enum으아아아아!!!!!!!!!
-                        //emotionImageView.image = Mood.memory
-                        self.emotionLabel.text = moodEnumCase
-                        self.depthLabel.text = self.depthArray[self.todayDiary[0].depth]
+                        self.showFilledView()
+                        let moodEnumCase = self.todayDiary[0].emotionID
+                        self.emotionImageView.image = Mood(rawValue: moodEnumCase)?.toBlueIcon()
+                        self.emotionLabel.text = Mood(rawValue: moodEnumCase)?.toString()
+                        self.depthLabel.text = Depth(rawValue: self.todayDiary[0].depth)?.toString()
                         self.quoteLabel.text = self.todayDiary[0].sentence.contents
                         self.writerLabel.text = self.todayDiary[0].sentence.writer
                         self.bookTitleLabel.text = self.todayDiary[0].sentence.bookName
                         self.publisherLabel.text = self.todayDiary[0].sentence.publisher
                         self.diaryLabel.text = self.todayDiary[0].contents
+                    } else {
+                        self.showEmptyView()
                     }
 
                 }
