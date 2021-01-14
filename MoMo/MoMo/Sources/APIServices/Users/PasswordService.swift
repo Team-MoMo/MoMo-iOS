@@ -10,7 +10,7 @@ import Alamofire
 
 struct PasswordService {
     
-    static let shared = SignUpService()
+    static let shared = PasswordService()
     
     // MARK: - PUT
     
@@ -18,7 +18,8 @@ struct PasswordService {
                    completion: @escaping (NetworkResult<Any>) -> (Void)) {
         let url = APIConstants.passwordURL
         let header: HTTPHeaders = [
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": UserDefaults.standard.string(forKey: "token") ?? ""
         ]
         let body: Parameters = [
             "newPassword": newPassword
@@ -74,7 +75,8 @@ struct PasswordService {
                     completion: @escaping (NetworkResult<Any>) -> (Void)) {
         let url = APIConstants.passwordURL
         let header: HTTPHeaders = [
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": UserDefaults.standard.string(forKey: "token") ?? ""
         ]
         let body: Parameters = [
             "password": password
