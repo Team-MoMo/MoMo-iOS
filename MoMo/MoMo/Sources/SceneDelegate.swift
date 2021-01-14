@@ -18,6 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         //This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
+        UserDefaults.standard.setValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTYxMDI4NTcxOCwiZXhwIjoxNjE4MDYxNzE4LCJpc3MiOiJtb21vIn0.BudOmb4xI78sbtgw81wWY8nfBD2A6Wn4vS4bvlzSZYc", forKey: "token")
+        UserDefaults.standard.setValue(2, forKey: "userId")
+        
         let splashStoryboard = UIStoryboard(name: "Splash", bundle: nil)
         let splashViewController = splashStoryboard.instantiateViewController(withIdentifier: "SplashViewController")
         self.window?.rootViewController = splashViewController
