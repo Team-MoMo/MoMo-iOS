@@ -35,6 +35,7 @@ class HomeDayNightView: UIView {
     // MARK: - Properties
     
     var gradientLayer: CAGradientLayer!
+    var date: String?
     
     // MARK: - Functions
     
@@ -45,6 +46,48 @@ class HomeDayNightView: UIView {
         gradientLayer.colors = [UIColor.HomeDay1.cgColor, UIColor.HomeDay2.cgColor]
         self.backgroundView.layer.addSublayer(gradientLayer)
     }
+    
+    func getCurrentFormattedDate() -> String? {
+        
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy. MM. dd. EEEE"
+        dateFormatter.locale = Locale.current
+        
+        let formattedDate = dateFormatter.string(from: date)
+        var dateArray = formattedDate.components(separatedBy: ". ")
+        let weekday = dateArray.popLast()
+        
+        dateArray.append(weekdayEnglishToKorean(weekday: weekday ?? "Monday"))
+        
+        let formattedDateWithKorean = dateArray.joined(separator: ". ")
+        
+        let result = "\(dateArray[0])년 \n\(dateArray[1])월 \(dateArray[2])일 \(dateArray[3])"
+        return result
+    }
+    
+    func weekdayEnglishToKorean(weekday: String) -> String {
+        switch weekday {
+        case "Monday":
+            return "월요일"
+        case "Tuesday":
+            return "화요일"
+        case "Wednesday":
+            return "수요일"
+        case "Thursday":
+            return "목요일"
+        case "Friday":
+            return "금요일"
+        case "Saturday":
+            return "토요일"
+        case "Sunday":
+            return "일요일"
+        default:
+            return "월요일"
+        }
+    }
+  
     
     // MARK: - View Life Cycle
     
@@ -73,6 +116,11 @@ class HomeDayNightView: UIView {
         showAllButton.layer.cornerRadius = 8
         
         diaryLabel.lineBreakMode = .byTruncatingTail
+        
+        // 오늘 날짜 받아오기
+        date = getCurrentFormattedDate()
+        dateLabel.text = date
+        
         
     }
     
