@@ -19,7 +19,7 @@ class BubbleTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
-    var bubble: [Bubble] = []
+    var bubble: [Diary] = []
     
     // MARK: - View Life Cycle
     
@@ -31,14 +31,31 @@ class BubbleTableViewCell: UITableViewCell {
         } else {
             bubbleSize.constant = 90
         }
+        
+        // 오늘 날짜 받아오기
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 m월 dd일"
+        let result = formatter.string(from: date)
+        dateLabel.text = result
+        print(result)
     }
     
     // MARK: - Functions
     
-    func setCell(bubble: Bubble) {
-        dateLabel.text = bubble.date
-        emotionLabel.text = bubble.cate
-        bubbleLeading.constant = calculateLeadingOffset(num: bubble.leadingNum)
+    func setCell(bubble: Diary) {
+        let date: String = bubble.wroteAt
+        let monthStartIdx: String.Index = date.index(date.startIndex, offsetBy: 5)
+        let monthEndIdx: String.Index = date.index(date.startIndex, offsetBy: 7)
+        var month = String(date[monthStartIdx..<monthEndIdx])
+        
+        let dayStartIdx: String.Index = date.index(date.startIndex, offsetBy: 8)
+        let dayEndIdx: String.Index = date.index(date.startIndex, offsetBy: 10)
+        var day = String(date[dayStartIdx..<dayEndIdx])
+        
+        dateLabel.text = "\(month).\(day)"
+        emotionLabel.text = bubble.emotion.name.rawValue
+        bubbleLeading.constant = calculateLeadingOffset(num: bubble.position)
     }
     
     func calculateLeadingOffset(num: Int) -> CGFloat {
