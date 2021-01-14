@@ -52,7 +52,6 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
-                        <action selector="applyButtonTouchUp:" destination="-1" eventType="touchUpInside" id="9vV-zH-hk4"/>
                         <action selector="touchApplyButton:" destination="-1" eventType="touchUpInside" id="1vQ-0T-732"/>
                     </connections>
                 </button>
