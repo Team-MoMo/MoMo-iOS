@@ -102,6 +102,9 @@ class DeepViewController: UIViewController {
             
         }
         self.addGradientOnGradientBackgroundView()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
