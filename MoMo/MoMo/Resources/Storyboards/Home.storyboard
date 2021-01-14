@@ -54,6 +54,9 @@
                                     <constraint firstAttribute="width" constant="30" id="g0B-hC-luG"/>
                                 </constraints>
                                 <state key="normal" image="homeBtnList"/>
+                                <connections>
+                                    <action selector="touchUpListButton:" destination="svO-LC-Z4h" eventType="touchUpInside" id="72o-dx-sqz"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qKw-vH-1av">
                                 <rect key="frame" x="322" y="842" width="30" height="30"/>
@@ -62,6 +65,9 @@
                                     <constraint firstAttribute="width" constant="30" id="wzZ-E6-25G"/>
                                 </constraints>
                                 <state key="normal" image="homeBtnUpload"/>
+                                <connections>
+                                    <action selector="touchUpUploadButton:" destination="svO-LC-Z4h" eventType="touchUpInside" id="LaR-6G-A1j"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="CkZ-yj-6GS">
                                 <rect key="frame" x="366" y="68" width="24" height="64"/>
