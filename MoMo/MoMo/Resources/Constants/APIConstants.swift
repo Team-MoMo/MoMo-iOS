@@ -14,7 +14,7 @@ struct APIConstants {
     static let baseURL = "http://3.36.79.14:3000"
     
     // TODO: - 각 id값 이라는데 이걸 여기서 말고 다른데서 넣을 수 있는지 확인한 후에 고쳐야 함
-    static var id: String = ""
+    static let id: String = UserDefaults.standard.string(forKey: "userId") ?? ""
     
     // MARK: - Users
     
