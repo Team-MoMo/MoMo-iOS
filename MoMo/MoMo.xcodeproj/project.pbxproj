@@ -248,6 +248,7 @@
 				563B04ED25AF71BF00DA74C5 /* SignUpService.swift */,
 			);
 			path = Users;
+   };
 		563B048F25AE0D7800DA74C5 /* Diaries */ = {
 			isa = PBXGroup;
 			children = (
