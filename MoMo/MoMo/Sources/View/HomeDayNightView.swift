@@ -35,6 +35,12 @@ class HomeDayNightView: UIView {
     // MARK: - Properties
     
     var gradientLayer: CAGradientLayer!
+    var date: String?
+    var dateArray:[String] = []
+    var todayDiary: [Diary] = []
+    
+    var moodArray = ["", "love", "happy", "console", "angry", "sad", "bored", "memory", "daily"]
+    var depthArray = ["2m", "30m", "100m", "300m", "700m", "1,005m", "심해"]
     
     // MARK: - Functions
     
@@ -45,6 +51,49 @@ class HomeDayNightView: UIView {
         gradientLayer.colors = [UIColor.HomeDay1.cgColor, UIColor.HomeDay2.cgColor]
         self.backgroundView.layer.addSublayer(gradientLayer)
     }
+    
+    // MARK: 해찌꺼뽀려옴2
+    func getCurrentFormattedDate() -> String? {
+        
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy. MM. dd. EEEE"
+        dateFormatter.locale = Locale.current
+        
+        let formattedDate = dateFormatter.string(from: date)
+        dateArray = formattedDate.components(separatedBy: ". ")
+        let weekday = dateArray.popLast()
+        
+        dateArray.append(weekdayEnglishToKorean(weekday: weekday ?? "Monday"))
+        
+        let formattedDateWithKorean = dateArray.joined(separator: ". ")
+        
+        let result = "\(dateArray[0])년 \n\(dateArray[1])월 \(dateArray[2])일 \(dateArray[3])"
+        return result
+    }
+    
+    func weekdayEnglishToKorean(weekday: String) -> String {
+        switch weekday {
+        case "Monday":
+            return "월요일"
+        case "Tuesday":
+            return "화요일"
+        case "Wednesday":
+            return "수요일"
+        case "Thursday":
+            return "목요일"
+        case "Friday":
+            return "금요일"
+        case "Saturday":
+            return "토요일"
+        case "Sunday":
+            return "일요일"
+        default:
+            return "월요일"
+        }
+    }
+  
     
     // MARK: - View Life Cycle
     
@@ -74,6 +123,73 @@ class HomeDayNightView: UIView {
         
         diaryLabel.lineBreakMode = .byTruncatingTail
         
+        // 오늘 날짜 받아오기
+        date = getCurrentFormattedDate()
+        dateLabel.text = date
+        
+        // 오늘 쓴 일기 있는지 통신
+        DiariesService.shared.getDiaries(userId: "\(APIConstants.userId)",
+                                         year: dateArray[0],
+                                         month: dateArray[1],
+                                         order: "filter",
+                                         day: Int(dateArray[2]),
+                                         emotionId: nil,
+                                         depth: nil
+        ) { (networkResult) -> (Void) in
+            switch networkResult {
+            case .success(let data):
+                if let diary = data as? [Diary] {
+                    self.todayDiary = diary
+                    //print(self.todayDiary[0])
+                       
+                    if self.todayDiary.count == 1 {
+                        self.showFilledView()
+                        let moodEnumCase = self.todayDiary[0].emotionID
+                        self.emotionImageView.image = Mood(rawValue: moodEnumCase)?.toBlueIcon()
+                        self.emotionLabel.text = Mood(rawValue: moodEnumCase)?.toString()
+                        self.depthLabel.text = Depth(rawValue: self.todayDiary[0].depth)?.toString()
+                        self.quoteLabel.text = self.todayDiary[0].sentence.contents
+                        self.writerLabel.text = self.todayDiary[0].sentence.writer
+                        self.bookTitleLabel.text = self.todayDiary[0].sentence.bookName
+                        self.publisherLabel.text = self.todayDiary[0].sentence.publisher
+                        self.diaryLabel.text = self.todayDiary[0].contents
+                    } else {
+                        self.showEmptyView()
+                    }
+
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+    
+    // MARK: - Functions
+    
+    // empty view 보이게
+    func showEmptyView() {
+        noDiaryStackView.isHidden = false
+        writeButton.isHidden = false
+        
+        filledDiaryView.isHidden = true
+        showAllButton.isHidden = true
+    }
+    
+    // filled view 보이게
+    func showFilledView() {
+        noDiaryStackView.isHidden = true
+        writeButton.isHidden = true
+        
+        filledDiaryView.isHidden = false
+        showAllButton.isHidden = false
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

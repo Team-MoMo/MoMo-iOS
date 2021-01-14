@@ -17,6 +17,7 @@ struct DiariesWithIDService {
         diaryId: Int,
         completion: @escaping (NetworkResult<Any>) -> Void
     ) {
+        let url = APIConstants.diaryWithUserIdURL
         let url = APIConstants.diariesURL + "/\(diaryId)"
         let header: HTTPHeaders = [
             "Content-Type": "application/json",
@@ -61,6 +62,7 @@ struct DiariesWithIDService {
         completion: @escaping (NetworkResult<Any>) -> Void
     ) {
         
+        let url = APIConstants.diaryWithUserIdURL
         let url = APIConstants.diariesURL + "/\(diaryId)"
         let header: HTTPHeaders = [
             "Content-Type": "application/json",
@@ -106,7 +108,7 @@ struct DiariesWithIDService {
         completion: @escaping (NetworkResult<Any>) -> Void
     ) {
         
-        let url = APIConstants.diariesURL + "/\(diaryId)"
+        let url = APIConstants.diaryWithUserIdURL
         let header: HTTPHeaders = [
             "Content-Type": "application/json",
             "Authorization": UserDefaults.standard.string(forKey: "token") ?? ""

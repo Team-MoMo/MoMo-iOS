@@ -148,6 +148,15 @@ struct Constants {
             static let icMemory14White = UIImage(named: "icMemory14White")
             static let icDaily14White = UIImage(named: "icDaily14White")
             
+            static let icLove14Blue = UIImage(named: "icLoveBlue")
+            static let icHappy14Blue = UIImage(named: "icHappyBlue")
+            static let icConsole14Blue = UIImage(named: "icConsoleBlue")
+            static let icAngry14Blue = UIImage(named: "icAngryBlue")
+            static let icSad14Blue = UIImage(named: "icSadBlue")
+            static let icBored14Blue = UIImage(named: "icBoredBlue")
+            static let icMemory14Blue = UIImage(named: "icMemoryBlue")
+            static let icDaily14Blue = UIImage(named: "icDailyBlue")
+            
             // join checkbox
             static let loginCheckboxIntermediate = UIImage(named: "loginCheckboxIntermediate")
             static let loginCheckbox = UIImage(named: "loginCheckbox")
