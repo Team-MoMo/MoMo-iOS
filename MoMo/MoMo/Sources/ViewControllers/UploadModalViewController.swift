@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol UploadModalPassDataDelegate: class {
+    func sendData(_ date: String)
+}
+
 class UploadModalViewController: UIViewController {
 
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -22,8 +26,11 @@ class UploadModalViewController: UIViewController {
     
     var yearArray: [String] = []
     var monthArray: [String] = []
+    var uploadModalDataDelegate : UploadModalPassDataDelegate?
+ 
     var dayArray: [[String]] = [["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"],
 ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"],["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29"]]
+    let weekdayArray = ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"]
     var dayIndex: Int = 0
     
     override func viewDidLoad() {
@@ -115,6 +122,23 @@ class UploadModalViewController: UIViewController {
         
         }
     }
+    
+    @IBAction func touchApplyButton(_ sender: Any) {
+        let dateComponents = NSDateComponents()
+        dateComponents.day = day
+        dateComponents.month = month
+        dateComponents.year = year
+        
+        guard let gregorianCalendar = NSCalendar(calendarIdentifier: .gregorian) else {
+            return
+        }
+        let date = gregorianCalendar.date(from: dateComponents as DateComponents)
+        let weekday = gregorianCalendar.component(.weekday, from: date!)
+        self.uploadModalDataDelegate?.sendData("\(year). \(month). \(day). \(weekdayArray[weekday])")
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
+
+    }
+    
 }
 
 extension UploadModalViewController: UIPickerViewDelegate {

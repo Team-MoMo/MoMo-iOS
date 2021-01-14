@@ -34,12 +34,12 @@ class AlertModalView: UIView {
     
     // MARK: - Functions
     
-    static func instantiate(alertLabelText: String, leftButtonTitle: String, rightButtonTitle: String) -> AlertModalView? {
+    static func instantiate(alertLabelText: String, leftButtonTitle: NSMutableAttributedString, rightButtonTitle: NSMutableAttributedString) -> AlertModalView? {
         
         let alertModalView: AlertModalView? = initFromNib()
         
-        alertModalView?.leftButton.setTitle(leftButtonTitle, for: .normal)
-        alertModalView?.rightButton.setTitle(rightButtonTitle, for: .normal)
+        alertModalView?.leftButton.setAttributedTitle(leftButtonTitle, for: .normal)
+        alertModalView?.rightButton.setAttributedTitle(rightButtonTitle, for: .normal)
         alertModalView?.alertLabel.text = alertLabelText
         alertModalView?.modalContainerView.layer.cornerRadius = 10
         alertModalView?.modalContainerView.clipsToBounds = true
