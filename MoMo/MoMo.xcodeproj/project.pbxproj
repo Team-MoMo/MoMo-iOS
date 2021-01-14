@@ -32,6 +32,7 @@
 		10E5CD8025ADF145004FDC24 /* UploadModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10E5CD7E25ADF145004FDC24 /* UploadModalViewController.xib */; };
 		10E5CD8325ADF1D5004FDC24 /* UploadModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E5CD8225ADF1D5004FDC24 /* UploadModalPresentationController.swift */; };
 		10F12B10259B2C4C003CAA9E /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10F12B0F259B2C4C003CAA9E /* List.storyboard */; };
+		10F1F72D25B04ADD00BF7D37 /* SentencesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F1F72C25B04ADD00BF7D37 /* SentencesService.swift */; };
 		10F8723425AAF2D9009FE6F1 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10F8723225AAF2D9009FE6F1 /* ListTableViewCell.xib */; };
 		10F8723525AAF2D9009FE6F1 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F8723325AAF2D9009FE6F1 /* ListTableViewCell.swift */; };
 		1C42357325AE26B9008FB838 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C42357225AE26B9008FB838 /* SplashViewController.swift */; };
@@ -119,6 +120,7 @@
 		10E5CD7E25ADF145004FDC24 /* UploadModalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadModalViewController.xib; sourceTree = "<group>"; };
 		10E5CD8225ADF1D5004FDC24 /* UploadModalPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadModalPresentationController.swift; sourceTree = "<group>"; };
 		10F12B0F259B2C4C003CAA9E /* List.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
+		10F1F72C25B04ADD00BF7D37 /* SentencesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentencesService.swift; sourceTree = "<group>"; };
 		10F8723225AAF2D9009FE6F1 /* ListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
 		10F8723325AAF2D9009FE6F1 /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		1C42357225AE26B9008FB838 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +198,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		10F1F72B25B04AB200BF7D37 /* Sentences */ = {
+			isa = PBXGroup;
+			children = (
+				10F1F72C25B04ADD00BF7D37 /* SentencesService.swift */,
+			);
+			path = Sentences;
+			sourceTree = "<group>";
+		};
 		563B032E25A8845A00DA74C5 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,6 +243,7 @@
 		563B048725AE06F700DA74C5 /* APIServices */ = {
 			isa = PBXGroup;
 			children = (
+				10F1F72B25B04AB200BF7D37 /* Sentences */,
 				563B048925AE0BA900DA74C5 /* GenericResponse.swift */,
 				563B04FB25AF742100DA74C5 /* MessageResponse.swift */,
 				563B048C25AE0BD500DA74C5 /* NetworkResult.swift */,
@@ -623,6 +634,7 @@
 				1006505D25AAF3320016B796 /* ViewController.swift in Sources */,
 				568764D1259F6EDE009CB486 /* UIColor+Extension.swift in Sources */,
 				107919B325A4830B0024C711 /* ListDateTableViewCell.swift in Sources */,
+				10F1F72D25B04ADD00BF7D37 /* SentencesService.swift in Sources */,
 				1C42357325AE26B9008FB838 /* SplashViewController.swift in Sources */,
 				1CEF46BF25A6DA7600AF3D81 /* OnboardingViewController.swift in Sources */,
 				1014894425AC417E00639F98 /* DiaryWriteViewController.swift in Sources */,
