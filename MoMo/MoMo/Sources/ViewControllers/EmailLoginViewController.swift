@@ -76,7 +76,8 @@ class EmailLoginViewController: UIViewController {
                 if let signInData = data as? AuthData {
                     self.errorMessageTop.constant = 0
                     self.errorMessageLabel.isHidden = true
-                    self.loginButtonTop.isActive = false
+                    // self.loginButtonTop.isActive = false
+                    self.loginButtonTop.constant = 0
                     self.joinStackViewBottom.isActive = true
                     self.joinStackViewBottom.constant = 69
                     print("로그인 성공")

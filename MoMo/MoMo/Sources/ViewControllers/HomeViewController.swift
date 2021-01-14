@@ -74,7 +74,7 @@ class HomeViewController: UIViewController {
         
         DiariesService.shared.getDiaries(userId: "\(APIConstants.userId)",
                                          year: "2020",
-                                         month: "1",
+                                         month: "8",
                                          order: "depth",
                                          day: nil,
                                          emotionId: nil,
