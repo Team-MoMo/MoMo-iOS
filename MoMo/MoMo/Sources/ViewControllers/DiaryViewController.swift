@@ -52,8 +52,9 @@ class DiaryViewController: UIViewController {
     var uploadModalViewController: UploadModalViewController?
     var diaryInfo: DiaryInfo?
     var gradientView: UIView?
+    let weekdayArray: [String] = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"]
     
-    var diaryId: Int = 0
+    var diaryId: Int = 1
     
     lazy var rightButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: UIImage(named: "icSubtab"), style: .done, target: self, action: #selector(buttonPressed(sender:)))
@@ -76,7 +77,7 @@ class DiaryViewController: UIViewController {
             self.whale1: "whale1",
             self.shark1: "shark1"
         ]
-        self.getDiaryFromAPI(completion: updateValues(diaryInfo:))
+        self.getDiaryWithAPI(completion: updateValues(diaryInfo:))
         
         self.addBlurEffectOnBlurView(view: self.blurView)
         
@@ -87,60 +88,61 @@ class DiaryViewController: UIViewController {
         
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        self.setBackgroundColorByDepth(depth: self.currentDepth)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setObjetsByDepth(depth: self.currentDepth ?? Depth.depth2m)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        self.setBackgroundColorByDepth(depth: self.currentDepth)
+        self.setBackgroundColorByDepth(depth: self.currentDepth)
     }
     
-    func getDiaryFromAPI(completion: @escaping (DiaryInfo?) -> Void) {
-        
-        // MARK: - 이전뷰에서 받아오거나 네트워크에서 받아야 할 부분
-        let defaultDiaryInfo: DiaryInfo = DiaryInfo(
-            date: "2020. 12. 26. 토요일",
-            year: 2020,
-            month: 12,
-            day: 26,
-            mood: Mood.love,
-            depth: Depth.depth300m,
-            sentence: MoodSentence(
-                author: "모모",
-                bookTitle: "모모책",
-                publisher: "모모출판사",
-                sentence: "모모사랑해"
-            ),
-            diary:
-                """
-                오늘 새벽엔 눈이 내렸다. 창문을 열어 창문을 열어 흰 눈이 내린다. 그럼에도 어김없이 오피스로 출근을 했다.
-                벌써 연말이 다가왔다는 것을 느낀다.
+    func getWeekDayFromYearMonthDay(date: String) -> String {
 
-                집에 들어와서 물을 한 잔 마시고 다시 침대에 누워서 왓챠를 틀고 보던 미드를 이어서 보기 시작했다. 오늘은 계속 크리스마스란 참 좋다 오늘 새벽엔 눈이 내렸다. 창문을 열어 창문을 열어 흰 눈이 내린다. 그럼에도 어김없이 오피스로 출근을 했다.
-                벌써 연말이 다가왔다는 것을 느낀다.
+        let dateFormatter = DateFormatter()
 
-                집에 들어와서 물을 한 잔 마시고 다시 침대에 누워서 왓챠를 틀고 보던 미드를 이어서 보기 시작했다. 오늘은 계속 크리스마스란 참 좋다오늘 새벽엔 눈이 내렸다. 창문을 열어 창문을 열어 흰 눈이 내린다. 그럼에도 어김없이 오피스로 출근을 했다.
-                벌써 연말이 다가왔다는 것을 느낀다.
-
-                집에 들어와서 물을 한 잔 마시고 다시 침대에 누워서 왓챠를 틀고 보던 미드를 이어서 보기 시작했다. 오늘은 계속 크리스마스란 참 좋다
-
-                집에 들어와서 물을 한 잔 마시고 다시 침대에 누워서 왓챠를 틀고 보던 미드를 이어서 보기 시작했다. 오늘은 계속 크리스마스란 참 좋다
-
-                집에 들어와서 물을 한 잔 마시고 다시 침대에 누워서 왓챠를 틀고 보던 미드를 이어서 보기 시작했다. 오늘은 계속 크리스마스란 참 좋다
-
-                집에 들어와서 물을 한 잔 마시고 다시 침대에 누워서 왓챠를 틀고 보던 미드를 이어서 보기 시작했다. 오늘은 계속 크리스마스란 참 좋다
-
-                집에 들어와서 물을 한 잔 마시고 다시 침대에 누워서 왓챠를 틀고 보던 미드를 이어서 보기 시작했다. 오늘은 계속 크리스마스란 참 좋다
-                """
-        )
-        
-        self.diaryInfo = defaultDiaryInfo
-        
-        DispatchQueue.main.async {
-            completion(self.diaryInfo)
-        }
+        dateFormatter.dateFormat = "yyyy. MM. dd"
+        dateFormatter.locale = Locale.current
+        guard let todayDate = dateFormatter.date(from: date) else { return ""}
+        let myCalendar = Calendar(identifier: .gregorian)
+        let weekday = myCalendar.component(.weekday, from: todayDate)
+        return weekdayArray[weekday - 1]
+    }
+    
+    func getFilteredDate(date: String, by: String) -> String {
+        return date.components(separatedBy: by).first!
+    }
+    
+    func getYearFromFilteredDate(date: String, by: String) -> Int {
+        let yearMonthDay: [String] = self.getFilteredDate(date: date, by: "T").components(separatedBy: by)
+        return Int(yearMonthDay[0])!
+    }
+    
+    func getMonthFromFilteredDate(date: String, by: String) -> Int {
+        let yearMonthDay: [String] = self.getFilteredDate(date: date, by: "T").components(separatedBy: by)
+        return Int(yearMonthDay[1])!
+    }
+    
+    func getDayFromFilteredDate(date: String, by: String) -> Int {
+        let yearMonthDay: [String] = self.getFilteredDate(date: date, by: "T").components(separatedBy: by)
+        return Int(yearMonthDay[2])!
+    }
+    
+    func getFormattedDate(date: String, by: String) -> String {
+        let year = self.getYearFromFilteredDate(date: date, by: by)
+        let month = self.getMonthFromFilteredDate(date: date, by: by)
+        let day = self.getDayFromFilteredDate(date: date, by: by)
+        let weekday = self.getWeekDayFromYearMonthDay(date: "\(year). \(month). \(day)")
+        return "\(year). \(String(format: "%02d", month)). \(String(format: "%02d", day)). \(weekday)"
+    }
+    
+    func getFormattedDateForServer(date: String, by: String) -> String {
+        let year = self.getYearFromFilteredDate(date: date, by: by)
+        let month = self.getMonthFromFilteredDate(date: date, by: by)
+        let day = self.getDayFromFilteredDate(date: date, by: by)
+        let weekday = self.getWeekDayFromYearMonthDay(date: "\(year). \(month). \(day)")
+        return "\(year)-\(String(format: "%02d", month))-\(String(format: "%02d", day))"
     }
     
     func updateValues(diaryInfo: DiaryInfo?) {
@@ -151,15 +153,10 @@ class DiaryViewController: UIViewController {
         self.depthLabel.text = diaryInfo?.depth.toString()
         self.sentenceLabel.text = diaryInfo?.sentence.sentence
         self.authorLabel.text = diaryInfo?.sentence.author
-        self.bookTitleLabel.text = diaryInfo?.sentence.bookTitle
+        self.bookTitleLabel.text = "<\(diaryInfo!.sentence.bookTitle)>"
         self.authorLabel.text = diaryInfo?.sentence.author
-        self.publisherLabel.text = diaryInfo?.sentence.publisher
+        self.publisherLabel.text = "(\(diaryInfo!.sentence.publisher))"
         self.diaryLabel.text = diaryInfo?.diary
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.setObjetsByDepth(depth: self.currentDepth ?? Depth.depth2m)
     }
     
     func attachMenuView() {
@@ -268,28 +265,6 @@ class DiaryViewController: UIViewController {
             }
         }
     }
-    
-    // TODO: - 선택한 다이어리 서버에 저장요청
-    func postNewDiaryWithAPI(newDiary: DiaryInfo) {
-        print("서버에 저장필요")
-        
-        // TODO: - 서버에 저장 요청
-        
-        // TODO: - 서버에 저장 끝
-        
-    }
-    
-    // TODO: - 선택한 다이어리 서버에서 삭제요청
-    func postDeleteDiaryWithAPI(completion: @escaping () -> Void) {
-
-        // TODO: - 삭제요청
-        print("일기삭제")
-        
-        // TODO: - 삭제끝
-        DispatchQueue.main.async {
-            completion()
-        }
-    }
 }
 
 // MARK: - MenuDelegate
@@ -364,7 +339,7 @@ extension DiaryViewController: AlertModalDelegate {
     }
     
     func rightButtonTouchUp(button: UIButton) {
-        self.postDeleteDiaryWithAPI(completion: {
+        self.deleteDiaryWithAPI(completion: {
             self.navigationController?.popViewController(animated: true)
         })
     }
@@ -382,7 +357,6 @@ extension DiaryViewController: UIViewControllerTransitioningDelegate {
 
 extension DiaryViewController: UploadModalPassDataDelegate {
     func passData(_ date: String) {
-        // TODO: - 리팩토링 필요
         let dateArray = date.components(separatedBy: ". ")
         self.diaryInfo?.date = date
         self.diaryInfo?.year = Int(dateArray[0])!
@@ -390,10 +364,11 @@ extension DiaryViewController: UploadModalPassDataDelegate {
         self.diaryInfo?.day = Int(dateArray[2])!
         self.diaryInfo?.date = date
         
-        // TODO: - 리팩토링 필요
         self.menuView?.removeFromSuperview()
         self.updateValues(diaryInfo: self.diaryInfo)
-        self.postNewDiaryWithAPI(newDiary: self.diaryInfo!)
+        self.putDiaryWithAPI(newDiary: self.diaryInfo!, completion: {
+            self.getDiaryWithAPI(completion: self.updateValues(diaryInfo:))
+        })
     }
 }
 
@@ -401,9 +376,11 @@ extension DiaryViewController: UploadModalPassDataDelegate {
 
 extension DiaryViewController: DiaryWriteViewControllerDelegate {
     func popDiaryWirteViewController(diaryInfo: DiaryInfo) {
-        // TODO: - 리팩토링 필요
         self.menuView?.removeFromSuperview()
         self.updateValues(diaryInfo: diaryInfo)
+        self.putDiaryWithAPI(newDiary: diaryInfo, completion: {
+            self.getDiaryWithAPI(completion: self.updateValues(diaryInfo:))
+        })
     }
 
 }
@@ -412,15 +389,111 @@ extension DiaryViewController: DiaryWriteViewControllerDelegate {
 
 extension DiaryViewController: DeepViewControllerDelegate {
     func passData(selectedDepth: Depth) {
-        // TODO: - 리팩토링 필요
         self.currentDepth = selectedDepth
         self.diaryInfo?.depth = selectedDepth
         self.setObjetsByDepth(depth: selectedDepth)
         self.setBackgroundColorByDepth(depth: selectedDepth)
         
-        // TODO: - 리팩토링 필요
         self.menuView?.removeFromSuperview()
         self.updateValues(diaryInfo: self.diaryInfo)
-        self.postNewDiaryWithAPI(newDiary: self.diaryInfo!)
+        self.putDiaryWithAPI(newDiary: self.diaryInfo!, completion: {
+            self.getDiaryWithAPI(completion: self.updateValues(diaryInfo:))
+        })
+    }
+}
+
+// MARK: - APIService
+
+extension DiaryViewController {
+    func getDiaryWithAPI(completion: @escaping (DiaryInfo?) -> Void) {
+        DiariesWithIDService.shared.getDiaryWithDiaryId(diaryId: 2) { (result) in
+            switch(result) {
+            case .success(let data):
+                if let diaryData = data as? Diary {
+                    let diaryFromServer: DiaryInfo = DiaryInfo(
+                        date: self.getFormattedDate(date: diaryData.wroteAt, by: "-"),
+                        year: self.getYearFromFilteredDate(date: diaryData.wroteAt, by: "-"),
+                        month: self.getMonthFromFilteredDate(date: diaryData.wroteAt, by: "-"),
+                        day: self.getDayFromFilteredDate(date: diaryData.wroteAt, by: "-"),
+                        mood: Mood(rawValue: diaryData.emotionID)!,
+                        depth: Depth(rawValue: diaryData.depth)!,
+                        sentence: MoodSentence(
+                            id: diaryData.sentenceID,
+                            author: diaryData.sentence.writer,
+                            bookTitle: diaryData.sentence.bookName,
+                            publisher: diaryData.sentence.publisher,
+                            sentence: diaryData.sentence.contents
+                        ),
+                        diary: diaryData.contents
+                    )
+                    self.diaryInfo = diaryFromServer
+                    DispatchQueue.main.async {
+                        completion(self.diaryInfo)
+                    }
+                }
+            case .requestErr(let errorMessage):
+                print(errorMessage)
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+    
+    func putDiaryWithAPI(newDiary: DiaryInfo, completion: @escaping () -> Void) {
+//        print(newDiary)
+//        print("userId: \(APIConstants.userId)")
+//        print("diaryId: \(2)")
+//        print("depth: \(newDiary.depth.rawValue)")
+//        print("contents: \(newDiary.diary)")
+//        print("sentenceId: \(newDiary.sentence.id ?? 1)")
+//        print("emotionId: \(newDiary.mood.rawValue)")
+//        print("wroteAt: \(self.getFormattedDateForServer(date: newDiary.date, by: ". "))")
+        
+        DiariesWithIDService.shared.putDiaryWithDiaryId(
+            diaryId: 2,
+            depth: newDiary.depth.rawValue,
+            contents: newDiary.diary,
+            userId: APIConstants.userId,
+            sentenceId: newDiary.sentence.id ?? 1,
+            emotionId: newDiary.mood.rawValue,
+            wroteAt: self.getFormattedDateForServer(date: newDiary.date, by: ". ")
+        ) { (result) in
+            switch(result) {
+            case .success(let data):
+                print("다이어리 수정성공")
+                completion()
+            case .requestErr(let errorMessage):
+                print(errorMessage)
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+    
+    func deleteDiaryWithAPI(completion: @escaping () -> Void) {
+        
+        DiariesWithIDService.shared.deleteDiaryWithDiaryId(diaryId: 2) { (result) in
+            switch(result) {
+            case .success(let data):
+                print("다이어리 삭제성공")
+                completion()
+            case .requestErr(let errorMessage):
+                print(errorMessage)
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
     }
 }
