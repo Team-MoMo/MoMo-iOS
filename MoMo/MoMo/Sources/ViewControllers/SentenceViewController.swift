@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Sentence {
+struct MoodSentence {
     var author: String
     var bookTitle: String
     var publisher: String
@@ -52,16 +52,16 @@ class SentenceViewController: UIViewController {
     var selectedMood: Mood?
     var date: String?
     let defaultInfo: String = "감정과 어울리는 문장을\n매일 3개씩 소개해드릴게요"
-    let defaultSentence: Sentence = Sentence(
+    let defaultSentence: MoodSentence = MoodSentence(
         author: "김모모",
         bookTitle: "모모책",
         publisher: "모모출판사",
         sentence: "모모 사랑해요"
     )
     let shadowOffsetButton: CGSize = CGSize(width: 4, height: 4)
-    var firstSentence: Sentence?
-    var secondSentence: Sentence?
-    var thirdSentence: Sentence?
+    var firstSentence: MoodSentence?
+    var secondSentence: MoodSentence?
+    var thirdSentence: MoodSentence?
     
     // false일 때 upload
     var changeUsage: Bool = false
@@ -107,21 +107,21 @@ class SentenceViewController: UIViewController {
     func getSentenceDataFromAPI(completion: @escaping () -> Void) {
         
         // 네트워크 통신으로 받아와야 할 부분
-        self.firstSentence = Sentence(
+        self.firstSentence = MoodSentence(
             author: "구병모",
             bookTitle: "파과",
             publisher: "위즈덤 하우스",
             sentence: "\"우드스탁!\" 그 애는 우리 둘만 있을 땐 나를 꼭 우드스탁이라고 불렀다. 시간이 지날수록 그 호칭은 나를 꽤나 들뜨게 했다."
         )
         
-        self.secondSentence = Sentence(
+        self.secondSentence = MoodSentence(
             author: "구병모",
             bookTitle: "파과",
             publisher: "위즈덤 하우스",
             sentence: "\"우드스탁!\" 그 애는 우리 둘만 있을 땐 나를 꼭 우드스탁이라고 불렀다. 시간이 지날수록 그 호칭은 나를 꽤나 들뜨게 했다."
         )
         
-        self.thirdSentence = Sentence(
+        self.thirdSentence = MoodSentence(
             author: "구병모",
             bookTitle: "파과",
             publisher: "위즈덤 하우스",
@@ -205,7 +205,7 @@ class SentenceViewController: UIViewController {
         }
     }
     
-    func pushToOnboardingWriteViewController(sentence: Sentence) {
+    func pushToOnboardingWriteViewController(sentence: MoodSentence) {
         
         guard let onboardingWriteViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.onboardingWriteViewController) as? OnboardingWriteViewController else { return }
         
