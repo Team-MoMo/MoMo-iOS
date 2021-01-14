@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DiaryWriteViewControllerDelegate: class {
-    func popDiaryWirteViewController(data: DiaryInfo)
+    func popDiaryWirteViewController(diaryInfo: DiaryInfo)
 }
 
 enum NavigationButton: Int {
@@ -28,6 +28,8 @@ class DiaryWriteViewController: UIViewController {
     var quote: String = "접입가경, 이게 웬 심장이 콧구멍으로 쏟아질 얘긴가 싶지만 그저 지레짐작이나 얻어걸린 이야기일 가능성이 더 많으니 조각은 표정을 바꾸지 않는다."
     var journal: String = ""
     var placeHolder: NSMutableAttributedString = NSMutableAttributedString()
+    // TODO: - isFromeDiary를 사용하지 않고 prevViewController: String 또는
+    // prevViewController: EnumType??? 으로 만들고 switch 문으로 분기처리하도록 리팩토링
     var isFromDiary: Bool = false
     var diaryInfo: DiaryInfo?
     var alertModalView: AlertModalView?
@@ -59,7 +61,7 @@ class DiaryWriteViewController: UIViewController {
     lazy var rightButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(buttonPressed(sender:)))
         button.tag = NavigationButton.rightButton.rawValue
-        button.tintColor = UIColor.systemBlue
+        button.tintColor = UIColor.Blue2
         return button
     }()
     
@@ -196,6 +198,7 @@ class DiaryWriteViewController: UIViewController {
                 self.popDiaryWirteViewController()
             case NavigationButton.rightButton.rawValue:
                 self.saveDiary()
+                self.popDiaryWirteViewController()
             default:
                 print("error")
             }
@@ -229,7 +232,7 @@ class DiaryWriteViewController: UIViewController {
     
     func passDataAndPopViewController() {
         if let diaryInfo = self.diaryInfo {
-            self.diaryWriteViewControllerDelegate?.popDiaryWirteViewController(data: diaryInfo)
+            self.diaryWriteViewControllerDelegate?.popDiaryWirteViewController(diaryInfo: diaryInfo)
         }
         self.navigationController?.popViewController(animated: true)
     }

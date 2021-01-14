@@ -18,9 +18,10 @@ struct DiariesService {
     func getDiaries( userId: String,
                      year: String,
                      month: String,
-                     order: String?,
-                     emotionId: String?,
-                     depth: String?,
+                     order: String,
+                     day: Int?,
+                     emotionId: Int?,
+                     depth: Int?,
                      completion: @escaping (NetworkResult<Any>) -> (Void)) {
         
         let url = APIConstants.diariesURL
@@ -28,14 +29,22 @@ struct DiariesService {
             "Content-Type": "application/json",
             "Authorization": UserDefaults.standard.string(forKey: "token") ?? ""
         ]
-        let body: Parameters = [
+        
+        var body: Parameters = [
             "userId": userId,
             "year": year,
             "month": month,
-//            "order": "",
-//            "emotionId": "",
-//            "depth": ""
+            "order": order,
         ]
+        if day != nil {
+            body["day"] = day
+        }
+        if emotionId != nil {
+            body["emotionId"] = emotionId
+        }
+        if depth != nil {
+            body["depth"] = depth
+        }
         
         let dataRequest = AF.request(url,
                                      method: .get,
