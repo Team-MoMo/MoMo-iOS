@@ -51,6 +51,27 @@ enum Mood {
             return Constants.Design.Image.icDaily14Black!
         }
     }
+    
+    func toWhiteIcon() -> UIImage {
+        switch self {
+        case .love:
+            return Constants.Design.Image.icLove14White!
+        case .happy:
+            return Constants.Design.Image.icHappy14White!
+        case .console:
+            return Constants.Design.Image.icConsole14White!
+        case .angry:
+            return Constants.Design.Image.icAngry14White!
+        case .sad:
+            return Constants.Design.Image.icSad14White!
+        case .bored:
+            return Constants.Design.Image.icBored14White!
+        case .memory:
+            return Constants.Design.Image.icMemory14White!
+        case .daily:
+            return Constants.Design.Image.icDaily14White!
+        }
+    }
 }
 
 struct Button {
