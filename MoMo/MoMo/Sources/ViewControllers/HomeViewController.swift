@@ -420,6 +420,21 @@ class HomeViewController: UIViewController {
         homeTableView.setContentOffset(.zero, animated: true)
         swipeUpButton.isHidden = true
     }
+    
+    @IBAction func touchUpUploadButton(_ sender: Any) {
+        let onboardingStoryboard = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
+        guard let dvc = onboardingStoryboard.instantiateViewController(identifier: Constants.Identifier.moodViewController) as? MoodViewController else {
+            return
+        }
+        dvc.changeUsage = false
+        self.navigationController?.pushViewController(dvc, animated: true)
+    }
+    
+    @IBAction func touchUpListButton(_ sender: Any) {
+        let listStoryboard = UIStoryboard(name: Constants.Name.listStoryboard, bundle: nil)
+        let dvc = listStoryboard.instantiateViewController(identifier: Constants.Identifier.listViewController)
+        self.navigationController?.pushViewController(dvc, animated: true)
+    }
 }
 
 // MARK: - UITableViewDataSource
