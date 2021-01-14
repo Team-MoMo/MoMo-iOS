@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AlertModalView" customModule="MoMo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJG-tL-5et" userLabel="Modal Container View">
+                    <rect key="frame" x="62" y="242" width="290" height="241"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="modalImgWave290" translatesAutoresizingMaskIntoConstraints="NO" id="uPh-R3-AYn">
+                            <rect key="frame" x="0.0" y="0.0" width="290" height="79.5"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="79.5" id="eg8-1a-uf4"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="modalIcWarning" translatesAutoresizingMaskIntoConstraints="NO" id="1hG-ZO-936">
+                            <rect key="frame" x="123" y="28" width="44" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="N8p-Ty-X0o" userLabel="height = 44"/>
+                                <constraint firstAttribute="width" constant="44" id="Xpg-DC-zRd"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="잠시만요!" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66s-YB-pJl" userLabel="Alert Title Label">
+                            <rect key="frame" x="111" y="84" width="68.5" height="21.5"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <color key="textColor" name="Blue1"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyj-jp-ZmR" userLabel="Alert Message Label">
+                            <rect key="frame" x="72.5" y="127.5" width="145" height="33.5"/>
+                            <string key="text">소중한 일기가 삭제됩니다.
+정말 삭제하시겠어요?</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" name="Black1"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ye-cf-kRI">
+                            <rect key="frame" x="0.0" y="193" width="290" height="48"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vU9-St-hxw" userLabel="Cancel Button">
+                                    <rect key="frame" x="0.0" y="0.0" width="145" height="48"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <state key="normal" title="취소">
+                                        <color key="titleColor" name="Black1"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="leftButtonTouchUp:" destination="iN0-l3-epB" eventType="touchUpInside" id="LNe-dr-rkm"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afO-zJ-HH4" userLabel="Delete Button">
+                                    <rect key="frame" x="145" y="0.0" width="145" height="48"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <state key="normal" title="삭제">
+                                        <color key="titleColor" name="Black1"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="rightButtonTouchUp:" destination="iN0-l3-epB" eventType="touchUpInside" id="3qp-Lq-LHe"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="pV6-tp-AFu"/>
+                            </constraints>
+                        </stackView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HgN-7h-Wjj" userLabel="Line View1">
+                            <rect key="frame" x="0.0" y="192" width="290" height="1"/>
+                            <color key="backgroundColor" red="0.81960784313725488" green="0.81960784313725488" blue="0.81960784313725488" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="qwb-Fm-adv"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aWW-lr-6OJ" userLabel="Line View2">
+                            <rect key="frame" x="144.5" y="193" width="1" height="48"/>
+                            <color key="backgroundColor" red="0.81960784313725488" green="0.81960784313725488" blue="0.81960784313725488" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="1" id="VWU-EN-aD0"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="Blue7"/>
+                    <constraints>
+                        <constraint firstItem="HgN-7h-Wjj" firstAttribute="top" secondItem="fyj-jp-ZmR" secondAttribute="bottom" constant="31" id="52S-AN-Svj"/>
+                        <constraint firstItem="afO-zJ-HH4" firstAttribute="width" secondItem="xJG-tL-5et" secondAttribute="width" multiplier="0.5" id="8hr-8n-0Jf"/>
+                        <constraint firstItem="66s-YB-pJl" firstAttribute="centerX" secondItem="xJG-tL-5et" secondAttribute="centerX" id="93g-WD-pId"/>
+                        <constraint firstAttribute="trailing" secondItem="HgN-7h-Wjj" secondAttribute="trailing" id="CLo-jF-iD0"/>
+                        <constraint firstItem="aWW-lr-6OJ" firstAttribute="centerX" secondItem="xJG-tL-5et" secondAttribute="centerX" id="FEt-fI-qq3"/>
+                        <constraint firstAttribute="width" secondItem="xJG-tL-5et" secondAttribute="height" multiplier="290:241" id="HGU-fg-dhH"/>
+                        <constraint firstAttribute="trailing" secondItem="uPh-R3-AYn" secondAttribute="trailing" id="HHW-8D-94O"/>
+                        <constraint firstAttribute="width" constant="290" id="Jvr-J0-Grl"/>
+                        <constraint firstItem="uPh-R3-AYn" firstAttribute="top" secondItem="xJG-tL-5et" secondAttribute="top" id="Ly4-NA-v2e"/>
+                        <constraint firstItem="1hG-ZO-936" firstAttribute="top" secondItem="xJG-tL-5et" secondAttribute="top" constant="28" id="N3m-t3-syH"/>
+                        <constraint firstAttribute="bottom" secondItem="1ye-cf-kRI" secondAttribute="bottom" id="Qhh-2K-DyO"/>
+                        <constraint firstAttribute="bottom" secondItem="aWW-lr-6OJ" secondAttribute="bottom" id="RPa-Ww-gWU"/>
+                        <constraint firstItem="1hG-ZO-936" firstAttribute="centerX" secondItem="uPh-R3-AYn" secondAttribute="centerX" id="US4-qt-2bF"/>
+                        <constraint firstItem="1ye-cf-kRI" firstAttribute="leading" secondItem="xJG-tL-5et" secondAttribute="leading" id="WQ7-RW-EJ3"/>
+                        <constraint firstItem="HgN-7h-Wjj" firstAttribute="leading" secondItem="xJG-tL-5et" secondAttribute="leading" id="XY0-Vf-NtG"/>
+                        <constraint firstAttribute="trailing" secondItem="1ye-cf-kRI" secondAttribute="trailing" id="ZXc-40-LjH"/>
+                        <constraint firstAttribute="bottom" secondItem="HgN-7h-Wjj" secondAttribute="bottom" constant="48" id="ab4-jD-4b2"/>
+                        <constraint firstItem="vU9-St-hxw" firstAttribute="width" secondItem="xJG-tL-5et" secondAttribute="width" multiplier="0.5" id="blg-LW-mVF"/>
+                        <constraint firstItem="fyj-jp-ZmR" firstAttribute="centerX" secondItem="xJG-tL-5et" secondAttribute="centerX" id="hBH-1O-xLf"/>
+                        <constraint firstItem="66s-YB-pJl" firstAttribute="top" secondItem="1hG-ZO-936" secondAttribute="bottom" constant="12" id="qtg-t9-OfY"/>
+                        <constraint firstItem="uPh-R3-AYn" firstAttribute="leading" secondItem="xJG-tL-5et" secondAttribute="leading" id="xpY-yu-eB8"/>
+                        <constraint firstItem="aWW-lr-6OJ" firstAttribute="top" secondItem="HgN-7h-Wjj" secondAttribute="bottom" id="yce-qW-Qfp"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="xJG-tL-5et" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="iDG-CM-ls2"/>
+                <constraint firstItem="xJG-tL-5et" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" multiplier="0.8" id="lFn-Qm-7dd"/>
+            </constraints>
+            <connections>
+                <outlet property="alertLabel" destination="fyj-jp-ZmR" id="Lqm-Zv-xQr"/>
+                <outlet property="leftButton" destination="vU9-St-hxw" id="sYM-51-BXm"/>
+                <outlet property="modalContainerView" destination="xJG-tL-5et" id="Dpw-EU-SbL"/>
+                <outlet property="rightButton" destination="afO-zJ-HH4" id="8MO-qo-lN8"/>
+            </connections>
+            <point key="canvasLocation" x="-362.31884057971018" y="141.96428571428569"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="modalIcWarning" width="44" height="44"/>
+        <image name="modalImgWave290" width="290" height="79.5"/>
+        <namedColor name="Black1">
+            <color red="0.12200000137090683" green="0.12200000137090683" blue="0.12200000137090683" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Blue1">
+            <color red="0.19200000166893005" green="0.40400001406669617" blue="0.6589999794960022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Blue7">
+            <color red="0.96100002527236938" green="0.97600001096725464" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
