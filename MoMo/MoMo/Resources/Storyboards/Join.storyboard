@@ -196,7 +196,7 @@ MOMO와 함께 시작해요</string>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opi-Rw-cdh">
-                                <rect key="frame" x="83" y="599" width="259" height="29"/>
+                                <rect key="frame" x="83" y="598.5" width="259" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="259" id="JsR-aG-0Hi"/>
                                 </constraints>
@@ -262,7 +262,7 @@ MOMO와 함께 시작해요</string>
             <color red="0.38400000333786011" green="0.54100000858306885" blue="0.72200000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="RedError">
-            <color red="0.9882352941176471" green="0.31764705882352939" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.98799997568130493" green="0.31799998879432678" blue="0.31799998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
