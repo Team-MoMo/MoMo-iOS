@@ -36,6 +36,79 @@ class HomeDayNightView: UIView {
     
     var gradientLayer: CAGradientLayer!
     var date: String?
+    var dateArray:[String] = []
+    var todayDiary: [Diary] = []
+    
+    var moodArray = ["", "love", "happy", "console", "angry", "sad", "bored", "memory", "daily"]
+    var depthArray = ["2m", "30m", "100m", "300m", "700m", "1,005m", "심해"]
+    
+    // MARK: 해찌꺼뽀려옴
+    enum Mood {
+        case love, happy, console, angry, sad, bored, memory, daily
+        
+        func toString() -> String {
+            switch self {
+            case .love:
+                return "사랑"
+            case .happy:
+                return "행복"
+            case .console:
+                return "위로"
+            case .angry:
+                return "화남"
+            case .sad:
+                return "슬픔"
+            case .bored:
+                return "우울"
+            case .memory:
+                return "추억"
+            case .daily:
+                return "일상"
+            }
+        }
+        
+        func toIcon() -> UIImage {
+            switch self {
+            case .love:
+                return Constants.Design.Image.icLove14Black!
+            case .happy:
+                return Constants.Design.Image.icHappy14Black!
+            case .console:
+                return Constants.Design.Image.icConsole14Black!
+            case .angry:
+                return Constants.Design.Image.icAngry14Black!
+            case .sad:
+                return Constants.Design.Image.icSad14Black!
+            case .bored:
+                return Constants.Design.Image.icBored14Black!
+            case .memory:
+                return Constants.Design.Image.icMemory14Black!
+            case .daily:
+                return Constants.Design.Image.icDaily14Black!
+            }
+        }
+        
+        func toWhiteIcon() -> UIImage {
+            switch self {
+            case .love:
+                return Constants.Design.Image.icLove14White!
+            case .happy:
+                return Constants.Design.Image.icHappy14White!
+            case .console:
+                return Constants.Design.Image.icConsole14White!
+            case .angry:
+                return Constants.Design.Image.icAngry14White!
+            case .sad:
+                return Constants.Design.Image.icSad14White!
+            case .bored:
+                return Constants.Design.Image.icBored14White!
+            case .memory:
+                return Constants.Design.Image.icMemory14White!
+            case .daily:
+                return Constants.Design.Image.icDaily14White!
+            }
+        }
+    }
     
     // MARK: - Functions
     
@@ -47,6 +120,7 @@ class HomeDayNightView: UIView {
         self.backgroundView.layer.addSublayer(gradientLayer)
     }
     
+    // MARK: 해찌꺼뽀려옴2
     func getCurrentFormattedDate() -> String? {
         
         let date = Date()
@@ -56,7 +130,7 @@ class HomeDayNightView: UIView {
         dateFormatter.locale = Locale.current
         
         let formattedDate = dateFormatter.string(from: date)
-        var dateArray = formattedDate.components(separatedBy: ". ")
+        dateArray = formattedDate.components(separatedBy: ". ")
         let weekday = dateArray.popLast()
         
         dateArray.append(weekdayEnglishToKorean(weekday: weekday ?? "Monday"))
@@ -121,7 +195,68 @@ class HomeDayNightView: UIView {
         date = getCurrentFormattedDate()
         dateLabel.text = date
         
+        // 오늘 쓴 일기 있는지 통신
+        DiariesService.shared.getDiaries(userId: "\(APIConstants.userId)",
+                                         year: dateArray[0],
+                                         month: dateArray[1],
+                                         order: "filter",
+                                         day: Int(dateArray[2]),
+                                         emotionId: nil,
+                                         depth: nil
+        ) { (networkResult) -> (Void) in
+            switch networkResult {
+            case .success(let data):
+                if let diary = data as? [Diary] {
+                    self.todayDiary = diary
+                    print(self.todayDiary[0])
+                    let moodEnumCase = self.moodArray[self.todayDiary[0].emotionID]
+                    
+                    
+                    if self.todayDiary.count == 1 {
+                        // TODO: - enum으아아아아!!!!!!!!!
+                        //emotionImageView.image = Mood.memory
+                        self.emotionLabel.text = moodEnumCase
+                        self.depthLabel.text = self.depthArray[self.todayDiary[0].depth]
+                        self.quoteLabel.text = self.todayDiary[0].sentence.contents
+                        self.writerLabel.text = self.todayDiary[0].sentence.writer
+                        self.bookTitleLabel.text = self.todayDiary[0].sentence.bookName
+                        self.publisherLabel.text = self.todayDiary[0].sentence.publisher
+                        self.diaryLabel.text = self.todayDiary[0].contents
+                    }
+
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+    
+    // MARK: - Functions
+    
+    // empty view 보이게
+    func showEmptyView() {
+        noDiaryStackView.isHidden = false
+        writeButton.isHidden = false
         
+        filledDiaryView.isHidden = true
+        showAllButton.isHidden = true
+    }
+    
+    // filled view 보이게
+    func showFilledView() {
+        noDiaryStackView.isHidden = true
+        writeButton.isHidden = true
+        
+        filledDiaryView.isHidden = false
+        showAllButton.isHidden = false
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
