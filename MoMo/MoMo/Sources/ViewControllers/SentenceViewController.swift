@@ -92,7 +92,7 @@ class SentenceViewController: UIViewController {
         self.moodIcon.image = self.selectedMood?.toIcon()
         self.dateLabel.text = self.date
         
-        self.getSentenceDataFromAPI(completion: setSentenceLabel)
+        self.getSentenceDataFromAPI(emotionId: self.selectedMood?.rawValue ?? 1, completion: setSentenceLabel)
         
         self.hideButtons()
         
@@ -140,36 +140,6 @@ class SentenceViewController: UIViewController {
                 print("networkFail")
             }
         } 
-    }
-    
-    func getSentenceDataFromAPI(completion: @escaping () -> Void) {
-        
-        // 네트워크 통신으로 받아와야 할 부분
-        self.firstSentence = MoodSentence(
-            author: "구병모",
-            bookTitle: "파과",
-            publisher: "위즈덤 하우스",
-            sentence: "\"우드스탁!\" 그 애는 우리 둘만 있을 땐 나를 꼭 우드스탁이라고 불렀다. 시간이 지날수록 그 호칭은 나를 꽤나 들뜨게 했다."
-        )
-        
-        self.secondSentence = MoodSentence(
-            author: "구병모",
-            bookTitle: "파과",
-            publisher: "위즈덤 하우스",
-            sentence: "\"우드스탁!\" 그 애는 우리 둘만 있을 땐 나를 꼭 우드스탁이라고 불렀다. 시간이 지날수록 그 호칭은 나를 꽤나 들뜨게 했다."
-        )
-        
-        self.thirdSentence = MoodSentence(
-            author: "구병모",
-            bookTitle: "파과",
-            publisher: "위즈덤 하우스",
-            sentence: "\"우드스탁!\" 그 애는 우리 둘만 있을 땐 나를 꼭 우드스탁이라고 불렀다. 시간이 지날수록 그 호칭은 나를 꽤나 들뜨게 했다."
-        )
-        
-        DispatchQueue.main.async {
-            completion()
-        }
-        
     }
     
     func setSentenceLabel() {
@@ -329,5 +299,53 @@ class SentenceViewController: UIViewController {
     
     @objc func touchBackButton() {
         self.navigationController?.popViewController(animated: true)
+    }
+}
+
+// API
+
+extension SentenceViewController {
+    
+    func getSentenceDataFromAPI(emotionId: Int, completion: @escaping () -> Void) {
+        
+        OnboardingService.shared.getOnboardingWithEmotionId(emotionId: emotionId) { (result) in
+            switch(result) {
+            case .success(let data):
+                if let sentences = data as? OnboardingSentence {
+                    
+                    self.firstSentence = MoodSentence(
+                        author: sentences.sentence01.writer,
+                        bookTitle: sentences.sentence01.bookName,
+                        publisher: sentences.sentence01.publisher,
+                        sentence: sentences.sentence01.contents
+                    )
+                    
+                    self.secondSentence = MoodSentence(
+                        author: sentences.sentence02.writer,
+                        bookTitle: sentences.sentence02.bookName,
+                        publisher: sentences.sentence02.publisher,
+                        sentence: sentences.sentence02.contents
+                    )
+                    
+                    self.thirdSentence = MoodSentence(
+                        author: sentences.sentence03.writer,
+                        bookTitle: sentences.sentence03.bookName,
+                        publisher: sentences.sentence03.publisher,
+                        sentence: sentences.sentence03.contents
+                    )
+                    DispatchQueue.main.async {
+                        completion()
+                    }
+                }
+            case .requestErr(let errorMessage):
+                print(errorMessage)
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
     }
 }
