@@ -56,12 +56,21 @@ class DiaryViewController: UIViewController {
     
     var diaryId: Int = 1
     
-    lazy var rightButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(image: UIImage(named: "icSubtab"), style: .done, target: self, action: #selector(buttonPressed(sender:)))
-        button.tag = 1
+    lazy var leftButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: Constants.Design.Image.btnBackWhite, style: .plain, target: self, action: #selector(buttonPressed(sender:)))
+        button.tag = NavigationButton.leftButton.rawValue
         button.tintColor = UIColor.white
         return button
     }()
+    
+    lazy var rightButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: UIImage(named: "icSubtab"), style: .done, target: self, action: #selector(buttonPressed(sender:)))
+        button.tag = NavigationButton.rightButton.rawValue
+        button.tintColor = UIColor.white
+        return button
+    }()
+    
+    // MARK: - Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +90,7 @@ class DiaryViewController: UIViewController {
         
         self.addBlurEffectOnBlurView(view: self.blurView)
         
+        self.navigationItem.leftBarButtonItem = self.leftButton
         self.navigationItem.rightBarButtonItem = self.rightButton
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -97,6 +107,8 @@ class DiaryViewController: UIViewController {
         super.viewDidAppear(animated)
         self.setBackgroundColorByDepth(depth: self.currentDepth)
     }
+    
+    // MARK: - Functions
     
     func getWeekDayFromYearMonthDay(date: String) -> String {
 
@@ -253,7 +265,9 @@ class DiaryViewController: UIViewController {
     @objc private func buttonPressed(sender: Any) {
         if let button = sender as? UIBarButtonItem {
             switch button.tag {
-            case 1:
+            case NavigationButton.leftButton.rawValue:
+                self.popToHomeViewController()
+            case NavigationButton.rightButton.rawValue:
                 if self.menuToggleFlag {
                     self.menuView?.removeFromSuperview()
                 } else {
@@ -264,6 +278,38 @@ class DiaryViewController: UIViewController {
                 print("error")
             }
         }
+    }
+    
+    func pushToDeepViewController() {
+        let onboardingStoryboard = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
+        guard let deepViewController = onboardingStoryboard.instantiateViewController(identifier: Constants.Identifier.deepViewController) as? DeepViewController else { return }
+        
+        deepViewController.deepViewControllerDelegate = self
+        deepViewController.initialDepth = self.currentDepth
+        deepViewController.buttonText = "수정하기"
+        
+        self.navigationController?.pushViewController(deepViewController, animated: true)
+    }
+    
+    func pushToDiaryWriteController() {
+        let diaryWriteStoryboard = UIStoryboard(name: Constants.Name.diaryWriteStoryboard, bundle: nil)
+        guard let diaryWriteViewController = diaryWriteStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryWriteViewController) as? DiaryWriteViewController else { return }
+        
+        self.diaryWriteViewController = diaryWriteViewController
+        self.diaryWriteViewController?.diaryWriteViewControllerDelegate = self
+        
+        diaryWriteViewController.diaryInfo = self.diaryInfo
+        diaryWriteViewController.isFromDiary = true
+        
+        self.navigationController?.pushViewController(diaryWriteViewController, animated: true)
+    }
+    
+    func popToHomeViewController() {
+        let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
+        guard let homeViewController = homeStoryboard.instantiateViewController(identifier: Constants.Identifier.homeViewController) as? HomeViewController else { return }
+        
+        // 홈뷰로 Depth를 넘기는 작업 필요
+        self.navigationController?.popToViewController(homeViewController, animated: true)
     }
 }
 
@@ -301,38 +347,11 @@ extension DiaryViewController: MenuDelegate {
     func deleteMenubuttonTouchUp(sender: UIButton) {
         self.attachAlertModalView()
     }
-    
-    func pushToDeepViewController() {
-        let onboardingStoryboard = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
-        guard let deepViewController = onboardingStoryboard.instantiateViewController(identifier: Constants.Identifier.deepViewController) as? DeepViewController else { return }
-        
-        deepViewController.deepViewControllerDelegate = self
-        deepViewController.initialDepth = self.currentDepth
-        deepViewController.buttonText = "수정하기"
-        
-        self.navigationController?.pushViewController(deepViewController, animated: true)
-        
-    }
-    
-    func pushToDiaryWriteController() {
-        let diaryWriteStoryboard = UIStoryboard(name: Constants.Name.diaryWriteStoryboard, bundle: nil)
-        guard let diaryWriteViewController = diaryWriteStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryWriteViewController) as? DiaryWriteViewController else { return }
-        
-        self.diaryWriteViewController = diaryWriteViewController
-        self.diaryWriteViewController?.diaryWriteViewControllerDelegate = self
-        
-        diaryWriteViewController.diaryInfo = self.diaryInfo
-        diaryWriteViewController.isFromDiary = true
-        
-        self.navigationController?.pushViewController(diaryWriteViewController, animated: true)
-        
-    }
 }
 
 // MARK: - AlertModalDelegate
 
 extension DiaryViewController: AlertModalDelegate {
-    
     func leftButtonTouchUp(button: UIButton) {
         self.alertModalView?.removeFromSuperview()
         self.menuView?.removeFromSuperview()
@@ -444,15 +463,6 @@ extension DiaryViewController {
     }
     
     func putDiaryWithAPI(newDiary: DiaryInfo, completion: @escaping () -> Void) {
-//        print(newDiary)
-//        print("userId: \(APIConstants.userId)")
-//        print("diaryId: \(2)")
-//        print("depth: \(newDiary.depth.rawValue)")
-//        print("contents: \(newDiary.diary)")
-//        print("sentenceId: \(newDiary.sentence.id ?? 1)")
-//        print("emotionId: \(newDiary.mood.rawValue)")
-//        print("wroteAt: \(self.getFormattedDateForServer(date: newDiary.date, by: ". "))")
-        
         DiariesWithIDService.shared.putDiaryWithDiaryId(
             diaryId: self.diaryId,
             depth: newDiary.depth.rawValue,
