@@ -92,21 +92,16 @@ class SentenceViewController: UIViewController {
         self.moodIcon.image = self.selectedMood?.toIcon()
         self.dateLabel.text = self.date
         
-        self.getSentenceDataFromAPI(emotionId: self.selectedMood?.rawValue ?? 1, completion: setSentenceLabel)
+        if changeUsage {
+            self.getSentenceDataFromAPI(emotionId: self.selectedMood?.rawValue ?? 1, completion: setSentenceLabel)
+        } else {
+            self.connectServer(emotionId: String(self.selectedMood?.rawValue ?? 1), userId: String(APIConstants.userId))
+        }
+        
         
         self.hideButtons()
         
         self.hideimage()
-        
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        guard let moodId = selectedMood?.rawValue else {
-            return
-        }
-        changeUsage ? setSentenceLabel() : connectServer(emotionId: String(moodId), userId: "2")
     }
     
     override func viewDidAppear(_ animated: Bool) {
