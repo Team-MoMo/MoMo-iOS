@@ -113,6 +113,9 @@
                                 <state key="normal" title="로그인">
                                     <color key="titleColor" name="Blue7"/>
                                 </state>
+                                <connections>
+                                    <action selector="touchUpLoginButton:" destination="tHS-ij-Ql1" eventType="touchUpInside" id="P59-ZJ-SIy"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="bqn-8K-fJF">
                                 <rect key="frame" x="122" y="588.5" width="170" height="29"/>
@@ -123,6 +126,9 @@
                                         <state key="normal" title="회원가입">
                                             <color key="titleColor" name="Black4"/>
                                         </state>
+                                        <connections>
+                                            <action selector="touchUpJoinButton:" destination="tHS-ij-Ql1" eventType="touchUpInside" id="QjF-dF-YRl"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrD-zM-1yO">
                                         <rect key="frame" x="66" y="0.0" width="10" height="29"/>
@@ -140,6 +146,9 @@
                                         <state key="normal" title="비밀번호 찾기">
                                             <color key="titleColor" name="Black4"/>
                                         </state>
+                                        <connections>
+                                            <action selector="touchUpFindPasswordButton:" destination="tHS-ij-Ql1" eventType="touchUpInside" id="66g-wa-c2z"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>

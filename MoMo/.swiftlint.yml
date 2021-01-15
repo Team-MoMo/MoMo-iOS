@@ -3,8 +3,10 @@ disabled_rules:
 - trailing_whitespace
 - orphaned_doc_comment
 - nesting
+- type_body_length
 included:
 excluded:
 - Pods
 - MoMo/Sources/AppDelegate.swift
 - MoMo/Sources/SceneDelegate.swift
+- MoMo/Resources/Constants/APIConstants.swift

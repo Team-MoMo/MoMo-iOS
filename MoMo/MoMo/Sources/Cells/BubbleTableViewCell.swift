@@ -16,10 +16,11 @@ class BubbleTableViewCell: UITableViewCell {
     @IBOutlet weak var emotionLabel: UILabel!
     @IBOutlet weak var bubbleSize: NSLayoutConstraint!
     @IBOutlet weak var bubbleLeading: NSLayoutConstraint!
+    @IBOutlet weak var touchButton: UIButton!
     
     // MARK: - Properties
     
-    var bubble: [Bubble] = []
+    var bubble: [Diary] = []
     
     // MARK: - View Life Cycle
     
@@ -35,10 +36,19 @@ class BubbleTableViewCell: UITableViewCell {
     
     // MARK: - Functions
     
-    func setCell(bubble: Bubble) {
-        dateLabel.text = bubble.date
-        emotionLabel.text = bubble.cate
-        bubbleLeading.constant = calculateLeadingOffset(num: bubble.leadingNum)
+    func setCell(bubble: Diary) {
+        let date: String = bubble.wroteAt
+        let monthStartIdx: String.Index = date.index(date.startIndex, offsetBy: 5)
+        let monthEndIdx: String.Index = date.index(date.startIndex, offsetBy: 7)
+        var month = String(date[monthStartIdx..<monthEndIdx])
+        
+        let dayStartIdx: String.Index = date.index(date.startIndex, offsetBy: 8)
+        let dayEndIdx: String.Index = date.index(date.startIndex, offsetBy: 10)
+        var day = String(date[dayStartIdx..<dayEndIdx])
+        
+        dateLabel.text = "\(month).\(day)"
+        emotionLabel.text = bubble.emotion.name.rawValue
+        bubbleLeading.constant = calculateLeadingOffset(num: bubble.position)
     }
     
     func calculateLeadingOffset(num: Int) -> CGFloat {

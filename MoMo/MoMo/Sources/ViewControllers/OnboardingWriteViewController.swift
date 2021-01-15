@@ -40,7 +40,7 @@ class OnboardingWriteViewController: UIViewController {
         Mood.memory: "오래된 기억이 되살아나는 하루였다. ",
         Mood.daily: "평안한 하루가 감사한 날이었다."
     ]
-    var selectedSentence: Sentence?
+    var selectedSentence: MoodSentence?
     var selectedMood: Mood?
     var sentenceWasShown: Bool = false
     let vspaingInfoLabelFeatherImage: CGFloat = 74
@@ -54,14 +54,11 @@ class OnboardingWriteViewController: UIViewController {
         super.viewDidLoad()
         
         self.infoLabel.text = self.defaultInfo
-        self.setTypingLabel()
-        self.typingLabel.pauseTyping()
         self.hideTypingCursorLabel()
         self.typingLabel.onTypingAnimationFinished = showTypingCursorBlinkWithAnimation
         self.setSentenceLabel()
         self.hideFeatherImage()
         self.hideSentenceLabel()
-        self.hideTypingLabel()
         self.hideOnboardingCircleSmallImage()
         self.hideOnboardingCircleBigImage()
     }
@@ -218,10 +215,8 @@ extension OnboardingWriteViewController {
                 self.view.layoutIfNeeded()
             },
             completion: { _ in
-                
                 self.showTypingCursorLabel()
-                self.showTypingLabel()
-                self.typingLabel.continueTyping()
+                self.setTypingLabel()
             }
             
         )
@@ -249,7 +244,7 @@ extension OnboardingWriteViewController {
     func pushToDeepViewController(finished: Bool) {
         
         guard let deepViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.deepViewController) as? DeepViewController else { return }
-        
+        deepViewController.buttonText = "시작하기"
         self.navigationController?.pushViewController(deepViewController, animated: true)
         
     }

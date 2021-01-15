@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,7 +15,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="120" translatesAutoresizingMaskIntoConstraints="NO" id="j0z-cg-GOC">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="120" translatesAutoresizingMaskIntoConstraints="NO" id="j0z-cg-GOC">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
@@ -54,6 +53,9 @@
                                     <constraint firstAttribute="width" constant="30" id="g0B-hC-luG"/>
                                 </constraints>
                                 <state key="normal" image="homeBtnList"/>
+                                <connections>
+                                    <action selector="touchUpListButton:" destination="svO-LC-Z4h" eventType="touchUpInside" id="72o-dx-sqz"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qKw-vH-1av">
                                 <rect key="frame" x="322" y="842" width="30" height="30"/>
@@ -62,6 +64,9 @@
                                     <constraint firstAttribute="width" constant="30" id="wzZ-E6-25G"/>
                                 </constraints>
                                 <state key="normal" image="homeBtnUpload"/>
+                                <connections>
+                                    <action selector="touchUpUploadButton:" destination="svO-LC-Z4h" eventType="touchUpInside" id="LaR-6G-A1j"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="CkZ-yj-6GS">
                                 <rect key="frame" x="366" y="68" width="24" height="64"/>
@@ -75,6 +80,9 @@
                                         <rect key="frame" x="0.0" y="40" width="24" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="btnIcCalender"/>
+                                        <connections>
+                                            <action selector="touchUpCalendarButton:" destination="svO-LC-Z4h" eventType="touchUpInside" id="ZHs-w0-JJ9"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -83,7 +91,6 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="W7t-UN-yPD"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="CkZ-yj-6GS" firstAttribute="top" secondItem="ohf-eY-Tj1" secondAttribute="top" constant="68" id="25I-ex-d2G"/>
                             <constraint firstItem="j0z-cg-GOC" firstAttribute="top" secondItem="ohf-eY-Tj1" secondAttribute="top" id="2Dp-KV-xWR"/>
@@ -129,8 +136,5 @@
         <image name="homeBtnUpload" width="30" height="30"/>
         <image name="homeIcSwipeDown" width="38" height="28.5"/>
         <image name="homeIcSwipeUp" width="38" height="28.5"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

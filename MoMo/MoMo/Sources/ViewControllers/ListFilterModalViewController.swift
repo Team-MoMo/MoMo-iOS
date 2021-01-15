@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ModalPassDataDelegate: class {
-    func sendData(year: Int, month: Int, filterArray: [String], filteredStatus: Bool )
+    func sendData(year: Int, month: Int, emotion: Int?, depth: Int?, filterArray: [String], filteredStatus: Bool)
 }
 
 class ListFilterModalViewController: UIViewController {
@@ -96,8 +96,8 @@ class ListFilterModalViewController: UIViewController {
         setDelegate()
         setDatasource()
         setButton()
-        setLayer(Int(height * (233/812)-1))
-        setLayer(0)
+        self.setLayer(Int(self.height * (233/812)-1))
+        self.setLayer(0)
         self.addData()
         self.datePickerStackView.isHidden = true
         setPickerInitialSetting()
@@ -105,7 +105,7 @@ class ListFilterModalViewController: UIViewController {
     }
     
     private func setPickerInitialSetting() {
-        self.yearPickerView.selectRow(selectedYear - 2020, inComponent: 0, animated: true)
+        self.yearPickerView.selectRow(selectedYear - 1980, inComponent: 0, animated: true)
         self.monthPickerView.selectRow(selectedMonth-1, inComponent: 0, animated: true)
     }
     
@@ -115,6 +115,7 @@ class ListFilterModalViewController: UIViewController {
                              y: ySize,
                              width: Int(width * 335/375),
                              height: 1)
+        layer.backgroundColor = UIColor.LineLightGray.cgColor
         emotionView.layer.addSublayer(layer)
     }
     
@@ -179,11 +180,19 @@ class ListFilterModalViewController: UIViewController {
     }
     
     func addData() {
-        for num in 2020...3000 {
+        for num in 1980...2021 {
             year.append(String(num))
         }
         for num in 1...12 {
             month.append(String(num))
+        }
+    }
+    
+    func checkDismissModal() {
+        if verify == true {
+            self.moreButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 100.0)
+            datePickerStackView.isHidden = true
+            verify = false
         }
     }
     
@@ -198,6 +207,7 @@ class ListFilterModalViewController: UIViewController {
         if sender.state == .ended {
             let dragVelocity = sender.velocity(in: view)
             if dragVelocity.y >= 1330 {
+                checkDismissModal()
                 self.presentingViewController?.dismiss(animated: true, completion: nil)
             } else {
                 UIView.animate(withDuration: 0.3) {
@@ -239,23 +249,31 @@ class ListFilterModalViewController: UIViewController {
     }
     
     @IBAction func touchCloseButton(_ sender: Any) {
+        checkDismissModal()
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func touchApplyButton(_ sender: Any) {
-//        self.shitDelegate?.sendData(num: 1000, text: "cba")
         var tempFilterArray: [String] = []
         if emotion != nil {
-            tempFilterArray.append(koreanEmotionArray[emotion!])
+            tempFilterArray.append(koreanEmotionArray[emotion!-1])
         }
         if depth != nil {
             tempFilterArray.append(depthArray[depth!])
         }
-        modalPassDataDelegate?.sendData(year: selectedYear, month: selectedMonth, filterArray: tempFilterArray, filteredStatus: true)
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
         
+        modalPassDataDelegate?.sendData(year: selectedYear,
+                                        month: selectedMonth,
+                                        emotion: emotion,
+                                        depth: depth,
+                                        filterArray: tempFilterArray,
+                                        filteredStatus: true)
+        checkDismissModal()
+        
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }
+
 
 extension ListFilterModalViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -272,7 +290,8 @@ extension ListFilterModalViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             cell.setImage(emotionArray[indexPath.row])
-            cell.tag = indexPath.row
+            cell.tag = indexPath.row+1
+        
             return cell
         }
         
@@ -285,6 +304,7 @@ extension ListFilterModalViewController: UICollectionViewDataSource {
         cell.backView.layer.borderWidth = 1
         cell.backView.layer.cornerRadius = cell.layer.frame.height * 0.5
         cell.tag = indexPath.row
+        
         return cell
     }
 }
@@ -324,12 +344,12 @@ extension ListFilterModalViewController: UICollectionViewDelegateFlowLayout {
             guard let cell = collectionView.cellForItem(at: indexPath) as? EmotionCollectionViewCell else {
                 return
             }
-            if emotion == indexPath.row {
+            if emotion == indexPath.row+1 {
                 cell.setImage(emotionArray[indexPath.row])
                 emotion = nil
             } else {
                 cell.setImage(selectedEmotionArray[indexPath.row])
-                emotion = indexPath.row
+                emotion = indexPath.row+1
             }
         } else {
             guard let cell = collectionView.cellForItem(at: indexPath) as? DepthCollectionViewCell else {

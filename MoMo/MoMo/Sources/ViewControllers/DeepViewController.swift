@@ -8,6 +8,10 @@
 import UIKit
 import SnapKit
 
+protocol DeepViewControllerDelegate: class {
+    func passData(selectedDepth: Depth)
+}
+
 enum Depth: Int {
     case depth2m = 0, depth30m, depth100m, depth300m, depth700m, depth1005m, depthSimhae
     
@@ -24,7 +28,7 @@ enum Depth: Int {
         case .depth700m:
             return "700m"
         case .depth1005m:
-            return "1005"
+            return "1005m"
         case .depthSimhae:
             return "심해"
         }
@@ -70,9 +74,10 @@ class DeepViewController: UIViewController {
     var viewHeight: CGFloat?
     var viewXpos: CGFloat?
     var viewYpos: CGFloat?
+    weak var deepViewControllerDelegate: DeepViewControllerDelegate?
     
     // 버튼 텍스트가 시작하기일때 그리고 기록하기를 기준으로 분기할거예요
-    var buttonText: String = ""
+    var buttonText: String = "시작하기"
     
     // MARK: - View Life Cycle
     
@@ -81,6 +86,7 @@ class DeepViewController: UIViewController {
         
         self.infoLabel.text = self.dafaultInfoLabel
         self.buttonRoundedUp()
+        self.startButton.titleLabel?.text = self.buttonText
         self.getViewContraints()
         self.resizeGradientBackgroundView()
         self.addBlurEffectOnBlurView()
@@ -189,11 +195,21 @@ class DeepViewController: UIViewController {
         }
     }
     
-    func pushToHomeViewController() {
-        let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
-        guard let homeViewController = homeStoryboard.instantiateViewController(identifier: Constants.Identifier.homeViewController) as? HomeViewController else { return }
+    func pushToLoginViewController() {
+        let loginStoryboard = UIStoryboard(name: Constants.Name.loginStoryboard, bundle: nil)
+        guard let loginViewController = loginStoryboard.instantiateViewController(identifier: Constants.Identifier.loginViewController) as? LoginViewController else { return }
+        loginViewController.currentColorSet = Int(round(self.deepSliderValue * 6))
+        self.navigationController?.pushViewController(loginViewController, animated: true)
         
-        self.navigationController?.pushViewController(homeViewController, animated: true)
+    }
+    
+    func pushToDiaryViewController() {
+        let diaryStoryboard = UIStoryboard(name: Constants.Name.diaryStoryboard, bundle: nil)
+        guard let diaryViewController = diaryStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryViewController) as? DiaryViewController else { return }
+        // TODO: - 서버에서 받아오기
+        diaryViewController.diaryId = 2
+        diaryViewController.currentDepth = Depth(rawValue: Int(round(self.deepSliderValue * 6))) ?? Depth.depth2m
+        self.navigationController?.pushViewController(diaryViewController, animated: true)
         
     }
     
@@ -202,9 +218,13 @@ class DeepViewController: UIViewController {
             return
         }
         if text == "시작하기" {
-            self.pushToHomeViewController()
-        } else if text == "기록하기"{
-            //상의하고 하겠음
+            self.pushToLoginViewController()
+        } else if text == "기록하기" {
+            self.pushToDiaryViewController()
+        } else { // text == "수정하기"
+            self.deepViewControllerDelegate?.passData(
+                selectedDepth: Depth(rawValue: Int(round(self.deepSliderValue * 6))) ?? Depth.depth2m)
+            self.navigationController?.popViewController(animated: true)
         }
         
     }

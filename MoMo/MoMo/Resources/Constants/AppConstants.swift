@@ -22,10 +22,9 @@ struct Constants {
         static let joinStoryboard: String = "Join"
         static let emailLoginStoryboard: String = "EmailLogin"
         static let loginStoryboard: String = "Login"
-        static let listStoryboard: String = "List"
         static let diaryWriteStoryboard: String = "DiaryWrite"
+        static let listStoryboard: String = "List"
         static let findPasswordStoryboard: String = "FindPassword" 
-      
         // MARK: - Nib Name Constants
         
         static let homeDayNightViewXib: String = "HomeDayNightView"
@@ -40,6 +39,7 @@ struct Constants {
         
         static let homeViewController: String = "HomeViewController"
         static let onboardingViewController: String = "OnboardingViewController"
+        static let diaryWriteViewController: String = "DiaryWriteViewController"
         static let onboardingWriteViewController: String = "OnboardingWriteViewController"
         static let moodViewController: String = "MoodViewController"
         static let sentenceViewController: String = "SentenceViewController"
@@ -49,7 +49,6 @@ struct Constants {
         static let emailLoginViewController: String = "EmailLoginViewController"
         static let loginViewController: String = "LoginViewController"
         static let listViewController: String = "ListViewController"
-        static let diaryWriteViewController: String = "DiaryWriteViewController"
         static let findPasswordViewController: String = "FindPasswordViewController"
         
         // MARK: - UIView
@@ -140,6 +139,24 @@ struct Constants {
             static let icDaily14Black = UIImage(named: "icDaily14Black")
             static let textfieldDelete = UIImage(named: "textfieldDelete")
             
+            static let icLove14White = UIImage(named: "icLove14White")
+            static let icHappy14White = UIImage(named: "icHappy14White")
+            static let icConsole14White = UIImage(named: "icConsole14White")
+            static let icAngry14White = UIImage(named: "icAngry14White")
+            static let icSad14White = UIImage(named: "icSad14White")
+            static let icBored14White = UIImage(named: "icBored14White")
+            static let icMemory14White = UIImage(named: "icMemory14White")
+            static let icDaily14White = UIImage(named: "icDaily14White")
+            
+            static let icLove14Blue = UIImage(named: "icLoveBlue")
+            static let icHappy14Blue = UIImage(named: "icHappyBlue")
+            static let icConsole14Blue = UIImage(named: "icConsoleBlue")
+            static let icAngry14Blue = UIImage(named: "icAngryBlue")
+            static let icSad14Blue = UIImage(named: "icSadBlue")
+            static let icBored14Blue = UIImage(named: "icBoredBlue")
+            static let icMemory14Blue = UIImage(named: "icMemoryBlue")
+            static let icDaily14Blue = UIImage(named: "icDailyBlue")
+            
             // join checkbox
             static let loginCheckboxIntermediate = UIImage(named: "loginCheckboxIntermediate")
             static let loginCheckbox = UIImage(named: "loginCheckbox")
@@ -152,13 +169,23 @@ struct Constants {
             static let label1005m = UIImage(named: "1005M")
             static let labelDeepSea = UIImage(named: "deepSea")
             
-            //button
+            // button
             static let btnCloseBlack = UIImage(named: "btnCloseBlack")
+            static let btnBackWhite = UIImage(named: "btnBackWhite")
             static let btnBackBlack = UIImage(named: "btnBackBlack")
             static let listBtnFilterBlue = UIImage(named: "listBtnFilterBlue")
             static let listBtnGraph = UIImage(named: "listBtnGraph")
             static let listBtnFilterBlack = UIImage(named: "listBtnFilterBlack")
-
+            
+            // listView icon
+            static let icLoveBlue = UIImage(named: "icLoveBlue")
+            static let icHappyBlue = UIImage(named: "icHappyBlue")
+            static let icConsoleBlue = UIImage(named: "icConsoleBlue")
+            static let icAngryBlue = UIImage(named: "icAngryBlue")
+            static let icSadBlue = UIImage(named: "icSadBlue")
+            static let icBoredBlue = UIImage(named: "icBoredBlue")
+            static let icMemoryBlue = UIImage(named: "icMemoryBlue")
+            static let icDailyBlue = UIImage(named: "icDailyBlue")
         }
         
         struct Font {

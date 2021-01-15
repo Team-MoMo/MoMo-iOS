@@ -9,6 +9,17 @@ import UIKit
 
 class ListTableViewCell: UITableViewCell {
     
+    let icon: [UIImage] = [ Constants.Design.Image.icLoveBlue!,
+                                 Constants.Design.Image.icHappyBlue!,
+                                 Constants.Design.Image.icConsoleBlue!,
+                                 Constants.Design.Image.icAngryBlue!,
+                                 Constants.Design.Image.icSadBlue!,
+                                 Constants.Design.Image.icBoredBlue!,
+                                 Constants.Design.Image.icMemoryBlue!,
+                                 Constants.Design.Image.icDailyBlue!,
+    ]
+    
+    let emotion: [String] = ["사랑", "헹복", "위로", "화남", "슬픔", "우울", "추억", "일상"]
     // MARK: - IBOutlets
     
     @IBOutlet weak var iconImage: UIImageView!
@@ -23,6 +34,7 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var publisherLabel: UILabel!
     @IBOutlet weak var journalLabel1: UILabel!
     @IBOutlet weak var journalLabel2: UILabel!
+    @IBOutlet weak var moreButton: UIButton!
     
     // 재사용할 때
     override func prepareForReuse() {
@@ -53,15 +65,15 @@ class ListTableViewCell: UITableViewCell {
     }
     
     // 리스트테이블뷰셀 데이터 입력
-    func setCell(list: List) {
-        iconImage.image = list.makeImage()
-        categoryLabel.attributedText = list.category.wordSpacing(-0.6)
-        dateLabel.attributedText = list.date.wordSpacing(-0.6)
-        dayLabel.attributedText = list.day.wordSpacing(-0.6)
-        depthLabel.attributedText = list.depth.wordSpacing(-0.6)
-        authorLabel.attributedText = list.author.wordSpacing(-0.6)
-        titleLabel.attributedText = list.title.wordSpacing(-0.6)
-        publisherLabel.attributedText = list.publisher.wordSpacing(-0.6)
+    func setCell(diary: Diary) {
+        iconImage.image = icon[diary.emotionID - 1]
+        categoryLabel.attributedText = Mood(rawValue: diary.emotionID)?.toString().wordSpacing(-0.6)
+        dateLabel.attributedText = "2020년 1월".wordSpacing(-0.6)
+        dayLabel.attributedText = "일".wordSpacing(-0.6)
+        depthLabel.attributedText = Depth(rawValue: diary.depth)?.toString().wordSpacing(-0.6)
+        authorLabel.attributedText = diary.sentence.writer.wordSpacing(-0.6)
+        titleLabel.attributedText = diary.sentence.bookName.wordSpacing(-0.6)
+        publisherLabel.attributedText = diary.sentence.publisher.wordSpacing(-0.6)
         }
     
     // 문구 텍스트 작업
@@ -95,10 +107,6 @@ class ListTableViewCell: UITableViewCell {
         } else {
             journalLabel1.attributedText = text.wordSpacing(-0.6)
         }
-    }
-    
-    @IBAction func touchButton(_ sender: UIButton) {
-        print(1)
     }
     
     // 일기 라벨에 밑줄 처리
