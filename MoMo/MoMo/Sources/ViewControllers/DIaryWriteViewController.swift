@@ -148,7 +148,7 @@ class DiaryWriteViewController: UIViewController {
             return
         }
         if textViewText != "" && textViewText != "파동을 충분히 느낀 후, 감정을 기록해보세요." {
-            self.journal = TextViewText
+            self.journal = textViewText
             let writeStorybaord = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
             guard let deepViewController = writeStorybaord.instantiateViewController(identifier: Constants.Identifier.deepViewController) as? DeepViewController else {
                 return
