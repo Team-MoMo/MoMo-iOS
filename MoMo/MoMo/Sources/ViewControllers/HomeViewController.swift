@@ -52,6 +52,12 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var objView = UIImageView()
     
+    // flag
+    var isFromDiary: Bool = false
+    
+    //
+    var headerView: HomeDayNightView?
+    
     // MARK: - View Life Cycle
     
     // viewDidLoad
@@ -60,8 +66,8 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         homeTableView.allowsSelection = true
         
-        // tableHeaderView register
-        let headerView = Bundle.main.loadNibNamed(Constants.Name.homeDayNightViewXib, owner: self, options: nil)?.last as? UIView ?? UIView()
+        // 오늘 날짜 가져오기
+        self.getCurrentFormattedDate()
         
         // bubble table view cell register
         let cellNib = UINib(nibName: Constants.Name.bubbleTableViewCell, bundle: nil)
@@ -80,8 +86,8 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
          uploadButton.isHidden = false
         
         DiariesService.shared.getDiaries(userId: "\(APIConstants.userId)",
-                                         year: "2020",
-                                         month: "8",
+                                         year: dateArray[0],
+                                         month: dateArray[1],
                                          order: "depth",
                                          day: nil,
                                          emotionId: nil,
@@ -128,8 +134,12 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         devideArrayByDepth()
         createGradientColorSets()
         
+        // tableHeaderView register
+        self.headerView = Bundle.main.loadNibNamed(Constants.Name.homeDayNightViewXib, owner: self, options: nil)?.last as? HomeDayNightView  // awakeNib!!!
+        self.headerView?.homeDayNightViewDelegate = self
+        
         // tableHeaderView 지정
-        homeTableView.tableHeaderView = headerView
+        self.homeTableView.tableHeaderView = self.headerView
         DispatchQueue.main.async {
             self.homeTableView.tableHeaderView?.frame.size.height = UIScreen.main.bounds.height
         }
@@ -150,9 +160,6 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         } else {
             statusBarHeight = UIApplication.shared.statusBarFrame.height
         }
-        
-        // 오늘 날짜 가져오기
-        getCurrentFormattedDate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -160,6 +167,16 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         // 네비게이션 백버튼 숨김
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.isNavigationBarHidden = true
+        
+        
+        self.headerView?.getSeletectedDateDiaryAPI()
+        DispatchQueue.main.async {
+            if self.isFromDiary {
+                self.homeTableView.reloadData()
+                self.attachTableHeaderView()
+                self.headerView?.getSeletectedDateDiaryAPI()
+            }
+        }
     }
     
     // viewDidAppear
@@ -189,6 +206,15 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     // MARK: - Functions
+    
+    func attachTableHeaderView() {
+        // tableHeaderView register
+        headerView = Bundle.main.loadNibNamed(Constants.Name.homeDayNightViewXib, owner: self, options: nil)?.last as? HomeDayNightView
+        headerView?.homeDayNightViewDelegate = self
+        // tableHeaderView 지정
+        homeTableView.tableHeaderView = headerView
+    }
+    
     
     // section 별 frame에 맞게 gradient 입히기
     func paintGradientWithFrame() {
@@ -765,5 +791,24 @@ extension HomeViewController: UITableViewDelegate {
                 targetContentOffset.pointee = CGPoint(x: 0, y: 0)
             }
         }
+    }
+}
+
+extension HomeViewController: HomeDayNightViewDelegate {
+    func writeButtonTouchUp(_ sender: UIButton) {
+        // 업로드 뷰로 푸쉬
+        let onboardingStoryboard = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
+        guard let moodViewController = onboardingStoryboard.instantiateViewController(identifier: Constants.Identifier.moodViewController) as? MoodViewController else {
+            return
+        }
+        moodViewController.changeUsage = false
+        self.navigationController?.pushViewController(moodViewController, animated: true)
+    }
+    
+    func showAllButtonTouchUp(_ sender: UIButton) {
+        // 리스트 뷰로 푸쉬
+        let listStoryboard = UIStoryboard(name: Constants.Name.listStoryboard, bundle: nil)
+        let dvc = listStoryboard.instantiateViewController(identifier: Constants.Identifier.listViewController)
+        self.navigationController?.pushViewController(dvc, animated: true)
     }
 }
