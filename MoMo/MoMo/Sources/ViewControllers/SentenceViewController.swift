@@ -220,13 +220,13 @@ class SentenceViewController: UIViewController {
                 sentence: self.firstSentence ?? self.defaultSentence
             )
         } else {
+            guard let mood = selectedMood else {
+                return
+            }
             pushToDiaryWriteViewController(self.dateLabel.text ?? "",
-                                           self.moodLabel.text ?? "",
-                                           self.moodIcon.image ?? UIImage(),
-                                           self.firstAuthorLabel.text ?? "",
-                                           self.firstBookTitleLabel.text ?? "",
-                                           self.firstPublisherLabel.text ?? "",
-                                           self.firstSentenceLabel.text ?? "")        }
+                                           mood,
+                                           receivedData[0])
+        }
     }
     
     @IBAction func secondButtonTouchUp(_ sender: UIButton) {
@@ -235,13 +235,12 @@ class SentenceViewController: UIViewController {
                 sentence: self.firstSentence ?? self.defaultSentence
             )
         } else {
+            guard let mood = selectedMood else {
+                return
+            }
             pushToDiaryWriteViewController(self.dateLabel.text ?? "",
-                                           self.moodLabel.text ?? "",
-                                           self.moodIcon.image ?? UIImage(),
-                                           self.secondAuthorLabel.text ?? "",
-                                           self.secondBookTitleLabel.text ?? "",
-                                           self.secondPublisherLabel.text ?? "",
-                                           self.secondSentenceLabel.text ?? "")
+                                           mood,
+                                           receivedData[1])
         }
     }
     @IBAction func thirdButtonTouchUp(_ sender: UIButton) {
@@ -250,13 +249,12 @@ class SentenceViewController: UIViewController {
                 sentence: self.firstSentence ?? self.defaultSentence
             )
         } else {
+            guard let mood = selectedMood else {
+                return
+            }
             pushToDiaryWriteViewController(self.dateLabel.text ?? "",
-                                           self.moodLabel.text ?? "",
-                                           self.moodIcon.image ?? UIImage(),
-                                           self.thirdAuthorLabel.text ?? "",
-                                           self.thirdBookTitleLabel.text ?? "",
-                                           self.thirdPublisherLabel.text ?? "",
-                                           self.thirdSentenceLabel.text ?? "")
+                                           mood,
+                                           receivedData[2])
         }
     }
     
@@ -272,23 +270,17 @@ class SentenceViewController: UIViewController {
     }
     
     func pushToDiaryWriteViewController(_ date: String,
-                                        _ mood: String,
-                                        _ moodImage: UIImage,
-                                        _ author: String,
-                                        _ book: String,
-                                        _ publisher: String,
-                                        _ sentence: String){
+                                        _ mood: Mood,
+                                        _ sentence: Sentence){
         let writeStorybaord = UIStoryboard(name: Constants.Name.diaryWriteStoryboard, bundle: nil)
         guard let uploadWriteViewController = writeStorybaord.instantiateViewController(identifier: Constants.Identifier.diaryWriteViewController) as? DiaryWriteViewController else {
             return
         }
         uploadWriteViewController.date = date
-        uploadWriteViewController.emotionOriginalImage = moodImage
-        uploadWriteViewController.emotion = mood
-        uploadWriteViewController.author = author
-        uploadWriteViewController.book = book
-        uploadWriteViewController.publisher = publisher
-        uploadWriteViewController.quote = sentence
+        uploadWriteViewController.mood = mood
+        uploadWriteViewController.sentence = sentence
+        uploadWriteViewController.isFromDiary = false
+        
         self.navigationController?.pushViewController(uploadWriteViewController, animated: true)
     }
     

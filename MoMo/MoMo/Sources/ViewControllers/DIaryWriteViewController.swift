@@ -18,6 +18,10 @@ enum NavigationButton: Int {
 class DiaryWriteViewController: UIViewController {
     
     // MARK: - Properties
+    var mood: Mood?
+    var sentence: Sentence?
+    
+    
     
     var date: String = "2020. 12. 26 토요일"
     var emotionOriginalImage: UIImage = UIImage()
@@ -78,6 +82,7 @@ class DiaryWriteViewController: UIViewController {
             self.depthImage.isHidden = false
             self.depthLabel.isHidden = false
         } else {
+            setValuesFromUploadView()
             self.emotionImage.image = self.emotionOriginalImage
             self.setPlaceholder()
             self.setNavigationButton()
@@ -110,24 +115,46 @@ class DiaryWriteViewController: UIViewController {
         self.journalTextView.text = diaryInfo?.diary
     }
     
+    private func setValuesFromUploadView() {
+        guard let usableMood = mood, let usableSentence = sentence else {
+            return
+        }
+        self.dateLabel.text = self.date
+        self.emotionImage.image = usableMood.toIcon()
+        self.emotionLabel.text = usableMood.toString()
+        self.authorLabel.text = usableSentence.writer
+        self.bookLabel.text = usableSentence.bookName
+        self.quoteLabel.text = usableSentence.contents
+        
+    }
+    
     func setNavigationButton() {
         self.navigationItem.hidesBackButton = true
-
-        let rightButton = UIBarButtonItem(title: "다음", style: .plain, target: self, action: #selector(touchNextButton))
-        self.navigationItem.rightBarButtonItems = [rightButton]
-        let leftButton = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchBackButton))
-        leftButton.tintColor = .black
-        self.navigationItem.leftBarButtonItems = [leftButton]
+        if isFromDiary {
+            
+        } else {
+            let rightButton = UIBarButtonItem(title: "다음", style: .plain, target: self, action: #selector(touchNextButton))
+            rightButton.tintColor = UIColor.Blue3
+            self.navigationItem.rightBarButtonItems = [rightButton]
+            let leftButton = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchBackButton))
+            leftButton.tintColor = .black
+            self.navigationItem.leftBarButtonItems = [leftButton]
+        }
     }
     
     @objc func touchNextButton() {
-        let writeStorybaord = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
-        guard let deepViewController = writeStorybaord.instantiateViewController(identifier: Constants.Identifier.deepViewController) as? DeepViewController else {
+        guard let textViewText = self.journalTextView.text else {
             return
         }
-        deepViewController.buttonText = "기록하기"
-        self.navigationController?.pushViewController(deepViewController, animated: true)
-
+        print(textViewText)
+        if textViewText != "" && textViewText != "파동을 충분히 느낀 후, 감정을 기록해보세요." {
+            let writeStorybaord = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
+            guard let deepViewController = writeStorybaord.instantiateViewController(identifier: Constants.Identifier.deepViewController) as? DeepViewController else {
+                return
+            }
+            deepViewController.buttonText = "기록하기"
+            self.navigationController?.pushViewController(deepViewController, animated: true)
+        }
     }
     
     @objc func touchBackButton() {
@@ -266,10 +293,10 @@ extension DiaryWriteViewController: UITextViewDelegate {
         if self.journalTextView.text == "" {
             self.journalTextView.attributedText = self.placeHolder
         }
-        
         self.journal = journalTextView.text
-        
-        self.navigationItem.rightBarButtonItem = self.rightButton
+        if isFromDiary {
+            self.navigationItem.rightBarButtonItem = self.rightButton
+        }
     }
     
     func textViewDidChange(_ textView: UITextView) {
