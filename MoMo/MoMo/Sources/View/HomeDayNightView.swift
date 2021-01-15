@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol HomeDayNightViewDelegate: class {
+    func writeButtonTouchUp(_ sender: UIButton)
+    func showAllButtonTouchUp(_ sender: UIButton)
+}
+
 class HomeDayNightView: UIView {
     
     // TODO: - noDiaryStackView, filledDiaryView y축 autolayout은 나중에 오브제 나오면 오브제 중 구름에 맞춰야 함
@@ -34,6 +39,7 @@ class HomeDayNightView: UIView {
     
     // MARK: - Properties
     
+    weak var homeDayNightViewDelegate: HomeDayNightViewDelegate?
     var gradientLayer: CAGradientLayer!
     var date: String?
     var dateArray:[String] = []
@@ -128,48 +134,7 @@ class HomeDayNightView: UIView {
         dateLabel.text = date
         
         // 오늘 쓴 일기 있는지 통신
-        DiariesService.shared.getDiaries(userId: "\(APIConstants.userId)",
-                                         year: dateArray[0],
-                                         month: dateArray[1],
-                                         order: "filter",
-                                         day: Int(dateArray[2]),
-                                         emotionId: nil,
-                                         depth: nil
-        ) { (networkResult) -> (Void) in
-            switch networkResult {
-            case .success(let data):
-                if let diary = data as? [Diary] {
-                    self.todayDiary = diary
-                    //print(self.todayDiary[0])
-                       
-                    if self.todayDiary.count == 1 {
-                        self.showFilledView()
-                        let moodEnumCase = self.todayDiary[0].emotionID
-                        self.emotionImageView.image = Mood(rawValue: moodEnumCase)?.toBlueIcon()
-                        self.emotionLabel.text = Mood(rawValue: moodEnumCase)?.toString()
-                        self.depthLabel.text = Depth(rawValue: self.todayDiary[0].depth)?.toString()
-                        self.quoteLabel.text = self.todayDiary[0].sentence.contents
-                        self.writerLabel.text = self.todayDiary[0].sentence.writer
-                        self.bookTitleLabel.text = self.todayDiary[0].sentence.bookName
-                        self.publisherLabel.text = self.todayDiary[0].sentence.publisher
-                        self.diaryLabel.text = self.todayDiary[0].contents
-                    } else {
-                        self.showEmptyView()
-                    }
-
-                }
-            case .requestErr(let msg):
-                if let message = msg as? String {
-                    print(message)
-                }
-            case .pathErr:
-                print("pathErr")
-            case .serverErr:
-                print("serverErr")
-            case .networkFail:
-                print("networkFail")
-            }
-        }
+        self.getSeletectedDateDiaryAPI()
     }
     
     // MARK: - Functions
@@ -192,6 +157,14 @@ class HomeDayNightView: UIView {
         showAllButton.isHidden = false
     }
     
+    @IBAction func writeButtonTouchUp(_ sender: UIButton) {
+        self.homeDayNightViewDelegate?.writeButtonTouchUp(self.writeButton)
+    }
+    
+    @IBAction func showAllButtonTouchUp(_ sender: UIButton) {
+        self.homeDayNightViewDelegate?.showAllButtonTouchUp(self.showAllButton)
+    }
+    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
 
@@ -200,6 +173,53 @@ class HomeDayNightView: UIView {
             hasUserInterfaceStyleChanged {
             // update layer
             createGradientLayer()
+        }
+    }
+}
+
+extension HomeDayNightView {
+    func getSeletectedDateDiaryAPI() {
+        DiariesService.shared.getDiaries(userId: "\(APIConstants.userId)",
+                                         year: dateArray[0],
+                                         month: dateArray[1],
+                                         order: "filter",
+                                         day: Int(dateArray[2]),
+                                         emotionId: nil,
+                                         depth: nil
+        ) { (networkResult) -> (Void) in
+            switch networkResult {
+            case .success(let data):
+                if let diary = data as? [Diary] {
+                    self.todayDiary = diary
+                    //print(self.todayDiary[0])
+                    let length = self.todayDiary.count
+                    if self.todayDiary.count >= 1 {
+                        self.showFilledView()
+                        let moodEnumCase = self.todayDiary[length-1].emotionID
+                        self.emotionImageView.image = Mood(rawValue: moodEnumCase)?.toBlueIcon()
+                        self.emotionLabel.text = Mood(rawValue: moodEnumCase)?.toString()
+                        self.depthLabel.text = Depth(rawValue: self.todayDiary[length-1].depth)?.toString()
+                        self.quoteLabel.text = self.todayDiary[length-1].sentence.contents
+                        self.writerLabel.text = self.todayDiary[length-1].sentence.writer
+                        self.bookTitleLabel.text = self.todayDiary[length-1].sentence.bookName
+                        self.publisherLabel.text = self.todayDiary[length-1].sentence.publisher
+                        self.diaryLabel.text = self.todayDiary[length-1].contents
+                    } else {
+                        self.showEmptyView()
+                    }
+
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
         }
     }
 }
