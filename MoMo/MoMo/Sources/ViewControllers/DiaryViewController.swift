@@ -305,9 +305,11 @@ class DiaryViewController: UIViewController {
     }
     
     func popToHomeViewController() {
-        guard let homeViewController =  self.navigationController?.viewControllers.filter({$0 is HomeViewController}).first! else {
+        guard let homeViewController = self.navigationController?.viewControllers.filter({$0 is HomeViewController}).first! as? HomeViewController else {
             return
         }
+        
+        homeViewController.isFromDiary = true
         
         // 홈뷰로 Depth를 넘기는 작업 필요
         self.navigationController?.popToViewController(homeViewController, animated: true)

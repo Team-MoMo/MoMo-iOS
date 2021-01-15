@@ -60,6 +60,9 @@
                             <state key="normal" title="일기 작성하기">
                                 <color key="titleColor" name="HomeBlue1"/>
                             </state>
+                            <connections>
+                                <action selector="writeButtonTouchUp:" destination="iN0-l3-epB" eventType="touchUpInside" id="K2C-Wr-9QN"/>
+                            </connections>
                         </button>
                     </subviews>
                 </stackView>
@@ -166,6 +169,9 @@
                             <state key="normal" title="전체보기">
                                 <color key="titleColor" name="HomeBlue1"/>
                             </state>
+                            <connections>
+                                <action selector="showAllButtonTouchUp:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ff1-TB-eRB"/>
+                            </connections>
                         </button>
                     </subviews>
                     <constraints>
