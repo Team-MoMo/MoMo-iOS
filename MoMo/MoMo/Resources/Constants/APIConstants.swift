@@ -36,6 +36,9 @@ struct APIConstants {
     
     static let diariesURL = baseURL + "/diaries"
     
+    // 일기 작성이 안된 가장 최근 날짜 조회
+    static let diaryRecentURL = baseURL + "/diaries/recent"
+    
     // 일기 통계 조회 url
     static let statisticsURL = diariesURL + "/statistics"
     // 일기 조회(get), 수정(put), 삭제(delete) url

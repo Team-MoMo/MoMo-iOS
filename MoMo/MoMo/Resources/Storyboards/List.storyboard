@@ -42,6 +42,9 @@
                                 <state key="normal" image="btnCreateDiary">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="touchWarningPlusButton:" destination="Z0R-FH-3wf" eventType="touchUpInside" id="PKy-3t-Wr4"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fwv-1f-piw">
                                 <rect key="frame" x="196" y="207" width="36" height="17"/>

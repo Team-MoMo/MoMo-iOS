@@ -142,7 +142,13 @@ class MoodViewController: UIViewController {
     let defaultInfo: String = "먼저 오늘의\n감정을 선택해 주세요"
     //false == upload모드
     var changeUsage: Bool = false
+    var listNoDiary: Bool = false
     var modalView: UploadModalViewController? = nil
+    var recentDate: String = ""
+    let weekdayArray: [String] = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"]
+    var year: Int = 0
+    var month: Int = 0
+    var day: Int = 0
 
     // MARK: - View Life Cycle
     
@@ -151,6 +157,8 @@ class MoodViewController: UIViewController {
         
         self.modalView = UploadModalViewController()
         self.modalView?.uploadModalDataDelegate = self
+        
+        
         
         self.buttons = [
             Button(button: self.loveButton),
@@ -171,8 +179,15 @@ class MoodViewController: UIViewController {
         self.hideButtons()
         
         self.infoLabel.text = self.defaultInfo
-        self.date = self.getCurrentFormattedDate()
-        self.dateLabel.text = self.date
+        
+        if listNoDiary {
+            connectServer(userID: "2")
+            listNoDiary.toggle()
+        } else {
+            self.date = self.getCurrentFormattedDate()
+            self.dateLabel.text = self.date
+        }
+        
         
     }
     
@@ -208,6 +223,95 @@ class MoodViewController: UIViewController {
         return formattedDateWithKorean
     }
     
+    func compareRecentDate(recendDate: String) {
+        let date = recendDate.split(separator: "T")[0]
+        let today = Date()
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.dateFormat = "yyyy-mm-dd"
+        var formattedToday = dateFormatter.string(from: today)
+        
+        if date == formattedToday {
+            let dateArray = formattedToday.split(separator: "-")
+            let dateComponents = NSDateComponents()
+            guard let year = Int(dateArray[0]), let month = Int(dateArray[1]), let day = Int(dateArray[2]) else {
+                return
+            }
+            dateComponents.day = day
+            dateComponents.month = month
+            dateComponents.year = year
+            
+            self.year = year
+            self.month = month
+            self.day = day
+
+            guard let gregorianCalendar = NSCalendar(calendarIdentifier: .gregorian),
+                let date = gregorianCalendar.date(from: dateComponents as DateComponents) else {
+                return
+            }
+            let weekday = gregorianCalendar.component(.weekday, from: date)
+            self.dateLabel.text = "\(dateArray[0]). \(dateArray[1]). \(dateArray[2]). \(weekdayArray[weekday-1])"
+            
+            
+        } else {
+            let dateArray = date.split(separator: "-")
+            let dateComponents = NSDateComponents()
+            guard let year = Int(dateArray[0]), let month = Int(dateArray[1]), let day = Int(dateArray[2]) else {
+                return
+            }
+            
+            dateComponents.day = day
+            dateComponents.month = month
+            dateComponents.year = year
+            
+            self.year = year
+            self.month = month
+            self.day = day
+            
+            guard let gregorianCalendar = NSCalendar(calendarIdentifier: .gregorian),
+                let date = gregorianCalendar.date(from: dateComponents as DateComponents) else {
+                return
+            }
+            let weekday = gregorianCalendar.component(.weekday, from: date)
+            self.dateLabel.text = "\(dateArray[0]). \(dateArray[1]). \(dateArray[2]). \(weekdayArray[weekday-1])"
+            
+            modalView?.year = self.year
+            modalView?.month = self.month
+            modalView?.day = self.day
+            modalView?.verifyMood = true
+            modalView?.modalPresentationStyle = .custom
+            modalView?.transitioningDelegate = self
+            self.present(modalView!, animated: true, completion: nil)
+            
+        }
+    }
+    
+    func connectServer(userID: String) {
+        DiaryRecentService.shared.getDiaryRecent(userId: userID) {
+            (networkResult) -> (Void) in
+            switch networkResult {
+
+            case .success(let data):
+                if let recentDate = data as? String {
+                    self.recentDate = recentDate
+                    self.compareRecentDate(recendDate: self.recentDate)
+                }
+                
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+
+    
     func weekdayEnglishToKorean(weekday: String) -> String {
         switch weekday {
         case "Monday":
@@ -231,6 +335,20 @@ class MoodViewController: UIViewController {
     
     
     @IBAction func touchCalendarButton(_ sender: Any) {
+        guard let date = dateLabel.text else {
+            return
+        }
+        let dateArray = date.components(separatedBy: ". ")
+        guard let year = Int(dateArray[0]),
+              let month = Int(dateArray[1]),
+              let day = Int(dateArray[2]) else {
+            return
+        }
+        
+        modalView?.year = year
+        modalView?.month = month
+        modalView?.day = day
+        modalView?.verifyMood = true
         modalView?.modalPresentationStyle = .custom
         modalView?.transitioningDelegate = self
         self.present(modalView!, animated: true, completion: nil)

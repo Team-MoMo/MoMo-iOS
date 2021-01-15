@@ -23,6 +23,9 @@ class UploadModalViewController: UIViewController {
     var year: Int = 0
     var month: Int = 0
     var day: Int = 0
+    
+    //true이면 무드뷰컨에서 넘어온 것
+    var verifyMood: Bool = true
 
     var yearArray: [String] = []
     var monthArray: [String] = []
@@ -40,8 +43,7 @@ class UploadModalViewController: UIViewController {
         registerDelegate()
         registerDataSource()
         setData()
-        calculateToday()
-        setPickerInitialSetting()
+       
         view.layer.cornerRadius = 15
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         descriptionLabel.attributedText = "날짜 변경".wordSpacing(-0.6)
@@ -56,6 +58,7 @@ class UploadModalViewController: UIViewController {
             self.yearPickerView.subviews[1].backgroundColor = UIColor.clear
             self.monthPickerView.subviews[1].backgroundColor = UIColor.clear
             self.dayPickerView.subviews[1].backgroundColor = UIColor.clear
+            self.setPickerInitialSetting()
         }
     }
 
@@ -64,14 +67,14 @@ class UploadModalViewController: UIViewController {
     }
     
     private func setPickerInitialSetting() {
-        self.yearPickerView.selectRow(self.year - 2020, inComponent: 0, animated: true)
+        self.yearPickerView.selectRow(self.year - 2000, inComponent: 0, animated: true)
         self.monthPickerView.selectRow(self.month - 1, inComponent: 0, animated: true)
         coordinateDay()
         self.dayPickerView.selectRow(self.day - 1, inComponent: 0, animated: true)
     }
     
     private func setData() {
-        for tempYear in 2020...3000 {
+        for tempYear in 2000...2021 {
             yearArray.append(String(tempYear))
         }
         for tempMonth in 1...12 {
@@ -91,18 +94,20 @@ class UploadModalViewController: UIViewController {
         yearPickerView.dataSource = self
     }
     
-    func calculateToday() {
-        let date = Date()
-        let dateFormatter = DateFormatter()
-            
-        dateFormatter.dateFormat = "yyyy. MM. dd. EEEE"
-        dateFormatter.locale = Locale.current
-        let formattedDate = dateFormatter.string(from: date)
-        let formattedDateArray = formattedDate.split(separator: ".")
-        year = Int(String(formattedDateArray[0])) ?? 0
-        month = Int(String(formattedDateArray[1]).trimmingCharacters(in: .whitespaces)) ?? 0
-        day = Int(String(formattedDateArray[2]).trimmingCharacters(in: .whitespaces)) ?? 0
-    }
+//    func calculateToday() {
+//        let date = Date()
+//        let dateFormatter = DateFormatter()
+//
+//        dateFormatter.dateFormat = "yyyy. MM. dd. EEEE"
+//        dateFormatter.locale = Locale.current
+//        let formattedDate = dateFormatter.string(from: date)
+//        let formattedDateArray = formattedDate.split(separator: ".")
+//        year = Int(String(formattedDateArray[0])) ?? 0
+//        month = Int(String(formattedDateArray[1]).trimmingCharacters(in: .whitespaces)) ?? 0
+//        day = Int(String(formattedDateArray[2]).trimmingCharacters(in: .whitespaces)) ?? 0
+//    }
+    
+    
     
     private func coordinateDay() {
         switch self.month {
@@ -136,11 +141,53 @@ class UploadModalViewController: UIViewController {
         }
         let date = gregorianCalendar.date(from: dateComponents as DateComponents)
         let weekday = gregorianCalendar.component(.weekday, from: date!)
-        self.uploadModalDataDelegate?.passData("\(year). \(month). \(day). \(weekdayArray[weekday-1])")
+        let stringMonth = String(format: "%02d", month)
+        self.uploadModalDataDelegate?.passData("\(year). \(stringMonth). \(day). \(weekdayArray[weekday-1])")
         self.presentingViewController?.dismiss(animated: true, completion: nil)
-
     }
     
+    func connectServer(userID: String,
+                       year: String,
+                       month: String,
+                       order: String,
+                       day: Int?,
+                       emotionID: Int?,
+                       depth: Int?) {
+        DiariesService.shared.getDiaries(userId: userID,
+                                         year: year,
+                                         month: month,
+                                         order: order,
+                                         day: day,
+                                         emotionId: emotionID,
+                                         depth: depth) {
+            (networkResult) -> (Void) in
+            switch networkResult {
+
+            case .success(let data):
+                if let diary = data as? [Diary] {
+                    if diary.count > 0 {
+                        self.applyButton.isEnabled = false
+                        self.applyButton.backgroundColor = UIColor.Black6
+                    } else {
+                        self.applyButton.isEnabled = true
+                        self.applyButton.backgroundColor = UIColor.BlueModalAble
+
+                    }
+                }
+                
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
 }
 
 extension UploadModalViewController: UIPickerViewDelegate {
@@ -163,6 +210,15 @@ extension UploadModalViewController: UIPickerViewDelegate {
             coordinateDay()
         } else {
             day = Int(dayArray[dayIndex][row]) ?? 0
+        }
+        if verifyMood {
+            connectServer(userID: "2",
+                          year: "\(year)",
+                          month: "\(month)",
+                          order: "filter",
+                          day: day,
+                          emotionID: nil,
+                          depth: nil)
         }
     }
 }

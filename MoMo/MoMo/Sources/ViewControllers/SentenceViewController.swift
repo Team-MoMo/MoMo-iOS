@@ -67,6 +67,7 @@ class SentenceViewController: UIViewController {
     // false일 때 upload
     var changeUsage: Bool = false
     
+    var receivedData: [Sentence] = []
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -95,9 +96,17 @@ class SentenceViewController: UIViewController {
         
         self.hideButtons()
         
-        if changeUsage {
-            hideimage()
+        self.hideimage()
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let moodId = selectedMood?.rawValue else {
+            return
         }
+        changeUsage ? setSentenceLabel() : connectServer(emotionId: String(moodId), userId: "2")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -107,6 +116,31 @@ class SentenceViewController: UIViewController {
     }
     
     // MARK: - Functions
+    
+    func connectServer(emotionId: String, userId: String) {
+        SentencesService.shared.getSentences(emotionId: emotionId, userId: userId) {
+            (networkResult) -> (Void) in
+            switch networkResult {
+
+            case .success(let data):
+                if let serverData = data as? [Sentence] {
+                    self.receivedData = serverData
+                    self.setReceivedSentenceLabel()
+                }
+                
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        } 
+    }
     
     func getSentenceDataFromAPI(completion: @escaping () -> Void) {
         
@@ -143,16 +177,33 @@ class SentenceViewController: UIViewController {
         self.firstBookTitleLabel.text = self.getFormattedBookTitle(self.firstSentence?.bookTitle)
         self.firstPublisherLabel.text = self.getFormattedPublisher(self.firstSentence?.publisher)
         self.firstSentenceLabel.text = self.firstSentence?.sentence
-        
+            
         self.secondAuthorLabel.text = self.secondSentence?.author
         self.secondBookTitleLabel.text = self.getFormattedBookTitle(self.secondSentence?.bookTitle)
         self.secondPublisherLabel.text = self.getFormattedPublisher(self.secondSentence?.publisher)
         self.secondSentenceLabel.text = self.secondSentence?.sentence
-        
+            
         self.thirdAuthorLabel.text = self.thirdSentence?.author
         self.thirdBookTitleLabel.text = self.getFormattedBookTitle(self.thirdSentence?.bookTitle)
         self.thirdPublisherLabel.text = self.getFormattedPublisher(self.thirdSentence?.publisher)
         self.thirdSentenceLabel.text = self.thirdSentence?.sentence
+    }
+    
+    func setReceivedSentenceLabel() {
+        self.firstAuthorLabel.text = self.receivedData[0].writer
+        self.firstBookTitleLabel.text = self.receivedData[0].bookName
+        self.firstPublisherLabel.text = self.receivedData[0].publisher
+        self.firstSentenceLabel.text = self.receivedData[0].contents
+            
+        self.secondAuthorLabel.text = self.receivedData[1].writer
+        self.secondBookTitleLabel.text = self.receivedData[1].bookName
+        self.secondPublisherLabel.text = self.receivedData[1].publisher
+        self.secondSentenceLabel.text = self.receivedData[1].contents
+            
+        self.thirdAuthorLabel.text = self.receivedData[2].writer
+        self.thirdBookTitleLabel.text = self.receivedData[2].bookName
+        self.thirdPublisherLabel.text = self.receivedData[2].publisher
+        self.thirdSentenceLabel.text = self.receivedData[2].contents
     }
     
     func getFormattedBookTitle(_ bookTitle: String?) -> String {
@@ -169,13 +220,13 @@ class SentenceViewController: UIViewController {
                 sentence: self.firstSentence ?? self.defaultSentence
             )
         } else {
+            guard let mood = selectedMood else {
+                return
+            }
             pushToDiaryWriteViewController(self.dateLabel.text ?? "",
-                                           self.moodLabel.text ?? "",
-                                           self.moodIcon.image ?? UIImage(),
-                                           self.firstAuthorLabel.text ?? "",
-                                           self.firstBookTitleLabel.text ?? "",
-                                           self.firstPublisherLabel.text ?? "",
-                                           self.firstSentenceLabel.text ?? "")        }
+                                           mood,
+                                           receivedData[0])
+        }
     }
     
     @IBAction func secondButtonTouchUp(_ sender: UIButton) {
@@ -184,13 +235,12 @@ class SentenceViewController: UIViewController {
                 sentence: self.firstSentence ?? self.defaultSentence
             )
         } else {
+            guard let mood = selectedMood else {
+                return
+            }
             pushToDiaryWriteViewController(self.dateLabel.text ?? "",
-                                           self.moodLabel.text ?? "",
-                                           self.moodIcon.image ?? UIImage(),
-                                           self.secondAuthorLabel.text ?? "",
-                                           self.secondBookTitleLabel.text ?? "",
-                                           self.secondPublisherLabel.text ?? "",
-                                           self.secondSentenceLabel.text ?? "")
+                                           mood,
+                                           receivedData[1])
         }
     }
     @IBAction func thirdButtonTouchUp(_ sender: UIButton) {
@@ -199,13 +249,12 @@ class SentenceViewController: UIViewController {
                 sentence: self.firstSentence ?? self.defaultSentence
             )
         } else {
+            guard let mood = selectedMood else {
+                return
+            }
             pushToDiaryWriteViewController(self.dateLabel.text ?? "",
-                                           self.moodLabel.text ?? "",
-                                           self.moodIcon.image ?? UIImage(),
-                                           self.thirdAuthorLabel.text ?? "",
-                                           self.thirdBookTitleLabel.text ?? "",
-                                           self.thirdPublisherLabel.text ?? "",
-                                           self.thirdSentenceLabel.text ?? "")
+                                           mood,
+                                           receivedData[2])
         }
     }
     
@@ -221,23 +270,17 @@ class SentenceViewController: UIViewController {
     }
     
     func pushToDiaryWriteViewController(_ date: String,
-                                        _ mood: String,
-                                        _ moodImage: UIImage,
-                                        _ author: String,
-                                        _ book: String,
-                                        _ publisher: String,
-                                        _ sentence: String){
+                                        _ mood: Mood,
+                                        _ sentence: Sentence){
         let writeStorybaord = UIStoryboard(name: Constants.Name.diaryWriteStoryboard, bundle: nil)
         guard let uploadWriteViewController = writeStorybaord.instantiateViewController(identifier: Constants.Identifier.diaryWriteViewController) as? DiaryWriteViewController else {
             return
         }
         uploadWriteViewController.date = date
-        uploadWriteViewController.emotionOriginalImage = moodImage
-        uploadWriteViewController.emotion = mood
-        uploadWriteViewController.author = author
-        uploadWriteViewController.book = book
-        uploadWriteViewController.publisher = publisher
-        uploadWriteViewController.quote = sentence
+        uploadWriteViewController.mood = mood
+        uploadWriteViewController.sentence = sentence
+        uploadWriteViewController.isFromDiary = false
+        
         self.navigationController?.pushViewController(uploadWriteViewController, animated: true)
     }
     

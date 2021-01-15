@@ -77,7 +77,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         homeTopButton.isHidden = true
         
         // 오늘 작성한 일기가 없을 때
-        // uploadButton.isHidden = true
+         uploadButton.isHidden = false
         
         DiariesService.shared.getDiaries(userId: "\(APIConstants.userId)",
                                          year: "2020",

@@ -66,6 +66,11 @@ class DeepViewController: UIViewController {
     
     // MARK: - Properties
     
+    var mood: Mood?
+    var sentence: Sentence?
+    var journal: String = ""
+    var date: String = ""
+    
     let dafaultInfoLabel: String = "오늘의 감정은\n잔잔한가요, 깊은가요?\n스크롤을 움직여서 기록해보세요"
     var deepSliderView: DeepSliderView?
     var deepSliderValue: Float = 0
@@ -114,6 +119,14 @@ class DeepViewController: UIViewController {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
+        
+        let leftButton = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchBackButton))
+        leftButton.tintColor = .white
+        self.navigationItem.leftBarButtonItems = [leftButton]
+    }
+    
+    @objc func touchBackButton() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -203,11 +216,36 @@ class DeepViewController: UIViewController {
         
     }
     
-    func pushToDiaryViewController() {
+    func updateJournal(contents: String, depth: Int, userId: Int, sentenceId: Int, emotionId: Int, wroteAt: String) {
+        print(contents,depth,userId,sentenceId,emotionId,wroteAt)
+        DiariesService.shared.postDiaries(contents: contents, depth: depth, userId: userId, sentenceId: sentenceId, emotionId: emotionId, wroteAt: wroteAt){
+            (networkResult) -> (Void) in
+            switch networkResult {
+            case .success(let data):
+                if let serverData = data as? CreateDiary {
+                    print(serverData.id)
+                    self.pushToDiaryViewController(diaryId: serverData.id)
+                }
+                
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+    
+    func pushToDiaryViewController(diaryId: Int) {
         let diaryStoryboard = UIStoryboard(name: Constants.Name.diaryStoryboard, bundle: nil)
         guard let diaryViewController = diaryStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryViewController) as? DiaryViewController else { return }
         // TODO: - 서버에서 받아오기
-        diaryViewController.diaryId = 2
+        diaryViewController.diaryId = diaryId
         diaryViewController.currentDepth = Depth(rawValue: Int(round(self.deepSliderValue * 6))) ?? Depth.depth2m
         self.navigationController?.pushViewController(diaryViewController, animated: true)
         
@@ -220,7 +258,16 @@ class DeepViewController: UIViewController {
         if text == "시작하기" {
             self.pushToLoginViewController()
         } else if text == "기록하기" {
-            self.pushToDiaryViewController()
+            guard let selectedMood = mood, let selectedSentence = sentence else {
+                return
+            }
+            let dateArray = date.components(separatedBy: ". ")
+            updateJournal(contents: journal,
+                          depth: Int(round(self.deepSliderValue * 6)),
+                          userId: 2,
+                          sentenceId: selectedSentence.id,
+                          emotionId: selectedMood.rawValue,
+                          wroteAt: "\(dateArray[0])-\(dateArray[1])-\(dateArray[2])")
         } else { // text == "수정하기"
             self.deepViewControllerDelegate?.passData(
                 selectedDepth: Depth(rawValue: Int(round(self.deepSliderValue * 6))) ?? Depth.depth2m)
