@@ -106,7 +106,7 @@ class SentenceViewController: UIViewController {
         guard let moodId = selectedMood?.rawValue else {
             return
         }
-        changeUsage ? setSentenceLabel() : connectServer(emotionId: String(moodId), userId: "2")
+        changeUsage ? setSentenceLabel() : connectServer(emotionId: String(moodId), userId: UserDefaults.standard.string(forKey: "userId") ?? "2")
     }
     
     override func viewDidAppear(_ animated: Bool) {

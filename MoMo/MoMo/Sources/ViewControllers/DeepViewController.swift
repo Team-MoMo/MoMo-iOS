@@ -264,7 +264,7 @@ class DeepViewController: UIViewController {
             let dateArray = date.components(separatedBy: ". ")
             updateJournal(contents: journal,
                           depth: Int(round(self.deepSliderValue * 6)),
-                          userId: 2,
+                          userId: Int(APIConstants.userId),
                           sentenceId: selectedSentence.id,
                           emotionId: selectedMood.rawValue,
                           wroteAt: "\(dateArray[0])-\(dateArray[1])-\(dateArray[2])")
