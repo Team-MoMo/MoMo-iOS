@@ -95,9 +95,7 @@ class SentenceViewController: UIViewController {
         
         self.hideButtons()
         
-        if changeUsage {
-            hideimage()
-        }
+        hideimage()
     }
     
     override func viewDidAppear(_ animated: Bool) {

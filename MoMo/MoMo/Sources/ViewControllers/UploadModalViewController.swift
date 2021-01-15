@@ -64,14 +64,14 @@ class UploadModalViewController: UIViewController {
     }
     
     private func setPickerInitialSetting() {
-        self.yearPickerView.selectRow(self.year - 2020, inComponent: 0, animated: true)
+        self.yearPickerView.selectRow(self.year - 2000, inComponent: 0, animated: true)
         self.monthPickerView.selectRow(self.month - 1, inComponent: 0, animated: true)
         coordinateDay()
         self.dayPickerView.selectRow(self.day - 1, inComponent: 0, animated: true)
     }
     
     private func setData() {
-        for tempYear in 2020...3000 {
+        for tempYear in 2000...2021 {
             yearArray.append(String(tempYear))
         }
         for tempMonth in 1...12 {
@@ -136,7 +136,8 @@ class UploadModalViewController: UIViewController {
         }
         let date = gregorianCalendar.date(from: dateComponents as DateComponents)
         let weekday = gregorianCalendar.component(.weekday, from: date!)
-        self.uploadModalDataDelegate?.passData("\(year). \(month). \(day). \(weekdayArray[weekday-1])")
+        let stringMonth = String(format: "%02d", month)
+        self.uploadModalDataDelegate?.passData("\(year). \(stringMonth). \(day). \(weekdayArray[weekday-1])")
         self.presentingViewController?.dismiss(animated: true, completion: nil)
 
     }
