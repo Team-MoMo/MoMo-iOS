@@ -36,8 +36,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 self.navigationController = UINavigationController(rootViewController: onboardingViewController)
             }
             else {
-                let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
-                let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.homeViewController)
+                let homeStoryboard = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
+                let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.onboardingViewController)
 
                 self.navigationController = UINavigationController(rootViewController: homeViewController)
             }
