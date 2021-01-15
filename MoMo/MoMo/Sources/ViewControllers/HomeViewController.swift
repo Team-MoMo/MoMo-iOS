@@ -155,6 +155,13 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         getCurrentFormattedDate()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // 네비게이션 백버튼 숨김
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
     // viewDidAppear
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)

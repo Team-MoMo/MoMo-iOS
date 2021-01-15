@@ -305,8 +305,9 @@ class DiaryViewController: UIViewController {
     }
     
     func popToHomeViewController() {
-        let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
-        guard let homeViewController = homeStoryboard.instantiateViewController(identifier: Constants.Identifier.homeViewController) as? HomeViewController else { return }
+        guard let homeViewController =  self.navigationController?.viewControllers.filter({$0 is HomeViewController}).first! else {
+            return
+        }
         
         // 홈뷰로 Depth를 넘기는 작업 필요
         self.navigationController?.popToViewController(homeViewController, animated: true)
@@ -359,7 +360,7 @@ extension DiaryViewController: AlertModalDelegate {
     
     func rightButtonTouchUp(button: UIButton) {
         self.deleteDiaryWithAPI(completion: {
-            self.navigationController?.popViewController(animated: true)
+            self.popToHomeViewController()
         })
     }
 }
