@@ -278,6 +278,7 @@ class MoodViewController: UIViewController {
             modalView?.year = self.year
             modalView?.month = self.month
             modalView?.day = self.day
+            modalView?.verifyMood = true
             modalView?.modalPresentationStyle = .custom
             modalView?.transitioningDelegate = self
             self.present(modalView!, animated: true, completion: nil)
@@ -347,6 +348,7 @@ class MoodViewController: UIViewController {
         modalView?.year = year
         modalView?.month = month
         modalView?.day = day
+        modalView?.verifyMood = true
         modalView?.modalPresentationStyle = .custom
         modalView?.transitioningDelegate = self
         self.present(modalView!, animated: true, completion: nil)

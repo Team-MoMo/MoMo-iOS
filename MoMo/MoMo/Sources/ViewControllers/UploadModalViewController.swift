@@ -23,6 +23,9 @@ class UploadModalViewController: UIViewController {
     var year: Int = 0
     var month: Int = 0
     var day: Int = 0
+    
+    //true이면 무드뷰컨에서 넘어온 것
+    var verifyMood: Bool = true
 
     var yearArray: [String] = []
     var monthArray: [String] = []
@@ -104,6 +107,8 @@ class UploadModalViewController: UIViewController {
 //        day = Int(String(formattedDateArray[2]).trimmingCharacters(in: .whitespaces)) ?? 0
 //    }
     
+    
+    
     private func coordinateDay() {
         switch self.month {
         case 1, 3, 5, 7, 8, 10, 12:
@@ -139,9 +144,50 @@ class UploadModalViewController: UIViewController {
         let stringMonth = String(format: "%02d", month)
         self.uploadModalDataDelegate?.passData("\(year). \(stringMonth). \(day). \(weekdayArray[weekday-1])")
         self.presentingViewController?.dismiss(animated: true, completion: nil)
-
     }
     
+    func connectServer(userID: String,
+                       year: String,
+                       month: String,
+                       order: String,
+                       day: Int?,
+                       emotionID: Int?,
+                       depth: Int?) {
+        DiariesService.shared.getDiaries(userId: userID,
+                                         year: year,
+                                         month: month,
+                                         order: order,
+                                         day: day,
+                                         emotionId: emotionID,
+                                         depth: depth) {
+            (networkResult) -> (Void) in
+            switch networkResult {
+
+            case .success(let data):
+                if let diary = data as? [Diary] {
+                    if diary.count > 0 {
+                        self.applyButton.isEnabled = false
+                        self.applyButton.backgroundColor = UIColor.Black6
+                    } else {
+                        self.applyButton.isEnabled = true
+                        self.applyButton.backgroundColor = UIColor.BlueModalAble
+
+                    }
+                }
+                
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
 }
 
 extension UploadModalViewController: UIPickerViewDelegate {
@@ -164,6 +210,15 @@ extension UploadModalViewController: UIPickerViewDelegate {
             coordinateDay()
         } else {
             day = Int(dayArray[dayIndex][row]) ?? 0
+        }
+        if verifyMood {
+            connectServer(userID: "2",
+                          year: "\(year)",
+                          month: "\(month)",
+                          order: "filter",
+                          day: day,
+                          emotionID: nil,
+                          depth: nil)
         }
     }
 }
