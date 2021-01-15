@@ -449,6 +449,7 @@ extension DiaryViewController {
                     self.diaryInfo = diaryFromServer
                     DispatchQueue.main.async {
                         completion(self.diaryInfo)
+                        self.setObjetsByDepth(depth: self.diaryInfo?.depth ?? Depth.depth2m)
                     }
                 }
             case .requestErr(let errorMessage):
