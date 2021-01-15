@@ -53,7 +53,7 @@ class ListViewController: UIViewController {
         warningPlusButton.isHidden = true
         filterWarningLabel.text = "검색된 결과가 없습니다"
         filterWarningLabel.isHidden = true
-        connectServer(userID: "2", year: String(year), month: String(month), order: "filter", day: nil, emotionID: nil, depth: nil)
+        connectServer(userID: String(APIConstants.userId), year: String(year), month: String(month), order: "filter", day: nil, emotionID: nil, depth: nil)
     }
 
     func connectServer(userID: String,
@@ -75,13 +75,19 @@ class ListViewController: UIViewController {
 
             case .success(let data):
                 if let diary = data as? [Diary] {
+                    print(self.pattern)
+                    print(self.receivedData.count)
                     self.receivedData = diary
                     self.listTableView.reloadData()
-                    if self.pattern == false && self.receivedData.count == 0 {
+                    if self.pattern == false && diary.count == 0 && self.year == self.standardYear && self.month ==  self.standardMonth{
+                        self.filterWarningLabel.isHidden = true
                         self.warningLabel.isHidden = false
                         self.warningPlusButton.isHidden = false
-                    } else if self.pattern == true && self.receivedData.count == 0 {
+                    } else if self.pattern == true && diary.count == 0 {
+                        print(1)
                         self.filterWarningLabel.isHidden = false
+                        self.warningLabel.isHidden = true
+                        self.warningPlusButton.isHidden = true
 
                     } else {
                         self.warningLabel.isHidden = true
@@ -197,7 +203,7 @@ class ListViewController: UIViewController {
             pattern.toggle()
             setNavigationBarButton()
         }
-        connectServer(userID: "2",
+        connectServer(userID: String(APIConstants.userId),
                       year: String(year),
                       month: String(month),
                       order: "filter",
@@ -206,7 +212,6 @@ class ListViewController: UIViewController {
                       depth: filteredDepth)
         cell.filterCollectionView.reloadData()
         
-       
     }
     
     @objc func touchMoreButton(sender: UIButton) {
@@ -344,7 +349,7 @@ extension ListViewController: ModalPassDataDelegate {
         self.pattern = filterArray.count == 0 ? false : true
         if year == standardYear && month == standardMonth && filterArray.count == 0 {
             setNavigationBarButton()
-            connectServer(userID: "2",
+            connectServer(userID: String(APIConstants.userId),
                           year: String(year),
                           month: String(month),
                           order: "filter",
@@ -360,7 +365,7 @@ extension ListViewController: ModalPassDataDelegate {
             self.filteredDepth = depth
             self.filteredEmotion = emotion
             setNavigationBarButton()
-            connectServer(userID: "2",
+            connectServer(userID: String(APIConstants.userId),
                           year: String(year),
                           month: String(month),
                           order: "filter",

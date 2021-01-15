@@ -158,6 +158,7 @@ class MoodViewController: UIViewController {
     
     // MARK: - Properties
     
+    var today: String = ""
     private var buttons: [Button] = []
     var date: String?
     let defaultInfo: String = "먼저 오늘의\n감정을 선택해 주세요"
@@ -202,7 +203,19 @@ class MoodViewController: UIViewController {
         self.infoLabel.text = self.defaultInfo
         
         if listNoDiary {
-            connectServer(userID: "2")
+            let date = Date()
+            let dateFormatter = DateFormatter()
+            
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            dateFormatter.locale = Locale.current
+            
+            let formattedDate = dateFormatter.string(from: date)
+            today = formattedDate
+            let dateArray = formattedDate.split(separator: "-")
+            print(today)
+            day = Int(dateArray[2])!
+            
+            checkTodayJournal(userID: String(APIConstants.userId), year: "\(dateArray[0])", month: "\(dateArray[1])", order: "filter", day: day, emotionID: nil, depth: nil)
             listNoDiary.toggle()
         } else {
             self.date = self.getCurrentFormattedDate()
@@ -244,16 +257,12 @@ class MoodViewController: UIViewController {
         return formattedDateWithKorean
     }
     
-    func compareRecentDate(recendDate: String) {
+    func compareRecentDate(recendDate: String, verifyToday:Bool) {
         let date = recendDate.split(separator: "T")[0]
-        let today = Date()
-        let dateFormatter = DateFormatter()
-
-        dateFormatter.dateFormat = "yyyy-mm-dd"
-        var formattedToday = dateFormatter.string(from: today)
         
-        if date == formattedToday {
-            let dateArray = formattedToday.split(separator: "-")
+
+        if !verifyToday {
+            let dateArray = self.today.split(separator: "-")
             let dateComponents = NSDateComponents()
             guard let year = Int(dateArray[0]), let month = Int(dateArray[1]), let day = Int(dateArray[2]) else {
                 return
@@ -307,7 +316,47 @@ class MoodViewController: UIViewController {
         }
     }
     
-    func connectServer(userID: String) {
+    func checkTodayJournal(userID: String,
+                       year: String,
+                       month: String,
+                       order: String,
+                       day: Int?,
+                       emotionID: Int?,
+                       depth: Int?) {
+        DiariesService.shared.getDiaries(userId: userID,
+                                         year: year,
+                                         month: month,
+                                         order: order,
+                                         day: day,
+                                         emotionId: emotionID,
+                                         depth: depth) {
+            (networkResult) -> (Void) in
+            switch networkResult {
+
+            case .success(let data):
+                if let diary = data as? [Diary] {
+                    if diary.count > 0 {
+                        self.connectServer(userID: String(APIConstants.userId), verifyToday: true)
+                    } else {
+                        self.connectServer(userID: String(APIConstants.userId), verifyToday: false)
+                    }
+                }
+                
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+    
+    func connectServer(userID: String, verifyToday: Bool) {
         DiaryRecentService.shared.getDiaryRecent(userId: userID) {
             (networkResult) -> (Void) in
             switch networkResult {
@@ -315,7 +364,7 @@ class MoodViewController: UIViewController {
             case .success(let data):
                 if let recentDate = data as? String {
                     self.recentDate = recentDate
-                    self.compareRecentDate(recendDate: self.recentDate)
+                    self.compareRecentDate(recendDate: self.recentDate, verifyToday: verifyToday)
                 }
                 
             case .requestErr(let msg):
