@@ -12,7 +12,6 @@
 		10029DAB25B108E000060E14 /* HomeModalPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10029DAA25B108E000060E14 /* HomeModalPresentation.swift */; };
 		10029DBC25B1183A00060E14 /* DiaryRecentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10029DBB25B1183A00060E14 /* DiaryRecentService.swift */; };
 		10029DBF25B11D4800060E14 /* DiaryRecent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10029DBE25B11D4800060E14 /* DiaryRecent.swift */; };
-		1006505D25AAF3320016B796 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1006505B25AAF3320016B796 /* ViewController.swift */; };
 		1006505E25AAF3320016B796 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1006505C25AAF3320016B796 /* ListViewController.swift */; };
 		1014894425AC417E00639F98 /* DiaryWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1014894325AC417E00639F98 /* DiaryWriteViewController.swift */; };
 		104E685E25AAF8410019B29E /* DiaryWrite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 104E685D25AAF8410019B29E /* DiaryWrite.storyboard */; };
@@ -112,7 +111,6 @@
 		10029DAA25B108E000060E14 /* HomeModalPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModalPresentation.swift; sourceTree = "<group>"; };
 		10029DBB25B1183A00060E14 /* DiaryRecentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRecentService.swift; sourceTree = "<group>"; };
 		10029DBE25B11D4800060E14 /* DiaryRecent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRecent.swift; sourceTree = "<group>"; };
-		1006505B25AAF3320016B796 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1006505C25AAF3320016B796 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		1014894325AC417E00639F98 /* DiaryWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryWriteViewController.swift; sourceTree = "<group>"; };
 		104E685D25AAF8410019B29E /* DiaryWrite.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DiaryWrite.storyboard; sourceTree = "<group>"; };
@@ -430,21 +428,20 @@
 		5687642E2599E38B009CB486 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1006505C25AAF3320016B796 /* ListViewController.swift */,
 				10DDA33725AF099A00620C41 /* ListFilterModalViewController.swift */,
 				10DDA33825AF099A00620C41 /* ListFilterModalViewController.xib */,
 				10E5CD7D25ADF145004FDC24 /* UploadModalViewController.swift */,
 				10E5CD7E25ADF145004FDC24 /* UploadModalViewController.xib */,
-				1006505C25AAF3320016B796 /* ListViewController.swift */,
-				1006505B25AAF3320016B796 /* ViewController.swift */,
 				563B034625A8973100DA74C5 /* HomeViewController.swift */,
 				1CEF46BE25A6DA7600AF3D81 /* OnboardingViewController.swift */,
-				1014894325AC417E00639F98 /* DiaryWriteViewController.swift */,
+				1CEF46CA25A6E0B200AF3D81 /* OnboardingWriteViewController.swift */,
 				1CEF46C425A6E09100AF3D81 /* MoodViewController.swift */,
 				1CEF46C725A6E0A000AF3D81 /* SentenceViewController.swift */,
-				1CEF46CA25A6E0B200AF3D81 /* OnboardingWriteViewController.swift */,
-				1CAD05A425AACB36007ECA40 /* DeepViewController.swift */,
 				1C42357225AE26B9008FB838 /* SplashViewController.swift */,
+				1CAD05A425AACB36007ECA40 /* DeepViewController.swift */,
 				1C7CD80625ACA5EC00B7CB60 /* DiaryViewController.swift */,
+				1014894325AC417E00639F98 /* DiaryWriteViewController.swift */,
 				563B040425AD5F3100DA74C5 /* JoinViewController.swift */,
 				563B03FD25ACCE0200DA74C5 /* EmailLoginViewController.swift */,
 				563B03E125ACBB1200DA74C5 /* LoginViewController.swift */,
@@ -682,7 +679,6 @@
 				5637606725B04AA800651EAA /* SignUpService.swift in Sources */,
 				10B6732025A771700046AA97 /* String+Extension.swift in Sources */,
 				10E5CD7F25ADF145004FDC24 /* UploadModalViewController.swift in Sources */,
-				1006505D25AAF3320016B796 /* ViewController.swift in Sources */,
 				568764D1259F6EDE009CB486 /* UIColor+Extension.swift in Sources */,
 				107919B325A4830B0024C711 /* ListDateTableViewCell.swift in Sources */,
 				10F1F72D25B04ADD00BF7D37 /* SentencesService.swift in Sources */,
