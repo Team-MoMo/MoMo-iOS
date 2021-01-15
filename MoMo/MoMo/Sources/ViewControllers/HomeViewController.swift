@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // MARK: - @IBOutlet Properties
     
@@ -58,6 +58,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        homeTableView.allowsSelection = true
+        
         // tableHeaderView register
         let headerView = Bundle.main.loadNibNamed(Constants.Name.homeDayNightViewXib, owner: self, options: nil)?.last as? UIView ?? UIView()
         
@@ -105,9 +107,11 @@ class HomeViewController: UIViewController {
             }
             self.calculateFramesOfSections()
             self.paintGradientWithFrame()
-            self.homeTableView.reloadData()
+            DispatchQueue.main.async {
+                self.homeTableView.reloadData()
+            }
             
-             // 단계별 objet 배치
+            // 단계별 objet 배치
             self.attachDepth0Objet()
             self.attachDepth1Objet()
             self.attachDepth2Objet()
@@ -116,14 +120,11 @@ class HomeViewController: UIViewController {
             self.attachDepth5Objet()
             self.attachDepth6Objet()
             
-            let pleaseView = UIView(frame: CGRect(x: 0, y: self.sectionFrameArray[0].origin.y, width: UIScreen.main.bounds.width, height: 500))
-            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.touchBubble(_:)))
-            pleaseView.addGestureRecognizer(tapRecognizer)
         }
         
         // 권한 위임
-        homeTableView.dataSource = self
-        homeTableView.delegate = self
+        self.homeTableView.dataSource = self
+        self.homeTableView.delegate = self
         devideArrayByDepth()
         createGradientColorSets()
         
@@ -198,12 +199,11 @@ class HomeViewController: UIViewController {
             let image = UIImage.gradientImageWithBounds(bounds: frame, colors: self.colorSets[sectionIndex])
             imgView.image = image
             
-            view.addSubview(imgView)
             
+            view.isUserInteractionEnabled = false
+            view.addSubview(imgView)
             self.homeTableView.addSubview(view)
             self.homeTableView.sendSubviewToBack(view)
-            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.touchBubble(_:)))
-            view.addGestureRecognizer(tapRecognizer)
         }
     }
     
@@ -297,7 +297,8 @@ class HomeViewController: UIViewController {
     func attachObjet(frameX: CGFloat, frameY: CGFloat, img: UIImage) {
         let imgView = UIImageView(frame: CGRect(x: frameX, y: frameY, width: img.size.width, height: img.size.height))
         imgView.image = img
-        
+
+        imgView.isUserInteractionEnabled = false
         homeTableView.addSubview(imgView)
     }
     
@@ -310,6 +311,7 @@ class HomeViewController: UIViewController {
         objView = UIImageView(frame: CGRect(x: frameX, y: frameY, width: UIScreen.main.bounds.width, height: height))
         objView.image = img
         
+        objView.isUserInteractionEnabled = false
         homeTableView.addSubview(objView)
     }
     
@@ -322,7 +324,6 @@ class HomeViewController: UIViewController {
         let height = (imgHeight * width) / imgWidth
         let imgView = UIImageView(frame: CGRect(x: 0, y: -1, width: UIScreen.main.bounds.width, height: height))
         imgView.image = img
-        
         return imgView
     }
     
@@ -511,17 +512,6 @@ class HomeViewController: UIViewController {
         dateArray = formattedDate.components(separatedBy: ". ")
     }
     
-    @objc func touchBubble(_ sender: UITapGestureRecognizer) {
-        print("fuck")
-        
-        let diaryStoryboard = UIStoryboard(name: Constants.Name.diaryStoryboard, bundle: nil)
-        guard let dvc = diaryStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryViewController) as? DiaryViewController else {
-            return
-        }
-        //dvc.diaryId = bubbleDepthArray[indexPath.section][indexPath.row].id
-        self.navigationController?.pushViewController(dvc, animated: true)
-    }
-    
     // MARK: - @IBAction Properties
     
     @IBAction func touchUpHomeTopButton(_ sender: Any) {
@@ -600,10 +590,13 @@ extension HomeViewController: UploadModalPassDataDelegate {
             }
             self.calculateFramesOfSections()
             self.paintGradientWithFrame()
-            self.homeTableView.reloadData()
+            
+            DispatchQueue.main.async {
+                self.homeTableView.reloadData()
+            }
             
             // 단계별 objet 배치
-            self.removeAllObjets()
+            //self.removeAllObjets()
 //            self.attachDepth0Objet()
 //            self.attachDepth1Objet()
 //            self.attachDepth2Objet()
@@ -646,9 +639,6 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = homeTableView.dequeueReusableCell(withIdentifier: Constants.Identifier.bubbleTableViewCell) as? BubbleTableViewCell {
             
-            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(touchBubble(_:)))
-            cell.superview?.addGestureRecognizer(tapRecognizer)
-            
             // table view cell에게 데이터 전달
             let rowArray = bubbleDepthArray[indexPath.section]
             cell.setCell(bubble: rowArray[indexPath.row])
@@ -663,13 +653,13 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("zz")
         let diaryStoryboard = UIStoryboard(name: Constants.Name.diaryStoryboard, bundle: nil)
         guard let dvc = diaryStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryViewController) as? DiaryViewController else {
             return
         }
         dvc.diaryId = bubbleDepthArray[indexPath.section][indexPath.row].id
         self.navigationController?.pushViewController(dvc, animated: true)
+        print("weoginwego")
     }
     
 }
@@ -687,9 +677,6 @@ extension HomeViewController: UITableViewDelegate {
             for index in 0 ..< tableView.visibleCells.count {
                 let zPosition = CGFloat(tableView.visibleCells.count + 999)
                 tableView.visibleCells[index].layer.zPosition = zPosition
-                // print(index)
-                let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.touchBubble(_:)))
-                cell.contentView.addGestureRecognizer(tapRecognizer)
             }
         }
     }
@@ -701,7 +688,7 @@ extension HomeViewController: UITableViewDelegate {
         depthLabel.font = UIFont.systemFont(ofSize: depthLabelFontSize, weight: .light)
         depthLabel.textColor = UIColor.white
         depthLabel.text = Constants.Content.depthNameArray[section]
-        // depthLabel.attributedText = depthLabel.text?.textSpacing(lineSpacing: 7)
+        depthLabel.attributedText = depthLabel.text?.textSpacing(lineSpacing: 7)
         sectionHeaderView.addSubview(depthLabel)
         sectionHeaderView.backgroundColor = UIColor.clear // 투명화
 
