@@ -412,11 +412,14 @@ class MoodViewController: UIViewController {
     }
     
     func pushToOnboardingSentenceViewController(mood: Mood, usage: Bool) {
+        guard let date = dateLabel.text else {
+            return
+        }
         
         guard let sentenceViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.sentenceViewController) as? SentenceViewController else { return }
         
         sentenceViewController.selectedMood = mood
-        sentenceViewController.date = self.date
+        sentenceViewController.date = date
         sentenceViewController.changeUsage = self.changeUsage
         
         self.navigationController?.pushViewController(sentenceViewController, animated: true)
