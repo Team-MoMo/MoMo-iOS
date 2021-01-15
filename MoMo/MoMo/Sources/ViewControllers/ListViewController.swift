@@ -220,6 +220,16 @@ class ListViewController: UIViewController {
         
         self.navigationController?.pushViewController(diaryViewController, animated: true)
     }
+    
+    @IBAction func touchWarningPlusButton(_ sender: Any) {
+        let diaryStoryboard = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
+        guard let moodViewController = diaryStoryboard.instantiateViewController(identifier: Constants.Identifier.moodViewController) as? MoodViewController else {
+            return
+        }
+        moodViewController.listNoDiary = true
+        self.navigationController?.pushViewController(moodViewController, animated: true)
+    }
+    
 }
 
 // MARK: - TableViewDataSource

@@ -40,8 +40,7 @@ class UploadModalViewController: UIViewController {
         registerDelegate()
         registerDataSource()
         setData()
-        calculateToday()
-        setPickerInitialSetting()
+       
         view.layer.cornerRadius = 15
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         descriptionLabel.attributedText = "날짜 변경".wordSpacing(-0.6)
@@ -56,6 +55,7 @@ class UploadModalViewController: UIViewController {
             self.yearPickerView.subviews[1].backgroundColor = UIColor.clear
             self.monthPickerView.subviews[1].backgroundColor = UIColor.clear
             self.dayPickerView.subviews[1].backgroundColor = UIColor.clear
+            self.setPickerInitialSetting()
         }
     }
 
@@ -91,18 +91,18 @@ class UploadModalViewController: UIViewController {
         yearPickerView.dataSource = self
     }
     
-    func calculateToday() {
-        let date = Date()
-        let dateFormatter = DateFormatter()
-            
-        dateFormatter.dateFormat = "yyyy. MM. dd. EEEE"
-        dateFormatter.locale = Locale.current
-        let formattedDate = dateFormatter.string(from: date)
-        let formattedDateArray = formattedDate.split(separator: ".")
-        year = Int(String(formattedDateArray[0])) ?? 0
-        month = Int(String(formattedDateArray[1]).trimmingCharacters(in: .whitespaces)) ?? 0
-        day = Int(String(formattedDateArray[2]).trimmingCharacters(in: .whitespaces)) ?? 0
-    }
+//    func calculateToday() {
+//        let date = Date()
+//        let dateFormatter = DateFormatter()
+//
+//        dateFormatter.dateFormat = "yyyy. MM. dd. EEEE"
+//        dateFormatter.locale = Locale.current
+//        let formattedDate = dateFormatter.string(from: date)
+//        let formattedDateArray = formattedDate.split(separator: ".")
+//        year = Int(String(formattedDateArray[0])) ?? 0
+//        month = Int(String(formattedDateArray[1]).trimmingCharacters(in: .whitespaces)) ?? 0
+//        day = Int(String(formattedDateArray[2]).trimmingCharacters(in: .whitespaces)) ?? 0
+//    }
     
     private func coordinateDay() {
         switch self.month {

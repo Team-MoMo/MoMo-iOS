@@ -15,7 +15,6 @@ struct DiaryRecentService {
     // get
     func getDiaryRecent(userId: String,
                      completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        
         let url = APIConstants.diaryRecentURL
         let header: HTTPHeaders = [
             "Content-Type": "application/json",
@@ -33,7 +32,6 @@ struct DiaryRecentService {
                                      headers: header)
         
         dataRequest.responseData { (response) in
-            
             switch response.result {
             case .success:
                 guard let statusCode = response.response?.statusCode else {
@@ -42,16 +40,15 @@ struct DiaryRecentService {
                 guard let data = response.value else {
                     return
                 }
-                completion(judgeGetSentenceData(status: statusCode, data: data))
+                completion(judgeRecentDateData(status: statusCode, data: data))
             
             case .failure(let err):
-                print(err)
                 completion(.networkFail)
             }
         }
     }
     
-    private func judgeGetSentenceData(status: Int, data: Data) -> NetworkResult<Any> {
+    private func judgeRecentDateData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<String>.self,
                                                     from: data) else {
@@ -61,7 +58,7 @@ struct DiaryRecentService {
         switch status {
         case 200:
             return .success(decodedData.data)
-        case 400:
+        case 401:
             return .requestErr(decodedData.message)
         case 500:
             return .serverErr
