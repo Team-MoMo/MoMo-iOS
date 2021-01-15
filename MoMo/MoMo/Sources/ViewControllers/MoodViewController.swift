@@ -93,6 +93,27 @@ enum Mood: Int {
             return Constants.Design.Image.icDaily14Blue!
         }
     }
+    
+    func toTypingLabelText() -> String {
+        switch self {
+        case .love:
+            return "새로운 인연이 기대되는 하루였다. "
+        case .happy:
+            return "삶의 소중함을 느낀 하루였다. "
+        case .console:
+            return "나를 위한 진한 위로가 필요한 하루였다. "
+        case .angry:
+            return "끓어오르는 속을 진정시켜야 하는 하루였다. "
+        case .sad:
+            return "마음이 찌릿하게 아픈 하루였다. "
+        case .bored:
+            return "눈물이 왈칵 쏟아질 것 같은 하루였다. "
+        case .memory:
+            return "오래된 기억이 되살아나는 하루였다. "
+        case .daily:
+            return "평안한 하루가 감사한 날이었다."
+        }
+    }
 }
 
 struct Button {
