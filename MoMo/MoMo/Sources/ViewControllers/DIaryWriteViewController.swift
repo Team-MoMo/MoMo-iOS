@@ -83,7 +83,6 @@ class DiaryWriteViewController: UIViewController {
             self.depthLabel.isHidden = false
         } else {
             setValuesFromUploadView()
-            self.emotionImage.image = self.emotionOriginalImage
             self.setPlaceholder()
             self.setNavigationButton()
             self.journalTextView.attributedText = self.placeHolder
@@ -121,6 +120,7 @@ class DiaryWriteViewController: UIViewController {
         }
         self.dateLabel.text = self.date
         self.emotionImage.image = usableMood.toIcon()
+        print(usableMood.toIcon())
         self.emotionLabel.text = usableMood.toString()
         self.authorLabel.text = usableSentence.writer
         self.bookLabel.text = usableSentence.bookName
