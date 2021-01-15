@@ -217,7 +217,6 @@ class DeepViewController: UIViewController {
     }
     
     func updateJournal(contents: String, depth: Int, userId: Int, sentenceId: Int, emotionId: Int, wroteAt: String) {
-        print(contents,depth,userId,sentenceId,emotionId,wroteAt)
         DiariesService.shared.postDiaries(contents: contents, depth: depth, userId: userId, sentenceId: sentenceId, emotionId: emotionId, wroteAt: wroteAt){
             (networkResult) -> (Void) in
             switch networkResult {
