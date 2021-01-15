@@ -164,14 +164,14 @@
                                                         </attributedString>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;여자의 얼굴을 한 방문자 : &lt;편의점&gt; 수록작&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASi-nm-VMP" userLabel="BookTitle Label">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;여자의 얼굴을 한 방문자 : &lt;편의점&gt; 수록작&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASi-nm-VMP" userLabel="BookTitle Label">
                                                         <rect key="frame" x="80" y="181.5" width="222" height="13.5"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
                                                         <color key="textColor" name="Blue7"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="xhL-qD-qXV">
-                                                        <rect key="frame" x="147" y="201" width="82" height="13.5"/>
+                                                        <rect key="frame" x="150" y="201" width="82" height="13.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이아람" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jti-4d-Hcr" userLabel="Author Label">
                                                                 <rect key="frame" x="0.0" y="0.0" width="29" height="13.5"/>
@@ -230,9 +230,9 @@
                                                     <constraint firstAttribute="trailing" secondItem="ASi-nm-VMP" secondAttribute="trailing" constant="80" id="S3q-sM-iLj"/>
                                                     <constraint firstItem="c7n-YQ-cgM" firstAttribute="top" secondItem="HKy-RP-0Gi" secondAttribute="top" constant="48" id="TnZ-ny-5jF"/>
                                                     <constraint firstItem="yOT-1w-Z6I" firstAttribute="leading" secondItem="HKy-RP-0Gi" secondAttribute="leading" constant="25" id="USR-QJ-KQ1"/>
-                                                    <constraint firstItem="ASi-nm-VMP" firstAttribute="leading" secondItem="xhL-qD-qXV" secondAttribute="trailing" constant="-149" id="Vw6-YD-20M"/>
                                                     <constraint firstItem="97A-Af-vlO" firstAttribute="leading" secondItem="HKy-RP-0Gi" secondAttribute="leading" constant="45" id="WD4-CX-4DL"/>
                                                     <constraint firstItem="xhL-qD-qXV" firstAttribute="top" secondItem="ASi-nm-VMP" secondAttribute="bottom" constant="6" id="bB0-cu-Qpi"/>
+                                                    <constraint firstItem="xhL-qD-qXV" firstAttribute="centerX" secondItem="ASi-nm-VMP" secondAttribute="centerX" id="cFv-7C-E4y"/>
                                                     <constraint firstItem="ASi-nm-VMP" firstAttribute="top" secondItem="97A-Af-vlO" secondAttribute="bottom" constant="24" id="h9H-PK-pcT"/>
                                                     <constraint firstItem="c7n-YQ-cgM" firstAttribute="centerX" secondItem="HKy-RP-0Gi" secondAttribute="centerX" id="hhC-66-JA2"/>
                                                     <constraint firstItem="3Dd-To-Grg" firstAttribute="leading" secondItem="HKy-RP-0Gi" secondAttribute="leading" constant="32" id="i2B-Xh-eNM"/>

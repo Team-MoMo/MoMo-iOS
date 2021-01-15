@@ -54,14 +54,11 @@ class OnboardingWriteViewController: UIViewController {
         super.viewDidLoad()
         
         self.infoLabel.text = self.defaultInfo
-        self.setTypingLabel()
-        self.typingLabel.pauseTyping()
         self.hideTypingCursorLabel()
         self.typingLabel.onTypingAnimationFinished = showTypingCursorBlinkWithAnimation
         self.setSentenceLabel()
         self.hideFeatherImage()
         self.hideSentenceLabel()
-        self.hideTypingLabel()
         self.hideOnboardingCircleSmallImage()
         self.hideOnboardingCircleBigImage()
     }
@@ -218,10 +215,8 @@ extension OnboardingWriteViewController {
                 self.view.layoutIfNeeded()
             },
             completion: { _ in
-                
                 self.showTypingCursorLabel()
-                self.showTypingLabel()
-                self.typingLabel.continueTyping()
+                self.setTypingLabel()
             }
             
         )

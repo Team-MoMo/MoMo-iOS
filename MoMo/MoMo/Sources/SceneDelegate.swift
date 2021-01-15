@@ -30,7 +30,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
             if !UserDefaults.standard.bool(forKey: "didLaunch") {
                 UserDefaults.standard.set(true, forKey: "didLaunch")
-
                 let onboardingStoryboard = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
                 let onboardingViewController = onboardingStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.onboardingViewController)
 

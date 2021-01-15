@@ -54,7 +54,6 @@ class ListViewController: UIViewController {
         filterWarningLabel.text = "검색된 결과가 없습니다"
         filterWarningLabel.isHidden = true
         connectServer(userID: "2", year: String(year), month: String(month), order: "filter", day: nil, emotionID: nil, depth: nil)
-       
     }
 
     func connectServer(userID: String,
