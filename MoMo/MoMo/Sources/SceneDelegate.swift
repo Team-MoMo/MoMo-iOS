@@ -27,13 +27,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.makeKeyAndVisible()
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(3)) {
-            let onboardingStoryboard = UIStoryboard(name: Constants.Name.listStoryboard, bundle: nil)
-            let onboardingViewController = onboardingStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.listViewController)
 
-            self.navigationController = UINavigationController(rootViewController: onboardingViewController)
             if !UserDefaults.standard.bool(forKey: "didLaunch") {
                 UserDefaults.standard.set(true, forKey: "didLaunch")
-
                 let onboardingStoryboard = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
                 let onboardingViewController = onboardingStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.onboardingViewController)
 
