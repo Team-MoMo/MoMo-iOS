@@ -90,6 +90,7 @@ class DiaryViewController: UIViewController {
         
         self.addBlurEffectOnBlurView(view: self.blurView)
         
+        self.navigationItem.leftBarButtonItem = self.leftButton
         self.navigationItem.rightBarButtonItem = self.rightButton
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
