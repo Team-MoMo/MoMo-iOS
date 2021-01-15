@@ -114,7 +114,6 @@ struct DiariesService {
                                     parameters: body,
                                     encoding: JSONEncoding.default,
                                     headers: header)
-            
         dataRequest.responseData { (response) in
                 
             switch response.result {
