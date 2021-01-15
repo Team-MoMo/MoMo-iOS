@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // MARK: - @IBOutlet Properties
     
@@ -47,11 +47,18 @@ class HomeViewController: UIViewController {
     let depthLabelFrameHeight: CGFloat = 42
     let depthLabelFontSize: CGFloat = 28
     
+    // date
+    var dateArray: [String] = []
+    
+    var objView = UIImageView()
+    
     // MARK: - View Life Cycle
     
     // viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        homeTableView.allowsSelection = true
         
         // tableHeaderView register
         let headerView = Bundle.main.loadNibNamed(Constants.Name.homeDayNightViewXib, owner: self, options: nil)?.last as? UIView ?? UIView()
@@ -70,7 +77,7 @@ class HomeViewController: UIViewController {
         homeTopButton.isHidden = true
         
         // 오늘 작성한 일기가 없을 때
-         uploadButton.isHidden = true
+        // uploadButton.isHidden = true
         
         DiariesService.shared.getDiaries(userId: "\(APIConstants.userId)",
                                          year: "2020",
@@ -100,7 +107,9 @@ class HomeViewController: UIViewController {
             }
             self.calculateFramesOfSections()
             self.paintGradientWithFrame()
-            self.homeTableView.reloadData()
+            DispatchQueue.main.async {
+                self.homeTableView.reloadData()
+            }
             
             // 단계별 objet 배치
             self.attachDepth0Objet()
@@ -110,11 +119,12 @@ class HomeViewController: UIViewController {
             self.attachDepth4Objet()
             self.attachDepth5Objet()
             self.attachDepth6Objet()
+            
         }
         
         // 권한 위임
-        homeTableView.dataSource = self
-        homeTableView.delegate = self
+        self.homeTableView.dataSource = self
+        self.homeTableView.delegate = self
         devideArrayByDepth()
         createGradientColorSets()
         
@@ -140,6 +150,9 @@ class HomeViewController: UIViewController {
         } else {
             statusBarHeight = UIApplication.shared.statusBarFrame.height
         }
+        
+        // 오늘 날짜 가져오기
+        getCurrentFormattedDate()
     }
     
     // viewDidAppear
@@ -186,8 +199,9 @@ class HomeViewController: UIViewController {
             let image = UIImage.gradientImageWithBounds(bounds: frame, colors: self.colorSets[sectionIndex])
             imgView.image = image
             
-            view.addSubview(imgView)
             
+            view.isUserInteractionEnabled = false
+            view.addSubview(imgView)
             self.homeTableView.addSubview(view)
             self.homeTableView.sendSubviewToBack(view)
         }
@@ -283,7 +297,8 @@ class HomeViewController: UIViewController {
     func attachObjet(frameX: CGFloat, frameY: CGFloat, img: UIImage) {
         let imgView = UIImageView(frame: CGRect(x: frameX, y: frameY, width: img.size.width, height: img.size.height))
         imgView.image = img
-        
+
+        imgView.isUserInteractionEnabled = false
         homeTableView.addSubview(imgView)
     }
     
@@ -293,10 +308,11 @@ class HomeViewController: UIViewController {
         let imgHeight = img.size.height
         let width = UIScreen.main.bounds.width
         let height = (imgHeight * width) / imgWidth
-        let imgView = UIImageView(frame: CGRect(x: frameX, y: frameY, width: UIScreen.main.bounds.width, height: height))
-        imgView.image = img
+        objView = UIImageView(frame: CGRect(x: frameX, y: frameY, width: UIScreen.main.bounds.width, height: height))
+        objView.image = img
         
-        homeTableView.addSubview(imgView)
+        objView.isUserInteractionEnabled = false
+        homeTableView.addSubview(objView)
     }
     
     // footer 오브제 배치
@@ -308,11 +324,25 @@ class HomeViewController: UIViewController {
         let height = (imgHeight * width) / imgWidth
         let imgView = UIImageView(frame: CGRect(x: 0, y: -1, width: UIScreen.main.bounds.width, height: height))
         imgView.image = img
-        
         return imgView
     }
     
     // MARK: objet 붙이기
+    
+    // TODO: - 근데 맨 밑에꺼만 떼짐
+    // 다 떼기
+    func removeAllObjets() {
+        print(self.homeTableView.subviews.contains(objView))
+        while self.homeTableView.subviews.contains(objView) {
+            print(self.homeTableView.subviews.contains(objView))
+            self.objView.removeFromSuperview()
+            print(self.homeTableView.subviews.contains(objView))
+        }
+//        if self.homeTableView.subviews.contains(objView) {
+//            print(objView)
+//            self.objView.removeFromSuperview()
+//        }
+    }
     
     // 0단계 - 2m
     func attachDepth0Objet() {
@@ -469,6 +499,19 @@ class HomeViewController: UIViewController {
         attachBottomObjet(frameX: 0, frameY: sectionFrameBottom - height, img: sea ?? UIImage())
     }
     
+    // MARK: 해찌꺼뽀려옴2
+    func getCurrentFormattedDate() {
+        
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy. MM. dd. EEEE"
+        dateFormatter.locale = Locale.current
+        
+        let formattedDate = dateFormatter.string(from: date)
+        dateArray = formattedDate.components(separatedBy: ". ")
+    }
+    
     // MARK: - @IBAction Properties
     
     @IBAction func touchUpHomeTopButton(_ sender: Any) {
@@ -489,6 +532,79 @@ class HomeViewController: UIViewController {
         let listStoryboard = UIStoryboard(name: Constants.Name.listStoryboard, bundle: nil)
         let dvc = listStoryboard.instantiateViewController(identifier: Constants.Identifier.listViewController)
         self.navigationController?.pushViewController(dvc, animated: true)
+    }
+    @IBAction func touchUpCalendarButton(_ sender: Any) {
+        let uploadModalViewController = UploadModalViewController()
+        
+        
+        uploadModalViewController.modalPresentationStyle = .custom
+        
+        uploadModalViewController.transitioningDelegate = self
+        uploadModalViewController.uploadModalDataDelegate = self
+        
+        uploadModalViewController.year = Int(dateArray[0]) ?? 0
+        uploadModalViewController.month = Int(dateArray[1]) ?? 0
+        uploadModalViewController.day = Int(dateArray[2]) ?? 0
+        
+        self.present(uploadModalViewController, animated: true, completion: nil)
+        
+    }
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension HomeViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        UploadModalPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
+
+extension HomeViewController: UploadModalPassDataDelegate {
+    func passData(_ date: String) {
+        dateArray = date.components(separatedBy: ". ")
+        DiariesService.shared.getDiaries(userId: "\(APIConstants.userId)",
+                                         year: "\(dateArray[0])",
+                                         month: "\(dateArray[1])",
+                                         order: "depth",
+                                         day: nil,
+                                         emotionId: nil,
+                                         depth: nil
+        ) { (networkResult) -> (Void) in
+            switch networkResult {
+            case .success(let data):
+                if let diary = data as? [Diary] {
+                    self.diaryArray = diary
+                    self.devideArrayByDepth()
+
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+            self.calculateFramesOfSections()
+            self.paintGradientWithFrame()
+            
+            DispatchQueue.main.async {
+                self.homeTableView.reloadData()
+            }
+            
+            // 단계별 objet 배치
+            //self.removeAllObjets()
+//            self.attachDepth0Objet()
+//            self.attachDepth1Objet()
+//            self.attachDepth2Objet()
+//            self.attachDepth3Objet()
+//            self.attachDepth4Objet()
+//            self.attachDepth5Objet()
+//            self.attachDepth6Objet()
+        }
     }
 }
 
@@ -536,6 +652,16 @@ extension HomeViewController: UITableViewDataSource {
         return rowHeight
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let diaryStoryboard = UIStoryboard(name: Constants.Name.diaryStoryboard, bundle: nil)
+        guard let dvc = diaryStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryViewController) as? DiaryViewController else {
+            return
+        }
+        dvc.diaryId = bubbleDepthArray[indexPath.section][indexPath.row].id
+        self.navigationController?.pushViewController(dvc, animated: true)
+        print("weoginwego")
+    }
+    
 }
 
 // MARK: - UITableViewDelegate
@@ -549,7 +675,7 @@ extension HomeViewController: UITableViewDelegate {
         // z Position main thread에서 조정
         DispatchQueue.main.async {
             for index in 0 ..< tableView.visibleCells.count {
-                let zPosition = CGFloat(tableView.visibleCells.count - index)
+                let zPosition = CGFloat(tableView.visibleCells.count + 999)
                 tableView.visibleCells[index].layer.zPosition = zPosition
             }
         }
@@ -562,7 +688,7 @@ extension HomeViewController: UITableViewDelegate {
         depthLabel.font = UIFont.systemFont(ofSize: depthLabelFontSize, weight: .light)
         depthLabel.textColor = UIColor.white
         depthLabel.text = Constants.Content.depthNameArray[section]
-        // depthLabel.attributedText = depthLabel.text?.textSpacing(lineSpacing: 7)
+        depthLabel.attributedText = depthLabel.text?.textSpacing(lineSpacing: 7)
         sectionHeaderView.addSubview(depthLabel)
         sectionHeaderView.backgroundColor = UIColor.clear // 투명화
 
