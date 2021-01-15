@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilterCollectionViewCell" customModule="MoMo" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="FilterCollectionViewCell" customModule="MoMo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="223" height="74"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="223" height="74"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GEv-KJ-oZM">
+                        <rect key="frame" x="0.0" y="0.0" width="223" height="74"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mtQ-6J-rZg">
+                                <rect key="frame" x="7" y="28.5" width="35.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PDf-1P-SXf">
+                                <rect key="frame" x="42.5" y="0.0" width="180.5" height="74"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8RM-Gv-287">
+                                        <rect key="frame" x="163.5" y="26" width="10" height="22"/>
+                                        <state key="normal" image="filterBtnDelete"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="BlueModalAble"/>
+                                <constraints>
+                                    <constraint firstItem="8RM-Gv-287" firstAttribute="centerY" secondItem="PDf-1P-SXf" secondAttribute="centerY" id="Ca4-wt-KuK"/>
+                                    <constraint firstAttribute="trailing" secondItem="8RM-Gv-287" secondAttribute="trailing" constant="7" id="OoQ-XK-err"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" name="BlueModalAble"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="PDf-1P-SXf" secondAttribute="bottom" id="9bM-DO-X6t"/>
+                            <constraint firstAttribute="trailing" secondItem="PDf-1P-SXf" secondAttribute="trailing" id="AiS-3a-bqp"/>
+                            <constraint firstItem="PDf-1P-SXf" firstAttribute="top" secondItem="GEv-KJ-oZM" secondAttribute="top" id="IY4-iq-e9I"/>
+                            <constraint firstItem="mtQ-6J-rZg" firstAttribute="centerY" secondItem="GEv-KJ-oZM" secondAttribute="centerY" id="MO4-n5-xvl"/>
+                            <constraint firstItem="PDf-1P-SXf" firstAttribute="leading" secondItem="mtQ-6J-rZg" secondAttribute="trailing" id="nra-wo-xra"/>
+                            <constraint firstItem="mtQ-6J-rZg" firstAttribute="leading" secondItem="GEv-KJ-oZM" secondAttribute="leading" constant="7" id="wFD-B7-wdf"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="GEv-KJ-oZM" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="c3k-dQ-A4P"/>
+                <constraint firstAttribute="trailing" secondItem="GEv-KJ-oZM" secondAttribute="trailing" id="eXa-7v-W5Y"/>
+                <constraint firstItem="GEv-KJ-oZM" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="fmh-9w-2bl"/>
+                <constraint firstAttribute="bottom" secondItem="GEv-KJ-oZM" secondAttribute="bottom" id="uKG-nH-JGb"/>
+            </constraints>
+            <size key="customSize" width="223" height="74"/>
+            <connections>
+                <outlet property="cancelButton" destination="8RM-Gv-287" id="gpM-u5-LiO"/>
+                <outlet property="filterLabel" destination="mtQ-6J-rZg" id="zkX-Wp-WLG"/>
+                <outlet property="filterTouchAreaView" destination="PDf-1P-SXf" id="Ozb-kx-vGn"/>
+            </connections>
+            <point key="canvasLocation" x="155.79710144927537" y="72.991071428571431"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="filterBtnDelete" width="10" height="10"/>
+        <namedColor name="BlueModalAble">
+            <color red="0.38400000333786011" green="0.54100000858306885" blue="0.72200000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

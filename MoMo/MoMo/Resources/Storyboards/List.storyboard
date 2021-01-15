@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Z0R-FH-3wf">
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--List View Controller-->
+        <scene sceneID="15p-7a-bAJ">
+            <objects>
+                <viewController storyboardIdentifier="ListViewController" id="Z0R-FH-3wf" customClass="ListViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ESR-4f-8Yp">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="M7o-aG-rAF">
+                                <rect key="frame" x="0.0" y="68" width="428" height="858"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListTableViewCell" rowHeight="104" id="zf4-d9-dzo" customClass="ListTableViewCell" customModule="MoMo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="428" height="104"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zf4-d9-dzo" id="nhN-Mw-OcF">
+                                            <rect key="frame" x="0.0" y="0.0" width="428" height="104"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9N-PF-RQC">
+                                <rect key="frame" x="195.66666666666666" y="184" width="36.666666666666657" height="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                <color key="textColor" name="Blue3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFp-Fq-57W">
+                                <rect key="frame" x="158" y="233" width="112" height="30"/>
+                                <state key="normal" image="btnCreateDiary">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchWarningPlusButton:" destination="Z0R-FH-3wf" eventType="touchUpInside" id="PKy-3t-Wr4"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fwv-1f-piw">
+                                <rect key="frame" x="196" y="207" width="36" height="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <color key="textColor" name="Blue3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Fbq-4F-Xkr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="aFp-Fq-57W" firstAttribute="top" secondItem="v9N-PF-RQC" secondAttribute="bottom" constant="32" id="1Jg-f4-3ZO"/>
+                            <constraint firstItem="aFp-Fq-57W" firstAttribute="centerX" secondItem="ESR-4f-8Yp" secondAttribute="centerX" id="DsN-N9-6l5"/>
+                            <constraint firstItem="M7o-aG-rAF" firstAttribute="top" secondItem="Fbq-4F-Xkr" secondAttribute="top" constant="24" id="N92-am-bA0"/>
+                            <constraint firstItem="v9N-PF-RQC" firstAttribute="top" secondItem="Fbq-4F-Xkr" secondAttribute="top" constant="140" id="RQy-jo-9ad"/>
+                            <constraint firstItem="Fwv-1f-piw" firstAttribute="top" secondItem="Fbq-4F-Xkr" secondAttribute="top" constant="163" id="Zn4-Oa-x8G"/>
+                            <constraint firstItem="M7o-aG-rAF" firstAttribute="trailing" secondItem="Fbq-4F-Xkr" secondAttribute="trailing" id="a9a-2P-FYH"/>
+                            <constraint firstItem="v9N-PF-RQC" firstAttribute="centerX" secondItem="ESR-4f-8Yp" secondAttribute="centerX" id="cmc-2P-EDU"/>
+                            <constraint firstAttribute="bottom" secondItem="M7o-aG-rAF" secondAttribute="bottom" id="k1t-tN-wAW"/>
+                            <constraint firstItem="Fwv-1f-piw" firstAttribute="centerX" secondItem="ESR-4f-8Yp" secondAttribute="centerX" id="kn0-gV-ynW"/>
+                            <constraint firstItem="M7o-aG-rAF" firstAttribute="leading" secondItem="Fbq-4F-Xkr" secondAttribute="leading" id="zYj-6s-MSD"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="filterWarningLabel" destination="Fwv-1f-piw" id="VKz-ue-o9J"/>
+                        <outlet property="listTableView" destination="M7o-aG-rAF" id="quH-QJ-8Bf"/>
+                        <outlet property="warningLabel" destination="v9N-PF-RQC" id="L9M-yO-FKh"/>
+                        <outlet property="warningPlusButton" destination="aFp-Fq-57W" id="lI1-a4-BPD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Nh-6h-xKR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="10.144927536231885" y="62.946428571428569"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="btnCreateDiary" width="112" height="30"/>
+        <namedColor name="Blue3">
+            <color red="0.44699999690055847" green="0.62699997425079346" blue="0.84700000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EgC-Rq-djX">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Join View Controller-->
+        <scene sceneID="Fr7-gJ-G1o">
+            <objects>
+                <viewController storyboardIdentifier="JoinViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EgC-Rq-djX" customClass="JoinViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fOB-7N-uZm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5a-nR-bIt">
+                                <rect key="frame" x="53" y="60" width="222.5" height="55"/>
+                                <string key="text">깊이 있는 감정 기록,
+MOMO와 함께 시작해요</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <color key="textColor" name="Blue2"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="fbf-5t-bP4">
+                                <rect key="frame" x="53" y="216" width="308" height="285"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7Tc-JA-uQb">
+                                        <rect key="frame" x="0.0" y="0.0" width="308" height="75"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="2Kk-Mt-35s">
+                                                <rect key="frame" x="0.0" y="0.0" width="197" height="17"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이메일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCn-Rf-msD">
+                                                        <rect key="frame" x="0.0" y="0.0" width="36.5" height="17"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                        <color key="textColor" name="Blue2"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="올바른 이메일 형식이 아닙니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hK8-6d-tLK">
+                                                        <rect key="frame" x="51.5" y="0.0" width="145.5" height="17"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <color key="textColor" name="RedError"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gud-IB-zkd">
+                                                <rect key="frame" x="0.0" y="25" width="308" height="50"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jYJ-7U-UMa">
+                                                        <rect key="frame" x="19" y="0.0" width="270" height="50"/>
+                                                        <color key="textColor" name="Black2Nav"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="jYJ-7U-UMa" firstAttribute="leading" secondItem="gud-IB-zkd" secondAttribute="leading" constant="19" id="23y-Uz-3vO"/>
+                                                    <constraint firstAttribute="height" constant="50" id="DNB-10-uPs"/>
+                                                    <constraint firstItem="jYJ-7U-UMa" firstAttribute="height" secondItem="gud-IB-zkd" secondAttribute="height" id="RFt-vs-g6a"/>
+                                                    <constraint firstAttribute="trailing" secondItem="jYJ-7U-UMa" secondAttribute="trailing" constant="19" id="ZJL-m4-dP6"/>
+                                                    <constraint firstAttribute="width" constant="308" id="rXZ-Bv-Z3z"/>
+                                                    <constraint firstItem="jYJ-7U-UMa" firstAttribute="centerY" secondItem="gud-IB-zkd" secondAttribute="centerY" id="ts5-6E-RpN"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hCk-Yh-VWf">
+                                        <rect key="frame" x="0.0" y="105" width="308" height="75"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Xpc-p3-DUv">
+                                                <rect key="frame" x="0.0" y="0.0" width="209" height="17"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="비밀번호" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZA-Vc-U78">
+                                                        <rect key="frame" x="0.0" y="0.0" width="48.5" height="17"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                        <color key="textColor" name="Blue2"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="올바른 이메일 형식이 아닙니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rHY-SK-u9D">
+                                                        <rect key="frame" x="63.5" y="0.0" width="145.5" height="17"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <color key="textColor" name="RedError"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XBb-zK-YvX">
+                                                <rect key="frame" x="0.0" y="25" width="308" height="50"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WrZ-1K-7jx">
+                                                        <rect key="frame" x="19" y="0.0" width="270" height="50"/>
+                                                        <color key="textColor" name="Black2Nav"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                    </textField>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="WrZ-1K-7jx" firstAttribute="centerY" secondItem="XBb-zK-YvX" secondAttribute="centerY" id="8xp-fO-wPr"/>
+                                                    <constraint firstAttribute="width" constant="308" id="G4g-tE-AQ6"/>
+                                                    <constraint firstItem="WrZ-1K-7jx" firstAttribute="leading" secondItem="XBb-zK-YvX" secondAttribute="leading" constant="19" id="OGr-Tm-owB"/>
+                                                    <constraint firstAttribute="height" constant="50" id="YtN-tx-kSy"/>
+                                                    <constraint firstAttribute="trailing" secondItem="WrZ-1K-7jx" secondAttribute="trailing" constant="19" id="qcz-Ps-iPc"/>
+                                                    <constraint firstItem="WrZ-1K-7jx" firstAttribute="height" secondItem="XBb-zK-YvX" secondAttribute="height" id="wdm-pW-2pO"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EC5-Me-WSs">
+                                        <rect key="frame" x="0.0" y="210" width="308" height="75"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="2RK-4N-8TJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="237" height="17"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="비밀번호 확인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3w-lq-PY5">
+                                                        <rect key="frame" x="0.0" y="0.0" width="76.5" height="17"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                        <color key="textColor" name="Blue2"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="올바른 이메일 형식이 아닙니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duE-ks-KQ4">
+                                                        <rect key="frame" x="91.5" y="0.0" width="145.5" height="17"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <color key="textColor" name="RedError"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nr2-DW-GUU">
+                                                <rect key="frame" x="0.0" y="25" width="308" height="50"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FjA-yJ-vry">
+                                                        <rect key="frame" x="19" y="0.0" width="270" height="50"/>
+                                                        <color key="textColor" name="Black2Nav"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                    </textField>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="FjA-yJ-vry" secondAttribute="trailing" constant="19" id="UJe-jg-mrA"/>
+                                                    <constraint firstItem="FjA-yJ-vry" firstAttribute="leading" secondItem="nr2-DW-GUU" secondAttribute="leading" constant="19" id="Ytj-cI-BsE"/>
+                                                    <constraint firstAttribute="height" constant="50" id="dpl-YZ-dq0"/>
+                                                    <constraint firstItem="FjA-yJ-vry" firstAttribute="height" secondItem="nr2-DW-GUU" secondAttribute="height" id="jF4-l3-jRp"/>
+                                                    <constraint firstItem="FjA-yJ-vry" firstAttribute="centerY" secondItem="nr2-DW-GUU" secondAttribute="centerY" id="oLy-9p-Rr3"/>
+                                                    <constraint firstAttribute="width" constant="308" id="uIt-Bo-yij"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbn-sV-l3W">
+                                <rect key="frame" x="53" y="568" width="20" height="22"/>
+                                <state key="normal" image="loginCheckboxIntermediate">
+                                    <color key="titleColor" name="Black2Nav"/>
+                                </state>
+                                <connections>
+                                    <action selector="infoButtonTouchUp:" destination="EgC-Rq-djX" eventType="touchUpInside" id="5bW-ou-qRA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSl-r2-yBZ">
+                                <rect key="frame" x="53" y="602" width="20" height="22"/>
+                                <state key="normal" image="loginCheckboxIntermediate">
+                                    <color key="titleColor" name="Black2Nav"/>
+                                </state>
+                                <connections>
+                                    <action selector="serviceButtonTouchUp:" destination="EgC-Rq-djX" eventType="touchUpInside" id="3hs-do-0Zm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FAA-cP-nNH">
+                                <rect key="frame" x="53.5" y="782" width="307" height="50"/>
+                                <color key="backgroundColor" name="BlueModalAble"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="307" id="LgH-6i-gW3"/>
+                                    <constraint firstAttribute="height" constant="50" id="Xqf-VE-dtz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="가입하기">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g36-be-yo3">
+                                <rect key="frame" x="83" y="564.5" width="259" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="259" id="0rG-uQ-mxw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="[필수] 개인정보 수집이용 동의">
+                                    <color key="titleColor" name="Black2Nav"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opi-Rw-cdh">
+                                <rect key="frame" x="83" y="598.5" width="259" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="259" id="JsR-aG-0Hi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="[필수] 서비스 이용약관 동의">
+                                    <color key="titleColor" name="Black2Nav"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="FIF-Wo-fet"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FAA-cP-nNH" firstAttribute="centerX" secondItem="FIF-Wo-fet" secondAttribute="centerX" id="5Dd-YW-UXd"/>
+                            <constraint firstItem="g36-be-yo3" firstAttribute="centerY" secondItem="qbn-sV-l3W" secondAttribute="centerY" id="8QF-gL-2xm"/>
+                            <constraint firstItem="g36-be-yo3" firstAttribute="leading" secondItem="qbn-sV-l3W" secondAttribute="trailing" constant="10" id="Bf6-Fv-VUL"/>
+                            <constraint firstItem="FIF-Wo-fet" firstAttribute="bottom" secondItem="FAA-cP-nNH" secondAttribute="bottom" constant="30" id="Bs9-gB-z2P"/>
+                            <constraint firstItem="fbf-5t-bP4" firstAttribute="centerX" secondItem="FIF-Wo-fet" secondAttribute="centerX" id="NW9-jY-VUl"/>
+                            <constraint firstItem="opi-Rw-cdh" firstAttribute="centerY" secondItem="wSl-r2-yBZ" secondAttribute="centerY" id="SkZ-Su-ShD"/>
+                            <constraint firstItem="opi-Rw-cdh" firstAttribute="leading" secondItem="wSl-r2-yBZ" secondAttribute="trailing" constant="10" id="UYf-SY-mHG"/>
+                            <constraint firstItem="c5a-nR-bIt" firstAttribute="leading" secondItem="fbf-5t-bP4" secondAttribute="leading" id="Ufx-eP-lMm"/>
+                            <constraint firstItem="fbf-5t-bP4" firstAttribute="top" secondItem="c5a-nR-bIt" secondAttribute="bottom" constant="101" id="WT5-vo-SQU"/>
+                            <constraint firstItem="wSl-r2-yBZ" firstAttribute="top" secondItem="qbn-sV-l3W" secondAttribute="bottom" constant="12" id="X9d-2a-myC"/>
+                            <constraint firstItem="wSl-r2-yBZ" firstAttribute="leading" secondItem="qbn-sV-l3W" secondAttribute="leading" id="cLT-Ui-k5f"/>
+                            <constraint firstItem="c5a-nR-bIt" firstAttribute="top" secondItem="FIF-Wo-fet" secondAttribute="top" constant="16" id="kGi-e2-Ax6"/>
+                            <constraint firstItem="qbn-sV-l3W" firstAttribute="top" secondItem="fbf-5t-bP4" secondAttribute="bottom" constant="67" id="lpj-Ih-Xqu"/>
+                            <constraint firstItem="qbn-sV-l3W" firstAttribute="leading" secondItem="fbf-5t-bP4" secondAttribute="leading" id="nWT-pM-Rld"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailErrorLabel" destination="hK8-6d-tLK" id="7hC-HV-bOh"/>
+                        <outlet property="emailLabel" destination="JCn-Rf-msD" id="Bvi-Rw-xXO"/>
+                        <outlet property="emailTextField" destination="jYJ-7U-UMa" id="Abl-lh-HiX"/>
+                        <outlet property="emailView" destination="gud-IB-zkd" id="AdJ-IB-efb"/>
+                        <outlet property="infoAgreeButton" destination="qbn-sV-l3W" id="4Bh-FW-e3K"/>
+                        <outlet property="infoTermButton" destination="g36-be-yo3" id="AZ3-fk-gaP"/>
+                        <outlet property="joinButton" destination="FAA-cP-nNH" id="dEq-Oe-RLH"/>
+                        <outlet property="passwordCheckErrorLabel" destination="duE-ks-KQ4" id="GZ0-74-Sxi"/>
+                        <outlet property="passwordCheckLabel" destination="a3w-lq-PY5" id="NdV-cS-yTb"/>
+                        <outlet property="passwordCheckTextField" destination="FjA-yJ-vry" id="UdZ-ed-Ykx"/>
+                        <outlet property="passwordCheckView" destination="nr2-DW-GUU" id="G0J-g0-6jE"/>
+                        <outlet property="passwordErrorLabel" destination="rHY-SK-u9D" id="iOy-Pn-ejX"/>
+                        <outlet property="passwordLabel" destination="PZA-Vc-U78" id="5zj-TM-Eia"/>
+                        <outlet property="passwordTextField" destination="WrZ-1K-7jx" id="e7K-ug-cir"/>
+                        <outlet property="passwordView" destination="XBb-zK-YvX" id="nbQ-nl-R51"/>
+                        <outlet property="serviceAgreeButton" destination="wSl-r2-yBZ" id="F2c-Lo-Dcu"/>
+                        <outlet property="serviceTermButton" destination="opi-Rw-cdh" id="468-Bh-q2I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M6u-70-lLJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="182.60869565217394" y="164.73214285714286"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="loginCheckboxIntermediate" width="20" height="20"/>
+        <namedColor name="Black2Nav">
+            <color red="0.23499999940395355" green="0.23499999940395355" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Blue2">
+            <color red="0.27799999713897705" green="0.48199999332427979" blue="0.72200000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="BlueModalAble">
+            <color red="0.38400000333786011" green="0.54100000858306885" blue="0.72200000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="RedError">
+            <color red="0.98799997568130493" green="0.31799998879432678" blue="0.31799998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
