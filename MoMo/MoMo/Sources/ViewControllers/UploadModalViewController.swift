@@ -212,7 +212,7 @@ extension UploadModalViewController: UIPickerViewDelegate {
             day = Int(dayArray[dayIndex][row]) ?? 0
         }
         if verifyMood {
-            connectServer(userID: "2",
+            connectServer(userID: String(APIConstants.userId),
                           year: "\(year)",
                           month: "\(month)",
                           order: "filter",
