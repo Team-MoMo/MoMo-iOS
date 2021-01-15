@@ -855,7 +855,7 @@
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="charInterval">
-                                        <real key="value" value="0.10000000000000001"/>
+                                        <real key="value" value="0.20000000000000001"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
@@ -915,7 +915,7 @@
                         <outlet property="sentenceInfoStackView" destination="CIU-gA-1Gb" id="ZyX-ds-gu9"/>
                         <outlet property="sentenceLabel" destination="Yhd-1M-YOZ" id="yzM-1K-Y75"/>
                         <outlet property="typingCursorLabel" destination="AZz-or-IGh" id="CdF-xz-acX"/>
-                        <outlet property="typingLabel" destination="hue-vy-02C" id="c4y-9G-vlM"/>
+                        <outlet property="typingLabel" destination="hue-vy-02C" id="kOH-KB-igP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZVq-fr-7eK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1024,7 +1024,6 @@
     </scenes>
     <designables>
         <designable name="hue-vy-02C"/>
-        <designable name="rIQ-3J-AWL"/>
     </designables>
     <resources>
         <image name="btnIcCalender16" width="16" height="16"/>
