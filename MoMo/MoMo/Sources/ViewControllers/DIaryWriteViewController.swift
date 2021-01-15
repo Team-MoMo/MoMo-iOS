@@ -143,16 +143,25 @@ class DiaryWriteViewController: UIViewController {
     }
     
     @objc func touchNextButton() {
+        
         guard let textViewText = self.journalTextView.text else {
             return
         }
-        print(textViewText)
         if textViewText != "" && textViewText != "파동을 충분히 느낀 후, 감정을 기록해보세요." {
+            self.journal = TextViewText
             let writeStorybaord = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
             guard let deepViewController = writeStorybaord.instantiateViewController(identifier: Constants.Identifier.deepViewController) as? DeepViewController else {
                 return
             }
+            guard let selectedMood = mood, let selectedSentence = sentence else {
+                return
+            }
+            deepViewController.mood = selectedMood
+            deepViewController.sentence = selectedSentence
+            deepViewController.journal = self.journal
+            deepViewController.date = self.date
             deepViewController.buttonText = "기록하기"
+            
             self.navigationController?.pushViewController(deepViewController, animated: true)
         }
     }

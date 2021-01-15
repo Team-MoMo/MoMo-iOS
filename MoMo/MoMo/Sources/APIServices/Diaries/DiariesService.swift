@@ -112,7 +112,7 @@ struct DiariesService {
         let dataRequest = AF.request(url,
                                     method: .post,
                                     parameters: body,
-                                    encoding: URLEncoding.default,
+                                    encoding: JSONEncoding.default,
                                     headers: header)
             
         dataRequest.responseData { (response) in
@@ -139,11 +139,11 @@ struct DiariesService {
                                                         from: data) else {
             return .pathErr
         }
-            
+        
         switch status{
         case 201:
             return .success(decodedData.data)
-        case 400:
+        case 401:
             return .requestErr(decodedData.message)
         case 500:
             return .serverErr
