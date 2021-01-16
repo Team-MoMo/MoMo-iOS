@@ -275,6 +275,7 @@ extension ListViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             
+            
             cell.setCell(diary: self.receivedData[indexPath.row])
             cell.quoteSpacing(self.receivedData[indexPath.row].sentence.contents)
             cell.journalView.round(corners: [.topLeft, .bottomLeft], cornerRadius: 20)
