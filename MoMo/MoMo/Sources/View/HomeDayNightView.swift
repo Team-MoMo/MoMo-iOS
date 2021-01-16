@@ -9,7 +9,7 @@ import UIKit
 
 protocol HomeDayNightViewDelegate: class {
     func writeButtonTouchUp(_ sender: UIButton)
-    func showAllButtonTouchUp(_ sender: UIButton)
+    func showAllButtonTouchUp(_ sender: UIButton, diaryId: Int)
 }
 
 class HomeDayNightView: UIView {
@@ -44,6 +44,8 @@ class HomeDayNightView: UIView {
     var date: String?
     var dateArray:[String] = []
     var todayDiary: [Diary] = []
+    
+    var diaryId: Int = 1
     
     var moodArray = ["", "love", "happy", "console", "angry", "sad", "bored", "memory", "daily"]
     var depthArray = ["2m", "30m", "100m", "300m", "700m", "1,005m", "심해"]
@@ -162,7 +164,7 @@ class HomeDayNightView: UIView {
     }
     
     @IBAction func showAllButtonTouchUp(_ sender: UIButton) {
-        self.homeDayNightViewDelegate?.showAllButtonTouchUp(self.showAllButton)
+        self.homeDayNightViewDelegate?.showAllButtonTouchUp(self.showAllButton, diaryId: diaryId)
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -204,6 +206,8 @@ extension HomeDayNightView {
                         self.bookTitleLabel.text = self.todayDiary[length-1].sentence.bookName
                         self.publisherLabel.text = self.todayDiary[length-1].sentence.publisher
                         self.diaryLabel.text = self.todayDiary[length-1].contents
+                        
+                        self.diaryId = self.todayDiary[length-1].id
                     } else {
                         self.showEmptyView()
                     }
