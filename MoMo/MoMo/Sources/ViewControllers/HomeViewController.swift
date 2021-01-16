@@ -168,13 +168,17 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.isNavigationBarHidden = true
         
-        
-        self.headerView?.getSeletectedDateDiaryAPI()
-        DispatchQueue.main.async {
-            if self.isFromDiary {
+        if self.isFromDiary {
+            // self.attachTableHeaderView()
+            self.headerView?.getSeletectedDateDiaryAPI()
+            getDiariesWithAPI(
+                userId: "\(APIConstants.userId)",
+                year: "\(dateArray[0])",
+                month: "\(dateArray[1])",
+                order: "depth", day: nil,
+                emotionId: nil,
+                depth: nil) {
                 self.homeTableView.reloadData()
-                self.attachTableHeaderView()
-                self.headerView?.getSeletectedDateDiaryAPI()
             }
         }
     }
@@ -195,6 +199,8 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         } else {
             homeTopButtonBottom.constant = view.safeAreaInsets.bottom + swipeButtonBottomMarginWithNotch
         }
+        
+        homeTableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -213,6 +219,10 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         headerView?.homeDayNightViewDelegate = self
         // tableHeaderView 지정
         homeTableView.tableHeaderView = headerView
+        DispatchQueue.main.async {
+            self.homeTableView.tableHeaderView?.frame.size.height = UIScreen.main.bounds.height
+        }
+        
     }
     
     
@@ -574,7 +584,6 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBAction func touchUpCalendarButton(_ sender: Any) {
         let uploadModalViewController = UploadModalViewController()
         
-        
         uploadModalViewController.modalPresentationStyle = .custom
         
         uploadModalViewController.transitioningDelegate = self
@@ -600,48 +609,15 @@ extension HomeViewController: UIViewControllerTransitioningDelegate {
 extension HomeViewController: UploadModalPassDataDelegate {
     func passData(_ date: String) {
         dateArray = date.components(separatedBy: ". ")
-        DiariesService.shared.getDiaries(userId: "\(APIConstants.userId)",
-                                         year: "\(dateArray[0])",
-                                         month: "\(dateArray[1])",
-                                         order: "depth",
-                                         day: nil,
-                                         emotionId: nil,
-                                         depth: nil
-        ) { (networkResult) -> (Void) in
-            switch networkResult {
-            case .success(let data):
-                if let diary = data as? [Diary] {
-                    self.diaryArray = diary
-                    self.devideArrayByDepth()
-
-                }
-            case .requestErr(let msg):
-                if let message = msg as? String {
-                    print(message)
-                }
-            case .pathErr:
-                print("pathErr")
-            case .serverErr:
-                print("serverErr")
-            case .networkFail:
-                print("networkFail")
-            }
-            self.calculateFramesOfSections()
-            self.paintGradientWithFrame()
+        
+        getDiariesWithAPI(
+            userId: "\(APIConstants.userId)",
+            year: "\(dateArray[0])",
+            month: "\(dateArray[1])",
+            order: "depth", day: nil,
+            emotionId: nil,
+            depth: nil) {
             
-            DispatchQueue.main.async {
-                self.homeTableView.reloadData()
-            }
-            
-            // 단계별 objet 배치
-            //self.removeAllObjets()
-//            self.attachDepth0Objet()
-//            self.attachDepth1Objet()
-//            self.attachDepth2Objet()
-//            self.attachDepth3Objet()
-//            self.attachDepth4Objet()
-//            self.attachDepth5Objet()
-//            self.attachDepth6Objet()
         }
     }
 }
@@ -680,6 +656,11 @@ extension HomeViewController: UITableViewDataSource {
             // table view cell에게 데이터 전달
             let rowArray = bubbleDepthArray[indexPath.section]
             cell.setCell(bubble: rowArray[indexPath.row])
+            
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = UIColor.clear
+            cell.selectedBackgroundView = backgroundView
+            
             return cell
         }
         return UITableViewCell()
@@ -697,7 +678,6 @@ extension HomeViewController: UITableViewDataSource {
         }
         dvc.diaryId = bubbleDepthArray[indexPath.section][indexPath.row].id
         self.navigationController?.pushViewController(dvc, animated: true)
-        print("weoginwego")
     }
     
 }
@@ -810,10 +790,71 @@ extension HomeViewController: HomeDayNightViewDelegate {
         self.navigationController?.pushViewController(moodViewController, animated: true)
     }
     
-    func showAllButtonTouchUp(_ sender: UIButton) {
-        // 리스트 뷰로 푸쉬
-        let listStoryboard = UIStoryboard(name: Constants.Name.listStoryboard, bundle: nil)
-        let dvc = listStoryboard.instantiateViewController(identifier: Constants.Identifier.listViewController)
-        self.navigationController?.pushViewController(dvc, animated: true)
+    func showAllButtonTouchUp(_ sender: UIButton, diaryId: Int) {
+        // 다이어리 뷰로 푸쉬
+        let diaryStoryboard = UIStoryboard(name: Constants.Name.diaryStoryboard, bundle: nil)
+        guard let diaryViewController = diaryStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryViewController) as? DiaryViewController else {
+            return
+        }
+        diaryViewController.diaryId = diaryId
+        self.navigationController?.pushViewController(diaryViewController, animated: true)
+    }
+}
+
+extension HomeViewController {
+    func getDiariesWithAPI(userId: String,
+                           year: String,
+                           month: String,
+                           order: String,
+                           day: String?,
+                           emotionId: String?,
+                           depth: String?,
+                           completion: @escaping () -> Void) {
+        DiariesService.shared.getDiaries(userId: userId, // "\(APIConstants.userId)",
+                                         year: year, // "\(dateArray[0])",
+                                         month: month, // "\(dateArray[1])",
+                                         order: order, // "depth",
+                                         day: nil,
+                                         emotionId: nil,
+                                         depth: nil
+        ) { (networkResult) -> (Void) in
+            switch networkResult {
+            case .success(let data):
+                if let diary = data as? [Diary] {
+                    self.diaryArray = diary
+                    self.devideArrayByDepth()
+
+                    DispatchQueue.main.async {
+                        completion()
+                    }
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+            self.calculateFramesOfSections()
+            self.paintGradientWithFrame()
+            
+//            DispatchQueue.main.async {
+//                self.homeTableView.reloadData()
+//            }
+            
+            // 단계별 objet 배치
+            //self.removeAllObjets()
+//            self.attachDepth0Objet()
+//            self.attachDepth1Objet()
+//            self.attachDepth2Objet()
+//            self.attachDepth3Objet()
+//            self.attachDepth4Objet()
+//            self.attachDepth5Objet()
+//            self.attachDepth6Objet()
+        }
     }
 }
