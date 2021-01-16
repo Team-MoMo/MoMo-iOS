@@ -197,7 +197,7 @@ class SentenceViewController: UIViewController {
     @IBAction func secondButtonTouchUp(_ sender: UIButton) {
         if changeUsage {
             pushToOnboardingWriteViewController(
-                sentence: self.firstSentence ?? self.defaultSentence
+                sentence: self.secondSentence ?? self.defaultSentence
             )
         } else {
             guard let mood = selectedMood else {
@@ -211,7 +211,7 @@ class SentenceViewController: UIViewController {
     @IBAction func thirdButtonTouchUp(_ sender: UIButton) {
         if changeUsage {
             pushToOnboardingWriteViewController(
-                sentence: self.firstSentence ?? self.defaultSentence
+                sentence: self.thirdSentence ?? self.defaultSentence
             )
         } else {
             guard let mood = selectedMood else {
