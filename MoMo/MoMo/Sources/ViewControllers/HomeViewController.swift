@@ -563,7 +563,12 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBAction func touchUpListButton(_ sender: Any) {
         let listStoryboard = UIStoryboard(name: Constants.Name.listStoryboard, bundle: nil)
-        let dvc = listStoryboard.instantiateViewController(identifier: Constants.Identifier.listViewController)
+        guard let dvc = listStoryboard.instantiateViewController(identifier: Constants.Identifier.listViewController) as? ListViewController else {
+            return
+        }
+        dvc.year = Int(dateArray[0])!
+        dvc.month = Int(dateArray[1])!
+        
         self.navigationController?.pushViewController(dvc, animated: true)
     }
     @IBAction func touchUpCalendarButton(_ sender: Any) {
