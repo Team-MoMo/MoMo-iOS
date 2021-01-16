@@ -135,7 +135,7 @@
                                     <constraint firstItem="ZpH-uw-rfP" firstAttribute="trailing" secondItem="kEd-fx-CuJ" secondAttribute="leading" constant="-10" id="ydn-lq-VB9"/>
                                 </constraints>
                             </view>
-                            <view alpha="0.59999999999999998" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKD-V6-sDm" userLabel="BlurView">
+                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKD-V6-sDm" userLabel="BlurView">
                                 <rect key="frame" x="16" y="233.5" width="382" height="620.5"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3H9-Y3-KPb">

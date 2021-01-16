@@ -98,7 +98,6 @@ class SentenceViewController: UIViewController {
             self.connectServer(emotionId: String(self.selectedMood?.rawValue ?? 1), userId: String(APIConstants.userId))
         }
         
-        
         self.hideButtons()
         
         self.hideimage()
