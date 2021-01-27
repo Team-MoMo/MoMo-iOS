@@ -7,14 +7,6 @@
 
 import UIKit
 
-struct MoodSentence {
-    var id: Int?
-    var author: String
-    var bookTitle: String
-    var publisher: String
-    var sentence: String
-}
-
 class SentenceViewController: UIViewController {
     
     // MARK: - @IBOutlet Properties
@@ -50,19 +42,19 @@ class SentenceViewController: UIViewController {
     // MARK: - Properties
     
     private var buttons: [Button] = []
-    var selectedMood: Mood?
+    var selectedMood: AppEmotion?
     var date: String?
     let defaultInfo: String = "감정과 어울리는 문장을\n매일 3개씩 소개해드릴게요"
-    let defaultSentence: MoodSentence = MoodSentence(
+    let defaultSentence: AppSentence = AppSentence(
         author: "김모모",
         bookTitle: "모모책",
         publisher: "모모출판사",
         sentence: "모모 사랑해요"
     )
     let shadowOffsetButton: CGSize = CGSize(width: 4, height: 4)
-    var firstSentence: MoodSentence?
-    var secondSentence: MoodSentence?
-    var thirdSentence: MoodSentence?
+    var firstSentence: AppSentence?
+    var secondSentence: AppSentence?
+    var thirdSentence: AppSentence?
     
     // false일 때 upload
     var changeUsage: Bool = false
@@ -222,7 +214,7 @@ class SentenceViewController: UIViewController {
         }
     }
     
-    func pushToOnboardingWriteViewController(sentence: MoodSentence) {
+    func pushToOnboardingWriteViewController(sentence: AppSentence) {
         
         guard let onboardingWriteViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.onboardingWriteViewController) as? OnboardingWriteViewController else { return }
         
@@ -234,7 +226,7 @@ class SentenceViewController: UIViewController {
     }
     
     func pushToDiaryWriteViewController(_ date: String,
-                                        _ mood: Mood,
+                                        _ mood: AppEmotion,
                                         _ sentence: Sentence){
         let writeStorybaord = UIStoryboard(name: Constants.Name.diaryWriteStoryboard, bundle: nil)
         guard let uploadWriteViewController = writeStorybaord.instantiateViewController(identifier: Constants.Identifier.diaryWriteViewController) as? DiaryWriteViewController else {
@@ -307,21 +299,21 @@ extension SentenceViewController {
             case .success(let data):
                 if let sentences = data as? OnboardingSentence {
                     
-                    self.firstSentence = MoodSentence(
+                    self.firstSentence = AppSentence(
                         author: sentences.sentence01.writer,
                         bookTitle: sentences.sentence01.bookName,
                         publisher: sentences.sentence01.publisher,
                         sentence: sentences.sentence01.contents
                     )
                     
-                    self.secondSentence = MoodSentence(
+                    self.secondSentence = AppSentence(
                         author: sentences.sentence02.writer,
                         bookTitle: sentences.sentence02.bookName,
                         publisher: sentences.sentence02.publisher,
                         sentence: sentences.sentence02.contents
                     )
                     
-                    self.thirdSentence = MoodSentence(
+                    self.thirdSentence = AppSentence(
                         author: sentences.sentence03.writer,
                         bookTitle: sentences.sentence03.bookName,
                         publisher: sentences.sentence03.publisher,

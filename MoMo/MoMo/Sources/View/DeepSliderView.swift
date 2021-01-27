@@ -46,7 +46,7 @@ class DeepSliderView: UIView {
     
     // MARK: - Functions
     
-    static func instantiate(initialDepth: Depth) -> DeepSliderView? {
+    static func instantiate(initialDepth: AppDepth) -> DeepSliderView? {
         
         let deepSliderView: DeepSliderView? = initFromNib()
         let initialSliderValue: Float = Float(initialDepth.rawValue) / 6

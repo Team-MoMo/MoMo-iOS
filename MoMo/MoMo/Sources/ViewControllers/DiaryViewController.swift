@@ -7,17 +7,6 @@
 
 import UIKit
 
-struct DiaryInfo {
-    var date: String
-    var year: Int
-    var month: Int
-    var day: Int
-    var mood: Mood
-    var depth: Depth
-    var sentence: MoodSentence
-    var diary: String
-}
-
 class DiaryViewController: UIViewController {
     
     @IBOutlet weak var fish1: UIImageView!
@@ -45,12 +34,12 @@ class DiaryViewController: UIViewController {
     
     var seaObjets: [UIImageView: String]?
     var diaryWriteViewController: DiaryWriteViewController?
-    var currentDepth: Depth?
+    var currentDepth: AppDepth?
     var menuView: MenuView?
     var alertModalView: AlertModalView?
     var menuToggleFlag: Bool = false
     var uploadModalViewController: UploadModalViewController?
-    var diaryInfo: DiaryInfo?
+    var diaryInfo: AppDiary?
     var gradientView: UIView?
     let weekdayArray: [String] = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"]
     
@@ -100,7 +89,7 @@ class DiaryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setObjetsByDepth(depth: self.currentDepth ?? Depth.depth2m)
+        self.setObjetsByDepth(depth: self.currentDepth ?? AppDepth.depth2m)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -157,7 +146,7 @@ class DiaryViewController: UIViewController {
         return "\(year)-\(String(format: "%02d", month))-\(String(format: "%02d", day))"
     }
     
-    func updateValues(diaryInfo: DiaryInfo?) {
+    func updateValues(diaryInfo: AppDiary?) {
         self.currentDepth = diaryInfo?.depth
         self.dateLabel.text = diaryInfo?.date
         self.moodImage.image = diaryInfo?.mood.toWhiteIcon()
@@ -211,7 +200,7 @@ class DiaryViewController: UIViewController {
         view.insertSubview(blurEffectView, at: 0)
     }
     
-    func setBackgroundColorByDepth(depth: Depth?) {
+    func setBackgroundColorByDepth(depth: AppDepth?) {
         let defaultGradientView = UIView(frame: self.view.frame)
         if self.view.subviews.contains(gradientView ?? defaultGradientView) {
             self.gradientView?.removeFromSuperview()
@@ -243,7 +232,7 @@ class DiaryViewController: UIViewController {
         }
     }
     
-    func setObjetsByDepth(depth: Depth) {
+    func setObjetsByDepth(depth: AppDepth) {
         switch depth {
         case .depth2m:
             self.setObjects(keyword: "fish")
@@ -397,7 +386,7 @@ extension DiaryViewController: UploadModalPassDataDelegate {
 // MARK: - DiaryWriteViewControllerDelegate
 
 extension DiaryViewController: DiaryWriteViewControllerDelegate {
-    func popDiaryWirteViewController(diaryInfo: DiaryInfo) {
+    func popDiaryWirteViewController(diaryInfo: AppDiary) {
         self.menuView?.removeFromSuperview()
         self.updateValues(diaryInfo: diaryInfo)
         self.putDiaryWithAPI(newDiary: diaryInfo, completion: {
@@ -410,7 +399,7 @@ extension DiaryViewController: DiaryWriteViewControllerDelegate {
 // MARK: - DeepViewControllerDelegate
 
 extension DiaryViewController: DeepViewControllerDelegate {
-    func passData(selectedDepth: Depth) {
+    func passData(selectedDepth: AppDepth) {
         self.currentDepth = selectedDepth
         self.diaryInfo?.depth = selectedDepth
         self.setObjetsByDepth(depth: selectedDepth)
@@ -427,19 +416,19 @@ extension DiaryViewController: DeepViewControllerDelegate {
 // MARK: - APIService
 
 extension DiaryViewController {
-    func getDiaryWithAPI(completion: @escaping (DiaryInfo?) -> Void) {
+    func getDiaryWithAPI(completion: @escaping (AppDiary?) -> Void) {
         DiariesWithIDService.shared.getDiaryWithDiaryId(diaryId: self.diaryId) { (result) in
             switch(result) {
             case .success(let data):
                 if let diaryData = data as? Diary {
-                    let diaryFromServer: DiaryInfo = DiaryInfo(
+                    let diaryFromServer: AppDiary = AppDiary(
                         date: self.getFormattedDate(date: diaryData.wroteAt, by: "-"),
                         year: self.getYearFromFilteredDate(date: diaryData.wroteAt, by: "-"),
                         month: self.getMonthFromFilteredDate(date: diaryData.wroteAt, by: "-"),
                         day: self.getDayFromFilteredDate(date: diaryData.wroteAt, by: "-"),
-                        mood: Mood(rawValue: diaryData.emotionID)!,
-                        depth: Depth(rawValue: diaryData.depth)!,
-                        sentence: MoodSentence(
+                        mood: AppEmotion(rawValue: diaryData.emotionID)!,
+                        depth: AppDepth(rawValue: diaryData.depth)!,
+                        sentence: AppSentence(
                             id: diaryData.sentenceID,
                             author: diaryData.sentence.writer,
                             bookTitle: diaryData.sentence.bookName,
@@ -451,7 +440,7 @@ extension DiaryViewController {
                     self.diaryInfo = diaryFromServer
                     DispatchQueue.main.async {
                         completion(self.diaryInfo)
-                        self.setObjetsByDepth(depth: self.diaryInfo?.depth ?? Depth.depth2m)
+                        self.setObjetsByDepth(depth: self.diaryInfo?.depth ?? AppDepth.depth2m)
                     }
                 }
             case .requestErr(let errorMessage):
@@ -466,7 +455,7 @@ extension DiaryViewController {
         }
     }
     
-    func putDiaryWithAPI(newDiary: DiaryInfo, completion: @escaping () -> Void) {
+    func putDiaryWithAPI(newDiary: AppDiary, completion: @escaping () -> Void) {
         DiariesWithIDService.shared.putDiaryWithDiaryId(
             diaryId: self.diaryId,
             depth: newDiary.depth.rawValue,

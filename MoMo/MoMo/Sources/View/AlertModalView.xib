@@ -126,7 +126,7 @@
                 <outlet property="modalContainerView" destination="xJG-tL-5et" id="Dpw-EU-SbL"/>
                 <outlet property="rightButton" destination="afO-zJ-HH4" id="8MO-qo-lN8"/>
             </connections>
-            <point key="canvasLocation" x="-362.31884057971018" y="141.96428571428569"/>
+            <point key="canvasLocation" x="-417" y="125"/>
         </view>
     </objects>
     <resources>

@@ -198,9 +198,9 @@ extension HomeDayNightView {
                     if self.todayDiary.count >= 1 {
                         self.showFilledView()
                         let moodEnumCase = self.todayDiary[length-1].emotionID
-                        self.emotionImageView.image = Mood(rawValue: moodEnumCase)?.toBlueIcon()
-                        self.emotionLabel.text = Mood(rawValue: moodEnumCase)?.toString()
-                        self.depthLabel.text = Depth(rawValue: self.todayDiary[length-1].depth)?.toString()
+                        self.emotionImageView.image = AppEmotion(rawValue: moodEnumCase)?.toBlueIcon()
+                        self.emotionLabel.text = AppEmotion(rawValue: moodEnumCase)?.toString()
+                        self.depthLabel.text = AppDepth(rawValue: self.todayDiary[length-1].depth)?.toString()
                         self.quoteLabel.text = self.todayDiary[length-1].sentence.contents
                         self.writerLabel.text = self.todayDiary[length-1].sentence.writer
                         self.bookTitleLabel.text = self.todayDiary[length-1].sentence.bookName
