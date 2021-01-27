@@ -9,49 +9,7 @@ import UIKit
 import SnapKit
 
 protocol DeepViewControllerDelegate: class {
-    func passData(selectedDepth: Depth)
-}
-
-enum Depth: Int {
-    case depth2m = 0, depth30m, depth100m, depth300m, depth700m, depth1005m, depthSimhae
-    
-    func toString() -> String {
-        switch self {
-        case .depth2m:
-            return "2m"
-        case .depth30m:
-            return "30m"
-        case .depth100m:
-            return "100m"
-        case .depth300m:
-            return "300m"
-        case .depth700m:
-            return "700m"
-        case .depth1005m:
-            return "1005m"
-        case .depthSimhae:
-            return "심해"
-        }
-    }
-    
-    func toGradientColor() -> [CGColor] {
-        switch self {
-        case .depth2m:
-            return [UIColor.Gradient1.cgColor, UIColor.Gradient2.cgColor]
-        case .depth30m:
-            return [UIColor.Gradient2.cgColor, UIColor.Gradient3.cgColor]
-        case .depth100m:
-            return [UIColor.Gradient3.cgColor, UIColor.Gradient4.cgColor]
-        case .depth300m:
-            return [UIColor.Gradient4.cgColor, UIColor.Gradient5.cgColor]
-        case .depth700m:
-            return [UIColor.Gradient5.cgColor, UIColor.Gradient6.cgColor]
-        case .depth1005m:
-            return [UIColor.Gradient6.cgColor, UIColor.Gradient7.cgColor]
-        case .depthSimhae:
-            return [UIColor.Gradient7.cgColor, UIColor.Gradient8.cgColor]
-        }
-    }
+    func passData(selectedDepth: AppDepth)
 }
 
 class DeepViewController: UIViewController {
@@ -66,7 +24,7 @@ class DeepViewController: UIViewController {
     
     // MARK: - Properties
     
-    var mood: Mood?
+    var mood: AppEmotion?
     var sentence: Sentence?
     var journal: String = ""
     var date: String = ""
@@ -74,7 +32,7 @@ class DeepViewController: UIViewController {
     let dafaultInfoLabel: String = "오늘의 감정은\n잔잔한가요, 깊은가요?\n스크롤을 움직여서 기록해보세요"
     var deepSliderView: DeepSliderView?
     var deepSliderValue: Float = 0
-    var initialDepth: Depth?
+    var initialDepth: AppDepth?
     var viewWidth: CGFloat?
     var viewHeight: CGFloat?
     var viewXpos: CGFloat?
@@ -202,7 +160,7 @@ class DeepViewController: UIViewController {
             ))
             let gradientLayer = CAGradientLayer()
             gradientLayer.frame = gradientView.bounds
-            gradientLayer.colors = Depth(rawValue: index)?.toGradientColor()
+            gradientLayer.colors = AppDepth(rawValue: index)?.toGradientColor()
             gradientView.layer.addSublayer(gradientLayer)
             self.gradientBackgroundView.addSubview(gradientView)
         }
@@ -245,7 +203,7 @@ class DeepViewController: UIViewController {
         guard let diaryViewController = diaryStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryViewController) as? DiaryViewController else { return }
         // TODO: - 서버에서 받아오기
         diaryViewController.diaryId = diaryId
-        diaryViewController.currentDepth = Depth(rawValue: Int(round(self.deepSliderValue * 6))) ?? Depth.depth2m
+        diaryViewController.currentDepth = AppDepth(rawValue: Int(round(self.deepSliderValue * 6))) ?? AppDepth.depth2m
         self.navigationController?.pushViewController(diaryViewController, animated: true)
         
     }
@@ -269,7 +227,7 @@ class DeepViewController: UIViewController {
                           wroteAt: "\(dateArray[0])-\(dateArray[1])-\(dateArray[2])")
         } else { // text == "수정하기"
             self.deepViewControllerDelegate?.passData(
-                selectedDepth: Depth(rawValue: Int(round(self.deepSliderValue * 6))) ?? Depth.depth2m)
+                selectedDepth: AppDepth(rawValue: Int(round(self.deepSliderValue * 6))) ?? AppDepth.depth2m)
             self.navigationController?.popViewController(animated: true)
         }
         

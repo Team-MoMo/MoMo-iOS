@@ -69,10 +69,10 @@ class ListTableViewCell: UITableViewCell {
         let date = diary.wroteAt.split(separator: "T")[0]
         let specificDate = date.split(separator: "-")
         iconImage.image = icon[diary.emotionID - 1]
-        categoryLabel.attributedText = Mood(rawValue: diary.emotionID)?.toString().wordSpacing(-0.6)
+        categoryLabel.attributedText = AppEmotion(rawValue: diary.emotionID)?.toString().wordSpacing(-0.6)
         dateLabel.attributedText = "\(specificDate[0])년 \(specificDate[1])월".wordSpacing(-0.6)
         dayLabel.attributedText = "\(specificDate[2])일".wordSpacing(-0.6)
-        depthLabel.attributedText = Depth(rawValue: diary.depth)?.toString().wordSpacing(-0.6)
+        depthLabel.attributedText = AppDepth(rawValue: diary.depth)?.toString().wordSpacing(-0.6)
         authorLabel.attributedText = diary.sentence.writer.wordSpacing(-0.6)
         titleLabel.attributedText = diary.sentence.bookName.wordSpacing(-0.6)
         publisherLabel.attributedText = diary.sentence.publisher.wordSpacing(-0.6)

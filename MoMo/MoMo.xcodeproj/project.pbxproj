@@ -64,6 +64,10 @@
 		1CEF46C525A6E09100AF3D81 /* MoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46C425A6E09100AF3D81 /* MoodViewController.swift */; };
 		1CEF46C825A6E0A000AF3D81 /* SentenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46C725A6E0A000AF3D81 /* SentenceViewController.swift */; };
 		1CEF46CB25A6E0B200AF3D81 /* OnboardingWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46CA25A6E0B200AF3D81 /* OnboardingWriteViewController.swift */; };
+		562C645425C1AED800AA9AB6 /* AppEmotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562C645325C1AED800AA9AB6 /* AppEmotion.swift */; };
+		562C645925C1AFAD00AA9AB6 /* AppDepth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562C645825C1AFAD00AA9AB6 /* AppDepth.swift */; };
+		562C645C25C1B14F00AA9AB6 /* AppSentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562C645B25C1B14F00AA9AB6 /* AppSentence.swift */; };
+		562C645F25C1B16000AA9AB6 /* AppDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562C645E25C1B16000AA9AB6 /* AppDiary.swift */; };
 		5637606725B04AA800651EAA /* SignUpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5637606625B04AA800651EAA /* SignUpService.swift */; };
 		5637606A25B04ABC00651EAA /* SignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5637606925B04ABC00651EAA /* SignInService.swift */; };
 		5637607325B04F6400651EAA /* PasswordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5637607225B04F6400651EAA /* PasswordService.swift */; };
@@ -163,6 +167,10 @@
 		1CEF46C425A6E09100AF3D81 /* MoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewController.swift; sourceTree = "<group>"; };
 		1CEF46C725A6E0A000AF3D81 /* SentenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceViewController.swift; sourceTree = "<group>"; };
 		1CEF46CA25A6E0B200AF3D81 /* OnboardingWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWriteViewController.swift; sourceTree = "<group>"; };
+		562C645325C1AED800AA9AB6 /* AppEmotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEmotion.swift; sourceTree = "<group>"; };
+		562C645825C1AFAD00AA9AB6 /* AppDepth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDepth.swift; sourceTree = "<group>"; };
+		562C645B25C1B14F00AA9AB6 /* AppSentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSentence.swift; sourceTree = "<group>"; };
+		562C645E25C1B16000AA9AB6 /* AppDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDiary.swift; sourceTree = "<group>"; };
 		5637606625B04AA800651EAA /* SignUpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpService.swift; sourceTree = "<group>"; };
 		5637606925B04ABC00651EAA /* SignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInService.swift; sourceTree = "<group>"; };
 		5637607225B04F6400651EAA /* PasswordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordService.swift; sourceTree = "<group>"; };
@@ -229,6 +237,17 @@
 			path = Sentences;
 			sourceTree = "<group>";
 		};
+		562C644E25C1AD6800AA9AB6 /* AppModels */ = {
+			isa = PBXGroup;
+			children = (
+				562C645E25C1B16000AA9AB6 /* AppDiary.swift */,
+				562C645325C1AED800AA9AB6 /* AppEmotion.swift */,
+				562C645825C1AFAD00AA9AB6 /* AppDepth.swift */,
+				562C645B25C1B14F00AA9AB6 /* AppSentence.swift */,
+			);
+			path = AppModels;
+			sourceTree = "<group>";
+		};
 		5637606525B04A9D00651EAA /* Users */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,7 +273,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		563B037425AA0B7F00DA74C5 /* Models */ = {
+		563B037425AA0B7F00DA74C5 /* APIModels */ = {
 			isa = PBXGroup;
 			children = (
 				563B037525AA0F3500DA74C5 /* BubbleDummyData.swift */,
@@ -268,7 +287,7 @@
 				10029DBE25B11D4800060E14 /* DiaryRecent.swift */,
 				1CA39A1725B1BF3E00E58209 /* OnboardingSentence.swift */,
 			);
-			path = Models;
+			path = APIModels;
 			sourceTree = "<group>";
 		};
 		563B044025ADB4C100DA74C5 /* Recovered References */ = {
@@ -349,8 +368,9 @@
 				5687640C2599AD3A009CB486 /* AppDelegate.swift */,
 				5687640E2599AD3A009CB486 /* SceneDelegate.swift */,
 				563B048725AE06F700DA74C5 /* APIServices */,
+				563B037425AA0B7F00DA74C5 /* APIModels */,
+				562C644E25C1AD6800AA9AB6 /* AppModels */,
 				568764282599E33F009CB486 /* Extensions */,
-				563B037425AA0B7F00DA74C5 /* Models */,
 				5687642A2599E350009CB486 /* Protocols */,
 				5687642C2599E37B009CB486 /* Cells */,
 				563B032E25A8845A00DA74C5 /* View */,
@@ -646,11 +666,14 @@
 				563B03E225ACBB1200DA74C5 /* LoginViewController.swift in Sources */,
 				563B048D25AE0BD500DA74C5 /* NetworkResult.swift in Sources */,
 				1C4235EC25B04CD5008FB838 /* DiariesWithIDService.swift in Sources */,
+				562C645425C1AED800AA9AB6 /* AppEmotion.swift in Sources */,
 				10029DAB25B108E000060E14 /* HomeModalPresentation.swift in Sources */,
 				568764612599FB56009CB486 /* APIConstants.swift in Sources */,
 				563B049625AE0E6800DA74C5 /* Diary.swift in Sources */,
 				10DDA34225AF09A900620C41 /* EmotionCollectionViewCell.swift in Sources */,
 				1CAD05A525AACB36007ECA40 /* DeepViewController.swift in Sources */,
+				562C645F25C1B16000AA9AB6 /* AppDiary.swift in Sources */,
+				562C645C25C1B14F00AA9AB6 /* AppSentence.swift in Sources */,
 				563B034725A8973100DA74C5 /* HomeViewController.swift in Sources */,
 				1C4235F125B0D5A8008FB838 /* DiaryWithId.swift in Sources */,
 				10F1F73625B053A900BF7D37 /* CreateDiary.swift in Sources */,
@@ -662,6 +685,7 @@
 				5637607625B0519F00651EAA /* PasswordData.swift in Sources */,
 				1C52BE0525AD655300D02771 /* AlertModalView.swift in Sources */,
 				1CAD05A225A9C98F007ECA40 /* UILabel+Extension.swift in Sources */,
+				562C645925C1AFAD00AA9AB6 /* AppDepth.swift in Sources */,
 				1CAD05B125AC3DC4007ECA40 /* DeepSliderView.swift in Sources */,
 				5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */,
 				10E5CD8325ADF1D5004FDC24 /* UploadModalPresentationController.swift in Sources */,

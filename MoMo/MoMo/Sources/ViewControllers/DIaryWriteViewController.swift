@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DiaryWriteViewControllerDelegate: class {
-    func popDiaryWirteViewController(diaryInfo: DiaryInfo)
+    func popDiaryWirteViewController(diaryInfo: AppDiary)
 }
 
 enum NavigationButton: Int {
@@ -18,10 +18,8 @@ enum NavigationButton: Int {
 class DiaryWriteViewController: UIViewController {
     
     // MARK: - Properties
-    var mood: Mood?
+    var mood: AppEmotion?
     var sentence: Sentence?
-    
-    
     
     var date: String = "2020. 12. 26 토요일"
     var emotionOriginalImage: UIImage = UIImage()
@@ -35,7 +33,7 @@ class DiaryWriteViewController: UIViewController {
     // TODO: - isFromeDiary를 사용하지 않고 prevViewController: String 또는
     // prevViewController: EnumType??? 으로 만들고 switch 문으로 분기처리하도록 리팩토링
     var isFromDiary: Bool = false
-    var diaryInfo: DiaryInfo?
+    var diaryInfo: AppDiary?
     var alertModalView: AlertModalView?
     weak var diaryWriteViewControllerDelegate: DiaryWriteViewControllerDelegate?
     

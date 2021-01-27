@@ -31,8 +31,8 @@ class OnboardingWriteViewController: UIViewController {
     let defaultInfo: String = "문장이 감성을 자극하고\n깊이있는 기록을 도와줄 거예요"
     let defaultBookTitle: String = "책제목"
     let defaultPublisher: String = "출판사이름"
-    var selectedSentence: MoodSentence?
-    var selectedMood: Mood?
+    var selectedSentence: AppSentence?
+    var selectedMood: AppEmotion?
     var sentenceWasShown: Bool = false
     let vspaingInfoLabelFeatherImage: CGFloat = 74
     let vspaingInfoLabelSentenceInfoStackView: CGFloat = 116
