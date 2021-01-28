@@ -564,11 +564,11 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBAction func touchUpUploadButton(_ sender: Any) {
         let onboardingStoryboard = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
-        guard let dvc = onboardingStoryboard.instantiateViewController(identifier: Constants.Identifier.moodViewController) as? MoodViewController else {
+        guard let moodViewController = onboardingStoryboard.instantiateViewController(identifier: Constants.Identifier.moodViewController) as? MoodViewController else {
             return
         }
-        dvc.changeUsage = false
-        self.navigationController?.pushViewController(dvc, animated: true)
+        moodViewController.changeUsage = false
+        self.navigationController?.pushViewController(moodViewController, animated: true)
     }
     
     @IBAction func touchUpListButton(_ sender: Any) {
@@ -606,7 +606,7 @@ extension HomeViewController: UIViewControllerTransitioningDelegate {
     }
 }
 
-extension HomeViewController: UploadModalPassDataDelegate {
+extension HomeViewController: UploadModalViewDelegate {
     func passData(_ date: String) {
         dateArray = date.components(separatedBy: ". ")
         
