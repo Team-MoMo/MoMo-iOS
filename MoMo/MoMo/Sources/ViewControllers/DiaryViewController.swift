@@ -32,18 +32,15 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var diaryLabel: UILabel!
     @IBOutlet weak var blurView: UIView!
     
-    var seaObjets: [UIImageView: String]?
-    var diaryWriteViewController: DiaryWriteViewController?
-    var currentDepth: AppDepth?
-    var menuView: MenuView?
-    var alertModalView: AlertModalView?
-    var menuToggleFlag: Bool = false
-    var uploadModalViewController: UploadModalViewController?
-    var diaryInfo: AppDiary?
-    var gradientView: UIView?
-    let weekdayArray: [String] = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"]
-    
-    var diaryId: Int = 1
+    var diaryId: Int?
+    private var menuToggleFlag: Bool = false
+    private var seaObjets: [UIImageView: String]?
+    private var diaryInfo: AppDiary?
+    private var menuView: MenuView?
+    private var gradientView: UIView?
+    private var alertModalView: AlertModalView?
+    private var diaryWriteViewController: DiaryWriteViewController?
+    private var uploadModalViewController: UploadModalViewController?
     
     lazy var leftButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: Constants.Design.Image.btnBackWhite, style: .plain, target: self, action: #selector(buttonPressed(sender:)))
@@ -64,6 +61,15 @@ class DiaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.initializeDiaryViewController()
+        self.getDiaryWithAPI(completion: updateDiaryViewController(diaryInfo:))
+        self.addBlurEffectOnBlurView(view: self.blurView)
+        self.initializeNavigationBar()
+    }
+    
+    // MARK: - Functions
+    
+    func initializeDiaryViewController() {
         self.seaObjets = [
             self.fish1: "fish1",
             self.fish2: "fish2",
@@ -75,80 +81,25 @@ class DiaryViewController: UIViewController {
             self.whale1: "whale1",
             self.shark1: "shark1"
         ]
-        self.getDiaryWithAPI(completion: updateValues(diaryInfo:))
-        
-        self.addBlurEffectOnBlurView(view: self.blurView)
-        
+    }
+    
+    func initializeNavigationBar() {
         self.navigationItem.leftBarButtonItem = self.leftButton
         self.navigationItem.rightBarButtonItem = self.rightButton
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
-        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.setObjetsByDepth(depth: self.currentDepth ?? AppDepth.depth2m)
+    func updateDiaryViewController(diaryInfo: AppDiary?) {
+        guard let safeDiaryInfo = diaryInfo else { return }
+        self.updateProperties(diaryInfo: safeDiaryInfo)
+        self.updateObjetsByDepth(depth: safeDiaryInfo.depth)
+        self.updateBackgroundColorByDepth(depth: safeDiaryInfo.depth)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.setBackgroundColorByDepth(depth: self.currentDepth)
-    }
-    
-    // MARK: - Functions
-    
-    func getWeekDayFromYearMonthDay(date: String) -> String {
-
-        let dateFormatter = DateFormatter()
-
-        dateFormatter.dateFormat = "yyyy. MM. dd"
-        dateFormatter.locale = Locale.current
-        guard let todayDate = dateFormatter.date(from: date) else { return ""}
-        let myCalendar = Calendar(identifier: .gregorian)
-        let weekday = myCalendar.component(.weekday, from: todayDate)
-        return weekdayArray[weekday - 1]
-    }
-    
-    func getFilteredDate(date: String, by: String) -> String {
-        return date.components(separatedBy: by).first!
-    }
-    
-    func getYearFromFilteredDate(date: String, by: String) -> Int {
-        let yearMonthDay: [String] = self.getFilteredDate(date: date, by: "T").components(separatedBy: by)
-        return Int(yearMonthDay[0])!
-    }
-    
-    func getMonthFromFilteredDate(date: String, by: String) -> Int {
-        let yearMonthDay: [String] = self.getFilteredDate(date: date, by: "T").components(separatedBy: by)
-        return Int(yearMonthDay[1])!
-    }
-    
-    func getDayFromFilteredDate(date: String, by: String) -> Int {
-        let yearMonthDay: [String] = self.getFilteredDate(date: date, by: "T").components(separatedBy: by)
-        return Int(yearMonthDay[2])!
-    }
-    
-    func getFormattedDate(date: String, by: String) -> String {
-        let year = self.getYearFromFilteredDate(date: date, by: by)
-        let month = self.getMonthFromFilteredDate(date: date, by: by)
-        let day = self.getDayFromFilteredDate(date: date, by: by)
-        let weekday = self.getWeekDayFromYearMonthDay(date: "\(year). \(month). \(day)")
-        return "\(year). \(String(format: "%02d", month)). \(String(format: "%02d", day)). \(weekday)"
-    }
-    
-    func getFormattedDateForServer(date: String, by: String) -> String {
-        let year = self.getYearFromFilteredDate(date: date, by: by)
-        let month = self.getMonthFromFilteredDate(date: date, by: by)
-        let day = self.getDayFromFilteredDate(date: date, by: by)
-        let weekday = self.getWeekDayFromYearMonthDay(date: "\(year). \(month). \(day)")
-        return "\(year)-\(String(format: "%02d", month))-\(String(format: "%02d", day))"
-    }
-    
-    func updateValues(diaryInfo: AppDiary?) {
-        self.currentDepth = diaryInfo?.depth
-        self.dateLabel.text = diaryInfo?.date
+    func updateProperties(diaryInfo: AppDiary?) {
+        self.dateLabel.text = diaryInfo?.date.getFormattedDateAndWeekday(with: ". ")
         self.moodImage.image = diaryInfo?.mood.toWhiteIcon()
         self.moodLabel.text = diaryInfo?.mood.toString()
         self.depthLabel.text = diaryInfo?.depth.toString()
@@ -200,22 +151,26 @@ class DiaryViewController: UIViewController {
         view.insertSubview(blurEffectView, at: 0)
     }
     
-    func setBackgroundColorByDepth(depth: AppDepth?) {
-        let defaultGradientView = UIView(frame: self.view.frame)
-        if self.view.subviews.contains(gradientView ?? defaultGradientView) {
-            self.gradientView?.removeFromSuperview()
-        }
+    func updateBackgroundColorByDepth(depth: AppDepth?) {
         
-        gradientView = UIView(frame: self.view.frame)
-        let gradientLayer = CAGradientLayer()
+        if let gradientView = self.gradientView {
+            if self.view.subviews.contains(gradientView) {
+                self.gradientView?.removeFromSuperview()
+            }
+        }
+            
+        let gradientLayer: CAGradientLayer
+        self.gradientView = UIView(frame: self.view.frame)
+        gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
         gradientLayer.colors = depth?.toGradientColor()
-        gradientView?.layer.addSublayer(gradientLayer)
+        self.gradientView?.layer.addSublayer(gradientLayer)
         
-        self.view.insertSubview(gradientView ?? defaultGradientView, at: 0)
+        guard let gradientView = self.gradientView else { return }
+        self.view.insertSubview(gradientView, at: 0)
     }
     
-    func setObjects(keyword: String) {
+    func updateObjects(keyword: String) {
         let showImages = self.seaObjets?.filter { (image) -> Bool in
             return image.value.contains(keyword)
         }
@@ -223,31 +178,33 @@ class DiaryViewController: UIViewController {
             return !image.value.contains(keyword)
         }
         
-        for image in showImages! {
+        guard let safeShowImages = showImages, let safeHideImages = hideImages else { return }
+        
+        for image in safeShowImages {
             image.key.isHidden = false
         }
         
-        for image in hideImages! {
+        for image in safeHideImages {
             image.key.isHidden = true
         }
     }
     
-    func setObjetsByDepth(depth: AppDepth) {
+    func updateObjetsByDepth(depth: AppDepth) {
         switch depth {
         case .depth2m:
-            self.setObjects(keyword: "fish")
+            self.updateObjects(keyword: "fish")
         case .depth30m:
-            setObjects(keyword: "dolphin")
+            self.updateObjects(keyword: "dolphin")
         case .depth100m:
-            setObjects(keyword: "turtle")
+            self.updateObjects(keyword: "turtle")
         case .depth300m:
-            setObjects(keyword: "stingray")
+            self.updateObjects(keyword: "stingray")
         case .depth700m:
-            setObjects(keyword: "whale")
+            self.updateObjects(keyword: "whale")
         case .depth1005m:
-            setObjects(keyword: "shark")
+            self.updateObjects(keyword: "shark")
         case .depthSimhae:
-            setObjects(keyword: "nothing")
+            self.updateObjects(keyword: "nothing")
         }
     }
     
@@ -274,7 +231,7 @@ class DiaryViewController: UIViewController {
         guard let deepViewController = onboardingStoryboard.instantiateViewController(identifier: Constants.Identifier.deepViewController) as? DeepViewController else { return }
         
         deepViewController.deepViewControllerDelegate = self
-        deepViewController.initialDepth = self.currentDepth
+        deepViewController.initialDepth = self.diaryInfo?.depth
         deepViewController.buttonText = "수정하기"
         
         self.navigationController?.pushViewController(deepViewController, animated: true)
@@ -300,9 +257,26 @@ class DiaryViewController: UIViewController {
         
         homeViewController.isFromDiary = true
         
-        // 홈뷰로 Depth를 넘기는 작업 필요
+        // TODO: HomeViewController에서 Depth를 받으면 Depth에 맞는 깊이를 Home에서 보여줌
         self.navigationController?.popToViewController(homeViewController, animated: true)
     }
+    
+    func presentUpdloadModalViewController() {
+        self.uploadModalViewController = UploadModalViewController()
+        
+        if let uploadModalViewController = self.uploadModalViewController {
+            guard let safeDiaryInfo = self.diaryInfo else { return }
+            
+            uploadModalViewController.modalPresentationStyle = .custom
+            uploadModalViewController.transitioningDelegate = self
+            uploadModalViewController.uploadModalDataDelegate = self
+            uploadModalViewController.year = safeDiaryInfo.date.getYear()
+            uploadModalViewController.month = safeDiaryInfo.date.getMonth()
+            uploadModalViewController.day = safeDiaryInfo.date.getDay()
+            self.present(uploadModalViewController, animated: true, completion: nil)
+        }
+    }
+
 }
 
 // MARK: - MenuDelegate
@@ -310,22 +284,7 @@ class DiaryViewController: UIViewController {
 extension DiaryViewController: MenuDelegate {
     
     func dateMenuButtonTouchUp(sender: UIButton) {
-        self.uploadModalViewController = UploadModalViewController()
-        
-        if let uploadModalViewController = self.uploadModalViewController {
-            
-            uploadModalViewController.modalPresentationStyle = .custom
-            
-            uploadModalViewController.transitioningDelegate = self
-            uploadModalViewController.uploadModalDataDelegate = self
-            
-            uploadModalViewController.year = self.diaryInfo?.year ?? 0
-            uploadModalViewController.month = self.diaryInfo?.month ?? 0
-            uploadModalViewController.day = self.diaryInfo?.day ?? 0
-            
-            self.present(uploadModalViewController, animated: true, completion: nil)
-        }
-        
+        self.presentUpdloadModalViewController()
     }
     
     func depthMenuButtonTouchUp(sender: UIButton) {
@@ -368,17 +327,12 @@ extension DiaryViewController: UIViewControllerTransitioningDelegate {
 
 extension DiaryViewController: UploadModalViewDelegate {
     func passData(_ date: String) {
-        let dateArray = date.components(separatedBy: ". ")
-        self.diaryInfo?.date = date
-        self.diaryInfo?.year = Int(dateArray[0])!
-        self.diaryInfo?.month = Int(dateArray[1])!
-        self.diaryInfo?.day = Int(dateArray[2])!
-        self.diaryInfo?.date = date
-        
+        self.diaryInfo?.date = AppDate(formattedDate: date, with: ". ")
         self.menuView?.removeFromSuperview()
-        self.updateValues(diaryInfo: self.diaryInfo)
-        self.putDiaryWithAPI(newDiary: self.diaryInfo!, completion: {
-            self.getDiaryWithAPI(completion: self.updateValues(diaryInfo:))
+        
+        guard let safeDiaryInfo = self.diaryInfo else { return }
+        self.putDiaryWithAPI(newDiary: safeDiaryInfo, completion: {
+            self.getDiaryWithAPI(completion: self.updateDiaryViewController(diaryInfo:))
         })
     }
 }
@@ -386,11 +340,12 @@ extension DiaryViewController: UploadModalViewDelegate {
 // MARK: - DiaryWriteViewControllerDelegate
 
 extension DiaryViewController: DiaryWriteViewControllerDelegate {
-    func popDiaryWirteViewController(diaryInfo: AppDiary) {
+    func popDiaryWirteViewController(diaryInfo: AppDiary?) {
         self.menuView?.removeFromSuperview()
-        self.updateValues(diaryInfo: diaryInfo)
-        self.putDiaryWithAPI(newDiary: diaryInfo, completion: {
-            self.getDiaryWithAPI(completion: self.updateValues(diaryInfo:))
+        
+        guard let safeDiaryInfo = self.diaryInfo else { return }
+        self.putDiaryWithAPI(newDiary: safeDiaryInfo, completion: {
+            self.getDiaryWithAPI(completion: self.updateDiaryViewController(diaryInfo:))
         })
     }
 
@@ -400,15 +355,12 @@ extension DiaryViewController: DiaryWriteViewControllerDelegate {
 
 extension DiaryViewController: DeepViewControllerDelegate {
     func passData(selectedDepth: AppDepth) {
-        self.currentDepth = selectedDepth
         self.diaryInfo?.depth = selectedDepth
-        self.setObjetsByDepth(depth: selectedDepth)
-        self.setBackgroundColorByDepth(depth: selectedDepth)
-        
         self.menuView?.removeFromSuperview()
-        self.updateValues(diaryInfo: self.diaryInfo)
-        self.putDiaryWithAPI(newDiary: self.diaryInfo!, completion: {
-            self.getDiaryWithAPI(completion: self.updateValues(diaryInfo:))
+        
+        guard let safeDiaryInfo = self.diaryInfo else { return }
+        self.putDiaryWithAPI(newDiary: safeDiaryInfo, completion: {
+            self.getDiaryWithAPI(completion: self.updateDiaryViewController(diaryInfo:))
         })
     }
 }
@@ -417,15 +369,14 @@ extension DiaryViewController: DeepViewControllerDelegate {
 
 extension DiaryViewController {
     func getDiaryWithAPI(completion: @escaping (AppDiary?) -> Void) {
-        DiariesWithIDService.shared.getDiaryWithDiaryId(diaryId: self.diaryId) { (result) in
-            switch(result) {
+        guard let diaryId = self.diaryId else { return }
+        
+        DiariesWithIDService.shared.getDiaryWithDiaryId(diaryId: diaryId) { (result) in
+            switch result {
             case .success(let data):
                 if let diaryData = data as? Diary {
-                    let diaryFromServer: AppDiary = AppDiary(
-                        date: self.getFormattedDate(date: diaryData.wroteAt, by: "-"),
-                        year: self.getYearFromFilteredDate(date: diaryData.wroteAt, by: "-"),
-                        month: self.getMonthFromFilteredDate(date: diaryData.wroteAt, by: "-"),
-                        day: self.getDayFromFilteredDate(date: diaryData.wroteAt, by: "-"),
+                    self.diaryInfo = AppDiary(
+                        date: AppDate(serverDate: diaryData.wroteAt),
                         mood: AppEmotion(rawValue: diaryData.emotionID)!,
                         depth: AppDepth(rawValue: diaryData.depth)!,
                         sentence: AppSentence(
@@ -437,10 +388,9 @@ extension DiaryViewController {
                         ),
                         diary: diaryData.contents
                     )
-                    self.diaryInfo = diaryFromServer
+                    
                     DispatchQueue.main.async {
                         completion(self.diaryInfo)
-                        self.setObjetsByDepth(depth: self.diaryInfo?.depth ?? AppDepth.depth2m)
                     }
                 }
             case .requestErr(let errorMessage):
@@ -456,18 +406,19 @@ extension DiaryViewController {
     }
     
     func putDiaryWithAPI(newDiary: AppDiary, completion: @escaping () -> Void) {
+        guard let diaryId = self.diaryId else { return }
+        guard let sentenceId = newDiary.sentence.id else { return }
         DiariesWithIDService.shared.putDiaryWithDiaryId(
-            diaryId: self.diaryId,
+            diaryId: diaryId,
             depth: newDiary.depth.rawValue,
             contents: newDiary.diary,
             userId: APIConstants.userId,
-            sentenceId: newDiary.sentence.id ?? 1,
+            sentenceId: sentenceId,
             emotionId: newDiary.mood.rawValue,
-            wroteAt: self.getFormattedDateForServer(date: newDiary.date, by: ". ")
+            wroteAt: newDiary.date.getFormattedDate(with: "-")
         ) { (result) in
-            switch(result) {
-            case .success(let data):
-                print("다이어리 수정성공")
+            switch result {
+            case .success:
                 completion()
             case .requestErr(let errorMessage):
                 print(errorMessage)
@@ -482,11 +433,10 @@ extension DiaryViewController {
     }
     
     func deleteDiaryWithAPI(completion: @escaping () -> Void) {
-        
-        DiariesWithIDService.shared.deleteDiaryWithDiaryId(diaryId: self.diaryId) { (result) in
-            switch(result) {
-            case .success(let data):
-                print("다이어리 삭제성공")
+        guard let diaryId = self.diaryId else { return }
+        DiariesWithIDService.shared.deleteDiaryWithDiaryId(diaryId: diaryId) { (result) in
+            switch result {
+            case .success:
                 completion()
             case .requestErr(let errorMessage):
                 print(errorMessage)
