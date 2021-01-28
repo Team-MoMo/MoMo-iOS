@@ -40,19 +40,16 @@ class MoodViewController: UIViewController {
         
         self.initializeMoodViewController()
         
-        guard let currentDate = self.currentDate else {
-            return
-        }
+        guard let currentDate = self.currentDate else { return }
         
         if self.listNoDiary {
-            self.getDiariesWithAPI(
-                userID: "\(APIConstants.userId))",
-                year: currentDate.getYearToString(),
-                month: currentDate.getMonthToString(),
-                order: "filter",
-                day: currentDate.getDay(),
-                emotionID: nil,
-                depth: nil
+            self.getDiariesWithAPI(userID: "\(APIConstants.userId))",
+                                   year: currentDate.getYearToString(),
+                                   month: currentDate.getMonthToString(),
+                                   order: "filter",
+                                   day: currentDate.getDay(),
+                                   emotionID: nil,
+                                   depth: nil
             )
             self.listNoDiary.toggle()
         } else {
@@ -103,10 +100,8 @@ class MoodViewController: UIViewController {
         if !verifyToday {
             self.dateLabel.text = self.currentDate?.getFormattedDateAndWeekday(with: ". ")
         } else {
-            
             let date = AppDate(serverDate: recentDate)
             self.dateLabel.text = date.getFormattedDateAndWeekday(with: ". ")
-            
             self.presentModalView(year: date.getYear(), month: date.getMonth(), day: date.getDay())
         }
     }
@@ -144,9 +139,7 @@ class MoodViewController: UIViewController {
     }
     
     func presentModalView(year: Int, month: Int, day: Int) {
-        guard let modalView = self.modalView else {
-            return
-        }
+        guard let modalView = self.modalView else { return }
         modalView.year = year
         modalView.month = month
         modalView.day = day
@@ -172,9 +165,7 @@ class MoodViewController: UIViewController {
     }
     
     @IBAction func touchCalendarButton(_ sender: Any) {
-        guard let selectedDate = self.selectedDate else {
-            return
-        }
+        guard let selectedDate = self.selectedDate else { return }
         self.presentModalView(year: selectedDate.getYear(), month: selectedDate.getMonth(), day: selectedDate.getDay())
     }
     
@@ -246,7 +237,7 @@ extension MoodViewController {
                                          order: order,
                                          day: day,
                                          emotionId: emotionID,
-                                         depth: depth) { (networkResult) -> () in
+                                         depth: depth) { networkResult in
             switch networkResult {
             case .success(let data):
                 if let diary = data as? [Diary] {
