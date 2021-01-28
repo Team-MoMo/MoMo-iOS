@@ -203,7 +203,6 @@ class DeepViewController: UIViewController {
         guard let diaryViewController = diaryStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryViewController) as? DiaryViewController else { return }
         // TODO: - 서버에서 받아오기
         diaryViewController.diaryId = diaryId
-        diaryViewController.currentDepth = AppDepth(rawValue: Int(round(self.deepSliderValue * 6))) ?? AppDepth.depth2m
         self.navigationController?.pushViewController(diaryViewController, animated: true)
         
     }
