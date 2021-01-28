@@ -7,30 +7,6 @@
 
 import UIKit
 
-struct Button {
-    
-    let button: UIButton?
-    let cornerRadius: CGFloat = 12
-    var shadowColor: CGColor = UIColor.NavWhite.cgColor
-    var shadowOffset: CGSize = CGSize(width: 5, height: 5)
-    var shadowOpacity: Float = 0.7
-    var shadowRadius: CGFloat = 4.0
-    
-    func buttonsRoundedUp() {
-        self.button?.layer.cornerRadius = self.cornerRadius
-        self.button?.clipsToBounds = true
-    }
-    
-    func buttonsAddShadow() {
-        self.button?.layer.shadowColor = self.shadowColor
-        self.button?.layer.shadowOpacity = self.shadowOpacity
-        self.button?.layer.shadowOffset = self.shadowOffset
-        self.button?.layer.shadowRadius = self.shadowRadius
-        self.button?.layer.masksToBounds = false
-    }
-    
-}
-
 class MoodViewController: UIViewController {
     
     // MARK: - @IBOutlet Properties
@@ -49,39 +25,65 @@ class MoodViewController: UIViewController {
     
     // MARK: - Properties
     
-    var today: String = ""
-    private var buttons: [Button] = []
-    var date: String?
-    let defaultInfo: String = "먼저 오늘의\n감정을 선택해 주세요"
-    //false == upload모드
-    var changeUsage: Bool = false
+    let info: String = "먼저 오늘의\n감정을 선택해 주세요"
+    var changeUsage: Bool = false // false는 Upload에서 사용
     var listNoDiary: Bool = false
-    var modalView: UploadModalViewController? = nil
-    var recentDate: String = ""
-    let weekdayArray: [String] = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"]
-    var year: Int = 0
-    var month: Int = 0
-    var day: Int = 0
+    private var buttons: [MoodButton] = []
+    private var modalView: UploadModalViewController?
+    private var currentDate: AppDate?
+    private var selectedDate: AppDate?
 
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.modalView = UploadModalViewController()
-        self.modalView?.uploadModalDataDelegate = self
+        self.initializeMoodViewController()
         
+        guard let currentDate = self.currentDate else {
+            return
+        }
         
+        if self.listNoDiary {
+            self.getDiariesWithAPI(
+                userID: "\(APIConstants.userId))",
+                year: currentDate.getYearToString(),
+                month: currentDate.getMonthToString(),
+                order: "filter",
+                day: currentDate.getDay(),
+                emotionID: nil,
+                depth: nil
+            )
+            self.listNoDiary.toggle()
+        } else {
+            self.dateLabel.text = currentDate.getFormattedDateAndWeekday(with: ". ")
+        }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.hideCalendarButton()
+        self.hideNavigationButton()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.showButtonsWithAnimation()
+    }
+    
+    // MARK: - Functions
+    
+    func initializeMoodViewController() {
         
         self.buttons = [
-            Button(button: self.loveButton),
-            Button(button: self.happyButton),
-            Button(button: self.consoleButton),
-            Button(button: self.angryButton),
-            Button(button: self.sadButton),
-            Button(button: self.boredButton),
-            Button(button: self.memoryButton),
-            Button(button: self.dailyButton)
+            MoodButton(button: self.loveButton),
+            MoodButton(button: self.happyButton),
+            MoodButton(button: self.consoleButton),
+            MoodButton(button: self.angryButton),
+            MoodButton(button: self.sadButton),
+            MoodButton(button: self.boredButton),
+            MoodButton(button: self.memoryButton),
+            MoodButton(button: self.dailyButton)
         ]
         
         for button in self.buttons {
@@ -90,280 +92,23 @@ class MoodViewController: UIViewController {
         }
         
         self.hideButtons()
-        
-        self.infoLabel.text = self.defaultInfo
-        
-        if listNoDiary {
-            let date = Date()
-            let dateFormatter = DateFormatter()
-            
-            dateFormatter.dateFormat = "yyyy-MM-dd"
-            dateFormatter.locale = Locale.current
-            
-            let formattedDate = dateFormatter.string(from: date)
-            today = formattedDate
-            let dateArray = formattedDate.split(separator: "-")
-            print(today)
-            day = Int(dateArray[2])!
-            
-            checkTodayJournal(userID: String(APIConstants.userId), year: "\(dateArray[0])", month: "\(dateArray[1])", order: "filter", day: day, emotionID: nil, depth: nil)
-            listNoDiary.toggle()
-        } else {
-            self.date = self.getCurrentFormattedDate()
-            self.dateLabel.text = self.date
-        }
-        
-        
+        self.infoLabel.text = self.info
+        self.currentDate = AppDate()
+        self.selectedDate = AppDate()
+        self.modalView = UploadModalViewController()
+        self.modalView?.uploadModalDataDelegate = self
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        hideCalendarButton()
-        hideNavigationButton()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        self.showButtonsWithAnimation()
-    }
-    
-    // MARK: - Functions
-    
-    func getCurrentFormattedDate() -> String? {
-        
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy. MM. dd. EEEE"
-        dateFormatter.locale = Locale.current
-        
-        let formattedDate = dateFormatter.string(from: date)
-        var dateArray = formattedDate.components(separatedBy: ". ")
-        let weekday = dateArray.popLast()
-        
-        dateArray.append(weekdayEnglishToKorean(weekday: weekday ?? "Monday"))
-        
-        let formattedDateWithKorean = dateArray.joined(separator: ". ")
-        
-        return formattedDateWithKorean
-    }
-    
-    func compareRecentDate(recendDate: String, verifyToday:Bool) {
-        let date = recendDate.split(separator: "T")[0]
-        
-
+    func compareRecentDate(recentDate: String, verifyToday: Bool) {
         if !verifyToday {
-            let dateArray = self.today.split(separator: "-")
-            let dateComponents = NSDateComponents()
-            guard let year = Int(dateArray[0]), let month = Int(dateArray[1]), let day = Int(dateArray[2]) else {
-                return
-            }
-            dateComponents.day = day
-            dateComponents.month = month
-            dateComponents.year = year
-            
-            self.year = year
-            self.month = month
-            self.day = day
-
-            guard let gregorianCalendar = NSCalendar(calendarIdentifier: .gregorian),
-                let date = gregorianCalendar.date(from: dateComponents as DateComponents) else {
-                return
-            }
-            let weekday = gregorianCalendar.component(.weekday, from: date)
-            self.dateLabel.text = "\(dateArray[0]). \(dateArray[1]). \(dateArray[2]). \(weekdayArray[weekday-1])"
-            
-            
+            self.dateLabel.text = self.currentDate?.getFormattedDateAndWeekday(with: ". ")
         } else {
-            let dateArray = date.split(separator: "-")
-            let dateComponents = NSDateComponents()
-            guard let year = Int(dateArray[0]), let month = Int(dateArray[1]), let day = Int(dateArray[2]) else {
-                return
-            }
             
-            dateComponents.day = day
-            dateComponents.month = month
-            dateComponents.year = year
+            let date = AppDate(serverDate: recentDate)
+            self.dateLabel.text = date.getFormattedDateAndWeekday(with: ". ")
             
-            self.year = year
-            self.month = month
-            self.day = day
-            
-            guard let gregorianCalendar = NSCalendar(calendarIdentifier: .gregorian),
-                let date = gregorianCalendar.date(from: dateComponents as DateComponents) else {
-                return
-            }
-            let weekday = gregorianCalendar.component(.weekday, from: date)
-            self.dateLabel.text = "\(dateArray[0]). \(dateArray[1]). \(dateArray[2]). \(weekdayArray[weekday-1])"
-            
-            modalView?.year = self.year
-            modalView?.month = self.month
-            modalView?.day = self.day
-            modalView?.verifyMood = true
-            modalView?.modalPresentationStyle = .custom
-            modalView?.transitioningDelegate = self
-            self.present(modalView!, animated: true, completion: nil)
-            
+            self.presentModalView(year: date.getYear(), month: date.getMonth(), day: date.getDay())
         }
-    }
-    
-    func checkTodayJournal(userID: String,
-                       year: String,
-                       month: String,
-                       order: String,
-                       day: Int?,
-                       emotionID: Int?,
-                       depth: Int?) {
-        DiariesService.shared.getDiaries(userId: userID,
-                                         year: year,
-                                         month: month,
-                                         order: order,
-                                         day: day,
-                                         emotionId: emotionID,
-                                         depth: depth) {
-            (networkResult) -> (Void) in
-            switch networkResult {
-
-            case .success(let data):
-                if let diary = data as? [Diary] {
-                    if diary.count > 0 {
-                        self.connectServer(userID: String(APIConstants.userId), verifyToday: true)
-                    } else {
-                        self.connectServer(userID: String(APIConstants.userId), verifyToday: false)
-                    }
-                }
-                
-            case .requestErr(let msg):
-                if let message = msg as? String {
-                    print(message)
-                }
-            case .pathErr:
-                print("pathErr")
-            case .serverErr:
-                print("serverErr")
-            case .networkFail:
-                print("networkFail")
-            }
-        }
-    }
-    
-    func connectServer(userID: String, verifyToday: Bool) {
-        DiaryRecentService.shared.getDiaryRecent(userId: userID) {
-            (networkResult) -> (Void) in
-            switch networkResult {
-
-            case .success(let data):
-                if let recentDate = data as? String {
-                    self.recentDate = recentDate
-                    self.compareRecentDate(recendDate: self.recentDate, verifyToday: verifyToday)
-                }
-                
-            case .requestErr(let msg):
-                if let message = msg as? String {
-                    print(message)
-                }
-            case .pathErr:
-                print("pathErr")
-            case .serverErr:
-                print("serverErr")
-            case .networkFail:
-                print("networkFail")
-            }
-        }
-    }
-
-    // TODO: - AppDate로 빼기
-    func weekdayEnglishToKorean(weekday: String) -> String {
-        switch weekday {
-        case "Monday":
-            return "월요일"
-        case "Tuesday":
-            return "화요일"
-        case "Wednesday":
-            return "수요일"
-        case "Thursday":
-            return "목요일"
-        case "Friday":
-            return "금요일"
-        case "Saturday":
-            return "토요일"
-        case "Sunday":
-            return "일요일"
-        default:
-            return "월요일"
-        }
-    }
-    
-    
-    @IBAction func touchCalendarButton(_ sender: Any) {
-        guard let date = dateLabel.text else {
-            return
-        }
-        let dateArray = date.components(separatedBy: ". ")
-        guard let year = Int(dateArray[0]),
-              let month = Int(dateArray[1]),
-              let day = Int(dateArray[2]) else {
-            return
-        }
-        
-        modalView?.year = year
-        modalView?.month = month
-        modalView?.day = day
-        modalView?.verifyMood = true
-        modalView?.modalPresentationStyle = .custom
-        modalView?.transitioningDelegate = self
-        self.present(modalView!, animated: true, completion: nil)
-    }
-    
-    @IBAction func loveButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.love, usage: changeUsage)
-    }
-    
-    @IBAction func happyButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.happy, usage: changeUsage)
-    }
-    
-    @IBAction func consoleButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.console, usage: changeUsage)
-    }
-    
-    @IBAction func angryButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.angry, usage: changeUsage)
-    }
-    
-    @IBAction func sadButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.sad, usage: changeUsage)
-    }
-    
-    @IBAction func boredButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.bored, usage: changeUsage)
-    }
-    
-    @IBAction func memoryButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.memory, usage: changeUsage)
-    }
-    
-    @IBAction func dailyButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.daily, usage: changeUsage)
-    }
-    
-    @objc func touchCloseButton() {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    func pushToOnboardingSentenceViewController(mood: AppEmotion, usage: Bool) {
-        guard let date = dateLabel.text else {
-            return
-        }
-        
-        guard let sentenceViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.sentenceViewController) as? SentenceViewController else { return }
-        
-        sentenceViewController.selectedMood = mood
-        sentenceViewController.date = date
-        sentenceViewController.changeUsage = self.changeUsage
-        
-        self.navigationController?.pushViewController(sentenceViewController, animated: true)
-        
     }
     
     func hideNavigationButton() {
@@ -398,7 +143,76 @@ class MoodViewController: UIViewController {
         )
     }
     
+    func presentModalView(year: Int, month: Int, day: Int) {
+        guard let modalView = self.modalView else {
+            return
+        }
+        modalView.year = year
+        modalView.month = month
+        modalView.day = day
+        modalView.verifyMood = true
+        modalView.modalPresentationStyle = .custom
+        modalView.transitioningDelegate = self
+        self.present(modalView, animated: true, completion: nil)
+    }
+    
+    func pushToOnboardingSentenceViewController(mood: AppEmotion) {
+        guard let sentenceViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.sentenceViewController) as? SentenceViewController else { return }
+        
+        sentenceViewController.selectedMood = mood
+        sentenceViewController.date = self.selectedDate?.getFormattedDateAndWeekday(with: ". ")
+        sentenceViewController.changeUsage = self.changeUsage
+        
+        self.navigationController?.pushViewController(sentenceViewController, animated: true)
+        
+    }
+    
+    @objc func touchCloseButton() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func touchCalendarButton(_ sender: Any) {
+        guard let selectedDate = self.selectedDate else {
+            return
+        }
+        self.presentModalView(year: selectedDate.getYear(), month: selectedDate.getMonth(), day: selectedDate.getDay())
+    }
+    
+    @IBAction func loveButtonTouchUp(_ sender: UIButton) {
+        pushToOnboardingSentenceViewController(mood: AppEmotion.love)
+    }
+    
+    @IBAction func happyButtonTouchUp(_ sender: UIButton) {
+        pushToOnboardingSentenceViewController(mood: AppEmotion.happy)
+    }
+    
+    @IBAction func consoleButtonTouchUp(_ sender: UIButton) {
+        pushToOnboardingSentenceViewController(mood: AppEmotion.console)
+    }
+    
+    @IBAction func angryButtonTouchUp(_ sender: UIButton) {
+        pushToOnboardingSentenceViewController(mood: AppEmotion.angry)
+    }
+    
+    @IBAction func sadButtonTouchUp(_ sender: UIButton) {
+        pushToOnboardingSentenceViewController(mood: AppEmotion.sad)
+    }
+    
+    @IBAction func boredButtonTouchUp(_ sender: UIButton) {
+        pushToOnboardingSentenceViewController(mood: AppEmotion.bored)
+    }
+    
+    @IBAction func memoryButtonTouchUp(_ sender: UIButton) {
+        pushToOnboardingSentenceViewController(mood: AppEmotion.memory)
+    }
+    
+    @IBAction func dailyButtonTouchUp(_ sender: UIButton) {
+        pushToOnboardingSentenceViewController(mood: AppEmotion.daily)
+    }
+    
 }
+
+// MARK: - UIViewControllerTransitioningDelegate
 
 extension MoodViewController: UIViewControllerTransitioningDelegate {
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
@@ -406,8 +220,100 @@ extension MoodViewController: UIViewControllerTransitioningDelegate {
     }
 }
 
-extension MoodViewController: UploadModalPassDataDelegate {
+// MARK: - UploadModalViewDelegate
+
+extension MoodViewController: UploadModalViewDelegate {
     func passData(_ date: String) {
+        self.selectedDate = AppDate(formattedDate: date, with: ". ")
         self.dateLabel.text = date
     }
+}
+
+// MARK: - API
+
+extension MoodViewController {
+    func getDiariesWithAPI(userID: String,
+                           year: String,
+                           month: String,
+                           order: String,
+                           day: Int?,
+                           emotionID: Int?,
+                           depth: Int?
+    ) {
+        DiariesService.shared.getDiaries(userId: userID,
+                                         year: year,
+                                         month: month,
+                                         order: order,
+                                         day: day,
+                                         emotionId: emotionID,
+                                         depth: depth) { (networkResult) -> () in
+            switch networkResult {
+            case .success(let data):
+                if let diary = data as? [Diary] {
+                    if diary.count > 0 {
+                        self.getDiaryRecentWithAPI(userID: String(APIConstants.userId), verifyToday: true)
+                    } else {
+                        self.getDiaryRecentWithAPI(userID: String(APIConstants.userId), verifyToday: false)
+                    }
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+    
+    func getDiaryRecentWithAPI(userID: String, verifyToday: Bool) {
+        DiaryRecentService.shared.getDiaryRecent(userId: userID) { networkResult in
+            switch networkResult {
+            case .success(let data):
+                if let recentDate = data as? String {
+                    self.compareRecentDate(recentDate: recentDate, verifyToday: verifyToday)
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+}
+
+// MARK: - Button
+
+struct MoodButton {
+    
+    let button: UIButton?
+    let cornerRadius: CGFloat = 12
+    var shadowColor: CGColor = UIColor.NavWhite.cgColor
+    var shadowOffset: CGSize = CGSize(width: 5, height: 5)
+    var shadowOpacity: Float = 0.7
+    var shadowRadius: CGFloat = 4.0
+    
+    func buttonsRoundedUp() {
+        self.button?.layer.cornerRadius = self.cornerRadius
+        self.button?.clipsToBounds = true
+    }
+    
+    func buttonsAddShadow() {
+        self.button?.layer.shadowColor = self.shadowColor
+        self.button?.layer.shadowOpacity = self.shadowOpacity
+        self.button?.layer.shadowOffset = self.shadowOffset
+        self.button?.layer.shadowRadius = self.shadowRadius
+        self.button?.layer.masksToBounds = false
+    }
+    
 }
