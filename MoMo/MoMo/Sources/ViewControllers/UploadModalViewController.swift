@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol UploadModalPassDataDelegate: class {
+protocol UploadModalViewDelegate: class {
     func passData(_ date: String)
 }
 
@@ -24,8 +24,7 @@ class UploadModalViewController: UIViewController {
     var month: Int = 0
     var day: Int = 0
     
-    //true이면 무드뷰컨에서 넘어온 것
-    var verifyMood: Bool = true
+    var verifyMood: Bool = true // true이면 무드뷰컨에서 넘어온 것
 
     var yearArray: [String] = []
     var monthArray: [String] = []
@@ -34,7 +33,7 @@ class UploadModalViewController: UIViewController {
         (1...30).map {String($0)},
         (1...29).map {String($0)}
     ]
-    var uploadModalDataDelegate: UploadModalPassDataDelegate?
+    weak var uploadModalDataDelegate: UploadModalViewDelegate?
     let weekdayArray = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"]
     var dayIndex: Int = 0
     
@@ -94,21 +93,6 @@ class UploadModalViewController: UIViewController {
         yearPickerView.dataSource = self
     }
     
-//    func calculateToday() {
-//        let date = Date()
-//        let dateFormatter = DateFormatter()
-//
-//        dateFormatter.dateFormat = "yyyy. MM. dd. EEEE"
-//        dateFormatter.locale = Locale.current
-//        let formattedDate = dateFormatter.string(from: date)
-//        let formattedDateArray = formattedDate.split(separator: ".")
-//        year = Int(String(formattedDateArray[0])) ?? 0
-//        month = Int(String(formattedDateArray[1]).trimmingCharacters(in: .whitespaces)) ?? 0
-//        day = Int(String(formattedDateArray[2]).trimmingCharacters(in: .whitespaces)) ?? 0
-//    }
-    
-    
-    
     private func coordinateDay() {
         switch self.month {
         case 1, 3, 5, 7, 8, 10, 12:
@@ -160,7 +144,7 @@ class UploadModalViewController: UIViewController {
                                          day: day,
                                          emotionId: emotionID,
                                          depth: depth) {
-            (networkResult) -> (Void) in
+            (networkResult) -> () in
             switch networkResult {
 
             case .success(let data):
@@ -189,6 +173,8 @@ class UploadModalViewController: UIViewController {
         }
     }
 }
+
+// MARK: - UIPickerViewDelegate
 
 extension UploadModalViewController: UIPickerViewDelegate {
     
@@ -222,6 +208,8 @@ extension UploadModalViewController: UIPickerViewDelegate {
         }
     }
 }
+
+// MARK: - UIPickerViewDataSource
 
 extension UploadModalViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
