@@ -17,7 +17,7 @@ class FilterCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func setFilterLabel(_ filter: String) {
+    func adjustFilterLabel(_ filter: String) {
         filterLabel.text = filter
     }
     
