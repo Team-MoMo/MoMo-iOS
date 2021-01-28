@@ -53,7 +53,7 @@ class DiaryViewController: UIViewController {
     }()
     
     lazy var rightButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(image: UIImage(named: "icSubtab"), style: .done, target: self, action: #selector(buttonPressed(sender:)))
+        let button = UIBarButtonItem(image: Constants.Design.Image.icSubtab, style: .done, target: self, action: #selector(buttonPressed(sender:)))
         button.tag = NavigationButton.rightButton.rawValue
         button.tintColor = UIColor.white
         return button
@@ -166,7 +166,17 @@ class DiaryViewController: UIViewController {
             self.addBlurEffectOnMenuView(view: menuView.menuContainerView)
             menuView.menuDelegate = self
             self.view.addSubview(menuView)
+            self.updateMenuViewConstraints(view: menuView)
         }
+    }
+    
+    func updateMenuViewConstraints(view: UIView) {
+        view.snp.makeConstraints({ (make) in
+            make.width.equalTo(self.view)
+            make.height.equalTo(self.view)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing).inset(14)
+        })
     }
     
     func attachAlertModalView() {
@@ -178,8 +188,17 @@ class DiaryViewController: UIViewController {
         if let alertModalView = self.alertModalView {
             alertModalView.alertModalDelegate = self
             self.view.insertSubview(alertModalView, aboveSubview: self.view)
-            alertModalView.setConstraints(view: alertModalView, superView: self.view)
+            self.updateAlertModalViewConstraints(view: alertModalView)
         }
+    }
+    
+    func updateAlertModalViewConstraints(view: UIView) {
+        view.snp.makeConstraints({ (make) in
+            make.width.equalTo(self.view)
+            make.height.equalTo(self.view)
+            make.centerX.equalTo(self.view)
+            make.centerY.equalTo(self.view)
+        })
     }
     
     func addBlurEffectOnBlurView(view: UIView) {
@@ -187,7 +206,7 @@ class DiaryViewController: UIViewController {
     }
     
     func addBlurEffectOnMenuView(view: UIView) {
-        self.addBlurEffectOnView(view: view, cornerRadius: 16, blurStyle: UIBlurEffect.Style.systemThinMaterialLight)
+        self.addBlurEffectOnView(view: view, cornerRadius: 16, blurStyle: UIBlurEffect.Style.light)
     }
     
     func addBlurEffectOnView(view: UIView, cornerRadius: CGFloat?, blurStyle: UIBlurEffect.Style) {
