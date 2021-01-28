@@ -36,7 +36,6 @@ class ListViewController: UIViewController {
     var month: Int = 5
     var listFilterModalView: ListFilterModalViewController? = nil
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         registerXib()
@@ -67,22 +66,20 @@ class ListViewController: UIViewController {
         widthSize = CGFloat(self.view.bounds.width * (325/414))
         secondWidthSize = CGFloat(self.view.bounds.width * (237/414))
         self.listFilterModalView = ListFilterModalViewController()
-        
         // 홈에서 받은 데이트 변수에 대입
         date = "\(year)년 \(month)월"
-        
         // 필터에서 기준으로 잡을 년과 월 저장
         standardYear = year
         standardMonth = month
     }
     
-    private func initializeWarningLabel(){
+    private func initializeWarningLabel() {
         filterWarningLabel.text = "검색된 결과가 없습니다"
         warningLabel.text = "아직 작성된 일기가 없습니다.\n새로운 문장을 만나러 가볼까요?"
     }
     
     private func assignDelegate() {
-        guard let modalView = listFilterModalView as? ListFilterModalViewController else {
+        guard let modalView = listFilterModalView else {
             return
         }
         modalView.modalPassDataDelegate = self
@@ -98,7 +95,7 @@ class ListViewController: UIViewController {
         self.listTableView.separatorStyle = .none
     }
     
-    private func initializeHiddenStatus(){
+    private func initializeHiddenStatus() {
         warningLabel.isHidden = true
         warningPlusButton.isHidden = true
         filterWarningLabel.isHidden = true
@@ -119,16 +116,14 @@ class ListViewController: UIViewController {
         self.navigationItem.rightBarButtonItems = [statButton, filterButton]
         self.navigationItem.leftBarButtonItem = backButton
     }
-    
     // MARK: - 서버 통신
-
     func getDiariesWithAPI(userID: String,
-                       year: String,
-                       month: String,
-                       order: String,
-                       day: Int?,
-                       emotionID: Int?,
-                       depth: Int?) {
+                           year: String,
+                           month: String,
+                           order: String,
+                           day: Int?,
+                           emotionID: Int?,
+                           depth: Int?) {
         DiariesService.shared.getDiaries(userId: userID,
                                          year: year,
                                          month: month,
@@ -136,7 +131,7 @@ class ListViewController: UIViewController {
                                          day: day,
                                          emotionId: emotionID,
                                          depth: depth) {
-            (networkResult) -> (Void) in
+            (networkResult) -> Void in
             switch networkResult {
 
             case .success(let data):
@@ -145,7 +140,7 @@ class ListViewController: UIViewController {
                     print(self.receivedData.count)
                     self.receivedData = diary
                     self.listTableView.reloadData()
-                    if self.pattern == false && diary.count == 0 && self.year == self.standardYear && self.month ==  self.standardMonth{
+                    if self.pattern == false && diary.count == 0 && self.year == self.standardYear && self.month ==  self.standardMonth {
                         self.filterWarningLabel.isHidden = true
                         self.warningLabel.isHidden = false
                         self.warningPlusButton.isHidden = false
@@ -153,7 +148,6 @@ class ListViewController: UIViewController {
                         self.filterWarningLabel.isHidden = false
                         self.warningLabel.isHidden = true
                         self.warningPlusButton.isHidden = true
-
                     } else {
                         self.warningLabel.isHidden = true
                         self.warningPlusButton.isHidden = true
@@ -174,6 +168,7 @@ class ListViewController: UIViewController {
             }
         }
     }
+    
     // MARK: - Selector Functions
     
     // 필터 라벨 외 부분을 터치했을 때 실행되는 함수
@@ -207,22 +202,25 @@ class ListViewController: UIViewController {
     }
     
     func presentToListFilterModalView() {
-        listFilterModalView?.selectedYear = self.year
-        listFilterModalView?.selectedMonth = self.month
-        listFilterModalView?.width = view.bounds.width
-        listFilterModalView?.height = view.bounds.height
-        listFilterModalView?.emotion = self.filteredEmotion
-        listFilterModalView?.depth = self.filteredDepth
-        listFilterModalView?.modalPresentationStyle = .custom
-        listFilterModalView?.transitioningDelegate = self
+        guard let modalView = listFilterModalView else {
+            return
+        }
+        modalView.selectedYear = self.year
+        modalView.selectedMonth = self.month
+        modalView.width = view.bounds.width
+        modalView.height = view.bounds.height
+        modalView.emotion = self.filteredEmotion
+        modalView.depth = self.filteredDepth
+        modalView.modalPresentationStyle = .custom
+        modalView.transitioningDelegate = self
         
-        self.present(listFilterModalView!, animated: true, completion:nil)
+        self.present(modalView, animated: true, completion: nil)
     }
     
     // filter x버튼 클릭시 발생하는 함수
     @objc func touchCancelButton(sender: UIButton) {
         let indexPath = IndexPath(row: 0, section: 1)
-        guard let buttonAccessibilityLabel = sender.accessibilityLabel else {
+        guard let buttonAccessibilityLabel = sender.accessibilityIdentifier else {
             return
         }
         if buttonAccessibilityLabel.contains("m") || buttonAccessibilityLabel == "심해" {
@@ -320,7 +318,6 @@ extension ListViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             
-            
             cell.setCell(diary: self.receivedData[indexPath.row])
             cell.quoteSpacing(self.receivedData[indexPath.row].sentence.contents)
             cell.journalView.round(corners: [.topLeft, .bottomLeft], cornerRadius: 20)
@@ -371,14 +368,16 @@ extension ListViewController: UICollectionViewDataSource {
         cell.filterLabel.text = filter[indexPath.row]
         // index 값을 tag에 넣어서 배열에 쉽게 접근
         cell.cancelButton.tag = indexPath.row
-        cell.cancelButton.accessibilityLabel = filter[indexPath.row]
+        cell.cancelButton.accessibilityIdentifier = filter[indexPath.row]
         cell.cancelButton.addTarget(self, action: #selector(touchCancelButton(sender:)), for: .touchUpInside)
         cell.filterTouchAreaView.tag = indexPath.row
-        cell.filterTouchAreaView.accessibilityLabel = filter[indexPath.row]
+        cell.filterTouchAreaView.accessibilityIdentifier = filter[indexPath.row]
         cell.filterTouchAreaView.addGestureRecognizer(tapRecognizer)
         return cell
     }
 }
+
+// MARK: - UIViewControllerTransitioningDelegate
 
 extension ListViewController: UIViewControllerTransitioningDelegate {
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
@@ -386,6 +385,7 @@ extension ListViewController: UIViewControllerTransitioningDelegate {
     }
 }
 
+// MARK: - ListFilterModalViewDelegate
 extension ListViewController: ListFilterModalViewDelegate {
     func sendData(year: Int, month: Int, emotion: Int?, depth: Int?, filterArray: [String], filteredStatus: Bool) {
         self.year = year
@@ -428,4 +428,3 @@ extension ListViewController: ListFilterModalViewDelegate {
         self.assignDelegate()
     }
 }
-
