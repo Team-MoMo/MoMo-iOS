@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -52,7 +53,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                <color key="backgroundColor" name="Black1"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="mQe-ci-ebL" secondAttribute="trailing" id="RMx-aX-h2x"/>
                                     <constraint firstItem="BMK-So-9Sv" firstAttribute="leading" secondItem="bs6-O4-lpE" secondAttribute="leading" id="Rb2-ij-3la"/>
@@ -142,11 +143,11 @@
         <image name="objectLoginSeaweedTopBlur" width="375" height="418"/>
         <image name="objectLoginShiningBlur" width="329" height="453"/>
         <image name="objectSeaweedBottomBlur" width="375" height="214"/>
+        <namedColor name="Black1">
+            <color red="0.12200000137090683" green="0.12200000137090683" blue="0.12200000137090683" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemIndigoColor">
-            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

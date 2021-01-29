@@ -156,6 +156,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="gXZ-9s-cei" firstAttribute="top" secondItem="6In-cK-Ism" secondAttribute="bottom" constant="16" id="0Dx-b7-xhq"/>
                     <constraint firstItem="yvB-uF-DGS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="32" id="0ZA-hL-sTH"/>
@@ -186,6 +187,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="authorLabel" destination="j85-QP-icd" id="yIM-ca-ZOF"/>
                 <outlet property="categoryLabel" destination="ey3-uJ-zJc" id="DmW-kE-QnH"/>

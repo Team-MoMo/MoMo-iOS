@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ModalPassDataDelegate: class {
+protocol ListFilterModalViewDelegate: class {
     func sendData(year: Int, month: Int, emotion: Int?, depth: Int?, filterArray: [String], filteredStatus: Bool)
 }
 
@@ -28,7 +28,7 @@ class ListFilterModalViewController: UIViewController {
     var selectedMonth: Int = 0
     var dateText: String = ""
     
-    var modalPassDataDelegate : ModalPassDataDelegate?
+    var modalPassDataDelegate : ListFilterModalViewDelegate?
     
     
     let emotionArray: [String] = ["iosFilterLoveUnselected",
