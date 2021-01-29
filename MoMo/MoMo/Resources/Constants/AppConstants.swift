@@ -24,7 +24,8 @@ struct Constants {
         static let loginStoryboard: String = "Login"
         static let diaryWriteStoryboard: String = "DiaryWrite"
         static let listStoryboard: String = "List"
-        static let findPasswordStoryboard: String = "FindPassword" 
+        static let findPasswordStoryboard: String = "FindPassword"
+        static let statisticsStoryboard: String = "StatisticsStoryboard"
         // MARK: - Nib Name Constants
         
         static let homeDayNightViewXib: String = "HomeDayNightView"
@@ -50,6 +51,7 @@ struct Constants {
         static let loginViewController: String = "LoginViewController"
         static let listViewController: String = "ListViewController"
         static let findPasswordViewController: String = "FindPasswordViewController"
+        static let statisticsViewController: String = "StatisticsViewController"
         
         // MARK: - UIView
         
