@@ -317,9 +317,9 @@ extension ListViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListTableViewCell") as? ListTableViewCell else {
                 return UITableViewCell()
             }
-            
-            cell.setCell(diary: self.receivedData[indexPath.row])
-            cell.quoteSpacing(self.receivedData[indexPath.row].sentence.contents)
+
+            cell.parseDiaryAll(diary: self.receivedData[indexPath.row])
+            cell.customQuote(self.receivedData[indexPath.row].sentence.contents)
             cell.journalView.round(corners: [.topLeft, .bottomLeft], cornerRadius: 20)
             cell.journaltext(self.receivedData[indexPath.row].contents, self.widthSize)
             cell.setLabelUnderline(self.widthSize, self.secondWidthSize)
