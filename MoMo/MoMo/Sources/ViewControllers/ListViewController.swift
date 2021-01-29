@@ -18,7 +18,7 @@ class ListViewController: UIViewController {
     
     // MARK: - Constant
     
-    let zeplinWidth: Int = 375
+    let zeplinWidth: CGFloat = 375
     
     // MARK: - Property
     
@@ -61,10 +61,8 @@ class ListViewController: UIViewController {
     // MARK: - Private Functions
     
     private func initializeProperty() {
-//        widthSize = self.view.bounds.width * CGFloat((261/zeplinWidth))
-//        secondWidthSize = self.view.bounds.width * CGFloat((237/zeplinWidth))
-        widthSize = CGFloat(self.view.bounds.width * (325/414))
-        secondWidthSize = CGFloat(self.view.bounds.width * (237/414))
+        widthSize = self.view.bounds.width * (261/zeplinWidth)
+        secondWidthSize = self.view.bounds.width * (237/zeplinWidth)
         self.listFilterModalView = ListFilterModalViewController()
         // 홈에서 받은 데이트 변수에 대입
         date = "\(year)년 \(month)월"
@@ -293,7 +291,7 @@ extension ListViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListDateTableViewCell") as? ListDateTableViewCell else {
                 return UITableViewCell()
             }
-            cell.setDate(date)
+            cell.updateDateLabel(date)
             cell.selectionStyle = .none
             return cell
         case 1:
@@ -321,8 +319,9 @@ extension ListViewController: UITableViewDataSource {
             cell.parseDiaryAll(diary: self.receivedData[indexPath.row])
             cell.customQuote(self.receivedData[indexPath.row].sentence.contents)
             cell.journalView.round(corners: [.topLeft, .bottomLeft], cornerRadius: 20)
-            cell.journaltext(self.receivedData[indexPath.row].contents, self.widthSize)
-            cell.setLabelUnderline(self.widthSize, self.secondWidthSize)
+            cell.divideJournal(self.receivedData[indexPath.row].contents, self.widthSize)
+            cell.createLabelUnderline(self.widthSize, self.secondWidthSize)
+            cell.createLabelUnderline(self.widthSize, self.secondWidthSize)
             cell.moreButton.tag = self.receivedData[indexPath.row].id
             cell.moreButton.addTarget(self, action: #selector(touchMoreButton(sender:)), for: .touchUpInside)
             cell.selectionStyle = .none

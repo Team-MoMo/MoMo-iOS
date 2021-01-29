@@ -132,8 +132,8 @@ class ListTableViewCell: UITableViewCell {
             guard let firstString = self.journalLabel1.text, let secondString = self.journalLabel2.text else {
                 return
             }
-            let firstLabelSize: CGSize = firstString.size(withAttributes: [.font: UIFont.systemFont(ofSize: 13, weight: .regular)])
-            let secondLabelSize: CGSize = secondString.size(withAttributes: [.font: UIFont.systemFont(ofSize: 13, weight: .regular)])
+            let firstLabelSize: CGSize = firstString.size(withAttributes: [.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
+            let secondLabelSize: CGSize = secondString.size(withAttributes: [.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
 
             let topBorder = CALayer()
             let bottomBorder = CALayer()
@@ -144,7 +144,7 @@ class ListTableViewCell: UITableViewCell {
             if secondLabelSize.width < size2 {
                 bottomBorder.frame = CGRect(x: 0, y: self.journalLabel2.frame.height - 1, width: secondLabelSize.width, height: 1)
             } else {
-                bottomBorder.frame = CGRect(x: 0, y: self.journalLabel2.frame.height - 1, width: size2, height: 1)
+                bottomBorder.frame = CGRect(x: 0, y: self.journalLabel2.frame.height - 1, width: size2-30, height: 1)
             }
             bottomBorder.backgroundColor = UIColor.LineLightGray.cgColor
 
