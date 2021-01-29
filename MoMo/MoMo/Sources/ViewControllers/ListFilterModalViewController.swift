@@ -398,11 +398,11 @@ extension ListFilterModalViewController: UIPickerViewDelegate {
         return self.view.frame.width * 70/375
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         if pickerView == self.yearPickerView {
-            return year[row]
+            return NSAttributedString(string: year[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         }
-        return month[row]
+        return NSAttributedString(string: month[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

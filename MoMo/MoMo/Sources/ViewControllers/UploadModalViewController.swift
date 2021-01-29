@@ -192,13 +192,13 @@ class UploadModalViewController: UIViewController {
 
 extension UploadModalViewController: UIPickerViewDelegate {
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         if pickerView == self.yearPickerView {
-            return yearArray[row]
+            return NSAttributedString(string: yearArray[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         } else if pickerView == self.monthPickerView {
-            return monthArray[row]
+            return NSAttributedString(string: monthArray[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         } else {
-            return dayArray[dayIndex][row]
+            return NSAttributedString(string: dayArray[dayIndex][row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         }
     }
     
