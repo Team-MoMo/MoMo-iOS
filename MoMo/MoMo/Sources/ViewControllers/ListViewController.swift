@@ -24,8 +24,8 @@ class ListViewController: UIViewController {
     
     var filteredEmotion: Int?
     var filteredDepth: Int?
-    var widthSize: CGFloat = 0.0
-    var secondWidthSize: CGFloat = 0.0
+    var journalLabel1WidthSize: CGFloat = 0.0
+    var journalLabel2WidthSize: CGFloat = 0.0
     var receivedData: [Diary] = []
     var date = ""
     var filter: [String] = []
@@ -61,8 +61,8 @@ class ListViewController: UIViewController {
     // MARK: - Private Functions
     
     private func initializeProperty() {
-        widthSize = self.view.bounds.width * (261/zeplinWidth)
-        secondWidthSize = self.view.bounds.width * (237/zeplinWidth)
+        journalLabel1WidthSize = self.view.bounds.width * (261/zeplinWidth)
+        journalLabel2WidthSize = self.view.bounds.width * (237/zeplinWidth)
         self.listFilterModalView = ListFilterModalViewController()
         // 홈에서 받은 데이트 변수에 대입
         date = "\(year)년 \(month)월"
@@ -134,8 +134,6 @@ class ListViewController: UIViewController {
 
             case .success(let data):
                 if let diary = data as? [Diary] {
-                    print(self.pattern)
-                    print(self.receivedData.count)
                     self.receivedData = diary
                     self.listTableView.reloadData()
                     if self.pattern == false && diary.count == 0 && self.year == self.standardYear && self.month ==  self.standardMonth {
@@ -155,7 +153,7 @@ class ListViewController: UIViewController {
                 
             case .requestErr(let msg):
                 if let message = msg as? String {
-                    print(message)
+                    (message)
                 }
             case .pathErr:
                 print("pathErr")
@@ -319,9 +317,8 @@ extension ListViewController: UITableViewDataSource {
             cell.parseDiaryAll(diary: self.receivedData[indexPath.row])
             cell.customQuote(self.receivedData[indexPath.row].sentence.contents)
             cell.journalView.round(corners: [.topLeft, .bottomLeft], cornerRadius: 20)
-            cell.divideJournal(self.receivedData[indexPath.row].contents, self.widthSize)
-            cell.createLabelUnderline(self.widthSize, self.secondWidthSize)
-            cell.createLabelUnderline(self.widthSize, self.secondWidthSize)
+            cell.divideJournal(self.receivedData[indexPath.row].contents, self.journalLabel1WidthSize)
+            cell.createLabelUnderline( self.journalLabel2WidthSize)
             cell.moreButton.tag = self.receivedData[indexPath.row].id
             cell.moreButton.addTarget(self, action: #selector(touchMoreButton(sender:)), for: .touchUpInside)
             cell.selectionStyle = .none

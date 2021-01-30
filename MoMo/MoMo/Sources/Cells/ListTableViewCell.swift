@@ -127,7 +127,7 @@ class ListTableViewCell: UITableViewCell {
     }
     
     // 일기 라벨에 밑줄 처리
-    func createLabelUnderline(_ size1: CGFloat, _ size2: CGFloat) {
+    func createLabelUnderline(_ size2: CGFloat) {
         DispatchQueue.main.async {
             guard let firstString = self.journalLabel1.text, let secondString = self.journalLabel2.text else {
                 return
