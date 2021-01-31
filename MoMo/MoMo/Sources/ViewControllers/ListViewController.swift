@@ -38,10 +38,12 @@ class ListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        listTableView.delegate = self
         registerXib()
         initializeProperty()
         initializeTableView()
         assignDataSource()
+        updateDelegate()
         assignDelegate()
         updateNavigationBarButton()
         initializeWarningLabel()
@@ -72,15 +74,19 @@ class ListViewController: UIViewController {
     }
     
     private func initializeWarningLabel() {
-        filterWarningLabel.text = "검색된 결과가 없습니다"
-        warningLabel.text = "아직 작성된 일기가 없습니다.\n새로운 문장을 만나러 가볼까요?"
+        filterWarningLabel.attributedText = "검색된 결과가 없습니다".wordSpacing(-0.6)
+        warningLabel.attributedText = "아직 작성된 일기가 없습니다.\n새로운 문장을 만나러 가볼까요?".wordSpacing(-0.6)
     }
     
     private func assignDelegate() {
+        listTableView.delegate = self
+    }
+    
+    private func updateDelegate() {
         guard let modalView = listFilterModalView else {
             return
         }
-        modalView.modalPassDataDelegate = self
+        modalView.listFilterModalDelegate = self
     }
     
     private func assignDataSource() {
@@ -113,6 +119,23 @@ class ListViewController: UIViewController {
         }
         self.navigationItem.rightBarButtonItems = [statButton, filterButton]
         self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.title = ""
+    }
+    
+    private func showWarningLabelAndButton() {
+        if self.pattern == false && receivedData.count == 0 && self.year == self.standardYear && self.month ==  self.standardMonth {
+            self.filterWarningLabel.isHidden = true
+            self.warningLabel.isHidden = false
+            self.warningPlusButton.isHidden = false
+        } else if self.pattern == true && receivedData.count == 0 {
+            self.filterWarningLabel.isHidden = false
+            self.warningLabel.isHidden = true
+            self.warningPlusButton.isHidden = true
+        } else {
+            self.warningLabel.isHidden = true
+            self.warningPlusButton.isHidden = true
+            self.filterWarningLabel.isHidden = true
+        }
     }
     // MARK: - 서버 통신
     func getDiariesWithAPI(userID: String,
@@ -136,19 +159,7 @@ class ListViewController: UIViewController {
                 if let diary = data as? [Diary] {
                     self.receivedData = diary
                     self.listTableView.reloadData()
-                    if self.pattern == false && diary.count == 0 && self.year == self.standardYear && self.month ==  self.standardMonth {
-                        self.filterWarningLabel.isHidden = true
-                        self.warningLabel.isHidden = false
-                        self.warningPlusButton.isHidden = false
-                    } else if self.pattern == true && diary.count == 0 {
-                        self.filterWarningLabel.isHidden = false
-                        self.warningLabel.isHidden = true
-                        self.warningPlusButton.isHidden = true
-                    } else {
-                        self.warningLabel.isHidden = true
-                        self.warningPlusButton.isHidden = true
-                        self.filterWarningLabel.isHidden = true
-                    }
+                    self.showWarningLabelAndButton()
                 }
                 
             case .requestErr(let msg):
@@ -276,6 +287,18 @@ class ListViewController: UIViewController {
     
 }
 
+// MARK: - TableViewDelegate
+extension ListViewController: UITableViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(self.listTableView.contentOffset.y)
+        if self.listTableView.contentOffset.y > 40 {
+            self.navigationItem.title = date
+        } else {
+            self.navigationItem.title = ""
+        }
+    }
+}
+
 // MARK: - TableViewDataSource
 
 extension ListViewController: UITableViewDataSource {
@@ -343,7 +366,7 @@ extension ListViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return self.view.frame.width * 8/CGFloat(zeplinWidth)
+        return 8
     }
 }
 
@@ -387,7 +410,10 @@ extension ListViewController: ListFilterModalViewDelegate {
         self.year = year
         self.month = month
         self.filter = filterArray
-        self.pattern = filterArray.count == 0 ? false : true
+        self.date = "\(year)년 \(month)월"
+        if filterArray.count > 0 || self.year != standardYear || self.month != standardMonth {
+            self.pattern = true
+        }
         if year == standardYear && month == standardMonth && filterArray.count == 0 {
             updateNavigationBarButton()
             getDiariesWithAPI(userID: String(APIConstants.userId),
@@ -421,6 +447,6 @@ extension ListViewController: ListFilterModalViewDelegate {
             cell.filterCollectionView.reloadData()
         }
         self.listFilterModalView = ListFilterModalViewController()
-        self.assignDelegate()
+        self.updateDelegate()
     }
 }
