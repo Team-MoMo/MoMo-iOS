@@ -54,7 +54,7 @@ class MoodViewController: UIViewController {
     var date: String?
     let defaultInfo: String = "먼저 오늘의\n감정을 선택해 주세요"
     //false == upload모드
-    var changeUsage: Bool = false
+    var changeToOnboard: Bool = false
     var listNoDiary: Bool = false
     var modalView: UploadModalViewController? = nil
     var recentDate: String = ""
@@ -316,35 +316,35 @@ class MoodViewController: UIViewController {
     }
     
     @IBAction func loveButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.love, usage: changeUsage)
+        pushToOnboardingSentenceViewController(mood: AppEmotion.love, usage: changeToOnboard)
     }
     
     @IBAction func happyButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.happy, usage: changeUsage)
+        pushToOnboardingSentenceViewController(mood: AppEmotion.happy, usage: changeToOnboard)
     }
     
     @IBAction func consoleButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.console, usage: changeUsage)
+        pushToOnboardingSentenceViewController(mood: AppEmotion.console, usage: changeToOnboard)
     }
     
     @IBAction func angryButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.angry, usage: changeUsage)
+        pushToOnboardingSentenceViewController(mood: AppEmotion.angry, usage: changeToOnboard)
     }
     
     @IBAction func sadButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.sad, usage: changeUsage)
+        pushToOnboardingSentenceViewController(mood: AppEmotion.sad, usage: changeToOnboard)
     }
     
     @IBAction func boredButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.bored, usage: changeUsage)
+        pushToOnboardingSentenceViewController(mood: AppEmotion.bored, usage: changeToOnboard)
     }
     
     @IBAction func memoryButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.memory, usage: changeUsage)
+        pushToOnboardingSentenceViewController(mood: AppEmotion.memory, usage: changeToOnboard)
     }
     
     @IBAction func dailyButtonTouchUp(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.daily, usage: changeUsage)
+        pushToOnboardingSentenceViewController(mood: AppEmotion.daily, usage: changeToOnboard)
     }
     
     @objc func touchCloseButton() {
@@ -360,14 +360,14 @@ class MoodViewController: UIViewController {
         
         sentenceViewController.selectedMood = mood
         sentenceViewController.date = date
-        sentenceViewController.changeUsage = self.changeUsage
+        sentenceViewController.changeUsage = self.changeToOnboard
         
         self.navigationController?.pushViewController(sentenceViewController, animated: true)
         
     }
     
     func hideNavigationButton() {
-        if !self.changeUsage {
+        if !self.changeToOnboard {
             let rightButton = UIBarButtonItem(image: Constants.Design.Image.btnCloseBlack, style: .plain, target: self, action: #selector(touchCloseButton))
             self.navigationItem.rightBarButtonItems = [rightButton]
             self.navigationItem.hidesBackButton = true
@@ -375,7 +375,7 @@ class MoodViewController: UIViewController {
     }
     
     func hideCalendarButton() {
-        if self.changeUsage {
+        if self.changeToOnboard {
             self.calendarButton.isHidden = true
         }
     }

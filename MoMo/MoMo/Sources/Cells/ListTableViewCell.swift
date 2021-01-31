@@ -127,13 +127,13 @@ class ListTableViewCell: UITableViewCell {
     }
     
     // 일기 라벨에 밑줄 처리
-    func createLabelUnderline(_ size1: CGFloat, _ size2: CGFloat) {
+    func createLabelUnderline(_ secondJournalLabelSize: CGFloat) {
         DispatchQueue.main.async {
             guard let firstString = self.journalLabel1.text, let secondString = self.journalLabel2.text else {
                 return
             }
-            let firstLabelSize: CGSize = firstString.size(withAttributes: [.font: UIFont.systemFont(ofSize: 13, weight: .regular)])
-            let secondLabelSize: CGSize = secondString.size(withAttributes: [.font: UIFont.systemFont(ofSize: 13, weight: .regular)])
+            let firstLabelSize: CGSize = firstString.size(withAttributes: [.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
+            let secondLabelSize: CGSize = secondString.size(withAttributes: [.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
 
             let topBorder = CALayer()
             let bottomBorder = CALayer()
@@ -141,10 +141,10 @@ class ListTableViewCell: UITableViewCell {
             topBorder.frame = CGRect(x: 0, y: Int(self.journalLabel1.frame.height) - 1, width: Int(firstLabelSize.width), height: 1)
             topBorder.backgroundColor = UIColor.LineLightGray.cgColor
             
-            if secondLabelSize.width < size2 {
+            if secondLabelSize.width < secondJournalLabelSize {
                 bottomBorder.frame = CGRect(x: 0, y: self.journalLabel2.frame.height - 1, width: secondLabelSize.width, height: 1)
             } else {
-                bottomBorder.frame = CGRect(x: 0, y: self.journalLabel2.frame.height - 1, width: size2, height: 1)
+                bottomBorder.frame = CGRect(x: 0, y: self.journalLabel2.frame.height - 1, width: secondJournalLabelSize-30, height: 1)
             }
             bottomBorder.backgroundColor = UIColor.LineLightGray.cgColor
 

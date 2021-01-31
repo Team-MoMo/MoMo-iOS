@@ -13,13 +13,18 @@ protocol ListFilterModalViewDelegate: class {
 
 class ListFilterModalViewController: UIViewController {
     
+    // MARK: - Constants
+    
+    let zeplinWidth: CGFloat = 375
+    let zeplinHeight: CGFloat = 812
+    
     // MARK: - Properties
     
     var width: CGFloat = 0.0
     var height: CGFloat = 0.0
     var verify: Bool = false
-    var emotion: Int? = nil
-    var depth: Int? = nil
+    var emotion: Int?
+    var depth: Int?
     var hasSetPointOrigin = false
     var pointOrigin: CGPoint?
     var year: [String] = []
@@ -28,8 +33,7 @@ class ListFilterModalViewController: UIViewController {
     var selectedMonth: Int = 0
     var dateText: String = ""
     
-    var modalPassDataDelegate : ListFilterModalViewDelegate?
-    
+    weak var listFilterModalDelegate: ListFilterModalViewDelegate?
     
     let emotionArray: [String] = ["iosFilterLoveUnselected",
                                   "iosFilterHappyUnselected",
@@ -51,7 +55,7 @@ class ListFilterModalViewController: UIViewController {
                                           "iosFilterDailySelected"
      ]
     
-    let koreanEmotionArray: [String] = ["사랑","행복","위로", "화남", "슬픔", "우울", "추억", "일상"]
+    let koreanEmotionArray: [String] = ["사랑", "행복", "위로", "화남", "슬픔", "우울", "추억", "일상"]
     
     let depthArray: [String] = ["2m", "30m", "100m", "300m", "700m", "1005m", "심해"]
     
@@ -92,28 +96,28 @@ class ListFilterModalViewController: UIViewController {
         view.layer.cornerRadius = 15
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         registerXib()
-        setConstraint()
-        setDelegate()
-        setDatasource()
-        setButton()
-        self.setLayer(Int(self.height * (233/812)-1))
-        self.setLayer(0)
-        self.addData()
+        initailizeConstraint()
+        assignDelegate()
+        assignDatasource()
+        initializeButton()
+        initializeLayer(Int(self.height * (233/zeplinHeight)-1))
+        initializeLayer(0)
+        self.initializeDateData()
         self.datePickerStackView.isHidden = true
-        setPickerInitialSetting()
-        setDate()
+        initializePickerView()
+        updateDate()
     }
     
-    private func setPickerInitialSetting() {
+    private func initializePickerView() {
         self.yearPickerView.selectRow(selectedYear - 1980, inComponent: 0, animated: true)
         self.monthPickerView.selectRow(selectedMonth-1, inComponent: 0, animated: true)
     }
     
-    func setLayer(_ ySize: Int) {
+    func initializeLayer(_ ySize: Int) {
         let layer = CALayer()
         layer.frame = CGRect(x: 0,
                              y: ySize,
-                             width: Int(width * 335/375),
+                             width: Int(width * 335/zeplinWidth),
                              height: 1)
         layer.backgroundColor = UIColor.LineLightGray.cgColor
         emotionView.layer.addSublayer(layer)
@@ -141,45 +145,45 @@ class ListFilterModalViewController: UIViewController {
         depthCollectionView.register(UINib(nibName: "DepthCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "DepthCollectionViewCell")
     }
     
-    private func setConstraint() {
-        dateViewTop.constant = height * (39/812)
-        emotionLabelTop.constant = height * (20/812)
-        emotionLabelBottom.constant = height * (16/812)
-        emotionViewHeight.constant =  height * (233/812)
-        depthViewHeight.constant = height * (154/812)
-        depthCollectionViewBottom.constant = height * (23/812)
-        depthLabelTop.constant = height * (20/812)
-        depthLabelBottom.constant = height * (16/812)
-        depthCollectionViewTrailing.constant = width * (21/375)
+    private func initailizeConstraint() {
+        dateViewTop.constant = height * (39/zeplinHeight)
+        emotionLabelTop.constant = height * (20/zeplinHeight)
+        emotionLabelBottom.constant = height * (16/zeplinHeight)
+        emotionViewHeight.constant =  height * (233/zeplinHeight)
+        depthViewHeight.constant = height * (154/zeplinHeight)
+        depthCollectionViewBottom.constant = height * (23/zeplinHeight)
+        depthLabelTop.constant = height * (20/zeplinHeight)
+        depthLabelBottom.constant = height * (16/zeplinHeight)
+        depthCollectionViewTrailing.constant = width * (21/zeplinHeight)
     }
     
-    private func setDate() {
+    private func updateDate() {
         dateText = "\(selectedYear)년 \(selectedMonth)월"
         dateLabel.text = dateText
     }
     
-    private func setDelegate() {
+    private func assignDelegate() {
         emotionCollectionView.delegate = self
         depthCollectionView.delegate = self
         monthPickerView.delegate = self
         yearPickerView.delegate = self
     }
     
-    private func setDatasource() {
+    private func assignDatasource() {
         yearPickerView.dataSource = self
         monthPickerView.dataSource = self
         depthCollectionView.dataSource = self
         emotionCollectionView.dataSource = self
     }
     
-    private func setButton() {
-        applyButton.contentEdgeInsets = UIEdgeInsets(top: height * (8/589), left: width * (76/375), bottom: height * (8/589), right: width * (76/375))
+    private func initializeButton() {
+        applyButton.contentEdgeInsets = UIEdgeInsets(top: height * (8/589), left: width * (76/zeplinWidth), bottom: height * (8/589), right: width * (76/zeplinWidth))
         applyButton.layer.cornerRadius = 20
         applyButton.setTitleColor(UIColor.white, for: .normal)
         applyButton.backgroundColor = .BlueModalAble
     }
     
-    func addData() {
+    func initializeDateData() {
         for num in 1980...2021 {
             year.append(String(num))
         }
@@ -188,6 +192,7 @@ class ListFilterModalViewController: UIViewController {
         }
     }
     
+    // dismiss할 때 초기화를 위해 만든 함수
     func checkDismissModal() {
         if verify == true {
             self.moreButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 100.0)
@@ -202,7 +207,11 @@ class ListFilterModalViewController: UIViewController {
             return
         }
         
-        view.frame.origin = CGPoint(x: 0, y: self.pointOrigin!.y + translation.y)
+        guard let origin = pointOrigin else {
+            return
+        }
+        
+        view.frame.origin = CGPoint(x: 0, y: origin.y + translation.y)
         
         if sender.state == .ended {
             let dragVelocity = sender.velocity(in: view)
@@ -211,7 +220,7 @@ class ListFilterModalViewController: UIViewController {
                 self.presentingViewController?.dismiss(animated: true, completion: nil)
             } else {
                 UIView.animate(withDuration: 0.3) {
-                    self.view.frame.origin = self.pointOrigin!
+                    self.view.frame.origin = origin
                 }
             }
         }
@@ -262,7 +271,7 @@ class ListFilterModalViewController: UIViewController {
             tempFilterArray.append(depthArray[depth!])
         }
         
-        modalPassDataDelegate?.sendData(year: selectedYear,
+        listFilterModalDelegate?.sendData(year: selectedYear,
                                         month: selectedMonth,
                                         emotion: emotion,
                                         depth: depth,
@@ -273,7 +282,6 @@ class ListFilterModalViewController: UIViewController {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }
-
 
 extension ListFilterModalViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -289,7 +297,7 @@ extension ListFilterModalViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmotionCollectionViewCell", for: indexPath) as? EmotionCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.setImage(emotionArray[indexPath.row])
+            cell.updateImage(emotionArray[indexPath.row])
             cell.tag = indexPath.row+1
         
             return cell
@@ -299,7 +307,7 @@ extension ListFilterModalViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.setLabel(depthArray[indexPath.row])
+        cell.initializeLabel(depthArray[indexPath.row])
         cell.backView.layer.borderColor = UIColor.Black6.cgColor
         cell.backView.layer.borderWidth = 1
         cell.backView.layer.cornerRadius = cell.layer.frame.height * 0.5
@@ -314,27 +322,27 @@ extension ListFilterModalViewController: UICollectionViewDelegateFlowLayout {
         
         if collectionView == self.emotionCollectionView {
             // 늘어나는 너비와 높이에 맞게 만들기 위해 가중치를 둬서 구함
-            return CGSize(width: (width*(20/375)) + (height*(50/812)), height: (width*(20/375)) + (height*(50/812)))
+            return CGSize(width: (width*(20/zeplinWidth)) + (height*(50/zeplinHeight)), height: (width*(20/zeplinWidth)) + (height*(50/zeplinHeight)))
         }
         
         let stringWidth = depthArray[indexPath.row].size(withAttributes: [.font: UIFont.systemFont(ofSize: 16, weight: .semibold)])
-        return CGSize(width: stringWidth.width + pow(width * 6 / 375, 2), height: height * (33/812))
+        return CGSize(width: stringWidth.width + pow(width * 6 / zeplinWidth, 2), height: height * (33/zeplinHeight))
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
         if collectionView == self.emotionCollectionView {
-            return height * (8/375)
+            return height * (8/zeplinWidth)
         }
-        return height * (4/375)
+        return height * (4/zeplinWidth)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
         if collectionView == self.emotionCollectionView {
-            return width * (7.5/375)
+            return width * (7.5/zeplinWidth)
         }
-        return width * (5/375)
+        return width * (5/zeplinWidth)
     }
     
     // 셀 하나를 선택했을 때
@@ -345,10 +353,10 @@ extension ListFilterModalViewController: UICollectionViewDelegateFlowLayout {
                 return
             }
             if emotion == indexPath.row+1 {
-                cell.setImage(emotionArray[indexPath.row])
+                cell.updateImage(emotionArray[indexPath.row])
                 emotion = nil
             } else {
-                cell.setImage(selectedEmotionArray[indexPath.row])
+                cell.updateImage(selectedEmotionArray[indexPath.row])
                 emotion = indexPath.row+1
             }
         } else {
@@ -376,7 +384,7 @@ extension ListFilterModalViewController: UICollectionViewDelegateFlowLayout {
             guard let cell = collectionView.cellForItem(at: indexPath) as? EmotionCollectionViewCell else {
                 return
             }
-            cell.setImage(emotionArray[indexPath.row])
+            cell.updateImage(emotionArray[indexPath.row])
         } else {
             guard let cell = collectionView.cellForItem(at: indexPath) as? DepthCollectionViewCell else {
                 return
@@ -391,11 +399,11 @@ extension ListFilterModalViewController: UICollectionViewDelegateFlowLayout {
 extension ListFilterModalViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return self.view.frame.height * 40/812
+        return self.view.frame.height * 40/zeplinHeight
     }
     
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        return self.view.frame.width * 70/375
+        return self.view.frame.width * 70/zeplinWidth
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
@@ -407,11 +415,17 @@ extension ListFilterModalViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == self.yearPickerView {
-            selectedYear = Int(year[row])!
+            guard let year = Int(year[row]) else {
+                return
+            }
+            selectedYear = year
         } else {
-            selectedMonth = Int(month[row])!
+            guard let month = Int(year[row]) else {
+                return
+            }
+            selectedMonth = month
         }
-        setDate()
+        updateDate()
     }
 }
 
