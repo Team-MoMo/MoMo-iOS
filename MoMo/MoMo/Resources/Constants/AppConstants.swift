@@ -52,6 +52,8 @@ struct Constants {
         static let listViewController: String = "ListViewController"
         static let findPasswordViewController: String = "FindPasswordViewController"
         static let statisticsViewController: String = "StatisticsViewController"
+        static let depthStatViewController: String = "DepthStatViewController"
+        static let moodStatViewController: String = "MoodStatViewController"
         
         // MARK: - UIView
         
