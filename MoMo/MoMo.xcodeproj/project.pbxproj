@@ -59,6 +59,7 @@
 		1CAD05B125AC3DC4007ECA40 /* DeepSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD05B025AC3DC4007ECA40 /* DeepSliderView.swift */; };
 		1CAD05B425AC3DEF007ECA40 /* DeepSliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CAD05B325AC3DEF007ECA40 /* DeepSliderView.xib */; };
 		1CAD05BA25AC59C1007ECA40 /* UISlider+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD05B925AC59C1007ECA40 /* UISlider+Extension.swift */; };
+		1CD8F82F25C1EEA5003F57D1 /* AppDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD8F82E25C1EEA5003F57D1 /* AppDate.swift */; };
 		1CEF46BF25A6DA7600AF3D81 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46BE25A6DA7600AF3D81 /* OnboardingViewController.swift */; };
 		1CEF46C225A6DAA000AF3D81 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CEF46C125A6DAA000AF3D81 /* Onboarding.storyboard */; };
 		1CEF46C525A6E09100AF3D81 /* MoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46C425A6E09100AF3D81 /* MoodViewController.swift */; };
@@ -162,6 +163,7 @@
 		1CAD05B025AC3DC4007ECA40 /* DeepSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepSliderView.swift; sourceTree = "<group>"; };
 		1CAD05B325AC3DEF007ECA40 /* DeepSliderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeepSliderView.xib; sourceTree = "<group>"; };
 		1CAD05B925AC59C1007ECA40 /* UISlider+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISlider+Extension.swift"; sourceTree = "<group>"; };
+		1CD8F82E25C1EEA5003F57D1 /* AppDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDate.swift; sourceTree = "<group>"; };
 		1CEF46BE25A6DA7600AF3D81 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		1CEF46C125A6DAA000AF3D81 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		1CEF46C425A6E09100AF3D81 /* MoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewController.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				562C645325C1AED800AA9AB6 /* AppEmotion.swift */,
 				562C645825C1AFAD00AA9AB6 /* AppDepth.swift */,
 				562C645B25C1B14F00AA9AB6 /* AppSentence.swift */,
+				1CD8F82E25C1EEA5003F57D1 /* AppDate.swift */,
 			);
 			path = AppModels;
 			sourceTree = "<group>";
@@ -672,6 +675,7 @@
 				563B049625AE0E6800DA74C5 /* Diary.swift in Sources */,
 				10DDA34225AF09A900620C41 /* EmotionCollectionViewCell.swift in Sources */,
 				1CAD05A525AACB36007ECA40 /* DeepViewController.swift in Sources */,
+				1CD8F82F25C1EEA5003F57D1 /* AppDate.swift in Sources */,
 				562C645F25C1B16000AA9AB6 /* AppDiary.swift in Sources */,
 				562C645C25C1B14F00AA9AB6 /* AppSentence.swift in Sources */,
 				563B034725A8973100DA74C5 /* HomeViewController.swift in Sources */,

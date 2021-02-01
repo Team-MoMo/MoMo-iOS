@@ -366,6 +366,7 @@ extension DiaryViewController: AlertModalDelegate {
     func leftButtonTouchUp(button: UIButton) {
         self.alertModalView?.removeFromSuperview()
         self.menuView?.removeFromSuperview()
+        self.menuToggleFlag = false
     }
     
     func rightButtonTouchUp(button: UIButton) {
@@ -385,7 +386,7 @@ extension DiaryViewController: UIViewControllerTransitioningDelegate {
 
 // MARK: - UploadModalViewControllerDelegate
 
-extension DiaryViewController: UploadModalPassDataDelegate {
+extension DiaryViewController: UploadModalViewDelegate {
     func passData(_ date: String) {
         let dateArray = date.components(separatedBy: ". ")
         self.diaryInfo?.date = date
@@ -395,6 +396,7 @@ extension DiaryViewController: UploadModalPassDataDelegate {
         self.diaryInfo?.date = date
         
         self.menuView?.removeFromSuperview()
+        self.menuToggleFlag = false
         self.updateValues(diaryInfo: self.diaryInfo)
         self.putDiaryWithAPI(newDiary: self.diaryInfo!, completion: {
             self.getDiaryWithAPI(completion: self.updateValues(diaryInfo:))
@@ -407,6 +409,7 @@ extension DiaryViewController: UploadModalPassDataDelegate {
 extension DiaryViewController: DiaryWriteViewControllerDelegate {
     func popDiaryWirteViewController(diaryInfo: AppDiary) {
         self.menuView?.removeFromSuperview()
+        self.menuToggleFlag = false
         self.updateValues(diaryInfo: diaryInfo)
         self.putDiaryWithAPI(newDiary: diaryInfo, completion: {
             self.getDiaryWithAPI(completion: self.updateValues(diaryInfo:))
@@ -425,6 +428,7 @@ extension DiaryViewController: DeepViewControllerDelegate {
         self.setBackgroundColorByDepth(depth: selectedDepth)
         
         self.menuView?.removeFromSuperview()
+        self.menuToggleFlag = false
         self.updateValues(diaryInfo: self.diaryInfo)
         self.putDiaryWithAPI(newDiary: self.diaryInfo!, completion: {
             self.getDiaryWithAPI(completion: self.updateValues(diaryInfo:))
@@ -486,7 +490,6 @@ extension DiaryViewController {
         ) { (result) in
             switch(result) {
             case .success(let data):
-                print("다이어리 수정성공")
                 completion()
             case .requestErr(let errorMessage):
                 print(errorMessage)
