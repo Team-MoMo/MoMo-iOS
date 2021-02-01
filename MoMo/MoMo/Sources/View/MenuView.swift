@@ -38,15 +38,19 @@ class MenuView: UIView {
         
         return menuView
     }
+    
     @IBAction func dateMenuButtonTouchUp(_ sender: UIButton) {
         self.menuDelegate?.dateMenuButtonTouchUp(sender: sender)
     }
+    
     @IBAction func depthMenuButtonTouchUp(_ sender: UIButton) {
         self.menuDelegate?.depthMenuButtonTouchUp(sender: sender)
     }
+    
     @IBAction func diaryMenuButtonTouchUp(_ sender: UIButton) {
         self.menuDelegate?.diaryMenuButtonTouchUp(sender: sender)
     }
+    
     @IBAction func deleteMenubuttonTouchUp(_ sender: UIButton) {
         self.menuDelegate?.deleteMenubuttonTouchUp(sender: sender)
     }

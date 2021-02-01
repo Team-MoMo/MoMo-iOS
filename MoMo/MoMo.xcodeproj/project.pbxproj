@@ -415,10 +415,10 @@
 				1CEF46C125A6DAA000AF3D81 /* Onboarding.storyboard */,
 				563B034225A8970E00DA74C5 /* Home.storyboard */,
 				1C42357525AE26D2008FB838 /* Splash.storyboard */,
-				1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */,
 				563B040125AD5F1800DA74C5 /* Join.storyboard */,
 				563B03FA25ACCDF700DA74C5 /* EmailLogin.storyboard */,
 				563B03DE25ACB59800DA74C5 /* Login.storyboard */,
+				1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */,
 				104E685D25AAF8410019B29E /* DiaryWrite.storyboard */,
 				563B047325ADF46200DA74C5 /* FindPassword.storyboard */,
 			);
