@@ -41,7 +41,7 @@ class SentenceViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var buttons: [Button] = []
+    private var buttons: [MoodButton] = []
     var selectedMood: AppEmotion?
     var date: String?
     let defaultInfo: String = "감정과 어울리는 문장을\n매일 3개씩 소개해드릴게요"
@@ -68,9 +68,9 @@ class SentenceViewController: UIViewController {
         self.navigationItem.hidesBackButton = true
 
         self.buttons = [
-            Button(button: firstButton, shadowOffset: shadowOffsetButton),
-            Button(button: secondButton, shadowOffset: shadowOffsetButton),
-            Button(button: thirdButton, shadowOffset: shadowOffsetButton)
+            MoodButton(button: firstButton, shadowOffset: shadowOffsetButton),
+            MoodButton(button: secondButton, shadowOffset: shadowOffsetButton),
+            MoodButton(button: thirdButton, shadowOffset: shadowOffsetButton)
         ]
         
         for button in buttons {

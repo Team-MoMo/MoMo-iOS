@@ -16,7 +16,7 @@ class EmotionCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func setImage(_ name: String) {
+    func updateImage(_ name: String) {
         self.emotionImage.image = UIImage(named: name)
     }
 

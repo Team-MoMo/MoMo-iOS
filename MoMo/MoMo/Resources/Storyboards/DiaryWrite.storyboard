@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -73,14 +72,14 @@
                                                     <constraint firstAttribute="height" constant="1" id="iLY-dy-NDh"/>
                                                 </constraints>
                                             </view>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="CjR-iA-mcL">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="ryhtthererh" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="CjR-iA-mcL">
                                                 <rect key="frame" x="24" y="248" width="366" height="33"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="textColor" name="Black3List"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="EVO-l0-N4k" firstAttribute="top" secondItem="bxo-SG-ApH" secondAttribute="top" constant="70" id="BYn-Jw-hzr"/>
@@ -165,7 +164,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="egk-AJ-HZi"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="bxo-SG-ApH" firstAttribute="width" secondItem="evU-g6-yPA" secondAttribute="width" id="0Ae-E6-Tdd"/>
                             <constraint firstItem="rS3-6Y-Toy" firstAttribute="leading" secondItem="egk-AJ-HZi" secondAttribute="leading" id="Ikv-95-Aa1"/>
@@ -224,8 +223,5 @@
         <namedColor name="LineLightGray">
             <color red="0.87800002098083496" green="0.87800002098083496" blue="0.87800002098083496" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>
