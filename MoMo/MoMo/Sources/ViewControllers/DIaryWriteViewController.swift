@@ -290,6 +290,7 @@ class DiaryWriteViewController: UIViewController {
                 print("버튼이 존재하지 않습니다")
             }
         }
+    }
     
     func updateAlertModalViewConstraints(view: UIView) {
         view.snp.makeConstraints({ (make) in
