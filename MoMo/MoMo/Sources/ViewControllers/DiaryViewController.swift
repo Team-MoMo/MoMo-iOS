@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum DiaryViewNavigationButton: Int {
+    case leftButton = 0, rightButton
+}
+
 class DiaryViewController: UIViewController {
     
     @IBOutlet weak var fish1: UIImageView!
@@ -44,14 +48,14 @@ class DiaryViewController: UIViewController {
     
     lazy var leftButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: Constants.Design.Image.btnBackWhite, style: .plain, target: self, action: #selector(buttonPressed(sender:)))
-        button.tag = NavigationButton.leftButton.rawValue
+        button.tag = DiaryViewNavigationButton.leftButton.rawValue
         button.tintColor = UIColor.white
         return button
     }()
     
     lazy var rightButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(image: Constants.Design.Image.icSubtab, style: .done, target: self, action: #selector(buttonPressed(sender:)))
-        button.tag = NavigationButton.rightButton.rawValue
+        let button = UIBarButtonItem(image: UIImage(named: "icSubtab"), style: .done, target: self, action: #selector(buttonPressed(sender:)))
+        button.tag = DiaryViewNavigationButton.rightButton.rawValue
         button.tintColor = UIColor.white
         return button
     }()
@@ -230,9 +234,9 @@ class DiaryViewController: UIViewController {
     @objc private func buttonPressed(sender: Any) {
         if let button = sender as? UIBarButtonItem {
             switch button.tag {
-            case NavigationButton.leftButton.rawValue:
+            case DiaryViewNavigationButton.leftButton.rawValue:
                 self.popToHomeViewController()
-            case NavigationButton.rightButton.rawValue:
+            case DiaryViewNavigationButton.rightButton.rawValue:
                 if self.menuToggleFlag {
                     self.menuView?.removeFromSuperview()
                 } else {
@@ -361,7 +365,7 @@ extension DiaryViewController: UploadModalViewDelegate {
 // MARK: - DiaryWriteViewControllerDelegate
 
 extension DiaryViewController: DiaryWriteViewControllerDelegate {
-    func popDiaryWirteViewController(diaryInfo: AppDiary?) {
+    func popToDiaryViewController(diaryInfo: AppDiary?) {
         self.menuView?.removeFromSuperview()
         self.menuToggleFlag = false
         guard let safeDiaryInfo = self.diaryInfo else { return }
