@@ -48,15 +48,6 @@ class AlertModalView: UIView {
         return alertModalView
     }
     
-    func setConstraints(view: UIView, superView: UIView) {
-        view.snp.makeConstraints({ (make) in
-            make.width.equalTo(superView)
-            make.height.equalTo(superView)
-            make.centerX.equalTo(superView)
-            make.centerY.equalTo(superView)
-        })
-    }
-    
     @IBAction func leftButtonTouchUp(_ sender: UIButton) {
         self.alertModalDelegate?.leftButtonTouchUp(button: sender)
     }
