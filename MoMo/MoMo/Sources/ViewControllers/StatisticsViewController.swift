@@ -18,8 +18,11 @@ class StatisticsViewController: UIViewController {
     private func initializeNavigationItem() {
         let backButton = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchBackButton))
         backButton.tintColor = .black
-        self.navigationItem.title = "이 달의 통계"
+        
         self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.title = "이 달의 통계"
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.Black1]
+        
     }
     
     @objc func touchBackButton() {
