@@ -28,6 +28,7 @@
 		10C9CEC125C3E77B0036CE98 /* Statistics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10C9CEC025C3E77B0036CE98 /* Statistics.storyboard */; };
 		10C9CEC825C3E7B90036CE98 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C9CEC725C3E7B90036CE98 /* StatisticsViewController.swift */; };
 		10C9CECB25C3ECBC0036CE98 /* DepthStatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C9CECA25C3ECBC0036CE98 /* DepthStatViewController.swift */; };
+		10DC0CBD25C7D9640048A5C8 /* MoodStatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DC0CBC25C7D9640048A5C8 /* MoodStatViewController.swift */; };
 		10DDA33925AF099A00620C41 /* ListFilterModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DDA33725AF099A00620C41 /* ListFilterModalViewController.swift */; };
 		10DDA33A25AF099A00620C41 /* ListFilterModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10DDA33825AF099A00620C41 /* ListFilterModalViewController.xib */; };
 		10DDA34025AF09A900620C41 /* DepthCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DDA33C25AF09A900620C41 /* DepthCollectionViewCell.swift */; };
@@ -134,6 +135,7 @@
 		10C9CEC025C3E77B0036CE98 /* Statistics.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Statistics.storyboard; sourceTree = "<group>"; };
 		10C9CEC725C3E7B90036CE98 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		10C9CECA25C3ECBC0036CE98 /* DepthStatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthStatViewController.swift; sourceTree = "<group>"; };
+		10DC0CBC25C7D9640048A5C8 /* MoodStatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodStatViewController.swift; sourceTree = "<group>"; };
 		10DDA33725AF099A00620C41 /* ListFilterModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListFilterModalViewController.swift; sourceTree = "<group>"; };
 		10DDA33825AF099A00620C41 /* ListFilterModalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListFilterModalViewController.xib; sourceTree = "<group>"; };
 		10DDA33C25AF09A900620C41 /* DepthCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepthCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 				10029DA625B0FEDD00060E14 /* HomeModalViewController.xib */,
 				10C9CEC725C3E7B90036CE98 /* StatisticsViewController.swift */,
 				10C9CECA25C3ECBC0036CE98 /* DepthStatViewController.swift */,
+				10DC0CBC25C7D9640048A5C8 /* MoodStatViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -686,6 +689,7 @@
 				562C645F25C1B16000AA9AB6 /* AppDiary.swift in Sources */,
 				562C645C25C1B14F00AA9AB6 /* AppSentence.swift in Sources */,
 				563B034725A8973100DA74C5 /* HomeViewController.swift in Sources */,
+				10DC0CBD25C7D9640048A5C8 /* MoodStatViewController.swift in Sources */,
 				1C4235F125B0D5A8008FB838 /* DiaryWithId.swift in Sources */,
 				10C9CECB25C3ECBC0036CE98 /* DepthStatViewController.swift in Sources */,
 				10F1F73625B053A900BF7D37 /* CreateDiary.swift in Sources */,

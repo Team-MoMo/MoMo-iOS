@@ -11,7 +11,8 @@ struct APIConstants {
     
     // MARK: - base URL
     
-    static let baseURL = "https://momodiary.ga"
+//    static let baseURL = "https://momodiary.ga"
+    static let baseURL = "http://3.36.79.14:3000"
     
     static let userId: Int = UserDefaults.standard.integer(forKey: "userId")
     

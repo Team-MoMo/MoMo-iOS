@@ -25,7 +25,7 @@ struct Constants {
         static let diaryWriteStoryboard: String = "DiaryWrite"
         static let listStoryboard: String = "List"
         static let findPasswordStoryboard: String = "FindPassword"
-        static let statisticsStoryboard: String = "StatisticsStoryboard"
+        static let statisticsStoryboard: String = "Statistics"
         // MARK: - Nib Name Constants
         
         static let homeDayNightViewXib: String = "HomeDayNightView"

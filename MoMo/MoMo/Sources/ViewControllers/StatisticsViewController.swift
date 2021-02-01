@@ -11,19 +11,18 @@ class StatisticsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeNavigationItem()
 
-        // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func initializeNavigationItem() {
+        let backButton = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchBackButton))
+        backButton.tintColor = .black
+        self.navigationItem.title = "이 달의 통계"
+        self.navigationItem.leftBarButtonItem = backButton
     }
-    */
-
+    
+    @objc func touchBackButton() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
