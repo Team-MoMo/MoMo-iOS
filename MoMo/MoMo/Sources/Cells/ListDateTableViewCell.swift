@@ -22,7 +22,7 @@ class ListDateTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setDate(_ date: String) {
+    func updateDateLabel(_ date: String) {
         dateLabel.text = date
     }
 }
