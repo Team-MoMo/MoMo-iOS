@@ -18,7 +18,7 @@ class DepthCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func setLabel(_ depth: String) {
+    func initializeLabel(_ depth: String) {
         depthLabel.text = depth
     }
 

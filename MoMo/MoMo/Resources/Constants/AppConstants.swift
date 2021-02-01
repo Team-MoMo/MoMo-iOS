@@ -186,6 +186,9 @@ struct Constants {
             static let icBoredBlue = UIImage(named: "icBoredBlue")
             static let icMemoryBlue = UIImage(named: "icMemoryBlue")
             static let icDailyBlue = UIImage(named: "icDailyBlue")
+            
+            // navigation
+            static let icSubtab = UIImage(named: "icSubtab")
         }
         
         struct Font {

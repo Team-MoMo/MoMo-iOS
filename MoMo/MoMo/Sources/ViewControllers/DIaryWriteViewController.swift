@@ -262,7 +262,7 @@ class DiaryWriteViewController: UIViewController {
         if let alertModalView = self.alertModalView {
             alertModalView.alertModalDelegate = self
             self.view.insertSubview(alertModalView, aboveSubview: self.view)
-            alertModalView.setConstraints(view: alertModalView, superView: self.view)
+            self.updateAlertModalViewConstraints(view: alertModalView)
         }
     }
     
@@ -290,6 +290,14 @@ class DiaryWriteViewController: UIViewController {
                 print("버튼이 존재하지 않습니다")
             }
         }
+    
+    func updateAlertModalViewConstraints(view: UIView) {
+        view.snp.makeConstraints({ (make) in
+            make.width.equalTo(self.view)
+            make.height.equalTo(self.view)
+            make.centerX.equalTo(self.view)
+            make.centerY.equalTo(self.view)
+        })
     }
 }
 
