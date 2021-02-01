@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DiaryWriteViewControllerDelegate: class {
-    func popDiaryWirteViewController(diaryInfo: AppDiary)
+    func popDiaryWirteViewController(diaryInfo: AppDiary?)
 }
 
 enum NavigationButton: Int {
@@ -102,7 +102,7 @@ class DiaryWriteViewController: UIViewController {
     // MARK: - Private function for settings
     
     private func setValuesFromDiaryView() {
-        self.dateLabel.text = diaryInfo?.date
+        self.dateLabel.text = diaryInfo?.date.getFormattedDateAndWeekday(with: ". ")
         self.emotionImage.image = diaryInfo?.mood.toIcon()
         self.emotionLabel.text = diaryInfo?.mood.toString()
         self.depthLabel.text = diaryInfo?.depth.toString()
@@ -253,9 +253,7 @@ class DiaryWriteViewController: UIViewController {
     }
     
     func passDataAndPopViewController() {
-        if let diaryInfo = self.diaryInfo {
-            self.diaryWriteViewControllerDelegate?.popDiaryWirteViewController(diaryInfo: diaryInfo)
-        }
+        self.diaryWriteViewControllerDelegate?.popDiaryWirteViewController(diaryInfo: self.diaryInfo)
         self.navigationController?.popViewController(animated: true)
     }
     
