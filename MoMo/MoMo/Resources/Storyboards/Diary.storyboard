@@ -16,6 +16,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="objectDiarySeaweed" translatesAutoresizingMaskIntoConstraints="NO" id="al3-hE-e9C">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="460.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="al3-hE-e9C" secondAttribute="height" multiplier="375:417" id="DO1-lh-66P"/>
+                                </constraints>
+                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2MFish1" translatesAutoresizingMaskIntoConstraints="NO" id="icL-a8-xiX" userLabel="Fish1">
                                 <rect key="frame" x="35" y="70" width="81" height="64"/>
                                 <constraints>
@@ -77,12 +83,6 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="235" id="5Yq-34-Ze6"/>
                                     <constraint firstAttribute="height" constant="205" id="LCF-nh-Enz"/>
-                                </constraints>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="objectDiarySeaweed" translatesAutoresizingMaskIntoConstraints="NO" id="al3-hE-e9C">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="460.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="al3-hE-e9C" secondAttribute="height" multiplier="375:417" id="DO1-lh-66P"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020. 12. 26. 토요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B6l-07-ryY" userLabel="DateLabel">

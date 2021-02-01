@@ -21,7 +21,7 @@ class SplashViewController: UIViewController {
     func startMomoSplashAnimation() {
         self.momoSplashAnimationView.contentMode = .scaleAspectFit
         self.momoSplashAnimationView.loopMode = .loop
-        self.momoSplashAnimationView.animationSpeed = 1
+        self.momoSplashAnimationView.animationSpeed = 1.7
         self.momoSplashAnimationView.play()
     }
 }

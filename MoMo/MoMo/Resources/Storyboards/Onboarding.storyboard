@@ -87,7 +87,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" name="Gradient1"/>
+                                <color key="backgroundColor" name="OnboardingBlue"/>
                                 <constraints>
                                     <constraint firstItem="00Z-tE-UjX" firstAttribute="leading" secondItem="ybM-6V-Bhf" secondAttribute="leading" constant="40" id="FgR-68-qkh"/>
                                     <constraint firstItem="Stl-fv-u4C" firstAttribute="top" secondItem="pQb-7L-Dg6" secondAttribute="bottom" constant="15" id="KtT-de-ziT"/>
@@ -1073,5 +1073,11 @@
         <namedColor name="Gradient1">
             <color red="0.41999998688697815" green="0.71799999475479126" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="OnboardingBlue">
+            <color red="0.49803921580314636" green="0.74901962280273438" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
