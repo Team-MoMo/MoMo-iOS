@@ -366,7 +366,7 @@ extension DiaryViewController: UIViewControllerTransitioningDelegate {
 
 // MARK: - UploadModalViewControllerDelegate
 
-extension DiaryViewController: UploadModalPassDataDelegate {
+extension DiaryViewController: UploadModalViewDelegate {
     func passData(_ date: String) {
         let dateArray = date.components(separatedBy: ". ")
         self.diaryInfo?.date = date
