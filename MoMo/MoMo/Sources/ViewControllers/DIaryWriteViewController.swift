@@ -46,6 +46,7 @@ class DiaryWriteViewController: UIViewController {
     var journal: String?
     var isFromDiary: Bool = false
     var diaryInfo: AppDiary?
+    private var toastView: ToastView?
     private var alertModalView: AlertModalView?
     private var placeHolder: NSMutableAttributedString = NSMutableAttributedString()
     private let placeHolderText: String = "파동을 충분히 느낀 후, 감정을 기록해보세요."
@@ -197,12 +198,12 @@ class DiaryWriteViewController: UIViewController {
         }
     }
     
-    func saveDiary() {
+    private func saveDiary() {
         self.diaryInfo?.diary = self.journalTextView.text
         self.navigationItem.rightBarButtonItem = nil
     }
     
-    func popToSentenceViewControllerWithAlert() {
+    private func popToSentenceViewControllerWithAlert() {
         if self.journalTextView.text != self.placeHolderText {
             self.attachAlertModalView()
         } else {
@@ -210,7 +211,7 @@ class DiaryWriteViewController: UIViewController {
         }
     }
     
-    func popToDiaryViewControllerWithAlert() {
+    private func popToDiaryViewControllerWithAlert() {
         if self.diaryInfo?.diary != self.journalTextView.text {
             self.attachAlertModalView()
         } else {
@@ -218,17 +219,17 @@ class DiaryWriteViewController: UIViewController {
         }
     }
     
-    func popToSentenceViewController() {
+    private func popToSentenceViewController() {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func popToDiaryViewController() {
+    private func popToDiaryViewController() {
         guard let diaryInfo = self.diaryInfo else { return }
         self.diaryWriteViewControllerDelegate?.popToDiaryViewController(diaryInfo: diaryInfo)
         self.navigationController?.popViewController(animated: true)
     }
     
-    func pushToDeepViewController() {
+    private func pushToDeepViewController() {
         guard let textViewText = self.journalTextView.text else { return }
         
         if textViewText != "" && textViewText != self.placeHolderText {
@@ -246,10 +247,12 @@ class DiaryWriteViewController: UIViewController {
             deepViewController.buttonText = "기록하기"
             
             self.navigationController?.pushViewController(deepViewController, animated: true)
+        } else {
+            self.attachToastViewWithAnimation()
         }
     }
     
-    func attachAlertModalView() {
+    private func attachAlertModalView() {
         let attributedString = NSMutableAttributedString(string: "확인")
         attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(red: 119/255, green: 119/255, blue: 119/255, alpha: 1.0), range: NSRange(location: 0, length: attributedString.length))
         
@@ -264,6 +267,59 @@ class DiaryWriteViewController: UIViewController {
             self.view.insertSubview(alertModalView, aboveSubview: self.view)
             self.updateAlertModalViewConstraints(view: alertModalView)
         }
+    }
+    
+    private func attachToastViewWithAnimation() {
+        self.attachToastView()
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            animations: {
+                self.toastView?.alpha = 1.0
+            },
+            completion: { _ in
+                UIView.animate(
+                    withDuration: 0.5,
+                    delay: 0.5,
+                    animations: {
+                        self.toastView?.alpha = 0.0
+                    },
+                    completion: { _ in
+                        self.detachToastView()
+                    }
+                )
+            }
+        )
+    }
+    
+    private func attachToastView() {
+        self.toastView = ToastView.instantiate(message: "일기를 작성해 주세요!")
+        guard let toastView = self.toastView else { return }
+        toastView.alpha = 0.0
+        self.view.insertSubview(toastView, aboveSubview: self.view)
+        self.updateToastViewConstraints(view: toastView)
+    }
+    
+    private func detachToastView() {
+        self.toastView?.removeFromSuperview()
+    }
+    
+    private func updateAlertModalViewConstraints(view: UIView) {
+        view.snp.makeConstraints({ (make) in
+            make.width.equalTo(self.view)
+            make.height.equalTo(self.view)
+            make.centerX.equalTo(self.view)
+            make.centerY.equalTo(self.view)
+        })
+    }
+    
+    private func updateToastViewConstraints(view: UIView) {
+        view.snp.makeConstraints({ (make) in
+            make.width.equalTo(self.view)
+            make.height.equalTo(self.view)
+            make.centerX.equalTo(self.view)
+            make.centerY.equalTo(self.view)
+        })
     }
     
     @IBAction func tapBackground(_ sender: Any) {
@@ -290,15 +346,6 @@ class DiaryWriteViewController: UIViewController {
                 print("버튼이 존재하지 않습니다")
             }
         }
-    }
-    
-    func updateAlertModalViewConstraints(view: UIView) {
-        view.snp.makeConstraints({ (make) in
-            make.width.equalTo(self.view)
-            make.height.equalTo(self.view)
-            make.centerX.equalTo(self.view)
-            make.centerY.equalTo(self.view)
-        })
     }
 }
 

@@ -13,6 +13,8 @@ enum DiaryViewNavigationButton: Int {
 
 class DiaryViewController: UIViewController {
     
+    // MARK: - IBOutlet Properties
+    
     @IBOutlet weak var fish1: UIImageView!
     @IBOutlet weak var fish2: UIImageView!
     @IBOutlet weak var dolphin1: UIImageView!
@@ -36,12 +38,15 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var diaryLabel: UILabel!
     @IBOutlet weak var blurView: UIView!
     
+    // MARK: - Properties
+    
     var diaryId: Int?
     private var menuToggleFlag: Bool = false
     private var seaObjets: [UIImageView: String]?
     private var diaryInfo: AppDiary?
     private var menuView: MenuView?
     private var gradientView: UIView?
+    private var toastView: ToastView?
     private var alertModalView: AlertModalView?
     private var diaryWriteViewController: DiaryWriteViewController?
     private var uploadModalViewController: UploadModalViewController?
@@ -60,7 +65,7 @@ class DiaryViewController: UIViewController {
         return button
     }()
     
-    // MARK: - Life Cycles
+    // MARK: - View Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,7 +152,51 @@ class DiaryViewController: UIViewController {
         }
     }
     
+    private func attachToastViewWithAnimation(message: String) {
+        self.attachToastView(message: message)
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            animations: {
+                self.toastView?.alpha = 1.0
+            },
+            completion: { _ in
+                UIView.animate(
+                    withDuration: 0.5,
+                    delay: 0.5,
+                    animations: {
+                        self.toastView?.alpha = 0.0
+                    },
+                    completion: { _ in
+                        self.detachToastView()
+                    }
+                )
+            }
+        )
+    }
+    
+    private func attachToastView(message: String) {
+        self.toastView = ToastView.instantiate(message: message)
+        guard let toastView = self.toastView else { return }
+        toastView.alpha = 0.0
+        self.view.insertSubview(toastView, aboveSubview: self.view)
+        self.updateToastViewConstraints(view: toastView)
+    }
+    
+    private func detachToastView() {
+        self.toastView?.removeFromSuperview()
+    }
+    
     func updateAlertModalViewConstraints(view: UIView) {
+        view.snp.makeConstraints({ (make) in
+            make.width.equalTo(self.view)
+            make.height.equalTo(self.view)
+            make.centerX.equalTo(self.view)
+            make.centerY.equalTo(self.view)
+        })
+    }
+    
+    private func updateToastViewConstraints(view: UIView) {
         view.snp.makeConstraints({ (make) in
             make.width.equalTo(self.view)
             make.height.equalTo(self.view)
@@ -175,13 +224,11 @@ class DiaryViewController: UIViewController {
     }
     
     func updateBackgroundColorByDepth(depth: AppDepth?) {
-        
         if let gradientView = self.gradientView {
             if self.view.subviews.contains(gradientView) {
                 self.gradientView?.removeFromSuperview()
             }
         }
-            
         let gradientLayer: CAGradientLayer
         self.gradientView = UIView(frame: self.view.frame)
         gradientLayer = CAGradientLayer()
@@ -252,11 +299,9 @@ class DiaryViewController: UIViewController {
     func pushToDeepViewController() {
         let onboardingStoryboard = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
         guard let deepViewController = onboardingStoryboard.instantiateViewController(identifier: Constants.Identifier.deepViewController) as? DeepViewController else { return }
-        
         deepViewController.deepViewControllerDelegate = self
         deepViewController.initialDepth = self.diaryInfo?.depth
         deepViewController.buttonText = "수정하기"
-        
         self.navigationController?.pushViewController(deepViewController, animated: true)
     }
     
@@ -277,10 +322,7 @@ class DiaryViewController: UIViewController {
         guard let homeViewController = self.navigationController?.viewControllers.filter({$0 is HomeViewController}).first! as? HomeViewController else {
             return
         }
-        
         homeViewController.isFromDiary = true
-        
-        // TODO: HomeViewController에서 Depth를 받으면 Depth에 맞는 깊이를 Home에서 보여줌
         self.navigationController?.popToViewController(homeViewController, animated: true)
     }
     
@@ -354,10 +396,10 @@ extension DiaryViewController: UploadModalViewDelegate {
         self.diaryInfo?.date = AppDate(formattedDate: date, with: ". ")
         self.menuView?.removeFromSuperview()
         self.menuToggleFlag = false
-        
         guard let safeDiaryInfo = self.diaryInfo else { return }
         self.putDiaryWithAPI(newDiary: safeDiaryInfo, completion: {
             self.getDiaryWithAPI(completion: self.updateDiaryViewController(diaryInfo:))
+            self.attachToastViewWithAnimation(message: "날짜가 수정되었습니다")
         })
     }
 }
@@ -371,6 +413,7 @@ extension DiaryViewController: DiaryWriteViewControllerDelegate {
         guard let safeDiaryInfo = self.diaryInfo else { return }
         self.putDiaryWithAPI(newDiary: safeDiaryInfo, completion: {
             self.getDiaryWithAPI(completion: self.updateDiaryViewController(diaryInfo:))
+            self.attachToastViewWithAnimation(message: "일기가 수정되었습니다")
         })
     }
 
@@ -386,11 +429,12 @@ extension DiaryViewController: DeepViewControllerDelegate {
         guard let safeDiaryInfo = self.diaryInfo else { return }
         self.putDiaryWithAPI(newDiary: safeDiaryInfo, completion: {
             self.getDiaryWithAPI(completion: self.updateDiaryViewController(diaryInfo:))
+            self.attachToastViewWithAnimation(message: "깊이가 수정되었습니다")
         })
     }
 }
 
-// MARK: - APIService
+// MARK: - APIServices
 
 extension DiaryViewController {
     func getDiaryWithAPI(completion: @escaping (AppDiary?) -> Void) {
