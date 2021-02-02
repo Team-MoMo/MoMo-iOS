@@ -64,7 +64,7 @@ class LoginViewController: UIViewController {
     func setGradientBackground(depth: Int) {
         gradientLayer = CAGradientLayer()
         
-        let frame = self.backgroundView.frame
+        let frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         let view = UIView(frame: frame)
         let gradientView = UIView(frame: frame)
         let imgView = UIImageView(frame: view.bounds)
@@ -85,9 +85,11 @@ class LoginViewController: UIViewController {
     
     // MARK: - @IBAction Properties
     
-    @IBAction func emailLoginTouchUp(_ sender: Any) {
+    @IBAction func touchEmailLoginButton(_ sender: Any) {
         let emailLoginStoryboard = UIStoryboard(name: Constants.Name.emailLoginStoryboard, bundle: nil)
         let dvc = emailLoginStoryboard.instantiateViewController(identifier: Constants.Identifier.emailLoginViewController)
         self.navigationController?.pushViewController(dvc, animated: true)
+    }
+    @IBAction func touchAppleLoginButton(_ sender: Any) {
     }
 }

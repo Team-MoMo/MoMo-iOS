@@ -93,6 +93,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="   Apple 로그인" image="icAppleLogo"/>
+                                        <connections>
+                                            <action selector="touchAppleLoginButton:" destination="hFo-W1-rx6" eventType="touchUpInside" id="3DG-Mt-OYa"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AtV-16-5FB">
                                         <rect key="frame" x="0.0" y="104" width="250" height="42"/>
