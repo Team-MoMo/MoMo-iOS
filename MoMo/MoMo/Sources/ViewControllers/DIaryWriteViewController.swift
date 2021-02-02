@@ -36,7 +36,7 @@ class DiaryWriteViewController: UIViewController {
     // MARK: - Properties
     
     var mood: AppEmotion?
-    var sentence: Sentence?
+    var sentence: AppSentence?
     var date: String?
     var emotion: String?
     var author: String?
@@ -110,7 +110,7 @@ class DiaryWriteViewController: UIViewController {
     
     func initializeNavigationBar() {
         self.navigationItem.hidesBackButton = true
-        if self.self.isFromDiary {
+        if self.isFromDiary {
             self.navigationItem.leftBarButtonItem = self.leftButtonForDiary
         } else {
             self.navigationItem.rightBarButtonItem = self.rightButtonForUpload
@@ -134,9 +134,9 @@ class DiaryWriteViewController: UIViewController {
         self.dateLabel.text = self.date
         self.emotionImage.image = usableMood.toIcon()
         self.emotionLabel.text = usableMood.toString()
-        self.authorLabel.text = usableSentence.writer
-        self.bookLabel.text = usableSentence.bookName
-        self.quoteLabel.text = usableSentence.contents
+        self.authorLabel.text = usableSentence.author
+        self.bookLabel.text = usableSentence.bookTitle
+        self.quoteLabel.text = usableSentence.sentence
     }
     
     private func updateWordSpace() {
