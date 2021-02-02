@@ -11,21 +11,20 @@ class MoodStatViewController: UIViewController {
     
     // MARK: - Constants
     let multiplier: Float = 0.35
-    
+   
     // MARK: - Properties
     var maximum: CGFloat?
     var statViewMaximumHeight: CGFloat?
-    var moodStatData: [Int] = [6,1,8,3,5,4,3,2]
+    var moodStatData: [Int] = [6, 1, 8, 3, 5, 4, 3, 2]
     
-    
-    // MARK: -IBOutlets
-    @IBOutlet var statNumLabel: Array<UILabel>?
-    @IBOutlet var statViewHeight: Array<NSLayoutConstraint>?
+    // MARK: - IBOutlets
+    @IBOutlet var statNumLabel: [UILabel]?
+    @IBOutlet var statViewHeight: [NSLayoutConstraint]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeMaximum()
-        intializemStatViewMaximumHeight()
+        intializeStatViewMaximumHeight()
         intializeHeightConstraints()
         initializeLabels()
     }
@@ -36,7 +35,7 @@ class MoodStatViewController: UIViewController {
         }
         maximum = CGFloat(max)
     }
-    private func intializemStatViewMaximumHeight() {
+    private func intializeStatViewMaximumHeight() {
         statViewMaximumHeight = self.view.frame.height * CGFloat(multiplier)
     }
     

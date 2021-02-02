@@ -190,6 +190,16 @@ struct Constants {
             static let icBoredBlue = UIImage(named: "icBoredBlue")
             static let icMemoryBlue = UIImage(named: "icMemoryBlue")
             static let icDailyBlue = UIImage(named: "icDailyBlue")
+            
+            // statViewObjet
+            static let graph2M = UIImage(named: "graph2M")
+            static let graph30M = UIImage(named: "graph30M")
+            static let graph100M = UIImage(named: "graph100M")
+            static let graph300M = UIImage(named: "graph300M")
+            static let graph700M = UIImage(named: "graph700M")
+            static let graph1005M = UIImage(named: "graph1005M")
+            static let graphUnder = UIImage(named: "graphUnder")
+            
         }
         
         struct Font {
