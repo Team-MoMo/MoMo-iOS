@@ -32,9 +32,12 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ud-ec-9BM">
                                 <rect key="frame" x="138.5" y="71.5" width="14" height="22"/>
                                 <state key="normal" image="btnArrowDown14"/>
+                                <connections>
+                                    <action selector="touchModalButton:" destination="kZF-SQ-vv8" eventType="touchUpInside" id="QKJ-17-wR7"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dWm-mJ-CcH">
-                                <rect key="frame" x="157" y="149" width="100" height="47"/>
+                                <rect key="frame" x="157" y="134" width="100" height="47"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NoS-Hk-OCr">
                                         <rect key="frame" x="0.0" y="0.0" width="45" height="47"/>
@@ -75,7 +78,7 @@
                                 </subviews>
                             </stackView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MoS-pb-Vqh">
-                                <rect key="frame" x="0.0" y="196" width="414" height="700"/>
+                                <rect key="frame" x="0.0" y="181" width="414" height="715"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </containerView>
                         </subviews>
@@ -83,7 +86,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="MoS-pb-Vqh" firstAttribute="leading" secondItem="bhg-Sl-cJd" secondAttribute="leading" id="4Ye-ZS-Snj"/>
-                            <constraint firstItem="dWm-mJ-CcH" firstAttribute="top" secondItem="5dI-lR-5uL" secondAttribute="bottom" constant="52" id="7Ex-pE-0aZ"/>
+                            <constraint firstItem="dWm-mJ-CcH" firstAttribute="top" secondItem="5dI-lR-5uL" secondAttribute="bottom" constant="37" id="7Ex-pE-0aZ"/>
                             <constraint firstItem="MoS-pb-Vqh" firstAttribute="top" secondItem="dWm-mJ-CcH" secondAttribute="bottom" id="8yz-D4-GOw"/>
                             <constraint firstItem="bhg-Sl-cJd" firstAttribute="trailing" secondItem="MoS-pb-Vqh" secondAttribute="trailing" id="DoV-7C-hAx"/>
                             <constraint firstItem="bhg-Sl-cJd" firstAttribute="trailing" secondItem="2AH-dY-6dt" secondAttribute="trailing" constant="24" id="DvV-wD-W96"/>
@@ -97,6 +100,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dateLabel" destination="5dI-lR-5uL" id="qpS-5u-rMh"/>
                         <outlet property="depthButton" destination="4DF-5b-Wgo" id="9Md-n2-uNO"/>
                         <outlet property="moodButton" destination="NoS-Hk-OCr" id="tk8-cd-5Ek"/>
                         <outlet property="statContainerView" destination="MoS-pb-Vqh" id="fPu-TP-wIN"/>

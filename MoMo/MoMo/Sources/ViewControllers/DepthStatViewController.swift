@@ -10,7 +10,7 @@ import UIKit
 class DepthStatViewController: UIViewController {
     
     // MARK: - Constants
-    let multiplier: Float = 0.35
+    let multiplier: Float = 0.38
     let gradientColor: [CGColor]? = [UIColor.Gradient1.cgColor,
                                      UIColor.Gradient2.cgColor,
                                      UIColor.Gradient3.cgColor,

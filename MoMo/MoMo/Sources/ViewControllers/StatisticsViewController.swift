@@ -13,16 +13,21 @@ class StatisticsViewController: UIViewController {
     let moodText: String? = "감정"
     let depthText: String? = "깊이"
     
-    var depthButtonSubLayer: CALayer? = nil
-    var moodButtonSubLayer: CALayer? = nil
+    var depthButtonSubLayer: CALayer?
+    var moodButtonSubLayer: CALayer?
+    var dateModal: HomeModalViewController?
+    var year: Int?
+    var month: Int?
     
     // MARK: - IBOutlets
     @IBOutlet weak var depthButton: UIButton!
     @IBOutlet weak var moodButton: UIButton!
     @IBOutlet weak var statContainerView: UIView!
+    @IBOutlet weak var dateLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeDateModal()
         initializeNavigationItem()
         initializeSubLayer()
         initializeSubLayer()
@@ -49,6 +54,10 @@ class StatisticsViewController: UIViewController {
         moodButtonSubLayer = moodLayer
     }
     
+    private func initializeDateModal() {
+        dateModal = HomeModalViewController()
+    }
+    
     private func initializeButtonIsSelected() {
         depthButton.isSelected = false
         moodButton.isSelected = true
@@ -58,6 +67,14 @@ class StatisticsViewController: UIViewController {
         changeMoodButtonSelectedInterface()
         addButtonSublayer()
         showMoodStatView()
+    }
+    
+    private func updateLabelText() {
+        guard let unwrappedYear = year, let unwrappedMonth = month else {
+            return
+        }
+        let monthString = String(format: "%02d", unwrappedMonth)
+        dateLabel.text = ("\(unwrappedYear)년 " + monthString + "월")
     }
     
     private func initializeNavigationItem() {
@@ -138,6 +155,17 @@ class StatisticsViewController: UIViewController {
         }
     }
     
+    private func presentDateModal() {
+        guard let modal = dateModal else {
+            return
+        }
+        modal.year = 2020
+        modal.month = 11
+        modal.statModalViewDelegate = self
+        modal.modalPresentationStyle = .custom
+        modal.transitioningDelegate = self
+        self.present(modal, animated: true, completion: nil)
+    }
     
     // MARK: - Selector Function
     @objc func touchBackButton() {
@@ -169,5 +197,24 @@ class StatisticsViewController: UIViewController {
             addButtonSublayer()
            
         }
+    }
+    
+    @IBAction func touchModalButton(_ sender: Any) {
+        presentDateModal()
+    }
+    
+}
+
+extension StatisticsViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        HomeModalPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
+
+extension StatisticsViewController: StatModalViewDelegate {
+    func passData(year: Int, month: Int) {
+        self.year = year
+        self.month = month
+        self.updateLabelText()
     }
 }
