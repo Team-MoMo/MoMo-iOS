@@ -67,10 +67,8 @@ class EmailLoginViewController: UIViewController {
               let passwordText = passwordTextField.text else {
             return
         }
-        print(emailText)
-        print(passwordText)
         
-        SignInService.shared.postSignIn(email: emailText, password: passwordText) { (networkResult) -> (Void) in
+        SignInService.shared.postSignIn(email: emailText, password: passwordText) { networkResult in
             switch networkResult {
             case .success(let data):
                 if let signInData = data as? AuthData {
@@ -80,24 +78,26 @@ class EmailLoginViewController: UIViewController {
                     self.loginButtonTop.constant = 0
                     self.joinStackViewBottom.isActive = true
                     self.joinStackViewBottom.constant = 69
-                    print("로그인 성공")
+                    
                     UserDefaults.standard.setValue(signInData.token, forKey: "token")
                     UserDefaults.standard.setValue(signInData.user.id, forKey: "userId")
-                    // TODO: 뷰전환
-                    let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
-                    let dvc = homeStoryboard.instantiateViewController(identifier: Constants.Identifier.homeViewController)
-                    self.navigationController?.pushViewController(dvc, animated: true)
+                    
+                    if let homeViewController = self.navigationController?.viewControllers.filter({$0 is HomeViewController}).first as? HomeViewController {
+                        homeViewController.isFromLogout = false
+                        self.navigationController?.popToViewController(homeViewController, animated: true)
+                    } else {
+                        let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
+                        guard let homeViewController = homeStoryboard.instantiateViewController(identifier: Constants.Identifier.homeViewController) as? HomeViewController else { return }
+                        self.navigationController?.pushViewController(homeViewController, animated: true)
+                    }
                 }
             case .requestErr(let msg):
-                print("400")
-                if let message = msg as? String {
-                    print(message)
-                    
+                if let _ = msg as? String {
                     self.errorMessageTop.constant = 76
                     self.errorMessageLabel.isHidden = false
                     self.loginButtonTop.isActive = true
                     self.loginButtonTop.constant = 72
-                    //joinStackViewBottom.isActive = false
+                    // joinStackViewBottom.isActive = false
                     self.joinStackViewBottom.constant = 0
                 }
             case .pathErr:
