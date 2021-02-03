@@ -14,6 +14,10 @@
 		10029DBF25B11D4800060E14 /* DiaryRecent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10029DBE25B11D4800060E14 /* DiaryRecent.swift */; };
 		1006505E25AAF3320016B796 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1006505C25AAF3320016B796 /* ListViewController.swift */; };
 		1014894425AC417E00639F98 /* DiaryWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1014894325AC417E00639F98 /* DiaryWriteViewController.swift */; };
+		1038B69825CAABF300C577B6 /* DiariesStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1038B69725CAABF300C577B6 /* DiariesStatistics.swift */; };
+		1038B69B25CAAE0800C577B6 /* EmotionCounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1038B69A25CAAE0800C577B6 /* EmotionCounts.swift */; };
+		1038B69F25CAAF7D00C577B6 /* DepthCounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1038B69E25CAAF7D00C577B6 /* DepthCounts.swift */; };
+		1038B6A225CAAFB600C577B6 /* DiaryStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1038B6A125CAAFB600C577B6 /* DiaryStatistics.swift */; };
 		104E685E25AAF8410019B29E /* DiaryWrite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 104E685D25AAF8410019B29E /* DiaryWrite.storyboard */; };
 		105661ED25A5F79300E111B2 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105661EB25A5F79300E111B2 /* EmptyTableViewCell.swift */; };
 		105661EE25A5F79300E111B2 /* EmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105661EC25A5F79300E111B2 /* EmptyTableViewCell.xib */; };
@@ -121,6 +125,10 @@
 		10029DBE25B11D4800060E14 /* DiaryRecent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRecent.swift; sourceTree = "<group>"; };
 		1006505C25AAF3320016B796 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		1014894325AC417E00639F98 /* DiaryWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryWriteViewController.swift; sourceTree = "<group>"; };
+		1038B69725CAABF300C577B6 /* DiariesStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiariesStatistics.swift; sourceTree = "<group>"; };
+		1038B69A25CAAE0800C577B6 /* EmotionCounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionCounts.swift; sourceTree = "<group>"; };
+		1038B69E25CAAF7D00C577B6 /* DepthCounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthCounts.swift; sourceTree = "<group>"; };
+		1038B6A125CAAFB600C577B6 /* DiaryStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryStatistics.swift; sourceTree = "<group>"; };
 		104E685D25AAF8410019B29E /* DiaryWrite.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DiaryWrite.storyboard; sourceTree = "<group>"; };
 		105661EB25A5F79300E111B2 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		105661EC25A5F79300E111B2 /* EmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableViewCell.xib; sourceTree = "<group>"; };
@@ -294,6 +302,9 @@
 				1C4235F025B0D5A8008FB838 /* DiaryWithId.swift */,
 				10029DBE25B11D4800060E14 /* DiaryRecent.swift */,
 				1CA39A1725B1BF3E00E58209 /* OnboardingSentence.swift */,
+				1038B69A25CAAE0800C577B6 /* EmotionCounts.swift */,
+				1038B69E25CAAF7D00C577B6 /* DepthCounts.swift */,
+				1038B6A125CAAFB600C577B6 /* DiaryStatistics.swift */,
 			);
 			path = APIModels;
 			sourceTree = "<group>";
@@ -323,6 +334,7 @@
 				563B049025AE0D9F00DA74C5 /* DiariesService.swift */,
 				1C4235EB25B04CD5008FB838 /* DiariesWithIDService.swift */,
 				10029DBB25B1183A00060E14 /* DiaryRecentService.swift */,
+				1038B69725CAABF300C577B6 /* DiariesStatistics.swift */,
 			);
 			path = Diaries;
 			sourceTree = "<group>";
@@ -701,7 +713,9 @@
 				5637607625B0519F00651EAA /* PasswordData.swift in Sources */,
 				1C52BE0525AD655300D02771 /* AlertModalView.swift in Sources */,
 				1CAD05A225A9C98F007ECA40 /* UILabel+Extension.swift in Sources */,
+				1038B69825CAABF300C577B6 /* DiariesStatistics.swift in Sources */,
 				562C645925C1AFAD00AA9AB6 /* AppDepth.swift in Sources */,
+				1038B69B25CAAE0800C577B6 /* EmotionCounts.swift in Sources */,
 				1CAD05B125AC3DC4007ECA40 /* DeepSliderView.swift in Sources */,
 				5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */,
 				10E5CD8325ADF1D5004FDC24 /* UploadModalPresentationController.swift in Sources */,
@@ -727,12 +741,14 @@
 				1CEF46BF25A6DA7600AF3D81 /* OnboardingViewController.swift in Sources */,
 				1014894425AC417E00639F98 /* DiaryWriteViewController.swift in Sources */,
 				563B033325A884A200DA74C5 /* HomeDayNightView.swift in Sources */,
+				1038B69F25CAAF7D00C577B6 /* DepthCounts.swift in Sources */,
 				563B049125AE0D9F00DA74C5 /* DiariesService.swift in Sources */,
 				1CEF46C825A6E0A000AF3D81 /* SentenceViewController.swift in Sources */,
 				10029DBC25B1183A00060E14 /* DiaryRecentService.swift in Sources */,
 				10DDA34625AF09C500620C41 /* ModalPresentationController.swift in Sources */,
 				1C7CD82525ACEB9E00B7CB60 /* MenuView.swift in Sources */,
 				1C7CD80725ACA5EC00B7CB60 /* DiaryViewController.swift in Sources */,
+				1038B6A225CAAFB600C577B6 /* DiaryStatistics.swift in Sources */,
 				5637606A25B04ABC00651EAA /* SignInService.swift in Sources */,
 				563B047A25ADF63900DA74C5 /* UITextField+Extension.swift in Sources */,
 				10029DBF25B11D4800060E14 /* DiaryRecent.swift in Sources */,
