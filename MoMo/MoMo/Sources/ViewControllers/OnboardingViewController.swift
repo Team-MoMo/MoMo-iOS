@@ -21,28 +21,20 @@ class OnboardingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationControllerSetUp()
+        self.initializeNavigationBar()
         self.hideDesciptionLabelWithAnimation()
         self.startWaveAnimation()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         self.buttonRoundedUp()
         self.showDesciptionLabelWithAnimation()
     }
     
     // MARK: - Functions
     
-    func startWaveAnimation() {
-        self.waveAnimationView.contentMode = .scaleAspectFit
-        self.waveAnimationView.loopMode = .loop
-        self.waveAnimationView.animationSpeed = 0.5
-        self.waveAnimationView.play()
-    }
-    
-    func navigationControllerSetUp() {
+    func initializeNavigationBar() {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.isNavigationBarHidden = true
     }
@@ -50,6 +42,13 @@ class OnboardingViewController: UIViewController {
     func buttonRoundedUp() {
         self.startButton.layer.cornerRadius = self.startButton.frame.size.height / 2
         self.startButton.clipsToBounds = true
+    }
+    
+    func startWaveAnimation() {
+        self.waveAnimationView.contentMode = .scaleAspectFit
+        self.waveAnimationView.loopMode = .loop
+        self.waveAnimationView.animationSpeed = 0.5
+        self.waveAnimationView.play()
     }
     
     func hideDesciptionLabelWithAnimation() {

@@ -25,7 +25,7 @@ class DeepViewController: UIViewController {
     // MARK: - Properties
     
     var mood: AppEmotion?
-    var sentence: Sentence?
+    var sentence: AppSentence?
     var journal: String?
     var date: String?
     var initialDepth: AppDepth?
@@ -208,15 +208,15 @@ class DeepViewController: UIViewController {
         if text == "시작하기" {
             self.pushToLoginViewController()
         } else if text == "기록하기" {
-            guard let selectedMood = self.mood, let selectedSentence = self.sentence, let date = self.date, let journal = self.journal else { return }
-            let dateArray = date.components(separatedBy: ". ")
-            
+            guard let selectedMood = self.mood, let selectedSentenceId = self.sentence?.id, let date = self.date, let journal = self.journal else { return }
+            let selectedDate = AppDate(formattedDate: date, with: ". ")
             self.updateJournal(contents: journal,
-                          depth: Int(round(self.deepSliderValue * 6)),
-                          userId: Int(APIConstants.userId),
-                          sentenceId: selectedSentence.id,
-                          emotionId: selectedMood.rawValue,
-                          wroteAt: "\(dateArray[0])-\(dateArray[1])-\(dateArray[2])")
+                               depth: Int(round(self.deepSliderValue * 6)),
+                               userId: Int(APIConstants.userId),
+                               sentenceId: selectedSentenceId,
+                               emotionId: selectedMood.rawValue,
+                               wroteAt: selectedDate.getFormattedDate(with: "-")
+            )
         } else { // text == "수정하기"
             self.deepViewControllerDelegate?.passData(
                 selectedDepth: AppDepth(rawValue: Int(round(self.deepSliderValue * 6))) ?? AppDepth.depth2m)
