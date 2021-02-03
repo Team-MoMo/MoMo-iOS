@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 class LoginViewController: UIViewController {
     
@@ -42,14 +43,18 @@ class LoginViewController: UIViewController {
         createGradientColorSets()
         setGradientBackground(depth: currentColorSet)
         
+        initializeNavigationBar()
+        
+    }
+    
+    // MARK: - Functions
+    func initializeNavigationBar() {
         // navigation bar 투명화
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
-
     }
     
-    // MARK: - Functions
     // TODO: - gradient color 머지되면 수정
     func createGradientColorSets() {
         colorSets.append([UIColor.Gradient1.cgColor, UIColor.Gradient2.cgColor]) // 1단계
@@ -83,6 +88,12 @@ class LoginViewController: UIViewController {
         backgroundView.sendSubviewToBack(view)
     }
     
+    func pushToHomeViewController() {
+        let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
+        let dvc = homeStoryboard.instantiateViewController(identifier: Constants.Identifier.homeViewController)
+        self.navigationController?.pushViewController(dvc, animated: true)
+    }
+    
     // MARK: - @IBAction Properties
     
     @IBAction func touchEmailLoginButton(_ sender: Any) {
@@ -90,6 +101,59 @@ class LoginViewController: UIViewController {
         let dvc = emailLoginStoryboard.instantiateViewController(identifier: Constants.Identifier.emailLoginViewController)
         self.navigationController?.pushViewController(dvc, animated: true)
     }
+    
     @IBAction func touchAppleLoginButton(_ sender: Any) {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
+}
+
+extension LoginViewController: ASAuthorizationControllerDelegate {
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        switch authorization.credential {
+        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+            
+            // Create an account in your system.
+            let userIdentifier = appleIDCredential.user
+            let fullName = appleIDCredential.fullName
+            let email = appleIDCredential.email
+            
+            if let identityToken = appleIDCredential.identityToken,
+               let tokenString = String(data: identityToken, encoding: .utf8) {
+                print(tokenString)
+            }
+            
+            self.pushToHomeViewController()
+        
+        case let passwordCredential as ASPasswordCredential:
+        
+            // Sign in using an existing iCloud Keychain credential.
+            let username = passwordCredential.user
+            let password = passwordCredential.password
+            
+            // For the purpose of this demo app, show the password credential as an alert.
+            DispatchQueue.main.async {
+                // self.showPasswordCredentialAlert(username: username, password: password)
+            }
+            
+        default:
+            break
+        }
+    }
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print(error)
+    }
+    
+}
+
+extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return view.window!
     }
 }
