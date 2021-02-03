@@ -52,6 +52,10 @@
 		1C7CD80A25ACA5FD00B7CB60 /* Diary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */; };
 		1C7CD82525ACEB9E00B7CB60 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CD82425ACEB9E00B7CB60 /* MenuView.swift */; };
 		1C7CD82825ACEBAB00B7CB60 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C7CD82725ACEBAB00B7CB60 /* MenuView.xib */; };
+		1C8DD90125C92A9C00C7A3BA /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8DD90025C92A9C00C7A3BA /* SettingViewController.swift */; };
+		1C8DD90425C92AC100C7A3BA /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C8DD90325C92AC100C7A3BA /* Setting.storyboard */; };
+		1C8DD90725C92D4200C7A3BA /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C8DD90625C92D4200C7A3BA /* SettingTableViewCell.xib */; };
+		1C8DD90A25C92D5000C7A3BA /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8DD90925C92D4F00C7A3BA /* SettingTableViewCell.swift */; };
 		1C8DD8F825C8850F00C7A3BA /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8DD8F725C8850F00C7A3BA /* ToastView.swift */; };
 		1C8DD8FB25C8851A00C7A3BA /* ToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C8DD8FA25C8851A00C7A3BA /* ToastView.xib */; };
 		1CA39A1525B1BE6D00E58209 /* OnboardingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA39A1425B1BE6D00E58209 /* OnboardingService.swift */; };
@@ -158,6 +162,10 @@
 		1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Diary.storyboard; sourceTree = "<group>"; };
 		1C7CD82425ACEB9E00B7CB60 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		1C7CD82725ACEBAB00B7CB60 /* MenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
+		1C8DD90025C92A9C00C7A3BA /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		1C8DD90325C92AC100C7A3BA /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
+		1C8DD90625C92D4200C7A3BA /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
+		1C8DD90925C92D4F00C7A3BA /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		1C8DD8F725C8850F00C7A3BA /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		1C8DD8FA25C8851A00C7A3BA /* ToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToastView.xib; sourceTree = "<group>"; };
 		1CA39A1425B1BE6D00E58209 /* OnboardingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingService.swift; sourceTree = "<group>"; };
@@ -427,6 +435,7 @@
 				1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */,
 				104E685D25AAF8410019B29E /* DiaryWrite.storyboard */,
 				563B047325ADF46200DA74C5 /* FindPassword.storyboard */,
+				1C8DD90325C92AC100C7A3BA /* Setting.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -450,6 +459,8 @@
 				105661EC25A5F79300E111B2 /* EmptyTableViewCell.xib */,
 				563B037925AA106F00DA74C5 /* BubbleTableViewCell.swift */,
 				563B037A25AA106F00DA74C5 /* BubbleTableViewCell.xib */,
+				1C8DD90925C92D4F00C7A3BA /* SettingTableViewCell.swift */,
+				1C8DD90625C92D4200C7A3BA /* SettingTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -477,6 +488,7 @@
 				563B047625ADF47200DA74C5 /* FindPasswordViewController.swift */,
 				10029DA525B0FEDD00060E14 /* HomeModalViewController.swift */,
 				10029DA625B0FEDD00060E14 /* HomeModalViewController.xib */,
+				1C8DD90025C92A9C00C7A3BA /* SettingViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -588,7 +600,9 @@
 				1C52BE0825AD656700D02771 /* AlertModalView.xib in Resources */,
 				563B03DF25ACB59800DA74C5 /* Login.storyboard in Resources */,
 				107919C225A484E60024C711 /* FilterCollectionViewCell.xib in Resources */,
+				1C8DD90425C92AC100C7A3BA /* Setting.storyboard in Resources */,
 				10DDA34125AF09A900620C41 /* DepthCollectionViewCell.xib in Resources */,
+				1C8DD90725C92D4200C7A3BA /* SettingTableViewCell.xib in Resources */,
 				563B040225AD5F1800DA74C5 /* Join.storyboard in Resources */,
 				10DDA34325AF09A900620C41 /* EmotionCollectionViewCell.xib in Resources */,
 				104E685E25AAF8410019B29E /* DiaryWrite.storyboard in Resources */,
@@ -687,6 +701,7 @@
 				562C645C25C1B14F00AA9AB6 /* AppSentence.swift in Sources */,
 				563B034725A8973100DA74C5 /* HomeViewController.swift in Sources */,
 				1C4235F125B0D5A8008FB838 /* DiaryWithId.swift in Sources */,
+				1C8DD90A25C92D5000C7A3BA /* SettingTableViewCell.swift in Sources */,
 				10F1F73625B053A900BF7D37 /* CreateDiary.swift in Sources */,
 				107919BC25A484510024C711 /* ListFilterTableViewCell.swift in Sources */,
 				107919C125A484E60024C711 /* FilterCollectionViewCell.swift in Sources */,
@@ -713,6 +728,7 @@
 				563B037625AA0F3500DA74C5 /* BubbleDummyData.swift in Sources */,
 				10DDA33925AF099A00620C41 /* ListFilterModalViewController.swift in Sources */,
 				5637606725B04AA800651EAA /* SignUpService.swift in Sources */,
+				1C8DD90125C92A9C00C7A3BA /* SettingViewController.swift in Sources */,
 				10B6732025A771700046AA97 /* String+Extension.swift in Sources */,
 				10E5CD7F25ADF145004FDC24 /* UploadModalViewController.swift in Sources */,
 				568764D1259F6EDE009CB486 /* UIColor+Extension.swift in Sources */,
