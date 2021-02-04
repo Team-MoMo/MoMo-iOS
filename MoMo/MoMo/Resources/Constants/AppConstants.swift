@@ -26,11 +26,12 @@ struct Constants {
         static let listStoryboard: String = "List"
         static let findPasswordStoryboard: String = "FindPassword"
         static let statisticsStoryboard: String = "Statistics"
+        static let settingStoryboard: String = "Setting"
         // MARK: - Nib Name Constants
         
         static let homeDayNightViewXib: String = "HomeDayNightView"
         static let bubbleTableViewCell: String = "BubbleTableViewCell"
-        
+        static let settingTableViewCell: String = "SettingTableViewCell"
     }
     
     // MARK: - Identifier Contants
@@ -54,6 +55,7 @@ struct Constants {
         static let statisticsViewController: String = "StatisticsViewController"
         static let depthStatViewController: String = "DepthStatViewController"
         static let moodStatViewController: String = "MoodStatViewController"
+        static let settingViewController: String = "SettingViewController"
         
         // MARK: - UIView
         
@@ -62,6 +64,7 @@ struct Constants {
         // MARK: - Xib Cell
         
         static let bubbleTableViewCell: String = "BubbleTableViewCell"
+        static let settingTableViewCell: String = "SettingTableViewCell"
     }
     
     // MARK: - Design Constants
@@ -180,6 +183,7 @@ struct Constants {
             static let listBtnFilterBlue = UIImage(named: "listBtnFilterBlue")
             static let listBtnGraph = UIImage(named: "listBtnGraph")
             static let listBtnFilterBlack = UIImage(named: "listBtnFilterBlack")
+            static let btnResetting = UIImage(named: "btnResetting")
             
             // listView icon
             static let icLoveBlue = UIImage(named: "icLoveBlue")
@@ -200,6 +204,19 @@ struct Constants {
             static let graph1005M = UIImage(named: "graph1005M")
             static let graphUnder = UIImage(named: "graphUnder")
             
+            // navigation
+            static let icSubtab = UIImage(named: "icSubtab")
+            
+            // setting
+            static let icUser = UIImage(named: "icUser")
+            static let icLock = UIImage(named: "icLock")
+            static let icLicense = UIImage(named: "icLicense")
+            static let icTeam = UIImage(named: "icTeam")
+            static let icInstaLogo = UIImage(named: "icInstaLogo")
+            static let icPwChange = UIImage(named: "icPwChange")
+            static let icDoc1 = UIImage(named: "icDoc1")
+            static let icDoc2 = UIImage(named: "icDoc2")
+            static let icLogout = UIImage(named: "icLogout")
         }
         
         struct Font {

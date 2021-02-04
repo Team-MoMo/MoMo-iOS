@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" interfaceStyle="light" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="ToastView" customModule="MoMo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="424" height="192"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gNa-2Y-Ns7" userLabel="Toast Container">
+                    <rect key="frame" x="101.5" y="96" width="221" height="48"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="일기를 작성해 주세요!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rF9-xl-dww" userLabel="Toast Label">
+                            <rect key="frame" x="50" y="15.5" width="121" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.1803921568627451" green="0.1803921568627451" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="23a-rK-gwD"/>
+                        <constraint firstAttribute="width" constant="221" id="Xva-wM-oGr"/>
+                        <constraint firstItem="rF9-xl-dww" firstAttribute="centerY" secondItem="gNa-2Y-Ns7" secondAttribute="centerY" id="hlJ-J3-JBy"/>
+                        <constraint firstItem="rF9-xl-dww" firstAttribute="centerX" secondItem="gNa-2Y-Ns7" secondAttribute="centerX" id="u4h-Ve-o6c"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="9Xz-17-s1i"/>
+            <constraints>
+                <constraint firstItem="gNa-2Y-Ns7" firstAttribute="centerX" secondItem="9Xz-17-s1i" secondAttribute="centerX" id="2Ij-EB-tUm"/>
+                <constraint firstItem="9Xz-17-s1i" firstAttribute="bottom" secondItem="gNa-2Y-Ns7" secondAttribute="bottom" constant="14" id="5do-yQ-f73"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="toastMessage" destination="rF9-xl-dww" id="7Ek-xW-ady"/>
+                <outlet property="toastViewContainer" destination="gNa-2Y-Ns7" id="d4b-UL-pXa"/>
+            </connections>
+            <point key="canvasLocation" x="-546.37681159420299" y="-499.55357142857139"/>
+        </view>
+    </objects>
+</document>

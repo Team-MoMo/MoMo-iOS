@@ -19,35 +19,30 @@ class OnboardingWriteViewController: UIViewController {
     @IBOutlet weak var sentenceLabel: UILabel!
     @IBOutlet weak var typingLabel: CLTypingLabel!
     @IBOutlet weak var typingCursorLabel: UILabel!
-    
     @IBOutlet weak var featherImage: UIImageView!
     @IBOutlet weak var onboardingCircleSmallImage: UIImageView!
     @IBOutlet weak var onboardingCircleBigImage: UIImageView!
-    
     @IBOutlet weak var sentenceInfoStackView: UIStackView!
     
     // MARK: - Properties
     
-    let defaultInfo: String = "문장이 감성을 자극하고\n깊이있는 기록을 도와줄 거예요"
-    let defaultBookTitle: String = "책제목"
-    let defaultPublisher: String = "출판사이름"
     var selectedSentence: AppSentence?
     var selectedMood: AppEmotion?
-    var sentenceWasShown: Bool = false
-    let vspaingInfoLabelFeatherImage: CGFloat = 74
-    let vspaingInfoLabelSentenceInfoStackView: CGFloat = 116
-    let vspaingInfoLabelSentenceLabel: CGFloat = 147
-    let fontSizeSentenceLabelAfterAnimation: CGFloat = 14
+    private var sentenceWasShown: Bool = false
+    private let info: String = "문장이 감성을 자극하고\n깊이있는 기록을 도와줄 거예요"
+    private let vspaingInfoLabelFeatherImage: CGFloat = 74
+    private let vspaingInfoLabelSentenceInfoStackView: CGFloat = 116
+    private let vspaingInfoLabelSentenceLabel: CGFloat = 147
+    private let fontSizeSentenceLabelAfterAnimation: CGFloat = 14
     
-    // MARK: - View Life Cycle
+    // MARK: - Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.infoLabel.text = self.defaultInfo
+        self.infoLabel.text = self.info
         self.hideTypingCursorLabel()
-        self.typingLabel.onTypingAnimationFinished = showTypingCursorBlinkWithAnimation
-        self.setSentenceLabel()
+        self.typingLabel.onTypingAnimationFinished = self.showTypingCursorBlinkWithAnimation
+        self.updateSentenceLabel()
         self.hideFeatherImage()
         self.hideSentenceLabel()
         self.hideOnboardingCircleSmallImage()
@@ -56,16 +51,13 @@ class OnboardingWriteViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        if sentenceWasShown {
+        if self.sentenceWasShown {
             self.moveSentenceLabelAndFeatherImage()
         }
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         self.showOnboardingCircleSmallImage()
         self.showOnboardingCircleBigImage()
         self.showSentenceLabelAndFeatherImageWithAnimation(
@@ -79,15 +71,21 @@ class OnboardingWriteViewController: UIViewController {
 
 extension OnboardingWriteViewController {
     
-    func setSentenceLabel() {
+    func updateSentenceLabel() {
         self.authorLabel.text = self.selectedSentence?.author
-        self.bookTitleLabel.text = "<\(self.selectedSentence?.bookTitle ?? self.defaultBookTitle)>"
-        self.publisherLabel.text = "(\(self.selectedSentence?.publisher.first! ?? self.defaultPublisher.first!))"
+        self.bookTitleLabel.text = self.changeToformattedText("<", self.selectedSentence?.bookTitle, ">")
+        self.publisherLabel.text = self.changeToformattedText("(", self.selectedSentence?.bookTitle, ")")
         self.sentenceLabel.text = self.selectedSentence?.sentence
     }
     
-    func setTypingLabel() {
-        self.typingLabel.text = self.selectedMood?.toTypingLabelText() ?? "새로운 인연이 기대되는 하루였다."
+    func updateTypingLabel() {
+        guard let typingText = self.selectedMood?.toTypingLabelText() else { return }
+        self.typingLabel.text = typingText
+    }
+    
+    func changeToformattedText(_ start: String, _ message: String?, _ end: String) -> String {
+        guard let safeMessage = message else { return "" }
+        return "\(start)\(safeMessage)\(end)"
     }
     
     func hideFeatherImage() {
@@ -180,10 +178,8 @@ extension OnboardingWriteViewController {
     }
     
     func moveOnboardingCirclesWithAnimation() {
-        
         let movedown = CGAffineTransform(translationX: 0, y: 50)
         let moveup = CGAffineTransform(translationX: 0, y: -100)
-        
         UIView.animate(
             withDuration: 2.0,
             delay: 0.5,
@@ -196,7 +192,6 @@ extension OnboardingWriteViewController {
     }
     
     func moveSentenceLabelAndFeatherImageWithAnimation() {
-        
         UIView.animate(
             withDuration: 1.0,
             delay: 0,
@@ -207,7 +202,7 @@ extension OnboardingWriteViewController {
             },
             completion: { _ in
                 self.showTypingCursorLabel()
-                self.setTypingLabel()
+                self.updateTypingLabel()
             }
             
         )
@@ -233,10 +228,8 @@ extension OnboardingWriteViewController {
     }
     
     func pushToDeepViewController(finished: Bool) {
-        
         guard let deepViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.deepViewController) as? DeepViewController else { return }
         deepViewController.buttonText = "시작하기"
         self.navigationController?.pushViewController(deepViewController, animated: true)
-        
     }
 }

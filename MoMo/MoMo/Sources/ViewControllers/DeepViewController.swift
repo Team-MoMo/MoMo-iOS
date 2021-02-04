@@ -25,34 +25,63 @@ class DeepViewController: UIViewController {
     // MARK: - Properties
     
     var mood: AppEmotion?
-    var sentence: Sentence?
-    var journal: String = ""
-    var date: String = ""
-    
-    let dafaultInfoLabel: String = "오늘의 감정은\n잔잔한가요, 깊은가요?\n스크롤을 움직여서 기록해보세요"
-    var deepSliderView: DeepSliderView?
-    var deepSliderValue: Float = 0
+    var sentence: AppSentence?
+    var journal: String?
+    var date: String?
     var initialDepth: AppDepth?
-    var viewWidth: CGFloat?
-    var viewHeight: CGFloat?
-    var viewXpos: CGFloat?
-    var viewYpos: CGFloat?
-    weak var deepViewControllerDelegate: DeepViewControllerDelegate?
-    
-    // 버튼 텍스트가 시작하기일때 그리고 기록하기를 기준으로 분기할거예요
+    var deepSliderValue: Float = 0
+    var deepSliderView: DeepSliderView?
     var buttonText: String = "시작하기"
+    private let info: String = "오늘의 감정은\n잔잔한가요, 깊은가요?\n스크롤을 움직여서 기록해보세요"
+    private var viewWidth: CGFloat?
+    private var viewHeight: CGFloat?
+    private var viewXpos: CGFloat?
+    private var viewYpos: CGFloat?
+    weak var deepViewControllerDelegate: DeepViewControllerDelegate?
     
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.infoLabel.text = self.dafaultInfoLabel
+        self.initializeDeepViewController()
+        self.initializeNavigationBar()
+        self.addGradientOnGradientBackgroundView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startButton.setTitle(buttonText, for: .normal)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.addCircleIndicatorsOnDeepPointSliderView()
+        self.changeBackgroundWithAnimation(value: self.deepSliderValue)
+    }
+    
+    // MARK: - Functions
+    
+    func initializeDeepViewController() {
+        self.infoLabel.text = self.info
         self.buttonRoundedUp()
         self.startButton.titleLabel?.text = self.buttonText
-        self.getViewContraints()
+        self.updateViewContraints()
         self.resizeGradientBackgroundView()
         self.addBlurEffectOnBlurView()
+        self.attachDeepSliderView()
+    }
+    
+    func initializeNavigationBar() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        
+        let leftButton = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchBackButton))
+        leftButton.tintColor = .white
+        self.navigationItem.leftBarButtonItems = [leftButton]
+    }
+    
+    func attachDeepSliderView() {
         self.deepSliderView = DeepSliderView.instantiate(initialDepth: self.initialDepth ?? .depth2m)
         self.deepSliderValue = Float(self.initialDepth?.rawValue ?? 0) / 6
         
@@ -73,34 +102,9 @@ class DeepViewController: UIViewController {
             }
             
         }
-        self.addGradientOnGradientBackgroundView()
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        
-        let leftButton = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchBackButton))
-        leftButton.tintColor = .white
-        self.navigationItem.leftBarButtonItems = [leftButton]
     }
     
-    @objc func touchBackButton() {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        startButton.setTitle(buttonText, for: .normal)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.addCircleIndicatorsOnDeepPointSliderview()
-        self.changeBackgroundWithAnimation(value: self.deepSliderValue)
-    }
-    
-    // MARK: - Functions
-    
-    func getViewContraints() {
+    func updateViewContraints() {
         self.viewWidth = self.view.frame.size.width
         self.viewHeight = self.view.frame.size.height
         self.viewXpos = self.view.frame.origin.x
@@ -108,17 +112,16 @@ class DeepViewController: UIViewController {
     }
     
     func resizeGradientBackgroundView() {
-        self.gradientBackgroundView.frame = CGRect(
-            x: self.viewXpos!,
-            y: self.viewYpos!,
-            width: self.viewWidth!,
-            height: self.viewHeight! * 7
-        )
+        self.gradientBackgroundView.frame = CGRect(x: self.viewXpos!, y: self.viewYpos!, width: self.viewWidth!, height: self.viewHeight! * 7)
     }
     
     func buttonRoundedUp() {
         self.startButton.layer.cornerRadius = self.startButton.frame.size.height / 2
         self.startButton.clipsToBounds = true
+    }
+    
+    @objc func touchBackButton() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     func addBlurEffectOnBlurView() {
@@ -129,7 +132,7 @@ class DeepViewController: UIViewController {
         self.blurView.addSubview(blurEffectView)
     }
     
-    func addCircleIndicatorsOnDeepPointSliderview() {
+    func addCircleIndicatorsOnDeepPointSliderView() {
         let deepPointSliderHeight = deepSliderView!.deepPointSlider.frame.size.height
         let deepPointSliderWidth = deepSliderView!.deepPointSlider.frame.size.width - deepPointSliderHeight
         let circleIndicatorDiameter: CGFloat = 10
@@ -152,12 +155,7 @@ class DeepViewController: UIViewController {
     
     func addGradientOnGradientBackgroundView() {
         for index in 0...6 {
-            let gradientView = UIView(frame: CGRect(
-                x: self.viewXpos!,
-                y: self.viewHeight! * CGFloat(index),
-                width: self.viewWidth!,
-                height: self.viewHeight!
-            ))
+            let gradientView = UIView(frame: CGRect(x: self.viewXpos!, y: self.viewHeight! * CGFloat(index), width: self.viewWidth!, height: self.viewHeight!))
             let gradientLayer = CAGradientLayer()
             gradientLayer.frame = gradientView.bounds
             gradientLayer.colors = AppDepth(rawValue: index)?.toGradientColor()
@@ -175,8 +173,7 @@ class DeepViewController: UIViewController {
     }
     
     func updateJournal(contents: String, depth: Int, userId: Int, sentenceId: Int, emotionId: Int, wroteAt: String) {
-        DiariesService.shared.postDiaries(contents: contents, depth: depth, userId: userId, sentenceId: sentenceId, emotionId: emotionId, wroteAt: wroteAt){
-            (networkResult) -> (Void) in
+        DiariesService.shared.postDiaries(contents: contents, depth: depth, userId: userId, sentenceId: sentenceId, emotionId: emotionId, wroteAt: wroteAt) { networkResult in
             switch networkResult {
             case .success(let data):
                 if let serverData = data as? CreateDiary {
@@ -201,51 +198,44 @@ class DeepViewController: UIViewController {
     func pushToDiaryViewController(diaryId: Int) {
         let diaryStoryboard = UIStoryboard(name: Constants.Name.diaryStoryboard, bundle: nil)
         guard let diaryViewController = diaryStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryViewController) as? DiaryViewController else { return }
-        // TODO: - 서버에서 받아오기
         diaryViewController.diaryId = diaryId
-        diaryViewController.currentDepth = AppDepth(rawValue: Int(round(self.deepSliderValue * 6))) ?? AppDepth.depth2m
         self.navigationController?.pushViewController(diaryViewController, animated: true)
         
     }
     
     @IBAction func startButtonTouchUp(_ sender: UIButton) {
-        guard let text = sender.titleLabel?.text else {
-            return
-        }
+        guard let text = sender.titleLabel?.text else { return }
         if text == "시작하기" {
             self.pushToLoginViewController()
         } else if text == "기록하기" {
-            guard let selectedMood = mood, let selectedSentence = sentence else {
-                return
-            }
-            let dateArray = date.components(separatedBy: ". ")
-            updateJournal(contents: journal,
-                          depth: Int(round(self.deepSliderValue * 6)),
-                          userId: Int(APIConstants.userId),
-                          sentenceId: selectedSentence.id,
-                          emotionId: selectedMood.rawValue,
-                          wroteAt: "\(dateArray[0])-\(dateArray[1])-\(dateArray[2])")
+            guard let selectedMood = self.mood, let selectedSentenceId = self.sentence?.id, let date = self.date, let journal = self.journal else { return }
+            let selectedDate = AppDate(formattedDate: date, with: ". ")
+            self.updateJournal(contents: journal,
+                               depth: Int(round(self.deepSliderValue * 6)),
+                               userId: Int(APIConstants.userId),
+                               sentenceId: selectedSentenceId,
+                               emotionId: selectedMood.rawValue,
+                               wroteAt: selectedDate.getFormattedDate(with: "-")
+            )
         } else { // text == "수정하기"
             self.deepViewControllerDelegate?.passData(
                 selectedDepth: AppDepth(rawValue: Int(round(self.deepSliderValue * 6))) ?? AppDepth.depth2m)
             self.navigationController?.popViewController(animated: true)
         }
-        
     }
-    
 }
 
 extension DeepViewController: SliderDelegate {
     
     func deepPointSliderValueChanged(slider: UISlider) {
-        self.sliderUpdated(slider, sliderValue: slider.value)
+        self.updateSlider(slider, sliderValue: slider.value)
     }
     
     func deepLabelSliderValueChanged(slider: UISlider) {
-        self.sliderUpdated(slider, sliderValue: slider.value)
+        self.updateSlider(slider, sliderValue: slider.value)
     }
     
-    func sliderUpdated(_ slider: UISlider, sliderValue: Float) {
+    func updateSlider(_ slider: UISlider, sliderValue: Float) {
         
         self.deepSliderValue = round(sliderValue * 6) / 6
         
@@ -262,7 +252,6 @@ extension DeepViewController: SliderDelegate {
     }
     
     func changeBackgroundWithAnimation(value: Float) {
-        
         UIView.transition(
             with: self.gradientBackgroundView,
             duration: 0.3,
