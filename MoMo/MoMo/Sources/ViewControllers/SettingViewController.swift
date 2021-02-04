@@ -220,7 +220,11 @@ class SettingViewController: UIViewController {
     }
     
     private func pushToOpenSourceLicenseViewController() {
-        
+        let openSourceStoryboard = UIStoryboard(name: Constants.Name.openSourceStoryboard, bundle: nil)
+        guard let openSourceViewController = openSourceStoryboard.instantiateViewController(identifier: Constants.Identifier.openSourceViewController) as? OpenSourceViewController else {
+            return
+        }
+        self.navigationController?.pushViewController(openSourceViewController, animated: true)
     }
     
     private func pushToPersonalTermViewController() {
