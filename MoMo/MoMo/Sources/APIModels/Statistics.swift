@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Statistics {
-    let emotionCounts: [EmotionCounts]
-    let depthCounts: [DepthCounts]
+struct Statistics: Codable {
+    let emotionCounts: [EmotionCount]
+    let depthCounts: [DepthCount]
 }

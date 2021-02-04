@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DepthCounts {
+struct DepthCount: Codable {
     let depth: Int
     let count: Int
 }

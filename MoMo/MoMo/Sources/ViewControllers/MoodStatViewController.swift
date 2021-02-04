@@ -20,13 +20,26 @@ class MoodStatViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet var statNumLabel: [UILabel]?
     @IBOutlet var statViewHeight: [NSLayoutConstraint]?
+    @IBOutlet var statView: [UIView]?
     
+    //MARK: - Override LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeStatBorderRadius()
         initializeMaximum()
         intializeStatViewMaximumHeight()
         intializeHeightConstraints()
         initializeLabels()
+    }
+    
+    //MARK: - Private Function
+    private func initializeStatBorderRadius() {
+        guard let views = statView else {
+            return
+        }
+        for idx in 0..<views.count {
+            views[idx].layer.cornerRadius = 5
+        }
     }
     
     private func initializeMaximum() {
@@ -40,13 +53,19 @@ class MoodStatViewController: UIViewController {
     }
     
     private func intializeHeightConstraints() {
-        guard let statHeights = statViewHeight, let viewHeight = statViewMaximumHeight, let max = maximum else {
+        guard let statHeights = statViewHeight, let viewHeight = statViewMaximumHeight, let max = maximum, let views = statView else {
             return
         }
-        for constraint in 0..<statHeights.count {
-            statHeights[constraint].constant = viewHeight * (CGFloat(moodStatData[constraint])/max)
+        for idx in 0..<statHeights.count {
+            if max == 0 {
+                statHeights[idx].constant = 0 
+            } else {
+                statHeights[idx].constant = viewHeight * (CGFloat(moodStatData[idx])/max)
+            }
+            views[idx].layoutIfNeeded()
         }
     }
+    
     
     private func initializeLabels() {
         guard let labels = statNumLabel else {

@@ -9,13 +9,14 @@ import Foundation
 import Alamofire
 
 //통계를 위한 함수
+
 struct DiaryStatistics {
     static let shared = DiaryStatistics()
     
     // get
     func getDiaryStatistics(userId: String,
                             year: String,
-                            day: String,
+                            month: String,
                             completion: @escaping (NetworkResult<Any>) -> (Void)) {
         let url = APIConstants.statisticsURL
         let header: HTTPHeaders = [
@@ -26,7 +27,7 @@ struct DiaryStatistics {
         let body: Parameters = [
             "userId": userId,
             "year": year,
-            "day": day
+            "month": month
         ]
         
         let dataRequest = AF.request(url,
@@ -54,15 +55,14 @@ struct DiaryStatistics {
     
     private func judgeDiaryStatisticsData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<String>.self,
+        guard let decodedData = try? decoder.decode(GenericResponse<Statistics>.self,
                                                     from: data) else {
             return .pathErr
         }
-        
         switch status {
         case 200:
             return .success(decodedData.data)
-        case 401:
+        case 400:
             return .requestErr(decodedData.message)
         case 500:
             return .serverErr

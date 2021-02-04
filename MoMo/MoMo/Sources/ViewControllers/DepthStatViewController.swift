@@ -31,16 +31,17 @@ class DepthStatViewController: UIViewController {
     // MARK: - Properties
     var maximum: CGFloat?
     var statViewMaximumHeight: CGFloat?
-    var depthStatData: [Int] = [6,1,8,3,5,4,3]
+    var depthStatData: [Int] = [6, 1, 8, 3, 5, 4, 3]
     
     // MARK: - IBOutlets
     
-    @IBOutlet var statNumLabel: Array<UILabel>?
+    @IBOutlet var statNumLabel: [UILabel]?
     @IBOutlet var statViewHeight: [NSLayoutConstraint]?
     @IBOutlet var statView: [UIView]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeStatBorderRadius()
         initializeMaximum()
         intializeStatViewMaximumHeight()
         intializeHeightConstraints()
@@ -48,11 +49,22 @@ class DepthStatViewController: UIViewController {
         initializeStatViewColor()
         // Do any additional setup after loading the view.
     }
-
+    
+    // MARK: - Override LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         initializeStatViewColor()
         attachObjet()
+    }
+    
+    // MARK: - Private Function
+    private func initializeStatBorderRadius() {
+        guard let views = statView else {
+            return
+        }
+        for idx in 0..<views.count {
+            views[idx].layer.cornerRadius = 5
+        }
     }
     
     private func initializeMaximum() {
@@ -69,9 +81,13 @@ class DepthStatViewController: UIViewController {
         guard let statHeights = statViewHeight, let viewHeight = statViewMaximumHeight, let max = maximum, let views = statView else {
             return
         }
-        for constraint in 0..<statHeights.count {
-            statHeights[constraint].constant = viewHeight * (CGFloat(depthStatData[constraint])/max)
-            views[constraint].layoutIfNeeded()
+        for idx in 0..<statHeights.count {
+            if max == 0 {
+                statHeights[idx].constant = 0
+            } else {
+                statHeights[idx].constant = viewHeight * (CGFloat(depthStatData[idx])/max)
+            }
+            views[idx].layoutIfNeeded()
         }
     }
     
@@ -86,6 +102,7 @@ class DepthStatViewController: UIViewController {
             gradient.startPoint = CGPoint(x: 1.0, y: 0.0)
             gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
             gradient.frame = views[index].bounds
+            gradient.cornerRadius = 5
             views[index].layer.addSublayer(gradient)
         }
 

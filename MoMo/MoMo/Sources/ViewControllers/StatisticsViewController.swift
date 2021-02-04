@@ -16,8 +16,10 @@ class StatisticsViewController: UIViewController {
     var depthButtonSubLayer: CALayer?
     var moodButtonSubLayer: CALayer?
     var dateModal: HomeModalViewController?
-    var year: Int?
-    var month: Int?
+    var year: Int? = 2021
+    var month: Int? = 01
+    var depthData: [Int] = [0, 0, 0, 0, 0, 0, 0]
+    var emotionData: [Int] = [0, 0, 0, 0, 0, 0, 0, 0]
     
     // MARK: - IBOutlets
     @IBOutlet weak var depthButton: UIButton!
@@ -25,14 +27,17 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var statContainerView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
     
+    // MARK: - Override LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let serverYear = year, let serverMonth = month else {
+            return
+        }
+       
         initializeDateModal()
         initializeNavigationItem()
         initializeSubLayer()
-        initializeSubLayer()
-        initializeButtonIsSelected()
-        initializeIntialStatView()
+        getDiaryStatisticsWithAPI("\(serverYear)", "\(serverMonth)")
     }
 
     // MARK: - Private Function
@@ -98,6 +103,7 @@ class StatisticsViewController: UIViewController {
         guard let moodStatViewController = storyboard?.instantiateViewController(identifier: Constants.Identifier.moodStatViewController) as? MoodStatViewController else {
             return
         }
+        moodStatViewController.moodStatData = emotionData
         addChild(moodStatViewController)
         moodStatViewController.view.frame = statContainerView.bounds
         statContainerView.addSubview(moodStatViewController.view)
@@ -107,6 +113,7 @@ class StatisticsViewController: UIViewController {
         guard let depthStatViewController = storyboard?.instantiateViewController(identifier: Constants.Identifier.depthStatViewController) as? DepthStatViewController else {
             return
         }
+        depthStatViewController.depthStatData = depthData
         addChild(depthStatViewController)
         depthStatViewController.view.frame = statContainerView.bounds
         statContainerView.addSubview(depthStatViewController.view)
@@ -167,6 +174,61 @@ class StatisticsViewController: UIViewController {
         self.present(modal, animated: true, completion: nil)
     }
     
+    private func getDiaryStatisticsWithAPI (_ paramYear: String, _ paramMonth: String) {
+        DiaryStatistics.shared.getDiaryStatistics(userId: "\(APIConstants.userId)", year: paramYear, month: paramMonth) {
+            networkResult in
+            switch networkResult {
+
+            case .success(let data):
+                guard let unwrappedData = data as? Statistics else {
+                    return
+                }
+                self.updateMoodDepthData(unwrappedData.emotionCounts,
+                                    unwrappedData.depthCounts)
+                self.presentStatAfterServer()
+                
+                
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+    
+    private func presentStatAfterServer() {
+        if !depthButton.isSelected && !moodButton.isSelected {
+            self.initializeButtonIsSelected()
+            self.initializeIntialStatView()
+        } else if moodButton.isSelected {
+            removeChildView()
+            showMoodStatView()
+        } else {
+            removeChildView()
+            showDepthStatView()
+        }
+    }
+    
+    private func updateMoodDepthData(_ emotion: [EmotionCount], _ depth: [DepthCount]){
+        depthData = [0, 0, 0, 0, 0, 0, 0]
+        emotionData = [0, 0, 0, 0, 0, 0, 0, 0]
+        
+        for idx in 0..<emotion.count {
+            emotionData[(emotion[idx].emotionID) - 1] = emotion[idx].count
+        }
+        for idx in 0..<depth.count {
+            depthData[depth[idx].depth] = depth[idx].count
+        }
+        print(emotionData)
+        print(depthData)
+    }
+    
     // MARK: - Selector Function
     @objc func touchBackButton() {
         self.navigationController?.popViewController(animated: true)
@@ -182,8 +244,6 @@ class StatisticsViewController: UIViewController {
             removeChildView()
             showMoodStatView()
             addButtonSublayer()
-         
-            
         }
     }
  
@@ -202,7 +262,6 @@ class StatisticsViewController: UIViewController {
     @IBAction func touchModalButton(_ sender: Any) {
         presentDateModal()
     }
-    
 }
 
 extension StatisticsViewController: UIViewControllerTransitioningDelegate {
@@ -216,5 +275,6 @@ extension StatisticsViewController: StatModalViewDelegate {
         self.year = year
         self.month = month
         self.updateLabelText()
+        self.getDiaryStatisticsWithAPI("\(year)", "\(month)")
     }
 }

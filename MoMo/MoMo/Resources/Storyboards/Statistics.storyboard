@@ -985,6 +985,14 @@
                         <outletCollection property="statNumLabel" destination="xY7-PK-Oya" collectionClass="NSMutableArray" id="aEu-gY-9K0"/>
                         <outletCollection property="statNumLabel" destination="hYJ-Pg-gD9" collectionClass="NSMutableArray" id="Egl-OS-NyS"/>
                         <outletCollection property="statNumLabel" destination="tbW-dM-m1I" collectionClass="NSMutableArray" id="vxg-fg-wt1"/>
+                        <outletCollection property="statView" destination="rd7-0c-rrZ" collectionClass="NSMutableArray" id="wl0-Mf-ai4"/>
+                        <outletCollection property="statView" destination="BrD-12-DIk" collectionClass="NSMutableArray" id="tI3-Gh-zuu"/>
+                        <outletCollection property="statView" destination="bvU-sf-m8R" collectionClass="NSMutableArray" id="dIf-Eq-L06"/>
+                        <outletCollection property="statView" destination="IM1-iy-AHw" collectionClass="NSMutableArray" id="yk7-n1-L5r"/>
+                        <outletCollection property="statView" destination="ENX-Z9-1it" collectionClass="NSMutableArray" id="exh-uc-Tyu"/>
+                        <outletCollection property="statView" destination="HBO-Ex-ALU" collectionClass="NSMutableArray" id="siY-IB-aXg"/>
+                        <outletCollection property="statView" destination="k4L-3n-INL" collectionClass="NSMutableArray" id="2vb-EW-h0N"/>
+                        <outletCollection property="statView" destination="Yd1-lb-bBw" collectionClass="NSMutableArray" id="qmC-YM-3fE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rnC-3T-2Ze" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
