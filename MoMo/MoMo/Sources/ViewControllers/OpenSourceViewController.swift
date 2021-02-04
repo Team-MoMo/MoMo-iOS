@@ -17,6 +17,44 @@ class OpenSourceViewController: UIViewController {
                                     "SnapKit",
                                     "IQKeyboardManager",
                                     "CLTypingLabel"]
+    let openSourceDetail: [String] = [
+        """
+https://github.com/realm/SwiftLint
+https://realm.github.io/SwiftLint/
+The MIT License (MIT)
+Copyright (c) 2020 Realm Inc.
+""",
+    """
+https://github.com/Alamofire/Alamofire
+http://alamofire.org
+The MIT License (MIT)
+ Copyright (c) 2014-2020 Alamofire Software Foundation (http://alamofire.org/)
+""",
+    """
+https://github.com/Moya/Moya
+The MIT License (MIT)
+Copyright (c) 2014-present Artsy, Ash Furrow
+""",
+    """
+https://github.com/airbnb/lottie-ios
+Copyright 2018 Airbnb, Inc.
+Apache License,Version 2.0
+""",
+    """
+https://github.com/SnapKit
+The MIT License (MIT)
+Copyright (c) 2011-Present SnapKit Team
+""",
+    """
+https://github.com/hackiftekhar/IQKeyboardManager
+MIT License
+Copyright (c) 2013-2017 Iftekhar Qurashi
+""",
+    """
+https://github.com/cl7/CLTypingLabel
+MIT License
+Copyright (c) 2016 Chenglin Liu
+"""]
     
     // MARK: - Properties
     private lazy var navigationBarTitleLabel: UILabel = {
@@ -59,6 +97,7 @@ class OpenSourceViewController: UIViewController {
     
     private func initializeNavigationItem() {
         let backButton = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(dismissOpenSourceView))
+        backButton.tintColor = UIColor.Black1
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.titleView = self.navigationBarTitleLabel
     }
@@ -69,7 +108,11 @@ class OpenSourceViewController: UIViewController {
     }
     
     @objc func pushToOpenSourceDetailView(_ sender: UIButton) {
-        print(sender.tag)
+        guard let openSourceDetailViewController = storyboard?.instantiateViewController(identifier: "OpenSourceDetailViewController") as? OpenSourceDetailViewController else {
+            return
+        }
+        openSourceDetailViewController.openSourceDetailData = self.openSourceDetail[sender.tag]
+        self.navigationController?.pushViewController(openSourceDetailViewController, animated: true)
     }
 }
 
@@ -92,8 +135,5 @@ extension OpenSourceViewController: UITableViewDataSource {
         cell.detailButton.addTarget(self, action: #selector(pushToOpenSourceDetailView(_:)), for: .touchUpInside)
         cell.initializeLabel(openSourceTitle[indexPath.row])
         return cell
-        
     }
-    
-    
 }
