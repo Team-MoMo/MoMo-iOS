@@ -95,10 +95,10 @@ class PersonalTermViewController: UIViewController {
     개인정보를 처리하는 데이터베이스시스템에 대한 접근권한의 부여,변경,말소를 통하여 개인정보에 대한 접근통제를 위하여 필요한 조치를 하고 있으며 침입차단시스템을 이용하여 외부로부터의 무단 접근을 통제하고 있습니다.
     """
     
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak var personalInfoTextView: UITextView!
     
-    //MARK: - Properties
+    // MARK: - Properties
     private lazy var navigationItemTitleLabel: UILabel = {
         let label: UILabel = UILabel()
         let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.Black2Nav,
@@ -108,7 +108,7 @@ class PersonalTermViewController: UIViewController {
         return label
     }()
     
-    //MARK: - Override ViewCycle
+    // MARK: - Override ViewCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeTextView()
