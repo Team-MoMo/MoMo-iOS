@@ -96,8 +96,17 @@ class PersonalTermViewController: UIViewController {
     """
     
     //MARK: - IBOutlets
-    
     @IBOutlet weak var personalInfoTextView: UITextView!
+    
+    //MARK: - Properties
+    private lazy var navigationItemTitleLabel: UILabel = {
+        let label: UILabel = UILabel()
+        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.Black2Nav,
+            NSAttributedString.Key.kern: -0.6]
+        label.attributedText = NSAttributedString(string: "개인정보 이용 약관", attributes: attributes)
+        label.sizeToFit()
+        return label
+    }()
     
     //MARK: - Override ViewCycle
     override func viewDidLoad() {
@@ -116,7 +125,7 @@ class PersonalTermViewController: UIViewController {
         let backButton = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(dismissPersonalInfo))
         backButton.tintColor = UIColor.Black1
         self.navigationItem.leftBarButtonItem = backButton
-        self.navigationItem.title = "개인정보 이용 약관"
+        self.navigationItem.titleView = navigationItemTitleLabel
     }
     
     @objc func dismissPersonalInfo() {
