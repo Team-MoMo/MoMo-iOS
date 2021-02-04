@@ -8,18 +8,18 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Personal Info View Controller-->
+        <!--Personal Term View Controller-->
         <scene sceneID="jF5-JV-u51">
             <objects>
-                <viewController storyboardIdentifier="PersonalInfoViewController" id="mNO-eP-plb" customClass="PersonalInfoViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PersonalTermViewController" id="mNO-eP-plb" customClass="PersonalTermViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NJj-gM-ueL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lVB-U9-pBo">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVB-U9-pBo">
                                 <rect key="frame" x="24" y="68" width="366" height="794"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">1. 개인정보의 처리 목적 (‘https://blog.naver.com/heey1792’이하 ‘MOMO’) 은(는) 다음의 목적을 위하여 개인정보를 처리하고 있으며, 다음의 목적 이외의 용도로는 이용하지 않습니다.
+                                <string key="text">1. 개인정보의 처리 목적 (‘https://blog.naver.com/heey1792’이하 ‘MOMO’) 은(는) 다음의 목적을 위하여 개인정보를 처리하고 있으며, 다음의 목적 이외의 용도로는 이용하지 않습니다.
 
 - 고객 가입의사 확인, 고객에 대한 서비스 제공에 따른 본인 식별.인증, 회원자격 유지.관리, 물품 또는 서비스 공급에 따른 금액 결제, 물품 또는 서비스의 공급.배송 등
 
@@ -101,7 +101,7 @@ MOMO 은 정보주체의 이용정보를 저장하고 수시로 불러오는 ‘
 
 3. 개인정보에 대한 접근 제한
 개인정보를 처리하는 데이터베이스시스템에 대한 접근권한의 부여,변경,말소를 통하여 개인정보에 대한 접근통제를 위하여 필요한 조치를 하고 있으며 침입차단시스템을 이용하여 외부로부터의 무단 접근을 통제하고 있습니다.
-</mutableString>
+</string>
                                 <color key="textColor" name="Black2Nav"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -117,7 +117,7 @@ MOMO 은 정보주체의 이용정보를 저장하고 수시로 불러오는 ‘
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="personalInfoTextView" destination="lVB-U9-pBo" id="20F-SS-VKc"/>
+                        <outlet property="personalInfoTextView" destination="lVB-U9-pBo" id="dT4-0A-b3e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wXJ-1l-RpK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

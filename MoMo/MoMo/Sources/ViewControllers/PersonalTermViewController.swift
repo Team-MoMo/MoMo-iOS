@@ -1,5 +1,5 @@
 //
-//  PersonalInfoViewController.swift
+//  PersonalTermViewController.swift
 //  MoMo
 //
 //  Created by 이정엽 on 2021/02/04.
@@ -7,7 +7,8 @@
 
 import UIKit
 
-class PersonalInfoViewController: UIViewController {
+class PersonalTermViewController: UIViewController {
+
     // MARK: - Constants
     let personInfoText = """
     1. 개인정보의 처리 목적 (‘https://blog.naver.com/heey1792’이하 ‘MOMO’) 은(는) 다음의 목적을 위하여 개인정보를 처리하고 있으며, 다음의 목적 이외의 용도로는 이용하지 않습니다.
@@ -97,10 +98,14 @@ class PersonalInfoViewController: UIViewController {
     //MARK: - IBOutlets
     
     @IBOutlet weak var personalInfoTextView: UITextView!
+    
     //MARK: - Override ViewCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeTextView()
+        initializeNavigationItem()
+        print(personalInfoTextView.contentSize)
+        print(personalInfoTextView.contentOffset)
     }
     
     private func initializeTextView() {
@@ -109,6 +114,7 @@ class PersonalInfoViewController: UIViewController {
     
     private func initializeNavigationItem() {
         let backButton = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(dismissPersonalInfo))
+        backButton.tintColor = UIColor.Black1
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.title = "개인정보 이용 약관"
     }
@@ -116,4 +122,5 @@ class PersonalInfoViewController: UIViewController {
     @objc func dismissPersonalInfo() {
         self.navigationController?.popViewController(animated: true)
     }
+
 }
