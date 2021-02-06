@@ -40,6 +40,30 @@ class JoinViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        initializeViewBorders()
+        initializeNavigationBar()
+        initializeJoinButtonCornerRadius()
+        initializePlaceholder()
+        initializeAgreeButtons()
+        hideErrorLabels()
+        makeClearButtons()
+        initializeAgreeButtonTexts()
+    
+    }
+    
+    // MARK: - @IBAction Properties
+    
+    @IBAction func infoButtonTouchUp(_ sender: Any) {
+        // 약관 동의 시 checkbox toggle
+        infoAgreeButton.isSelected.toggle()
+    }
+    @IBAction func serviceButtonTouchUp(_ sender: Any) {
+        serviceAgreeButton.isSelected.toggle()
+    }
+    
+    // MARK: - Functions
+    
+    func initializeViewBorders() {
         // view border
         emailView.layer.borderColor = UIColor.Black5Publish.cgColor
         emailView.layer.borderWidth = 1
@@ -47,39 +71,39 @@ class JoinViewController: UIViewController {
         passwordView.layer.borderWidth = 1
         passwordCheckView.layer.borderColor = UIColor.Black5Publish.cgColor
         passwordCheckView.layer.borderWidth = 1
-        
+    }
+    
+    func initializeNavigationBar() {
         // navigation bar 투명화
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
-        
+    }
+    
+    func initializeJoinButtonCornerRadius() {
         // joinButton rounding
         joinButton.clipsToBounds = true
         joinButton.layer.cornerRadius = joinButton.frame.height / 2
-        
+    }
+    
+    func initializePlaceholder() {
         // placeholder
         emailTextField.attributedPlaceholder = NSAttributedString(string: "이메일을 입력해 주세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Blue5, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
 
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "영문 + 숫자 6자리 이상 입력해 주세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Blue5, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
         
         passwordCheckTextField.attributedPlaceholder = NSAttributedString(string: "비밀번호를 다시 한 번 입력해 주세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Blue5, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
-        
+    }
+    
+    func initializeAgreeButtons() {
         // 약관 동의 시 checkbox toggle
         infoAgreeButton.setImage(Constants.Design.Image.loginCheckboxIntermediate, for: .normal)
         infoAgreeButton.setImage(Constants.Design.Image.loginCheckbox, for: .selected)
         serviceAgreeButton.setImage(Constants.Design.Image.loginCheckboxIntermediate, for: .normal)
         serviceAgreeButton.setImage(Constants.Design.Image.loginCheckbox, for: .selected)
-        
-        // 처음 뷰 로드 시 error label hidden 처리
-        emailErrorLabel.isHidden = true
-        passwordErrorLabel.isHidden = true
-        passwordCheckErrorLabel.isHidden = true
-        
-        // clear button 만들기
-        emailTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
-        passwordTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
-        passwordCheckTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
-        
+    }
+    
+    func initializeAgreeButtonTexts() {
         // 약관 동의 체크박스 부분 bold처리
         let boldText = "[필수]"
         let attrs = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)]
@@ -99,17 +123,19 @@ class JoinViewController: UIViewController {
         serviceTermButton.setAttributedTitle(serviceTermAttributedString, for: .normal)
     }
     
-    // MARK: - @IBAction Properties
-    
-    @IBAction func infoButtonTouchUp(_ sender: Any) {
-        // 약관 동의 시 checkbox toggle
-        infoAgreeButton.isSelected.toggle()
-    }
-    @IBAction func serviceButtonTouchUp(_ sender: Any) {
-        serviceAgreeButton.isSelected.toggle()
+    func hideErrorLabels() {
+        // 처음 뷰 로드 시 error label hidden 처리
+        emailErrorLabel.isHidden = true
+        passwordErrorLabel.isHidden = true
+        passwordCheckErrorLabel.isHidden = true
     }
     
-    // MARK: - Functions
+    func makeClearButtons() {
+        // clear button 만들기
+        emailTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
+        passwordTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
+        passwordCheckTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
+    }
     
     // Email Errors
     func showEmailFormatError() {
