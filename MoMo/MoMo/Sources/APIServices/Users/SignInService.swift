@@ -58,7 +58,6 @@ struct SignInService {
         switch status {
         case 200:
             // 로그인 성공
-            //print(decodedData.data)
             return .success(decodedData.data)
         case 400:
             // 존재하지 않는 회원
