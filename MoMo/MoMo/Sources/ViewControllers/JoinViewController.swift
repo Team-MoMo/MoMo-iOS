@@ -293,7 +293,7 @@ class JoinViewController: UIViewController {
     func validatePassword(password: String) -> Bool {
         let passwordRegEx = "^[a-zA-Z0-9!@#$%^&*(),.?\":{}|<>_-]{6,}$"
         
-        let predicate = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
+        let predicate = NSPredicate(format: "SELF MATCHES %@", passwordRegEx)
         return predicate.evaluate(with: password)
     }
     
@@ -354,7 +354,7 @@ class JoinViewController: UIViewController {
     // MARK: - API Functions
     // 이메일 확인
     func getSignUpWithAPI(email: String) {
-        SignUpService.shared.getSignUp(email: email) { (networkResult) -> (Void) in
+        SignUpService.shared.getSignUp(email: email) { (networkResult) -> Void in
             switch networkResult {
             case .success(let msg):
                 if let message = msg as? String {
@@ -367,7 +367,7 @@ class JoinViewController: UIViewController {
                     // 사용 불가능한 이메일
                     if message == self.emailFormatErrorMessage {
                         self.showEmailFormatError()
-                    }else if message == self.emailInUseErrorMessage {
+                    } else if message == self.emailInUseErrorMessage {
                         self.showEmailInUseError()
                     }
                     print(message)
