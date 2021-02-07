@@ -114,6 +114,7 @@ struct SignUpService {
         
         switch status {
         case 200:
+        case 201:
             // 회원가입 성공
             return .success(decodedData.data)
         case 400:

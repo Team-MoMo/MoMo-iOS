@@ -105,9 +105,15 @@ class JoinViewController: UIViewController {
         
         if !isEmailError && !isPasswordError && !isPasswordCheckError && !isInfoTermError && !isServiceTermError {
             // 가입 통신 시작
-            print("다 통과요")
+            guard let email = emailTextField.text else {
+                return
+            }
+            guard let password = passwordTextField.text else {
+                return
+            }
+            postSignUpWithAPI(email: email, password: password)
         } else {
-            print("하나가 부족해요")
+            print("가입 조건 부족")
         }
     }
     
@@ -391,7 +397,6 @@ class JoinViewController: UIViewController {
                 if let message = msg as? String {
                     // 사용 가능한 이메일
                     self.hideEmailError()
-                    print(message)
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
@@ -410,6 +415,35 @@ class JoinViewController: UIViewController {
                 print("serverErr in getSignUpWithApi")
             case .networkFail:
                 print("networkFail in getSignUpWithApi")
+            }
+        }
+    }
+    
+    func postSignUpWithAPI(email: String, password: String) {
+        SignUpService.shared.postSignUp(email: email, password: password) { (networkResult) -> Void in
+            switch networkResult {
+            case .success(let data):
+                if let signUpData = data as? AuthData {
+                    print("회원가입 성공")
+                    // 회원가입 성공
+                    UserDefaults.standard.setValue(signUpData.token, forKey: "token")
+                    UserDefaults.standard.setValue(signUpData.user.id, forKey: "userId")
+                    
+                    // 뷰 전환
+                    let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
+                    let dvc = homeStoryboard.instantiateViewController(identifier: Constants.Identifier.homeViewController)
+                    self.navigationController?.pushViewController(dvc, animated: true)
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr in postSignUpWithAPI")
+            case .serverErr:
+                print("serverErr in postSignUpWithAPI")
+            case .networkFail:
+                print("networkFail in postSignUpWithAPI")
             }
         }
     }
