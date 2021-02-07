@@ -13,6 +13,13 @@ class JoinViewController: UIViewController {
     private let emailFormatErrorMessage = "email must be a valid email"
     private let emailInUseErrorMessage = "사용 불가능한 이메일입니다."
     
+    // MARK: - Properties
+    var isEmailError = true
+    var isPasswordError = true
+    var isPasswordCheckError = true
+    var isInfoTermError = true
+    var isServiceTermError = true
+    
     // MARK: - @IBOutlet Properties
     
     @IBOutlet weak var emailView: UIView!
@@ -61,21 +68,46 @@ class JoinViewController: UIViewController {
     @IBAction func touchInfoButton(_ sender: Any) {
         // 약관 동의 시 checkbox toggle
         infoAgreeButton.isSelected.toggle()
-        hideInfoTermError()
+        hideInfoTermUncheckedError()
+        
+        // 회원가입 통신 진행을 위한 체크 점검
+        if infoAgreeButton.isSelected == false {
+            isInfoTermError = true
+        } else {
+            isInfoTermError = false
+        }
     }
     @IBAction func touchServiceButton(_ sender: Any) {
         serviceAgreeButton.isSelected.toggle()
-        hideServiceTermError()
+        hideServiceTermUncheckedError()
+        
+        // 회원가입 통신 진행을 위한 체크 점검
+        if serviceAgreeButton.isSelected == false {
+            isServiceTermError = true
+        } else {
+            isServiceTermError = false
+        }
     }
     
     // 가입하기 버튼 클릭 시
     @IBAction func touchJoinButton(_ sender: Any) {
-        // 모두 동의가 되었는지 검사
+        // 모두 동의가 되었는지 검사 후 에러 표시
         if infoAgreeButton.isSelected == false {
-            showInfoTermError()
+            showInfoTermUncheckedError()
         }
         if serviceAgreeButton.isSelected == false {
-            showServiceTermError()
+            showServiceTermUncheckedError()
+        }
+        
+        checkEmail()
+        checkPassword()
+        checkPasswordCheck()
+        
+        if !isEmailError && !isPasswordError && !isPasswordCheckError && !isInfoTermError && !isServiceTermError {
+            // 가입 통신 시작
+            print("다 통과요")
+        } else {
+            print("하나가 부족해요")
         }
     }
     
@@ -163,43 +195,6 @@ class JoinViewController: UIViewController {
     
     // MARK: - Error Functions
     
-    // Terms Errors
-    func showInfoTermError() {
-        if let title = infoTermButton.attributedTitle(for: .normal) {
-            let infoTermErrorAttributedString = NSMutableAttributedString(attributedString: title)
-            infoTermErrorAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.RedError, range: NSRange.init(location: 0, length: infoTermErrorAttributedString.length))
-            
-            infoTermButton.setAttributedTitle(infoTermErrorAttributedString, for: .normal)
-        }
-    }
-    
-    func hideInfoTermError() {
-        if let title = infoTermButton.attributedTitle(for: .normal) {
-            let infoTermErrorAttributedString = NSMutableAttributedString(attributedString: title)
-            infoTermErrorAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.Black2Nav, range: NSRange.init(location: 0, length: infoTermErrorAttributedString.length))
-            
-            infoTermButton.setAttributedTitle(infoTermErrorAttributedString, for: .normal)
-        }
-    }
-    
-    func showServiceTermError() {
-        if let title = serviceTermButton.attributedTitle(for: .normal) {
-            let infoTermErrorAttributedString = NSMutableAttributedString(attributedString: title)
-            infoTermErrorAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.RedError, range: NSRange.init(location: 0, length: infoTermErrorAttributedString.length))
-            
-            serviceTermButton.setAttributedTitle(infoTermErrorAttributedString, for: .normal)
-        }
-    }
-    
-    func hideServiceTermError() {
-        if let title = serviceTermButton.attributedTitle(for: .normal) {
-            let infoTermErrorAttributedString = NSMutableAttributedString(attributedString: title)
-            infoTermErrorAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.Black2Nav, range: NSRange.init(location: 0, length: infoTermErrorAttributedString.length))
-            
-            serviceTermButton.setAttributedTitle(infoTermErrorAttributedString, for: .normal)
-        }
-    }
-    
     // Email Errors
     func showEmailFormatError() {
         emailErrorLabel.isHidden = false
@@ -207,6 +202,8 @@ class JoinViewController: UIViewController {
         
         emailLabel.textColor = UIColor.RedError
         emailView.layer.borderColor = UIColor.RedError.cgColor
+        
+        isEmailError = true
     }
     
     func showEmailBlankError() {
@@ -215,6 +212,8 @@ class JoinViewController: UIViewController {
         
         emailLabel.textColor = UIColor.RedError
         emailView.layer.borderColor = UIColor.RedError.cgColor
+        
+        isEmailError = true
     }
     
     func showEmailInUseError() {
@@ -223,6 +222,8 @@ class JoinViewController: UIViewController {
         
         emailLabel.textColor = UIColor.RedError
         emailView.layer.borderColor = UIColor.RedError.cgColor
+        
+        isEmailError = true
     }
     
     func hideEmailError() {
@@ -230,15 +231,33 @@ class JoinViewController: UIViewController {
         
         emailLabel.textColor = UIColor.Blue2
         emailView.layer.borderColor = UIColor.Black5Publish.cgColor
+        
+        isEmailError = false
     }
     
     // 약관 Errors
     func showInfoTermUncheckedError() {
         infoTermButton.setTitleColor(UIColor.RedError, for: .normal)
+        
+        isInfoTermError = true
     }
     
     func showServiceTermUncheckedError() {
         serviceTermButton.setTitleColor(UIColor.RedError, for: .normal)
+        
+        isServiceTermError = true
+    }
+    
+    func hideInfoTermUncheckedError() {
+        infoTermButton.setTitleColor(UIColor.Black2Nav, for: .normal)
+        
+        isInfoTermError = false
+    }
+    
+    func hideServiceTermUncheckedError() {
+        serviceTermButton.setTitleColor(UIColor.Black2Nav, for: .normal)
+        
+        isServiceTermError = false
     }
     
     // 비밀번호 Errors
@@ -248,6 +267,8 @@ class JoinViewController: UIViewController {
         
         passwordLabel.textColor = UIColor.RedError
         passwordView.layer.borderColor = UIColor.RedError.cgColor
+        
+        isPasswordError = true
     }
     
     func showPasswordBlankError() {
@@ -256,6 +277,8 @@ class JoinViewController: UIViewController {
         
         passwordLabel.textColor = UIColor.RedError
         passwordView.layer.borderColor = UIColor.RedError.cgColor
+        
+        isPasswordError = true
     }
     
     func hidePasswordError() {
@@ -263,6 +286,8 @@ class JoinViewController: UIViewController {
         
         passwordLabel.textColor = UIColor.Blue2
         passwordView.layer.borderColor = UIColor.Black5Publish.cgColor
+        
+        isPasswordError = false
     }
     
     // 비밀번호 체크 Errors
@@ -272,6 +297,8 @@ class JoinViewController: UIViewController {
         
         passwordCheckLabel.textColor = UIColor.RedError
         passwordCheckView.layer.borderColor = UIColor.RedError.cgColor
+        
+        isPasswordCheckError = true
     }
     
     func showPasswordCheckBlankError() {
@@ -280,6 +307,8 @@ class JoinViewController: UIViewController {
         
         passwordCheckLabel.textColor = UIColor.RedError
         passwordCheckView.layer.borderColor = UIColor.RedError.cgColor
+        
+        isPasswordCheckError = true
     }
     
     func hidePasswordCheckError() {
@@ -287,6 +316,8 @@ class JoinViewController: UIViewController {
         
         passwordCheckLabel.textColor = UIColor.Blue2
         passwordCheckView.layer.borderColor = UIColor.Black5Publish.cgColor
+        
+        isPasswordCheckError = false
     }
     
     // 비밀번호 정규식 검사
