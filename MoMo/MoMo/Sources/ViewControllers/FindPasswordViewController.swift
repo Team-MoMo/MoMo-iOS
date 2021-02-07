@@ -16,6 +16,9 @@ class FindPasswordViewController: UIViewController {
     @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var getPasswordButton: UIButton!
+    @IBOutlet weak var getPasswordButtonBottom: NSLayoutConstraint!
+    
+    // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +30,18 @@ class FindPasswordViewController: UIViewController {
         hideEmailError()
         makeClearButton()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        initializeKeyboardObserver()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        
+        removeKeyboardObserver()
     }
     
     // MARK: - Functions
@@ -59,6 +74,36 @@ class FindPasswordViewController: UIViewController {
         emailTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
     }
     
+    func initializeKeyboardObserver() {
+        // keyboardWillShow, keyboardWillHide observer 등록
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func removeKeyboardObserver() {
+        // observer 제거
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(_ notification: NSNotification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+
+            getPasswordButtonBottom.constant += keyboardHeight
+        }
+    }
+        
+    @objc func keyboardWillHide(_ notification: NSNotification) {
+        // 원하는 로직...
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+
+            getPasswordButtonBottom.constant -= keyboardHeight
+        }
+    }
     // MARK: - Error Functions
     
     // Email Errors
