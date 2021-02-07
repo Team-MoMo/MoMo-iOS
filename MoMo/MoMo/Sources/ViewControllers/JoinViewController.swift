@@ -270,7 +270,7 @@ class JoinViewController: UIViewController {
         passwordCheckErrorLabel.isHidden = false
         passwordCheckErrorLabel.text = "비밀번호가 일치하지 않습니다"
         
-        passwordLabel.textColor = UIColor.RedError
+        passwordCheckLabel.textColor = UIColor.RedError
         passwordCheckView.layer.borderColor = UIColor.RedError.cgColor
     }
     
@@ -278,14 +278,14 @@ class JoinViewController: UIViewController {
         passwordCheckErrorLabel.isHidden = false
         passwordCheckErrorLabel.text = "비밀번호를 다시 입력해 주세요"
         
-        passwordLabel.textColor = UIColor.RedError
+        passwordCheckLabel.textColor = UIColor.RedError
         passwordCheckView.layer.borderColor = UIColor.RedError.cgColor
     }
     
     func hidePasswordCheckError() {
         passwordCheckErrorLabel.isHidden = true
         
-        passwordLabel.textColor = UIColor.Blue2
+        passwordCheckLabel.textColor = UIColor.Blue2
         passwordCheckView.layer.borderColor = UIColor.Black5Publish.cgColor
     }
     
@@ -295,6 +295,60 @@ class JoinViewController: UIViewController {
         
         let predicate = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
         return predicate.evaluate(with: password)
+    }
+    
+    // MARK: - Check Functions
+    func checkEmail() {
+        guard let email = emailTextField.text else {
+            return
+        }
+        if email != "" {
+            self.getSignUpWithAPI(email: email)
+        } else {
+            self.showEmailBlankError()
+        }
+    }
+    
+    func checkPassword() {
+        guard let password = passwordTextField.text else {
+            return
+        }
+        // 비밀번호가 공백이 아닐 때
+        if password != "" {
+            // 비밀번호가 정규식에 맞지 않을 때
+            if !validatePassword(password: password) {
+                self.showPasswordFormatError()
+            } else {
+                // 비밀번호가 정규식에 맞을 때
+                self.hidePasswordError()
+            }
+        } else {
+            // 비밀번호가 공백일 때
+            self.showPasswordBlankError()
+        }
+    }
+    
+    func checkPasswordCheck() {
+        // 비밀번호 확인
+            guard let passwordCheck = passwordCheckTextField.text else {
+                return
+            }
+            // 비밀번호 확인란이 공백이 아닐 때
+            if passwordCheck != "" {
+                // 비밀번호와 일치하지 않을 때
+                guard let password = passwordTextField.text else {
+                    return
+                }
+                if passwordCheck != password {
+                    self.showPasswordCheckFormatError()
+                } else {
+                    // 비밀번호와 일치할 때
+                    self.hidePasswordCheckError()
+                }
+            } else {
+                // 비밀번호 확인란이 공백일 때
+                self.showPasswordCheckBlankError()
+            }
     }
     
     // MARK: - API Functions
@@ -335,55 +389,12 @@ extension JoinViewController: UITextFieldDelegate {
         
         // 이메일
         if textField == emailTextField {
-            guard let email = emailTextField.text else {
-                return
-            }
-            if email != "" {
-                self.getSignUpWithAPI(email: email)
-            } else {
-                self.showEmailBlankError()
-            }
+            checkEmail()
             
         // 비밀번호
-        } else if textField == passwordTextField {
-            guard let password = passwordTextField.text else {
-                return
-            }
-            // 비밀번호가 공백이 아닐 때
-            if password != "" {
-                // 비밀번호가 정규식에 맞지 않을 때
-                if !validatePassword(password: password) {
-                    self.showPasswordFormatError()
-                } else {
-                    // 비밀번호가 정규식에 맞을 때
-                    self.hidePasswordError()
-                }
-            } else {
-                // 비밀번호가 공백일 때
-                self.showPasswordBlankError()
-            }
-        
-        // 비밀번호 확인
-        } else if textField == passwordCheckTextField {
-            guard let passwordCheck = passwordCheckTextField.text else {
-                return
-            }
-            // 비밀번호 확인란이 공백이 아닐 때
-            if passwordCheck != "" {
-                // 비밀번호와 일치하지 않을 때
-                guard let password = passwordTextField.text else {
-                    return
-                }
-                if passwordCheck != password {
-                    self.showPasswordCheckFormatError()
-                } else {
-                    // 비밀번호와 일치할 때
-                    self.hidePasswordCheckError()
-                }
-            } else {
-                // 비밀번호 확인란이 공백일 때
-                self.showPasswordCheckBlankError()
-            }
+        } else if textField == passwordTextField || textField == passwordCheckTextField {
+            checkPassword()
+            checkPasswordCheck()
         }
     }
 }
