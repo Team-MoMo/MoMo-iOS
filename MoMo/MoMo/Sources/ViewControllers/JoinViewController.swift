@@ -9,6 +9,10 @@ import UIKit
 
 class JoinViewController: UIViewController {
     
+    // MARK: - Constants
+    private let emailFormatErrorMessage = "email must be a valid email"
+    private let emailInUseErrorMessage = "사용 불가능한 이메일입니다."
+    
     // MARK: - @IBOutlet Properties
     
     @IBOutlet weak var emailView: UIView!
@@ -45,9 +49,10 @@ class JoinViewController: UIViewController {
         initializeJoinButtonCornerRadius()
         initializePlaceholder()
         initializeAgreeButtons()
+        initializeAgreeButtonTexts()
         hideErrorLabels()
         makeClearButtons()
-        initializeAgreeButtonTexts()
+        assignDelegate()
     
     }
     
@@ -62,6 +67,12 @@ class JoinViewController: UIViewController {
     }
     
     // MARK: - Functions
+    
+    func assignDelegate() {
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        passwordCheckTextField.delegate = self
+    }
     
     func initializeViewBorders() {
         // view border
@@ -154,12 +165,19 @@ class JoinViewController: UIViewController {
         emailView.layer.borderColor = UIColor.RedError.cgColor
     }
     
-    func showEmailDuplicateError() {
+    func showEmailInUseError() {
         emailErrorLabel.isHidden = false
         emailErrorLabel.text = "MOMO에 이미 가입된 이메일이에요!"
         
         emailLabel.textColor = UIColor.RedError
         emailView.layer.borderColor = UIColor.RedError.cgColor
+    }
+    
+    func hideEmailError() {
+        emailErrorLabel.isHidden = true
+        
+        emailLabel.textColor = UIColor.Blue2
+        emailView.layer.borderColor = UIColor.Black5Publish.cgColor
     }
     
     // 약관 Errors
@@ -203,5 +221,65 @@ class JoinViewController: UIViewController {
         
         passwordLabel.textColor = UIColor.RedError
         passwordCheckView.layer.borderColor = UIColor.RedError.cgColor
+    }
+    
+    // MARK: - API Functions
+    // 이메일 확인
+    func getSignUpWithAPI(email: String) {
+        SignUpService.shared.getSignUp(email: email) { (networkResult) -> (Void) in
+            switch networkResult {
+            case .success(let msg):
+                if let message = msg as? String {
+                    // 사용 가능한 이메일
+                    self.hideEmailError()
+                    print(message)
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    // 사용 불가능한 이메일
+                    if( message == self.emailFormatErrorMessage ) {
+                        self.showEmailFormatError()
+                    }else if( message == self.emailInUseErrorMessage) {
+                        self.showEmailInUseError()
+                    }
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr in getSignUpWithApi")
+                
+            case .serverErr:
+                print("serverErr in getSignUpWithApi")
+            case .networkFail:
+                print("networkFail in getSignUpWithApi")
+            }
+        }
+    }
+extension JoinViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == emailTextField {
+            guard let email = emailTextField.text else {
+                return
+            }
+            if email != "" {
+                self.getSignUpWithAPI(email: email)
+            } else {
+                self.showEmailBlankError()
+            }
+            
+        } else if textField == passwordTextField {
+            print("herre")
+            guard let password = passwordTextField.text else {
+                return
+            }
+            if password != "" {
+                self.postPasswordWithAPI(password: password)
+            } else {
+                print("asd")
+                self.showPasswordBlankError()
+            }
+            
+        } else if textField == passwordCheckTextField {
+            
+        }
     }
 }
