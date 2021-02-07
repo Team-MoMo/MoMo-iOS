@@ -9,6 +9,10 @@ import UIKit
 
 class FindPasswordViewController: UIViewController {
     
+    // MARK: - Constants
+        private let emailFormatErrorMessage = "email must be a valid email"
+        private let emailInUseErrorMessage = "사용 불가능한 이메일입니다."
+    
     // MARK: - @IBOutlet Properties
     
     @IBOutlet weak var emailErrorLabel: UILabel!
@@ -90,20 +94,26 @@ class FindPasswordViewController: UIViewController {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
-
+            
             getPasswordButtonBottom.constant += keyboardHeight
         }
     }
-        
+    
     @objc func keyboardWillHide(_ notification: NSNotification) {
         // 원하는 로직...
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
-
+            
             getPasswordButtonBottom.constant -= keyboardHeight
         }
     }
+    
+    // MARK: - @IBAction Functions
+    @IBAction func touchGetPasswordButton(_ sender: Any) {
+        
+    }
+    
     // MARK: - Error Functions
     
     // Email Errors
@@ -135,5 +145,62 @@ class FindPasswordViewController: UIViewController {
         // 처음 뷰 로드 시 error label hidden 처리
         emailErrorLabel.isHidden = true
     }
-
+    
+    // MARK: - Check Functions
+    func checkEmail() {
+        guard let email = emailTextField.text else {
+            return
+        }
+        if email != "" {
+            self.getSignUpWithAPI(email: email)
+        } else {
+            self.showEmailBlankError()
+        }
+    }
+    
+    // MARK: - API Functions
+    // 이메일 확인
+    
+    // TODO: - 서버 살아나면 이거 서버 구현해야함 이거 아니라 패스워드쪽으로 해야함 이거 아님!
+    func getSignUpWithAPI(email: String) {
+        SignUpService.shared.getSignUp(email: email) { (networkResult) -> Void in
+            switch networkResult {
+            case .success(let msg):
+                if let message = msg as? String {
+                    // 사용 가능한 이메일
+                    self.hideEmailError()
+                    print(message)
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    // 사용 불가능한 이메일
+                    if message == self.emailFormatErrorMessage {
+                        self.showEmailFormatError()
+                    } else if message == self.emailInUseErrorMessage {
+                        // self.showEmailInUseError()
+                    }
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr in getSignUpWithApi")
+                
+            case .serverErr:
+                print("serverErr in getSignUpWithApi")
+            case .networkFail:
+                print("networkFail in getSignUpWithApi")
+            }
+        }
+    }
 }
+    
+    extension FindPasswordViewController: UITextFieldDelegate {
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            
+            // 이메일
+            if textField == emailTextField {
+                checkEmail()
+                
+                // 비밀번호
+            }
+        }
+    }
