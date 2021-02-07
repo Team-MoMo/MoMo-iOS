@@ -230,6 +230,13 @@ class JoinViewController: UIViewController {
         passwordCheckView.layer.borderColor = UIColor.RedError.cgColor
     }
     
+    func hidePasswordCheckError() {
+        passwordCheckErrorLabel.isHidden = true
+        
+        passwordLabel.textColor = UIColor.Blue2
+        passwordCheckView.layer.borderColor = UIColor.Black5Publish.cgColor
+    }
+    
     // 비밀번호 정규식 검사
     func validatePassword(password : String) -> Bool {
         let passwordRegEx = "^[a-zA-Z0-9!@#$%^&*(),.?\":{}|<>_-]{6,}$"
@@ -252,9 +259,9 @@ class JoinViewController: UIViewController {
             case .requestErr(let msg):
                 if let message = msg as? String {
                     // 사용 불가능한 이메일
-                    if( message == self.emailFormatErrorMessage ) {
+                    if message == self.emailFormatErrorMessage {
                         self.showEmailFormatError()
-                    }else if( message == self.emailInUseErrorMessage) {
+                    }else if message == self.emailInUseErrorMessage {
                         self.showEmailInUseError()
                     }
                     print(message)
@@ -269,8 +276,12 @@ class JoinViewController: UIViewController {
             }
         }
     }
+}
+
 extension JoinViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        // 이메일
         if textField == emailTextField {
             guard let email = emailTextField.text else {
                 return
@@ -300,8 +311,27 @@ extension JoinViewController: UITextFieldDelegate {
                 self.showPasswordBlankError()
             }
         
+        // 비밀번호 확인
         } else if textField == passwordCheckTextField {
-            
+            guard let passwordCheck = passwordCheckTextField.text else {
+                return
+            }
+            // 비밀번호 확인란이 공백이 아닐 때
+            if passwordCheck != "" {
+                // 비밀번호와 일치하지 않을 때
+                guard let password = passwordTextField.text else {
+                    return
+                }
+                if passwordCheck != password {
+                    self.showPasswordCheckFormatError()
+                } else {
+                    // 비밀번호와 일치할 때
+                    self.hidePasswordCheckError()
+                }
+            } else {
+                // 비밀번호 확인란이 공백일 때
+                self.showPasswordCheckBlankError()
+            }
         }
     }
 }
