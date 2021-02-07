@@ -20,30 +20,46 @@ class FindPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initializeViewBorders()
+        initializeNavigationBar()
+        initializeGetPasswordButtonCornerRadius()
+        initializePlaceholder()
+        hideEmailError()
+        makeClearButton()
+        
+    }
+    
+    // MARK: - Functions
+    func initializeViewBorders() {
         // view border
         emailView.layer.borderColor = UIColor.Black5Publish.cgColor
         emailView.layer.borderWidth = 1
-        
+    }
+    
+    func initializeNavigationBar() {
         // navigation bar 투명화
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
-        
-        // joinButton rounding
+    }
+    
+    func initializeGetPasswordButtonCornerRadius() {
+        // getPasswordButton rounding
         getPasswordButton.clipsToBounds = true
         getPasswordButton.layer.cornerRadius = getPasswordButton.frame.height / 2
-        
+    }
+    
+    func initializePlaceholder() {
         // placeholder
         emailTextField.attributedPlaceholder = NSAttributedString(string: "이메일을 입력해 주세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Blue5, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
-        
-        // 처음 뷰 로드 시 error label hidden 처리
-        emailErrorLabel.isHidden = true
-        
+    }
+    
+    func makeClearButton() {
         // clear button 만들기
         emailTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
     }
     
-    // MARK: - Functions
+    // MARK: - Error Functions
     
     // Email Errors
     func showEmailFormatError() {
@@ -68,6 +84,11 @@ class FindPasswordViewController: UIViewController {
         
         emailLabel.textColor = UIColor.RedError
         emailView.layer.borderColor = UIColor.RedError.cgColor
+    }
+    
+    func hideEmailError() {
+        // 처음 뷰 로드 시 error label hidden 처리
+        emailErrorLabel.isHidden = true
     }
 
 }
