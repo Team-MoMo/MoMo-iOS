@@ -58,12 +58,25 @@ class JoinViewController: UIViewController {
     
     // MARK: - @IBAction Properties
     
-    @IBAction func infoButtonTouchUp(_ sender: Any) {
+    @IBAction func touchInfoButton(_ sender: Any) {
         // 약관 동의 시 checkbox toggle
         infoAgreeButton.isSelected.toggle()
+        hideInfoTermError()
     }
-    @IBAction func serviceButtonTouchUp(_ sender: Any) {
+    @IBAction func touchServiceButton(_ sender: Any) {
         serviceAgreeButton.isSelected.toggle()
+        hideServiceTermError()
+    }
+    
+    // 가입하기 버튼 클릭 시
+    @IBAction func touchJoinButton(_ sender: Any) {
+        // 모두 동의가 되었는지 검사
+        if infoAgreeButton.isSelected == false {
+            showInfoTermError()
+        }
+        if serviceAgreeButton.isSelected == false {
+            showServiceTermError()
+        }
     }
     
     // MARK: - Functions
@@ -146,6 +159,45 @@ class JoinViewController: UIViewController {
         emailTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
         passwordTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
         passwordCheckTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
+    }
+    
+    // MARK: - Error Functions
+    
+    // Terms Errors
+    func showInfoTermError() {
+        if let title = infoTermButton.attributedTitle(for: .normal) {
+            let infoTermErrorAttributedString = NSMutableAttributedString(attributedString: title)
+            infoTermErrorAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.RedError, range: NSRange.init(location: 0, length: infoTermErrorAttributedString.length))
+            
+            infoTermButton.setAttributedTitle(infoTermErrorAttributedString, for: .normal)
+        }
+    }
+    
+    func hideInfoTermError() {
+        if let title = infoTermButton.attributedTitle(for: .normal) {
+            let infoTermErrorAttributedString = NSMutableAttributedString(attributedString: title)
+            infoTermErrorAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.Black2Nav, range: NSRange.init(location: 0, length: infoTermErrorAttributedString.length))
+            
+            infoTermButton.setAttributedTitle(infoTermErrorAttributedString, for: .normal)
+        }
+    }
+    
+    func showServiceTermError() {
+        if let title = serviceTermButton.attributedTitle(for: .normal) {
+            let infoTermErrorAttributedString = NSMutableAttributedString(attributedString: title)
+            infoTermErrorAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.RedError, range: NSRange.init(location: 0, length: infoTermErrorAttributedString.length))
+            
+            serviceTermButton.setAttributedTitle(infoTermErrorAttributedString, for: .normal)
+        }
+    }
+    
+    func hideServiceTermError() {
+        if let title = serviceTermButton.attributedTitle(for: .normal) {
+            let infoTermErrorAttributedString = NSMutableAttributedString(attributedString: title)
+            infoTermErrorAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.Black2Nav, range: NSRange.init(location: 0, length: infoTermErrorAttributedString.length))
+            
+            serviceTermButton.setAttributedTitle(infoTermErrorAttributedString, for: .normal)
+        }
     }
     
     // Email Errors
@@ -238,7 +290,7 @@ class JoinViewController: UIViewController {
     }
     
     // 비밀번호 정규식 검사
-    func validatePassword(password : String) -> Bool {
+    func validatePassword(password: String) -> Bool {
         let passwordRegEx = "^[a-zA-Z0-9!@#$%^&*(),.?\":{}|<>_-]{6,}$"
         
         let predicate = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
