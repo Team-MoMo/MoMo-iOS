@@ -206,6 +206,13 @@ class JoinViewController: UIViewController {
         passwordView.layer.borderColor = UIColor.RedError.cgColor
     }
     
+    func hidePasswordError() {
+        passwordErrorLabel.isHidden = true
+        
+        passwordLabel.textColor = UIColor.Blue2
+        passwordView.layer.borderColor = UIColor.Black5Publish.cgColor
+    }
+    
     // 비밀번호 체크 Errors
     func showPasswordCheckFormatError() {
         passwordCheckErrorLabel.isHidden = false
@@ -221,6 +228,14 @@ class JoinViewController: UIViewController {
         
         passwordLabel.textColor = UIColor.RedError
         passwordCheckView.layer.borderColor = UIColor.RedError.cgColor
+    }
+    
+    // 비밀번호 정규식 검사
+    func validatePassword(password : String) -> Bool {
+        let passwordRegEx = "^[a-zA-Z0-9!@#$%^&*(),.?\":{}|<>_-]{6,}$"
+        
+        let predicate = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
+        return predicate.evaluate(with: password)
     }
     
     // MARK: - API Functions
@@ -266,18 +281,25 @@ extension JoinViewController: UITextFieldDelegate {
                 self.showEmailBlankError()
             }
             
+        // 비밀번호
         } else if textField == passwordTextField {
-            print("herre")
             guard let password = passwordTextField.text else {
                 return
             }
+            // 비밀번호가 공백이 아닐 때
             if password != "" {
-                self.postPasswordWithAPI(password: password)
+                // 비밀번호가 정규식에 맞지 않을 때
+                if !validatePassword(password: password) {
+                    self.showPasswordFormatError()
+                } else {
+                    // 비밀번호가 정규식에 맞을 때
+                    self.hidePasswordError()
+                }
             } else {
-                print("asd")
+                // 비밀번호가 공백일 때
                 self.showPasswordBlankError()
             }
-            
+        
         } else if textField == passwordCheckTextField {
             
         }
