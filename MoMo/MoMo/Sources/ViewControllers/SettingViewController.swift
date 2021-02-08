@@ -66,6 +66,10 @@ class SettingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if self.lockIsUpdated {
+            self.attachToastViewWithAnimation(message: "암호 설정이 완료되었습니다")
+            self.lockIsUpdated = false
+        }
         self.updateIsLocked()
         self.updateControlSwitch()
         self.settingTableView.reloadData()
