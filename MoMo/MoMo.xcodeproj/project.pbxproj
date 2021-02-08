@@ -48,16 +48,18 @@
 		1C52BE0525AD655300D02771 /* AlertModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C52BE0425AD655300D02771 /* AlertModalView.swift */; };
 		1C52BE0825AD656700D02771 /* AlertModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C52BE0725AD656700D02771 /* AlertModalView.xib */; };
 		1C52BE0F25AD7A9500D02771 /* onboarding_wave_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C52BE0E25AD7A9500D02771 /* onboarding_wave_ios.json */; };
+		1C5876C225D04C45004537A5 /* LockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5876C125D04C45004537A5 /* LockViewController.swift */; };
+		1C5876C525D04C57004537A5 /* Lock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C5876C425D04C57004537A5 /* Lock.storyboard */; };
 		1C7CD80725ACA5EC00B7CB60 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CD80625ACA5EC00B7CB60 /* DiaryViewController.swift */; };
 		1C7CD80A25ACA5FD00B7CB60 /* Diary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */; };
 		1C7CD82525ACEB9E00B7CB60 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CD82425ACEB9E00B7CB60 /* MenuView.swift */; };
 		1C7CD82825ACEBAB00B7CB60 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C7CD82725ACEBAB00B7CB60 /* MenuView.xib */; };
+		1C8DD8F825C8850F00C7A3BA /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8DD8F725C8850F00C7A3BA /* ToastView.swift */; };
+		1C8DD8FB25C8851A00C7A3BA /* ToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C8DD8FA25C8851A00C7A3BA /* ToastView.xib */; };
 		1C8DD90125C92A9C00C7A3BA /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8DD90025C92A9C00C7A3BA /* SettingViewController.swift */; };
 		1C8DD90425C92AC100C7A3BA /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C8DD90325C92AC100C7A3BA /* Setting.storyboard */; };
 		1C8DD90725C92D4200C7A3BA /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C8DD90625C92D4200C7A3BA /* SettingTableViewCell.xib */; };
 		1C8DD90A25C92D5000C7A3BA /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8DD90925C92D4F00C7A3BA /* SettingTableViewCell.swift */; };
-		1C8DD8F825C8850F00C7A3BA /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8DD8F725C8850F00C7A3BA /* ToastView.swift */; };
-		1C8DD8FB25C8851A00C7A3BA /* ToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C8DD8FA25C8851A00C7A3BA /* ToastView.xib */; };
 		1CA39A1525B1BE6D00E58209 /* OnboardingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA39A1425B1BE6D00E58209 /* OnboardingService.swift */; };
 		1CA39A1825B1BF3E00E58209 /* OnboardingSentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA39A1725B1BF3E00E58209 /* OnboardingSentence.swift */; };
 		1CAD05A225A9C98F007ECA40 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD05A125A9C98F007ECA40 /* UILabel+Extension.swift */; };
@@ -158,16 +160,18 @@
 		1C52BE0425AD655300D02771 /* AlertModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModalView.swift; sourceTree = "<group>"; };
 		1C52BE0725AD656700D02771 /* AlertModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertModalView.xib; sourceTree = "<group>"; };
 		1C52BE0E25AD7A9500D02771 /* onboarding_wave_ios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_wave_ios.json; sourceTree = "<group>"; };
+		1C5876C125D04C45004537A5 /* LockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockViewController.swift; sourceTree = "<group>"; };
+		1C5876C425D04C57004537A5 /* Lock.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lock.storyboard; sourceTree = "<group>"; };
 		1C7CD80625ACA5EC00B7CB60 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Diary.storyboard; sourceTree = "<group>"; };
 		1C7CD82425ACEB9E00B7CB60 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		1C7CD82725ACEBAB00B7CB60 /* MenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
+		1C8DD8F725C8850F00C7A3BA /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		1C8DD8FA25C8851A00C7A3BA /* ToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToastView.xib; sourceTree = "<group>"; };
 		1C8DD90025C92A9C00C7A3BA /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		1C8DD90325C92AC100C7A3BA /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		1C8DD90625C92D4200C7A3BA /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
 		1C8DD90925C92D4F00C7A3BA /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
-		1C8DD8F725C8850F00C7A3BA /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
-		1C8DD8FA25C8851A00C7A3BA /* ToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToastView.xib; sourceTree = "<group>"; };
 		1CA39A1425B1BE6D00E58209 /* OnboardingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingService.swift; sourceTree = "<group>"; };
 		1CA39A1725B1BF3E00E58209 /* OnboardingSentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSentence.swift; sourceTree = "<group>"; };
 		1CAD05A125A9C98F007ECA40 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -436,6 +440,7 @@
 				104E685D25AAF8410019B29E /* DiaryWrite.storyboard */,
 				563B047325ADF46200DA74C5 /* FindPassword.storyboard */,
 				1C8DD90325C92AC100C7A3BA /* Setting.storyboard */,
+				1C5876C425D04C57004537A5 /* Lock.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -489,6 +494,7 @@
 				10029DA525B0FEDD00060E14 /* HomeModalViewController.swift */,
 				10029DA625B0FEDD00060E14 /* HomeModalViewController.xib */,
 				1C8DD90025C92A9C00C7A3BA /* SettingViewController.swift */,
+				1C5876C125D04C45004537A5 /* LockViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -598,6 +604,7 @@
 				568764142599AD3A009CB486 /* Main.storyboard in Resources */,
 				563B034325A8970E00DA74C5 /* Home.storyboard in Resources */,
 				1C52BE0825AD656700D02771 /* AlertModalView.xib in Resources */,
+				1C5876C525D04C57004537A5 /* Lock.storyboard in Resources */,
 				563B03DF25ACB59800DA74C5 /* Login.storyboard in Resources */,
 				107919C225A484E60024C711 /* FilterCollectionViewCell.xib in Resources */,
 				1C8DD90425C92AC100C7A3BA /* Setting.storyboard in Resources */,
@@ -736,6 +743,7 @@
 				10F1F72D25B04ADD00BF7D37 /* SentencesService.swift in Sources */,
 				1C42357325AE26B9008FB838 /* SplashViewController.swift in Sources */,
 				1CA39A1825B1BF3E00E58209 /* OnboardingSentence.swift in Sources */,
+				1C5876C225D04C45004537A5 /* LockViewController.swift in Sources */,
 				1CEF46BF25A6DA7600AF3D81 /* OnboardingViewController.swift in Sources */,
 				1014894425AC417E00639F98 /* DiaryWriteViewController.swift in Sources */,
 				563B033325A884A200DA74C5 /* HomeDayNightView.swift in Sources */,
