@@ -22,6 +22,8 @@ class SettingViewController: UIViewController {
     // MARK: - Properties
     
     var settingViewUsage: SettingViewUsage?
+    var lockIsUpdated: Bool = false
+    private var toastView: ToastView?
     private let cellHeight: CGFloat = 64
     private var cellInfos: [SettingCellInfo]?
     private var isLocked: Bool = false
@@ -62,37 +64,26 @@ class SettingViewController: UIViewController {
         self.initializeNavigationBar()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.updateIsLocked()
+        self.updateControlSwitch()
+        self.settingTableView.reloadData()
+    }
+    
     // MARK: - Functions
     
     private func initializeSettingViewController() {
-        self.settingTableView.delegate = self
-        self.settingTableView.dataSource = self
-        self.settingTableView.register(UINib(nibName: Constants.Name.settingTableViewCell, bundle: nil), forCellReuseIdentifier: Constants.Identifier.settingTableViewCell)
-        self.settingTableView.separatorStyle = .none
-        
+        self.initializeSettingTableView()
         switch self.settingViewUsage {
         case .setting:
             self.attachVersionLabel()
             self.updateVersion()
             self.updateVersionLabelConstraints()
-            if self.hasLock() {
-                self.isLocked = UserDefaults.standard.bool(forKey: "isLocked")
-            }
-            self.cellInfos = [
-                (image: Constants.Design.Image.icUser, labelText: "내 정보", touchAction: self.pushToInfoViewController),
-                (image: Constants.Design.Image.icLock, labelText: "암호 잠금", touchAction: self.pushToLockViewController),
-                (image: Constants.Design.Image.icLicense, labelText: "오픈 소스 라이선스", touchAction: self.pushToOpenSourceLicenseViewController),
-                (image: Constants.Design.Image.icTeam, labelText: "Team MOMO", touchAction: self.pushToTeamMomoViewController),
-                (image: Constants.Design.Image.icInstaLogo, labelText: "MOMO 인스타그램", touchAction: self.pushToMomoInstaViewController)
-            ]
+            self.updateSellInfosForSetting()
         case .info:
             self.hideVersionLabel()
-            self.cellInfos = [
-                (image: Constants.Design.Image.icPwChange, labelText: "비밀번호 변경", touchAction: self.pushToPasswordChangeViewController),
-                (image: Constants.Design.Image.icDoc1, labelText: "개인정보처리방침", touchAction: self.pushToPersonalTermViewController),
-                (image: Constants.Design.Image.icDoc2, labelText: "서비스이용약관", touchAction: self.pushToServiceTermViewController),
-                (image: Constants.Design.Image.icLogout, labelText: "로그아웃", touchAction: self.attachAlertModalView)
-            ]
+            self.updateSellInfosForInfo()
         default:
             return
         }
@@ -122,12 +113,49 @@ class SettingViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
     }
     
+    private func initializeSettingTableView() {
+        self.settingTableView.delegate = self
+        self.settingTableView.dataSource = self
+        self.settingTableView.register(UINib(nibName: Constants.Name.settingTableViewCell, bundle: nil), forCellReuseIdentifier: Constants.Identifier.settingTableViewCell)
+        self.settingTableView.separatorStyle = .none
+    }
+    
     private func hasLock() -> Bool {
         return UserDefaults.standard.object(forKey: "isLocked") != nil
     }
     
-    private func popToHomeViewController() {
-        self.navigationController?.popViewController(animated: true)
+    private func updateIsLocked() {
+        if self.hasLock() {
+            self.isLocked = UserDefaults.standard.bool(forKey: "isLocked")
+        }
+    }
+    
+    private func updateIsLocked(isLocked: Bool) {
+        UserDefaults.standard.setValue(isLocked, forKey: "isLocked")
+        self.isLocked = isLocked
+    }
+    
+    private func updateControlSwitch() {
+        self.controlSwitch.isOn = self.isLocked
+    }
+    
+    private func updateSellInfosForSetting() {
+        self.cellInfos = [
+            (image: Constants.Design.Image.icUser, labelText: "내 정보", touchAction: self.pushToInfoViewController),
+            (image: Constants.Design.Image.icLock, labelText: "암호 잠금", touchAction: { self.hasLock() ? {}() : self.pushToLockViewController()}),
+            (image: Constants.Design.Image.icLicense, labelText: "오픈 소스 라이선스", touchAction: self.pushToOpenSourceLicenseViewController),
+            (image: Constants.Design.Image.icTeam, labelText: "Team MOMO", touchAction: self.pushToTeamMomoViewController),
+            (image: Constants.Design.Image.icInstaLogo, labelText: "MOMO 인스타그램", touchAction: self.pushToMomoInstaViewController)
+        ]
+    }
+    
+    private func updateSellInfosForInfo() {
+        self.cellInfos = [
+            (image: Constants.Design.Image.icPwChange, labelText: "비밀번호 변경", touchAction: self.pushToPasswordChangeViewController),
+            (image: Constants.Design.Image.icDoc1, labelText: "개인정보처리방침", touchAction: self.pushToPersonalTermViewController),
+            (image: Constants.Design.Image.icDoc2, labelText: "서비스이용약관", touchAction: self.pushToServiceTermViewController),
+            (image: Constants.Design.Image.icLogout, labelText: "로그아웃", touchAction: self.attachAlertModalView)
+        ]
     }
     
     private func attachSwitch(superView: UITableViewCell) {
@@ -141,11 +169,7 @@ class SettingViewController: UIViewController {
     }
     
     private func attachAlertModalView() {
-        self.alertModalView = AlertModalView.instantiate(
-            alertLabelText: "정말 로그아웃 하시겠어요?\n일기를 다시 쓰려면 로그인해 주세요!",
-            leftButtonTitle: NSMutableAttributedString(string: "확인"),
-            rightButtonTitle: NSMutableAttributedString(string: "취소")
-        )
+        self.alertModalView = AlertModalView.instantiate(alertLabelText: "정말 로그아웃 하시겠어요?\n일기를 다시 쓰려면 로그인해 주세요!", leftButtonTitle: "확인", rightButtonTitle: "취소")
         if let alertModalView = self.alertModalView {
             alertModalView.alertModalDelegate = self
             self.view.insertSubview(alertModalView, aboveSubview: self.view)
@@ -215,8 +239,55 @@ class SettingViewController: UIViewController {
         self.navigationController?.pushViewController(infoViewController, animated: true)
     }
     
+    private func attachToastViewWithAnimation(message: String) {
+        self.attachToastView(message: message)
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            animations: {
+                self.toastView?.alpha = 1.0
+            },
+            completion: { _ in
+                UIView.animate(
+                    withDuration: 0.5,
+                    delay: 0.5,
+                    animations: {
+                        self.toastView?.alpha = 0.0
+                    },
+                    completion: { _ in
+                        self.detachToastView()
+                    }
+                )
+            }
+        )
+    }
+    
+    private func attachToastView(message: String) {
+        self.toastView = ToastView.instantiate(message: message)
+        guard let toastView = self.toastView else { return }
+        toastView.alpha = 0.0
+        self.view.insertSubview(toastView, aboveSubview: self.view)
+        self.updateToastViewConstraints(view: toastView)
+    }
+    
+    private func updateToastViewConstraints(view: UIView) {
+        view.snp.makeConstraints({ (make) in
+            make.width.equalTo(self.view)
+            make.height.equalTo(self.view)
+            make.centerX.equalTo(self.view)
+            make.centerY.equalTo(self.view)
+        })
+    }
+    
+    private func detachToastView() {
+        self.toastView?.removeFromSuperview()
+    }
+    
     private func pushToLockViewController() {
-        
+        let lockStoryboard = UIStoryboard(name: Constants.Name.lockStoryboard, bundle: nil)
+        guard let lockViewController = lockStoryboard.instantiateViewController(identifier: Constants.Identifier.lockViewController) as? LockViewController else { return }
+        lockViewController.lockViewUsage = .setting
+        self.navigationController?.pushViewController(lockViewController, animated: true)
     }
     
     private func pushToOpenSourceLicenseViewController() {
@@ -246,7 +317,6 @@ class SettingViewController: UIViewController {
     private func popToLoginViewController() {
         self.deleteUserIdAndToken()
         if let loginViewController = self.navigationController?.viewControllers.filter({$0 is LoginViewController}).first as? LoginViewController {
-            print("기존에 있던 login view 찾았음!")
             self.navigationController?.popToViewController(loginViewController, animated: true)
         } else {
             guard let homeViewController = self.navigationController?.viewControllers.filter({$0 is HomeViewController}).first as? HomeViewController else {
@@ -258,6 +328,10 @@ class SettingViewController: UIViewController {
     }
     
     private func popToSettingViewController() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    private func popToHomeViewController() {
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -278,17 +352,21 @@ class SettingViewController: UIViewController {
     }
     
     @objc func onClickSwitch(sender: UISwitch) {
-        if sender.isOn {
-            self.showResetButton()
+        if self.hasLock() {
+            if sender.isOn {
+                self.showResetButton()
+                self.updateIsLocked(isLocked: true)
+            } else {
+                self.hideResetButton()
+                self.updateIsLocked(isLocked: false)
+            }
         } else {
-            self.hideResetButton()
+            self.pushToLockViewController()
         }
-        self.isLocked = sender.isOn
-        UserDefaults.standard.setValue(self.isLocked, forKey: "isLocked")
     }
     
     @objc func touchResetButton(sender: UIButton) {
-        print("암호 변경 뷰 띄우기")
+        self.pushToLockViewController()
     }
 }
 
@@ -336,6 +414,7 @@ extension SettingViewController: UITableViewDataSource {
         
         if self.settingViewUsage == .setting && cellInfo.image == Constants.Design.Image.icLock {
             self.attachSwitch(superView: cell)
+            self.controlSwitch.isOn = self.isLocked
             self.attachResetButton(superView: cell)
             self.resetButton.isHidden = !self.isLocked
         }
