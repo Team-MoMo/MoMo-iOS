@@ -1,32 +1,33 @@
 //
-//  SentencesService.swift
+//  DiariesStatistics.swift
 //  MoMo
 //
-//  Created by 이정엽 on 2021/01/14.
+//  Created by 이정엽 on 2021/02/03.
 //
 
 import Foundation
 import Alamofire
 
-struct SentencesService {
+//통계를 위한 함수
+
+struct DiaryStatistics {
+    static let shared = DiaryStatistics()
     
-    // 싱글톤 객체 생성
-    static let shared = SentencesService()
-    
-    // 다이어리 통신에 대한 함수 정의
     // get
-    func getSentences(emotionId: String,
-                      userId: String,
-                      completion: @escaping (NetworkResult<Any>) -> Void) {
-        
-        let url = APIConstants.sentencesURL + "/recommend"
+    func getDiaryStatistics(userId: String,
+                            year: String,
+                            month: String,
+                            completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        let url = APIConstants.statisticsURL
         let header: HTTPHeaders = [
             "Content-Type": "application/json",
             "Authorization": UserDefaults.standard.string(forKey: "token") ?? ""
         ]
+        
         let body: Parameters = [
-            "emotionId": emotionId,
-            "userId": userId
+            "userId": userId,
+            "year": year,
+            "month": month
         ]
         
         let dataRequest = AF.request(url,
@@ -36,7 +37,6 @@ struct SentencesService {
                                      headers: header)
         
         dataRequest.responseData { (response) in
-            
             switch response.result {
             case .success:
                 guard let statusCode = response.response?.statusCode else {
@@ -45,18 +45,17 @@ struct SentencesService {
                 guard let data = response.value else {
                     return
                 }
-                completion(judgeGetSentenceData(status: statusCode, data: data))
+                completion(judgeDiaryStatisticsData(status: statusCode, data: data))
             
             case .failure(let err):
-                print(err)
                 completion(.networkFail)
             }
         }
     }
     
-    private func judgeGetSentenceData(status: Int, data: Data) -> NetworkResult<Any> {
+    private func judgeDiaryStatisticsData(status: Int, data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<[Sentence]>.self,
+        guard let decodedData = try? decoder.decode(GenericResponse<Statistics>.self,
                                                     from: data) else {
             return .pathErr
         }
