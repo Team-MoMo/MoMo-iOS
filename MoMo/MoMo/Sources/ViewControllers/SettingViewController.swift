@@ -224,7 +224,11 @@ class SettingViewController: UIViewController {
     }
     
     private func pushToPersonalTermViewController() {
-        
+        let personalTermStoryboard = UIStoryboard(name: Constants.Name.personalTermStoryboard, bundle: nil)
+        guard let personalTermViewController = personalTermStoryboard.instantiateViewController(identifier: Constants.Identifier.personalTermViewController) as? PersonalTermViewController else {
+            return
+        }
+        self.navigationController?.pushViewController(personalTermViewController, animated: true)
     }
     
     private func pushToServiceTermViewController() {
