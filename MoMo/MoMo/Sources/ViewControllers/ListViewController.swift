@@ -202,6 +202,14 @@ class ListViewController: UIViewController {
     }
     
     @objc func touchStatButton() {
+        let statStoryboard = UIStoryboard(name: Constants.Name.statisticsStoryboard, bundle: nil)
+        
+        guard let statViewController = statStoryboard.instantiateViewController(identifier: Constants.Identifier.statisticsViewController) as? StatisticsViewController else {
+            return
+        }
+        
+        self.navigationController?.pushViewController(statViewController, animated: true)
+
     }
     
     @objc func touchBackButton() {

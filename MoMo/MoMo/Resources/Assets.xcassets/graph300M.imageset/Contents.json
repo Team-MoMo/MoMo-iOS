@@ -1,18 +1,18 @@
 {
   "images" : [
     {
+      "filename" : "graph300M.png",
       "scale" : "1x",
-      "idiom" : "universal",
-      "filename" : "btnArrowRight14.png"
-    },
-    {
-      "scale" : "2x",
-      "filename" : "btnArrowRight14@2x.png",
       "idiom" : "universal"
     },
     {
+      "idiom" : "universal",
+      "scale" : "2x",
+      "filename" : "graph300M@2x.png"
+    },
+    {
+      "filename" : "graph300M@3x.png",
       "scale" : "3x",
-      "filename" : "btnArrowRight14@3x.png",
       "idiom" : "universal"
     }
   ],

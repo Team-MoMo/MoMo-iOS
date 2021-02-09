@@ -14,6 +14,10 @@
 		10029DBF25B11D4800060E14 /* DiaryRecent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10029DBE25B11D4800060E14 /* DiaryRecent.swift */; };
 		1006505E25AAF3320016B796 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1006505C25AAF3320016B796 /* ListViewController.swift */; };
 		1014894425AC417E00639F98 /* DiaryWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1014894325AC417E00639F98 /* DiaryWriteViewController.swift */; };
+		1038B69825CAABF300C577B6 /* DiariesStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1038B69725CAABF300C577B6 /* DiariesStatistics.swift */; };
+		1038B69B25CAAE0800C577B6 /* EmotionCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1038B69A25CAAE0800C577B6 /* EmotionCount.swift */; };
+		1038B69F25CAAF7D00C577B6 /* DepthCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1038B69E25CAAF7D00C577B6 /* DepthCount.swift */; };
+		1038B6A225CAAFB600C577B6 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1038B6A125CAAFB600C577B6 /* Statistics.swift */; };
 		104E685E25AAF8410019B29E /* DiaryWrite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 104E685D25AAF8410019B29E /* DiaryWrite.storyboard */; };
 		105661ED25A5F79300E111B2 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105661EB25A5F79300E111B2 /* EmptyTableViewCell.swift */; };
 		105661EE25A5F79300E111B2 /* EmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 105661EC25A5F79300E111B2 /* EmptyTableViewCell.xib */; };
@@ -23,8 +27,14 @@
 		107919BD25A484510024C711 /* ListFilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 107919BB25A484510024C711 /* ListFilterTableViewCell.xib */; };
 		107919C125A484E60024C711 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107919BF25A484E60024C711 /* FilterCollectionViewCell.swift */; };
 		107919C225A484E60024C711 /* FilterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 107919C025A484E60024C711 /* FilterCollectionViewCell.xib */; };
+		10B5913C25CBDB2D0063C7B9 /* PersonalTerm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B5913B25CBDB2D0063C7B9 /* PersonalTerm.storyboard */; };
+		10B5914325CBE0700063C7B9 /* PersonalTermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B5914225CBE0700063C7B9 /* PersonalTermViewController.swift */; };
 		10B6732025A771700046AA97 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B6731F25A771700046AA97 /* String+Extension.swift */; };
 		10B6732D25A775DE0046AA97 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B6732C25A775DE0046AA97 /* UIView+Extension.swift */; };
+		10C9CEC125C3E77B0036CE98 /* Statistics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10C9CEC025C3E77B0036CE98 /* Statistics.storyboard */; };
+		10C9CEC825C3E7B90036CE98 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C9CEC725C3E7B90036CE98 /* StatisticsViewController.swift */; };
+		10C9CECB25C3ECBC0036CE98 /* DepthStatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C9CECA25C3ECBC0036CE98 /* DepthStatViewController.swift */; };
+		10DC0CBD25C7D9640048A5C8 /* MoodStatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DC0CBC25C7D9640048A5C8 /* MoodStatViewController.swift */; };
 		10DDA33925AF099A00620C41 /* ListFilterModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DDA33725AF099A00620C41 /* ListFilterModalViewController.swift */; };
 		10DDA33A25AF099A00620C41 /* ListFilterModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10DDA33825AF099A00620C41 /* ListFilterModalViewController.xib */; };
 		10DDA34025AF09A900620C41 /* DepthCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DDA33C25AF09A900620C41 /* DepthCollectionViewCell.swift */; };
@@ -35,6 +45,11 @@
 		10E5CD7F25ADF145004FDC24 /* UploadModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E5CD7D25ADF145004FDC24 /* UploadModalViewController.swift */; };
 		10E5CD8025ADF145004FDC24 /* UploadModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10E5CD7E25ADF145004FDC24 /* UploadModalViewController.xib */; };
 		10E5CD8325ADF1D5004FDC24 /* UploadModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E5CD8225ADF1D5004FDC24 /* UploadModalPresentationController.swift */; };
+		10F092A325CC34FF00342B18 /* OpenSource.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10F092A225CC34FF00342B18 /* OpenSource.storyboard */; };
+		10F092A625CC351200342B18 /* OpenSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F092A525CC351200342B18 /* OpenSourceViewController.swift */; };
+		10F092AA25CC356F00342B18 /* OpenSourceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F092A825CC356F00342B18 /* OpenSourceTableViewCell.swift */; };
+		10F092AB25CC356F00342B18 /* OpenSourceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10F092A925CC356F00342B18 /* OpenSourceTableViewCell.xib */; };
+		10F092AE25CC3FA900342B18 /* OpenSourceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F092AD25CC3FA900342B18 /* OpenSourceDetailViewController.swift */; };
 		10F12B10259B2C4C003CAA9E /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10F12B0F259B2C4C003CAA9E /* List.storyboard */; };
 		10F1F72D25B04ADD00BF7D37 /* SentencesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F1F72C25B04ADD00BF7D37 /* SentencesService.swift */; };
 		10F1F73625B053A900BF7D37 /* CreateDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F1F73525B053A900BF7D37 /* CreateDiary.swift */; };
@@ -126,6 +141,10 @@
 		10029DBE25B11D4800060E14 /* DiaryRecent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRecent.swift; sourceTree = "<group>"; };
 		1006505C25AAF3320016B796 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		1014894325AC417E00639F98 /* DiaryWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryWriteViewController.swift; sourceTree = "<group>"; };
+		1038B69725CAABF300C577B6 /* DiariesStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiariesStatistics.swift; sourceTree = "<group>"; };
+		1038B69A25CAAE0800C577B6 /* EmotionCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionCount.swift; sourceTree = "<group>"; };
+		1038B69E25CAAF7D00C577B6 /* DepthCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthCount.swift; sourceTree = "<group>"; };
+		1038B6A125CAAFB600C577B6 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		104E685D25AAF8410019B29E /* DiaryWrite.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DiaryWrite.storyboard; sourceTree = "<group>"; };
 		105661EB25A5F79300E111B2 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		105661EC25A5F79300E111B2 /* EmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableViewCell.xib; sourceTree = "<group>"; };
@@ -135,8 +154,14 @@
 		107919BB25A484510024C711 /* ListFilterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListFilterTableViewCell.xib; sourceTree = "<group>"; };
 		107919BF25A484E60024C711 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		107919C025A484E60024C711 /* FilterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCollectionViewCell.xib; sourceTree = "<group>"; };
+		10B5913B25CBDB2D0063C7B9 /* PersonalTerm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PersonalTerm.storyboard; sourceTree = "<group>"; };
+		10B5914225CBE0700063C7B9 /* PersonalTermViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalTermViewController.swift; sourceTree = "<group>"; };
 		10B6731F25A771700046AA97 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		10B6732C25A775DE0046AA97 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		10C9CEC025C3E77B0036CE98 /* Statistics.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Statistics.storyboard; sourceTree = "<group>"; };
+		10C9CEC725C3E7B90036CE98 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		10C9CECA25C3ECBC0036CE98 /* DepthStatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthStatViewController.swift; sourceTree = "<group>"; };
+		10DC0CBC25C7D9640048A5C8 /* MoodStatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodStatViewController.swift; sourceTree = "<group>"; };
 		10DDA33725AF099A00620C41 /* ListFilterModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListFilterModalViewController.swift; sourceTree = "<group>"; };
 		10DDA33825AF099A00620C41 /* ListFilterModalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListFilterModalViewController.xib; sourceTree = "<group>"; };
 		10DDA33C25AF09A900620C41 /* DepthCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepthCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -147,6 +172,11 @@
 		10E5CD7D25ADF145004FDC24 /* UploadModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadModalViewController.swift; sourceTree = "<group>"; };
 		10E5CD7E25ADF145004FDC24 /* UploadModalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadModalViewController.xib; sourceTree = "<group>"; };
 		10E5CD8225ADF1D5004FDC24 /* UploadModalPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadModalPresentationController.swift; sourceTree = "<group>"; };
+		10F092A225CC34FF00342B18 /* OpenSource.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OpenSource.storyboard; sourceTree = "<group>"; };
+		10F092A525CC351200342B18 /* OpenSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceViewController.swift; sourceTree = "<group>"; };
+		10F092A825CC356F00342B18 /* OpenSourceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceTableViewCell.swift; sourceTree = "<group>"; };
+		10F092A925CC356F00342B18 /* OpenSourceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenSourceTableViewCell.xib; sourceTree = "<group>"; };
+		10F092AD25CC3FA900342B18 /* OpenSourceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceDetailViewController.swift; sourceTree = "<group>"; };
 		10F12B0F259B2C4C003CAA9E /* List.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
 		10F1F72C25B04ADD00BF7D37 /* SentencesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentencesService.swift; sourceTree = "<group>"; };
 		10F1F73525B053A900BF7D37 /* CreateDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiary.swift; sourceTree = "<group>"; };
@@ -189,6 +219,7 @@
 		562C645825C1AFAD00AA9AB6 /* AppDepth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDepth.swift; sourceTree = "<group>"; };
 		562C645B25C1B14F00AA9AB6 /* AppSentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSentence.swift; sourceTree = "<group>"; };
 		562C645E25C1B16000AA9AB6 /* AppDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDiary.swift; sourceTree = "<group>"; };
+		562C648125C9B43500AA9AB6 /* MoMo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoMo.entitlements; sourceTree = "<group>"; };
 		5637606625B04AA800651EAA /* SignUpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpService.swift; sourceTree = "<group>"; };
 		5637606925B04ABC00651EAA /* SignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInService.swift; sourceTree = "<group>"; };
 		5637607225B04F6400651EAA /* PasswordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordService.swift; sourceTree = "<group>"; };
@@ -307,6 +338,9 @@
 				1C4235F025B0D5A8008FB838 /* DiaryWithId.swift */,
 				10029DBE25B11D4800060E14 /* DiaryRecent.swift */,
 				1CA39A1725B1BF3E00E58209 /* OnboardingSentence.swift */,
+				1038B69A25CAAE0800C577B6 /* EmotionCount.swift */,
+				1038B69E25CAAF7D00C577B6 /* DepthCount.swift */,
+				1038B6A125CAAFB600C577B6 /* Statistics.swift */,
 			);
 			path = APIModels;
 			sourceTree = "<group>";
@@ -336,6 +370,7 @@
 				563B049025AE0D9F00DA74C5 /* DiariesService.swift */,
 				1C4235EB25B04CD5008FB838 /* DiariesWithIDService.swift */,
 				10029DBB25B1183A00060E14 /* DiaryRecentService.swift */,
+				1038B69725CAABF300C577B6 /* DiariesStatistics.swift */,
 			);
 			path = Diaries;
 			sourceTree = "<group>";
@@ -363,6 +398,7 @@
 		5687640B2599AD3A009CB486 /* MoMo */ = {
 			isa = PBXGroup;
 			children = (
+				562C648125C9B43500AA9AB6 /* MoMo.entitlements */,
 				568764212599DEDF009CB486 /* Resources */,
 				568764222599E305009CB486 /* Sources */,
 			);
@@ -439,8 +475,11 @@
 				1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */,
 				104E685D25AAF8410019B29E /* DiaryWrite.storyboard */,
 				563B047325ADF46200DA74C5 /* FindPassword.storyboard */,
+				10C9CEC025C3E77B0036CE98 /* Statistics.storyboard */,
 				1C8DD90325C92AC100C7A3BA /* Setting.storyboard */,
 				1C5876C425D04C57004537A5 /* Lock.storyboard */,
+				10F092A225CC34FF00342B18 /* OpenSource.storyboard */,
+				10B5913B25CBDB2D0063C7B9 /* PersonalTerm.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -466,6 +505,8 @@
 				563B037A25AA106F00DA74C5 /* BubbleTableViewCell.xib */,
 				1C8DD90925C92D4F00C7A3BA /* SettingTableViewCell.swift */,
 				1C8DD90625C92D4200C7A3BA /* SettingTableViewCell.xib */,
+				10F092A825CC356F00342B18 /* OpenSourceTableViewCell.swift */,
+				10F092A925CC356F00342B18 /* OpenSourceTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -493,8 +534,14 @@
 				563B047625ADF47200DA74C5 /* FindPasswordViewController.swift */,
 				10029DA525B0FEDD00060E14 /* HomeModalViewController.swift */,
 				10029DA625B0FEDD00060E14 /* HomeModalViewController.xib */,
+				10C9CEC725C3E7B90036CE98 /* StatisticsViewController.swift */,
+				10C9CECA25C3ECBC0036CE98 /* DepthStatViewController.swift */,
+				10DC0CBC25C7D9640048A5C8 /* MoodStatViewController.swift */,
 				1C8DD90025C92A9C00C7A3BA /* SettingViewController.swift */,
 				1C5876C125D04C45004537A5 /* LockViewController.swift */,
+				10F092A525CC351200342B18 /* OpenSourceViewController.swift */,
+				10F092AD25CC3FA900342B18 /* OpenSourceDetailViewController.swift */,
+				10B5914225CBE0700063C7B9 /* PersonalTermViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -587,7 +634,9 @@
 			files = (
 				1C7CD80A25ACA5FD00B7CB60 /* Diary.storyboard in Resources */,
 				10029DA825B0FEDD00060E14 /* HomeModalViewController.xib in Resources */,
+				10B5913C25CBDB2D0063C7B9 /* PersonalTerm.storyboard in Resources */,
 				1CAD05B425AC3DEF007ECA40 /* DeepSliderView.xib in Resources */,
+				10F092A325CC34FF00342B18 /* OpenSource.storyboard in Resources */,
 				568764CE259F6A80009CB486 /* Colors.xcassets in Resources */,
 				568764362599EEC9009CB486 /* .swiftlint.yml in Resources */,
 				1C42357625AE26D2008FB838 /* Splash.storyboard in Resources */,
@@ -613,11 +662,13 @@
 				563B040225AD5F1800DA74C5 /* Join.storyboard in Resources */,
 				10DDA34325AF09A900620C41 /* EmotionCollectionViewCell.xib in Resources */,
 				104E685E25AAF8410019B29E /* DiaryWrite.storyboard in Resources */,
+				10C9CEC125C3E77B0036CE98 /* Statistics.storyboard in Resources */,
 				10DDA33A25AF099A00620C41 /* ListFilterModalViewController.xib in Resources */,
 				10F12B10259B2C4C003CAA9E /* List.storyboard in Resources */,
 				10F8723425AAF2D9009FE6F1 /* ListTableViewCell.xib in Resources */,
 				107919B425A4830B0024C711 /* ListDateTableViewCell.xib in Resources */,
 				563B033025A8849300DA74C5 /* HomeDayNightView.xib in Resources */,
+				10F092AB25CC356F00342B18 /* OpenSourceTableViewCell.xib in Resources */,
 				105661EE25A5F79300E111B2 /* EmptyTableViewCell.xib in Resources */,
 				1C52BE0F25AD7A9500D02771 /* onboarding_wave_ios.json in Resources */,
 				563B03FB25ACCDF700DA74C5 /* EmailLogin.storyboard in Resources */,
@@ -696,18 +747,25 @@
 				1CEF46CB25A6E0B200AF3D81 /* OnboardingWriteViewController.swift in Sources */,
 				563B03E225ACBB1200DA74C5 /* LoginViewController.swift in Sources */,
 				563B048D25AE0BD500DA74C5 /* NetworkResult.swift in Sources */,
+				10B5914325CBE0700063C7B9 /* PersonalTermViewController.swift in Sources */,
 				1C4235EC25B04CD5008FB838 /* DiariesWithIDService.swift in Sources */,
 				562C645425C1AED800AA9AB6 /* AppEmotion.swift in Sources */,
 				10029DAB25B108E000060E14 /* HomeModalPresentation.swift in Sources */,
+				10C9CEC825C3E7B90036CE98 /* StatisticsViewController.swift in Sources */,
 				568764612599FB56009CB486 /* APIConstants.swift in Sources */,
 				563B049625AE0E6800DA74C5 /* Diary.swift in Sources */,
 				10DDA34225AF09A900620C41 /* EmotionCollectionViewCell.swift in Sources */,
+				10F092AE25CC3FA900342B18 /* OpenSourceDetailViewController.swift in Sources */,
 				1CAD05A525AACB36007ECA40 /* DeepViewController.swift in Sources */,
+				10F092AA25CC356F00342B18 /* OpenSourceTableViewCell.swift in Sources */,
+				10F092A625CC351200342B18 /* OpenSourceViewController.swift in Sources */,
 				1CD8F82F25C1EEA5003F57D1 /* AppDate.swift in Sources */,
 				562C645F25C1B16000AA9AB6 /* AppDiary.swift in Sources */,
 				562C645C25C1B14F00AA9AB6 /* AppSentence.swift in Sources */,
 				563B034725A8973100DA74C5 /* HomeViewController.swift in Sources */,
+				10DC0CBD25C7D9640048A5C8 /* MoodStatViewController.swift in Sources */,
 				1C4235F125B0D5A8008FB838 /* DiaryWithId.swift in Sources */,
+				10C9CECB25C3ECBC0036CE98 /* DepthStatViewController.swift in Sources */,
 				1C8DD90A25C92D5000C7A3BA /* SettingTableViewCell.swift in Sources */,
 				10F1F73625B053A900BF7D37 /* CreateDiary.swift in Sources */,
 				107919BC25A484510024C711 /* ListFilterTableViewCell.swift in Sources */,
@@ -718,7 +776,9 @@
 				5637607625B0519F00651EAA /* PasswordData.swift in Sources */,
 				1C52BE0525AD655300D02771 /* AlertModalView.swift in Sources */,
 				1CAD05A225A9C98F007ECA40 /* UILabel+Extension.swift in Sources */,
+				1038B69825CAABF300C577B6 /* DiariesStatistics.swift in Sources */,
 				562C645925C1AFAD00AA9AB6 /* AppDepth.swift in Sources */,
+				1038B69B25CAAE0800C577B6 /* EmotionCount.swift in Sources */,
 				1CAD05B125AC3DC4007ECA40 /* DeepSliderView.swift in Sources */,
 				5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */,
 				1C8DD8F825C8850F00C7A3BA /* ToastView.swift in Sources */,
@@ -747,12 +807,14 @@
 				1CEF46BF25A6DA7600AF3D81 /* OnboardingViewController.swift in Sources */,
 				1014894425AC417E00639F98 /* DiaryWriteViewController.swift in Sources */,
 				563B033325A884A200DA74C5 /* HomeDayNightView.swift in Sources */,
+				1038B69F25CAAF7D00C577B6 /* DepthCount.swift in Sources */,
 				563B049125AE0D9F00DA74C5 /* DiariesService.swift in Sources */,
 				1CEF46C825A6E0A000AF3D81 /* SentenceViewController.swift in Sources */,
 				10029DBC25B1183A00060E14 /* DiaryRecentService.swift in Sources */,
 				10DDA34625AF09C500620C41 /* ModalPresentationController.swift in Sources */,
 				1C7CD82525ACEB9E00B7CB60 /* MenuView.swift in Sources */,
 				1C7CD80725ACA5EC00B7CB60 /* DiaryViewController.swift in Sources */,
+				1038B6A225CAAFB600C577B6 /* Statistics.swift in Sources */,
 				5637606A25B04ABC00651EAA /* SignInService.swift in Sources */,
 				563B047A25ADF63900DA74C5 /* UITextField+Extension.swift in Sources */,
 				10029DBF25B11D4800060E14 /* DiaryRecent.swift in Sources */,
@@ -911,14 +973,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MoMo/MoMo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EQ7Z68Z2F2;
+				DEVELOPMENT_TEAM = 52W8853QH6;
 				INFOPLIST_FILE = MoMo/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = choyi.MoMo;
+				PRODUCT_BUNDLE_IDENTIFIER = team.MoMo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -931,14 +994,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MoMo/MoMo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EQ7Z68Z2F2;
+				DEVELOPMENT_TEAM = 52W8853QH6;
 				INFOPLIST_FILE = MoMo/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = choyi.MoMo;
+				PRODUCT_BUNDLE_IDENTIFIER = team.MoMo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

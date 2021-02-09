@@ -25,9 +25,12 @@ struct Constants {
         static let diaryWriteStoryboard: String = "DiaryWrite"
         static let listStoryboard: String = "List"
         static let findPasswordStoryboard: String = "FindPassword"
+        static let statisticsStoryboard: String = "Statistics"
         static let settingStoryboard: String = "Setting"
         static let lockStoryboard: String = "Lock"
-        
+        static let openSourceStoryboard: String = "OpenSource"
+        static let personalTermStoryboard: String = "PersonalTerm"
+      
         // MARK: - Nib Name Constants
         
         static let homeDayNightViewXib: String = "HomeDayNightView"
@@ -53,8 +56,14 @@ struct Constants {
         static let loginViewController: String = "LoginViewController"
         static let listViewController: String = "ListViewController"
         static let findPasswordViewController: String = "FindPasswordViewController"
+        static let statisticsViewController: String = "StatisticsViewController"
+        static let depthStatViewController: String = "DepthStatViewController"
+        static let moodStatViewController: String = "MoodStatViewController"
         static let settingViewController: String = "SettingViewController"
         static let lockViewController: String = "LockViewController"
+        static let openSourceViewController: String = "OpenSourceViewController"
+        static let openSourceDetailViewController: String = "OpenSourceDetailViewController"
+        static let personalTermViewController: String = "PersonalTermViewController"
         
         // MARK: - UIView
         
@@ -193,6 +202,15 @@ struct Constants {
             static let icBoredBlue = UIImage(named: "icBoredBlue")
             static let icMemoryBlue = UIImage(named: "icMemoryBlue")
             static let icDailyBlue = UIImage(named: "icDailyBlue")
+            
+            // statViewObjet
+            static let graph2M = UIImage(named: "graph2M")
+            static let graph30M = UIImage(named: "graph30M")
+            static let graph100M = UIImage(named: "graph100M")
+            static let graph300M = UIImage(named: "graph300M")
+            static let graph700M = UIImage(named: "graph700M")
+            static let graph1005M = UIImage(named: "graph1005M")
+            static let graphUnder = UIImage(named: "graphUnder")
             
             // navigation
             static let icSubtab = UIImage(named: "icSubtab")

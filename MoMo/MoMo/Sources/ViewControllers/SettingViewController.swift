@@ -295,11 +295,19 @@ class SettingViewController: UIViewController {
     }
     
     private func pushToOpenSourceLicenseViewController() {
-        
+        let openSourceStoryboard = UIStoryboard(name: Constants.Name.openSourceStoryboard, bundle: nil)
+        guard let openSourceViewController = openSourceStoryboard.instantiateViewController(identifier: Constants.Identifier.openSourceViewController) as? OpenSourceViewController else {
+            return
+        }
+        self.navigationController?.pushViewController(openSourceViewController, animated: true)
     }
     
     private func pushToPersonalTermViewController() {
-        
+        let personalTermStoryboard = UIStoryboard(name: Constants.Name.personalTermStoryboard, bundle: nil)
+        guard let personalTermViewController = personalTermStoryboard.instantiateViewController(identifier: Constants.Identifier.personalTermViewController) as? PersonalTermViewController else {
+            return
+        }
+        self.navigationController?.pushViewController(personalTermViewController, animated: true)
     }
     
     private func pushToServiceTermViewController() {

@@ -21,22 +21,22 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="modalImgWave375" translatesAutoresizingMaskIntoConstraints="NO" id="bgy-5a-EUK">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="93"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="97"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4M-8X-hoq">
-                    <rect key="frame" x="0.0" y="93" width="375" height="142"/>
+                    <rect key="frame" x="0.0" y="97" width="375" height="148"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="47" translatesAutoresizingMaskIntoConstraints="NO" id="Qnq-Zc-zOr">
-                            <rect key="frame" x="72" y="-10" width="231" height="162"/>
+                            <rect key="frame" x="57" y="10" width="246" height="128"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="QSt-QI-Aa9">
-                                    <rect key="frame" x="0.0" y="0.0" width="92" height="162"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="99.5" height="128"/>
                                     <subviews>
                                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VVx-zA-fXp">
-                                            <rect key="frame" x="0.0" y="0.0" width="72" height="162"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="79.5" height="128"/>
                                         </pickerView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="년" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y3P-p9-omk">
-                                            <rect key="frame" x="77" y="72" width="15" height="18"/>
+                                            <rect key="frame" x="84.5" y="55" width="15" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="15" id="11z-FW-VZT"/>
                                             </constraints>
@@ -47,13 +47,13 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bwy-3V-1di">
-                                    <rect key="frame" x="139" y="0.0" width="92" height="162"/>
+                                    <rect key="frame" x="146.5" y="0.0" width="99.5" height="128"/>
                                     <subviews>
                                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uEK-M5-Dqk">
-                                            <rect key="frame" x="0.0" y="0.0" width="69" height="162"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="76.5" height="128"/>
                                         </pickerView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="월" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Am-qm-SK2">
-                                            <rect key="frame" x="77" y="72" width="15" height="18"/>
+                                            <rect key="frame" x="84.5" y="55" width="15" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="15" id="JLB-55-zmu"/>
                                             </constraints>
@@ -69,9 +69,10 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="Qnq-Zc-zOr" secondAttribute="trailing" constant="72" id="G4v-we-qzL"/>
-                        <constraint firstItem="Qnq-Zc-zOr" firstAttribute="centerX" secondItem="k4M-8X-hoq" secondAttribute="centerX" id="I6i-em-eec"/>
-                        <constraint firstItem="Qnq-Zc-zOr" firstAttribute="leading" secondItem="k4M-8X-hoq" secondAttribute="leading" constant="72" id="IPv-qu-BqB"/>
+                        <constraint firstItem="Qnq-Zc-zOr" firstAttribute="leading" secondItem="k4M-8X-hoq" secondAttribute="leading" constant="57" id="IPv-qu-BqB"/>
+                        <constraint firstAttribute="bottom" secondItem="Qnq-Zc-zOr" secondAttribute="bottom" constant="10" id="g6a-Oq-9R6"/>
                         <constraint firstItem="Qnq-Zc-zOr" firstAttribute="centerY" secondItem="k4M-8X-hoq" secondAttribute="centerY" id="u3T-oY-QvF"/>
+                        <constraint firstItem="Qnq-Zc-zOr" firstAttribute="top" secondItem="k4M-8X-hoq" secondAttribute="top" constant="10" id="zPz-af-Sfs"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜변경" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buf-m7-egU">
@@ -89,6 +90,9 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yn0-Ag-bYW">
                     <rect key="frame" x="97" y="265" width="181" height="42"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="42" id="k4y-fU-wEd"/>
+                    </constraints>
                     <state key="normal" image="iosBtnModalAble"/>
                     <connections>
                         <action selector="touchApplyButton:" destination="-1" eventType="touchUpInside" id="A3P-Kg-9xI"/>
@@ -98,12 +102,12 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="k4M-8X-hoq" firstAttribute="height" secondItem="bgy-5a-EUK" secondAttribute="height" multiplier="1.52688" id="0SR-Ie-r5x"/>
                 <constraint firstItem="gYf-C7-JSu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="22" id="1Bj-P0-Act"/>
                 <constraint firstItem="buf-m7-egU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="23" id="20j-33-VSD"/>
-                <constraint firstItem="yn0-Ag-bYW" firstAttribute="top" secondItem="k4M-8X-hoq" secondAttribute="bottom" constant="30" id="5hh-Ie-rkj"/>
-                <constraint firstItem="k4M-8X-hoq" firstAttribute="width" secondItem="bgy-5a-EUK" secondAttribute="width" id="90P-az-mug"/>
+                <constraint firstItem="k4M-8X-hoq" firstAttribute="height" secondItem="bgy-5a-EUK" secondAttribute="height" multiplier="1.52688" id="2S0-UB-Xc9"/>
+                <constraint firstItem="yn0-Ag-bYW" firstAttribute="top" secondItem="k4M-8X-hoq" secondAttribute="bottom" constant="20" id="5hh-Ie-rkj"/>
                 <constraint firstItem="bgy-5a-EUK" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="FoT-0j-ur1"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="yn0-Ag-bYW" secondAttribute="bottom" constant="40" id="IKu-zy-nzR"/>
                 <constraint firstItem="bgy-5a-EUK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="KSq-mx-zJY"/>
                 <constraint firstItem="buf-m7-egU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="NGK-4H-J2v"/>
                 <constraint firstItem="yn0-Ag-bYW" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ST8-DT-wGw"/>
