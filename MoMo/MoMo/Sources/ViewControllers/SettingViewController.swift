@@ -21,6 +21,7 @@ class SettingViewController: UIViewController {
     
     // MARK: - Properties
     
+    var passwordIsUpdated: Bool = false
     var settingViewUsage: SettingViewUsage?
     private let cellHeight: CGFloat = 64
     private var cellInfos: [SettingCellInfo]?
@@ -62,6 +63,10 @@ class SettingViewController: UIViewController {
         self.initializeNavigationBar()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     // MARK: - Functions
     
     private func initializeSettingViewController() {
@@ -88,7 +93,7 @@ class SettingViewController: UIViewController {
         case .info:
             self.hideVersionLabel()
             self.cellInfos = [
-                (image: Constants.Design.Image.icPwChange, labelText: "비밀번호 변경", touchAction: self.pushToPasswordChangeViewController),
+                (image: Constants.Design.Image.icPwChange, labelText: "비밀번호 변경", touchAction: self.pushToChangePasswordViewController),
                 (image: Constants.Design.Image.icDoc1, labelText: "개인정보처리방침", touchAction: self.pushToPersonalTermViewController),
                 (image: Constants.Design.Image.icDoc2, labelText: "서비스이용약관", touchAction: self.pushToServiceTermViewController),
                 (image: Constants.Design.Image.icLogout, labelText: "로그아웃", touchAction: self.attachAlertModalView)
@@ -231,8 +236,10 @@ class SettingViewController: UIViewController {
         
     }
     
-    private func pushToPasswordChangeViewController() {
-        
+    private func pushToChangePasswordViewController() {
+        let changePasswordStoryboard = UIStoryboard(name: Constants.Name.changePasswordStoryboard, bundle: nil)
+        guard let changePasswordViewController = changePasswordStoryboard.instantiateViewController(identifier: Constants.Identifier.changePasswordViewController) as? ChangePasswordViewController else { return }
+        self.navigationController?.pushViewController(changePasswordViewController, animated: true)
     }
     
     private func pushToTeamMomoViewController() {
