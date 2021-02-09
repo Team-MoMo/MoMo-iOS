@@ -21,16 +21,16 @@ class SettingViewController: UIViewController {
     
     // MARK: - Properties
     
-    var passwordIsUpdated: Bool = false
     var settingViewUsage: SettingViewUsage?
     var lockIsUpdated: Bool = false
+    var passwordIsUpdated: Bool = false
     private var toastView: ToastView?
     private let cellHeight: CGFloat = 64
     private var cellInfos: [SettingCellInfo]?
     private var isLocked: Bool = false
     private var alertModalView: AlertModalView?
     private lazy var leftButton: UIBarButtonItem = {
-        let button: UIBarButtonItem = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(buttonPressed(sender:)))
+        let button: UIBarButtonItem = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchNavigationButton(sender:)))
         button.tag = 0
         button.tintColor = UIColor.Black1
         return button
@@ -67,15 +67,21 @@ class SettingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.updateIsLocked()
+        self.updateControlSwitch()
+        self.settingTableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         if self.lockIsUpdated {
             self.attachToastViewWithAnimation(message: "암호 설정이 완료되었습니다")
             self.lockIsUpdated = false
         }
-        self.updateIsLocked()
-        self.updateControlSwitch()
-        self.settingTableView.reloadData()
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        if self.passwordIsUpdated {
+            self.attachToastViewWithAnimation(message: "비밀번호가 변경되었습니다")
+            self.passwordIsUpdated = false
+        }
     }
     
     // MARK: - Functions
@@ -158,52 +164,11 @@ class SettingViewController: UIViewController {
     
     private func updateSellInfosForInfo() {
         self.cellInfos = [
-            (image: Constants.Design.Image.icPwChange, labelText: "비밀번호 변경", touchAction: self.pushToPasswordChangeViewController),
+            (image: Constants.Design.Image.icPwChange, labelText: "비밀번호 변경", touchAction: self.pushToChangePasswordViewController),
             (image: Constants.Design.Image.icDoc1, labelText: "개인정보처리방침", touchAction: self.pushToPersonalTermViewController),
             (image: Constants.Design.Image.icDoc2, labelText: "서비스이용약관", touchAction: self.pushToServiceTermViewController),
             (image: Constants.Design.Image.icLogout, labelText: "로그아웃", touchAction: self.attachAlertModalView)
         ]
-    }
-    
-    private func attachSwitch(superView: UITableViewCell) {
-        superView.addSubview(self.controlSwitch)
-        self.updateSwitchConstraints(superView: superView)
-    }
-    
-    private func attachResetButton(superView: UITableViewCell) {
-        superView.addSubview(self.resetButton)
-        self.updateResetButtonConstraints(superView: superView)
-    }
-    
-    private func attachAlertModalView() {
-        self.alertModalView = AlertModalView.instantiate(alertLabelText: "정말 로그아웃 하시겠어요?\n일기를 다시 쓰려면 로그인해 주세요!", leftButtonTitle: "확인", rightButtonTitle: "취소")
-        if let alertModalView = self.alertModalView {
-            alertModalView.alertModalDelegate = self
-            self.view.insertSubview(alertModalView, aboveSubview: self.view)
-            self.updateAlertModalViewConstraints(view: alertModalView)
-        }
-    }
-    
-    private func attachVersionLabel() {
-        self.settingTableView.addSubview(self.versionLabel)
-    }
-    
-    private func showResetButton() {
-        self.resetButton.isHidden = false
-    }
-    
-    private func hideResetButton() {
-        self.resetButton.isHidden = true
-    }
-    
-    private func hideVersionLabel() {
-        self.versionLabel.isHidden = true
-    }
-    
-    private func updateVersion() {
-        let nsObject = Bundle.main.infoDictionary?["CFBundleShortVersionString"]
-        guard let version = nsObject as? String else { return }
-        self.versionLabel.text = "Ver. \(version)"
     }
     
     private func updateVersionLabelConstraints() {
@@ -234,16 +199,33 @@ class SettingViewController: UIViewController {
         })
     }
     
-    private func deleteUserIdAndToken() {
-        UserDefaults.standard.removeObject(forKey: "token")
-        UserDefaults.standard.removeObject(forKey: "userId")
+    private func updateVersion() {
+        let nsObject = Bundle.main.infoDictionary?["CFBundleShortVersionString"]
+        guard let version = nsObject as? String else { return }
+        self.versionLabel.text = "Ver. \(version)"
     }
     
-    private func pushToInfoViewController() {
-        let settingStoryboard = UIStoryboard(name: Constants.Name.settingStoryboard, bundle: nil)
-        guard let infoViewController = settingStoryboard.instantiateViewController(identifier: Constants.Identifier.settingViewController) as? SettingViewController else { return }
-        infoViewController.settingViewUsage = .info
-        self.navigationController?.pushViewController(infoViewController, animated: true)
+    private func attachSwitch(superView: UITableViewCell) {
+        superView.addSubview(self.controlSwitch)
+        self.updateSwitchConstraints(superView: superView)
+    }
+    
+    private func attachResetButton(superView: UITableViewCell) {
+        superView.addSubview(self.resetButton)
+        self.updateResetButtonConstraints(superView: superView)
+    }
+    
+    private func attachAlertModalView() {
+        self.alertModalView = AlertModalView.instantiate(alertLabelText: "정말 로그아웃 하시겠어요?\n일기를 다시 쓰려면 로그인해 주세요!", leftButtonTitle: "확인", rightButtonTitle: "취소")
+        if let alertModalView = self.alertModalView {
+            alertModalView.alertModalDelegate = self
+            self.view.insertSubview(alertModalView, aboveSubview: self.view)
+            self.updateAlertModalViewConstraints(view: alertModalView)
+        }
+    }
+    
+    private func attachVersionLabel() {
+        self.settingTableView.addSubview(self.versionLabel)
     }
     
     private func attachToastViewWithAnimation(message: String) {
@@ -277,6 +259,23 @@ class SettingViewController: UIViewController {
         self.updateToastViewConstraints(view: toastView)
     }
     
+    private func showResetButton() {
+        self.resetButton.isHidden = false
+    }
+    
+    private func hideResetButton() {
+        self.resetButton.isHidden = true
+    }
+    
+    private func hideVersionLabel() {
+        self.versionLabel.isHidden = true
+    }
+    
+    private func deleteUserIdAndToken() {
+        UserDefaults.standard.removeObject(forKey: "token")
+        UserDefaults.standard.removeObject(forKey: "userId")
+    }
+    
     private func updateToastViewConstraints(view: UIView) {
         view.snp.makeConstraints({ (make) in
             make.width.equalTo(self.view)
@@ -288,6 +287,17 @@ class SettingViewController: UIViewController {
     
     private func detachToastView() {
         self.toastView?.removeFromSuperview()
+    }
+    
+    private func detachSwitch() {
+        self.controlSwitch.removeFromSuperview()
+    }
+    
+    private func pushToInfoViewController() {
+        let settingStoryboard = UIStoryboard(name: Constants.Name.settingStoryboard, bundle: nil)
+        guard let infoViewController = settingStoryboard.instantiateViewController(identifier: Constants.Identifier.settingViewController) as? SettingViewController else { return }
+        infoViewController.settingViewUsage = .info
+        self.navigationController?.pushViewController(infoViewController, animated: true)
     }
     
     private func pushToLockViewController() {
@@ -352,7 +362,7 @@ class SettingViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @objc private func buttonPressed(sender: UIBarButtonItem) {
+    @objc private func touchNavigationButton(sender: UIBarButtonItem) {
         switch sender.tag {
         case 0:
             switch self.settingViewUsage {
