@@ -32,10 +32,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 self.navigationController = UINavigationController(rootViewController: onboardingViewController)
             }
             else {
-                let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
-                let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.homeViewController)
-
-                self.navigationController = UINavigationController(rootViewController: homeViewController)
+                if UserDefaults.standard.object(forKey: "token") != nil && UserDefaults.standard.object(forKey: "userId") != nil {
+                    let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
+                    let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.homeViewController)
+                    self.navigationController = UINavigationController(rootViewController: homeViewController)
+                } else {
+                    let loginStoryboard = UIStoryboard(name: Constants.Name.loginStoryboard, bundle: nil)
+                    let loginViewController = loginStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.loginViewController)
+                    self.navigationController = UINavigationController(rootViewController: loginViewController)
+                }
             }
             self.window?.rootViewController = self.navigationController
             self.window?.makeKeyAndVisible()

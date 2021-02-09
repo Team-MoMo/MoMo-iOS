@@ -53,6 +53,7 @@ class LoginViewController: UIViewController {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationItem.hidesBackButton = true
     }
     
     // TODO: - gradient color 머지되면 수정
