@@ -277,7 +277,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
             
             // 각 section별로 bubble이 4개 이하일 때 4개로 채워줌
             for sectionIndex in 0..<7 {
-                let emptyDiary = Diary(id: 0, position: -1, depth: sectionIndex, contents: "-", wroteAt: "-", userID: 0, sentenceID: 0, emotionID: 0, createdAt: "0", updatedAt: "0", sentence: Sentence(id: 0, contents: "-", bookName: "-", writer: "-", publisher: "-", createdAt: "-", updatedAt: "-"), emotion: Emotion(id: 0, name: Name(rawValue: "위로")!, createdAt: "-", updatedAt: "-"))
+                let emptyDiary = Diary(id: 0, position: -1, depth: sectionIndex, contents: "-", wroteAt: "-", userID: 0, sentenceID: 0, emotionID: 0, createdAt: "0", updatedAt: "0", sentence: Sentence(id: 0, contents: "-", bookName: "-", writer: "-", publisher: "-", createdAt: "-", updatedAt: "-", blindedAt: "-", deletedAt: "-"), emotion: Emotion(id: 0, name: Name(rawValue: "위로")!, createdAt: "-", updatedAt: "-"))
                 while bubbleDepthArray[sectionIndex].count < 4 {
                     bubbleDepthArray[sectionIndex].append(emptyDiary)
                 }
@@ -293,7 +293,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
             
             // 각 section별로 bubble이 4개 이하일 때 4개로 채워줌
             for sectionIndex in 0..<7 {
-                let emptyDiary = Diary(id: 0, position: -1, depth: sectionIndex, contents: "-", wroteAt: "2021-01-14T14:50:49.000Z", userID: 0, sentenceID: 0, emotionID: 0, createdAt: "0", updatedAt: "0", sentence: Sentence(id: 0, contents: "-", bookName: "-", writer: "-", publisher: "-", createdAt: "-", updatedAt: "-"), emotion: Emotion(id: 0, name: Name(rawValue: "위로")!, createdAt: "-", updatedAt: "-"))
+                let emptyDiary = Diary(id: 0, position: -1, depth: sectionIndex, contents: "-", wroteAt: "2021-01-14T14:50:49.000Z", userID: 0, sentenceID: 0, emotionID: 0, createdAt: "0", updatedAt: "0", sentence: Sentence(id: 0, contents: "-", bookName: "-", writer: "-", publisher: "-", createdAt: "-", updatedAt: "-", blindedAt: "-", deletedAt: "-"), emotion: Emotion(id: 0, name: Name(rawValue: "위로")!, createdAt: "-", updatedAt: "-"))
                 while bubbleDepthArray[sectionIndex].count < 4 {
                     bubbleDepthArray[sectionIndex].append(emptyDiary)
                 }

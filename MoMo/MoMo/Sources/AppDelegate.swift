@@ -29,28 +29,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let splashViewController = splashStoryboard.instantiateViewController(withIdentifier: "SplashViewController")
             self.window?.rootViewController = splashViewController
             self.window?.makeKeyAndVisible()
-            
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(3)) {
+
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1500)) {
                 if !UserDefaults.standard.bool(forKey: "didLaunch") {
-                    UserDefaults.standard.set(true, forKey: "didLaunch")
-
-                    let onboardingStoryboard = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
-                    let onboardingViewController = onboardingStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.onboardingViewController)
-
-                    self.navigationController = UINavigationController(rootViewController: onboardingViewController)
+                    self.updateRootToOnboadingViewController()
                 }
                 else {
-                    let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
-                    let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.homeViewController)
-
-                    self.navigationController = UINavigationController(rootViewController: homeViewController)
+                    if UserDefaults.standard.object(forKey: "token") != nil && UserDefaults.standard.object(forKey: "userId") != nil {
+                        if UserDefaults.standard.bool(forKey: "isLocked") {
+                            self.updateRootToLockViewController(usage: LockViewUsage.verifying)
+                        } else {
+                            self.updateRootToHomeViewController()
+                        }
+                    } else {
+                        self.updateRootToLoginViewController()
+                    }
                 }
                 self.window?.rootViewController = self.navigationController
                 self.window?.makeKeyAndVisible()
             }
         }
-        
         return true
+    }
+    
+    private func updateRootToOnboadingViewController() {
+        UserDefaults.standard.set(true, forKey: "didLaunch")
+        let onboardingStoryboard = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
+        let onboardingViewController = onboardingStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.onboardingViewController)
+        self.navigationController = UINavigationController(rootViewController: onboardingViewController)
+    }
+    
+    private func updateRootToLockViewController(usage: LockViewUsage) {
+        let lockStoryboard = UIStoryboard(name: Constants.Name.lockStoryboard, bundle: nil)
+        guard let lockViewController = lockStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.lockViewController) as? LockViewController else { return }
+        lockViewController.lockViewUsage = usage
+        self.navigationController = UINavigationController(rootViewController: lockViewController)
+    }
+    
+    private func updateRootToHomeViewController() {
+        let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
+        let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.homeViewController)
+        self.navigationController = UINavigationController(rootViewController: homeViewController)
+    }
+    
+    private func updateRootToLoginViewController() {
+        let loginStoryboard = UIStoryboard(name: Constants.Name.loginStoryboard, bundle: nil)
+        let loginViewController = loginStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.loginViewController)
+        self.navigationController = UINavigationController(rootViewController: loginViewController)
     }
     
     // MARK: UISceneSession Lifecycle

@@ -253,13 +253,10 @@ class DiaryWriteViewController: UIViewController {
     }
     
     private func attachAlertModalView() {
-        let attributedString = NSMutableAttributedString(string: "확인")
-        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(red: 119/255, green: 119/255, blue: 119/255, alpha: 1.0), range: NSRange(location: 0, length: attributedString.length))
-        
         self.alertModalView = AlertModalView.instantiate(
             alertLabelText: "작성한 일기가 저장되지 않습니다.\n정말 뒤로 가시겠어요?",
-            leftButtonTitle: NSMutableAttributedString(string: "취소"),
-            rightButtonTitle: attributedString
+            leftButtonTitle: "확인",
+            rightButtonTitle: "취소"
         )
 
         if let alertModalView = self.alertModalView {

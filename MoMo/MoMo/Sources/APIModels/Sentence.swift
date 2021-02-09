@@ -13,4 +13,5 @@ struct Sentence: Codable {
     let id: Int
     let contents, bookName, writer, publisher: String
     let createdAt, updatedAt: String
+    let blindedAt, deletedAt: String?
 }
