@@ -277,14 +277,18 @@ class ChangePasswordViewController: UIViewController {
         
     }
     
-    private func popToSettingViewController() {
-        self.navigationController?.popViewController(animated: true)
+    private func popToSettingViewController(passwordIsUpdated: Bool) {
+        guard let settingViewController = self.navigationController?.viewControllers.filter({$0 is SettingViewController})[1] as? SettingViewController else {
+            return
+        }
+        settingViewController.passwordIsUpdated = passwordIsUpdated
+        self.navigationController?.popToViewController(settingViewController, animated: true)
     }
     
     @objc private func buttonPressed(sender: UIBarButtonItem) {
         switch sender.tag {
         case 0:
-            self.popToSettingViewController()
+            self.popToSettingViewController(passwordIsUpdated: false)
         default:
             return
         }
@@ -308,7 +312,7 @@ class ChangePasswordViewController: UIViewController {
             }
         }
         guard let newPassword = self.newPasswordTextField.text else { return }
-        self.postNewPasswordWithAPI(newPassword: newPassword, completion: self.popToSettingViewController)
+        self.postNewPasswordWithAPI(newPassword: newPassword, completion: self.popToSettingViewController(passwordIsUpdated:))
     }
 }
 
@@ -362,10 +366,10 @@ extension ChangePasswordViewController {
         self.currentPasswordFromServer = "test123456"
     }
     
-    private func postNewPasswordWithAPI(newPassword: String, completion: @escaping () -> Void) {
+    private func postNewPasswordWithAPI(newPassword: String, completion: @escaping (Bool) -> Void) {
         // 서버에 새로운 키 저장
         DispatchQueue.main.async {
-            completion()
+            completion(true)
         }
     }
 }
