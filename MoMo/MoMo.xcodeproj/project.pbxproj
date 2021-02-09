@@ -48,16 +48,18 @@
 		1C52BE0525AD655300D02771 /* AlertModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C52BE0425AD655300D02771 /* AlertModalView.swift */; };
 		1C52BE0825AD656700D02771 /* AlertModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C52BE0725AD656700D02771 /* AlertModalView.xib */; };
 		1C52BE0F25AD7A9500D02771 /* onboarding_wave_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C52BE0E25AD7A9500D02771 /* onboarding_wave_ios.json */; };
+		1C5876C925D28BDF004537A5 /* ChangePassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C5876C825D28BDF004537A5 /* ChangePassword.storyboard */; };
+		1C5876CC25D28BEF004537A5 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5876CB25D28BEF004537A5 /* ChangePasswordViewController.swift */; };
 		1C7CD80725ACA5EC00B7CB60 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CD80625ACA5EC00B7CB60 /* DiaryViewController.swift */; };
 		1C7CD80A25ACA5FD00B7CB60 /* Diary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */; };
 		1C7CD82525ACEB9E00B7CB60 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CD82425ACEB9E00B7CB60 /* MenuView.swift */; };
 		1C7CD82825ACEBAB00B7CB60 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C7CD82725ACEBAB00B7CB60 /* MenuView.xib */; };
+		1C8DD8F825C8850F00C7A3BA /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8DD8F725C8850F00C7A3BA /* ToastView.swift */; };
+		1C8DD8FB25C8851A00C7A3BA /* ToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C8DD8FA25C8851A00C7A3BA /* ToastView.xib */; };
 		1C8DD90125C92A9C00C7A3BA /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8DD90025C92A9C00C7A3BA /* SettingViewController.swift */; };
 		1C8DD90425C92AC100C7A3BA /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C8DD90325C92AC100C7A3BA /* Setting.storyboard */; };
 		1C8DD90725C92D4200C7A3BA /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C8DD90625C92D4200C7A3BA /* SettingTableViewCell.xib */; };
 		1C8DD90A25C92D5000C7A3BA /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8DD90925C92D4F00C7A3BA /* SettingTableViewCell.swift */; };
-		1C8DD8F825C8850F00C7A3BA /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8DD8F725C8850F00C7A3BA /* ToastView.swift */; };
-		1C8DD8FB25C8851A00C7A3BA /* ToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C8DD8FA25C8851A00C7A3BA /* ToastView.xib */; };
 		1CA39A1525B1BE6D00E58209 /* OnboardingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA39A1425B1BE6D00E58209 /* OnboardingService.swift */; };
 		1CA39A1825B1BF3E00E58209 /* OnboardingSentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA39A1725B1BF3E00E58209 /* OnboardingSentence.swift */; };
 		1CAD05A225A9C98F007ECA40 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD05A125A9C98F007ECA40 /* UILabel+Extension.swift */; };
@@ -158,16 +160,18 @@
 		1C52BE0425AD655300D02771 /* AlertModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModalView.swift; sourceTree = "<group>"; };
 		1C52BE0725AD656700D02771 /* AlertModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertModalView.xib; sourceTree = "<group>"; };
 		1C52BE0E25AD7A9500D02771 /* onboarding_wave_ios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_wave_ios.json; sourceTree = "<group>"; };
+		1C5876C825D28BDF004537A5 /* ChangePassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChangePassword.storyboard; sourceTree = "<group>"; };
+		1C5876CB25D28BEF004537A5 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		1C7CD80625ACA5EC00B7CB60 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Diary.storyboard; sourceTree = "<group>"; };
 		1C7CD82425ACEB9E00B7CB60 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		1C7CD82725ACEBAB00B7CB60 /* MenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
+		1C8DD8F725C8850F00C7A3BA /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		1C8DD8FA25C8851A00C7A3BA /* ToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToastView.xib; sourceTree = "<group>"; };
 		1C8DD90025C92A9C00C7A3BA /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		1C8DD90325C92AC100C7A3BA /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		1C8DD90625C92D4200C7A3BA /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
 		1C8DD90925C92D4F00C7A3BA /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
-		1C8DD8F725C8850F00C7A3BA /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
-		1C8DD8FA25C8851A00C7A3BA /* ToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToastView.xib; sourceTree = "<group>"; };
 		1CA39A1425B1BE6D00E58209 /* OnboardingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingService.swift; sourceTree = "<group>"; };
 		1CA39A1725B1BF3E00E58209 /* OnboardingSentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSentence.swift; sourceTree = "<group>"; };
 		1CAD05A125A9C98F007ECA40 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
@@ -436,6 +440,7 @@
 				104E685D25AAF8410019B29E /* DiaryWrite.storyboard */,
 				563B047325ADF46200DA74C5 /* FindPassword.storyboard */,
 				1C8DD90325C92AC100C7A3BA /* Setting.storyboard */,
+				1C5876C825D28BDF004537A5 /* ChangePassword.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -489,6 +494,7 @@
 				10029DA525B0FEDD00060E14 /* HomeModalViewController.swift */,
 				10029DA625B0FEDD00060E14 /* HomeModalViewController.xib */,
 				1C8DD90025C92A9C00C7A3BA /* SettingViewController.swift */,
+				1C5876CB25D28BEF004537A5 /* ChangePasswordViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -612,6 +618,7 @@
 				107919B425A4830B0024C711 /* ListDateTableViewCell.xib in Resources */,
 				563B033025A8849300DA74C5 /* HomeDayNightView.xib in Resources */,
 				105661EE25A5F79300E111B2 /* EmptyTableViewCell.xib in Resources */,
+				1C5876C925D28BDF004537A5 /* ChangePassword.storyboard in Resources */,
 				1C52BE0F25AD7A9500D02771 /* onboarding_wave_ios.json in Resources */,
 				563B03FB25ACCDF700DA74C5 /* EmailLogin.storyboard in Resources */,
 			);
@@ -742,6 +749,7 @@
 				563B049125AE0D9F00DA74C5 /* DiariesService.swift in Sources */,
 				1CEF46C825A6E0A000AF3D81 /* SentenceViewController.swift in Sources */,
 				10029DBC25B1183A00060E14 /* DiaryRecentService.swift in Sources */,
+				1C5876CC25D28BEF004537A5 /* ChangePasswordViewController.swift in Sources */,
 				10DDA34625AF09C500620C41 /* ModalPresentationController.swift in Sources */,
 				1C7CD82525ACEB9E00B7CB60 /* MenuView.swift in Sources */,
 				1C7CD80725ACA5EC00B7CB60 /* DiaryViewController.swift in Sources */,
