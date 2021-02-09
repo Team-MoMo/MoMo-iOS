@@ -45,6 +45,11 @@
 		10E5CD7F25ADF145004FDC24 /* UploadModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E5CD7D25ADF145004FDC24 /* UploadModalViewController.swift */; };
 		10E5CD8025ADF145004FDC24 /* UploadModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10E5CD7E25ADF145004FDC24 /* UploadModalViewController.xib */; };
 		10E5CD8325ADF1D5004FDC24 /* UploadModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E5CD8225ADF1D5004FDC24 /* UploadModalPresentationController.swift */; };
+		10F092A325CC34FF00342B18 /* OpenSource.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10F092A225CC34FF00342B18 /* OpenSource.storyboard */; };
+		10F092A625CC351200342B18 /* OpenSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F092A525CC351200342B18 /* OpenSourceViewController.swift */; };
+		10F092AA25CC356F00342B18 /* OpenSourceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F092A825CC356F00342B18 /* OpenSourceTableViewCell.swift */; };
+		10F092AB25CC356F00342B18 /* OpenSourceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10F092A925CC356F00342B18 /* OpenSourceTableViewCell.xib */; };
+		10F092AE25CC3FA900342B18 /* OpenSourceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F092AD25CC3FA900342B18 /* OpenSourceDetailViewController.swift */; };
 		10F12B10259B2C4C003CAA9E /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10F12B0F259B2C4C003CAA9E /* List.storyboard */; };
 		10F1F72D25B04ADD00BF7D37 /* SentencesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F1F72C25B04ADD00BF7D37 /* SentencesService.swift */; };
 		10F1F73625B053A900BF7D37 /* CreateDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F1F73525B053A900BF7D37 /* CreateDiary.swift */; };
@@ -165,6 +170,11 @@
 		10E5CD7D25ADF145004FDC24 /* UploadModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadModalViewController.swift; sourceTree = "<group>"; };
 		10E5CD7E25ADF145004FDC24 /* UploadModalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadModalViewController.xib; sourceTree = "<group>"; };
 		10E5CD8225ADF1D5004FDC24 /* UploadModalPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadModalPresentationController.swift; sourceTree = "<group>"; };
+		10F092A225CC34FF00342B18 /* OpenSource.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OpenSource.storyboard; sourceTree = "<group>"; };
+		10F092A525CC351200342B18 /* OpenSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceViewController.swift; sourceTree = "<group>"; };
+		10F092A825CC356F00342B18 /* OpenSourceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceTableViewCell.swift; sourceTree = "<group>"; };
+		10F092A925CC356F00342B18 /* OpenSourceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenSourceTableViewCell.xib; sourceTree = "<group>"; };
+		10F092AD25CC3FA900342B18 /* OpenSourceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceDetailViewController.swift; sourceTree = "<group>"; };
 		10F12B0F259B2C4C003CAA9E /* List.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
 		10F1F72C25B04ADD00BF7D37 /* SentencesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentencesService.swift; sourceTree = "<group>"; };
 		10F1F73525B053A900BF7D37 /* CreateDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiary.swift; sourceTree = "<group>"; };
@@ -463,6 +473,7 @@
 				563B047325ADF46200DA74C5 /* FindPassword.storyboard */,
 				10C9CEC025C3E77B0036CE98 /* Statistics.storyboard */,
 				1C8DD90325C92AC100C7A3BA /* Setting.storyboard */,
+				10F092A225CC34FF00342B18 /* OpenSource.storyboard */,
 				10B5913B25CBDB2D0063C7B9 /* PersonalTerm.storyboard */,
 			);
 			path = Storyboards;
@@ -489,6 +500,8 @@
 				563B037A25AA106F00DA74C5 /* BubbleTableViewCell.xib */,
 				1C8DD90925C92D4F00C7A3BA /* SettingTableViewCell.swift */,
 				1C8DD90625C92D4200C7A3BA /* SettingTableViewCell.xib */,
+				10F092A825CC356F00342B18 /* OpenSourceTableViewCell.swift */,
+				10F092A925CC356F00342B18 /* OpenSourceTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -520,6 +533,8 @@
 				10C9CECA25C3ECBC0036CE98 /* DepthStatViewController.swift */,
 				10DC0CBC25C7D9640048A5C8 /* MoodStatViewController.swift */,
 				1C8DD90025C92A9C00C7A3BA /* SettingViewController.swift */,
+				10F092A525CC351200342B18 /* OpenSourceViewController.swift */,
+				10F092AD25CC3FA900342B18 /* OpenSourceDetailViewController.swift */,
 				10B5914225CBE0700063C7B9 /* PersonalTermViewController.swift */,
 			);
 			path = ViewControllers;
@@ -615,6 +630,7 @@
 				10029DA825B0FEDD00060E14 /* HomeModalViewController.xib in Resources */,
 				10B5913C25CBDB2D0063C7B9 /* PersonalTerm.storyboard in Resources */,
 				1CAD05B425AC3DEF007ECA40 /* DeepSliderView.xib in Resources */,
+				10F092A325CC34FF00342B18 /* OpenSource.storyboard in Resources */,
 				568764CE259F6A80009CB486 /* Colors.xcassets in Resources */,
 				568764362599EEC9009CB486 /* .swiftlint.yml in Resources */,
 				1C42357625AE26D2008FB838 /* Splash.storyboard in Resources */,
@@ -645,6 +661,7 @@
 				10F8723425AAF2D9009FE6F1 /* ListTableViewCell.xib in Resources */,
 				107919B425A4830B0024C711 /* ListDateTableViewCell.xib in Resources */,
 				563B033025A8849300DA74C5 /* HomeDayNightView.xib in Resources */,
+				10F092AB25CC356F00342B18 /* OpenSourceTableViewCell.xib in Resources */,
 				105661EE25A5F79300E111B2 /* EmptyTableViewCell.xib in Resources */,
 				1C52BE0F25AD7A9500D02771 /* onboarding_wave_ios.json in Resources */,
 				563B03FB25ACCDF700DA74C5 /* EmailLogin.storyboard in Resources */,
@@ -731,7 +748,10 @@
 				568764612599FB56009CB486 /* APIConstants.swift in Sources */,
 				563B049625AE0E6800DA74C5 /* Diary.swift in Sources */,
 				10DDA34225AF09A900620C41 /* EmotionCollectionViewCell.swift in Sources */,
+				10F092AE25CC3FA900342B18 /* OpenSourceDetailViewController.swift in Sources */,
 				1CAD05A525AACB36007ECA40 /* DeepViewController.swift in Sources */,
+				10F092AA25CC356F00342B18 /* OpenSourceTableViewCell.swift in Sources */,
+				10F092A625CC351200342B18 /* OpenSourceViewController.swift in Sources */,
 				1CD8F82F25C1EEA5003F57D1 /* AppDate.swift in Sources */,
 				562C645F25C1B16000AA9AB6 /* AppDiary.swift in Sources */,
 				562C645C25C1B14F00AA9AB6 /* AppSentence.swift in Sources */,
