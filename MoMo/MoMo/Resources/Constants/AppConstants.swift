@@ -27,6 +27,7 @@ struct Constants {
         static let findPasswordStoryboard: String = "FindPassword"
         static let statisticsStoryboard: String = "Statistics"
         static let settingStoryboard: String = "Setting"
+        static let lockStoryboard: String = "Lock"
         static let openSourceStoryboard: String = "OpenSource"
         static let personalTermStoryboard: String = "PersonalTerm"
       
@@ -59,6 +60,7 @@ struct Constants {
         static let depthStatViewController: String = "DepthStatViewController"
         static let moodStatViewController: String = "MoodStatViewController"
         static let settingViewController: String = "SettingViewController"
+        static let lockViewController: String = "LockViewController"
         static let openSourceViewController: String = "OpenSourceViewController"
         static let openSourceDetailViewController: String = "OpenSourceDetailViewController"
         static let personalTermViewController: String = "PersonalTermViewController"
