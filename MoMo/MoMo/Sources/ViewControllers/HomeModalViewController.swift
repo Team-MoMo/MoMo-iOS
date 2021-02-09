@@ -7,8 +7,12 @@
 
 import UIKit
 
-class HomeModalViewController: UIViewController {
+protocol StatModalViewDelegate: class {
+    func passData(year: Int, month: Int)
+}
 
+
+class HomeModalViewController: UIViewController {
 
     @IBOutlet weak var yearPickerView: UIPickerView!
     @IBOutlet weak var monthPickerView: UIPickerView!
@@ -19,8 +23,14 @@ class HomeModalViewController: UIViewController {
     var yearArray: [String] = []
     var monthArray: [String] = []
     
+    weak var statModalViewDelegate: StatModalViewDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setData()
+        assignDelegate()
+        assignDatasource()
+        setPickerInitialSetting()
 
         // Do any additional setup after loading the view.
     }
@@ -31,6 +41,16 @@ class HomeModalViewController: UIViewController {
             self.yearPickerView.subviews[1].backgroundColor = UIColor.clear
             self.monthPickerView.subviews[1].backgroundColor = UIColor.clear
         }
+    }
+    
+    private func assignDatasource() {
+        self.monthPickerView.dataSource = self
+        self.yearPickerView.dataSource = self
+    }
+    
+    private func assignDelegate() {
+        self.monthPickerView.delegate = self
+        self.yearPickerView.delegate = self
     }
 
     private func setData() {
@@ -47,12 +67,17 @@ class HomeModalViewController: UIViewController {
         self.monthPickerView.selectRow(self.month - 1, inComponent: 0, animated: true)
     }
     
+    
     @IBAction func touchCancelButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
   
-    
     @IBAction func touchApplyButton(_ sender: Any) {
+        guard let modal = statModalViewDelegate else {
+            return
+        }
+        modal.passData(year: self.year, month: self.month)
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
