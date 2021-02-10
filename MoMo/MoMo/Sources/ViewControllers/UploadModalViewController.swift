@@ -24,6 +24,8 @@ class UploadModalViewController: UIViewController {
     var month: Int = 0
     var day: Int = 0
     
+    let currentDate = AppDate()
+    
     var verifyMood: Bool = true // true이면 무드뷰컨에서 넘어온 것
 
     var yearArray: [String] = []
@@ -33,7 +35,15 @@ class UploadModalViewController: UIViewController {
         (1...30).map {String($0)},
         (1...29).map {String($0)}
     ]
+    
+    var currentMonthArray: [String] = []
+    var currentDayArray: [String] = []
+    
+    
     weak var uploadModalDataDelegate: UploadModalViewDelegate?
+    
+    
+    
     let weekdayArray = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"]
     var dayIndex: Int = 0
     
@@ -73,12 +83,14 @@ class UploadModalViewController: UIViewController {
     }
     
     private func setData() {
-        for tempYear in 2000...2021 {
+        for tempYear in 2000...currentDate.getYear() {
             yearArray.append(String(tempYear))
         }
         for tempMonth in 1...12 {
             monthArray.append(String(tempMonth))
         }
+        currentMonthArray = (1...currentDate.getMonth()).map({String($0)})
+        currentDayArray = (1...currentDate.getDay()).map({String($0)})
     }
     
     private func registerDelegate() {
@@ -190,7 +202,10 @@ extension UploadModalViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == self.yearPickerView {
-            year = Int(yearArray[row]) ?? 0
+            guard let selectedYear = Int(yearArray[row]) else {
+                return
+            }
+            year = selectedYear
         } else if pickerView == self.monthPickerView {
             month = Int(monthArray[row]) ?? 0
             coordinateDay()
@@ -220,7 +235,13 @@ extension UploadModalViewController: UIPickerViewDataSource {
         if pickerView == self.yearPickerView {
             return yearArray.count
         } else if pickerView == self.monthPickerView {
+            if year == currentDate.getYear() {
+                return currentMonthArray.count
+            }
             return monthArray.count
+        }
+        if year == currentDate.getYear() && month == currentDate.getMonth() {
+            return currentDayArray.count
         }
         return dayArray[dayIndex].count
     }

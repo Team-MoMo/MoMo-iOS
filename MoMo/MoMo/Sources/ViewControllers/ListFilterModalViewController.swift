@@ -29,11 +29,15 @@ class ListFilterModalViewController: UIViewController {
     var pointOrigin: CGPoint?
     var year: [String] = []
     var month: [String] = []
+    var currentYearMonth: [String] = []
+   
     var selectedYear: Int = 0
     var selectedMonth: Int = 0
     var dateText: String = ""
     
     weak var listFilterModalDelegate: ListFilterModalViewDelegate?
+    
+    let currentDate = AppDate()
     
     let emotionArray: [String] = ["iosFilterLoveUnselected",
                                   "iosFilterHappyUnselected",
@@ -188,6 +192,9 @@ class ListFilterModalViewController: UIViewController {
             year.append(String(num))
         }
         for num in 1...12 {
+            if num <= currentDate.getMonth() {
+                currentYearMonth.append(String(num))
+            }
             month.append(String(num))
         }
     }
@@ -409,6 +416,8 @@ extension ListFilterModalViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         if pickerView == self.yearPickerView {
             return NSAttributedString(string: year[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        } else if selectedYear == currentDate.getYear() {
+            return NSAttributedString(string: currentYearMonth[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         }
         return NSAttributedString(string: month[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
     }
@@ -419,8 +428,13 @@ extension ListFilterModalViewController: UIPickerViewDelegate {
                 return
             }
             selectedYear = year
+        } else if selectedYear == currentDate.getYear() {
+            guard let month = Int(currentYearMonth[row]) else {
+                return
+            }
+            selectedMonth = month
         } else {
-            guard let month = Int(year[row]) else {
+            guard let month = Int(month[row]) else {
                 return
             }
             selectedMonth = month
@@ -438,7 +452,10 @@ extension ListFilterModalViewController: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == self.yearPickerView {
             return year.count
+        } else if selectedYear == currentDate.getMonth() {
+            return currentYearMonth.count
+        } else {
+            return month.count
         }
-        return month.count
     }
 }
