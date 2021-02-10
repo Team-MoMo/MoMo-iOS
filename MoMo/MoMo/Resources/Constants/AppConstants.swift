@@ -26,6 +26,7 @@ struct Constants {
         static let listStoryboard: String = "List"
         static let findPasswordStoryboard: String = "FindPassword"
         static let settingStoryboard: String = "Setting"
+        static let teamStoryboard: String = "Team"
         
         // MARK: - Nib Name Constants
         
@@ -53,6 +54,7 @@ struct Constants {
         static let listViewController: String = "ListViewController"
         static let findPasswordViewController: String = "FindPasswordViewController"
         static let settingViewController: String = "SettingViewController"
+        static let teamViewController: String = "TeamViewController"
         
         // MARK: - UIView
         
@@ -205,6 +207,9 @@ struct Constants {
             static let icDoc1 = UIImage(named: "icDoc1")
             static let icDoc2 = UIImage(named: "icDoc2")
             static let icLogout = UIImage(named: "icLogout")
+            
+            // team MoMo
+            static let imgTypoMomo = UIImage(named: "imgTypoMomo")
         }
         
         struct Font {

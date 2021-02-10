@@ -236,7 +236,11 @@ class SettingViewController: UIViewController {
     }
     
     private func pushToTeamMomoViewController() {
-        
+        let teamStoryboard = UIStoryboard(name: Constants.Name.teamStoryboard, bundle: nil)
+        guard let teamViewController = teamStoryboard.instantiateViewController(identifier: Constants.Identifier.teamViewController) as? TeamViewController else {
+            return
+        }
+        self.navigationController?.pushViewController(teamViewController, animated: true)
     }
     
     private func pushToMomoInstaViewController() {
