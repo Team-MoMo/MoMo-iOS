@@ -76,7 +76,7 @@ class ChangePasswordViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var currentPasswordFromServer: String?
+    private var isMatching: Bool = false
     private var passwordInputFieldList: [PasswordInputUsage: PasswordInputField] = [PasswordInputUsage: PasswordInputField]()
     private lazy var rightButton: UIBarButtonItem = {
         let button: UIBarButtonItem = UIBarButtonItem(image: Constants.Design.Image.btnCloseBlack, style: .plain, target: self, action: #selector(buttonPressed(sender:)))
@@ -91,7 +91,6 @@ class ChangePasswordViewController: UIViewController {
         super.viewDidLoad()
         self.initializePasswordChangeViewController()
         self.initializeNavigationBar()
-        self.updateCurrentPasswordFromServer()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -161,10 +160,6 @@ class ChangePasswordViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
     }
     
-    private func updateCurrentPasswordFromServer() {
-        self.getCurrentPasswordWithAPI()
-    }
-    
     private func changePasswordButtonRoundedUp() {
         self.changePasswordButton.clipsToBounds = true
         self.changePasswordButton.layer.cornerRadius = self.changePasswordButton.frame.size.height/2
@@ -214,10 +209,14 @@ class ChangePasswordViewController: UIViewController {
         guard self.isValidPassword(password: inputField.textField.text) == true else {
             throw PasswordInputError.CurrentPasswordError.inValidInputError
         }
-        guard inputField.textField.text == self.currentPasswordFromServer else {
-            throw PasswordInputError.CurrentPasswordError.missMatchingError
+        
+        self.postPasswordWithAPI(currentPassword: inputField.textField.text) { (isMatching) throws in
+            self.isMatching = isMatching
+            guard isMatching == true else {
+                throw PasswordInputError.CurrentPasswordError.missMatchingError
+            }
+            self.showLabelAndTextField(inputField: inputField)
         }
-        self.showLabelAndTextField(inputField: inputField)
     }
     
     private func verifyNewPassword(inputField: PasswordInputField) throws {
@@ -311,8 +310,9 @@ class ChangePasswordViewController: UIViewController {
                 return
             }
         }
+        guard self.isMatching == true else { return }
         guard let newPassword = self.newPasswordTextField.text else { return }
-        self.postNewPasswordWithAPI(newPassword: newPassword, completion: self.popToSettingViewController(passwordIsUpdated:))
+        self.putPasswordWithAPI(newPassword: newPassword, completion: self.popToSettingViewController(passwordIsUpdated:))
     }
 }
 
@@ -362,14 +362,42 @@ extension ChangePasswordViewController: UITextFieldDelegate {
 // MARK: - APIServices
 
 extension ChangePasswordViewController {
-    private func getCurrentPasswordWithAPI() {
-        self.currentPasswordFromServer = "test123456"
+    private func postPasswordWithAPI(currentPassword: String?, completion: @escaping (Bool) throws -> Void ) {
+        guard let password = currentPassword else { return }
+        PasswordService.shared.postPassword(password: password) { result in
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    try? completion(true)
+                }
+            case .requestErr(let errorMessage):
+                print(errorMessage)
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
     }
     
-    private func postNewPasswordWithAPI(newPassword: String, completion: @escaping (Bool) -> Void) {
-        // 서버에 새로운 키 저장
-        DispatchQueue.main.async {
-            completion(true)
+    private func putPasswordWithAPI(newPassword: String, completion: @escaping (Bool) -> Void) {
+        PasswordService.shared.putPassword(newPassword: newPassword) { result in
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    completion(true)
+                }
+            case .requestErr(let errorMessage):
+                print(errorMessage)
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
         }
     }
 }
