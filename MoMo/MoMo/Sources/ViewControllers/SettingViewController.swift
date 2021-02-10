@@ -323,7 +323,6 @@ class SettingViewController: UIViewController {
     }
     
     private func openTeamMomoInstagram() {
-        print("인스타그램 페이지")
         let username: String = "momo.__.diary"
         let appURL: URL = URL(string: "instagram://user?username=\(username)")!
         let application: UIApplication = UIApplication.shared
