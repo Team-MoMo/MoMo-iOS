@@ -65,6 +65,7 @@
 		1C52BE0F25AD7A9500D02771 /* onboarding_wave_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C52BE0E25AD7A9500D02771 /* onboarding_wave_ios.json */; };
 		1C5876C225D04C45004537A5 /* LockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5876C125D04C45004537A5 /* LockViewController.swift */; };
 		1C5876C525D04C57004537A5 /* Lock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C5876C425D04C57004537A5 /* Lock.storyboard */; };
+		1C5876D825D446BD004537A5 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5876D725D446BD004537A5 /* UserService.swift */; };
 		1C7CD80725ACA5EC00B7CB60 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CD80625ACA5EC00B7CB60 /* DiaryViewController.swift */; };
 		1C7CD80A25ACA5FD00B7CB60 /* Diary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */; };
 		1C7CD82525ACEB9E00B7CB60 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CD82425ACEB9E00B7CB60 /* MenuView.swift */; };
@@ -192,6 +193,7 @@
 		1C52BE0E25AD7A9500D02771 /* onboarding_wave_ios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_wave_ios.json; sourceTree = "<group>"; };
 		1C5876C125D04C45004537A5 /* LockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockViewController.swift; sourceTree = "<group>"; };
 		1C5876C425D04C57004537A5 /* Lock.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lock.storyboard; sourceTree = "<group>"; };
+		1C5876D725D446BD004537A5 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		1C7CD80625ACA5EC00B7CB60 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Diary.storyboard; sourceTree = "<group>"; };
 		1C7CD82425ACEB9E00B7CB60 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				5637606625B04AA800651EAA /* SignUpService.swift */,
 				5637606925B04ABC00651EAA /* SignInService.swift */,
 				5637607225B04F6400651EAA /* PasswordService.swift */,
+				1C5876D725D446BD004537A5 /* UserService.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -780,6 +783,7 @@
 				562C645925C1AFAD00AA9AB6 /* AppDepth.swift in Sources */,
 				1038B69B25CAAE0800C577B6 /* EmotionCount.swift in Sources */,
 				1CAD05B125AC3DC4007ECA40 /* DeepSliderView.swift in Sources */,
+				1C5876D825D446BD004537A5 /* UserService.swift in Sources */,
 				5687640D2599AD3A009CB486 /* AppDelegate.swift in Sources */,
 				1C8DD8F825C8850F00C7A3BA /* ToastView.swift in Sources */,
 				10E5CD8325ADF1D5004FDC24 /* UploadModalPresentationController.swift in Sources */,
