@@ -24,14 +24,11 @@ class DeepViewController: UIViewController {
     
     // MARK: - Properties
     
-    var mood: AppEmotion?
-    var sentence: AppSentence?
-    var journal: String?
-    var date: String?
+    var diaryInfo: AppDiary?
     var initialDepth: AppDepth?
-    var deepSliderValue: Float = 0
-    var deepSliderView: DeepSliderView?
     var buttonText: String = "시작하기"
+    private var deepSliderValue: Float = 0
+    private var deepSliderView: DeepSliderView?
     private let info: String = "오늘의 감정은\n잔잔한가요, 깊은가요?\n스크롤을 움직여서 기록해보세요"
     private var viewWidth: CGFloat?
     private var viewHeight: CGFloat?
@@ -208,14 +205,21 @@ class DeepViewController: UIViewController {
         if text == "시작하기" {
             self.pushToLoginViewController()
         } else if text == "기록하기" {
-            guard let selectedMood = self.mood, let selectedSentenceId = self.sentence?.id, let date = self.date, let journal = self.journal else { return }
-            let selectedDate = AppDate(formattedDate: date, with: ". ")
-            self.updateJournal(contents: journal,
-                               depth: Int(round(self.deepSliderValue * 6)),
-                               userId: Int(APIConstants.userId),
-                               sentenceId: selectedSentenceId,
-                               emotionId: selectedMood.rawValue,
-                               wroteAt: selectedDate.getFormattedDate(with: "-")
+            
+            guard let diary = self.diaryInfo?.diary,
+                  let sentenceId = self.diaryInfo?.sentence.id,
+                  let emotionId = self.diaryInfo?.mood.rawValue,
+                  let wroteAt = self.diaryInfo?.date.getFormattedDate(with: "-") else {
+                return
+            }
+            
+            self.updateJournal(
+                contents: diary,
+                depth: Int(round(self.deepSliderValue * 6)),
+                userId: Int(APIConstants.userId),
+                sentenceId: sentenceId,
+                emotionId: emotionId,
+                wroteAt: wroteAt
             )
         } else { // text == "수정하기"
             self.deepViewControllerDelegate?.passData(
