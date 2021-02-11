@@ -77,6 +77,9 @@ class ChangePasswordViewController: UIViewController {
     // MARK: - Properties
     
     private var isMatching: Bool = false
+    private var keyboardSize: CGRect?
+    private let vSpacingChangePasswordButtonKeyboard: CGFloat = 39
+    private let vSpacingChangePasswordButtonViewBottom: CGFloat = 64
     private var passwordInputFieldList: [PasswordInputUsage: PasswordInputField] = [PasswordInputUsage: PasswordInputField]()
     private lazy var rightButton: UIBarButtonItem = {
         let button: UIBarButtonItem = UIBarButtonItem(image: Constants.Design.Image.btnCloseBlack, style: .plain, target: self, action: #selector(buttonPressed(sender:)))
@@ -102,6 +105,8 @@ class ChangePasswordViewController: UIViewController {
     
     private func initializePasswordChangeViewController() {
         self.changePasswordButtonRoundedUp()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         self.passwordInputFieldList = [
             .current: (
                 infoLabel: self.currentPasswordLabel,
@@ -180,7 +185,7 @@ class ChangePasswordViewController: UIViewController {
     }
     
     private func showErrorLabelAndTextField(inputField: PasswordInputField, errorMessage: String) {
-        inputField.infoLabel.tintColor = UIColor.RedError
+        inputField.infoLabel.textColor = UIColor.RedError
         
         inputField.inputView.layer.masksToBounds = true
         inputField.inputView.layer.borderColor = UIColor.RedError.cgColor
@@ -307,12 +312,38 @@ class ChangePasswordViewController: UIViewController {
         self.newPasswordCheckTextField.text = nil
         sender.isHidden = true
     }
+    
     @IBAction func changePasswordButtonTouch(_ sender: UIButton) {
         guard self.verifyPassword(by: .new) == true else { return }
         guard self.verifyPassword(by: .newCheck) == true else { return }
         guard self.isMatching == true else { return }
         guard let newPassword = self.newPasswordTextField.text else { return }
         self.putPasswordWithAPI(newPassword: newPassword, completion: self.popToSettingViewController(passwordIsUpdated:))
+    }
+    
+    private func raiseChangePasswordButton(keyboardSize: CGRect?) {
+        if let safeKeybaordSize = keyboardSize {
+            self.changePasswordButton.frame.origin.y = self.view.frame.size.height - safeKeybaordSize.height - changePasswordButton.frame.size.height - self.vSpacingChangePasswordButtonKeyboard
+        }
+    }
+
+    private func dropChangePasswordButton() {
+        self.changePasswordButton.frame.origin.y = self.view.frame.size.height - changePasswordButton.frame.size.height - self.vSpacingChangePasswordButtonViewBottom
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            self.keyboardSize = keyboardSize
+            DispatchQueue.main.async {
+                self.raiseChangePasswordButton(keyboardSize: keyboardSize)
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        DispatchQueue.main.async {
+            self.dropChangePasswordButton()
+        }
     }
 }
 
@@ -337,6 +368,12 @@ extension ChangePasswordViewController: UITextFieldDelegate {
         }
         textField.isSecureTextEntry = true
         passwordInputField.deleteButton.isHidden = false
+        self.raiseChangePasswordButton(keyboardSize: self.keyboardSize)
+        return true
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        self.raiseChangePasswordButton(keyboardSize: self.keyboardSize)
         return true
     }
     
@@ -348,6 +385,7 @@ extension ChangePasswordViewController: UITextFieldDelegate {
         } else {
             self.newPasswordCheckTextField.resignFirstResponder()
         }
+        self.raiseChangePasswordButton(keyboardSize: self.keyboardSize)
         return true
     }
     
