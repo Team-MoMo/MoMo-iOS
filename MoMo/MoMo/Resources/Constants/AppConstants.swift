@@ -29,6 +29,7 @@ struct Constants {
         
         static let homeDayNightViewXib: String = "HomeDayNightView"
         static let bubbleTableViewCell: String = "BubbleTableViewCell"
+        static let getPasswordAlertViewXib: String = "GetPasswordAlertView"
         
     }
     
@@ -189,6 +190,13 @@ struct Constants {
             
             // navigation
             static let icSubtab = UIImage(named: "icSubtab")
+            
+            // get password alert icon
+            static let modalIcWarning = UIImage(named: "modalIcWarning")
+            static let modalIcCheck = UIImage(named: "modalIcCheck")
+            static let icCount1 = UIImage(named: "icCount1")
+            static let icCount2 = UIImage(named: "icCount2")
+            static let icCount3 = UIImage(named: "icCount3")
         }
         
         struct Font {

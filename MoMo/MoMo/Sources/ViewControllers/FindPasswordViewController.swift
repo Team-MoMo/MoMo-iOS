@@ -10,8 +10,14 @@ import UIKit
 class FindPasswordViewController: UIViewController {
     
     // MARK: - Constants
-        private let emailFormatErrorMessage = "email must be a valid email"
-        private let emailInUseErrorMessage = "사용 불가능한 이메일입니다."
+    private let emailFormatErrorMessage = "email must be a valid email"
+    private let emailInUseErrorMessage = "사용 불가능한 이메일입니다."
+    
+    private let getPasswordButtonBottomConstraint = 30
+    
+    // MARK: - Properties
+    var getPasswordAlertView: GetPasswordAlertView?
+    var todayPasswordCount: Int = 0
     
     // MARK: - @IBOutlet Properties
     
@@ -27,12 +33,14 @@ class FindPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initializeTodayPasswordCount()
         initializeViewBorders()
         initializeNavigationBar()
         initializeGetPasswordButtonCornerRadius()
         initializePlaceholder()
         hideEmailError()
         makeClearButton()
+        registerXib()
         
     }
     
@@ -49,6 +57,16 @@ class FindPasswordViewController: UIViewController {
     }
     
     // MARK: - Functions
+    
+    func registerXib() {
+        self.getPasswordAlertView = Bundle.main.loadNibNamed(Constants.Name.getPasswordAlertViewXib, owner: self, options: nil)?.last as? GetPasswordAlertView
+    }
+    
+    // TODO: - 하루 지나면 초기화되도록 수정
+    func initializeTodayPasswordCount() {
+        todayPasswordCount = 0
+    }
+    
     func initializeViewBorders() {
         // view border
         emailView.layer.borderColor = UIColor.Black5Publish.cgColor
@@ -95,7 +113,7 @@ class FindPasswordViewController: UIViewController {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
             
-            getPasswordButtonBottom.constant += keyboardHeight
+            getPasswordButtonBottom.constant = CGFloat(getPasswordButtonBottomConstraint) + keyboardHeight
         }
     }
     
@@ -105,13 +123,59 @@ class FindPasswordViewController: UIViewController {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
             
-            getPasswordButtonBottom.constant -= keyboardHeight
+            getPasswordButtonBottom.constant = CGFloat(getPasswordButtonBottomConstraint)
         }
+    }
+    
+    func showAlert(style: UIAlertController.Style) {
+        
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: style)
+        let success = UIAlertAction(title: "확인", style: .default) { (action) in
+            print("확인")
+        }
+        
+        // alertviewcontroller background color 지정
+        if let bgView = alert.view.subviews.first,
+            let groupView = bgView.subviews.first,
+            let contentView = groupView.subviews.first {
+            contentView.backgroundColor = UIColor.white
+        }
+        
+        alert.setValue(creatCustomVC(), forKey: "contentViewController")
+        alert.addAction(success)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func creatCustomVC() -> UIViewController {
+
+        let customVC = UIViewController()
+
+        let containerView = getPasswordAlertView
+        
+        if todayPasswordCount == 0 {
+            todayPasswordCount += 1
+            containerView?.showOnce()
+        } else if todayPasswordCount == 1 {
+            todayPasswordCount += 1
+            containerView?.showTwice()
+        } else if todayPasswordCount == 2 {
+            todayPasswordCount += 1
+            containerView?.showThrice()
+        } else {
+            containerView?.showError()
+        }
+        
+        customVC.view = containerView
+        customVC.preferredContentSize.width = 290
+        customVC.preferredContentSize.height = 204
+
+        return customVC
     }
     
     // MARK: - @IBAction Functions
     @IBAction func touchGetPasswordButton(_ sender: Any) {
-        
+        showAlert(style: .alert)
     }
     
     // MARK: - Error Functions
