@@ -292,24 +292,25 @@ class ChangePasswordViewController: UIViewController {
             return
         }
     }
+    
     @IBAction func touchCurrentPasswordButton(_ sender: UIButton) {
         self.currentPasswordTextField.text = nil
         sender.isHidden = true
     }
+    
     @IBAction func touchNewPasswordButton(_ sender: UIButton) {
         self.newPasswordTextField.text = nil
         sender.isHidden = true
     }
+    
     @IBAction func touchNewPasswordCheckButton(_ sender: UIButton) {
         self.newPasswordCheckTextField.text = nil
         sender.isHidden = true
     }
-    @IBAction func changeButtonTouch(_ sender: UIButton) {
-        for (passwordInputUsage, _) in self.passwordInputFieldList {
-            if !self.verifyPassword(by: passwordInputUsage) {
-                return
-            }
-        }
+    
+    @IBAction func changePasswordButtonTouch(_ sender: UIButton) {
+        guard self.verifyPassword(by: .new) == true else { return }
+        guard self.verifyPassword(by: .newCheck) == true else { return }
         guard self.isMatching == true else { return }
         guard let newPassword = self.newPasswordTextField.text else { return }
         self.putPasswordWithAPI(newPassword: newPassword, completion: self.popToSettingViewController(passwordIsUpdated:))
