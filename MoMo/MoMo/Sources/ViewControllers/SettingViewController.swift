@@ -423,7 +423,10 @@ extension SettingViewController: AlertModalDelegate {
         case .logout:
             self.popToLoginViewController()
         case .withdrawal:
-            self.deleteUserWithAPI(userId: APIConstants.userId, completion: self.popToLoginViewController)
+            self.deleteUserWithAPI(userId: APIConstants.userId, completion: {
+                self.deleteUserIdAndToken()
+                self.popToLoginViewController()
+            })
         default:
             return
         }
