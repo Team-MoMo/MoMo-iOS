@@ -307,7 +307,6 @@ class ChangePasswordViewController: UIViewController {
         self.newPasswordCheckTextField.text = nil
         sender.isHidden = true
     }
-    
     @IBAction func changePasswordButtonTouch(_ sender: UIButton) {
         guard self.verifyPassword(by: .new) == true else { return }
         guard self.verifyPassword(by: .newCheck) == true else { return }
