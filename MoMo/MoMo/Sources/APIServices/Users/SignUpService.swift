@@ -85,7 +85,7 @@ struct SignUpService {
         let dataRequest = AF.request(url,
                                      method: .post,
                                      parameters: body,
-                                     encoding: URLEncoding.default,
+                                     encoding: JSONEncoding.default,
                                      headers: header)
         
         dataRequest.responseData { (response) in
@@ -113,7 +113,6 @@ struct SignUpService {
         }
         
         switch status {
-        case 200:
         case 201:
             // 회원가입 성공
             return .success(decodedData.data)

@@ -419,6 +419,7 @@ class JoinViewController: UIViewController {
         }
     }
     
+    // 회원가입 통신
     func postSignUpWithAPI(email: String, password: String) {
         SignUpService.shared.postSignUp(email: email, password: password) { (networkResult) -> Void in
             switch networkResult {
