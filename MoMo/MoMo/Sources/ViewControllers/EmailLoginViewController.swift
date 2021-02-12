@@ -81,6 +81,7 @@ class EmailLoginViewController: UIViewController {
                     
                     UserDefaults.standard.setValue(signInData.token, forKey: "token")
                     UserDefaults.standard.setValue(signInData.user.id, forKey: "userId")
+                    UserDefaults.standard.setValue("email", forKey: "loginType")
                     
                     if let homeViewController = self.navigationController?.viewControllers.filter({$0 is HomeViewController}).first as? HomeViewController {
                         homeViewController.isFromLogout = false
