@@ -94,6 +94,7 @@ class ChangePasswordViewController: UIViewController {
         super.viewDidLoad()
         self.initializePasswordChangeViewController()
         self.initializeNavigationBar()
+        self.registerObserver()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -101,12 +102,15 @@ class ChangePasswordViewController: UIViewController {
         self.currentPasswordTextField.becomeFirstResponder()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.cancelObserver()
+    }
+    
     // MARK: - Functions
     
     private func initializePasswordChangeViewController() {
         self.changePasswordButtonRoundedUp()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         self.passwordInputFieldList = [
             .current: (
                 infoLabel: self.currentPasswordLabel,
@@ -163,6 +167,15 @@ class ChangePasswordViewController: UIViewController {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
+    }
+    
+    private func registerObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func cancelObserver() {
+        NotificationCenter.default.removeObserver(self)
     }
     
     private func changePasswordButtonRoundedUp() {
