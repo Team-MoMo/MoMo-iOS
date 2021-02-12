@@ -429,6 +429,7 @@ class JoinViewController: UIViewController {
                     // 회원가입 성공
                     UserDefaults.standard.setValue(signUpData.token, forKey: "token")
                     UserDefaults.standard.setValue(signUpData.user.id, forKey: "userId")
+                    UserDefaults.standard.setValue("email", forKey: "loginType")
                     
                     // 뷰 전환
                     let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
