@@ -23,6 +23,8 @@ struct APIConstants {
     static let signUpURL = usersURL + "/signup"
     // 로그인 url
     static let signInURL = usersURL + "/signin"
+    // 소셜로그인 url
+    static let socialSignInURL = signInURL + "/social"
     // 회원 조회(get), 회원 탈퇴(delete) url
     static let userInfoURL = usersURL + "\(userId)"
     // 알람 변경 url
