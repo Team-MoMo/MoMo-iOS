@@ -130,6 +130,7 @@
 		568764612599FB56009CB486 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568764602599FB56009CB486 /* APIConstants.swift */; };
 		568764CE259F6A80009CB486 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 568764CD259F6A80009CB486 /* Colors.xcassets */; };
 		568764D1259F6EDE009CB486 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568764D0259F6EDE009CB486 /* UIColor+Extension.swift */; };
+		5699DDC225D6715E00493243 /* PasswordResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5699DDC125D6715E00493243 /* PasswordResult.swift */; };
 		9360320992DCEB38E63381C5 /* Pods_MoMo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF70C440F3CE67275FF3023 /* Pods_MoMo.framework */; };
 /* End PBXBuildFile section */
 
@@ -260,6 +261,7 @@
 		568764602599FB56009CB486 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		568764CD259F6A80009CB486 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		568764D0259F6EDE009CB486 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		5699DDC125D6715E00493243 /* PasswordResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResult.swift; sourceTree = "<group>"; };
 		596A64056F40D8E627DE76D5 /* Pods-MoMo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoMo.debug.xcconfig"; path = "Target Support Files/Pods-MoMo/Pods-MoMo.debug.xcconfig"; sourceTree = "<group>"; };
 		BC74336F4AB884589C6C3095 /* Pods-MoMo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoMo.release.xcconfig"; path = "Target Support Files/Pods-MoMo/Pods-MoMo.release.xcconfig"; sourceTree = "<group>"; };
 		FCF70C440F3CE67275FF3023 /* Pods_MoMo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoMo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -358,6 +360,7 @@
 				10F1F72B25B04AB200BF7D37 /* Sentences */,
 				563B048925AE0BA900DA74C5 /* GenericResponse.swift */,
 				563B048C25AE0BD500DA74C5 /* NetworkResult.swift */,
+				5699DDC125D6715E00493243 /* PasswordResult.swift */,
 				5637606525B04A9D00651EAA /* Users */,
 				563B048F25AE0D7800DA74C5 /* Diaries */,
 			);
@@ -768,6 +771,7 @@
 				10C9CECB25C3ECBC0036CE98 /* DepthStatViewController.swift in Sources */,
 				1C8DD90A25C92D5000C7A3BA /* SettingTableViewCell.swift in Sources */,
 				10F1F73625B053A900BF7D37 /* CreateDiary.swift in Sources */,
+				5699DDC225D6715E00493243 /* PasswordResult.swift in Sources */,
 				107919BC25A484510024C711 /* ListFilterTableViewCell.swift in Sources */,
 				107919C125A484E60024C711 /* FilterCollectionViewCell.swift in Sources */,
 				563B037B25AA106F00DA74C5 /* BubbleTableViewCell.swift in Sources */,

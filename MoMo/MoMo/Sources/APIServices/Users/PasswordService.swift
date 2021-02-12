@@ -72,7 +72,7 @@ struct PasswordService {
     // MARK: - POST
     
     func postPassword(password: String,
-                    completion: @escaping (NetworkResult<Any>) -> (Void)) {
+                    completion: @escaping (PasswordResult<Any>) -> (Void)) {
         let url = APIConstants.passwordURL
         let header: HTTPHeaders = [
             "Content-Type": "application/json",
@@ -106,7 +106,7 @@ struct PasswordService {
         }
     }
     
-    private func verifyPassword(status: Int, data: Data) -> NetworkResult<Any> {
+    private func verifyPassword(status: Int, data: Data) -> PasswordResult<Any> {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<PasswordData>.self, from: data) else {
             return .pathErr
@@ -117,6 +117,9 @@ struct PasswordService {
             // 비밀번호가 일치합니다
             return .success(decodedData.message)
         case 400:
+            // 비밀번호가 일치하지 않습니다
+            return .verifyErr(decodedData.message)
+        case 401:
             // 권한이 없습니다
             return .requestErr(decodedData.message)
         case 500:

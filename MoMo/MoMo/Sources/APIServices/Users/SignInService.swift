@@ -62,14 +62,11 @@ struct SignInService {
             return .success(decodedData.data)
         case 400:
             // 존재하지 않는 회원
-            print("400")
             return .requestErr(decodedData.message)
         case 500:
             // 서버 내부 에러
-            print("500")
             return .serverErr
         default:
-            print("default")
             return .networkFail
             
         }
