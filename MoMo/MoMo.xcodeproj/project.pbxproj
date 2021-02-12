@@ -111,6 +111,7 @@
 		568764612599FB56009CB486 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568764602599FB56009CB486 /* APIConstants.swift */; };
 		568764CE259F6A80009CB486 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 568764CD259F6A80009CB486 /* Colors.xcassets */; };
 		568764D1259F6EDE009CB486 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568764D0259F6EDE009CB486 /* UIColor+Extension.swift */; };
+		5699DDB525D669FB00493243 /* TempPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5699DDB425D669FB00493243 /* TempPassword.swift */; };
 		9360320992DCEB38E63381C5 /* Pods_MoMo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF70C440F3CE67275FF3023 /* Pods_MoMo.framework */; };
 /* End PBXBuildFile section */
 
@@ -221,6 +222,7 @@
 		568764602599FB56009CB486 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		568764CD259F6A80009CB486 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		568764D0259F6EDE009CB486 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		5699DDB425D669FB00493243 /* TempPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempPassword.swift; sourceTree = "<group>"; };
 		596A64056F40D8E627DE76D5 /* Pods-MoMo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoMo.debug.xcconfig"; path = "Target Support Files/Pods-MoMo/Pods-MoMo.debug.xcconfig"; sourceTree = "<group>"; };
 		BC74336F4AB884589C6C3095 /* Pods-MoMo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoMo.release.xcconfig"; path = "Target Support Files/Pods-MoMo/Pods-MoMo.release.xcconfig"; sourceTree = "<group>"; };
 		FCF70C440F3CE67275FF3023 /* Pods_MoMo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoMo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -301,6 +303,7 @@
 				1C4235F025B0D5A8008FB838 /* DiaryWithId.swift */,
 				10029DBE25B11D4800060E14 /* DiaryRecent.swift */,
 				1CA39A1725B1BF3E00E58209 /* OnboardingSentence.swift */,
+				5699DDB425D669FB00493243 /* TempPassword.swift */,
 			);
 			path = APIModels;
 			sourceTree = "<group>";
@@ -716,6 +719,7 @@
 				563B03FE25ACCE0200DA74C5 /* EmailLoginViewController.swift in Sources */,
 				563B049C25AE0E9B00DA74C5 /* Sentence.swift in Sources */,
 				563B044525ADB57600DA74C5 /* UIImage+Extension.swift in Sources */,
+				5699DDB525D669FB00493243 /* TempPassword.swift in Sources */,
 				563B048A25AE0BA900DA74C5 /* GenericResponse.swift in Sources */,
 				563B037625AA0F3500DA74C5 /* BubbleDummyData.swift in Sources */,
 				10DDA33925AF099A00620C41 /* ListFilterModalViewController.swift in Sources */,

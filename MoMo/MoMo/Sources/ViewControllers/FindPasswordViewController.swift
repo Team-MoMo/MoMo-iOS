@@ -11,7 +11,8 @@ class FindPasswordViewController: UIViewController {
     
     // MARK: - Constants
     private let emailFormatErrorMessage = "email must be a valid email"
-    private let emailInUseErrorMessage = "사용 불가능한 이메일입니다."
+    private let emailNotFoundErrorMessage = "존재하지 않는 회원"
+    private let countErrorMessage = "임시 비밀번호 발급 횟수 초과"
     
     private let getPasswordButtonBottomConstraint = 30
     
@@ -118,7 +119,6 @@ class FindPasswordViewController: UIViewController {
     }
     
     @objc func keyboardWillHide(_ notification: NSNotification) {
-        // 원하는 로직...
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
@@ -131,7 +131,7 @@ class FindPasswordViewController: UIViewController {
         
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: style)
         let success = UIAlertAction(title: "확인", style: .default) { (action) in
-            print("확인")
+            // 확인 버튼 누른 후 할 일
         }
         
         // alertviewcontroller background color 지정
@@ -153,13 +153,13 @@ class FindPasswordViewController: UIViewController {
 
         let containerView = getPasswordAlertView
         
-        if todayPasswordCount == 0 {
+        if todayPasswordCount == 1 {
             todayPasswordCount += 1
             containerView?.showOnce()
-        } else if todayPasswordCount == 1 {
+        } else if todayPasswordCount == 2 {
             todayPasswordCount += 1
             containerView?.showTwice()
-        } else if todayPasswordCount == 2 {
+        } else if todayPasswordCount == 3 {
             todayPasswordCount += 1
             containerView?.showThrice()
         } else {
@@ -175,7 +175,8 @@ class FindPasswordViewController: UIViewController {
     
     // MARK: - @IBAction Functions
     @IBAction func touchGetPasswordButton(_ sender: Any) {
-        showAlert(style: .alert)
+        checkEmail()
+        // showAlert(style: .alert)
     }
     
     // MARK: - Error Functions
@@ -216,7 +217,7 @@ class FindPasswordViewController: UIViewController {
             return
         }
         if email != "" {
-            self.getSignUpWithAPI(email: email)
+            self.postTempPasswordWithAPI(email: email)
         } else {
             self.showEmailBlankError()
         }
@@ -226,22 +227,26 @@ class FindPasswordViewController: UIViewController {
     // 이메일 확인
     
     // TODO: - 서버 살아나면 이거 서버 구현해야함 이거 아니라 패스워드쪽으로 해야함 이거 아님!
-    func getSignUpWithAPI(email: String) {
-        SignUpService.shared.getSignUp(email: email) { (networkResult) -> Void in
+    func postTempPasswordWithAPI(email: String) {
+        PasswordService.shared.postTempPassword(email: email) { (networkResult) -> Void in
             switch networkResult {
-            case .success(let msg):
-                if let message = msg as? String {
+            case .success(let data):
+                if let tempPasswordData = data as? TempPassword {
                     // 사용 가능한 이메일
                     self.hideEmailError()
-                    print(message)
+                    self.todayPasswordCount = tempPasswordData.tempPasswordIssueCount
+                    self.showAlert(style: .alert)
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
                     // 사용 불가능한 이메일
                     if message == self.emailFormatErrorMessage {
                         self.showEmailFormatError()
-                    } else if message == self.emailInUseErrorMessage {
-                        // self.showEmailInUseError()
+                    } else if message == self.countErrorMessage {
+                        self.todayPasswordCount = 4
+                        self.showAlert(style: .alert)
+                    } else if message == self.emailNotFoundErrorMessage {
+                        self.showEmailNotFoundError()
                     }
                     print(message)
                 }
