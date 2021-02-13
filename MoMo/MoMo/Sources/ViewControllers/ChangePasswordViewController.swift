@@ -188,7 +188,7 @@ class ChangePasswordViewController: UIViewController {
     }
     
     private func showLabelAndTextField(inputField: PasswordInputField) {
-        inputField.infoLabel.tintColor = UIColor.Blue2
+        inputField.infoLabel.textColor = UIColor.Blue2
         
         inputField.inputView.layer.masksToBounds = true
         inputField.inputView.layer.borderColor = UIColor.Black5Publish.cgColor
@@ -228,10 +228,12 @@ class ChangePasswordViewController: UIViewController {
             throw PasswordInputError.CurrentPasswordError.inValidInputError
         }
         
-        self.postPasswordWithAPI(currentPassword: inputField.textField.text) { (isMatching) throws in
+        self.postPasswordWithAPI(currentPassword: inputField.textField.text) { (isMatching) in
             self.isMatching = isMatching
             guard isMatching == true else {
-                throw PasswordInputError.CurrentPasswordError.missMatchingError
+                let error = PasswordInputError.CurrentPasswordError.missMatchingError
+                self.showErrorLabelAndTextField(inputField: inputField, errorMessage: error.toMessage())
+                return
             }
             self.showLabelAndTextField(inputField: inputField)
         }
@@ -413,16 +415,19 @@ extension ChangePasswordViewController: UITextFieldDelegate {
 // MARK: - APIServices
 
 extension ChangePasswordViewController {
-    private func postPasswordWithAPI(currentPassword: String?, completion: @escaping (Bool) throws -> Void ) {
+    private func postPasswordWithAPI(currentPassword: String?, completion: @escaping (Bool) -> Void ) {
         guard let password = currentPassword else { return }
         PasswordService.shared.postPassword(password: password) { result in
             switch result {
             case .success:
                 DispatchQueue.main.async {
-                    try? completion(true)
+                    completion(true)
                 }
             case .requestErr(let errorMessage):
                 print(errorMessage)
+                DispatchQueue.main.async {
+                    completion(false)
+                }
             case .pathErr:
                 print("pathErr")
             case .serverErr:
