@@ -7,26 +7,21 @@
 
 import UIKit
 
+// MARK: - Protocols
+ 
 protocol UploadModalViewDelegate: class {
     func passData(_ date: String)
 }
 
 class UploadModalViewController: UIViewController {
-
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var closeButton: UIButton!
-    @IBOutlet weak var yearPickerView: UIPickerView!
-    @IBOutlet weak var monthPickerView: UIPickerView!
-    @IBOutlet weak var dayPickerView: UIPickerView!
-    @IBOutlet weak var applyButton: UIButton!
+    
+    // MARK: - Properties
+    
+    var verifyMood: Bool = true // true이면 무드뷰컨에서 넘어온 것
     
     var year: Int? = 0
     var month: Int? = 0
     var day: Int? = 0
-    
-    let currentDate = AppDate()
-    
-    var verifyMood: Bool = true // true이면 무드뷰컨에서 넘어온 것
 
     var yearArray: [String] = []
     var monthArray: [String] = []
@@ -42,6 +37,21 @@ class UploadModalViewController: UIViewController {
     weak var uploadModalDataDelegate: UploadModalViewDelegate?
     
     var dayIndex: Int = 0
+
+    // MARK: - Constants
+    
+    let currentDate = AppDate()
+    
+    // MARK: - IBOutlets
+    
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var yearPickerView: UIPickerView!
+    @IBOutlet weak var monthPickerView: UIPickerView!
+    @IBOutlet weak var dayPickerView: UIPickerView!
+    @IBOutlet weak var applyButton: UIButton!
+    
+    // MARK: - View Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,10 +72,8 @@ class UploadModalViewController: UIViewController {
             self.initializePickerViews()
         }
     }
-
-    @IBAction func touchCloseButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
+    
+    // MARK: - Private Functions
     
     private func initializeApplyButtonAttribute() {
         applyButton.layer.cornerRadius = 20
@@ -111,7 +119,7 @@ class UploadModalViewController: UIViewController {
         monthPickerView.dataSource = self
         yearPickerView.dataSource = self
     }
-    
+
     private func updateMonthData(_ selectedYear: Int) {
         if self.year != currentDate.getYear() && selectedYear == currentDate.getYear() {
             self.year = selectedYear
@@ -155,22 +163,7 @@ class UploadModalViewController: UIViewController {
         }
     }
     
-    @IBAction func touchApplyButton(_ sender: Any) {
-        guard let unwrappedYear = self.year,
-              let unwrappedMonth = self.month,
-              let unwrappedDay = self.day else {
-            return
-        }
-        let selectedDate = AppDate(year: unwrappedYear,
-                                   month: unwrappedMonth,
-                                   day: unwrappedDay)
-        let stringMonth = String(format: "%02d", selectedDate.getMonth())
-        let stringDay = String(format: "%02d", selectedDate.getDay())
-        self.uploadModalDataDelegate?.passData("\(selectedDate.getYear()). \(stringMonth). \(stringDay). \(selectedDate.getWeekday().toKorean())")
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
-    }
-    
-    func connectServer(userID: String,
+    private func getDiariesWithAPI(userID: String,
                        year: String,
                        month: String,
                        order: String,
@@ -212,6 +205,27 @@ class UploadModalViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: - IBActions
+    
+    @IBAction func touchCloseButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func touchApplyButton(_ sender: Any) {
+        guard let unwrappedYear = self.year,
+              let unwrappedMonth = self.month,
+              let unwrappedDay = self.day else {
+            return
+        }
+        let selectedDate = AppDate(year: unwrappedYear,
+                                   month: unwrappedMonth,
+                                   day: unwrappedDay)
+        let stringMonth = String(format: "%02d", selectedDate.getMonth())
+        let stringDay = String(format: "%02d", selectedDate.getDay())
+        self.uploadModalDataDelegate?.passData("\(selectedDate.getYear()). \(stringMonth). \(stringDay). \(selectedDate.getWeekday().toKorean())")
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
+    }
 }
 
 // MARK: - UIPickerViewDelegate
@@ -252,7 +266,7 @@ extension UploadModalViewController: UIPickerViewDelegate {
                   let unwrappedDay = self.day else {
                 return
             }
-            connectServer(userID: String(APIConstants.userId),
+            getDiariesWithAPI(userID: String(APIConstants.userId),
                           year: "\(unwrappedYear)",
                           month: "\(unwrappedMonth)",
                           order: "filter",
