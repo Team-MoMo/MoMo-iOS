@@ -187,7 +187,7 @@ class ListFilterModalViewController: UIViewController {
         applyButton.backgroundColor = .BlueModalAble
     }
     
-    func initializeDateData() {
+    private func initializeDateData() {
         for num in 1980...2021 {
             year.append(String(num))
         }
@@ -196,6 +196,21 @@ class ListFilterModalViewController: UIViewController {
                 currentYearMonth.append(String(num))
             }
             month.append(String(num))
+        }
+    }
+    
+    private func updateMonthPickerData(_ selected: String) {
+        guard let unwrappedYear = Int(selected) else {
+            return
+        }
+        if selected == currentDate.getYearToString() && selectedYear != currentDate.getYear() {
+            self.selectedYear = unwrappedYear
+            self.monthPickerView.reloadComponent(0)
+        } else if selected != currentDate.getYearToString() && selectedYear == currentDate.getYear() {
+            self.selectedYear = unwrappedYear
+            self.monthPickerView.reloadComponent(0)
+        } else {
+            self.selectedYear = unwrappedYear
         }
     }
     
@@ -424,10 +439,7 @@ extension ListFilterModalViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == self.yearPickerView {
-            guard let year = Int(year[row]) else {
-                return
-            }
-            selectedYear = year
+            updateMonthPickerData(self.year[row])
         } else if selectedYear == currentDate.getYear() {
             guard let month = Int(currentYearMonth[row]) else {
                 return
@@ -452,7 +464,7 @@ extension ListFilterModalViewController: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == self.yearPickerView {
             return year.count
-        } else if selectedYear == currentDate.getMonth() {
+        } else if selectedYear == currentDate.getYear() {
             return currentYearMonth.count
         } else {
             return month.count
