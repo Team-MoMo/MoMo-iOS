@@ -39,12 +39,8 @@ class UploadModalViewController: UIViewController {
     var currentMonthArray: [String] = []
     var currentDayArray: [String] = []
     
-    
     weak var uploadModalDataDelegate: UploadModalViewDelegate?
     
-    
-    
-    let weekdayArray = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"]
     var dayIndex: Int = 0
     
     override func viewDidLoad() {
@@ -52,13 +48,9 @@ class UploadModalViewController: UIViewController {
         registerDelegate()
         registerDataSource()
         setData()
-       
-        view.layer.cornerRadius = 15
-        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        descriptionLabel.attributedText = "날짜 변경".wordSpacing(-0.6)
-        applyButton.layer.cornerRadius = 20
-        applyButton.backgroundColor = UIColor.BlueModalAble
-        print(year)
+        initializeViewLayer()
+        initializeDescriptionLabel()
+        initializeApplyButtonAttribute()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,10 +67,24 @@ class UploadModalViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    private func initializeApplyButtonAttribute() {
+        applyButton.layer.cornerRadius = 20
+        applyButton.backgroundColor = UIColor.BlueModalAble
+    }
+    
+    private func initializeDescriptionLabel() {
+        descriptionLabel.attributedText = "날짜 변경".wordSpacing(-0.6)
+    }
+    
+    private func initializeViewLayer() {
+        view.layer.cornerRadius = 15
+        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+    }
+    
     private func setPickerInitialSetting() {
         self.yearPickerView.selectRow(self.year - 2000, inComponent: 0, animated: true)
         self.monthPickerView.selectRow(self.month - 1, inComponent: 0, animated: true)
-        coordinateDay()
+        updateDayData()
         self.dayPickerView.selectRow(self.day - 1, inComponent: 0, animated: true)
     }
     
@@ -105,40 +111,48 @@ class UploadModalViewController: UIViewController {
         yearPickerView.dataSource = self
     }
     
-    private func coordinateDay() {
+    private func updateMonthData(_ selectedYear: Int) {
+        if self.year != currentDate.getYear() && selectedYear == currentDate.getYear() {
+            self.year = selectedYear
+            if self.month > self.currentDate.getMonth() {
+                self.month = self.currentDate.getMonth()
+            }
+            self.monthPickerView.reloadComponent(0)
+            updateDayData(true)
+        } else if self.year == currentDate.getYear() && selectedYear != currentDate.getYear() {
+            self.year = selectedYear
+            self.monthPickerView.reloadComponent(0)
+            updateDayData(true)
+        } else {
+            self.year = selectedYear
+            updateDayData()
+        }
+    }
+    
+    private func updateDayData(_ currentYearSelected: Bool = false) {
         switch self.month {
         case 1, 3, 5, 7, 8, 10, 12:
-            if dayIndex != 0 {
+            if dayIndex != 0 || currentYearSelected{
                 dayIndex = 0
-                self.dayPickerView.reloadAllComponents()
+                self.dayPickerView.reloadComponent(0)
             }
         case 2:
-            if dayIndex != 2 {
+            if dayIndex != 2 || currentYearSelected{
                 dayIndex = 2
-                self.dayPickerView.reloadAllComponents()
+                self.dayPickerView.reloadComponent(0)
             }
         default:
-            if dayIndex != 1 {
+            if dayIndex != 1 ||  currentYearSelected{
                 dayIndex = 1
-                self.dayPickerView.reloadAllComponents()
+                self.dayPickerView.reloadComponent(0)
             }
-        
         }
     }
     
     @IBAction func touchApplyButton(_ sender: Any) {
-        let dateComponents = NSDateComponents()
-        dateComponents.day = day
-        dateComponents.month = month
-        dateComponents.year = year
-        
-        guard let gregorianCalendar = NSCalendar(calendarIdentifier: .gregorian) else {
-            return
-        }
-        let date = gregorianCalendar.date(from: dateComponents as DateComponents)
-        let weekday = gregorianCalendar.component(.weekday, from: date!)
-        let stringMonth = String(format: "%02d", month)
-        self.uploadModalDataDelegate?.passData("\(year). \(stringMonth). \(day). \(weekdayArray[weekday-1])")
+        let selectedDate = AppDate(year: year, month: month, day: day)
+        let stringMonth = String(format: "%02d", selectedDate.getMonth())
+        self.uploadModalDataDelegate?.passData("\(selectedDate.getYear()). \(stringMonth). \(selectedDate.getDay()). \(selectedDate.getWeekday().toKorean())")
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
@@ -205,10 +219,10 @@ extension UploadModalViewController: UIPickerViewDelegate {
             guard let selectedYear = Int(yearArray[row]) else {
                 return
             }
-            year = selectedYear
+            updateMonthData(selectedYear)
         } else if pickerView == self.monthPickerView {
             month = Int(monthArray[row]) ?? 0
-            coordinateDay()
+            updateDayData()
         } else {
             day = Int(dayArray[dayIndex][row]) ?? 0
         }
@@ -239,8 +253,10 @@ extension UploadModalViewController: UIPickerViewDataSource {
                 return currentMonthArray.count
             }
             return monthArray.count
-        }
-        if year == currentDate.getYear() && month == currentDate.getMonth() {
+        } else if year == currentDate.getYear() && month == currentDate.getMonth() {
+            if self.day > currentDate.getDay() {
+                self.day = currentDate.getDay()
+            }
             return currentDayArray.count
         }
         return dayArray[dayIndex].count
