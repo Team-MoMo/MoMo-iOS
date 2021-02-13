@@ -20,9 +20,9 @@ class UploadModalViewController: UIViewController {
     @IBOutlet weak var dayPickerView: UIPickerView!
     @IBOutlet weak var applyButton: UIButton!
     
-    var year: Int = 0
-    var month: Int = 0
-    var day: Int = 0
+    var year: Int? = 0
+    var month: Int? = 0
+    var day: Int? = 0
     
     let currentDate = AppDate()
     
@@ -47,7 +47,7 @@ class UploadModalViewController: UIViewController {
         super.viewDidLoad()
         registerDelegate()
         registerDataSource()
-        setData()
+        initializeDateData()
         initializeViewLayer()
         initializeDescriptionLabel()
         initializeApplyButtonAttribute()
@@ -59,7 +59,7 @@ class UploadModalViewController: UIViewController {
             self.yearPickerView.subviews[1].backgroundColor = UIColor.clear
             self.monthPickerView.subviews[1].backgroundColor = UIColor.clear
             self.dayPickerView.subviews[1].backgroundColor = UIColor.clear
-            self.setPickerInitialSetting()
+            self.initializePickerViews()
         }
     }
 
@@ -81,20 +81,21 @@ class UploadModalViewController: UIViewController {
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
     
-    private func setPickerInitialSetting() {
-        self.yearPickerView.selectRow(self.year - 2000, inComponent: 0, animated: true)
-        self.monthPickerView.selectRow(self.month - 1, inComponent: 0, animated: true)
+    private func initializePickerViews() {
+        guard let unwrappedYear = self.year,
+              let unwrappedMonth = self.month,
+              let unwrappedDay = self.day else {
+            return
+        }
+        self.yearPickerView.selectRow(unwrappedYear - 2000, inComponent: 0, animated: true)
+        self.monthPickerView.selectRow(unwrappedMonth - 1, inComponent: 0, animated: true)
         updateDayData()
-        self.dayPickerView.selectRow(self.day - 1, inComponent: 0, animated: true)
+        self.dayPickerView.selectRow(unwrappedDay - 1, inComponent: 0, animated: true)
     }
     
-    private func setData() {
-        for tempYear in 2000...currentDate.getYear() {
-            yearArray.append(String(tempYear))
-        }
-        for tempMonth in 1...12 {
-            monthArray.append(String(tempMonth))
-        }
+    private func initializeDateData() {
+        yearArray = (2000...currentDate.getYear()).map({String($0)})
+        monthArray = (1...12).map({String($0)})
         currentMonthArray = (1...currentDate.getMonth()).map({String($0)})
         currentDayArray = (1...currentDate.getDay()).map({String($0)})
     }
@@ -114,7 +115,10 @@ class UploadModalViewController: UIViewController {
     private func updateMonthData(_ selectedYear: Int) {
         if self.year != currentDate.getYear() && selectedYear == currentDate.getYear() {
             self.year = selectedYear
-            if self.month > self.currentDate.getMonth() {
+            guard let unwrappedMonth = self.month else {
+                return
+            }
+            if unwrappedMonth > self.currentDate.getMonth() {
                 self.month = self.currentDate.getMonth()
             }
             self.monthPickerView.reloadComponent(0)
@@ -132,17 +136,19 @@ class UploadModalViewController: UIViewController {
     private func updateDayData(_ currentYearSelected: Bool = false) {
         switch self.month {
         case 1, 3, 5, 7, 8, 10, 12:
-            if dayIndex != 0 || currentYearSelected{
+            if dayIndex != 0 || currentYearSelected {
                 dayIndex = 0
                 self.dayPickerView.reloadComponent(0)
             }
+            
         case 2:
-            if dayIndex != 2 || currentYearSelected{
+            if dayIndex != 2 || currentYearSelected {
                 dayIndex = 2
                 self.dayPickerView.reloadComponent(0)
             }
+            
         default:
-            if dayIndex != 1 ||  currentYearSelected{
+            if dayIndex != 1 ||  currentYearSelected {
                 dayIndex = 1
                 self.dayPickerView.reloadComponent(0)
             }
@@ -150,9 +156,17 @@ class UploadModalViewController: UIViewController {
     }
     
     @IBAction func touchApplyButton(_ sender: Any) {
-        let selectedDate = AppDate(year: year, month: month, day: day)
+        guard let unwrappedYear = self.year,
+              let unwrappedMonth = self.month,
+              let unwrappedDay = self.day else {
+            return
+        }
+        let selectedDate = AppDate(year: unwrappedYear,
+                                   month: unwrappedMonth,
+                                   day: unwrappedDay)
         let stringMonth = String(format: "%02d", selectedDate.getMonth())
-        self.uploadModalDataDelegate?.passData("\(selectedDate.getYear()). \(stringMonth). \(selectedDate.getDay()). \(selectedDate.getWeekday().toKorean())")
+        let stringDay = String(format: "%02d", selectedDate.getDay())
+        self.uploadModalDataDelegate?.passData("\(selectedDate.getYear()). \(stringMonth). \(stringDay). \(selectedDate.getWeekday().toKorean())")
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
@@ -216,22 +230,33 @@ extension UploadModalViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == self.yearPickerView {
-            guard let selectedYear = Int(yearArray[row]) else {
+            guard let unwrappedYear = Int(yearArray[row]) else {
                 return
             }
-            updateMonthData(selectedYear)
+            updateMonthData(unwrappedYear)
         } else if pickerView == self.monthPickerView {
-            month = Int(monthArray[row]) ?? 0
+            guard let unwrappedMonth = Int(monthArray[row]) else {
+                return
+            }
+            month = unwrappedMonth
             updateDayData()
         } else {
-            day = Int(dayArray[dayIndex][row]) ?? 0
+            guard let unwrappedDay = Int(dayArray[dayIndex][row]) else {
+                return
+            }
+            day = unwrappedDay
         }
         if verifyMood {
+            guard let unwrappedYear = self.year,
+                  let unwrappedMonth = self.month,
+                  let unwrappedDay = self.day else {
+                return
+            }
             connectServer(userID: String(APIConstants.userId),
-                          year: "\(year)",
-                          month: "\(month)",
+                          year: "\(unwrappedYear)",
+                          month: "\(unwrappedMonth)",
                           order: "filter",
-                          day: day,
+                          day: unwrappedDay,
                           emotionID: nil,
                           depth: nil)
         }
@@ -254,7 +279,10 @@ extension UploadModalViewController: UIPickerViewDataSource {
             }
             return monthArray.count
         } else if year == currentDate.getYear() && month == currentDate.getMonth() {
-            if self.day > currentDate.getDay() {
+            guard let unwrappedDay = self.day else {
+                return Int()
+            }
+            if unwrappedDay > currentDate.getDay() {
                 self.day = currentDate.getDay()
             }
             return currentDayArray.count
