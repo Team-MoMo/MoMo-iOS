@@ -75,7 +75,6 @@ class DiaryWriteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.initializeNavigationBar()
         self.initializeDiaryWriteViewController()
         self.updateWordSpace()
@@ -109,26 +108,26 @@ class DiaryWriteViewController: UIViewController {
     }
     
     private func updateDiaryWriteViewController() {
-        self.dateLabel.text = diaryInfo?.date.getFormattedDateAndWeekday(with: ". ")
-        self.emotionImage.image = diaryInfo?.mood.toIcon()
-        self.emotionLabel.text = diaryInfo?.mood.toString()
-        self.authorLabel.text = diaryInfo?.sentence.author
-        self.bookLabel.text = diaryInfo?.sentence.bookTitle
-        self.quoteLabel.text = diaryInfo?.sentence.sentence
+        self.dateLabel.text = diaryInfo?.date?.getFormattedDateAndWeekday(with: ". ")
+        self.emotionImage.image = diaryInfo?.mood?.toIcon()
+        self.emotionLabel.text = diaryInfo?.mood?.toString()
+        self.authorLabel.text = diaryInfo?.sentence?.author
+        self.bookLabel.text = diaryInfo?.sentence?.bookTitle
+        self.quoteLabel.text = diaryInfo?.sentence?.sentence
         
         if self.isFromDiary {
-            self.depthLabel.text = diaryInfo?.depth.toString()
+            self.depthLabel.text = diaryInfo?.depth?.toString()
             self.journalTextView.text = diaryInfo?.diary
         }
     }
     
     private func updateWordSpace() {
-        guard let date = self.diaryInfo?.date.getFormattedDate(with: ". "),
-              let emotion = self.diaryInfo?.mood.toString(),
-              let author = self.diaryInfo?.sentence.author,
-              let bookTitle = self.diaryInfo?.sentence.bookTitle,
-              let publisher = self.diaryInfo?.sentence.publisher,
-              let quote = self.diaryInfo?.sentence.sentence else { return }
+        guard let date = self.diaryInfo?.date?.getFormattedDate(with: ". "),
+              let emotion = self.diaryInfo?.mood?.toString(),
+              let author = self.diaryInfo?.sentence?.author,
+              let bookTitle = self.diaryInfo?.sentence?.bookTitle,
+              let publisher = self.diaryInfo?.sentence?.publisher,
+              let quote = self.diaryInfo?.sentence?.sentence else { return }
         dateLabel.attributedText = date.wordSpacing(-0.6)
         emotionLabel.attributedText = emotion.wordSpacing(-0.6)
         authorLabel.attributedText = author.wordSpacing(-0.6)
@@ -172,10 +171,9 @@ class DiaryWriteViewController: UIViewController {
         if quoteLabel.text == "" {
             UIView.animate(withDuration: 0.5) {
                 self.moreButton.transform = CGAffineTransform(rotationAngle: -.pi*2)
-                self.quoteLabel.text = self.diaryInfo?.sentence.sentence
+                self.quoteLabel.text = self.diaryInfo?.sentence?.sentence
                 self.quoteLabelTopConstraint.constant = 24
             }
-            
         } else {
             UIView.animate(withDuration: 0.5) {
                 self.moreButton.transform = CGAffineTransform(rotationAngle: .pi)
@@ -215,9 +213,9 @@ class DiaryWriteViewController: UIViewController {
         if textViewText.isEmpty {
             self.attachToastViewWithAnimation()
         } else {
-            guard let diaryInfo = self.diaryInfo else { return }
+            self.saveDiary()
             self.navigationItem.rightBarButtonItem = nil
-            self.diaryWriteViewControllerDelegate?.popToDiaryViewController(diaryInfo: diaryInfo)
+            self.diaryWriteViewControllerDelegate?.popToDiaryViewController(diaryInfo: self.diaryInfo)
             self.navigationController?.popViewController(animated: true)
         }
     }
@@ -242,8 +240,8 @@ class DiaryWriteViewController: UIViewController {
     private func attachAlertModalView() {
         self.alertModalView = AlertModalView.instantiate(
             alertLabelText: "작성한 일기가 저장되지 않습니다.\n정말 뒤로 가시겠어요?",
-            leftButtonTitle: "확인",
-            rightButtonTitle: "취소"
+            leftButtonTitle: "취소",
+            rightButtonTitle: "확인"
         )
 
         if let alertModalView = self.alertModalView {
@@ -320,7 +318,6 @@ class DiaryWriteViewController: UIViewController {
             case DiaryWriteViewNavigationButton.leftButtonForDiary.rawValue:
                 self.popToDiaryViewControllerWithAlert()
             case DiaryWriteViewNavigationButton.rightButtonForDiary.rawValue:
-                self.saveDiary()
                 self.popToDiaryViewController()
             case DiaryWriteViewNavigationButton.leftButtonForUpload.rawValue:
                 self.popToSentenceViewControllerWithAlert()
