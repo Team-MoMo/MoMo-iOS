@@ -24,6 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1500)) {
             if !UserDefaults.standard.bool(forKey: "didLaunch") {
+                UserDefaults.standard.set(true, forKey: "didLaunch")
                 self.updateRootToOnboadingViewController()
             }
             else {
@@ -45,7 +46,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func updateRootToOnboadingViewController() {
-        UserDefaults.standard.set(true, forKey: "didLaunch")
         let onboardingStoryboard = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
         let onboardingViewController = onboardingStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.onboardingViewController)
         self.navigationController = UINavigationController(rootViewController: onboardingViewController)

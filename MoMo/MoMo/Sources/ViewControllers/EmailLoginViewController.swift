@@ -132,6 +132,7 @@ extension EmailLoginViewController {
                     
                     UserDefaults.standard.setValue(signInData.token, forKey: "token")
                     UserDefaults.standard.setValue(signInData.user.id, forKey: "userId")
+                    UserDefaults.standard.setValue("email", forKey: "loginType")
                     
                     if self.activityIndicator.isAnimating {
                         self.activityIndicator.stopAnimating()
