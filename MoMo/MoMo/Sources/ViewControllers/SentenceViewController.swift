@@ -163,16 +163,21 @@ class SentenceViewController: UIViewController {
     }
     
     func pushToDiaryWriteViewController(date: String, mood: AppEmotion, sentence: AppSentence) {
-        let uploadWriteStorybaord = UIStoryboard(name: Constants.Name.diaryWriteStoryboard, bundle: nil)
-        guard let uploadWriteViewController = uploadWriteStorybaord.instantiateViewController(identifier: Constants.Identifier.diaryWriteViewController) as? DiaryWriteViewController else {
+        let diaryWriteStoryboard = UIStoryboard(name: Constants.Name.diaryWriteStoryboard, bundle: nil)
+        guard let diaryWriteViewController = diaryWriteStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryWriteViewController) as? DiaryWriteViewController else {
             return
         }
-        uploadWriteViewController.diaryInfo?.date = AppDate(formattedDate: date, with: ". ")
-        uploadWriteViewController.diaryInfo?.mood = mood
-        uploadWriteViewController.diaryInfo?.sentence = sentence
-        uploadWriteViewController.isFromDiary = false
+        let diaryInfo = AppDiary(
+            date: AppDate(formattedDate: date, with: ". "),
+            mood: mood,
+            depth: nil,
+            sentence: sentence,
+            diary: nil
+        )
+        diaryWriteViewController.diaryInfo = diaryInfo
+        diaryWriteViewController.isFromDiary = false
         
-        self.navigationController?.pushViewController(uploadWriteViewController, animated: true)
+        self.navigationController?.pushViewController(diaryWriteViewController, animated: true)
     }
     
     func hideButtons() {
