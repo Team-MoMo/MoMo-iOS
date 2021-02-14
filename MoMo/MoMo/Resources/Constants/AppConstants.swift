@@ -31,8 +31,9 @@ struct Constants {
         static let lockStoryboard: String = "Lock"
         static let openSourceStoryboard: String = "OpenSource"
         static let personalTermStoryboard: String = "PersonalTerm"
-
-        // MARK: - Nib Name Constants
+        static let changePasswordStoryboard: String = "ChangePassword"
+        
+      // MARK: - Nib Name Constants
         
         static let homeDayNightViewXib: String = "HomeDayNightView"
         static let bubbleTableViewCell: String = "BubbleTableViewCell"
@@ -66,6 +67,7 @@ struct Constants {
         static let openSourceViewController: String = "OpenSourceViewController"
         static let openSourceDetailViewController: String = "OpenSourceDetailViewController"
         static let personalTermViewController: String = "PersonalTermViewController"
+        static let changePasswordViewController: String = "ChangePasswordViewController"
         
         // MARK: - UIView
         
@@ -204,6 +206,27 @@ struct Constants {
             static let icBoredBlue = UIImage(named: "icBoredBlue")
             static let icMemoryBlue = UIImage(named: "icMemoryBlue")
             static let icDailyBlue = UIImage(named: "icDailyBlue")
+            
+            // listEmotionFilterUnselected icon
+            static let iosFilterLoveUnselected = UIImage(named: "iosFilterLoveUnselected")
+            static let iosFilterHappyUnselected = UIImage(named: "iosFilterHappyUnselected")
+            static let iosFilterConsoleUnselected = UIImage(named: "iosFilterConsoleUnselected")
+            static let iosFilterAngryUnselected = UIImage(named: "iosFilterAngryUnselected")
+            static let iosFilterSadUnselected = UIImage(named: "iosFilterSadUnselected")
+            static let iosFilterBoredUnselected = UIImage(named: "iosFilterBoredUnselected")
+            static let iosFilterMemoryUnselected = UIImage(named: "iosFilterMemoryUnselected")
+            static let iosFilterDailyUnselected = UIImage(named: "iosFilterDailyUnselected")
+            
+            // listEmotionFilterSelected icon
+            
+            static let iosFilterLoveSelected = UIImage(named: "iosFilterLoveSelected")
+            static let iosFilterHappySelected = UIImage(named: "iosFilterHappySelected")
+            static let iosFilterConsoleSelected = UIImage(named: "iosFilterConsoleSelected")
+            static let iosFilterAngrySelected = UIImage(named: "iosFilterAngrySelected")
+            static let iosFilterSadSelected = UIImage(named: "iosFilterSadSelected")
+            static let iosFilterBoredSelected = UIImage(named: "iosFilterBoredSelected")
+            static let iosFilterMemorySelected = UIImage(named: "iosFilterMemorySelected")
+            static let iosFilterDailySelected = UIImage(named: "iosFilterDailySelected")
             
             // statViewObjet
             static let graph2M = UIImage(named: "graph2M")

@@ -30,14 +30,14 @@ class StatisticsViewController: UIViewController {
     // MARK: - Override LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let serverYear = year, let serverMonth = month else {
+        guard let unwrappedYear = year, let unwrappedMonth = month else {
             return
         }
-       
         initializeDateModal()
         initializeNavigationItem()
         initializeSubLayer()
-        getDiaryStatisticsWithAPI("\(serverYear)", "\(serverMonth)")
+        getDiaryStatisticsWithAPI("\(unwrappedYear)", "\(unwrappedMonth)")
+        updateLabelText()
     }
 
     // MARK: - Private Function
@@ -163,11 +163,11 @@ class StatisticsViewController: UIViewController {
     }
     
     private func presentDateModal() {
-        guard let modal = dateModal else {
+        guard let modal = dateModal, let unwrappedYear = self.year, let unwrappedMonth = self.month else {
             return
         }
-        modal.year = 2020
-        modal.month = 11
+        modal.year = unwrappedYear
+        modal.month = unwrappedMonth
         modal.statModalViewDelegate = self
         modal.modalPresentationStyle = .custom
         modal.transitioningDelegate = self
@@ -175,8 +175,7 @@ class StatisticsViewController: UIViewController {
     }
     
     private func getDiaryStatisticsWithAPI (_ paramYear: String, _ paramMonth: String) {
-        DiaryStatistics.shared.getDiaryStatistics(userId: "\(APIConstants.userId)", year: paramYear, month: paramMonth) {
-            networkResult in
+        DiaryStatistics.shared.getDiaryStatistics(userId: "\(APIConstants.userId)", year: paramYear, month: paramMonth) { networkResult in
             switch networkResult {
 
             case .success(let data):
@@ -186,7 +185,6 @@ class StatisticsViewController: UIViewController {
                 self.updateMoodDepthData(unwrappedData.emotionCounts,
                                     unwrappedData.depthCounts)
                 self.presentStatAfterServer()
-                
                 
             case .requestErr(let msg):
                 if let message = msg as? String {
@@ -225,8 +223,6 @@ class StatisticsViewController: UIViewController {
         for idx in 0..<depth.count {
             depthData[depth[idx].depth] = depth[idx].count
         }
-        print(emotionData)
-        print(depthData)
     }
     
     // MARK: - Selector Function
