@@ -207,9 +207,9 @@ class DeepViewController: UIViewController {
         } else if text == "기록하기" {
             
             guard let diary = self.diaryInfo?.diary,
-                  let sentenceId = self.diaryInfo?.sentence.id,
-                  let emotionId = self.diaryInfo?.mood.rawValue,
-                  let wroteAt = self.diaryInfo?.date.getFormattedDate(with: "-") else {
+                  let sentenceId = self.diaryInfo?.sentence?.id,
+                  let emotionId = self.diaryInfo?.mood?.rawValue,
+                  let wroteAt = self.diaryInfo?.date?.getFormattedDate(with: "-") else {
                 return
             }
             
