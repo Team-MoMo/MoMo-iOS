@@ -31,6 +31,8 @@ struct Constants {
         static let openSourceStoryboard: String = "OpenSource"
         static let personalTermStoryboard: String = "PersonalTerm"
       
+        static let changePasswordStoryboard: String = "ChangePassword"
+        
         // MARK: - Nib Name Constants
         
         static let homeDayNightViewXib: String = "HomeDayNightView"
@@ -64,6 +66,7 @@ struct Constants {
         static let openSourceViewController: String = "OpenSourceViewController"
         static let openSourceDetailViewController: String = "OpenSourceDetailViewController"
         static let personalTermViewController: String = "PersonalTermViewController"
+        static let changePasswordViewController: String = "ChangePasswordViewController"
         
         // MARK: - UIView
         

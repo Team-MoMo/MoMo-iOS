@@ -23,6 +23,12 @@ class EmailLoginViewController: UIViewController {
     
     // 가입하지 않은 회원일 때
     let isEmailCheckError: Bool = false
+    private lazy var leftButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: Constants.Design.Image.btnBackWhite, style: .plain, target: self, action: #selector(touchNavigationButton(sender:)))
+        button.tintColor = UIColor.Black1
+        button.tag = 0
+        return button
+    }()
     
     // MARK: - View Life Cycle
     
@@ -56,6 +62,7 @@ class EmailLoginViewController: UIViewController {
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "영문 + 숫자 6자리 이상 입력해 주세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Blue5, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
         
         // navigation bar 투명화
+        self.navigationItem.leftBarButtonItem = self.leftButton
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
@@ -110,6 +117,10 @@ class EmailLoginViewController: UIViewController {
         }
         
     }
+    
+    private func popToLoginViewController() {
+        self.navigationController?.popViewController(animated: true)
+    }
     @IBAction func touchUpJoinButton(_ sender: Any) {
         let joinStoryboard = UIStoryboard(name: Constants.Name.joinStoryboard, bundle: nil)
         let dvc = joinStoryboard.instantiateViewController(identifier: Constants.Identifier.joinViewController)
@@ -121,5 +132,15 @@ class EmailLoginViewController: UIViewController {
         // self.navigationController?.pushViewController(dvc, animated: true)
     }
     
+    @objc private func touchNavigationButton(sender: Any) {
+        if let button = sender as? UIBarButtonItem {
+            switch button.tag {
+            case 0:
+                self.popToLoginViewController()
+            default:
+                return
+            }
+        }
+    }
     
 }

@@ -13,7 +13,11 @@ struct PasswordData: Codable {
     let id: Int
     let email, password, passwordSalt: String
     let isAlarmSet: Bool
-    let alarmTime, tempPassword, tempPasswordCreatedAt: String
+    let alarmTime: String?
+    let tempPassword: String
+    let tempPasswordCreatedAt: String?
     let tempPasswordIssueCount: Int
+    let isDeleted: Bool
     let createdAt, updatedAt: String
+    let deletedAt: String?
 }

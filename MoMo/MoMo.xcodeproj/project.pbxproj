@@ -66,6 +66,8 @@
 		1C5876C225D04C45004537A5 /* LockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5876C125D04C45004537A5 /* LockViewController.swift */; };
 		1C5876C525D04C57004537A5 /* Lock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C5876C425D04C57004537A5 /* Lock.storyboard */; };
 		1C5876D825D446BD004537A5 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5876D725D446BD004537A5 /* UserService.swift */; };
+		1C5876C925D28BDF004537A5 /* ChangePassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C5876C825D28BDF004537A5 /* ChangePassword.storyboard */; };
+		1C5876CC25D28BEF004537A5 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5876CB25D28BEF004537A5 /* ChangePasswordViewController.swift */; };
 		1C7CD80725ACA5EC00B7CB60 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CD80625ACA5EC00B7CB60 /* DiaryViewController.swift */; };
 		1C7CD80A25ACA5FD00B7CB60 /* Diary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */; };
 		1C7CD82525ACEB9E00B7CB60 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CD82425ACEB9E00B7CB60 /* MenuView.swift */; };
@@ -194,6 +196,8 @@
 		1C5876C125D04C45004537A5 /* LockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockViewController.swift; sourceTree = "<group>"; };
 		1C5876C425D04C57004537A5 /* Lock.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lock.storyboard; sourceTree = "<group>"; };
 		1C5876D725D446BD004537A5 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		1C5876C825D28BDF004537A5 /* ChangePassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChangePassword.storyboard; sourceTree = "<group>"; };
+		1C5876CB25D28BEF004537A5 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		1C7CD80625ACA5EC00B7CB60 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Diary.storyboard; sourceTree = "<group>"; };
 		1C7CD82425ACEB9E00B7CB60 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -483,6 +487,7 @@
 				1C5876C425D04C57004537A5 /* Lock.storyboard */,
 				10F092A225CC34FF00342B18 /* OpenSource.storyboard */,
 				10B5913B25CBDB2D0063C7B9 /* PersonalTerm.storyboard */,
+				1C5876C825D28BDF004537A5 /* ChangePassword.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -545,6 +550,7 @@
 				10F092A525CC351200342B18 /* OpenSourceViewController.swift */,
 				10F092AD25CC3FA900342B18 /* OpenSourceDetailViewController.swift */,
 				10B5914225CBE0700063C7B9 /* PersonalTermViewController.swift */,
+				1C5876CB25D28BEF004537A5 /* ChangePasswordViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -673,6 +679,7 @@
 				563B033025A8849300DA74C5 /* HomeDayNightView.xib in Resources */,
 				10F092AB25CC356F00342B18 /* OpenSourceTableViewCell.xib in Resources */,
 				105661EE25A5F79300E111B2 /* EmptyTableViewCell.xib in Resources */,
+				1C5876C925D28BDF004537A5 /* ChangePassword.storyboard in Resources */,
 				1C52BE0F25AD7A9500D02771 /* onboarding_wave_ios.json in Resources */,
 				563B03FB25ACCDF700DA74C5 /* EmailLogin.storyboard in Resources */,
 			);
@@ -815,6 +822,7 @@
 				563B049125AE0D9F00DA74C5 /* DiariesService.swift in Sources */,
 				1CEF46C825A6E0A000AF3D81 /* SentenceViewController.swift in Sources */,
 				10029DBC25B1183A00060E14 /* DiaryRecentService.swift in Sources */,
+				1C5876CC25D28BEF004537A5 /* ChangePasswordViewController.swift in Sources */,
 				10DDA34625AF09C500620C41 /* ModalPresentationController.swift in Sources */,
 				1C7CD82525ACEB9E00B7CB60 /* MenuView.swift in Sources */,
 				1C7CD80725ACA5EC00B7CB60 /* DiaryViewController.swift in Sources */,
