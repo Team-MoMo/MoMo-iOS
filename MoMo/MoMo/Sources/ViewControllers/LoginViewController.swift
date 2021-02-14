@@ -95,12 +95,18 @@ class LoginViewController: UIViewController {
         self.navigationController?.pushViewController(dvc, animated: true)
     }
     
-    // MARK: - @IBAction Properties
-    
-    @IBAction func touchEmailLoginButton(_ sender: Any) {
+    private func pushToEmailLoginViewController() {
         let emailLoginStoryboard = UIStoryboard(name: Constants.Name.emailLoginStoryboard, bundle: nil)
-        let dvc = emailLoginStoryboard.instantiateViewController(identifier: Constants.Identifier.emailLoginViewController)
-        self.navigationController?.pushViewController(dvc, animated: true)
+        guard let emailLoginViewController = emailLoginStoryboard.instantiateViewController(identifier: Constants.Identifier.emailLoginViewController) as? EmailLoginViewController else {
+            return
+        }
+        self.navigationController?.pushViewController(emailLoginViewController, animated: true)
+    }
+    
+    // MARK: - @IBAction Properties
+
+    @IBAction func touchEmailLoginButton(_ sender: UIButton) {
+        self.pushToEmailLoginViewController()
     }
     
     @IBAction func touchAppleLoginButton(_ sender: Any) {
