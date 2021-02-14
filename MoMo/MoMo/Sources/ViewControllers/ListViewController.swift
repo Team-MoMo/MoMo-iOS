@@ -34,7 +34,7 @@ class ListViewController: UIViewController {
     var standardMonth: Int = 0
     var year: Int = 2010
     var month: Int = 5
-    var listFilterModalView: ListFilterModalViewController? = nil
+    var listFilterModalView: ListFilterModalViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -164,7 +164,7 @@ class ListViewController: UIViewController {
                 
             case .requestErr(let msg):
                 if let message = msg as? String {
-                    (message)
+                    print(message)
                 }
             case .pathErr:
                 print("pathErr")
@@ -207,6 +207,8 @@ class ListViewController: UIViewController {
         guard let statViewController = statStoryboard.instantiateViewController(identifier: Constants.Identifier.statisticsViewController) as? StatisticsViewController else {
             return
         }
+        statViewController.year = self.year
+        statViewController.month = self.month
         
         self.navigationController?.pushViewController(statViewController, animated: true)
 
@@ -298,7 +300,6 @@ class ListViewController: UIViewController {
 // MARK: - TableViewDelegate
 extension ListViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(self.listTableView.contentOffset.y)
         if self.listTableView.contentOffset.y > 40 {
             self.navigationItem.title = date
         } else {

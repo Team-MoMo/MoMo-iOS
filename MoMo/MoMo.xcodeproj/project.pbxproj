@@ -31,6 +31,8 @@
 		10B5914325CBE0700063C7B9 /* PersonalTermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B5914225CBE0700063C7B9 /* PersonalTermViewController.swift */; };
 		10B6732025A771700046AA97 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B6731F25A771700046AA97 /* String+Extension.swift */; };
 		10B6732D25A775DE0046AA97 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B6732C25A775DE0046AA97 /* UIView+Extension.swift */; };
+		10BECB8925D2CC9C0091C53D /* Team.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10BECB8825D2CC9C0091C53D /* Team.storyboard */; };
+		10BECB8F25D2F2960091C53D /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BECB8E25D2F2960091C53D /* TeamViewController.swift */; };
 		10C9CEC125C3E77B0036CE98 /* Statistics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10C9CEC025C3E77B0036CE98 /* Statistics.storyboard */; };
 		10C9CEC825C3E7B90036CE98 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C9CEC725C3E7B90036CE98 /* StatisticsViewController.swift */; };
 		10C9CECB25C3ECBC0036CE98 /* DepthStatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C9CECA25C3ECBC0036CE98 /* DepthStatViewController.swift */; };
@@ -65,6 +67,8 @@
 		1C52BE0F25AD7A9500D02771 /* onboarding_wave_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C52BE0E25AD7A9500D02771 /* onboarding_wave_ios.json */; };
 		1C5876C225D04C45004537A5 /* LockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5876C125D04C45004537A5 /* LockViewController.swift */; };
 		1C5876C525D04C57004537A5 /* Lock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C5876C425D04C57004537A5 /* Lock.storyboard */; };
+		1C5876C925D28BDF004537A5 /* ChangePassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C5876C825D28BDF004537A5 /* ChangePassword.storyboard */; };
+		1C5876CC25D28BEF004537A5 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5876CB25D28BEF004537A5 /* ChangePasswordViewController.swift */; };
 		1C7CD80725ACA5EC00B7CB60 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CD80625ACA5EC00B7CB60 /* DiaryViewController.swift */; };
 		1C7CD80A25ACA5FD00B7CB60 /* Diary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */; };
 		1C7CD82525ACEB9E00B7CB60 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CD82425ACEB9E00B7CB60 /* MenuView.swift */; };
@@ -158,6 +162,8 @@
 		10B5914225CBE0700063C7B9 /* PersonalTermViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalTermViewController.swift; sourceTree = "<group>"; };
 		10B6731F25A771700046AA97 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		10B6732C25A775DE0046AA97 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		10BECB8825D2CC9C0091C53D /* Team.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Team.storyboard; sourceTree = "<group>"; };
+		10BECB8E25D2F2960091C53D /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
 		10C9CEC025C3E77B0036CE98 /* Statistics.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Statistics.storyboard; sourceTree = "<group>"; };
 		10C9CEC725C3E7B90036CE98 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		10C9CECA25C3ECBC0036CE98 /* DepthStatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthStatViewController.swift; sourceTree = "<group>"; };
@@ -192,6 +198,8 @@
 		1C52BE0E25AD7A9500D02771 /* onboarding_wave_ios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_wave_ios.json; sourceTree = "<group>"; };
 		1C5876C125D04C45004537A5 /* LockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockViewController.swift; sourceTree = "<group>"; };
 		1C5876C425D04C57004537A5 /* Lock.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lock.storyboard; sourceTree = "<group>"; };
+		1C5876C825D28BDF004537A5 /* ChangePassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChangePassword.storyboard; sourceTree = "<group>"; };
+		1C5876CB25D28BEF004537A5 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		1C7CD80625ACA5EC00B7CB60 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Diary.storyboard; sourceTree = "<group>"; };
 		1C7CD82425ACEB9E00B7CB60 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -477,9 +485,11 @@
 				563B047325ADF46200DA74C5 /* FindPassword.storyboard */,
 				10C9CEC025C3E77B0036CE98 /* Statistics.storyboard */,
 				1C8DD90325C92AC100C7A3BA /* Setting.storyboard */,
+				10BECB8825D2CC9C0091C53D /* Team.storyboard */,
 				1C5876C425D04C57004537A5 /* Lock.storyboard */,
 				10F092A225CC34FF00342B18 /* OpenSource.storyboard */,
 				10B5913B25CBDB2D0063C7B9 /* PersonalTerm.storyboard */,
+				1C5876C825D28BDF004537A5 /* ChangePassword.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -538,10 +548,12 @@
 				10C9CECA25C3ECBC0036CE98 /* DepthStatViewController.swift */,
 				10DC0CBC25C7D9640048A5C8 /* MoodStatViewController.swift */,
 				1C8DD90025C92A9C00C7A3BA /* SettingViewController.swift */,
+				10BECB8E25D2F2960091C53D /* TeamViewController.swift */,
 				1C5876C125D04C45004537A5 /* LockViewController.swift */,
 				10F092A525CC351200342B18 /* OpenSourceViewController.swift */,
 				10F092AD25CC3FA900342B18 /* OpenSourceDetailViewController.swift */,
 				10B5914225CBE0700063C7B9 /* PersonalTermViewController.swift */,
+				1C5876CB25D28BEF004537A5 /* ChangePasswordViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -656,6 +668,7 @@
 				1C5876C525D04C57004537A5 /* Lock.storyboard in Resources */,
 				563B03DF25ACB59800DA74C5 /* Login.storyboard in Resources */,
 				107919C225A484E60024C711 /* FilterCollectionViewCell.xib in Resources */,
+				10BECB8925D2CC9C0091C53D /* Team.storyboard in Resources */,
 				1C8DD90425C92AC100C7A3BA /* Setting.storyboard in Resources */,
 				10DDA34125AF09A900620C41 /* DepthCollectionViewCell.xib in Resources */,
 				1C8DD90725C92D4200C7A3BA /* SettingTableViewCell.xib in Resources */,
@@ -670,6 +683,7 @@
 				563B033025A8849300DA74C5 /* HomeDayNightView.xib in Resources */,
 				10F092AB25CC356F00342B18 /* OpenSourceTableViewCell.xib in Resources */,
 				105661EE25A5F79300E111B2 /* EmptyTableViewCell.xib in Resources */,
+				1C5876C925D28BDF004537A5 /* ChangePassword.storyboard in Resources */,
 				1C52BE0F25AD7A9500D02771 /* onboarding_wave_ios.json in Resources */,
 				563B03FB25ACCDF700DA74C5 /* EmailLogin.storyboard in Resources */,
 			);
@@ -775,6 +789,7 @@
 				105661ED25A5F79300E111B2 /* EmptyTableViewCell.swift in Sources */,
 				5637607625B0519F00651EAA /* PasswordData.swift in Sources */,
 				1C52BE0525AD655300D02771 /* AlertModalView.swift in Sources */,
+				10BECB8F25D2F2960091C53D /* TeamViewController.swift in Sources */,
 				1CAD05A225A9C98F007ECA40 /* UILabel+Extension.swift in Sources */,
 				1038B69825CAABF300C577B6 /* DiariesStatistics.swift in Sources */,
 				562C645925C1AFAD00AA9AB6 /* AppDepth.swift in Sources */,
@@ -811,6 +826,7 @@
 				563B049125AE0D9F00DA74C5 /* DiariesService.swift in Sources */,
 				1CEF46C825A6E0A000AF3D81 /* SentenceViewController.swift in Sources */,
 				10029DBC25B1183A00060E14 /* DiaryRecentService.swift in Sources */,
+				1C5876CC25D28BEF004537A5 /* ChangePasswordViewController.swift in Sources */,
 				10DDA34625AF09C500620C41 /* ModalPresentationController.swift in Sources */,
 				1C7CD82525ACEB9E00B7CB60 /* MenuView.swift in Sources */,
 				1C7CD80725ACA5EC00B7CB60 /* DiaryViewController.swift in Sources */,
