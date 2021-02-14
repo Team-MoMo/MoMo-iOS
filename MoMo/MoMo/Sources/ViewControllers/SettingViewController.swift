@@ -158,7 +158,7 @@ class SettingViewController: UIViewController {
             (image: Constants.Design.Image.icLock, labelText: "암호 잠금", touchAction: { self.hasLock() ? {}() : self.pushToLockViewController()}),
             (image: Constants.Design.Image.icLicense, labelText: "오픈 소스 라이선스", touchAction: self.pushToOpenSourceLicenseViewController),
             (image: Constants.Design.Image.icTeam, labelText: "Team MOMO", touchAction: self.pushToTeamMomoViewController),
-            (image: Constants.Design.Image.icInstaLogo, labelText: "MOMO 인스타그램", touchAction: self.pushToMomoInstaViewController)
+            (image: Constants.Design.Image.icInstaLogo, labelText: "MOMO 인스타그램", touchAction: self.openTeamMomoInstagram)
         ]
     }
     
@@ -337,8 +337,16 @@ class SettingViewController: UIViewController {
         
     }
     
-    private func pushToMomoInstaViewController() {
-        
+    private func openTeamMomoInstagram() {
+        let username: String = "momo.__.diary"
+        let appURL: URL = URL(string: "instagram://user?username=\(username)")!
+        let application: UIApplication = UIApplication.shared
+        if application.canOpenURL(appURL) {
+            application.open(appURL)
+        } else {
+            let webURL = URL(string: "https://instagram.com/\(username)")!
+            application.open(webURL)
+        }
     }
     
     private func popToLoginViewController() {
