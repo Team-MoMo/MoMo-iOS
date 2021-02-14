@@ -119,6 +119,10 @@ class UploadModalViewController: UIViewController {
         monthPickerView.dataSource = self
         yearPickerView.dataSource = self
     }
+    
+    private func dismissToMoodViewController() {
+        self.dismiss(animated: true, completion: nil)
+    }
 
     private func updateMonthData(_ selectedYear: Int) {
         if self.year != currentDate.getYear() && selectedYear == currentDate.getYear() {
@@ -209,7 +213,7 @@ class UploadModalViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func touchCloseButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        dismissToMoodViewController()
     }
     
     @IBAction func touchApplyButton(_ sender: Any) {
@@ -224,7 +228,7 @@ class UploadModalViewController: UIViewController {
         let stringMonth = String(format: "%02d", selectedDate.getMonth())
         let stringDay = String(format: "%02d", selectedDate.getDay())
         self.uploadModalDataDelegate?.passData("\(selectedDate.getYear()). \(stringMonth). \(stringDay). \(selectedDate.getWeekday().toKorean())")
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
+        dismissToMoodViewController()
     }
 }
 
