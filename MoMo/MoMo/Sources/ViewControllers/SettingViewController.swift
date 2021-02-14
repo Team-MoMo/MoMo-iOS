@@ -277,11 +277,6 @@ class SettingViewController: UIViewController {
         self.versionLabel.isHidden = true
     }
     
-    private func deleteUserIdAndToken() {
-        UserDefaults.standard.removeObject(forKey: "token")
-        UserDefaults.standard.removeObject(forKey: "userId")
-    }
-    
     private func updateToastViewConstraints(view: UIView) {
         view.snp.makeConstraints({ (make) in
             make.width.equalTo(self.view)
