@@ -57,7 +57,7 @@ class HomeModalViewController: UIViewController {
     }
 
     private func setData() {
-        for tempYear in 2000...2021 {
+        for tempYear in 2000...currentDate.getYear() {
             self.yearArray.append(String(tempYear))
         }
         for tempMonth in 1...12 {
@@ -76,6 +76,9 @@ class HomeModalViewController: UIViewController {
     
     private func updateMonthDatePickerData(_ unwrappedYear: Int) {
         if unwrappedYear == currentDate.getYear() && self.year != currentDate.getYear() {
+            if month > currentDate.getMonth() {
+                month = currentDate.getMonth()
+            }
             self.year = unwrappedYear
             self.monthPickerView.reloadComponent(0)
         } else if unwrappedYear != currentDate.getYear() && self.year == currentDate.getYear() {
@@ -86,8 +89,12 @@ class HomeModalViewController: UIViewController {
         }
     }
     
-    @IBAction func touchCancelButton(_ sender: Any) {
+    private func dismissToStatisticsViewController() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func touchCancelButton(_ sender: Any) {
+        dismissToStatisticsViewController()
     }
   
     @IBAction func touchApplyButton(_ sender: Any) {
@@ -95,7 +102,7 @@ class HomeModalViewController: UIViewController {
             return
         }
         modal.passData(year: self.year, month: self.month)
-        self.dismiss(animated: true, completion: nil)
+        dismissToStatisticsViewController()
     }
     
 }
