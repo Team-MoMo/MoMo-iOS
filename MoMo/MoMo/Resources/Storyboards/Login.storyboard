@@ -107,7 +107,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="   이메일 로그인" image="icMomoLogo"/>
                                         <connections>
-                                            <action selector="touchEmailLoginButton:" destination="hFo-W1-rx6" eventType="touchUpInside" id="FMG-aV-9q1"/>
+                                            <action selector="touchEmailLoginButton:" destination="hFo-W1-rx6" eventType="touchUpInside" id="orH-u9-fAP"/>
                                         </connections>
                                     </button>
                                 </subviews>
