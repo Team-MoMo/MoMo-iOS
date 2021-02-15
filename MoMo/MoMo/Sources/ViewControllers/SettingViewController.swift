@@ -315,6 +315,13 @@ class SettingViewController: UIViewController {
     private func deleteUserIdAndToken() {
         UserDefaults.standard.removeObject(forKey: "token")
         UserDefaults.standard.removeObject(forKey: "userId")
+        UserDefaults.standard.removeObject(forKey: "loginType")
+    }
+  
+    private func updateVersion() {
+        let nsObject = Bundle.main.infoDictionary?["CFBundleShortVersionString"]
+        guard let version = nsObject as? String else { return }
+        self.versionLabel.text = "Ver. \(version)"
     }
     
     private func attachSwitch(superView: UITableViewCell) {
@@ -383,11 +390,6 @@ class SettingViewController: UIViewController {
         self.versionLabel.isHidden = true
     }
     
-    private func deleteUserIdAndToken() {
-        UserDefaults.standard.removeObject(forKey: "token")
-        UserDefaults.standard.removeObject(forKey: "userId")
-    }
-    
     private func updateToastViewConstraints(view: UIView) {
         view.snp.makeConstraints({ (make) in
             make.width.equalTo(self.view)
@@ -446,7 +448,11 @@ class SettingViewController: UIViewController {
     }
     
     private func pushToTeamMomoViewController() {
-        
+        let teamStoryboard = UIStoryboard(name: Constants.Name.teamStoryboard, bundle: nil)
+        guard let teamViewController = teamStoryboard.instantiateViewController(identifier: Constants.Identifier.teamViewController) as? TeamViewController else {
+            return
+        }
+        self.navigationController?.pushViewController(teamViewController, animated: true)
     }
     
     private func openTeamMomoInstagram() {
@@ -554,6 +560,16 @@ extension SettingViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let cellInfos = self.cellInfos else { return 0 }
+        let cellInfo = cellInfos[indexPath.row]
+        if self.settingViewUsage == .info && cellInfo.image == Constants.Design.Image.icPwChange {
+            if UserDefaults.standard.object(forKey: "loginType") != nil {
+                guard let loginType = UserDefaults.standard.string(forKey: "loginType") else { return 0 }
+                if ["apple", "google", "kakao"].contains(loginType) {
+                    return 0
+                }
+            }
+        }
         return self.cellHeight
     }
 }

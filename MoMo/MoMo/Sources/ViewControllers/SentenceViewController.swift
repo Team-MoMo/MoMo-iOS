@@ -163,16 +163,21 @@ class SentenceViewController: UIViewController {
     }
     
     func pushToDiaryWriteViewController(date: String, mood: AppEmotion, sentence: AppSentence) {
-        let writeStorybaord = UIStoryboard(name: Constants.Name.diaryWriteStoryboard, bundle: nil)
-        guard let uploadWriteViewController = writeStorybaord.instantiateViewController(identifier: Constants.Identifier.diaryWriteViewController) as? DiaryWriteViewController else {
+        let diaryWriteStoryboard = UIStoryboard(name: Constants.Name.diaryWriteStoryboard, bundle: nil)
+        guard let diaryWriteViewController = diaryWriteStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryWriteViewController) as? DiaryWriteViewController else {
             return
         }
-        uploadWriteViewController.date = date
-        uploadWriteViewController.mood = mood
-        uploadWriteViewController.sentence = sentence
-        uploadWriteViewController.isFromDiary = false
+        let diaryInfo = AppDiary(
+            date: AppDate(formattedDate: date, with: ". "),
+            mood: mood,
+            depth: nil,
+            sentence: sentence,
+            diary: nil
+        )
+        diaryWriteViewController.diaryInfo = diaryInfo
+        diaryWriteViewController.isFromDiary = false
         
-        self.navigationController?.pushViewController(uploadWriteViewController, animated: true)
+        self.navigationController?.pushViewController(diaryWriteViewController, animated: true)
     }
     
     func hideButtons() {
@@ -233,18 +238,21 @@ extension SentenceViewController {
             case .success(let data):
                 if let serverData = data as? [Sentence] {
                     self.firstSentence = AppSentence(
+                        id: serverData[0].id,
                         author: serverData[0].writer,
                         bookTitle: serverData[0].bookName,
                         publisher: serverData[0].publisher,
                         sentence: serverData[0].contents
                     )
                     self.secondSentence = AppSentence(
+                        id: serverData[1].id,
                         author: serverData[1].writer,
                         bookTitle: serverData[1].bookName,
                         publisher: serverData[1].publisher,
                         sentence: serverData[1].contents
                     )
                     self.thirdSentence = AppSentence(
+                        id: serverData[2].id,
                         author: serverData[2].writer,
                         bookTitle: serverData[2].bookName,
                         publisher: serverData[2].publisher,

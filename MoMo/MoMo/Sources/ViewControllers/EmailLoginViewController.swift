@@ -23,6 +23,15 @@ class EmailLoginViewController: UIViewController {
     
     // 가입하지 않은 회원일 때
     let isEmailCheckError: Bool = false
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = false
+        activityIndicator.style = UIActivityIndicatorView.Style.medium
+        activityIndicator.startAnimating()
+        return activityIndicator
+    }()
     private lazy var leftButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: Constants.Design.Image.btnBackWhite, style: .plain, target: self, action: #selector(touchNavigationButton(sender:)))
         button.tintColor = UIColor.Black1
@@ -68,8 +77,58 @@ class EmailLoginViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
     }
     
+    // MARK: - Functions
+    
+    private func pushToHomeViewController() {
+        if let homeViewController = self.navigationController?.viewControllers.filter({$0 is HomeViewController}).first as? HomeViewController {
+            homeViewController.isFromLogout = false
+            self.navigationController?.popToViewController(homeViewController, animated: true)
+        } else {
+            let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
+            guard let homeViewController = homeStoryboard.instantiateViewController(identifier: Constants.Identifier.homeViewController) as? HomeViewController else { return }
+            self.navigationController?.pushViewController(homeViewController, animated: true)
+        }
+    }
+    
+    private func popToLoginViewController() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func touchNavigationButton(sender: Any) {
+        if let button = sender as? UIBarButtonItem {
+            switch button.tag {
+            case 0:
+                self.popToLoginViewController()
+            default:
+                return
+            }
+        }
+    }
+    
     // MARK: - @IBAction Properties
+    
     @IBAction func touchUpLoginButton(_ sender: Any) {
+        self.view.addSubview(self.activityIndicator)
+        self.postSignInWithAPI(completion: self.pushToHomeViewController)
+    }
+    
+    @IBAction func touchUpJoinButton(_ sender: Any) {
+        let joinStoryboard = UIStoryboard(name: Constants.Name.joinStoryboard, bundle: nil)
+        let dvc = joinStoryboard.instantiateViewController(identifier: Constants.Identifier.joinViewController)
+        self.navigationController?.pushViewController(dvc, animated: true)
+    }
+    
+    @IBAction func touchUpFindPasswordButton(_ sender: Any) {
+        // let findPasswordStoryboard = UIStoryboard(name: Constants.Name.findPasswordStoryboard, bundle: nil)
+        // let dvc = emailLoginStoryboard.instantiateViewController(identifier: Constants.Identifier.emailLoginViewController)
+        // self.navigationController?.pushViewController(dvc, animated: true)
+    }
+}
+
+// MARK: - API Services
+
+extension EmailLoginViewController {
+    private func postSignInWithAPI(completion: @escaping () -> Void) {
         guard let emailText = emailTextField.text,
               let passwordText = passwordTextField.text else {
             return
@@ -88,14 +147,14 @@ class EmailLoginViewController: UIViewController {
                     
                     UserDefaults.standard.setValue(signInData.token, forKey: "token")
                     UserDefaults.standard.setValue(signInData.user.id, forKey: "userId")
+                    UserDefaults.standard.setValue("email", forKey: "loginType")
                     
-                    if let homeViewController = self.navigationController?.viewControllers.filter({$0 is HomeViewController}).first as? HomeViewController {
-                        homeViewController.isFromLogout = false
-                        self.navigationController?.popToViewController(homeViewController, animated: true)
-                    } else {
-                        let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
-                        guard let homeViewController = homeStoryboard.instantiateViewController(identifier: Constants.Identifier.homeViewController) as? HomeViewController else { return }
-                        self.navigationController?.pushViewController(homeViewController, animated: true)
+                    if self.activityIndicator.isAnimating {
+                        self.activityIndicator.stopAnimating()
+                    }
+                    
+                    DispatchQueue.main.async {
+                        completion()
                     }
                 }
             case .requestErr(let msg):
@@ -115,32 +174,5 @@ class EmailLoginViewController: UIViewController {
                 print("networkFail")
             }
         }
-        
     }
-    
-    private func popToLoginViewController() {
-        self.navigationController?.popViewController(animated: true)
-    }
-    @IBAction func touchUpJoinButton(_ sender: Any) {
-        let joinStoryboard = UIStoryboard(name: Constants.Name.joinStoryboard, bundle: nil)
-        let dvc = joinStoryboard.instantiateViewController(identifier: Constants.Identifier.joinViewController)
-        self.navigationController?.pushViewController(dvc, animated: true)
-    }
-    @IBAction func touchUpFindPasswordButton(_ sender: Any) {
-        // let findPasswordStoryboard = UIStoryboard(name: Constants.Name.findPasswordStoryboard, bundle: nil)
-        // let dvc = emailLoginStoryboard.instantiateViewController(identifier: Constants.Identifier.emailLoginViewController)
-        // self.navigationController?.pushViewController(dvc, animated: true)
-    }
-    
-    @objc private func touchNavigationButton(sender: Any) {
-        if let button = sender as? UIBarButtonItem {
-            switch button.tag {
-            case 0:
-                self.popToLoginViewController()
-            default:
-                return
-            }
-        }
-    }
-    
 }

@@ -94,6 +94,48 @@ enum AppEmotion: Int {
         }
     }
     
+    func toUnselectedIcon() -> UIImage {
+        switch self {
+        case .love:
+            return Constants.Design.Image.iosFilterLoveUnselected!
+        case .happy:
+            return Constants.Design.Image.iosFilterHappyUnselected!
+        case .console:
+            return Constants.Design.Image.iosFilterConsoleUnselected!
+        case .angry:
+            return Constants.Design.Image.iosFilterAngryUnselected!
+        case .sad:
+            return Constants.Design.Image.iosFilterSadUnselected!
+        case .bored:
+            return Constants.Design.Image.iosFilterBoredUnselected!
+        case .memory:
+            return Constants.Design.Image.iosFilterMemoryUnselected!
+        case .daily:
+            return Constants.Design.Image.iosFilterDailyUnselected!
+        }
+    }
+    
+    func toSelectedIcon() -> UIImage {
+        switch self {
+        case .love:
+            return Constants.Design.Image.iosFilterLoveSelected!
+        case .happy:
+            return Constants.Design.Image.iosFilterHappySelected!
+        case .console:
+            return Constants.Design.Image.iosFilterConsoleSelected!
+        case .angry:
+            return Constants.Design.Image.iosFilterAngrySelected!
+        case .sad:
+            return Constants.Design.Image.iosFilterSadSelected!
+        case .bored:
+            return Constants.Design.Image.iosFilterBoredSelected!
+        case .memory:
+            return Constants.Design.Image.iosFilterMemorySelected!
+        case .daily:
+            return Constants.Design.Image.iosFilterDailySelected!
+        }
+    }
+    
     func toTypingLabelText() -> String {
         switch self {
         case .love:
