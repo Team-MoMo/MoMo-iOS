@@ -325,6 +325,11 @@ class SettingViewController: UIViewController {
     }
     
     private func pushToServiceTermViewController() {
+        let serviceTermStoryboard = UIStoryboard(name: Constants.Name.serviceTermStoryboard, bundle: nil)
+        guard let serviceTermViewController = serviceTermStoryboard.instantiateViewController(identifier: Constants.Identifier.serviceTermViewController) as? ServiceTermViewController else {
+            return
+        }
+        self.navigationController?.pushViewController(serviceTermViewController, animated: true)
         
     }
     
