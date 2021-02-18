@@ -65,7 +65,7 @@ class ListViewController: UIViewController {
     private func initializeProperty() {
         journalLabel1WidthSize = self.view.bounds.width * (261/zeplinWidth)
         journalLabel2WidthSize = self.view.bounds.width * (237/zeplinWidth)
-        self.listFilterModalView = ListFilterModalViewController()
+//        self.listFilterModalView = ListFilterModalViewController()
         // 홈에서 받은 데이트 변수에 대입
         date = "\(year)년 \(month)월"
         // 필터에서 기준으로 잡을 년과 월 저장
@@ -219,6 +219,8 @@ class ListViewController: UIViewController {
     }
     
     func presentToListFilterModalView() {
+        listFilterModalView = ListFilterModalViewController()
+        updateDelegate()
         guard let modalView = listFilterModalView else {
             return
         }
@@ -226,8 +228,6 @@ class ListViewController: UIViewController {
         modalView.selectedMonth = self.month
         modalView.width = view.bounds.width
         modalView.height = view.bounds.height
-        modalView.emotion = self.filteredEmotion
-        modalView.depth = self.filteredDepth
         modalView.modalPresentationStyle = .custom
         modalView.transitioningDelegate = self
         
@@ -420,11 +420,12 @@ extension ListViewController: ListFilterModalViewDelegate {
         self.month = month
         self.filter = filterArray
         self.date = "\(year)년 \(month)월"
+        updateNavigationBarButton()
+
         if filterArray.count > 0 || self.year != standardYear || self.month != standardMonth {
             self.pattern = true
         }
         if year == standardYear && month == standardMonth && filterArray.count == 0 {
-            updateNavigationBarButton()
             getDiariesWithAPI(userID: String(APIConstants.userId),
                           year: String(year),
                           month: String(month),
@@ -440,14 +441,7 @@ extension ListViewController: ListFilterModalViewDelegate {
         } else {
             self.filteredDepth = depth
             self.filteredEmotion = emotion
-            updateNavigationBarButton()
-            getDiariesWithAPI(userID: String(APIConstants.userId),
-                          year: String(year),
-                          month: String(month),
-                          order: "filter",
-                          day: nil,
-                          emotionID: emotion,
-                          depth: depth)
+            unwrapSendDataParam(paramEmotion: emotion, paramDepth: depth)
             self.listTableView.reloadData()
             let indexPath = IndexPath(row: 0, section: 1)
             guard let cell = listTableView.cellForRow(at: indexPath) as? ListFilterTableViewCell else {
@@ -457,5 +451,54 @@ extension ListViewController: ListFilterModalViewDelegate {
         }
         self.listFilterModalView = ListFilterModalViewController()
         self.updateDelegate()
+    }
+    
+    private func unwrapSendDataParam(paramEmotion: Int?, paramDepth: Int?) {
+        
+        if paramEmotion == nil && paramDepth != nil {
+            guard let unwrappedDepth = paramDepth else {
+                return
+            }
+            getDiariesWithAPI(userID: String(APIConstants.userId),
+                          year: String(year),
+                          month: String(month),
+                          order: "filter",
+                          day: nil,
+                          emotionID: nil,
+                          depth: unwrappedDepth)
+            
+        } else if paramEmotion != nil && paramDepth == nil {
+            guard let unwrappedEmotion = paramEmotion else {
+                return
+            }
+            getDiariesWithAPI(userID: String(APIConstants.userId),
+                          year: String(year),
+                          month: String(month),
+                          order: "filter",
+                          day: nil,
+                          emotionID: unwrappedEmotion,
+                          depth: nil)
+            
+        } else if paramEmotion != nil && paramDepth != nil {
+            guard let unwrappedEmotion = paramEmotion, let unwrappedDepth = paramDepth else {
+                return
+            }
+            getDiariesWithAPI(userID: String(APIConstants.userId),
+                          year: String(year),
+                          month: String(month),
+                          order: "filter",
+                          day: nil,
+                          emotionID: unwrappedEmotion,
+                          depth: unwrappedDepth)
+            
+        } else {
+            getDiariesWithAPI(userID: String(APIConstants.userId),
+                          year: String(year),
+                          month: String(month),
+                          order: "filter",
+                          day: nil,
+                          emotionID: nil,
+                          depth: nil)
+        }
     }
 }

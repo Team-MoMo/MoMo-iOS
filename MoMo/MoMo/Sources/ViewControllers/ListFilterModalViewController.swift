@@ -108,6 +108,7 @@ class ListFilterModalViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        initializeEmotionDepthProperties()
         DispatchQueue.main.async {
             self.yearPickerView.subviews[1].backgroundColor = UIColor.clear
             self.monthPickerView.subviews[1].backgroundColor = UIColor.clear
@@ -119,6 +120,14 @@ class ListFilterModalViewController: UIViewController {
             hasSetPointOrigin = true
             pointOrigin = self.view.frame.origin
         }
+    }
+    
+
+    // MARK: - Private Functions
+    
+    private func initializeEmotionDepthProperties() {
+        self.emotion = nil
+        self.depth = nil
     }
     
     private func initializePickerView() {
@@ -136,7 +145,6 @@ class ListFilterModalViewController: UIViewController {
         emotionView.layer.addSublayer(layer)
     }
 
-    // MARK: - Private Functions
     
     private func registerXib() {
         emotionCollectionView.register(UINib(nibName: "EmotionCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EmotionCollectionViewCell")
@@ -285,18 +293,22 @@ class ListFilterModalViewController: UIViewController {
     
     @IBAction func touchApplyButton(_ sender: Any) {
         var tempFilterArray: [String] = []
+        var tempEmotionId: Int?
+        var tempDepthId: Int?
         if let unwrappedEmotion = emotion {
             tempFilterArray.append(appEmotionArray[unwrappedEmotion].toString())
+            tempEmotionId = appEmotionArray[unwrappedEmotion].rawValue
         }
 
         if let unwrappedDepth = depth {
             tempFilterArray.append(appDepthArray[unwrappedDepth].toString())
+            tempDepthId = appDepthArray[unwrappedDepth].rawValue
         }
         
         listFilterModalDelegate?.sendData(year: selectedYear,
                                         month: selectedMonth,
-                                        emotion: emotion,
-                                        depth: depth,
+                                        emotion: tempEmotionId,
+                                        depth: tempDepthId,
                                         filterArray: tempFilterArray,
                                         filteredStatus: true)
         initializeModal()
