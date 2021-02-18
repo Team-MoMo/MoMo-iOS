@@ -93,8 +93,10 @@ class MoodViewController: UIViewController {
     func initializeDateLabel(recentDate: String, verifyToday: Bool) {
         if !verifyToday {
             self.dateLabel.text = self.currentDate?.getFormattedDateAndWeekday(with: ". ")
+            self.selectedDate = self.currentDate
         } else {
             let date = AppDate(serverDate: recentDate)
+            self.selectedDate = date
             self.dateLabel.text = date.getFormattedDateAndWeekday(with: ". ")
             if listNoDiary {
                 self.presentUploadModalView(year: date.getYear(), month: date.getMonth(), day: date.getDay())
