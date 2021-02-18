@@ -137,6 +137,36 @@ class ListViewController: UIViewController {
             self.filterWarningLabel.isHidden = true
         }
     }
+    
+    private func updateFilterCollectionViewCell(_ tagNumber: Int, _ identifier: String) {
+        let indexPath = IndexPath(row: 0, section: 1)
+    
+        if identifier.contains("m") || identifier == "심해" {
+            filteredDepth = nil
+        } else {
+            filteredEmotion = nil
+        }
+        guard let cell = listTableView.cellForRow(at: indexPath) as? ListFilterTableViewCell else {
+            return
+        }
+        filter.remove(at: tagNumber)
+        if filter.count == 0 {
+            pattern.toggle()
+            updateNavigationBarButton()
+        }
+        getDiariesWithAPI(userID: String(APIConstants.userId),
+                      year: String(year),
+                      month: String(month),
+                      order: "filter",
+                      day: nil,
+                      emotionID: filteredEmotion,
+                      depth: filteredDepth)
+        cell.filterCollectionView.reloadData()
+    }
+    
+    private func scrollTableViewToTop() {
+        self.listTableView.contentOffset = .zero
+    }
     // MARK: - 서버 통신
     func getDiariesWithAPI(userID: String,
                            year: String,
@@ -180,23 +210,22 @@ class ListViewController: UIViewController {
     
     // 필터 라벨 외 부분을 터치했을 때 실행되는 함수
     @objc func tapEmptySpace(_ sender: UITapGestureRecognizer) {
-        guard let tagNumber = sender.view?.tag else {
+
+        guard let tagNumber = sender.view?.tag, let identifier = sender.view?.accessibilityIdentifier else {
             return
         }
-        let indexPath = IndexPath(row: 0, section: 1)
-        guard let cell = listTableView.cellForRow(at: indexPath) as? ListFilterTableViewCell else {
-            return
-        }
-        filter.remove(at: tagNumber)
-        cell.filterCollectionView.reloadData()
         
-        if filter.count == 0 {
-            pattern.toggle()
-            listTableView.reloadData()
-            updateNavigationBarButton()
-        }
+        updateFilterCollectionViewCell(tagNumber, identifier)
     }
     
+    // filter x버튼 클릭시 발생하는 함수
+    @objc func touchCancelButton(sender: UIButton) {
+        guard let identifier = sender.accessibilityIdentifier else {
+            return
+        }
+        updateFilterCollectionViewCell(sender.tag, identifier)
+        
+    }
     @objc func touchFilterButton() {
         presentToListFilterModalView()
     }
@@ -232,36 +261,6 @@ class ListViewController: UIViewController {
         modalView.transitioningDelegate = self
         
         self.present(modalView, animated: true, completion: nil)
-    }
-    
-    // filter x버튼 클릭시 발생하는 함수
-    @objc func touchCancelButton(sender: UIButton) {
-        let indexPath = IndexPath(row: 0, section: 1)
-        guard let buttonAccessibilityLabel = sender.accessibilityIdentifier else {
-            return
-        }
-        if buttonAccessibilityLabel.contains("m") || buttonAccessibilityLabel == "심해" {
-            filteredDepth = nil
-        } else {
-            filteredEmotion = nil
-        }
-        guard let cell = listTableView.cellForRow(at: indexPath) as? ListFilterTableViewCell else {
-            return
-        }
-        filter.remove(at: sender.tag)
-        if filter.count == 0 {
-            pattern.toggle()
-            updateNavigationBarButton()
-        }
-        getDiariesWithAPI(userID: String(APIConstants.userId),
-                      year: String(year),
-                      month: String(month),
-                      order: "filter",
-                      day: nil,
-                      emotionID: filteredEmotion,
-                      depth: filteredDepth)
-        cell.filterCollectionView.reloadData()
-        
     }
     
     @objc func touchMoreButton(sender: UIButton) {
@@ -391,7 +390,7 @@ extension ListViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         cell.clipsToBounds = true
-        cell.layer.cornerRadius = 10
+        cell.layer.cornerRadius = 8
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapEmptySpace(_:)))
         cell.filterLabel.text = filter[indexPath.row]
         // index 값을 tag에 넣어서 배열에 쉽게 접근
@@ -416,6 +415,7 @@ extension ListViewController: UIViewControllerTransitioningDelegate {
 // MARK: - ListFilterModalViewDelegate
 extension ListViewController: ListFilterModalViewDelegate {
     func sendData(year: Int, month: Int, emotion: Int?, depth: Int?, filterArray: [String], filteredStatus: Bool) {
+        scrollTableViewToTop()
         self.year = year
         self.month = month
         self.filter = filterArray
