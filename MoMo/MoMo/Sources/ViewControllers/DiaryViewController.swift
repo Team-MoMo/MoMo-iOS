@@ -101,22 +101,26 @@ class DiaryViewController: UIViewController {
     }
     
     func updateDiaryViewController(diaryInfo: AppDiary?) {
-        guard let safeDiaryInfo = diaryInfo else { return }
+        guard let safeDiaryInfo = diaryInfo, let safeDepth = safeDiaryInfo.depth else { return }
         self.updateProperties(diaryInfo: safeDiaryInfo)
-        self.updateObjetsByDepth(depth: safeDiaryInfo.depth)
+        self.updateObjetsByDepth(depth: safeDepth)
         self.updateBackgroundColorByDepth(depth: safeDiaryInfo.depth)
     }
     
     func updateProperties(diaryInfo: AppDiary?) {
-        self.dateLabel.text = diaryInfo?.date.getFormattedDateAndWeekday(with: ". ")
-        self.moodImage.image = diaryInfo?.mood.toWhiteIcon()
-        self.moodLabel.text = diaryInfo?.mood.toString()
-        self.depthLabel.text = diaryInfo?.depth.toString()
-        self.sentenceLabel.text = diaryInfo?.sentence.sentence
-        self.authorLabel.text = diaryInfo?.sentence.author
-        self.bookTitleLabel.text = "<\(diaryInfo!.sentence.bookTitle)>"
-        self.authorLabel.text = diaryInfo?.sentence.author
-        self.publisherLabel.text = "(\(diaryInfo!.sentence.publisher))"
+        guard let safeDate = diaryInfo?.date,
+              let safeMood = diaryInfo?.mood,
+              let safeDepth = diaryInfo?.depth,
+              let safeSentence = diaryInfo?.sentence else { return }
+        self.dateLabel.text = safeDate.getFormattedDateAndWeekday(with: ". ")
+        self.moodImage.image = safeMood.toWhiteIcon()
+        self.moodLabel.text = safeMood.toString()
+        self.depthLabel.text = safeDepth.toString()
+        self.sentenceLabel.text = safeSentence.sentence
+        self.authorLabel.text = safeSentence.author
+        self.bookTitleLabel.text = "<\(safeSentence.bookTitle)>"
+        self.authorLabel.text = safeSentence.author
+        self.publisherLabel.text = "(\(safeSentence.publisher))"
         self.diaryLabel.text = diaryInfo?.diary
     }
     
@@ -326,14 +330,14 @@ class DiaryViewController: UIViewController {
         self.uploadModalViewController = UploadModalViewController()
         
         if let uploadModalViewController = self.uploadModalViewController {
-            guard let safeDiaryInfo = self.diaryInfo else { return }
+            guard let safeDate = self.diaryInfo?.date else { return }
             
             uploadModalViewController.modalPresentationStyle = .custom
             uploadModalViewController.transitioningDelegate = self
             uploadModalViewController.uploadModalDataDelegate = self
-            uploadModalViewController.year = safeDiaryInfo.date.getYear()
-            uploadModalViewController.month = safeDiaryInfo.date.getMonth()
-            uploadModalViewController.day = safeDiaryInfo.date.getDay()
+            uploadModalViewController.year = safeDate.getYear()
+            uploadModalViewController.month = safeDate.getMonth()
+            uploadModalViewController.day = safeDate.getDay()
             self.present(uploadModalViewController, animated: true, completion: nil)
         }
     }
@@ -406,13 +410,12 @@ extension DiaryViewController: DiaryWriteViewControllerDelegate {
     func popToDiaryViewController(diaryInfo: AppDiary?) {
         self.menuView?.removeFromSuperview()
         self.menuToggleFlag = false
-        guard let safeDiaryInfo = self.diaryInfo else { return }
+        guard let safeDiaryInfo = diaryInfo else { return }
         self.putDiaryWithAPI(newDiary: safeDiaryInfo, completion: {
             self.getDiaryWithAPI(completion: self.updateDiaryViewController(diaryInfo:))
             self.attachToastViewWithAnimation(message: "일기가 수정되었습니다")
         })
     }
-
 }
 
 // MARK: - DeepViewControllerDelegate
@@ -471,16 +474,21 @@ extension DiaryViewController {
     }
     
     func putDiaryWithAPI(newDiary: AppDiary, completion: @escaping () -> Void) {
-        guard let diaryId = self.diaryId else { return }
-        guard let sentenceId = newDiary.sentence.id else { return }
+        guard let diaryId = self.diaryId,
+              let sentenceId = newDiary.sentence?.id,
+              let depthId = newDiary.depth?.rawValue,
+              let diary = newDiary.diary,
+              let moodId = newDiary.mood?.rawValue,
+              let date = newDiary.date else { return }
+        
         DiariesWithIDService.shared.putDiaryWithDiaryId(
             diaryId: diaryId,
-            depth: newDiary.depth.rawValue,
-            contents: newDiary.diary,
+            depth: depthId,
+            contents: diary,
             userId: APIConstants.userId,
             sentenceId: sentenceId,
-            emotionId: newDiary.mood.rawValue,
-            wroteAt: newDiary.date.getFormattedDate(with: "-")
+            emotionId: moodId,
+            wroteAt: date.getFormattedDate(with: "-")
         ) { (result) in
             switch result {
             case .success:

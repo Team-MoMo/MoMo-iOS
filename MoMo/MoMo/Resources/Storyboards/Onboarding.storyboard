@@ -186,7 +186,7 @@
                                                                     <constraint firstItem="Pic-4x-85E" firstAttribute="leading" secondItem="Z6t-N3-7IR" secondAttribute="leading" id="fMX-29-Rze"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="loveButtonTouchUp:" destination="Ykz-9x-Zzr" eventType="touchUpInside" id="y09-cp-78c"/>
+                                                                    <action selector="touchLoveButton:" destination="Ykz-9x-Zzr" eventType="touchUpInside" id="YKs-NO-NJs"/>
                                                                 </connections>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WAU-KM-16L" customClass="UIButton">
@@ -213,7 +213,7 @@
                                                                     <constraint firstAttribute="bottom" secondItem="uB6-72-Ihb" secondAttribute="bottom" id="xOO-Dw-sAI"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="happyButtonTouchUp:" destination="Ykz-9x-Zzr" eventType="touchUpInside" id="cum-bu-lLC"/>
+                                                                    <action selector="touchHappyButton:" destination="Ykz-9x-Zzr" eventType="touchUpInside" id="ZcJ-HL-4yz"/>
                                                                 </connections>
                                                             </view>
                                                         </subviews>
@@ -245,7 +245,7 @@
                                                                     <constraint firstAttribute="width" secondItem="F2J-h9-f0H" secondAttribute="height" multiplier="1.48:1" id="zyx-rd-Tml"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="consoleButtonTouchUp:" destination="Ykz-9x-Zzr" eventType="touchUpInside" id="Qi3-Jd-SL5"/>
+                                                                    <action selector="touchConsoleButton:" destination="Ykz-9x-Zzr" eventType="touchUpInside" id="CXV-Az-XDI"/>
                                                                 </connections>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7tF-hv-4Go" customClass="UIButton">
@@ -272,7 +272,7 @@
                                                                     <constraint firstAttribute="width" secondItem="7tF-hv-4Go" secondAttribute="height" multiplier="1.48:1" id="nW8-Kb-Egs"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="angryButtonTouchUp:" destination="Ykz-9x-Zzr" eventType="touchUpInside" id="ycQ-1T-Tbx"/>
+                                                                    <action selector="touchAngryButton:" destination="Ykz-9x-Zzr" eventType="touchUpInside" id="BEX-9p-Lhd"/>
                                                                 </connections>
                                                             </view>
                                                         </subviews>
@@ -304,7 +304,7 @@
                                                                     <constraint firstItem="PSb-PJ-zLL" firstAttribute="top" secondItem="csv-jI-MP9" secondAttribute="top" id="qFd-8S-9n0"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="sadButtonTouchUp:" destination="Ykz-9x-Zzr" eventType="touchUpInside" id="fdI-as-OUD"/>
+                                                                    <action selector="touchSadButton:" destination="Ykz-9x-Zzr" eventType="touchUpInside" id="Wzp-CM-vZE"/>
                                                                 </connections>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yca-XF-yfr" customClass="UIButton">
@@ -331,7 +331,7 @@
                                                                     <constraint firstAttribute="trailing" secondItem="ThU-9S-w8Y" secondAttribute="trailing" constant="12" id="yrV-Pz-o31"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="boredButtonTouchUp:" destination="Ykz-9x-Zzr" eventType="touchUpInside" id="4XZ-yt-ZC2"/>
+                                                                    <action selector="touchBoredButton:" destination="Ykz-9x-Zzr" eventType="touchUpInside" id="DAA-LF-owB"/>
                                                                 </connections>
                                                             </view>
                                                         </subviews>
@@ -363,7 +363,7 @@
                                                                     <constraint firstAttribute="bottom" secondItem="cEp-Dz-SGh" secondAttribute="bottom" id="xex-o5-O9Z"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="memoryButtonTouchUp:" destination="Ykz-9x-Zzr" eventType="touchUpInside" id="qTo-iN-5OS"/>
+                                                                    <action selector="touchMemoryButton:" destination="Ykz-9x-Zzr" eventType="touchUpInside" id="lXH-p0-k9G"/>
                                                                 </connections>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zlw-AO-650" customClass="UIButton">
@@ -390,7 +390,7 @@
                                                                     <constraint firstAttribute="width" secondItem="Zlw-AO-650" secondAttribute="height" multiplier="1.48:1" id="wXe-q5-Yhg"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="dailyButtonTouchUp:" destination="Ykz-9x-Zzr" eventType="touchUpInside" id="4EF-QY-Itn"/>
+                                                                    <action selector="touchDailyButton:" destination="Ykz-9x-Zzr" eventType="touchUpInside" id="1QD-fc-bzQ"/>
                                                                 </connections>
                                                             </view>
                                                         </subviews>
@@ -1074,10 +1074,7 @@
             <color red="0.41999998688697815" green="0.71799999475479126" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="OnboardingBlue">
-            <color red="0.49803921580314636" green="0.74901962280273438" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.49803921568627452" green="0.74901960784313726" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>
