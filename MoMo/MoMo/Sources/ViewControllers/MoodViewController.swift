@@ -42,20 +42,14 @@ class MoodViewController: UIViewController {
         
         guard let currentDate = self.currentDate else { return }
         
-        if self.listNoDiary {
-            self.getDiariesWithAPI(userID: "\(APIConstants.userId))",
-                                   year: currentDate.getYearToString(),
-                                   month: currentDate.getMonthToString(),
-                                   order: "filter",
-                                   day: currentDate.getDay(),
-                                   emotionID: nil,
-                                   depth: nil
-            )
-            self.listNoDiary.toggle()
-        } else {
-            self.dateLabel.text = currentDate.getFormattedDateAndWeekday(with: ". ")
-        }
-        
+        self.getDiariesWithAPI(userID: String(APIConstants.userId),
+                               year: currentDate.getYearToString(),
+                               month: currentDate.getMonthToString(),
+                               order: "filter",
+                               day: currentDate.getDay(),
+                               emotionID: nil,
+                               depth: nil
+        )
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,13 +90,17 @@ class MoodViewController: UIViewController {
         self.modalView?.uploadModalDataDelegate = self
     }
     
-    func compareRecentDate(recentDate: String, verifyToday: Bool) {
+    func initializeDateLabel(recentDate: String, verifyToday: Bool) {
         if !verifyToday {
             self.dateLabel.text = self.currentDate?.getFormattedDateAndWeekday(with: ". ")
+            self.selectedDate = self.currentDate
         } else {
             let date = AppDate(serverDate: recentDate)
+            self.selectedDate = date
             self.dateLabel.text = date.getFormattedDateAndWeekday(with: ". ")
-            self.presentUploadModalView(year: date.getYear(), month: date.getMonth(), day: date.getDay())
+            if listNoDiary {
+                self.presentUploadModalView(year: date.getYear(), month: date.getMonth(), day: date.getDay())
+            }
         }
     }
     
@@ -153,7 +151,7 @@ class MoodViewController: UIViewController {
         guard let sentenceViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.sentenceViewController) as? SentenceViewController else { return }
         
         sentenceViewController.selectedMood = mood
-        sentenceViewController.date = self.selectedDate?.getFormattedDateAndWeekday(with: ". ")
+        sentenceViewController.date = self.dateLabel.text
         sentenceViewController.changeUsage = self.changeUsage
         
         self.navigationController?.pushViewController(sentenceViewController, animated: true)
@@ -266,7 +264,7 @@ extension MoodViewController {
             switch networkResult {
             case .success(let data):
                 if let recentDate = data as? String {
-                    self.compareRecentDate(recentDate: recentDate, verifyToday: verifyToday)
+                    self.initializeDateLabel(recentDate: recentDate, verifyToday: verifyToday)
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
