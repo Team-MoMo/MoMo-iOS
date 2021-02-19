@@ -289,6 +289,20 @@ class SettingViewController: UIViewController {
         )
     }
     
+    private func attachWithdrawalButton(superView: UITableViewCell) {
+        superView.addSubview(self.withdrawalButton)
+        self.updateWithdrawalButtonConstraints(superView: superView)
+    }
+    
+    private func attachAlertModalView(alertLabelText: String) {
+        self.alertModalView = AlertModalView.instantiate(alertLabelText: alertLabelText, leftButtonTitle: "확인", rightButtonTitle: "취소")
+        if let alertModalView = self.alertModalView {
+            alertModalView.alertModalDelegate = self
+            self.view.insertSubview(alertModalView, aboveSubview: self.view)
+            self.updateAlertModalViewConstraints(view: alertModalView)
+        }
+    }
+    
     private func attachToastView(message: String) {
         self.toastView = ToastView.instantiate(message: message)
         guard let toastView = self.toastView else { return }
@@ -307,15 +321,6 @@ class SettingViewController: UIViewController {
     
     private func hideVersionLabel() {
         self.versionLabel.isHidden = true
-    }
-    
-    private func updateToastViewConstraints(view: UIView) {
-        view.snp.makeConstraints({ (make) in
-            make.width.equalTo(self.view)
-            make.height.equalTo(self.view)
-            make.centerX.equalTo(self.view)
-            make.centerY.equalTo(self.view)
-        })
     }
     
     private func detachToastView() {
