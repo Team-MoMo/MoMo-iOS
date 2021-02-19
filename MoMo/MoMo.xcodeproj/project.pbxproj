@@ -96,6 +96,8 @@
 		562C645925C1AFAD00AA9AB6 /* AppDepth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562C645825C1AFAD00AA9AB6 /* AppDepth.swift */; };
 		562C645C25C1B14F00AA9AB6 /* AppSentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562C645B25C1B14F00AA9AB6 /* AppSentence.swift */; };
 		562C645F25C1B16000AA9AB6 /* AppDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562C645E25C1B16000AA9AB6 /* AppDiary.swift */; };
+		562C648E25D0553700AA9AB6 /* GetPasswordAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 562C648D25D0553700AA9AB6 /* GetPasswordAlertView.xib */; };
+		562C649125D0554300AA9AB6 /* GetPasswordAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562C649025D0554300AA9AB6 /* GetPasswordAlertView.swift */; };
 		5637606725B04AA800651EAA /* SignUpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5637606625B04AA800651EAA /* SignUpService.swift */; };
 		5637606A25B04ABC00651EAA /* SignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5637606925B04ABC00651EAA /* SignInService.swift */; };
 		5637607325B04F6400651EAA /* PasswordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5637607225B04F6400651EAA /* PasswordService.swift */; };
@@ -227,6 +229,8 @@
 		562C645825C1AFAD00AA9AB6 /* AppDepth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDepth.swift; sourceTree = "<group>"; };
 		562C645B25C1B14F00AA9AB6 /* AppSentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSentence.swift; sourceTree = "<group>"; };
 		562C645E25C1B16000AA9AB6 /* AppDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDiary.swift; sourceTree = "<group>"; };
+		562C648D25D0553700AA9AB6 /* GetPasswordAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GetPasswordAlertView.xib; sourceTree = "<group>"; };
+		562C649025D0554300AA9AB6 /* GetPasswordAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPasswordAlertView.swift; sourceTree = "<group>"; };
 		562C648125C9B43500AA9AB6 /* MoMo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoMo.entitlements; sourceTree = "<group>"; };
 		5637606625B04AA800651EAA /* SignUpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpService.swift; sourceTree = "<group>"; };
 		5637606925B04ABC00651EAA /* SignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInService.swift; sourceTree = "<group>"; };
@@ -329,6 +333,8 @@
 				1C52BE0725AD656700D02771 /* AlertModalView.xib */,
 				1C8DD8F725C8850F00C7A3BA /* ToastView.swift */,
 				1C8DD8FA25C8851A00C7A3BA /* ToastView.xib */,
+				562C649025D0554300AA9AB6 /* GetPasswordAlertView.swift */,
+				562C648D25D0553700AA9AB6 /* GetPasswordAlertView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -668,6 +674,7 @@
 				1C5876C525D04C57004537A5 /* Lock.storyboard in Resources */,
 				563B03DF25ACB59800DA74C5 /* Login.storyboard in Resources */,
 				107919C225A484E60024C711 /* FilterCollectionViewCell.xib in Resources */,
+				562C648E25D0553700AA9AB6 /* GetPasswordAlertView.xib in Resources */,
 				10BECB8925D2CC9C0091C53D /* Team.storyboard in Resources */,
 				1C8DD90425C92AC100C7A3BA /* Setting.storyboard in Resources */,
 				10DDA34125AF09A900620C41 /* DepthCollectionViewCell.xib in Resources */,
@@ -840,6 +847,7 @@
 				10029DA725B0FEDD00060E14 /* HomeModalViewController.swift in Sources */,
 				1CEF46C525A6E09100AF3D81 /* MoodViewController.swift in Sources */,
 				5687645E2599FB48009CB486 /* AppConstants.swift in Sources */,
+				562C649125D0554300AA9AB6 /* GetPasswordAlertView.swift in Sources */,
 				10DDA34025AF09A900620C41 /* DepthCollectionViewCell.swift in Sources */,
 				563B050025AF765500DA74C5 /* AuthData.swift in Sources */,
 			);
