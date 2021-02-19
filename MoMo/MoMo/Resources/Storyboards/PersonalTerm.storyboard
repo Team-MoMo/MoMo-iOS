@@ -102,8 +102,8 @@ MOMO 은 정보주체의 이용정보를 저장하고 수시로 불러오는 ‘
 3. 개인정보에 대한 접근 제한
 개인정보를 처리하는 데이터베이스시스템에 대한 접근권한의 부여,변경,말소를 통하여 개인정보에 대한 접근통제를 위하여 필요한 조치를 하고 있으며 침입차단시스템을 이용하여 외부로부터의 무단 접근을 통제하고 있습니다.
 </string>
-                                <color key="textColor" name="Black2Nav"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <color key="textColor" name="Black1"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
@@ -126,8 +126,8 @@ MOMO 은 정보주체의 이용정보를 저장하고 수시로 불러오는 ‘
         </scene>
     </scenes>
     <resources>
-        <namedColor name="Black2Nav">
-            <color red="0.23499999940395355" green="0.23499999940395355" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="Black1">
+            <color red="0.12200000137090683" green="0.12200000137090683" blue="0.12200000137090683" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

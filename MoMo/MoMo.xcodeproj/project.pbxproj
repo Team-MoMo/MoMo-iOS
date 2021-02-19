@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10008E8025DD520E00B508C0 /* ServiceTerm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10008E7F25DD520E00B508C0 /* ServiceTerm.storyboard */; };
+		10008E8325DD525C00B508C0 /* ServiceTermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10008E8225DD525C00B508C0 /* ServiceTermViewController.swift */; };
 		10029DA725B0FEDD00060E14 /* HomeModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10029DA525B0FEDD00060E14 /* HomeModalViewController.swift */; };
 		10029DA825B0FEDD00060E14 /* HomeModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10029DA625B0FEDD00060E14 /* HomeModalViewController.xib */; };
 		10029DAB25B108E000060E14 /* HomeModalPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10029DAA25B108E000060E14 /* HomeModalPresentation.swift */; };
@@ -141,6 +143,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10008E7F25DD520E00B508C0 /* ServiceTerm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ServiceTerm.storyboard; sourceTree = "<group>"; };
+		10008E8225DD525C00B508C0 /* ServiceTermViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTermViewController.swift; sourceTree = "<group>"; };
 		10029DA525B0FEDD00060E14 /* HomeModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModalViewController.swift; sourceTree = "<group>"; };
 		10029DA625B0FEDD00060E14 /* HomeModalViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeModalViewController.xib; sourceTree = "<group>"; };
 		10029DAA25B108E000060E14 /* HomeModalPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModalPresentation.swift; sourceTree = "<group>"; };
@@ -499,6 +503,7 @@
 				10F092A225CC34FF00342B18 /* OpenSource.storyboard */,
 				10B5913B25CBDB2D0063C7B9 /* PersonalTerm.storyboard */,
 				1C5876C825D28BDF004537A5 /* ChangePassword.storyboard */,
+				10008E7F25DD520E00B508C0 /* ServiceTerm.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -563,6 +568,7 @@
 				10F092AD25CC3FA900342B18 /* OpenSourceDetailViewController.swift */,
 				10B5914225CBE0700063C7B9 /* PersonalTermViewController.swift */,
 				1C5876CB25D28BEF004537A5 /* ChangePasswordViewController.swift */,
+				10008E8225DD525C00B508C0 /* ServiceTermViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -666,6 +672,7 @@
 				568764192599AD3C009CB486 /* LaunchScreen.storyboard in Resources */,
 				107919BD25A484510024C711 /* ListFilterTableViewCell.xib in Resources */,
 				10E5CD8025ADF145004FDC24 /* UploadModalViewController.xib in Resources */,
+				10008E8025DD520E00B508C0 /* ServiceTerm.storyboard in Resources */,
 				563B037C25AA106F00DA74C5 /* BubbleTableViewCell.xib in Resources */,
 				1CEF46C225A6DAA000AF3D81 /* Onboarding.storyboard in Resources */,
 				568764162599AD3C009CB486 /* Assets.xcassets in Resources */,
@@ -850,6 +857,7 @@
 				1CA39A1525B1BE6D00E58209 /* OnboardingService.swift in Sources */,
 				10029DA725B0FEDD00060E14 /* HomeModalViewController.swift in Sources */,
 				1CEF46C525A6E09100AF3D81 /* MoodViewController.swift in Sources */,
+				10008E8325DD525C00B508C0 /* ServiceTermViewController.swift in Sources */,
 				5687645E2599FB48009CB486 /* AppConstants.swift in Sources */,
 				562C649125D0554300AA9AB6 /* GetPasswordAlertView.swift in Sources */,
 				10DDA34025AF09A900620C41 /* DepthCollectionViewCell.swift in Sources */,

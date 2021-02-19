@@ -111,13 +111,16 @@ class PersonalTermViewController: UIViewController {
     // MARK: - Override ViewCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        initializeTextView()
+        initializeTextViewText()
         initializeNavigationItem()
-        print(personalInfoTextView.contentSize)
-        print(personalInfoTextView.contentOffset)
+        initializeTextView()
     }
     
     private func initializeTextView() {
+        personalInfoTextView.scrollRangeToVisible(NSRange(location: 0, length: 0))
+    }
+    
+    private func initializeTextViewText() {
         let attributedString = NSMutableAttributedString(string: personalTermText)
         let paragraphStyle = NSMutableParagraphStyle()
         
