@@ -24,4 +24,5 @@ struct User: Codable {
     let tempPasswordCreatedAt: String?
     let tempPasswordIssueCount: Int
     let createdAt, updatedAt: String
+    let deletedAt: String?
 }

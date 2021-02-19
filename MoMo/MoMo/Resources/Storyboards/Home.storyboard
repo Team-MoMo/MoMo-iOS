@@ -75,6 +75,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="btnIcMyBlue"/>
+                                        <connections>
+                                            <action selector="touchMyPageButton:" destination="svO-LC-Z4h" eventType="touchUpInside" id="9wU-re-vd9"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Kqd-lh-9gO">
                                         <rect key="frame" x="0.0" y="40" width="24" height="24"/>

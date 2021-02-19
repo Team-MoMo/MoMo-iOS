@@ -12,7 +12,7 @@ struct SignUpService {
     
     static let shared = SignUpService()
     
-    // MARK: - GET
+    // MARK: - GET : 이메일 중복확인
     
     func getSignUp(email: String,
                    completion: @escaping (NetworkResult<Any>) -> (Void)) {
@@ -68,7 +68,7 @@ struct SignUpService {
         }
     }
     
-    // MARK: - POST
+    // MARK: - POST : 회원가입
     
     func postSignUp(email: String,
                     password: String,
@@ -85,7 +85,7 @@ struct SignUpService {
         let dataRequest = AF.request(url,
                                      method: .post,
                                      parameters: body,
-                                     encoding: URLEncoding.default,
+                                     encoding: JSONEncoding.default,
                                      headers: header)
         
         dataRequest.responseData { (response) in

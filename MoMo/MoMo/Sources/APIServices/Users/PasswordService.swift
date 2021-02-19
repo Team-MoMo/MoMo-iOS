@@ -28,7 +28,7 @@ struct PasswordService {
         let dataRequest = AF.request(url,
                                      method: .put,
                                      parameters: body,
-                                     encoding: URLEncoding.default,
+                                     encoding: JSONEncoding.default,
                                      headers: header)
         dataRequest.responseData { (response) in
             switch response.result {
@@ -72,7 +72,7 @@ struct PasswordService {
     // MARK: - POST
     
     func postPassword(password: String,
-                    completion: @escaping (NetworkResult<Any>) -> (Void)) {
+                      completion: @escaping (NetworkResult<Any>) -> Void) {
         let url = APIConstants.passwordURL
         let header: HTTPHeaders = [
             "Content-Type": "application/json",
@@ -85,7 +85,7 @@ struct PasswordService {
         let dataRequest = AF.request(url,
                                      method: .post,
                                      parameters: body,
-                                     encoding: URLEncoding.default,
+                                     encoding: JSONEncoding.default,
                                      headers: header)
         
         dataRequest.responseData { (response) in
@@ -111,7 +111,6 @@ struct PasswordService {
         guard let decodedData = try? decoder.decode(GenericResponse<PasswordData>.self, from: data) else {
             return .pathErr
         }
-        
         switch status {
         case 200:
             // 비밀번호가 일치합니다
