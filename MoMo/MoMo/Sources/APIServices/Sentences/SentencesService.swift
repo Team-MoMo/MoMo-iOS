@@ -15,17 +15,17 @@ struct SentencesService {
     
     // 다이어리 통신에 대한 함수 정의
     // get
-    func getSentences( emotionId: String,
-                     userId: String,
-                     completion: @escaping (NetworkResult<Any>) -> (Void)) {
+    func getSentences(emotionId: String,
+                      userId: String,
+                      completion: @escaping (NetworkResult<Any>) -> Void) {
         
-        let url = APIConstants.sentencesURL
+        let url = APIConstants.sentencesURL + "/recommend"
         let header: HTTPHeaders = [
             "Content-Type": "application/json",
             "Authorization": UserDefaults.standard.string(forKey: "token") ?? ""
         ]
         let body: Parameters = [
-            "emotionId" : emotionId,
+            "emotionId": emotionId,
             "userId": userId
         ]
         
@@ -60,7 +60,6 @@ struct SentencesService {
                                                     from: data) else {
             return .pathErr
         }
-        
         switch status {
         case 200:
             return .success(decodedData.data)

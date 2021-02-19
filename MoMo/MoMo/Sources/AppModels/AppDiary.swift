@@ -7,11 +7,10 @@
 
 import UIKit
 
-// TODO: - 해석이오빠가 리팩토링하면서 네이밍 변경하거나 없애기
 struct AppDiary {
-    var date: AppDate
-    var mood: AppEmotion
-    var depth: AppDepth
-    var sentence: AppSentence
-    var diary: String
+    var date: AppDate?
+    var mood: AppEmotion?
+    var depth: AppDepth?
+    var sentence: AppSentence?
+    var diary: String?
 }

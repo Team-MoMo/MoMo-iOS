@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - Protocols
+
 protocol ListFilterModalViewDelegate: class {
     func sendData(year: Int, month: Int, emotion: Int?, depth: Int?, filterArray: [String], filteredStatus: Bool)
 }
@@ -17,6 +19,25 @@ class ListFilterModalViewController: UIViewController {
     
     let zeplinWidth: CGFloat = 375
     let zeplinHeight: CGFloat = 812
+    
+    let currentDate = AppDate()
+    
+    let appEmotionArray: [AppEmotion] = [AppEmotion.love,
+                                         AppEmotion.happy,
+                                         AppEmotion.console,
+                                         AppEmotion.angry,
+                                         AppEmotion.sad,
+                                         AppEmotion.bored,
+                                         AppEmotion.memory,
+                                         AppEmotion.daily]
+    
+    let appDepthArray: [AppDepth] = [AppDepth.depth2m,
+                                     AppDepth.depth30m,
+                                     AppDepth.depth100m,
+                                     AppDepth.depth300m,
+                                     AppDepth.depth700m,
+                                     AppDepth.depth1005m,
+                                     AppDepth.depthSimhae]
     
     // MARK: - Properties
     
@@ -29,35 +50,13 @@ class ListFilterModalViewController: UIViewController {
     var pointOrigin: CGPoint?
     var year: [String] = []
     var month: [String] = []
+    var currentYearMonth: [String] = []
+   
     var selectedYear: Int = 0
     var selectedMonth: Int = 0
     var dateText: String = ""
     
     weak var listFilterModalDelegate: ListFilterModalViewDelegate?
-    
-    let emotionArray: [String] = ["iosFilterLoveUnselected",
-                                  "iosFilterHappyUnselected",
-                                  "iosFilterConsoleUnselected",
-                                  "iosFilterAngryUnselected",
-                                  "iosFilterSadUnselected",
-                                  "iosFilterBoredUnselected",
-                                  "iosFilterMemoryUnselected",
-                                  "iosFilterDailyUnselected"
-    ]
-    
-    let selectedEmotionArray: [String] = ["iosFilterLoveSelected",
-                                          "iosFilterHappySelected",
-                                          "iosFilterConsoleSelected",
-                                          "iosFilterAngrySelected",
-                                          "iosFilterSadSelected",
-                                          "iosFilterBoredSelected",
-                                          "iosFilterMemorySelected",
-                                          "iosFilterDailySelected"
-     ]
-    
-    let koreanEmotionArray: [String] = ["사랑", "행복", "위로", "화남", "슬픔", "우울", "추억", "일상"]
-    
-    let depthArray: [String] = ["2m", "30m", "100m", "300m", "700m", "1005m", "심해"]
     
     // MARK: - IBOutlets
     
@@ -84,10 +83,9 @@ class ListFilterModalViewController: UIViewController {
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var datePickerStackViewLeading: NSLayoutConstraint!
-    @IBOutlet weak var datePickerStackViewTrailing: NSLayoutConstraint!
     @IBOutlet weak var dateLabel: UILabel!
     
-    // MARK: - Override
+    // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,21 +106,6 @@ class ListFilterModalViewController: UIViewController {
         updateDate()
     }
     
-    private func initializePickerView() {
-        self.yearPickerView.selectRow(selectedYear - 1980, inComponent: 0, animated: true)
-        self.monthPickerView.selectRow(selectedMonth-1, inComponent: 0, animated: true)
-    }
-    
-    func initializeLayer(_ ySize: Int) {
-        let layer = CALayer()
-        layer.frame = CGRect(x: 0,
-                             y: ySize,
-                             width: Int(width * 335/zeplinWidth),
-                             height: 1)
-        layer.backgroundColor = UIColor.LineLightGray.cgColor
-        emotionView.layer.addSublayer(layer)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         DispatchQueue.main.async {
@@ -137,8 +120,23 @@ class ListFilterModalViewController: UIViewController {
             pointOrigin = self.view.frame.origin
         }
     }
+    
+    private func initializePickerView() {
+        self.yearPickerView.selectRow(selectedYear - 2000, inComponent: 0, animated: true)
+        self.monthPickerView.selectRow(selectedMonth-1, inComponent: 0, animated: true)
+    }
+    
+    private func initializeLayer(_ ySize: Int) {
+        let layer = CALayer()
+        layer.frame = CGRect(x: 0,
+                             y: ySize,
+                             width: Int(width * 335/zeplinWidth),
+                             height: 1)
+        layer.backgroundColor = UIColor.LineLightGray.cgColor
+        emotionView.layer.addSublayer(layer)
+    }
 
-    // MARK: - Method
+    // MARK: - Private Functions
     
     private func registerXib() {
         emotionCollectionView.register(UINib(nibName: "EmotionCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EmotionCollectionViewCell")
@@ -183,17 +181,35 @@ class ListFilterModalViewController: UIViewController {
         applyButton.backgroundColor = .BlueModalAble
     }
     
-    func initializeDateData() {
-        for num in 1980...2021 {
+    private func initializeDateData() {
+        for num in 2000...currentDate.getYear() {
             year.append(String(num))
         }
         for num in 1...12 {
+            if num <= currentDate.getMonth() {
+                currentYearMonth.append(String(num))
+            }
             month.append(String(num))
         }
     }
     
+    private func updateMonthPickerData(_ selected: String) {
+        guard let unwrappedYear = Int(selected) else {
+            return
+        }
+        if selected == currentDate.getYearToString() && selectedYear != currentDate.getYear() {
+            self.selectedYear = unwrappedYear
+            self.monthPickerView.reloadComponent(0)
+        } else if selected != currentDate.getYearToString() && selectedYear == currentDate.getYear() {
+            self.selectedYear = unwrappedYear
+            self.monthPickerView.reloadComponent(0)
+        } else {
+            self.selectedYear = unwrappedYear
+        }
+    }
+    
     // dismiss할 때 초기화를 위해 만든 함수
-    func checkDismissModal() {
+    private func initializeModal() {
         if verify == true {
             self.moreButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 100.0)
             datePickerStackView.isHidden = true
@@ -201,6 +217,11 @@ class ListFilterModalViewController: UIViewController {
         }
     }
     
+    private func dismissToListViewController() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - objc Functions
     @objc func panGestureRecognizerAction(sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
         guard translation.y >= 0 else {
@@ -216,8 +237,8 @@ class ListFilterModalViewController: UIViewController {
         if sender.state == .ended {
             let dragVelocity = sender.velocity(in: view)
             if dragVelocity.y >= 1330 {
-                checkDismissModal()
-                self.presentingViewController?.dismiss(animated: true, completion: nil)
+                initializeModal()
+                dismissToListViewController()
             } else {
                 UIView.animate(withDuration: 0.3) {
                     self.view.frame.origin = origin
@@ -226,7 +247,7 @@ class ListFilterModalViewController: UIViewController {
         }
     }
 
-    // MARK: - IBAction
+    // MARK: - IBActions
     
     @IBAction func touchMoreButton(_ sender: Any) {
         if !verify {
@@ -258,17 +279,18 @@ class ListFilterModalViewController: UIViewController {
     }
     
     @IBAction func touchCloseButton(_ sender: Any) {
-        checkDismissModal()
-        self.dismiss(animated: true, completion: nil)
+        initializeModal()
+        dismissToListViewController()
     }
     
     @IBAction func touchApplyButton(_ sender: Any) {
         var tempFilterArray: [String] = []
-        if emotion != nil {
-            tempFilterArray.append(koreanEmotionArray[emotion!-1])
+        if let unwrappedEmotion = emotion {
+            tempFilterArray.append(appEmotionArray[unwrappedEmotion].toString())
         }
-        if depth != nil {
-            tempFilterArray.append(depthArray[depth!])
+
+        if let unwrappedDepth = depth {
+            tempFilterArray.append(appDepthArray[unwrappedDepth].toString())
         }
         
         listFilterModalDelegate?.sendData(year: selectedYear,
@@ -277,18 +299,19 @@ class ListFilterModalViewController: UIViewController {
                                         depth: depth,
                                         filterArray: tempFilterArray,
                                         filteredStatus: true)
-        checkDismissModal()
-        
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
+        initializeModal()
+        dismissToListViewController()
     }
 }
+
+// MARK: - UICollectionViewDataSource
 
 extension ListFilterModalViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.emotionCollectionView {
-            return emotionArray.count
+            return appEmotionArray.count
         } else {
-            return depthArray.count
+            return appDepthArray.count
         }
     }
 
@@ -297,8 +320,8 @@ extension ListFilterModalViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmotionCollectionViewCell", for: indexPath) as? EmotionCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.updateImage(emotionArray[indexPath.row])
-            cell.tag = indexPath.row+1
+            cell.updateImage(appEmotionArray[indexPath.row].toUnselectedIcon())
+            cell.tag = appEmotionArray[indexPath.row].rawValue
         
             return cell
         }
@@ -307,7 +330,7 @@ extension ListFilterModalViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.initializeLabel(depthArray[indexPath.row])
+        cell.initializeLabel(appDepthArray[indexPath.row].toString())
         cell.backView.layer.borderColor = UIColor.Black6.cgColor
         cell.backView.layer.borderWidth = 1
         cell.backView.layer.cornerRadius = cell.layer.frame.height * 0.5
@@ -317,6 +340,8 @@ extension ListFilterModalViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
+
 extension ListFilterModalViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
@@ -325,7 +350,7 @@ extension ListFilterModalViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: (width*(20/zeplinWidth)) + (height*(50/zeplinHeight)), height: (width*(20/zeplinWidth)) + (height*(50/zeplinHeight)))
         }
         
-        let stringWidth = depthArray[indexPath.row].size(withAttributes: [.font: UIFont.systemFont(ofSize: 16, weight: .semibold)])
+        let stringWidth = appDepthArray[indexPath.row].toString().size(withAttributes: [.font: UIFont.systemFont(ofSize: 16, weight: .semibold)])
         return CGSize(width: stringWidth.width + pow(width * 6 / zeplinWidth, 2), height: height * (33/zeplinHeight))
     }
 
@@ -352,12 +377,12 @@ extension ListFilterModalViewController: UICollectionViewDelegateFlowLayout {
             guard let cell = collectionView.cellForItem(at: indexPath) as? EmotionCollectionViewCell else {
                 return
             }
-            if emotion == indexPath.row+1 {
-                cell.updateImage(emotionArray[indexPath.row])
+            if emotion == indexPath.row {
+                cell.updateImage(appEmotionArray[indexPath.row].toUnselectedIcon())
                 emotion = nil
             } else {
-                cell.updateImage(selectedEmotionArray[indexPath.row])
-                emotion = indexPath.row+1
+                cell.updateImage(appEmotionArray[indexPath.row].toSelectedIcon())
+                emotion = indexPath.row
             }
         } else {
             guard let cell = collectionView.cellForItem(at: indexPath) as? DepthCollectionViewCell else {
@@ -384,7 +409,7 @@ extension ListFilterModalViewController: UICollectionViewDelegateFlowLayout {
             guard let cell = collectionView.cellForItem(at: indexPath) as? EmotionCollectionViewCell else {
                 return
             }
-            cell.updateImage(emotionArray[indexPath.row])
+            cell.updateImage(appEmotionArray[indexPath.row].toUnselectedIcon())
         } else {
             guard let cell = collectionView.cellForItem(at: indexPath) as? DepthCollectionViewCell else {
                 return
@@ -395,6 +420,8 @@ extension ListFilterModalViewController: UICollectionViewDelegateFlowLayout {
         }
     }
 }
+
+// MARK: - UIPickerViewDelegate
 
 extension ListFilterModalViewController: UIPickerViewDelegate {
     
@@ -409,18 +436,22 @@ extension ListFilterModalViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         if pickerView == self.yearPickerView {
             return NSAttributedString(string: year[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        } else if selectedYear == currentDate.getYear() {
+            return NSAttributedString(string: currentYearMonth[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         }
         return NSAttributedString(string: month[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == self.yearPickerView {
-            guard let year = Int(year[row]) else {
+            updateMonthPickerData(self.year[row])
+        } else if selectedYear == currentDate.getYear() {
+            guard let month = Int(currentYearMonth[row]) else {
                 return
             }
-            selectedYear = year
+            selectedMonth = month
         } else {
-            guard let month = Int(year[row]) else {
+            guard let month = Int(month[row]) else {
                 return
             }
             selectedMonth = month
@@ -428,6 +459,8 @@ extension ListFilterModalViewController: UIPickerViewDelegate {
         updateDate()
     }
 }
+
+// MARK: - UIPickerViewDataSource
 
 extension ListFilterModalViewController: UIPickerViewDataSource {
     
@@ -438,7 +471,13 @@ extension ListFilterModalViewController: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == self.yearPickerView {
             return year.count
+        } else if selectedYear == currentDate.getYear() {
+            if selectedMonth > currentDate.getMonth() {
+                selectedMonth = currentDate.getMonth()
+            }
+            return currentYearMonth.count
+        } else {
+            return month.count
         }
-        return month.count
     }
 }

@@ -54,6 +54,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // flag
     var isFromDiary: Bool = false
+    var isFromLogout: Bool = false
     
     //
     var headerView: HomeDayNightView?
@@ -85,48 +86,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         // 오늘 작성한 일기가 없을 때
          uploadButton.isHidden = false
         
-        DiariesService.shared.getDiaries(userId: "\(APIConstants.userId)",
-                                         year: dateArray[0],
-                                         month: dateArray[1],
-                                         order: "depth",
-                                         day: nil,
-                                         emotionId: nil,
-                                         depth: nil
-        ) { (networkResult) -> (Void) in
-            switch networkResult {
-            case .success(let data):
-                if let diary = data as? [Diary] {
-                    self.diaryArray = diary
-                    self.devideArrayByDepth()
-
-                }
-            case .requestErr(let msg):
-                if let message = msg as? String {
-                    print(message)
-                }
-            case .pathErr:
-                print("pathErr")
-            case .serverErr:
-                print("serverErr")
-            case .networkFail:
-                print("networkFail")
-            }
-            self.calculateFramesOfSections()
-            self.paintGradientWithFrame()
-            DispatchQueue.main.async {
-                self.homeTableView.reloadData()
-            }
-            
-            // 단계별 objet 배치
-            self.attachDepth0Objet()
-            self.attachDepth1Objet()
-            self.attachDepth2Objet()
-            self.attachDepth3Objet()
-            self.attachDepth4Objet()
-            self.attachDepth5Objet()
-            self.attachDepth6Objet()
-            
-        }
+        
         
         // 권한 위임
         self.homeTableView.dataSource = self
@@ -181,6 +141,49 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
                 self.homeTableView.reloadData()
             }
         }
+        
+        DiariesService.shared.getDiaries(userId: "\(APIConstants.userId)",
+                                         year: dateArray[0],
+                                         month: dateArray[1],
+                                         order: "depth",
+                                         day: nil,
+                                         emotionId: nil,
+                                         depth: nil
+        ) { networkResult in
+            switch networkResult {
+            case .success(let data):
+                if let diary = data as? [Diary] {
+                    self.diaryArray = diary
+                    self.devideArrayByDepth()
+
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+            self.calculateFramesOfSections()
+            self.paintGradientWithFrame()
+            DispatchQueue.main.async {
+                self.homeTableView.reloadData()
+            }
+            
+            // 단계별 objet 배치
+            self.attachDepth0Objet()
+            self.attachDepth1Objet()
+            self.attachDepth2Objet()
+            self.attachDepth3Objet()
+            self.attachDepth4Objet()
+            self.attachDepth5Objet()
+            self.attachDepth6Objet()
+            
+        }
     }
     
     // viewDidAppear
@@ -201,6 +204,10 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         
         homeTableView.reloadData()
+        
+        if self.isFromLogout {
+            self.pushToLoginViewController()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -212,6 +219,12 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     // MARK: - Functions
+    
+    func pushToLoginViewController() {
+        let loginStoryboard = UIStoryboard(name: Constants.Name.loginStoryboard, bundle: nil)
+        guard let loginViewController = loginStoryboard.instantiateViewController(identifier: Constants.Identifier.loginViewController) as? LoginViewController else { return }
+        self.navigationController?.pushViewController(loginViewController, animated: true)
+    }
     
     func attachTableHeaderView() {
         // tableHeaderView register
@@ -264,7 +277,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
             
             // 각 section별로 bubble이 4개 이하일 때 4개로 채워줌
             for sectionIndex in 0..<7 {
-                let emptyDiary = Diary(id: 0, position: -1, depth: sectionIndex, contents: "-", wroteAt: "-", userID: 0, sentenceID: 0, emotionID: 0, createdAt: "0", updatedAt: "0", sentence: Sentence(id: 0, contents: "-", bookName: "-", writer: "-", publisher: "-", createdAt: "-", updatedAt: "-"), emotion: Emotion(id: 0, name: Name(rawValue: "위로")!, createdAt: "-", updatedAt: "-"))
+                let emptyDiary = Diary(id: 0, position: -1, depth: sectionIndex, contents: "-", wroteAt: "-", userID: 0, sentenceID: 0, emotionID: 0, createdAt: "0", updatedAt: "0", sentence: Sentence(id: 0, contents: "-", bookName: "-", writer: "-", publisher: "-", createdAt: "-", updatedAt: "-", blindedAt: "-", deletedAt: "-"), emotion: Emotion(id: 0, name: Name(rawValue: "위로")!, createdAt: "-", updatedAt: "-"))
                 while bubbleDepthArray[sectionIndex].count < 4 {
                     bubbleDepthArray[sectionIndex].append(emptyDiary)
                 }
@@ -280,7 +293,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
             
             // 각 section별로 bubble이 4개 이하일 때 4개로 채워줌
             for sectionIndex in 0..<7 {
-                let emptyDiary = Diary(id: 0, position: -1, depth: sectionIndex, contents: "-", wroteAt: "2021-01-14T14:50:49.000Z", userID: 0, sentenceID: 0, emotionID: 0, createdAt: "0", updatedAt: "0", sentence: Sentence(id: 0, contents: "-", bookName: "-", writer: "-", publisher: "-", createdAt: "-", updatedAt: "-"), emotion: Emotion(id: 0, name: Name(rawValue: "위로")!, createdAt: "-", updatedAt: "-"))
+                let emptyDiary = Diary(id: 0, position: -1, depth: sectionIndex, contents: "-", wroteAt: "2021-01-14T14:50:49.000Z", userID: 0, sentenceID: 0, emotionID: 0, createdAt: "0", updatedAt: "0", sentence: Sentence(id: 0, contents: "-", bookName: "-", writer: "-", publisher: "-", createdAt: "-", updatedAt: "-", blindedAt: "-", deletedAt: "-"), emotion: Emotion(id: 0, name: Name(rawValue: "위로")!, createdAt: "-", updatedAt: "-"))
                 while bubbleDepthArray[sectionIndex].count < 4 {
                     bubbleDepthArray[sectionIndex].append(emptyDiary)
                 }
@@ -595,6 +608,15 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         self.present(uploadModalViewController, animated: true, completion: nil)
         
+    }
+    
+    @IBAction func touchMyPageButton(_ sender: UIButton) {
+        let settingStoryboard = UIStoryboard(name: Constants.Name.settingStoryboard, bundle: nil)
+        guard let settingViewController = settingStoryboard.instantiateViewController(identifier: Constants.Identifier.settingViewController) as? SettingViewController else {
+            return
+        }
+        settingViewController.settingViewUsage = .setting
+        self.navigationController?.pushViewController(settingViewController, animated: true)
     }
 }
 
