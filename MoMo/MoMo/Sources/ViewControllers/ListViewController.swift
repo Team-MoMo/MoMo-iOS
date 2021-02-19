@@ -65,7 +65,7 @@ class ListViewController: UIViewController {
     private func initializeProperty() {
         journalLabel1WidthSize = self.view.bounds.width * (261/zeplinWidth)
         journalLabel2WidthSize = self.view.bounds.width * (237/zeplinWidth)
-        self.listFilterModalView = ListFilterModalViewController()
+//        self.listFilterModalView = ListFilterModalViewController()
         // 홈에서 받은 데이트 변수에 대입
         date = "\(year)년 \(month)월"
         // 필터에서 기준으로 잡을 년과 월 저장
@@ -137,6 +137,36 @@ class ListViewController: UIViewController {
             self.filterWarningLabel.isHidden = true
         }
     }
+    
+    private func updateFilterCollectionViewCell(_ tagNumber: Int, _ identifier: String) {
+        let indexPath = IndexPath(row: 0, section: 1)
+    
+        if identifier.contains("m") || identifier == "심해" {
+            filteredDepth = nil
+        } else {
+            filteredEmotion = nil
+        }
+        guard let cell = listTableView.cellForRow(at: indexPath) as? ListFilterTableViewCell else {
+            return
+        }
+        filter.remove(at: tagNumber)
+        if filter.count == 0 {
+            pattern.toggle()
+            updateNavigationBarButton()
+        }
+        getDiariesWithAPI(userID: String(APIConstants.userId),
+                      year: String(year),
+                      month: String(month),
+                      order: "filter",
+                      day: nil,
+                      emotionID: filteredEmotion,
+                      depth: filteredDepth)
+        cell.filterCollectionView.reloadData()
+    }
+    
+    private func scrollTableViewToTop() {
+        self.listTableView.contentOffset = .zero
+    }
     // MARK: - 서버 통신
     func getDiariesWithAPI(userID: String,
                            year: String,
@@ -180,23 +210,22 @@ class ListViewController: UIViewController {
     
     // 필터 라벨 외 부분을 터치했을 때 실행되는 함수
     @objc func tapEmptySpace(_ sender: UITapGestureRecognizer) {
-        guard let tagNumber = sender.view?.tag else {
+
+        guard let tagNumber = sender.view?.tag, let identifier = sender.view?.accessibilityIdentifier else {
             return
         }
-        let indexPath = IndexPath(row: 0, section: 1)
-        guard let cell = listTableView.cellForRow(at: indexPath) as? ListFilterTableViewCell else {
-            return
-        }
-        filter.remove(at: tagNumber)
-        cell.filterCollectionView.reloadData()
         
-        if filter.count == 0 {
-            pattern.toggle()
-            listTableView.reloadData()
-            updateNavigationBarButton()
-        }
+        updateFilterCollectionViewCell(tagNumber, identifier)
     }
     
+    // filter x버튼 클릭시 발생하는 함수
+    @objc func touchCancelButton(sender: UIButton) {
+        guard let identifier = sender.accessibilityIdentifier else {
+            return
+        }
+        updateFilterCollectionViewCell(sender.tag, identifier)
+        
+    }
     @objc func touchFilterButton() {
         presentToListFilterModalView()
     }
@@ -219,6 +248,8 @@ class ListViewController: UIViewController {
     }
     
     func presentToListFilterModalView() {
+        listFilterModalView = ListFilterModalViewController()
+        updateDelegate()
         guard let modalView = listFilterModalView else {
             return
         }
@@ -226,42 +257,10 @@ class ListViewController: UIViewController {
         modalView.selectedMonth = self.month
         modalView.width = view.bounds.width
         modalView.height = view.bounds.height
-        modalView.emotion = self.filteredEmotion
-        modalView.depth = self.filteredDepth
         modalView.modalPresentationStyle = .custom
         modalView.transitioningDelegate = self
         
         self.present(modalView, animated: true, completion: nil)
-    }
-    
-    // filter x버튼 클릭시 발생하는 함수
-    @objc func touchCancelButton(sender: UIButton) {
-        let indexPath = IndexPath(row: 0, section: 1)
-        guard let buttonAccessibilityLabel = sender.accessibilityIdentifier else {
-            return
-        }
-        if buttonAccessibilityLabel.contains("m") || buttonAccessibilityLabel == "심해" {
-            filteredDepth = nil
-        } else {
-            filteredEmotion = nil
-        }
-        guard let cell = listTableView.cellForRow(at: indexPath) as? ListFilterTableViewCell else {
-            return
-        }
-        filter.remove(at: sender.tag)
-        if filter.count == 0 {
-            pattern.toggle()
-            updateNavigationBarButton()
-        }
-        getDiariesWithAPI(userID: String(APIConstants.userId),
-                      year: String(year),
-                      month: String(month),
-                      order: "filter",
-                      day: nil,
-                      emotionID: filteredEmotion,
-                      depth: filteredDepth)
-        cell.filterCollectionView.reloadData()
-        
     }
     
     @objc func touchMoreButton(sender: UIButton) {
@@ -391,7 +390,7 @@ extension ListViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         cell.clipsToBounds = true
-        cell.layer.cornerRadius = 10
+        cell.layer.cornerRadius = 8
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapEmptySpace(_:)))
         cell.filterLabel.text = filter[indexPath.row]
         // index 값을 tag에 넣어서 배열에 쉽게 접근
@@ -416,15 +415,17 @@ extension ListViewController: UIViewControllerTransitioningDelegate {
 // MARK: - ListFilterModalViewDelegate
 extension ListViewController: ListFilterModalViewDelegate {
     func sendData(year: Int, month: Int, emotion: Int?, depth: Int?, filterArray: [String], filteredStatus: Bool) {
+        scrollTableViewToTop()
         self.year = year
         self.month = month
         self.filter = filterArray
         self.date = "\(year)년 \(month)월"
+        updateNavigationBarButton()
+
         if filterArray.count > 0 || self.year != standardYear || self.month != standardMonth {
             self.pattern = true
         }
         if year == standardYear && month == standardMonth && filterArray.count == 0 {
-            updateNavigationBarButton()
             getDiariesWithAPI(userID: String(APIConstants.userId),
                           year: String(year),
                           month: String(month),
@@ -440,14 +441,7 @@ extension ListViewController: ListFilterModalViewDelegate {
         } else {
             self.filteredDepth = depth
             self.filteredEmotion = emotion
-            updateNavigationBarButton()
-            getDiariesWithAPI(userID: String(APIConstants.userId),
-                          year: String(year),
-                          month: String(month),
-                          order: "filter",
-                          day: nil,
-                          emotionID: emotion,
-                          depth: depth)
+            unwrapSendDataParam(paramEmotion: emotion, paramDepth: depth)
             self.listTableView.reloadData()
             let indexPath = IndexPath(row: 0, section: 1)
             guard let cell = listTableView.cellForRow(at: indexPath) as? ListFilterTableViewCell else {
@@ -457,5 +451,54 @@ extension ListViewController: ListFilterModalViewDelegate {
         }
         self.listFilterModalView = ListFilterModalViewController()
         self.updateDelegate()
+    }
+    
+    private func unwrapSendDataParam(paramEmotion: Int?, paramDepth: Int?) {
+        
+        if paramEmotion == nil && paramDepth != nil {
+            guard let unwrappedDepth = paramDepth else {
+                return
+            }
+            getDiariesWithAPI(userID: String(APIConstants.userId),
+                          year: String(year),
+                          month: String(month),
+                          order: "filter",
+                          day: nil,
+                          emotionID: nil,
+                          depth: unwrappedDepth)
+            
+        } else if paramEmotion != nil && paramDepth == nil {
+            guard let unwrappedEmotion = paramEmotion else {
+                return
+            }
+            getDiariesWithAPI(userID: String(APIConstants.userId),
+                          year: String(year),
+                          month: String(month),
+                          order: "filter",
+                          day: nil,
+                          emotionID: unwrappedEmotion,
+                          depth: nil)
+            
+        } else if paramEmotion != nil && paramDepth != nil {
+            guard let unwrappedEmotion = paramEmotion, let unwrappedDepth = paramDepth else {
+                return
+            }
+            getDiariesWithAPI(userID: String(APIConstants.userId),
+                          year: String(year),
+                          month: String(month),
+                          order: "filter",
+                          day: nil,
+                          emotionID: unwrappedEmotion,
+                          depth: unwrappedDepth)
+            
+        } else {
+            getDiariesWithAPI(userID: String(APIConstants.userId),
+                          year: String(year),
+                          month: String(month),
+                          order: "filter",
+                          day: nil,
+                          emotionID: nil,
+                          depth: nil)
+        }
     }
 }

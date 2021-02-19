@@ -70,15 +70,17 @@ class ListTableViewCell: UITableViewCell {
     
     // 리스트테이블뷰셀 데이터 입력 문구와 일기를 제외한 모든 데이터 추가
     func parseDiaryAll(diary: Diary) {
-        let date = diary.wroteAt.split(separator: "T")[0]
-        let specificDate = date.split(separator: "-")
+        
+        let date = AppDate(serverDate: diary.wroteAt)
         let appEmotion = AppEmotion(rawValue: diary.emotionID)
         let appDepth = AppDepth(rawValue: diary.depth)
         
         iconImage.image = appEmotion?.toBlueIcon()
         categoryLabel.attributedText = appEmotion?.toString().wordSpacing(-0.6)
-        dateLabel.attributedText = "\(specificDate[0])년 \(specificDate[1])월".wordSpacing(-0.6)
-        dayLabel.attributedText = "\(specificDate[2])일".wordSpacing(-0.6)
+        let month = String(format: "%02d", date.getMonth())
+        let day = String(format: "%02d", date.getDay())
+        dateLabel.attributedText = (month+"."+day).wordSpacing(-0.6)
+        dayLabel.attributedText = "\(date.getWeekday().toSimpleKorean())".wordSpacing(-0.6)
         
         depthLabel.attributedText = appDepth?.toString().wordSpacing(-0.6)
         
