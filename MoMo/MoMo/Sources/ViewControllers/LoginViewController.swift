@@ -30,7 +30,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
         kakaoLoginButton.clipsToBounds = true
@@ -56,7 +56,6 @@ class LoginViewController: UIViewController {
         self.navigationItem.hidesBackButton = true
     }
     
-    // TODO: - gradient color 머지되면 수정
     func createGradientColorSets() {
         colorSets.append([UIColor.Gradient1.cgColor, UIColor.Gradient2.cgColor]) // 1단계
         colorSets.append([UIColor.Gradient2.cgColor, UIColor.Gradient3.cgColor]) // 2단계
@@ -74,17 +73,17 @@ class LoginViewController: UIViewController {
         let view = UIView(frame: frame)
         let gradientView = UIView(frame: frame)
         let imgView = UIImageView(frame: view.bounds)
-
+        
         currentColorSet = depth
         gradientLayer = CAGradientLayer()
         gradientLayer.frame = gradientView.frame
         gradientLayer.colors = colorSets[currentColorSet]
-
+        
         let image = UIImage.gradientImageWithBounds(bounds: frame, colors: colorSets[depth])
         imgView.image = image
-
+        
         view.addSubview(imgView)
-
+        
         backgroundView.addSubview(view)
         backgroundView.sendSubviewToBack(view)
     }
@@ -95,12 +94,18 @@ class LoginViewController: UIViewController {
         self.navigationController?.pushViewController(dvc, animated: true)
     }
     
-    // MARK: - @IBAction Properties
-    
-    @IBAction func touchEmailLoginButton(_ sender: Any) {
+    private func pushToEmailLoginViewController() {
         let emailLoginStoryboard = UIStoryboard(name: Constants.Name.emailLoginStoryboard, bundle: nil)
-        let dvc = emailLoginStoryboard.instantiateViewController(identifier: Constants.Identifier.emailLoginViewController)
-        self.navigationController?.pushViewController(dvc, animated: true)
+        guard let emailLoginViewController = emailLoginStoryboard.instantiateViewController(identifier: Constants.Identifier.emailLoginViewController) as? EmailLoginViewController else {
+            return
+        }
+        self.navigationController?.pushViewController(emailLoginViewController, animated: true)
+    }
+    
+    // MARK: - @IBAction Properties
+
+    @IBAction func touchEmailLoginButton(_ sender: UIButton) {
+        self.pushToEmailLoginViewController()
     }
     
     @IBAction func touchAppleLoginButton(_ sender: Any) {
@@ -127,13 +132,11 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             
             if let identityToken = appleIDCredential.identityToken,
                let tokenString = String(data: identityToken, encoding: .utf8) {
-                print(tokenString)
+                postSocialSignInWithAPI(socialName: "apple", accessToken: tokenString)
             }
             
-            self.pushToHomeViewController()
-        
         case let passwordCredential as ASPasswordCredential:
-        
+            
             // Sign in using an existing iCloud Keychain credential.
             let username = passwordCredential.user
             let password = passwordCredential.password
@@ -156,5 +159,37 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
 extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return view.window!
+    }
+}
+
+extension LoginViewController {
+    func postSocialSignInWithAPI(socialName: String, accessToken: String) {
+        SignInService.shared.postSocialSignIn(socialName: socialName, accessToken: accessToken) { (networkResult) -> Void in
+            switch networkResult {
+            case .success(let data):
+                if let signInData = data as? AuthData {
+                    print("회원가입 성공")
+                    // 회원가입 성공
+                    UserDefaults.standard.setValue(signInData.token, forKey: "token")
+                    UserDefaults.standard.setValue(signInData.user.id, forKey: "userId")
+                    UserDefaults.standard.setValue("apple", forKey: "loginType")
+                    
+                    // 뷰 전환
+                    let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
+                    let dvc = homeStoryboard.instantiateViewController(identifier: Constants.Identifier.homeViewController)
+                    self.navigationController?.pushViewController(dvc, animated: true)
+                }
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr in postSignUpWithAPI")
+            case .serverErr:
+                print("serverErr in postSignUpWithAPI")
+            case .networkFail:
+                print("networkFail in postSignUpWithAPI")
+            }
+        }
     }
 }

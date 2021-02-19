@@ -23,12 +23,14 @@ struct APIConstants {
     static let signUpURL = usersURL + "/signup"
     // 로그인 url
     static let signInURL = usersURL + "/signin"
+    // 소셜로그인 url
+    static let socialSignInURL = signInURL + "/social"
     // 회원 조회(get), 회원 탈퇴(delete) url
-    static let userInfoURL = usersURL + "\(userId)"
+    static let userInfoURL = usersURL + "/\(userId)"
     // 알람 변경 url
-    static let alarmURL = usersURL + "\(userId)" + "/alarm"
+    static let alarmURL = usersURL + "/\(userId)" + "/alarm"
     // 비밀번호 변경(put), 확인(post) url
-    static let passwordURL = usersURL + "\(userId)" + "/password"
+    static let passwordURL = usersURL + "/\(userId)" + "/password"
     // 임시 비밀번호 발급 url
     static let tempPasswordURL = usersURL + "/password/temp"
     
@@ -42,7 +44,7 @@ struct APIConstants {
     // 일기 통계 조회 url
     static let statisticsURL = diariesURL + "/statistics"
     // 일기 조회(get), 수정(put), 삭제(delete) url
-    static let diaryWithUserIdURL = diariesURL + "\(userId)"
+    static let diaryWithUserIdURL = diariesURL + "/\(userId)"
     
     // MARK: - Sentences
     

@@ -42,20 +42,14 @@ class MoodViewController: UIViewController {
         
         guard let currentDate = self.currentDate else { return }
         
-        if self.listNoDiary {
-            self.getDiariesWithAPI(userID: "\(APIConstants.userId))",
-                                   year: currentDate.getYearToString(),
-                                   month: currentDate.getMonthToString(),
-                                   order: "filter",
-                                   day: currentDate.getDay(),
-                                   emotionID: nil,
-                                   depth: nil
-            )
-            self.listNoDiary.toggle()
-        } else {
-            self.dateLabel.text = currentDate.getFormattedDateAndWeekday(with: ". ")
-        }
-        
+        self.getDiariesWithAPI(userID: String(APIConstants.userId),
+                               year: currentDate.getYearToString(),
+                               month: currentDate.getMonthToString(),
+                               order: "filter",
+                               day: currentDate.getDay(),
+                               emotionID: nil,
+                               depth: nil
+        )
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,13 +90,17 @@ class MoodViewController: UIViewController {
         self.modalView?.uploadModalDataDelegate = self
     }
     
-    func compareRecentDate(recentDate: String, verifyToday: Bool) {
+    func initializeDateLabel(recentDate: String, verifyToday: Bool) {
         if !verifyToday {
             self.dateLabel.text = self.currentDate?.getFormattedDateAndWeekday(with: ". ")
+            self.selectedDate = self.currentDate
         } else {
             let date = AppDate(serverDate: recentDate)
+            self.selectedDate = date
             self.dateLabel.text = date.getFormattedDateAndWeekday(with: ". ")
-            self.presentModalView(year: date.getYear(), month: date.getMonth(), day: date.getDay())
+            if listNoDiary {
+                self.presentUploadModalView(year: date.getYear(), month: date.getMonth(), day: date.getDay())
+            }
         }
     }
     
@@ -138,7 +136,7 @@ class MoodViewController: UIViewController {
         )
     }
     
-    func presentModalView(year: Int, month: Int, day: Int) {
+    func presentUploadModalView(year: Int, month: Int, day: Int) {
         guard let modalView = self.modalView else { return }
         modalView.year = year
         modalView.month = month
@@ -153,7 +151,7 @@ class MoodViewController: UIViewController {
         guard let sentenceViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.sentenceViewController) as? SentenceViewController else { return }
         
         sentenceViewController.selectedMood = mood
-        sentenceViewController.date = self.selectedDate?.getFormattedDateAndWeekday(with: ". ")
+        sentenceViewController.date = self.dateLabel.text
         sentenceViewController.changeUsage = self.changeUsage
         
         self.navigationController?.pushViewController(sentenceViewController, animated: true)
@@ -166,38 +164,38 @@ class MoodViewController: UIViewController {
     
     @IBAction func touchCalendarButton(_ sender: Any) {
         guard let selectedDate = self.selectedDate else { return }
-        self.presentModalView(year: selectedDate.getYear(), month: selectedDate.getMonth(), day: selectedDate.getDay())
+        self.presentUploadModalView(year: selectedDate.getYear(), month: selectedDate.getMonth(), day: selectedDate.getDay())
     }
     
-    @IBAction func loveButtonTouchUp(_ sender: UIButton) {
+    @IBAction func touchLoveButton(_ sender: UIButton) {
         pushToOnboardingSentenceViewController(mood: AppEmotion.love)
     }
     
-    @IBAction func happyButtonTouchUp(_ sender: UIButton) {
+    @IBAction func touchHappyButton(_ sender: UIButton) {
         pushToOnboardingSentenceViewController(mood: AppEmotion.happy)
     }
     
-    @IBAction func consoleButtonTouchUp(_ sender: UIButton) {
+    @IBAction func touchConsoleButton(_ sender: UIButton) {
         pushToOnboardingSentenceViewController(mood: AppEmotion.console)
     }
     
-    @IBAction func angryButtonTouchUp(_ sender: UIButton) {
+    @IBAction func touchAngryButton(_ sender: UIButton) {
         pushToOnboardingSentenceViewController(mood: AppEmotion.angry)
     }
     
-    @IBAction func sadButtonTouchUp(_ sender: UIButton) {
+    @IBAction func touchSadButton(_ sender: UIButton) {
         pushToOnboardingSentenceViewController(mood: AppEmotion.sad)
     }
     
-    @IBAction func boredButtonTouchUp(_ sender: UIButton) {
+    @IBAction func touchBoredButton(_ sender: UIButton) {
         pushToOnboardingSentenceViewController(mood: AppEmotion.bored)
     }
     
-    @IBAction func memoryButtonTouchUp(_ sender: UIButton) {
+    @IBAction func touchMemoryButton(_ sender: UIButton) {
         pushToOnboardingSentenceViewController(mood: AppEmotion.memory)
     }
     
-    @IBAction func dailyButtonTouchUp(_ sender: UIButton) {
+    @IBAction func touchDailyButton(_ sender: UIButton) {
         pushToOnboardingSentenceViewController(mood: AppEmotion.daily)
     }
     
@@ -266,7 +264,7 @@ extension MoodViewController {
             switch networkResult {
             case .success(let data):
                 if let recentDate = data as? String {
-                    self.compareRecentDate(recentDate: recentDate, verifyToday: verifyToday)
+                    self.initializeDateLabel(recentDate: recentDate, verifyToday: verifyToday)
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
