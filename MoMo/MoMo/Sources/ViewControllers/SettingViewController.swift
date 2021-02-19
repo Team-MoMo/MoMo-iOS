@@ -152,6 +152,16 @@ class SettingViewController: UIViewController {
         return UserDefaults.standard.object(forKey: "isLocked") != nil
     }
     
+    func isSocialLogin() -> Bool {
+        if UserDefaults.standard.object(forKey: "loginType") != nil {
+            guard let loginType = UserDefaults.standard.string(forKey: "loginType") else { return false }
+            if ["apple", "google", "kakao"].contains(loginType) {
+                return true
+            }
+        }
+        return false
+    }
+    
     private func updateIsLocked() {
         if self.hasLock() {
             self.isLocked = UserDefaults.standard.bool(forKey: "isLocked")
@@ -188,6 +198,10 @@ class SettingViewController: UIViewController {
             }),
             (image: UIImage(), labelText: "", touchAction: {})
         ]
+        
+        if self.isSocialLogin() {
+            self.cellInfos = self.cellInfos?.filter { cell in return cell.image != Constants.Design.Image.icPwChange }
+        }
     }
     
     private func updateVersionLabelConstraints() {
@@ -489,16 +503,6 @@ extension SettingViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let cellInfos = self.cellInfos else { return 0 }
-        let cellInfo = cellInfos[indexPath.row]
-        if self.settingViewUsage == .info && cellInfo.image == Constants.Design.Image.icPwChange {
-            if UserDefaults.standard.object(forKey: "loginType") != nil {
-                guard let loginType = UserDefaults.standard.string(forKey: "loginType") else { return 0 }
-                if ["apple", "google", "kakao"].contains(loginType) {
-                    return 0
-                }
-            }
-        }
         return self.cellHeight
     }
 }
