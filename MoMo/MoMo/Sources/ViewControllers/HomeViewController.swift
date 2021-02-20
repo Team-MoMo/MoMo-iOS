@@ -176,6 +176,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
             
             // 단계별 objet 배치
             self.removeAllObjets()
+            self.paintGradientWithFrame()
             self.attachDepth0Objet()
             self.attachDepth1Objet()
             self.attachDepth2Objet()
@@ -243,20 +244,24 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     func paintGradientWithFrame() {
         for sectionIndex in 0..<7 {
             let frame = self.sectionFrameArray[sectionIndex]
+            
             let view = UIView(frame: frame)
             let gradientView = UIView(frame: frame)
             let imgView = UIImageView(frame: view.bounds)
-            
+
             self.currentColorSet = sectionIndex
             self.gradientLayer = CAGradientLayer()
             self.gradientLayer.frame = gradientView.frame
             self.gradientLayer.colors = self.colorSets[self.currentColorSet]
-            
+
             let image = UIImage.gradientImageWithBounds(bounds: frame, colors: self.colorSets[sectionIndex])
             imgView.image = image
-            
+
             view.isUserInteractionEnabled = false
             view.addSubview(imgView)
+            
+            self.tagNum += 1
+            view.tag = self.tagNum
             self.homeTableView.addSubview(view)
             self.homeTableView.sendSubviewToBack(view)
         }
@@ -386,7 +391,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         return imgView
     }
     
-    // MARK: objet 붙이기
+    // MARK: objet 붙이고 떼기
     
     // 다 떼기
     func removeAllObjets() {
