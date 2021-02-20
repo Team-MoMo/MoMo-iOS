@@ -119,9 +119,9 @@ class EmailLoginViewController: UIViewController {
     }
     
     @IBAction func touchUpFindPasswordButton(_ sender: Any) {
-        // let findPasswordStoryboard = UIStoryboard(name: Constants.Name.findPasswordStoryboard, bundle: nil)
-        // let dvc = emailLoginStoryboard.instantiateViewController(identifier: Constants.Identifier.emailLoginViewController)
-        // self.navigationController?.pushViewController(dvc, animated: true)
+        let findPasswordStoryboard = UIStoryboard(name: Constants.Name.findPasswordStoryboard, bundle: nil)
+        let dvc = findPasswordStoryboard.instantiateViewController(identifier: Constants.Identifier.findPasswordViewController)
+        self.navigationController?.pushViewController(dvc, animated: true)
     }
 }
 
