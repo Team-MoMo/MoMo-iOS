@@ -696,12 +696,18 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let diaryStoryboard = UIStoryboard(name: Constants.Name.diaryStoryboard, bundle: nil)
-        guard let dvc = diaryStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryViewController) as? DiaryViewController else {
-            return
+        
+        let rowArray = bubbleDepthArray[indexPath.section]
+        
+        // 빈 셀이 아닐 때
+        if rowArray[indexPath.row].position != -1 {
+            let diaryStoryboard = UIStoryboard(name: Constants.Name.diaryStoryboard, bundle: nil)
+            guard let dvc = diaryStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryViewController) as? DiaryViewController else {
+                return
+            }
+            dvc.diaryId = bubbleDepthArray[indexPath.section][indexPath.row].id
+            self.navigationController?.pushViewController(dvc, animated: true)
         }
-        dvc.diaryId = bubbleDepthArray[indexPath.section][indexPath.row].id
-        self.navigationController?.pushViewController(dvc, animated: true)
     }
     
 }
