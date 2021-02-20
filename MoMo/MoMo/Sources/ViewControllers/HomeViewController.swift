@@ -58,6 +58,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     //
     var headerView: HomeDayNightView?
+    var tagNum: Int = 0
     
     // MARK: - View Life Cycle
     
@@ -85,7 +86,6 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         // 오늘 작성한 일기가 없을 때
          uploadButton.isHidden = false
-        
         
         
         // 권한 위임
@@ -175,6 +175,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
             }
             
             // 단계별 objet 배치
+            self.removeAllObjets()
             self.attachDepth0Objet()
             self.attachDepth1Objet()
             self.attachDepth2Objet()
@@ -238,7 +239,6 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-    
     // section 별 frame에 맞게 gradient 입히기
     func paintGradientWithFrame() {
         for sectionIndex in 0..<7 {
@@ -254,7 +254,6 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
             
             let image = UIImage.gradientImageWithBounds(bounds: frame, colors: self.colorSets[sectionIndex])
             imgView.image = image
-            
             
             view.isUserInteractionEnabled = false
             view.addSubview(imgView)
@@ -351,11 +350,13 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // 전달받은 img, frame의 x, y값에 맞게 오브제 배치
     func attachObjet(frameX: CGFloat, frameY: CGFloat, img: UIImage) {
-        let imgView = UIImageView(frame: CGRect(x: frameX, y: frameY, width: img.size.width, height: img.size.height))
-        imgView.image = img
+        objView = UIImageView(frame: CGRect(x: frameX, y: frameY, width: img.size.width, height: img.size.height))
+        objView.image = img
 
-        imgView.isUserInteractionEnabled = false
-        homeTableView.addSubview(imgView)
+        objView.isUserInteractionEnabled = false
+        homeTableView.addSubview(objView)
+        self.tagNum += 1
+        objView.tag = self.tagNum
     }
     
     // bottom 오브제 배치
@@ -369,6 +370,8 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         objView.isUserInteractionEnabled = false
         homeTableView.addSubview(objView)
+        self.tagNum += 1
+        objView.tag = self.tagNum
     }
     
     // footer 오브제 배치
@@ -385,19 +388,13 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // MARK: objet 붙이기
     
-    // TODO: - 근데 맨 밑에꺼만 떼짐
     // 다 떼기
     func removeAllObjets() {
-        print(self.homeTableView.subviews.contains(objView))
-        while self.homeTableView.subviews.contains(objView) {
-            print(self.homeTableView.subviews.contains(objView))
-            self.objView.removeFromSuperview()
-            print(self.homeTableView.subviews.contains(objView))
+        for view in homeTableView.subviews {
+            if view.tag >= 1 {
+                view.removeFromSuperview()
+            }
         }
-//        if self.homeTableView.subviews.contains(objView) {
-//            print(objView)
-//            self.objView.removeFromSuperview()
-//        }
     }
     
     // 0단계 - 2m
