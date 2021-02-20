@@ -20,6 +20,13 @@ class FindPasswordViewController: UIViewController {
     var getPasswordAlertView: GetPasswordAlertView?
     var todayPasswordCount: Int = 0
     
+    private lazy var leftButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: Constants.Design.Image.btnBackWhite, style: .plain, target: self, action: #selector(touchNavigationButton(sender:)))
+        button.tintColor = UIColor.Black1
+        button.tag = 0
+        return button
+    }()
+    
     // MARK: - @IBOutlet Properties
     
     @IBOutlet weak var emailErrorLabel: UILabel!
