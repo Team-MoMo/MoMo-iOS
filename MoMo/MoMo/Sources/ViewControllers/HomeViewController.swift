@@ -76,7 +76,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.homeTableView.backgroundColor = UIColor.clear
         
         // tableView separator 없애기
-        homeTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+        homeTableView.separatorStyle = .none
         
         // 첫 화면 버튼 hidden 처리
         calendarButton.isHidden = true
