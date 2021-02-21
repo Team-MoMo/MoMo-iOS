@@ -101,11 +101,8 @@ class EmailLoginViewController: UIViewController {
     private func detachActivityIndicator() {
         if self.activityIndicator.isAnimating {
             self.activityIndicator.stopAnimating()
-            self.activityIndicator.removeFromSuperview()
-        } else {
-            self.activityIndicator.removeFromSuperview()
         }
-        
+        self.activityIndicator.removeFromSuperview()
     }
     
     @objc private func touchNavigationButton(sender: Any) {
