@@ -70,7 +70,6 @@ class FindPasswordViewController: UIViewController {
         self.getPasswordAlertView = Bundle.main.loadNibNamed(Constants.Name.getPasswordAlertViewXib, owner: self, options: nil)?.last as? GetPasswordAlertView
     }
     
-    // TODO: - 하루 지나면 초기화되도록 수정
     func initializeTodayPasswordCount() {
         todayPasswordCount = 0
     }
@@ -82,6 +81,7 @@ class FindPasswordViewController: UIViewController {
     }
     
     func initializeNavigationBar() {
+        self.navigationItem.leftBarButtonItem = self.leftButton
         // navigation bar 투명화
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -131,6 +131,21 @@ class FindPasswordViewController: UIViewController {
             let keyboardHeight = keyboardRectangle.height
             
             getPasswordButtonBottom.constant = CGFloat(getPasswordButtonBottomConstraint)
+        }
+    }
+    
+    private func popToLoginViewController() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func touchNavigationButton(sender: Any) {
+        if let button = sender as? UIBarButtonItem {
+            switch button.tag {
+            case 0:
+                self.popToLoginViewController()
+            default:
+                return
+            }
         }
     }
     
@@ -233,7 +248,6 @@ class FindPasswordViewController: UIViewController {
     // MARK: - API Functions
     // 이메일 확인
     
-    // TODO: - 서버 살아나면 이거 서버 구현해야함 이거 아니라 패스워드쪽으로 해야함 이거 아님!
     func postTempPasswordWithAPI(email: String) {
         PasswordService.shared.postTempPassword(email: email) { (networkResult) -> Void in
             switch networkResult {
