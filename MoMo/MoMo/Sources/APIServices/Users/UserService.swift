@@ -49,7 +49,7 @@ struct UserService {
         switch status {
         case 200:
             return .success(decodedData.message)
-        case 400:
+        case 400...401:
             return .requestErr(decodedData.message)
         case 500:
             return .serverErr
