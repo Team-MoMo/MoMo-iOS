@@ -158,6 +158,11 @@ extension EmailLoginViewController {
                     }
                 }
             case .requestErr(let msg):
+                
+                if self.activityIndicator.isAnimating {
+                    self.activityIndicator.stopAnimating()
+                }
+                
                 if let _ = msg as? String {
                     self.errorMessageTop.constant = 76
                     self.errorMessageLabel.isHidden = false
