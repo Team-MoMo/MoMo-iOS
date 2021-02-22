@@ -108,7 +108,10 @@ class DiaryWriteViewController: UIViewController {
     }
     
     private func updateDiaryWriteViewController() {
-        self.dateLabel.text = diaryInfo?.date?.getFormattedDateAndWeekday(with: ". ")
+        guard let date = diaryInfo?.date?.getFormattedDateAndWeekday(with: ". ") else {
+            return
+        }
+        self.dateLabel.text = date
         self.emotionImage.image = diaryInfo?.mood?.toIcon()
         self.emotionLabel.text = diaryInfo?.mood?.toString()
         self.authorLabel.text = diaryInfo?.sentence?.author
@@ -122,11 +125,12 @@ class DiaryWriteViewController: UIViewController {
     }
     
     private func updateWordSpace() {
-        guard let date = self.diaryInfo?.date?.getFormattedDate(with: ". "),
+        guard let date = diaryInfo?.date?.getFormattedDateAndWeekday(with: ". "),
               let emotion = self.diaryInfo?.mood?.toString(),
               let author = self.diaryInfo?.sentence?.author,
               let bookTitle = self.diaryInfo?.sentence?.bookTitle,
               let publisher = self.diaryInfo?.sentence?.publisher,
+              
               let quote = self.diaryInfo?.sentence?.sentence else { return }
         dateLabel.attributedText = date.wordSpacing(-0.6)
         emotionLabel.attributedText = emotion.wordSpacing(-0.6)
