@@ -219,8 +219,15 @@ class SentenceViewController: UIViewController {
         }
     }
     
+    private func popToHomeViewController() {
+        guard let homeViewController = self.navigationController?.viewControllers.filter({$0 is HomeViewController}).first! as? HomeViewController else {
+            return
+        }
+        self.navigationController?.popToViewController(homeViewController, animated: true)
+    }
+    
     @objc func touchCloseButton() {
-        self.navigationController?.popToRootViewController(animated: true)
+        self.popToHomeViewController()
     }
     
     @objc func touchBackButton() {

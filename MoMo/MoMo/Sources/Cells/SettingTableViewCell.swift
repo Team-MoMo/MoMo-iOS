@@ -21,6 +21,7 @@ class SettingTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectedBackgroundView?.isHidden = true
+        self.backgroundColor = .white
     }
     
     // MARK: - Functions
