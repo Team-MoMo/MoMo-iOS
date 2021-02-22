@@ -77,7 +77,6 @@ class DiaryWriteViewController: UIViewController {
         super.viewDidLoad()
         self.initializeNavigationBar()
         self.initializeDiaryWriteViewController()
-        self.updateWordSpace()
     }
     
     // MARK: - Functions
@@ -108,44 +107,33 @@ class DiaryWriteViewController: UIViewController {
     }
     
     private func updateDiaryWriteViewController() {
-        guard let date = diaryInfo?.date?.getFormattedDateAndWeekday(with: ". ") else {
-            return
-        }
-        self.dateLabel.text = date
-        self.emotionImage.image = diaryInfo?.mood?.toIcon()
-        self.emotionLabel.text = diaryInfo?.mood?.toString()
-        self.authorLabel.text = diaryInfo?.sentence?.author
-        self.bookLabel.text = diaryInfo?.sentence?.bookTitle
-        self.quoteLabel.text = diaryInfo?.sentence?.sentence
-        
-        if self.isFromDiary {
-            self.depthLabel.text = diaryInfo?.depth?.toString()
-            self.journalTextView.text = diaryInfo?.diary
-        }
-    }
-    
-    private func updateWordSpace() {
         guard let date = diaryInfo?.date?.getFormattedDateAndWeekday(with: ". "),
               let emotion = self.diaryInfo?.mood?.toString(),
               let author = self.diaryInfo?.sentence?.author,
               let bookTitle = self.diaryInfo?.sentence?.bookTitle,
               let publisher = self.diaryInfo?.sentence?.publisher,
-              
               let quote = self.diaryInfo?.sentence?.sentence else { return }
-        dateLabel.attributedText = date.wordSpacing(-0.6)
-        emotionLabel.attributedText = emotion.wordSpacing(-0.6)
-        authorLabel.attributedText = author.wordSpacing(-0.6)
-        bookLabel.attributedText = "<\(bookTitle)>".wordSpacing(-0.6)
-        publisherLabel.attributedText = "(\(publisher))".wordSpacing(-0.6)
         
-        let attributedString = NSMutableAttributedString(string: quote)
-        attributedString.addAttribute(NSAttributedString.Key.kern, value: -0.6, range: NSRange(location: 0, length: attributedString.length))
+        self.dateLabel.attributedText = date.wordSpacing(-0.6)
+        self.emotionImage.image = diaryInfo?.mood?.toIcon()
+        self.emotionLabel.attributedText = emotion.wordSpacing(-0.6)
+        self.authorLabel.attributedText = author.wordSpacing(-0.6)
+        self.bookLabel.attributedText = "<\(bookTitle)>".wordSpacing(-0.6)
+        self.publisherLabel.attributedText = "(\(publisher))".wordSpacing(-0.6)
+        
+        let quoteAttributedString = NSMutableAttributedString(string: quote)
+        quoteAttributedString.addAttribute(NSAttributedString.Key.kern, value: -0.6, range: NSRange(location: 0, length: quoteAttributedString.length))
         
         let paragraphStyle = NSMutableParagraphStyle()
-        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
         paragraphStyle.lineSpacing = 4
+        quoteAttributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: quoteAttributedString.length))
         
-        self.quoteLabel.attributedText = attributedString
+        self.quoteLabel.attributedText = quoteAttributedString
+        
+        if self.isFromDiary {
+            self.depthLabel.text = diaryInfo?.depth?.toString()
+            self.journalTextView.text = diaryInfo?.diary
+        }
     }
     
     private func updatePlaceholder() {
