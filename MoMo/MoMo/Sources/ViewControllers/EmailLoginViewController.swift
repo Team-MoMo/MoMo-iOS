@@ -94,6 +94,17 @@ class EmailLoginViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    private func attachActivityIndicator() {
+        self.view.addSubview(self.activityIndicator)
+    }
+    
+    private func detachActivityIndicator() {
+        if self.activityIndicator.isAnimating {
+            self.activityIndicator.stopAnimating()
+        }
+        self.activityIndicator.removeFromSuperview()
+    }
+    
     @objc private func touchNavigationButton(sender: Any) {
         if let button = sender as? UIBarButtonItem {
             switch button.tag {
@@ -108,7 +119,7 @@ class EmailLoginViewController: UIViewController {
     // MARK: - @IBAction Properties
     
     @IBAction func touchUpLoginButton(_ sender: Any) {
-        self.view.addSubview(self.activityIndicator)
+        self.attachActivityIndicator()
         self.postSignInWithAPI(completion: self.pushToHomeViewController)
     }
     
@@ -149,15 +160,16 @@ extension EmailLoginViewController {
                     UserDefaults.standard.setValue(signInData.user.id, forKey: "userId")
                     UserDefaults.standard.setValue("email", forKey: "loginType")
                     
-                    if self.activityIndicator.isAnimating {
-                        self.activityIndicator.stopAnimating()
-                    }
+                    self.detachActivityIndicator()
                     
                     DispatchQueue.main.async {
                         completion()
                     }
                 }
             case .requestErr(let msg):
+                
+                self.detachActivityIndicator()
+                
                 if let _ = msg as? String {
                     self.errorMessageTop.constant = 76
                     self.errorMessageLabel.isHidden = false
