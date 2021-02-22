@@ -63,9 +63,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQb-7L-Dg6" userLabel="StartButton">
-                                        <rect key="frame" x="103.5" y="430" width="207" height="47"/>
+                                        <rect key="frame" x="97" y="427" width="220" height="50"/>
                                         <color key="backgroundColor" name="Blue7"/>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="k7N-Ck-qCP"/>
                                             <constraint firstAttribute="width" secondItem="pQb-7L-Dg6" secondAttribute="height" multiplier="220:50" id="v9l-zS-lMj"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
@@ -109,7 +110,6 @@
                             <constraint firstItem="rIQ-3J-AWL" firstAttribute="leading" secondItem="NzE-KR-8tl" secondAttribute="leading" id="Rph-RL-Qvb"/>
                             <constraint firstItem="NzE-KR-8tl" firstAttribute="trailing" secondItem="ybM-6V-Bhf" secondAttribute="trailing" id="RxY-38-4Du"/>
                             <constraint firstItem="Tzr-4V-2qZ" firstAttribute="top" secondItem="NzE-KR-8tl" secondAttribute="top" constant="66" id="apW-EV-JqW"/>
-                            <constraint firstItem="pQb-7L-Dg6" firstAttribute="width" secondItem="NzE-KR-8tl" secondAttribute="width" multiplier="0.5" id="nda-uT-QYw"/>
                             <constraint firstItem="rIQ-3J-AWL" firstAttribute="bottom" secondItem="ybM-6V-Bhf" secondAttribute="top" id="vDt-Uo-egP"/>
                             <constraint firstItem="ybM-6V-Bhf" firstAttribute="bottom" secondItem="f3q-cn-bRc" secondAttribute="bottom" id="wa1-bG-r1c"/>
                         </constraints>
@@ -959,10 +959,11 @@
                                 <rect key="frame" x="0.0" y="267" width="414" height="629"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZXG-od-vzd" userLabel="StartButton">
-                                <rect key="frame" x="103.5" y="803" width="207" height="47"/>
+                                <rect key="frame" x="97" y="800" width="220" height="50"/>
                                 <color key="backgroundColor" name="Blue7"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ZXG-od-vzd" secondAttribute="height" multiplier="220:50" id="2b7-42-Yky"/>
+                                    <constraint firstAttribute="height" constant="50" id="DIv-ql-Wc4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <state key="normal" title="시작하기">
@@ -1001,7 +1002,6 @@
                             <constraint firstAttribute="trailing" secondItem="poR-7a-CZ5" secondAttribute="trailing" id="fZe-1j-9zY"/>
                             <constraint firstItem="hup-je-MfH" firstAttribute="leading" secondItem="c2l-Tu-1Pv" secondAttribute="leading" id="fgk-xO-ep4"/>
                             <constraint firstItem="c2l-Tu-1Pv" firstAttribute="trailing" secondItem="hup-je-MfH" secondAttribute="trailing" id="iOQ-UY-fi9"/>
-                            <constraint firstItem="ZXG-od-vzd" firstAttribute="width" secondItem="c2l-Tu-1Pv" secondAttribute="width" multiplier="0.5" id="jwh-Kp-9U5"/>
                             <constraint firstItem="g8e-nN-vav" firstAttribute="leading" secondItem="kuc-O0-FKP" secondAttribute="leading" id="kXI-2k-7xf"/>
                             <constraint firstItem="poR-7a-CZ5" firstAttribute="top" secondItem="sBR-vZ-nwc" secondAttribute="bottom" constant="75" id="pS7-Uv-bzn"/>
                             <constraint firstItem="ZXG-od-vzd" firstAttribute="centerX" secondItem="c2l-Tu-1Pv" secondAttribute="centerX" id="rqj-TX-cFT"/>
@@ -1074,7 +1074,7 @@
             <color red="0.41999998688697815" green="0.71799999475479126" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="OnboardingBlue">
-            <color red="0.49803921568627452" green="0.74901960784313726" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.45882350206375122" green="0.729411780834198" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

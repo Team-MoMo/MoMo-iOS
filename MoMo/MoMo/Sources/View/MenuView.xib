@@ -42,7 +42,7 @@
                                 <constraint firstAttribute="height" constant="18" id="M1g-4v-cDh"/>
                             </constraints>
                         </stackView>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hd7-IP-RPZ" userLabel="LineView1">
+                        <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hd7-IP-RPZ" userLabel="LineView1">
                             <rect key="frame" x="12.5" y="39.5" width="138" height="0.5"/>
                             <color key="backgroundColor" name="Black4"/>
                             <constraints>
@@ -75,7 +75,7 @@
                                 <constraint firstAttribute="height" constant="18" id="I7M-wt-RB6"/>
                             </constraints>
                         </stackView>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kcn-IE-JLO" userLabel="LineView2">
+                        <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kcn-IE-JLO" userLabel="LineView2">
                             <rect key="frame" x="12.5" y="75.5" width="138" height="0.5"/>
                             <color key="backgroundColor" name="Black4"/>
                             <constraints>
@@ -108,7 +108,7 @@
                                 <constraint firstAttribute="height" constant="18" id="TsF-6Y-v9W"/>
                             </constraints>
                         </stackView>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H4b-kH-IpD" userLabel="LineView3">
+                        <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H4b-kH-IpD" userLabel="LineView3">
                             <rect key="frame" x="12.5" y="111.5" width="138" height="0.5"/>
                             <color key="backgroundColor" name="Black4"/>
                             <constraints>
