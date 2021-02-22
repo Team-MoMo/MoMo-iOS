@@ -181,7 +181,10 @@ class HomeDayNightView: UIView {
 
 extension HomeDayNightView {
     func getSeletectedDateDiaryAPI() {
-        DiariesService.shared.getDiaries(userId: "\(APIConstants.userId)",
+        
+        let userId = UserDefaults.standard.integer(forKey: "userId")
+        
+        DiariesService.shared.getDiaries(userId: "\(userId)",
                                          year: dateArray[0],
                                          month: dateArray[1],
                                          order: "filter",
@@ -212,17 +215,18 @@ extension HomeDayNightView {
                         self.showEmptyView()
                     }
 
+                    print("success at getSeletectedDateDiaryAPI")
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
                     print(message)
                 }
             case .pathErr:
-                print("pathErr")
+                print("pathErr at getSeletectedDateDiaryAPI")
             case .serverErr:
-                print("serverErr")
+                print("serverErr at getSeletectedDateDiaryAPI")
             case .networkFail:
-                print("networkFail")
+                print("networkFail at getSeletectedDateDiaryAPI")
             }
         }
     }

@@ -128,6 +128,8 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.isNavigationBarHidden = true
         
+        let userId = UserDefaults.standard.integer(forKey: "userId")
+        
         if self.isFromDiary {
             // self.attachTableHeaderView()
             self.headerView?.getSeletectedDateDiaryAPI()
@@ -142,7 +144,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
             }
         }
         
-        DiariesService.shared.getDiaries(userId: "\(APIConstants.userId)",
+        DiariesService.shared.getDiaries(userId: "\(userId)",
                                          year: dateArray[0],
                                          month: dateArray[1],
                                          order: "depth",
@@ -156,17 +158,18 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
                     self.diaryArray = diary
                     self.devideArrayByDepth()
 
+                print("success at DiariesService viewWillAppear")
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
                     print(message)
                 }
             case .pathErr:
-                print("pathErr")
+                print("pathErr at DiariesService viewWillAppear")
             case .serverErr:
-                print("serverErr")
+                print("serverErr at DiariesService viewWillAppear")
             case .networkFail:
-                print("networkFail")
+                print("networkFail at DiariesService viewWillAppear")
             }
             self.calculateFramesOfSections()
             self.paintGradientWithFrame()
@@ -857,17 +860,19 @@ extension HomeViewController {
                     DispatchQueue.main.async {
                         completion()
                     }
+                    
+                    print("success at getDiariesWithAPI")
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
                     print(message)
                 }
             case .pathErr:
-                print("pathErr")
+                print("pathErr at getDiariesWithAPI")
             case .serverErr:
-                print("serverErr")
+                print("serverErr at getDiariesWithAPI")
             case .networkFail:
-                print("networkFail")
+                print("networkFail at getDiariesWithAPI")
             }
             self.calculateFramesOfSections()
             self.paintGradientWithFrame()
