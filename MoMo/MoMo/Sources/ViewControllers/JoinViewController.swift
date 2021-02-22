@@ -20,6 +20,13 @@ class JoinViewController: UIViewController {
     var isInfoTermError = true
     var isServiceTermError = true
     
+    private lazy var leftButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: Constants.Design.Image.btnBackWhite, style: .plain, target: self, action: #selector(touchNavigationButton(sender:)))
+        button.tintColor = UIColor.Black1
+        button.tag = 0
+        return button
+    }()
+    
     // MARK: - @IBOutlet Properties
     
     @IBOutlet weak var emailView: UIView!
@@ -137,6 +144,7 @@ class JoinViewController: UIViewController {
     
     func initializeNavigationBar() {
         // navigation bar 투명화
+        self.navigationItem.leftBarButtonItem = self.leftButton
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
@@ -197,6 +205,21 @@ class JoinViewController: UIViewController {
         emailTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
         passwordTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
         passwordCheckTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
+    }
+    
+    private func popToLoginViewController() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func touchNavigationButton(sender: Any) {
+        if let button = sender as? UIBarButtonItem {
+            switch button.tag {
+            case 0:
+                self.popToLoginViewController()
+            default:
+                return
+            }
+        }
     }
     
     // MARK: - Error Functions
