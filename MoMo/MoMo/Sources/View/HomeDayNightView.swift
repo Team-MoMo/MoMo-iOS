@@ -102,7 +102,6 @@ class HomeDayNightView: UIView {
         }
     }
   
-    
     // MARK: - View Life Cycle
     
     override func awakeFromNib() {
@@ -137,6 +136,12 @@ class HomeDayNightView: UIView {
         
         // 오늘 쓴 일기 있는지 통신
         self.getSeletectedDateDiaryAPI()
+        
+        // 맨 처음에 모든 뷰 가리기
+        filledDiaryView.isHidden = true
+        showAllButton.isHidden = true
+        noDiaryStackView.isHidden = true
+        writeButton.isHidden = true
     }
     
     // MARK: - Functions
