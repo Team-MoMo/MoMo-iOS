@@ -10,6 +10,7 @@ import UIKit
 class OpenSourceViewController: UIViewController {
     
     // MARK: - Constants
+    
     let openSourceTitle: [String] = ["SwiftLint",
                                     "AlamoFire",
                                     "Moya",
@@ -57,6 +58,7 @@ Copyright (c) 2016 Chenglin Liu
 """]
     
     // MARK: - Properties
+    
     private lazy var navigationBarTitleLabel: UILabel = {
         let label = UILabel()
         let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.Black2Nav,
@@ -67,23 +69,28 @@ Copyright (c) 2016 Chenglin Liu
     }()
 
     // MARK: - IBOutlets
+    
     @IBOutlet weak var openSourceTableView: UITableView!
     
-    // MARK: - Override LifeCycle
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         assginDelegate()
         assignDataSource()
         registerCellXib()
         initializeNavigationItem()
+        initializeTableView()
     }
     
-    //MARK: - Private Function
+    // MARK: - Functions
+    
     private func registerCellXib() {
         openSourceTableView.register(UINib(nibName: "OpenSourceTableViewCell", bundle: nil), forCellReuseIdentifier: "OpenSourceTableViewCell")
     }
     
     private func initializeTableView() {
+        openSourceTableView.backgroundColor = .white
         openSourceTableView.separatorStyle = .none
     }
     
@@ -102,7 +109,6 @@ Copyright (c) 2016 Chenglin Liu
         self.navigationItem.titleView = self.navigationBarTitleLabel
     }
     
-    // MARK: - Selector Function
     @objc func dismissOpenSourceView() {
         self.navigationController?.popViewController(animated: true)
     }

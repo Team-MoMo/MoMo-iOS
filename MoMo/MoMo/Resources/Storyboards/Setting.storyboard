@@ -12,7 +12,7 @@
         <scene sceneID="UEr-el-SfI">
             <objects>
                 <viewController storyboardIdentifier="SettingViewController" id="vEU-ub-d2d" customClass="SettingViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="zyd-od-wMc">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="zyd-od-wMc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -20,19 +20,20 @@
                                 <rect key="frame" x="24" y="16" width="366" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingTableViewCell" id="L1A-Ae-uYY">
+                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingTableViewCell" id="L1A-Ae-uYY">
                                         <rect key="frame" x="0.0" y="28" width="366" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="L1A-Ae-uYY" id="hxD-KH-MXl">
                                             <rect key="frame" x="0.0" y="0.0" width="366" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Pec-q0-dii"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ikt-2u-ioC" firstAttribute="leading" secondItem="Pec-q0-dii" secondAttribute="leading" constant="24" id="9P2-pE-FRg"/>
                             <constraint firstItem="ikt-2u-ioC" firstAttribute="top" secondItem="Pec-q0-dii" secondAttribute="top" constant="16" id="HZQ-lU-YKa"/>
