@@ -14,7 +14,7 @@ class ServiceTermViewController: UIViewController {
         let label: UILabel = UILabel()
         let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.Black2Nav,
             NSAttributedString.Key.kern: -0.6]
-        label.attributedText = NSAttributedString(string: "개인정보 이용 약관", attributes: attributes)
+        label.attributedText = NSAttributedString(string: "서비스 이용 약관", attributes: attributes)
         label.sizeToFit()
         return label
     }()

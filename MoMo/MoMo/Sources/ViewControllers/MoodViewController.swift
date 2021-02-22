@@ -250,11 +250,11 @@ extension MoodViewController {
                     print(message)
                 }
             case .pathErr:
-                print("pathErr")
+                print("pathErr in getDiariesWithAPI")
             case .serverErr:
-                print("serverErr")
+                print("serverErr in getDiariesWithAPI")
             case .networkFail:
-                print("networkFail")
+                print("networkFail in getDiariesWithAPI")
             }
         }
     }
@@ -271,11 +271,11 @@ extension MoodViewController {
                     print(message)
                 }
             case .pathErr:
-                print("pathErr")
+                print("pathErr in getDiaryRecentWithAPI")
             case .serverErr:
-                print("serverErr")
+                print("serverErr in getDiaryRecentWithAPI")
             case .networkFail:
-                print("networkFail")
+                print("networkFail in getDiaryRecentWithAPI")
             }
         }
     }

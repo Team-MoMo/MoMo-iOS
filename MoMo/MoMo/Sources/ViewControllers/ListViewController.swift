@@ -197,11 +197,11 @@ class ListViewController: UIViewController {
                     print(message)
                 }
             case .pathErr:
-                print("pathErr")
+                print("pathErr in getDiariesWithAPI")
             case .serverErr:
-                print("serverErr")
+                print("serverErr in getDiariesWithAPI")
             case .networkFail:
-                print("networkFail")
+                print("networkFail in getDiariesWithAPI")
             }
         }
     }

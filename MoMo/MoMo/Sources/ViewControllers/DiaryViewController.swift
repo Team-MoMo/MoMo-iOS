@@ -464,11 +464,11 @@ extension DiaryViewController {
             case .requestErr(let errorMessage):
                 print(errorMessage)
             case .pathErr:
-                print("pathErr")
+                print("pathErr in getDiaryWithAPI")
             case .serverErr:
-                print("serverErr")
+                print("serverErr in getDiaryWithAPI")
             case .networkFail:
-                print("networkFail")
+                print("networkFail in getDiaryWithAPI")
             }
         }
     }
@@ -496,11 +496,11 @@ extension DiaryViewController {
             case .requestErr(let errorMessage):
                 print(errorMessage)
             case .pathErr:
-                print("pathErr")
+                print("pathErr in putDiaryWithAPI")
             case .serverErr:
-                print("serverErr")
+                print("serverErr in putDiaryWithAPI")
             case .networkFail:
-                print("networkFail")
+                print("networkFail in putDiaryWithAPI")
             }
         }
     }
@@ -514,11 +514,11 @@ extension DiaryViewController {
             case .requestErr(let errorMessage):
                 print(errorMessage)
             case .pathErr:
-                print("pathErr")
+                print("pathErr in deleteDiaryWithAPI")
             case .serverErr:
-                print("serverErr")
+                print("serverErr in deleteDiaryWithAPI")
             case .networkFail:
-                print("networkFail")
+                print("networkFail in deleteDiaryWithAPI")
             }
         }
     }

@@ -557,11 +557,11 @@ extension SettingViewController {
             case .requestErr(let errorMessage):
                 print(errorMessage)
             case .pathErr:
-                print("pathErr")
+                print("pathErr in deleteUserWithAPI")
             case .serverErr:
-                print("serverErr")
+                print("serverErr in deleteUserWithAPI")
             case .networkFail:
-                print("networkFail")
+                print("networkFail in deleteUserWithAPI")
             }
         }
     }

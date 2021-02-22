@@ -272,11 +272,11 @@ extension SentenceViewController {
             case .requestErr(let errorMessage):
                 print(errorMessage)
             case .pathErr:
-                print("pathErr")
+                print("pathErr in getSentencesWithAPI")
             case .serverErr:
-                print("serverErr")
+                print("serverErr in getSentencesWithAPI")
             case .networkFail:
-                print("networkFail")
+                print("networkFail in getSentencesWithAPI")
             }
         }
     }
@@ -311,11 +311,11 @@ extension SentenceViewController {
             case .requestErr(let errorMessage):
                 print(errorMessage)
             case .pathErr:
-                print("pathErr")
+                print("pathErr in getOnboardingSentenceWithAPI")
             case .serverErr:
-                print("serverErr")
+                print("serverErr in getOnboardingSentenceWithAPI")
             case .networkFail:
-                print("networkFail")
+                print("networkFail in getOnboardingSentenceWithAPI")
             }
         }
     }
