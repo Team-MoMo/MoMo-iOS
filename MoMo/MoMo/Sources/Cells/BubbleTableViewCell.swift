@@ -16,7 +16,6 @@ class BubbleTableViewCell: UITableViewCell {
     @IBOutlet weak var emotionLabel: UILabel!
     @IBOutlet weak var bubbleSize: NSLayoutConstraint!
     @IBOutlet weak var bubbleLeading: NSLayoutConstraint!
-    @IBOutlet weak var touchButton: UIButton!
     
     // MARK: - Properties
     
