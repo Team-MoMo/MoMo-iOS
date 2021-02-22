@@ -69,9 +69,9 @@
 		1C52BE0F25AD7A9500D02771 /* onboarding_wave_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C52BE0E25AD7A9500D02771 /* onboarding_wave_ios.json */; };
 		1C5876C225D04C45004537A5 /* LockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5876C125D04C45004537A5 /* LockViewController.swift */; };
 		1C5876C525D04C57004537A5 /* Lock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C5876C425D04C57004537A5 /* Lock.storyboard */; };
-		1C5876D825D446BD004537A5 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5876D725D446BD004537A5 /* UserService.swift */; };
 		1C5876C925D28BDF004537A5 /* ChangePassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C5876C825D28BDF004537A5 /* ChangePassword.storyboard */; };
 		1C5876CC25D28BEF004537A5 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5876CB25D28BEF004537A5 /* ChangePasswordViewController.swift */; };
+		1C5876D825D446BD004537A5 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5876D725D446BD004537A5 /* UserService.swift */; };
 		1C7CD80725ACA5EC00B7CB60 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CD80625ACA5EC00B7CB60 /* DiaryViewController.swift */; };
 		1C7CD80A25ACA5FD00B7CB60 /* Diary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C7CD80925ACA5FD00B7CB60 /* Diary.storyboard */; };
 		1C7CD82525ACEB9E00B7CB60 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7CD82425ACEB9E00B7CB60 /* MenuView.swift */; };
@@ -236,9 +236,9 @@
 		562C645825C1AFAD00AA9AB6 /* AppDepth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDepth.swift; sourceTree = "<group>"; };
 		562C645B25C1B14F00AA9AB6 /* AppSentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSentence.swift; sourceTree = "<group>"; };
 		562C645E25C1B16000AA9AB6 /* AppDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDiary.swift; sourceTree = "<group>"; };
+		562C648125C9B43500AA9AB6 /* MoMo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoMo.entitlements; sourceTree = "<group>"; };
 		562C648D25D0553700AA9AB6 /* GetPasswordAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GetPasswordAlertView.xib; sourceTree = "<group>"; };
 		562C649025D0554300AA9AB6 /* GetPasswordAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPasswordAlertView.swift; sourceTree = "<group>"; };
-		562C648125C9B43500AA9AB6 /* MoMo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoMo.entitlements; sourceTree = "<group>"; };
 		5637606625B04AA800651EAA /* SignUpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpService.swift; sourceTree = "<group>"; };
 		5637606925B04ABC00651EAA /* SignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInService.swift; sourceTree = "<group>"; };
 		5637607225B04F6400651EAA /* PasswordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordService.swift; sourceTree = "<group>"; };
@@ -1014,6 +1014,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MoMo/MoMo.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 52W8853QH6;
 				INFOPLIST_FILE = MoMo/Resources/Info.plist;
@@ -1023,6 +1024,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = team.MoMo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1035,6 +1037,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MoMo/MoMo.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 52W8853QH6;
 				INFOPLIST_FILE = MoMo/Resources/Info.plist;
@@ -1044,6 +1047,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = team.MoMo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
