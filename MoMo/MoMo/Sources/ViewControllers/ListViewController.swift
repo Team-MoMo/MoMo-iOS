@@ -16,6 +16,12 @@ class ListViewController: UIViewController {
     @IBOutlet weak var warningPlusButton: UIButton!
     @IBOutlet weak var filterWarningLabel: UILabel!
     
+    private lazy var titleLabel: UILabel = {
+        let label: UILabel = UILabel()
+        label.sizeToFit()
+        return label
+    }()
+    
     // MARK: - Constant
     
     let zeplinWidth: CGFloat = 375
@@ -68,9 +74,16 @@ class ListViewController: UIViewController {
 //        self.listFilterModalView = ListFilterModalViewController()
         // 홈에서 받은 데이트 변수에 대입
         date = "\(year)년 \(month)월"
+        initializeNaviTitleLabel("\(year)년 \(month)월")
         // 필터에서 기준으로 잡을 년과 월 저장
         standardYear = year
         standardMonth = month
+    }
+    
+    private func initializeNaviTitleLabel(_ date: String) {
+        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.Black2Nav,
+            NSAttributedString.Key.kern: -0.6]
+        titleLabel.attributedText = NSAttributedString(string: date, attributes: attributes)
     }
     
     private func initializeWarningLabel() {
@@ -119,7 +132,7 @@ class ListViewController: UIViewController {
         }
         self.navigationItem.rightBarButtonItems = [statButton, filterButton]
         self.navigationItem.leftBarButtonItem = backButton
-        self.navigationItem.title = ""
+        self.navigationItem.titleView = UILabel()
     }
     
     private func showWarningLabelAndButton() {
@@ -300,9 +313,9 @@ class ListViewController: UIViewController {
 extension ListViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if self.listTableView.contentOffset.y > 40 {
-            self.navigationItem.title = date
+            self.navigationItem.titleView = self.titleLabel
         } else {
-            self.navigationItem.title = ""
+            self.navigationItem.titleView = UILabel()
         }
     }
 }
