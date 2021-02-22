@@ -88,6 +88,7 @@ class MoodViewController: UIViewController {
         self.selectedDate = AppDate()
         self.modalView = UploadModalViewController()
         self.modalView?.uploadModalDataDelegate = self
+        self.dateLabel.text = self.currentDate?.getFormattedDateAndWeekday(with: ". ")
     }
     
     func initializeDateLabel(recentDate: String, verifyToday: Bool) {
