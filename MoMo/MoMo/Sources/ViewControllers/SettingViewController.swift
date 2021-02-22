@@ -28,7 +28,7 @@ class SettingViewController: UIViewController {
     var settingViewUsage: SettingViewUsage?
     var lockIsUpdated: Bool = false
     var passwordIsUpdated: Bool = false
-    private var settingAlerViewUsage: SettingAlertViewUsage?
+    private var settingAlertViewUsage: SettingAlertViewUsage?
     private var toastView: ToastView?
     private let cellHeight: CGFloat = 64
     private var cellInfos: [SettingCellInfo]?
@@ -142,6 +142,7 @@ class SettingViewController: UIViewController {
     }
     
     private func initializeSettingTableView() {
+        self.settingTableView.backgroundColor = .white
         self.settingTableView.delegate = self
         self.settingTableView.dataSource = self
         self.settingTableView.register(UINib(nibName: Constants.Name.settingTableViewCell, bundle: nil), forCellReuseIdentifier: Constants.Identifier.settingTableViewCell)
@@ -193,7 +194,7 @@ class SettingViewController: UIViewController {
             (image: Constants.Design.Image.icDoc1, labelText: "개인정보처리방침", touchAction: self.pushToPersonalTermViewController),
             (image: Constants.Design.Image.icDoc2, labelText: "서비스이용약관", touchAction: self.pushToServiceTermViewController),
             (image: Constants.Design.Image.icLogout, labelText: "로그아웃", touchAction: {
-                self.settingAlerViewUsage = .logout
+                self.settingAlertViewUsage = .logout
                 self.attachAlertModalView(alertLabelText: "정말 로그아웃 하시겠어요?\n일기를 다시 쓰려면 로그인해 주세요!")
             }),
             (image: UIImage(), labelText: "", touchAction: {})
@@ -245,10 +246,13 @@ class SettingViewController: UIViewController {
         })
     }
     
-    private func deleteUserIdAndToken() {
+    private func deleteUserDefaults() {
         UserDefaults.standard.removeObject(forKey: "token")
         UserDefaults.standard.removeObject(forKey: "userId")
         UserDefaults.standard.removeObject(forKey: "loginType")
+        if self.hasLock() {
+            UserDefaults.standard.removeObject(forKey: "isLocked")
+        }
     }
   
     private func updateVersion() {
@@ -411,7 +415,6 @@ class SettingViewController: UIViewController {
     }
     
     private func popToLoginViewController() {
-        self.deleteUserIdAndToken()
         if let loginViewController = self.navigationController?.viewControllers.filter({$0 is LoginViewController}).first as? LoginViewController {
             self.navigationController?.popToViewController(loginViewController, animated: true)
         } else {
@@ -466,7 +469,7 @@ class SettingViewController: UIViewController {
     }
     
     @objc func touchWithDrawalButton(sender: UIButton) {
-        self.settingAlerViewUsage = .withdrawal
+        self.settingAlertViewUsage = .withdrawal
         self.attachAlertModalView(alertLabelText: "정말 탈퇴 하시겠어요?\n작성된 일기를 다시 볼 수 없어요!")
     }
 }
@@ -475,12 +478,13 @@ class SettingViewController: UIViewController {
 
 extension SettingViewController: AlertModalDelegate {
     func leftButtonTouchUp(button: UIButton) {
-        switch self.settingAlerViewUsage {
+        switch self.settingAlertViewUsage {
         case .logout:
+            self.deleteUserDefaults()
             self.popToLoginViewController()
         case .withdrawal:
             self.deleteUserWithAPI(userId: APIConstants.userId, completion: {
-                self.deleteUserIdAndToken()
+                self.deleteUserDefaults()
                 self.popToLoginViewController()
             })
         default:
