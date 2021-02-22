@@ -191,11 +191,11 @@ class StatisticsViewController: UIViewController {
                     print(message)
                 }
             case .pathErr:
-                print("pathErr")
+                print("pathErr in getDiaryStatisticsWithAPI")
             case .serverErr:
-                print("serverErr")
+                print("serverErr in getDiaryStatisticsWithAPI")
             case .networkFail:
-                print("networkFail")
+                print("networkFail in getDiaryStatisticsWithAPI")
             }
         }
     }

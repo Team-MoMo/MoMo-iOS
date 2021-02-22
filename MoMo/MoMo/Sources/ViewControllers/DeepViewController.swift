@@ -169,7 +169,7 @@ class DeepViewController: UIViewController {
         
     }
     
-    func updateJournal(contents: String, depth: Int, userId: Int, sentenceId: Int, emotionId: Int, wroteAt: String) {
+    func postDiariesWithAPI(contents: String, depth: Int, userId: Int, sentenceId: Int, emotionId: Int, wroteAt: String) {
         DiariesService.shared.postDiaries(contents: contents, depth: depth, userId: userId, sentenceId: sentenceId, emotionId: emotionId, wroteAt: wroteAt) { networkResult in
             switch networkResult {
             case .success(let data):
@@ -183,11 +183,11 @@ class DeepViewController: UIViewController {
                     print(message)
                 }
             case .pathErr:
-                print("pathErr")
+                print("pathErr in postDiariesWithAPI")
             case .serverErr:
-                print("serverErr")
+                print("serverErr in postDiariesWithAPI")
             case .networkFail:
-                print("networkFail")
+                print("networkFail in postDiariesWithAPI")
             }
         }
     }
@@ -213,7 +213,7 @@ class DeepViewController: UIViewController {
                 return
             }
             
-            self.updateJournal(
+            self.postDiariesWithAPI(
                 contents: diary,
                 depth: Int(round(self.deepSliderValue * 6)),
                 userId: Int(APIConstants.userId),
