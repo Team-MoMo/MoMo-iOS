@@ -34,14 +34,21 @@ class StatisticsViewController: UIViewController {
         guard let unwrappedYear = year, let unwrappedMonth = month else {
             return
         }
+        updateLabelText()
+        addTapRecognizerToDateLabel()
         initializeDateModal()
         initializeNavigationItem()
         initializeSubLayer()
         getDiaryStatisticsWithAPI("\(unwrappedYear)", "\(unwrappedMonth)")
-        updateLabelText()
     }
 
     // MARK: - Private Function
+    
+    private func addTapRecognizerToDateLabel() {
+        let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapDateLabel(_:)))
+        self.dateLabel.isUserInteractionEnabled = true
+        self.dateLabel.addGestureRecognizer(tapRecognizer)
+    }
     
     private func initializeSubLayer() {
         let depthLayer = CALayer()
@@ -218,7 +225,7 @@ class StatisticsViewController: UIViewController {
         self.statNumLabel.text = "\(cnt)개의 일기"
     }
     
-    private func updateMoodDepthData(_ emotion: [EmotionCount], _ depth: [DepthCount]){
+    private func updateMoodDepthData(_ emotion: [EmotionCount], _ depth: [DepthCount]) {
         depthData = [0, 0, 0, 0, 0, 0, 0]
         emotionData = [0, 0, 0, 0, 0, 0, 0, 0]
         
@@ -235,6 +242,10 @@ class StatisticsViewController: UIViewController {
     // MARK: - Selector Function
     @objc func touchBackButton() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func tapDateLabel(_ sender: UITapGestureRecognizer) {
+        presentDateModal()
     }
     
     // MARK: - IBActions
