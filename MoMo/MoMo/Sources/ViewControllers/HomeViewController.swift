@@ -409,6 +409,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     func attachDepth0Objet() {
         let sectionFrameY = sectionFrameArray[0].origin.y
         let sectionFrameBottom = sectionFrameArray[1].origin.y
+        let sectionFrameCenterY = sectionFrameBottom - (sectionFrameY / 2)
         let screenWidth = UIScreen.main.bounds.width
         
         // img 변수 선언
@@ -416,14 +417,18 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         let rock2 = Constants.Design.Image.depth0Rock2
         let fish1 = Constants.Design.Image.depth0Fish1
         let fish2 = Constants.Design.Image.depth0Fish2
+        let fish5 = Constants.Design.Image.depth0Fish5
         let seaweed1 = Constants.Design.Image.depth0Seaweed1
+        let bubble1 = Constants.Design.Image.depth0Bubble1
         
         // objet 붙이기
         attachObjet(frameX: screenWidth - (rock1?.size.width ?? CGFloat(0)), frameY: sectionFrameY, img: rock1 ?? UIImage())
         attachObjet(frameX: 0, frameY: sectionFrameBottom - (rock2?.size.height ?? CGFloat(0)), img: rock2 ?? UIImage())
-        attachObjet(frameX: 64, frameY: sectionFrameY + 161, img: fish1 ?? UIImage())
-        attachObjet(frameX: screenWidth - 47 - (fish2?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - 197 - (fish2?.size.height ?? CGFloat(0)), img: fish2 ?? UIImage())
+        attachObjet(frameX: 64, frameY: sectionFrameCenterY - 124 - (fish1?.size.height ?? CGFloat(0)), img: fish1 ?? UIImage())
+        attachObjet(frameX: screenWidth - 47 - (fish2?.size.width ?? CGFloat(0)), frameY: sectionFrameCenterY + 151, img: fish2 ?? UIImage())
         attachObjet(frameX: screenWidth - (seaweed1?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - (seaweed1?.size.height ?? CGFloat(0)), img: seaweed1 ?? UIImage())
+        attachObjet(frameX: 75, frameY: sectionFrameCenterY + 219, img: fish5 ?? UIImage())
+        attachObjet(frameX: screenWidth - 40 - (bubble1?.size.width ?? CGFloat(0)), frameY: sectionFrameCenterY - (bubble1?.size.height ?? CGFloat(0)), img: bubble1 ?? UIImage())
     }
     
     // 1단계 - 30m
