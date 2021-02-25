@@ -75,6 +75,12 @@ class EmailLoginViewController: UIViewController {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationItem.hidesBackButton = true
+        
+        
+        // navigation bar 숨기기 취소
+        self.navigationController?.isNavigationBarHidden = false
+        
     }
     
     // MARK: - Functions
