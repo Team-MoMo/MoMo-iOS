@@ -197,6 +197,9 @@ MOMO와 함께 시작해요</string>
                                 <state key="normal" title="[필수] 개인정보 수집이용 동의">
                                     <color key="titleColor" name="Black2Nav"/>
                                 </state>
+                                <connections>
+                                    <action selector="touchInfoTermButton:" destination="EgC-Rq-djX" eventType="touchUpInside" id="DcL-KR-YlQ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opi-Rw-cdh">
                                 <rect key="frame" x="83" y="598.5" width="259" height="29"/>
@@ -207,6 +210,9 @@ MOMO와 함께 시작해요</string>
                                 <state key="normal" title="[필수] 서비스 이용약관 동의">
                                     <color key="titleColor" name="Black2Nav"/>
                                 </state>
+                                <connections>
+                                    <action selector="touchServiceTermButton:" destination="EgC-Rq-djX" eventType="touchUpInside" id="SBs-az-LEh"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FIF-Wo-fet"/>
