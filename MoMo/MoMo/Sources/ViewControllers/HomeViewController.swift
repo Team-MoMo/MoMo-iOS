@@ -409,7 +409,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     func attachDepth0Objet() {
         let sectionFrameY = sectionFrameArray[0].origin.y
         let sectionFrameBottom = sectionFrameArray[1].origin.y
-        let sectionFrameCenterY = sectionFrameBottom - (sectionFrameY / 2)
+        let sectionFrameCenterY = sectionFrameBottom - ((sectionFrameBottom - sectionFrameY) / 2)
         let screenWidth = UIScreen.main.bounds.width
         
         // img 변수 선언
@@ -435,11 +435,13 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     func attachDepth1Objet() {
         let sectionFrameY = sectionFrameArray[1].origin.y
         let sectionFrameBottom = sectionFrameArray[2].origin.y
+        let sectionFrameCenterY = sectionFrameBottom - ((sectionFrameBottom - sectionFrameY) / 2)
         let screenWidth = UIScreen.main.bounds.width
         
         // img 변수 선언
         let rock1 = Constants.Design.Image.depth1Rock1
         let seaweed = Constants.Design.Image.depth1Seaweed
+        let seaweed3 = Constants.Design.Image.depth1Seaweed3
         let dolphin1 = Constants.Design.Image.depth1Dolphin1
         let dolphin2 = Constants.Design.Image.depth1Dolphin2
         let coral1 = Constants.Design.Image.depth1Coral1
@@ -448,10 +450,11 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         // objet 붙이기
         attachObjet(frameX: 0, frameY: sectionFrameY, img: rock1 ?? UIImage())
         attachObjet(frameX: screenWidth - (seaweed?.size.width ?? CGFloat(0)), frameY: sectionFrameY, img: seaweed ?? UIImage())
-        attachObjet(frameX: 9, frameY: sectionFrameY + 260, img: dolphin1 ?? UIImage())
-        attachObjet(frameX: screenWidth - 22 - (dolphin2?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - 143 - (dolphin2?.size.width ?? CGFloat(0)), img: dolphin2 ?? UIImage())
+        attachObjet(frameX: 9, frameY: sectionFrameCenterY - 90, img: dolphin1 ?? UIImage())
+        attachObjet(frameX: screenWidth - 22 - (dolphin2?.size.width ?? CGFloat(0)), frameY: sectionFrameCenterY + 137, img: dolphin2 ?? UIImage())
         attachObjet(frameX: 0, frameY: sectionFrameBottom, img: coral1 ?? UIImage())
         attachObjet(frameX: screenWidth - (fish1?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom, img: fish1 ?? UIImage())
+        attachObjet(frameX: screenWidth - (seaweed3?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - 267 - (seaweed3?.size.height ?? CGFloat(0)), img: seaweed3 ?? UIImage())
     }
     
     // 2단계 - 100m
