@@ -66,6 +66,9 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // edge pan gesture 추가
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        
         homeTableView.allowsSelection = true
         
         // 오늘 날짜 가져오기
