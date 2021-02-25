@@ -32,6 +32,7 @@ class EmailLoginViewController: UIViewController {
         activityIndicator.startAnimating()
         return activityIndicator
     }()
+    
     private lazy var leftButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: Constants.Design.Image.btnBackWhite, style: .plain, target: self, action: #selector(touchNavigationButton(sender:)))
         button.tintColor = UIColor.Black1
@@ -70,11 +71,21 @@ class EmailLoginViewController: UIViewController {
         
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "영문 + 숫자 6자리 이상 입력해 주세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Blue5, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
         
+        initializeNavigationBar()
+    }
+    
+    // MARK: - Functions
+    
+    func initializeNavigationBar() {
         // navigation bar 투명화
         self.navigationItem.leftBarButtonItem = self.leftButton
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationItem.hidesBackButton = true
+        
+        // edge pan gesture 추가
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
     // MARK: - Functions
