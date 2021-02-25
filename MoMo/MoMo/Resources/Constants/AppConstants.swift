@@ -156,6 +156,7 @@ struct Constants {
             static let depth6Seaweed1 = UIImage(named: "underSeaweed1")
             static let depth6Sea = UIImage(named: "underSea")
             static let depth6bottom = UIImage(named: "bottomSea")
+            static let depth6Fish1 = UIImage(named: "underFish1")
             
             // icon
 

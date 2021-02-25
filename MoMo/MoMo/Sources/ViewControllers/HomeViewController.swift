@@ -559,12 +559,14 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     func attachDepth6Objet() {
         let sectionFrameY = sectionFrameArray[6].origin.y
         let sectionFrameBottom = sectionFrameArray[6].origin.y + sectionFrameArray[6].size.height
+        let sectionFrameCenterY = sectionFrameBottom - ((sectionFrameBottom - sectionFrameY) / 2)
         let screenWidth = UIScreen.main.bounds.width
         
         // img 변수 선언
         let rock1 = Constants.Design.Image.depth6Rock1
         let seaweed1 = Constants.Design.Image.depth6Seaweed1
         let sea = Constants.Design.Image.depth6Sea
+        let fish1 = Constants.Design.Image.depth6Fish1
         
         // sea 이미지 높이 계산
         let imgWidth = sea?.size.width ?? CGFloat(0)
@@ -575,6 +577,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         // objet 붙이기
         attachObjet(frameX: 0, frameY: sectionFrameY, img: rock1 ?? UIImage())
         attachObjet(frameX: screenWidth - (seaweed1?.size.width ?? CGFloat(0)), frameY: sectionFrameY, img: seaweed1 ?? UIImage())
+        attachObjet(frameX: screenWidth - (fish1?.size.width ?? CGFloat(0)), frameY: sectionFrameCenterY - (fish1?.size.height ?? CGFloat(0)), img: fish1 ?? UIImage())
         attachBottomObjet(frameX: 0, frameY: sectionFrameBottom - height, img: sea ?? UIImage())
     }
     
