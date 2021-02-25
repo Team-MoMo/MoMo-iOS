@@ -157,8 +157,6 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
                 if let diary = data as? [Diary] {
                     self.diaryArray = diary
                     self.devideArrayByDepth()
-
-                print("success at DiariesService viewWillAppear")
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
@@ -860,8 +858,6 @@ extension HomeViewController {
                     DispatchQueue.main.async {
                         completion()
                     }
-                    
-                    print("success at getDiariesWithAPI")
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
