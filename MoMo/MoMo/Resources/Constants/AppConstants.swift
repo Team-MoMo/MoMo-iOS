@@ -121,6 +121,7 @@ struct Constants {
             // objet - depth number 2
             static let depth2Fish1 = UIImage(named: "100MFish1")
             static let depth2Fish2 = UIImage(named: "100MFish2")
+            static let depth2Fish3 = UIImage(named: "100MFish3")
             static let depth2Turtle1 = UIImage(named: "100MTurtle1")
             static let depth2Turtle2 = UIImage(named: "100MTurtle2")
             static let depth2Seaweed1 = UIImage(named: "100MSeaweed1")

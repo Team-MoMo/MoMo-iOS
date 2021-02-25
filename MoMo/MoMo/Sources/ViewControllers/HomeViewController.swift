@@ -461,11 +461,13 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     func attachDepth2Objet() {
         let sectionFrameY = sectionFrameArray[2].origin.y
         let sectionFrameBottom = sectionFrameArray[3].origin.y
+        let sectionFrameCenterY = sectionFrameBottom - ((sectionFrameBottom - sectionFrameY) / 2)
         let screenWidth = UIScreen.main.bounds.width
         
         // img 변수 선언
         let fish1 = Constants.Design.Image.depth2Fish1
         let fish2 = Constants.Design.Image.depth2Fish2
+        let fish3 = Constants.Design.Image.depth2Fish3
         let turtle1 = Constants.Design.Image.depth2Turtle1
         let turtle2 = Constants.Design.Image.depth2Turtle2
         let seaweed1 = Constants.Design.Image.depth2Seaweed1
@@ -473,9 +475,10 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         // objet 붙이기
         attachObjet(frameX: screenWidth - (fish1?.size.width ?? CGFloat(0)), frameY: sectionFrameY, img: fish1 ?? UIImage())
-        attachObjet(frameX: 0, frameY: sectionFrameY + 147, img: fish2 ?? UIImage())
-        attachObjet(frameX: screenWidth - 68 - (turtle1?.size.width ?? CGFloat(0)), frameY: sectionFrameY + 118, img: turtle1 ?? UIImage())
-        attachObjet(frameX: 9, frameY: sectionFrameBottom - 148 - (turtle2?.size.height ?? CGFloat(0)), img: turtle2 ?? UIImage())
+        attachObjet(frameX: 0, frameY: sectionFrameBottom - 433 - (fish2?.size.height ?? CGFloat(0)), img: fish2 ?? UIImage())
+        attachObjet(frameX: 136, frameY: sectionFrameCenterY + 186, img: fish3 ?? UIImage())
+        attachObjet(frameX: screenWidth - 68 - (turtle1?.size.width ?? CGFloat(0)), frameY: sectionFrameCenterY - 134 - (turtle1?.size.height ?? CGFloat(0)), img: turtle1 ?? UIImage())
+        attachObjet(frameX: 9, frameY: sectionFrameCenterY + 17, img: turtle2 ?? UIImage())
         attachObjet(frameX: 0, frameY: sectionFrameBottom - (seaweed1?.size.height ?? CGFloat(0)), img: seaweed1 ?? UIImage())
         attachObjet(frameX: screenWidth - (seaweed2?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - (seaweed2?.size.height ?? CGFloat(0)), img: seaweed2 ?? UIImage())
     }
