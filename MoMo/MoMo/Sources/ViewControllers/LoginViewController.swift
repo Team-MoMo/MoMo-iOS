@@ -54,6 +54,9 @@ class LoginViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationItem.hidesBackButton = true
+        
+        // navigation bar 숨기기
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     func createGradientColorSets() {
