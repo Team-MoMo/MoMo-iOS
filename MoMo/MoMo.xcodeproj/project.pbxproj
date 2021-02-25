@@ -140,6 +140,7 @@
 		568764CE259F6A80009CB486 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 568764CD259F6A80009CB486 /* Colors.xcassets */; };
 		568764D1259F6EDE009CB486 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568764D0259F6EDE009CB486 /* UIColor+Extension.swift */; };
 		5699DDB525D669FB00493243 /* TempPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5699DDB425D669FB00493243 /* TempPassword.swift */; };
+		56DD504B25E7EE8A003FBC38 /* UINavigationControllerDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DD504A25E7EE8A003FBC38 /* UINavigationControllerDelegate+Extension.swift */; };
 		9360320992DCEB38E63381C5 /* Pods_MoMo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF70C440F3CE67275FF3023 /* Pods_MoMo.framework */; };
 /* End PBXBuildFile section */
 
@@ -280,6 +281,7 @@
 		568764CD259F6A80009CB486 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		568764D0259F6EDE009CB486 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		5699DDB425D669FB00493243 /* TempPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempPassword.swift; sourceTree = "<group>"; };
+		56DD504A25E7EE8A003FBC38 /* UINavigationControllerDelegate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationControllerDelegate+Extension.swift"; sourceTree = "<group>"; };
 		596A64056F40D8E627DE76D5 /* Pods-MoMo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoMo.debug.xcconfig"; path = "Target Support Files/Pods-MoMo/Pods-MoMo.debug.xcconfig"; sourceTree = "<group>"; };
 		BC74336F4AB884589C6C3095 /* Pods-MoMo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoMo.release.xcconfig"; path = "Target Support Files/Pods-MoMo/Pods-MoMo.release.xcconfig"; sourceTree = "<group>"; };
 		FCF70C440F3CE67275FF3023 /* Pods_MoMo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoMo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -473,6 +475,7 @@
 				1CAD05B925AC59C1007ECA40 /* UISlider+Extension.swift */,
 				563B047925ADF63900DA74C5 /* UITextField+Extension.swift */,
 				10029DAA25B108E000060E14 /* HomeModalPresentation.swift */,
+				56DD504A25E7EE8A003FBC38 /* UINavigationControllerDelegate+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -789,6 +792,7 @@
 				568764612599FB56009CB486 /* APIConstants.swift in Sources */,
 				563B049625AE0E6800DA74C5 /* Diary.swift in Sources */,
 				10DDA34225AF09A900620C41 /* EmotionCollectionViewCell.swift in Sources */,
+				56DD504B25E7EE8A003FBC38 /* UINavigationControllerDelegate+Extension.swift in Sources */,
 				10F092AE25CC3FA900342B18 /* OpenSourceDetailViewController.swift in Sources */,
 				1CAD05A525AACB36007ECA40 /* DeepViewController.swift in Sources */,
 				10F092AA25CC356F00342B18 /* OpenSourceTableViewCell.swift in Sources */,
@@ -1016,12 +1020,14 @@
 				CODE_SIGN_ENTITLEMENTS = MoMo/MoMo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 52W8853QH6;
 				INFOPLIST_FILE = MoMo/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = team.MoMo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1039,12 +1045,14 @@
 				CODE_SIGN_ENTITLEMENTS = MoMo/MoMo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 52W8853QH6;
 				INFOPLIST_FILE = MoMo/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = team.MoMo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
