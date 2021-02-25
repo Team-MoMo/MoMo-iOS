@@ -513,6 +513,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     func attachDepth4Objet() {
         let sectionFrameY = sectionFrameArray[4].origin.y
         let sectionFrameBottom = sectionFrameArray[5].origin.y
+        let sectionFrameCenterY = sectionFrameBottom - ((sectionFrameBottom - sectionFrameY) / 2)
         let screenWidth = UIScreen.main.bounds.width
         
         // img 변수 선언
@@ -526,8 +527,8 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         attachObjet(frameX: 0, frameY: sectionFrameY, img: seaweed1 ?? UIImage())
         attachObjet(frameX: 0, frameY: sectionFrameBottom - (seaweed2?.size.height ?? CGFloat(0)), img: seaweed2 ?? UIImage())
         attachObjet(frameX: screenWidth - (rock1?.size.width ?? CGFloat(0)), frameY: sectionFrameY, img: rock1 ?? UIImage())
-        attachObjet(frameX: 0, frameY: sectionFrameY + 67, img: whale1 ?? UIImage())
-        attachObjet(frameX: screenWidth - (fish1?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - (fish1?.size.height ?? CGFloat(0)), img: fish1 ?? UIImage())
+        attachObjet(frameX: 0, frameY: sectionFrameCenterY - (whale1?.size.height ?? CGFloat(0)), img: whale1 ?? UIImage())
+        attachObjet(frameX: screenWidth - (fish1?.size.width ?? CGFloat(0)), frameY: sectionFrameCenterY + 125, img: fish1 ?? UIImage())
     }
     
     // 5단계 - 1005m
