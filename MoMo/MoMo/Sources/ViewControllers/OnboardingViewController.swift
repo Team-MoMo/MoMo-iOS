@@ -77,3 +77,27 @@ class OnboardingViewController: UIViewController {
         self.navigationController?.pushViewController(dvc, animated: true)
     }
 }
+
+extension UINavigationController:UINavigationControllerDelegate {
+
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        self.delegate = self
+    }
+
+    public func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        
+        if responds(to: #selector(getter: self.interactivePopGestureRecognizer)) {
+            
+            if viewControllers[0].isKind(of: OnboardingViewController.self) {
+                if viewControllers.count > 6 {
+                    interactivePopGestureRecognizer?.isEnabled = true
+                } else {
+                    interactivePopGestureRecognizer?.isEnabled = false
+                }
+            } else {
+                interactivePopGestureRecognizer?.isEnabled = true
+            }
+        }
+    }
+}
