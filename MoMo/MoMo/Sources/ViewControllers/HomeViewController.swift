@@ -68,6 +68,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         // edge pan gesture 추가
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         
         homeTableView.allowsSelection = true
         
@@ -89,7 +90,6 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         // 오늘 작성한 일기가 없을 때
          uploadButton.isHidden = false
-        
         
         // 권한 위임
         self.homeTableView.dataSource = self
