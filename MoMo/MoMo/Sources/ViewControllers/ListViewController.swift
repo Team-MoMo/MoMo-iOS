@@ -355,10 +355,11 @@ extension ListViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListTableViewCell") as? ListTableViewCell else {
                 return UITableViewCell()
             }
-
+            DispatchQueue.main.async {
+                cell.journalView.round(corners: [.topLeft, .bottomLeft], cornerRadius: 20)
+            }
             cell.parseDiaryAll(diary: self.receivedData[indexPath.row])
             cell.customQuote(self.receivedData[indexPath.row].sentence.contents)
-            cell.journalView.round(corners: [.topLeft, .bottomLeft], cornerRadius: 20)
             cell.divideJournal(self.receivedData[indexPath.row].contents, self.journalLabel1WidthSize)
             cell.createLabelUnderline( self.journalLabel2WidthSize)
             cell.moreButton.tag = self.receivedData[indexPath.row].id
