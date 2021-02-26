@@ -91,8 +91,6 @@ class ListFilterModalViewController: UIViewController {
         super.viewDidLoad()
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerAction))
         view.addGestureRecognizer(panGesture)
-        view.layer.cornerRadius = 15
-        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         registerXib()
         initailizeConstraint()
         assignDelegate()
@@ -122,7 +120,6 @@ class ListFilterModalViewController: UIViewController {
         }
     }
     
-
     // MARK: - Private Functions
     
     private func initializeEmotionDepthProperties() {
@@ -145,7 +142,6 @@ class ListFilterModalViewController: UIViewController {
         emotionView.layer.addSublayer(layer)
     }
 
-    
     private func registerXib() {
         emotionCollectionView.register(UINib(nibName: "EmotionCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EmotionCollectionViewCell")
         depthCollectionView.register(UINib(nibName: "DepthCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "DepthCollectionViewCell")

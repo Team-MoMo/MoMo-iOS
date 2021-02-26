@@ -55,7 +55,7 @@ class ModalPresentationController: UIPresentationController {
             presentedView?.frame = CGRect(origin: CGPoint(x: 0, y: self.containerView!.frame.height*0.27), size: CGSize(width: self.containerView!.frame.width, height: self.containerView!.frame.height * 0.73))
             check.toggle()
         }
-       
+        self.presentedView?.round(corners: [.topLeft, .topRight], cornerRadius: 15)
         blurEffectView.frame = containerView!.bounds
     }
     
