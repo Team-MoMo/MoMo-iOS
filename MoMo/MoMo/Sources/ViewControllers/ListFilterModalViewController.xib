@@ -43,12 +43,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="필터" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ddk-di-5hD">
-                    <rect key="frame" x="24" y="24" width="29.5" height="18"/>
+                    <rect key="frame" x="24" y="24" width="31.5" height="18"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="UB5-5s-PDj"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" name="Black1"/>
+                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="18"/>
+                    <color key="textColor" name="Black2Nav"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMS-vT-vp7">
@@ -62,19 +62,19 @@
                     <rect key="frame" x="24" y="76" width="301" height="141"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ia-x0-rHX">
-                            <rect key="frame" x="0.0" y="1" width="24.5" height="17"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                            <rect key="frame" x="0.0" y="1" width="29.5" height="20.5"/>
+                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="17"/>
                             <color key="textColor" name="Blue3"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020년 1월" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0yQ-cc-lwq">
-                            <rect key="frame" x="48.5" y="0.0" width="79.5" height="19.5"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                            <rect key="frame" x="53.5" y="0.0" width="75.5" height="19.5"/>
+                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="16"/>
                             <color key="textColor" name="Blue2"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FAp-Og-c5I">
-                            <rect key="frame" x="144" y="-1" width="14" height="22"/>
+                            <rect key="frame" x="145" y="-1" width="14" height="22"/>
                             <state key="normal" image="btnArrowRight14"/>
                             <connections>
                                 <action selector="touchMoreButton:" destination="-1" eventType="touchUpInside" id="0cd-fe-fDJ"/>
@@ -92,12 +92,12 @@
                                             <color key="tintColor" name="Black1"/>
                                         </pickerView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="년" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="isJ-po-TOl">
-                                            <rect key="frame" x="82" y="45.5" width="15" height="20.5"/>
+                                            <rect key="frame" x="82" y="46.5" width="15" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="15" id="UHH-Az-RQw"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" name="Black1"/>
+                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
+                                            <color key="textColor" name="Black4"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -111,12 +111,12 @@
                                             <color key="tintColor" name="Black1"/>
                                         </pickerView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="월" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jxa-m7-Hay">
-                                            <rect key="frame" x="82" y="45.5" width="15" height="20.5"/>
+                                            <rect key="frame" x="82" y="46.5" width="15" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="15" id="xIP-z8-9kt"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" name="Black1"/>
+                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
+                                            <color key="textColor" name="Black4"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -142,7 +142,7 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="깊이" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZXU-Nl-ZNR">
                             <rect key="frame" x="0.0" y="20" width="24.5" height="17"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="14"/>
                             <color key="textColor" name="Blue3"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -173,7 +173,7 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="감정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uir-yp-HoB">
                             <rect key="frame" x="0.0" y="20" width="24.5" height="17"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="14"/>
                             <color key="textColor" name="Blue3"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -204,7 +204,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="42" id="IZs-Bv-iRJ"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="17"/>
                     <state key="normal" title="적용"/>
                     <connections>
                         <action selector="touchApplyButton:" destination="-1" eventType="touchUpInside" id="ZZJ-K2-a2f"/>
@@ -240,6 +240,12 @@
         <image name="btnCloseBlack" width="24" height="24"/>
         <namedColor name="Black1">
             <color red="0.12200000137090683" green="0.12200000137090683" blue="0.12200000137090683" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Black2Nav">
+            <color red="0.23499999940395355" green="0.23499999940395355" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Black4">
+            <color red="0.45500001311302185" green="0.45500001311302185" blue="0.45500001311302185" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Blue2">
             <color red="0.27799999713897705" green="0.48199999332427979" blue="0.72200000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

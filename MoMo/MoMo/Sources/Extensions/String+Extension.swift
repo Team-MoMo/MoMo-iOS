@@ -29,11 +29,14 @@ extension String {
         return attributedString
     }
     
-    func wordTextSpacing(textSpacing: Float, linSpacing: Float) -> NSMutableAttributedString {
+    func wordTextSpacing(textSpacing: Float, linSpacing: Float, center: Bool) -> NSMutableAttributedString {
         let attributedString = NSMutableAttributedString(string: self)
         let paragraphStyle = NSMutableParagraphStyle()
         
         paragraphStyle.lineSpacing = 4
+        if center {
+            paragraphStyle.alignment = .center
+        }
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
         attributedString.addAttribute(NSAttributedString.Key.kern, value: -0.6, range: NSRange(location: 0, length: attributedString.length))
 

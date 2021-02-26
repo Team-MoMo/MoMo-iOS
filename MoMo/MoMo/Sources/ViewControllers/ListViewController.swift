@@ -80,14 +80,20 @@ class ListViewController: UIViewController {
     }
     
     private func initializeNaviTitleLabel(_ date: String) {
-        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.Black2Nav,
-            NSAttributedString.Key.kern: -0.6]
-        titleLabel.attributedText = NSAttributedString(string: date, attributes: attributes)
+        if let font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16) {
+            let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: font,
+                                                             NSAttributedString.Key.foregroundColor: UIColor.Black2Nav,
+                                                             NSAttributedString.Key.kern: -0.6]
+            titleLabel.attributedText = NSAttributedString(string: date, attributes: attributes)
+        }
     }
     
     private func initializeWarningLabel() {
         filterWarningLabel.attributedText = "검색된 결과가 없습니다".wordSpacing(-0.6)
-        warningLabel.attributedText = "아직 작성된 일기가 없습니다.\n새로운 문장을 만나러 가볼까요?".wordSpacing(-0.6)
+        warningLabel.attributedText = "아직 작성된 일기가 없습니다.\n새로운 문장을 만나러 가볼까요?".wordTextSpacing(textSpacing: -0.6, linSpacing: 4, center: true)
+        filterWarningLabel.isHidden = true
+        warningLabel.isHidden = true
+        warningPlusButton.isHidden = true
     }
     
     private func assignDelegate() {

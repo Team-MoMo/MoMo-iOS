@@ -19,7 +19,7 @@ class DepthCollectionViewCell: UICollectionViewCell {
     }
     
     func initializeLabel(_ depth: String) {
-        depthLabel.text = depth
+        depthLabel.attributedText = depth.wordSpacing(-0.6)
     }
 
 }
