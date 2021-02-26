@@ -22,7 +22,7 @@ class MoodStatViewController: UIViewController {
     @IBOutlet var statViewHeight: [NSLayoutConstraint]?
     @IBOutlet var statView: [UIView]?
     
-    //MARK: - Override LifeCycle
+    // MARK: - Override LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeStatBorderRadius()
@@ -32,7 +32,7 @@ class MoodStatViewController: UIViewController {
         initializeLabels()
     }
     
-    //MARK: - Private Function
+    // MARK: - Private Function
     private func initializeStatBorderRadius() {
         guard let views = statView else {
             return
@@ -65,7 +65,6 @@ class MoodStatViewController: UIViewController {
             views[idx].layoutIfNeeded()
         }
     }
-    
     
     private func initializeLabels() {
         guard let labels = statNumLabel else {
