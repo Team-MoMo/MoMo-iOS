@@ -71,7 +71,6 @@ class ListViewController: UIViewController {
     private func initializeProperty() {
         journalLabel1WidthSize = self.view.bounds.width * (261/zeplinWidth)
         journalLabel2WidthSize = self.view.bounds.width * (237/zeplinWidth)
-//        self.listFilterModalView = ListFilterModalViewController()
         // 홈에서 받은 데이트 변수에 대입
         date = "\(year)년 \(month)월"
         initializeNaviTitleLabel("\(year)년 \(month)월")

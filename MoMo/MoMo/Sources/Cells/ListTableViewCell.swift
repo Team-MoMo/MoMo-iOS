@@ -91,25 +91,21 @@ class ListTableViewCell: UITableViewCell {
     
     // 문구 텍스트 작업
     func customQuote(_ text: String) {
-        let attributedString = NSMutableAttributedString(string: text)
-        let paragraphStyle = NSMutableParagraphStyle()
-        
-        paragraphStyle.lineSpacing = 4
-        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
-        attributedString.addAttribute(NSAttributedString.Key.kern, value: -0.6, range: NSRange(location: 0, length: attributedString.length))
-
-        quoteLabel.attributedText = attributedString
+        quoteLabel.attributedText = text.wordTextSpacing(textSpacing: -0.6, linSpacing: 4)
     }
     
     // 일기 분리 작업
     func divideJournal(_ text: String, _ size: CGFloat) {
-        let labelSize: CGSize = text.size(withAttributes: [.font: UIFont.systemFont(ofSize: 13, weight: .regular)])
+        guard let font =  UIFont(name: "AppleSDGothicNeo-Regular", size: 13) else {
+            return
+        }
+        let labelSize: CGSize = text.size(withAttributes: [.font: font])
         var length: CGFloat = 0
         var addedString: String = ""
         if labelSize.width > size {
             DispatchQueue.main.async {
                 for index in text.indices {
-                    let charWidth = String(text[index]).size(withAttributes: [.font: UIFont.systemFont(ofSize: 13, weight: .regular)]).width
+                    let charWidth = String(text[index]).size(withAttributes: [.font: font]).width
                     if length + charWidth > size {
                         let firstString = NSMutableAttributedString(string: addedString)
                         let secondString = NSMutableAttributedString(string: String(text[index...]))
