@@ -39,7 +39,16 @@ class DiaryWriteViewController: UIViewController {
     var diaryInfo: AppDiary?
     private var toastView: ToastView?
     private var alertModalView: AlertModalView?
-    private var placeHolder: NSMutableAttributedString = NSMutableAttributedString()
+    private var placeHolder: NSAttributedString = {
+        guard let font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 13) else {
+            return NSAttributedString()
+        }
+        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: font,
+                                                         NSAttributedString.Key.foregroundColor: UIColor.Blue3,
+                                                         NSAttributedString.Key.kern: -0.6]
+        return NSAttributedString(string: "파동을 충분히 느낀 후, 감정을 기록해보세요.", attributes: attributes)
+    }()
+    
     private let placeHolderText: String = "파동을 충분히 느낀 후, 감정을 기록해보세요."
     weak var diaryWriteViewControllerDelegate: DiaryWriteViewControllerDelegate?
     
@@ -81,6 +90,19 @@ class DiaryWriteViewController: UIViewController {
     
     // MARK: - Functions
     
+    private func updateTextView() {
+        guard let font = UIFont(name: "AppleSDGothicNeo-Regular", size: 14) else {
+            return
+        }
+        let spacing = NSMutableParagraphStyle()
+        spacing.lineSpacing = 4
+        
+        self.journalTextView.typingAttributes = [NSAttributedString.Key.font: font,
+                                                 NSAttributedString.Key.kern: -0.6,
+                                                 NSAttributedString.Key.foregroundColor: UIColor.Black3List,
+                                                 NSAttributedString.Key.paragraphStyle: spacing]
+    }
+    
     func initializeDiaryWriteViewController() {
         self.journalTextView.delegate = self
         self.updateDiaryWriteViewController()
@@ -120,15 +142,7 @@ class DiaryWriteViewController: UIViewController {
         self.authorLabel.attributedText = author.wordSpacing(-0.6)
         self.bookLabel.attributedText = "<\(bookTitle)>".wordSpacing(-0.6)
         self.publisherLabel.attributedText = "(\(publisher))".wordSpacing(-0.6)
-        
-        let quoteAttributedString = NSMutableAttributedString(string: quote)
-        quoteAttributedString.addAttribute(NSAttributedString.Key.kern, value: -0.6, range: NSRange(location: 0, length: quoteAttributedString.length))
-        
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 4
-        quoteAttributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: quoteAttributedString.length))
-        
-        self.quoteLabel.attributedText = quoteAttributedString
+        self.quoteLabel.attributedText = quote.wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: false)
         
         if self.isFromDiary {
             self.depthLabel.text = diaryInfo?.depth?.toString()
@@ -137,26 +151,12 @@ class DiaryWriteViewController: UIViewController {
     }
     
     private func updatePlaceholder() {
-        
-        let attributedString = NSMutableAttributedString(string: self.placeHolderText)
-        
-        attributedString.addAttribute(NSAttributedString.Key.kern, value: -0.6, range: NSRange(location: 0, length: attributedString.length))
-        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.Blue3, range: NSRange(location: 0, length: attributedString.length))
-        
-        self.placeHolder = attributedString
-    }
-    
-    private func coordinateTextView() -> [NSAttributedString.Key: Any] {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 4
-        
-        let attribute: [NSAttributedString.Key: Any] = [
-            .kern: -0.6,
-            .paragraphStyle: paragraphStyle,
-            .foregroundColor: UIColor.Black3List
-        ]
-        
-        return attribute
+        if let font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 13) {
+            let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: font,
+                                                             NSAttributedString.Key.foregroundColor: UIColor.Blue3,
+                                                             NSAttributedString.Key.kern: -0.6]
+            placeHolder = NSAttributedString(string: self.placeHolderText, attributes: attributes)
+        }
     }
     
     private func shrinkQuoteLabel() {
@@ -327,14 +327,15 @@ class DiaryWriteViewController: UIViewController {
 extension DiaryWriteViewController: UITextViewDelegate {
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        
         if self.journalTextView.text == self.placeHolderText {
             self.journalTextView.text = ""
-            self.journalTextView.typingAttributes = coordinateTextView()
         }
         
         if self.quoteLabel.text == "" { return true }
         
         self.shrinkQuoteLabel()
+        updateTextView()
         
         return true
     }
