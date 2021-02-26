@@ -213,7 +213,7 @@ class StatisticsViewController: UIViewController {
         }
     }
     
-    private func updateMoodDepthData(_ emotion: [EmotionCount], _ depth: [DepthCount]){
+    private func updateMoodDepthData(_ emotion: [EmotionCount], _ depth: [DepthCount]) {
         depthData = [0, 0, 0, 0, 0, 0, 0]
         emotionData = [0, 0, 0, 0, 0, 0, 0, 0]
         
