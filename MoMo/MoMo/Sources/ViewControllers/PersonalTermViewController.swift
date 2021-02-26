@@ -100,8 +100,12 @@ class PersonalTermViewController: UIViewController {
     
     // MARK: - Properties
     private lazy var navigationItemTitleLabel: UILabel = {
-        let label: UILabel = UILabel()
-        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.Black2Nav,
+        let label = UILabel()
+        guard let font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16) else {
+            return UILabel()
+        }
+        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: font,
+            NSAttributedString.Key.foregroundColor: UIColor.Black2Nav,
             NSAttributedString.Key.kern: -0.6]
         label.attributedText = NSAttributedString(string: "개인정보 이용 약관", attributes: attributes)
         label.sizeToFit()
@@ -121,14 +125,7 @@ class PersonalTermViewController: UIViewController {
     }
     
     private func initializeTextViewText() {
-        let attributedString = NSMutableAttributedString(string: personalTermText)
-        let paragraphStyle = NSMutableParagraphStyle()
-        
-        paragraphStyle.lineSpacing = 4
-        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
-        attributedString.addAttribute(NSAttributedString.Key.kern, value: -0.6, range: NSRange(location: 0, length: attributedString.length))
-        
-        personalInfoTextView.attributedText = attributedString
+        personalInfoTextView.attributedText = personalTermText.wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: false)
     }
     
     private func initializeNavigationItem() {
