@@ -16,7 +16,7 @@ class ListTableViewCell: UITableViewCell {
                                  Constants.Design.Image.icSadBlue!,
                                  Constants.Design.Image.icBoredBlue!,
                                  Constants.Design.Image.icMemoryBlue!,
-                                 Constants.Design.Image.icDailyBlue!,
+                                 Constants.Design.Image.icDailyBlue!
     ]
     
     let emotion: [String] = ["사랑", "헹복", "위로", "화남", "슬픔", "우울", "추억", "일상"]
