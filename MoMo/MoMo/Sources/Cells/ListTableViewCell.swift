@@ -91,7 +91,7 @@ class ListTableViewCell: UITableViewCell {
     
     // 문구 텍스트 작업
     func customQuote(_ text: String) {
-        quoteLabel.attributedText = text.wordTextSpacing(textSpacing: -0.6, linSpacing: 4, center: false)
+        quoteLabel.attributedText = text.wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: false)
     }
     
     // 일기 분리 작업

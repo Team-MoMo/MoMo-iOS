@@ -29,7 +29,7 @@ extension String {
         return attributedString
     }
     
-    func wordTextSpacing(textSpacing: Float, linSpacing: Float, center: Bool) -> NSMutableAttributedString {
+    func wordTextSpacing(textSpacing: Float, lineSpacing: Float, center: Bool) -> NSMutableAttributedString {
         let attributedString = NSMutableAttributedString(string: self)
         let paragraphStyle = NSMutableParagraphStyle()
         
