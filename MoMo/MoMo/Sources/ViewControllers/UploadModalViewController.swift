@@ -168,20 +168,19 @@ class UploadModalViewController: UIViewController {
     }
     
     private func getDiariesWithAPI(userID: String,
-                       year: String,
-                       month: String,
-                       order: String,
-                       day: Int?,
-                       emotionID: Int?,
-                       depth: Int?) {
+                                   year: String,
+                                   month: String,
+                                   order: String,
+                                   day: Int?,
+                                   emotionID: Int?,
+                                   depth: Int?) {
         DiariesService.shared.getDiaries(userId: userID,
                                          year: year,
                                          month: month,
                                          order: order,
                                          day: day,
                                          emotionId: emotionID,
-                                         depth: depth) {
-            (networkResult) -> () in
+                                         depth: depth) { (networkResult) in
             switch networkResult {
 
             case .success(let data):
