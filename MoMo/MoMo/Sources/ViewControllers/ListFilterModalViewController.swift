@@ -122,7 +122,6 @@ class ListFilterModalViewController: UIViewController {
         }
     }
     
-
     // MARK: - Private Functions
     
     private func initializeEmotionDepthProperties() {
@@ -145,7 +144,6 @@ class ListFilterModalViewController: UIViewController {
         emotionView.layer.addSublayer(layer)
     }
 
-    
     private func registerXib() {
         emotionCollectionView.register(UINib(nibName: "EmotionCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EmotionCollectionViewCell")
         depthCollectionView.register(UINib(nibName: "DepthCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "DepthCollectionViewCell")
