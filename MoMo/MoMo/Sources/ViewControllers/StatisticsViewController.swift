@@ -21,6 +21,18 @@ class StatisticsViewController: UIViewController {
     var depthData: [Int] = [0, 0, 0, 0, 0, 0, 0]
     var emotionData: [Int] = [0, 0, 0, 0, 0, 0, 0, 0]
     
+    private lazy var navigationBarTitleLabel: UILabel = {
+        let label = UILabel()
+        if let font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16) {
+            let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: font,
+                                                             NSAttributedString.Key.foregroundColor: UIColor.Black2Nav,
+                                                             NSAttributedString.Key.kern: -0.6]
+            label.attributedText = NSAttributedString(string: "이달의 통계", attributes: attributes)
+            label.sizeToFit()
+        }
+        return label
+    }()
+    
     // MARK: - IBOutlets
     @IBOutlet weak var depthButton: UIButton!
     @IBOutlet weak var moodButton: UIButton!
@@ -79,7 +91,7 @@ class StatisticsViewController: UIViewController {
             return
         }
         let monthString = String(format: "%02d", unwrappedMonth)
-        dateLabel.text = ("\(unwrappedYear)년 " + monthString + "월")
+        dateLabel.attributedText = ("\(unwrappedYear)년 " + monthString + "월").wordSpacing(-0.6)
     }
     
     private func initializeNavigationItem() {
@@ -87,7 +99,7 @@ class StatisticsViewController: UIViewController {
         backButton.tintColor = .black
         
         self.navigationItem.leftBarButtonItem = backButton
-        self.navigationItem.title = "이 달의 통계"
+        self.navigationItem.titleView = navigationBarTitleLabel
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.Black1]
         
     }
@@ -120,16 +132,16 @@ class StatisticsViewController: UIViewController {
     }
     
     private func makeUnselectedButtonTitle(_ text: String) -> NSMutableAttributedString {
-        let attrs = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 26, weight: .ultraLight),
+        let attrs = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-UltraLight", size: 26),
                      NSAttributedString.Key.foregroundColor: UIColor.Black3List]
-        let attrText = NSMutableAttributedString(string: text, attributes: attrs)
+        let attrText = NSMutableAttributedString(string: text, attributes: attrs as [NSAttributedString.Key: Any])
         return attrText
     }
     
     private func makeSelectedButtonTitle(_ text: String) -> NSMutableAttributedString {
-        let attrs = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 26, weight: .semibold),
-                     NSAttributedString.Key.foregroundColor: UIColor.Blue1]
-        let attrText = NSMutableAttributedString(string: text, attributes: attrs)
+        let attrs = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 26),
+                    NSAttributedString.Key.foregroundColor: UIColor.Blue1]
+        let attrText = NSMutableAttributedString(string: text, attributes: attrs as [NSAttributedString.Key: Any])
         return attrText
     }
         

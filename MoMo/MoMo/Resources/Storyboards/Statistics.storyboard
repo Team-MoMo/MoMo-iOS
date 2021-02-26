@@ -470,6 +470,13 @@
                         <outletCollection property="statView" destination="cxe-0D-OBR" collectionClass="NSMutableArray" id="rl1-H3-3Dt"/>
                         <outletCollection property="statView" destination="n4D-3w-qKP" collectionClass="NSMutableArray" id="btf-qr-tiv"/>
                         <outletCollection property="statView" destination="qRM-gk-BsR" collectionClass="NSMutableArray" id="KKJ-5n-bCv"/>
+                        <outletCollection property="depthLabel" destination="1E4-1g-APL" collectionClass="NSMutableArray" id="99B-Ou-r3L"/>
+                        <outletCollection property="depthLabel" destination="7IM-y1-8CH" collectionClass="NSMutableArray" id="6kJ-He-eBb"/>
+                        <outletCollection property="depthLabel" destination="0k3-UJ-QjD" collectionClass="NSMutableArray" id="sK6-NA-NRk"/>
+                        <outletCollection property="depthLabel" destination="tTr-FJ-lqW" collectionClass="NSMutableArray" id="9P3-Tl-GXD"/>
+                        <outletCollection property="depthLabel" destination="TpS-Av-DaV" collectionClass="NSMutableArray" id="JQO-pV-lvR"/>
+                        <outletCollection property="depthLabel" destination="CFe-rx-2E7" collectionClass="NSMutableArray" id="2bS-oE-wVg"/>
+                        <outletCollection property="depthLabel" destination="3fA-Mx-a8K" collectionClass="NSMutableArray" id="nkN-YM-9DF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nl7-cx-ofL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -993,6 +1000,14 @@
                         <outletCollection property="statView" destination="HBO-Ex-ALU" collectionClass="NSMutableArray" id="siY-IB-aXg"/>
                         <outletCollection property="statView" destination="k4L-3n-INL" collectionClass="NSMutableArray" id="2vb-EW-h0N"/>
                         <outletCollection property="statView" destination="Yd1-lb-bBw" collectionClass="NSMutableArray" id="qmC-YM-3fE"/>
+                        <outletCollection property="emotionLabel" destination="0Ux-mg-uzC" collectionClass="NSMutableArray" id="7uu-h2-3qs"/>
+                        <outletCollection property="emotionLabel" destination="iob-tb-ALN" collectionClass="NSMutableArray" id="g2j-K5-Bdv"/>
+                        <outletCollection property="emotionLabel" destination="0r7-ce-M6N" collectionClass="NSMutableArray" id="LtU-Na-Dlm"/>
+                        <outletCollection property="emotionLabel" destination="rkv-j9-uNa" collectionClass="NSMutableArray" id="gDl-VE-G2Y"/>
+                        <outletCollection property="emotionLabel" destination="SnY-cd-gSy" collectionClass="NSMutableArray" id="yH8-Ue-5xy"/>
+                        <outletCollection property="emotionLabel" destination="vWp-bs-iPu" collectionClass="NSMutableArray" id="8FO-9W-ofC"/>
+                        <outletCollection property="emotionLabel" destination="8m0-dv-oDc" collectionClass="NSMutableArray" id="CSE-c0-XcX"/>
+                        <outletCollection property="emotionLabel" destination="6G4-Ip-ExB" collectionClass="NSMutableArray" id="Wz7-4N-QYc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rnC-3T-2Ze" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
