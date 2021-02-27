@@ -74,8 +74,10 @@ extension OnboardingWriteViewController {
     func updateSentenceLabel() {
         self.authorLabel.text = self.selectedSentence?.author
         self.bookTitleLabel.text = self.changeToformattedText("<", self.selectedSentence?.bookTitle, ">")
-        self.publisherLabel.text = self.changeToformattedText("(", self.selectedSentence?.bookTitle, ")")
+        self.publisherLabel.text = self.changeToformattedText("(", self.selectedSentence?.publisher, ")")
         self.sentenceLabel.text = self.selectedSentence?.sentence
+        self.publisherLabel.numberOfLines = 1
+        self.publisherLabel.lineBreakMode = .byTruncatingTail
     }
     
     func updateTypingLabel() {
