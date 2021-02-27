@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DiaryWriteViewControllerDelegate: class {
-    func popToDiaryViewController(diaryInfo: AppDiary?)
+    func popToDiaryViewController(newDiaryInfo: AppDiary?)
 }
 
 enum DiaryWriteViewNavigationButton: Int {
@@ -207,7 +207,7 @@ class DiaryWriteViewController: UIViewController {
         } else {
             self.saveDiary()
             self.navigationItem.rightBarButtonItem = nil
-            self.diaryWriteViewControllerDelegate?.popToDiaryViewController(diaryInfo: self.diaryInfo)
+            self.diaryWriteViewControllerDelegate?.popToDiaryViewController(newDiaryInfo: self.diaryInfo)
             self.navigationController?.popViewController(animated: true)
         }
     }
@@ -280,19 +280,13 @@ class DiaryWriteViewController: UIViewController {
     
     private func updateAlertModalViewConstraints(view: UIView) {
         view.snp.makeConstraints({ (make) in
-            make.width.equalTo(self.view)
-            make.height.equalTo(self.view)
-            make.centerX.equalTo(self.view)
-            make.centerY.equalTo(self.view)
+            make.width.height.centerX.centerY.equalTo(self.view)
         })
     }
     
     private func updateToastViewConstraints(view: UIView) {
         view.snp.makeConstraints({ (make) in
-            make.width.equalTo(self.view)
-            make.height.equalTo(self.view)
-            make.centerX.equalTo(self.view)
-            make.centerY.equalTo(self.view)
+            make.width.height.centerX.centerY.equalTo(self.view)
         })
     }
     
