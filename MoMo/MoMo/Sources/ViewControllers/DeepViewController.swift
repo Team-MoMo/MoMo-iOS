@@ -12,6 +12,10 @@ protocol DeepViewControllerDelegate: class {
     func passData(selectedDepth: AppDepth)
 }
 
+enum DepthSelectionButtonUsage: Int {
+    case onboarding = 0, upload, diary
+}
+
 class DeepViewController: UIViewController {
 
     // MARK: - @IBOutlet Properties
@@ -20,13 +24,13 @@ class DeepViewController: UIViewController {
     @IBOutlet weak var gradientScrollView: UIScrollView!
     @IBOutlet weak var gradientBackgroundView: UIView!
     @IBOutlet weak var blurView: UIView!
-    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var depthSelectionButton: UIButton!
     
     // MARK: - Properties
     
     var diaryInfo: AppDiary?
     var initialDepth: AppDepth?
-    var buttonText: String = "시작하기"
+    var depthSeclectionButtonUsage: DepthSelectionButtonUsage = .onboarding
     private var deepSliderValue: Float = 0
     private var deepSliderView: DeepSliderView?
     private let info: String = "오늘의 감정은\n잔잔한가요, 깊은가요?\n스크롤을 움직여서 기록해보세요"
@@ -45,11 +49,6 @@ class DeepViewController: UIViewController {
         self.addGradientOnGradientBackgroundView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        startButton.setTitle(buttonText, for: .normal)
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.addCircleIndicatorsOnDeepPointSliderView()
@@ -59,13 +58,24 @@ class DeepViewController: UIViewController {
     // MARK: - Functions
     
     func initializeDeepViewController() {
+        
         self.infoLabel.text = self.info
         self.buttonRoundedUp()
-        self.startButton.titleLabel?.text = self.buttonText
         self.updateViewContraints()
         self.resizeGradientBackgroundView()
         self.addBlurEffectOnBlurView()
         self.attachDeepSliderView()
+        
+        let buttonText: String
+        switch self.depthSeclectionButtonUsage {
+        case .onboarding:
+            buttonText = "시작하기"
+        case .upload:
+            buttonText = "기록하기"
+        case .diary:
+            buttonText = "수정하기"
+        }
+        self.depthSelectionButton.setTitle(buttonText, for: .normal)
     }
     
     func initializeNavigationBar() {
@@ -113,8 +123,8 @@ class DeepViewController: UIViewController {
     }
     
     func buttonRoundedUp() {
-        self.startButton.layer.cornerRadius = self.startButton.frame.size.height / 2
-        self.startButton.clipsToBounds = true
+        self.depthSelectionButton.layer.cornerRadius = self.depthSelectionButton.frame.size.height / 2
+        self.depthSelectionButton.clipsToBounds = true
     }
     
     @objc func touchBackButton() {
@@ -174,7 +184,6 @@ class DeepViewController: UIViewController {
             switch networkResult {
             case .success(let data):
                 if let serverData = data as? CreateDiary {
-                    print(serverData.id)
                     self.pushToDiaryViewController(diaryId: serverData.id)
                 }
                 
@@ -201,11 +210,11 @@ class DeepViewController: UIViewController {
     }
     
     @IBAction func startButtonTouchUp(_ sender: UIButton) {
-        guard let text = sender.titleLabel?.text else { return }
-        if text == "시작하기" {
+        
+        switch self.depthSeclectionButtonUsage {
+        case .onboarding:
             self.pushToLoginViewController()
-        } else if text == "기록하기" {
-            
+        case .upload:
             guard let diary = self.diaryInfo?.diary,
                   let sentenceId = self.diaryInfo?.sentence?.id,
                   let emotionId = self.diaryInfo?.mood?.rawValue,
@@ -221,7 +230,7 @@ class DeepViewController: UIViewController {
                 emotionId: emotionId,
                 wroteAt: wroteAt
             )
-        } else { // text == "수정하기"
+        case .diary:
             self.deepViewControllerDelegate?.passData(
                 selectedDepth: AppDepth(rawValue: Int(round(self.deepSliderValue * 6))) ?? AppDepth.depth2m)
             self.navigationController?.popViewController(animated: true)
