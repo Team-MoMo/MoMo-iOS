@@ -212,6 +212,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         if self.isFromLogout {
             self.pushToLoginViewController()
+            self.isFromLogout = false
         }
     }
     
