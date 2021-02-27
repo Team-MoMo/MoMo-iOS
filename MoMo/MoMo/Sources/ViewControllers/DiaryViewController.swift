@@ -126,6 +126,7 @@ class DiaryViewController: UIViewController {
     }
     
     private func attachMenuView() {
+        self.menuToggleFlag = true
         self.menuView = MenuView.instantiate()
         if let menuView = self.menuView {
             self.addBlurEffectOnMenuView(view: menuView.menuContainerView)
@@ -188,21 +189,24 @@ class DiaryViewController: UIViewController {
         self.toastView?.removeFromSuperview()
     }
     
+    private func detachMenuView() {
+        self.menuToggleFlag = false
+        self.menuView?.removeFromSuperview()
+    }
+    
+    private func detachAlertModalView() {
+        self.alertModalView?.removeFromSuperview()
+    }
+    
     private func updateAlertModalViewConstraints(view: UIView) {
         view.snp.makeConstraints({ (make) in
-            make.width.equalTo(self.view)
-            make.height.equalTo(self.view)
-            make.centerX.equalTo(self.view)
-            make.centerY.equalTo(self.view)
+            make.width.height.centerX.centerY.equalTo(self.view)
         })
     }
     
     private func updateToastViewConstraints(view: UIView) {
         view.snp.makeConstraints({ (make) in
-            make.width.equalTo(self.view)
-            make.height.equalTo(self.view)
-            make.centerX.equalTo(self.view)
-            make.centerY.equalTo(self.view)
+            make.width.height.centerX.centerY.equalTo(self.view)
         })
     }
     
@@ -292,13 +296,21 @@ class DiaryViewController: UIViewController {
                 }
             case DiaryViewNavigationButton.rightButton.rawValue:
                 if self.menuToggleFlag {
-                    self.menuView?.removeFromSuperview()
+                    self.detachMenuView()
                 } else {
                     self.attachMenuView()
                 }
-                self.menuToggleFlag.toggle()
             default:
                 print("error")
+            }
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first
+        if let menuContainerView = self.menuView?.menuContainerView {
+            if touch?.view != menuContainerView {
+                self.detachMenuView()
             }
         }
     }
@@ -384,9 +396,8 @@ extension DiaryViewController: MenuDelegate {
 
 extension DiaryViewController: AlertModalDelegate {
     func leftButtonTouchUp(button: UIButton) {
-        self.alertModalView?.removeFromSuperview()
-        self.menuView?.removeFromSuperview()
-        self.menuToggleFlag = false
+        self.detachAlertModalView()
+        self.detachMenuView()
     }
     
     func rightButtonTouchUp(button: UIButton) {
@@ -408,8 +419,7 @@ extension DiaryViewController: UIViewControllerTransitioningDelegate {
 
 extension DiaryViewController: UploadModalViewDelegate {
     func passData(_ date: String) {
-        self.menuView?.removeFromSuperview()
-        self.menuToggleFlag = false
+        self.detachMenuView()
         
         guard let oldDate = self.diaryInfo?.date else { return }
         let newDate: AppDate = AppDate(formattedDate: date, with: ". ")
@@ -431,8 +441,7 @@ extension DiaryViewController: UploadModalViewDelegate {
 
 extension DiaryViewController: DiaryWriteViewControllerDelegate {
     func popToDiaryViewController(newDiaryInfo: AppDiary?) {
-        self.menuView?.removeFromSuperview()
-        self.menuToggleFlag = false
+        self.detachMenuView()
         
         guard let oldDiary = self.diaryInfo?.diary else { return }
         guard let newDiary = newDiaryInfo?.diary else { return }
@@ -453,8 +462,7 @@ extension DiaryViewController: DiaryWriteViewControllerDelegate {
 
 extension DiaryViewController: DeepViewControllerDelegate {
     func passData(selectedDepth: AppDepth) {
-        self.menuView?.removeFromSuperview()
-        self.menuToggleFlag = false
+        self.detachMenuView()
         
         guard let oldDepth: AppDepth = self.diaryInfo?.depth else { return }
         let newDepth: AppDepth = selectedDepth
