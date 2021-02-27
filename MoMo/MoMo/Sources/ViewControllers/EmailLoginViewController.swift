@@ -156,6 +156,7 @@ extension EmailLoginViewController {
                     self.joinStackViewBottom.isActive = true
                     self.joinStackViewBottom.constant = 69
                     
+                    APIConstants.userId = signInData.user.id
                     UserDefaults.standard.setValue(signInData.token, forKey: "token")
                     UserDefaults.standard.setValue(signInData.user.id, forKey: "userId")
                     UserDefaults.standard.setValue("email", forKey: "loginType")

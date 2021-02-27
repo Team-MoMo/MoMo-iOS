@@ -450,6 +450,7 @@ class JoinViewController: UIViewController {
                 if let signUpData = data as? AuthData {
                     print("회원가입 성공")
                     // 회원가입 성공
+                    APIConstants.userId = signUpData.user.id
                     UserDefaults.standard.setValue(signUpData.token, forKey: "token")
                     UserDefaults.standard.setValue(signUpData.user.id, forKey: "userId")
                     UserDefaults.standard.setValue("email", forKey: "loginType")
