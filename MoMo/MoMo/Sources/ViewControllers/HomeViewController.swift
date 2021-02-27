@@ -585,7 +585,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         guard let moodViewController = onboardingStoryboard.instantiateViewController(identifier: Constants.Identifier.moodViewController) as? MoodViewController else {
             return
         }
-        moodViewController.changeUsage = false
+        moodViewController.moodViewUsage = .upload
         self.navigationController?.pushViewController(moodViewController, animated: true)
     }
     
@@ -819,7 +819,7 @@ extension HomeViewController: HomeDayNightViewDelegate {
         guard let moodViewController = onboardingStoryboard.instantiateViewController(identifier: Constants.Identifier.moodViewController) as? MoodViewController else {
             return
         }
-        moodViewController.changeUsage = false
+        moodViewController.moodViewUsage = .upload
         self.navigationController?.pushViewController(moodViewController, animated: true)
     }
     
