@@ -34,28 +34,28 @@ class OnboardingViewController: UIViewController {
     
     // MARK: - Functions
     
-    func initializeNavigationBar() {
+    private func initializeNavigationBar() {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.isNavigationBarHidden = true
     }
     
-    func buttonRoundedUp() {
+    private func buttonRoundedUp() {
         self.startButton.layer.cornerRadius = self.startButton.frame.size.height / 2
         self.startButton.clipsToBounds = true
     }
     
-    func startWaveAnimation() {
+    private func startWaveAnimation() {
         self.waveAnimationView.contentMode = .scaleAspectFit
         self.waveAnimationView.loopMode = .loop
         self.waveAnimationView.animationSpeed = 0.5
         self.waveAnimationView.play()
     }
     
-    func hideDesciptionLabelWithAnimation() {
+    private func hideDesciptionLabelWithAnimation() {
         self.descriptionLabel.alpha = 0.0
     }
     
-    func showDesciptionLabelWithAnimation() {
+    private func showDesciptionLabelWithAnimation() {
         UIView.animate(
             withDuration: 1.0,
             delay: 0,
@@ -65,15 +65,23 @@ class OnboardingViewController: UIViewController {
         )
     }
     
-    @IBAction func startButtonTouchUp(_ sender: UIButton) {
+    private func pushToMoodViewController() {
         guard let moodViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.moodViewController) as? MoodViewController else { return }
-        moodViewController.changeUsage = true
+        moodViewController.moodViewUsage = .onboarding
         self.navigationController?.pushViewController(moodViewController, animated: true)
     }
     
-    @IBAction func loginButtonTouchUp(_ sender: UIButton) {
+    private func pushToLoginViewController() {
         let loginStoryboard = UIStoryboard(name: Constants.Name.loginStoryboard, bundle: nil)
         let dvc = loginStoryboard.instantiateViewController(identifier: Constants.Identifier.loginViewController)
         self.navigationController?.pushViewController(dvc, animated: true)
+    }
+    
+    @IBAction func startButtonTouchUp(_ sender: UIButton) {
+        self.pushToMoodViewController()
+    }
+    
+    @IBAction func loginButtonTouchUp(_ sender: UIButton) {
+        self.pushToLoginViewController()
     }
 }
