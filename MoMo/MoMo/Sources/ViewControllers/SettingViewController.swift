@@ -483,7 +483,7 @@ extension SettingViewController: AlertModalDelegate {
             self.deleteUserDefaults()
             self.popToLoginViewController()
         case .withdrawal:
-            self.deleteUserWithAPI(userId: APIConstants.userId, completion: {
+            self.deleteUserWithAPI(completion: {
                 self.deleteUserDefaults()
                 self.popToLoginViewController()
             })
@@ -547,8 +547,8 @@ extension SettingViewController: UITableViewDataSource {
 // MARK: - API Services
 
 extension SettingViewController {
-    private func deleteUserWithAPI(userId: Int, completion: @escaping () -> Void) {
-        UserService.shared.deleteUser(userId: userId) { result in
+    private func deleteUserWithAPI(completion: @escaping () -> Void) {
+        UserService.shared.deleteUser { result in
             switch result {
             case .success:
                 DispatchQueue.main.async {
