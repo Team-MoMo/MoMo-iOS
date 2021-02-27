@@ -324,7 +324,7 @@ class DiaryViewController: UIViewController {
         guard let deepViewController = onboardingStoryboard.instantiateViewController(identifier: Constants.Identifier.deepViewController) as? DeepViewController else { return }
         deepViewController.deepViewControllerDelegate = self
         deepViewController.initialDepth = self.diaryInfo?.depth
-        deepViewController.buttonText = "수정하기"
+        deepViewController.depthSeclectionButtonUsage = .diary
         self.navigationController?.pushViewController(deepViewController, animated: true)
     }
     

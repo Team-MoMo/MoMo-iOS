@@ -224,7 +224,7 @@ class DiaryWriteViewController: UIViewController {
             }
             self.saveDiary()
             deepViewController.diaryInfo = self.diaryInfo
-            deepViewController.buttonText = "기록하기"
+            deepViewController.depthSeclectionButtonUsage = .upload
             self.navigationController?.pushViewController(deepViewController, animated: true)
         }
     }
