@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum SentenceViewUsage: Int {
+    case onboarding = 0, upload
+}
+
 class SentenceViewController: UIViewController {
     
     // MARK: - @IBOutlet Properties
@@ -35,15 +39,13 @@ class SentenceViewController: UIViewController {
     @IBOutlet weak var thirdPublisherLabel: UILabel!
     @IBOutlet weak var thirdSentenceLabel: UILabel!
     
-    @IBOutlet weak var animateImage: UIImageView!
-    @IBOutlet weak var animateImageTop: NSLayoutConstraint!
-    @IBOutlet weak var animateImageBottom: NSLayoutConstraint!
+    @IBOutlet weak var circleImageView: UIImageView!
     
     // MARK: - Properties
     
     var date: String?
     var selectedMood: AppEmotion?
-    var changeUsage: Bool = false // false일 때 upload
+    var sentenveViewUsage: SentenceViewUsage = .onboarding
     private let info: String = "감정과 어울리는 문장을\n매일 3개씩 소개해드릴게요"
     private let shadowOffsetButton: CGSize = CGSize(width: 4, height: 4)
     private var buttons: [MoodButton] = []
@@ -56,21 +58,55 @@ class SentenceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.initializeNavigationBar()
         self.initializeSentenceViewController()
-        self.hideButtons()
-        self.hideimage()
+        self.initializeNavigationBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.hideNavigationButton()
         self.showButtonsWithAnimation()
+        
+        switch self.sentenveViewUsage {
+        case .onboarding:
+            return
+        case .upload:
+            self.showImagesWithAnimation()
+        }
     }
     
     // MARK: - Functions
     
-    func initializeSentenceViewController() {
+    private func initializeSentenceViewController() {
+        
+        self.initializeButtons()
+        self.infoLabel.text = self.info
+        self.moodLabel.text = self.selectedMood?.toString()
+        self.moodIcon.image = self.selectedMood?.toIcon()
+        self.dateLabel.text = self.date
+        guard let emotionId = self.selectedMood?.rawValue else { return }
+        
+        switch self.sentenveViewUsage {
+        case .onboarding:
+            self.hideImages()
+            self.getOnboardingSentenceWithAPI(emotionId: emotionId, completion: updateSentenceLabel)
+        case .upload:
+            self.getSentencesWithAPI(emotionId: String(emotionId), userId: String(APIConstants.userId), completion: updateSentenceLabel)
+        }
+    }
+    
+    private func initializeNavigationBar() {
+        self.navigationItem.hidesBackButton = true
+        
+        switch self.sentenveViewUsage {
+        case .onboarding:
+            return
+        case .upload:
+            self.addNavigationRightButton()
+            self.addNavigationLeftButton()
+        }
+    }
+    
+    private func initializeButtons() {
         self.buttons = [
             MoodButton(button: firstButton, shadowOffset: shadowOffsetButton),
             MoodButton(button: secondButton, shadowOffset: shadowOffsetButton),
@@ -82,24 +118,10 @@ class SentenceViewController: UIViewController {
             button.buttonsAddShadow()
         }
         
-        self.infoLabel.text = self.info
-        self.moodLabel.text = self.selectedMood?.toString()
-        self.moodIcon.image = self.selectedMood?.toIcon()
-        self.dateLabel.text = self.date
-        guard let emotionId = self.selectedMood?.rawValue else { return }
-        
-        if changeUsage {
-            self.getOnboardingSentenceWithAPI(emotionId: emotionId, completion: updateSentenceLabel)
-        } else {
-            self.getSentencesWithAPI(emotionId: String(emotionId), userId: String(APIConstants.userId), completion: updateSentenceLabel)
-        }
+        self.hideButtons()
     }
     
-    func initializeNavigationBar() {
-        self.navigationItem.hidesBackButton = true
-    }
-    
-    func updateSentenceLabel() {
+    private func updateSentenceLabel() {
         self.firstAuthorLabel.text = self.firstSentence?.author
         self.firstBookTitleLabel.text = self.changeToformattedText("<", self.firstSentence?.bookTitle, ">")
         self.firstPublisherLabel.text = self.changeToformattedText("(", self.firstSentence?.publisher, ")")
@@ -116,42 +138,37 @@ class SentenceViewController: UIViewController {
         self.thirdSentenceLabel.text = self.thirdSentence?.sentence
     }
     
-    func changeToformattedText(_ start: String, _ message: String?, _ end: String) -> String {
+    private func changeToformattedText(_ start: String, _ message: String?, _ end: String) -> String {
         guard let safeMessage = message else { return "" }
         return "\(start)\(safeMessage)\(end)"
     }
     
-    @IBAction func firstButtonTouchUp(_ sender: UIButton) {
+    private func touchBotton(sentence: AppSentence) {
+        switch self.sentenveViewUsage {
+        case .onboarding:
+            pushToOnboardingWriteViewController(sentence: sentence)
+        case .upload:
+            guard let mood = selectedMood, let date = self.dateLabel.text else { return }
+            pushToDiaryWriteViewController(date: date, mood: mood, sentence: sentence)
+        }
+    }
+    
+    @IBAction func touchFirstButton(_ sender: UIButton) {
         guard let firstSentence = self.firstSentence else { return }
-        if changeUsage {
-            pushToOnboardingWriteViewController(sentence: firstSentence)
-        } else {
-            guard let mood = selectedMood, let date = self.dateLabel.text else { return }
-            pushToDiaryWriteViewController(date: date, mood: mood, sentence: firstSentence)
-        }
+        self.touchBotton(sentence: firstSentence)
     }
     
-    @IBAction func secondButtonTouchUp(_ sender: UIButton) {
+    @IBAction func touchSecondButton(_ sender: UIButton) {
         guard let secondSentence = self.secondSentence else { return }
-        if changeUsage {
-            pushToOnboardingWriteViewController(sentence: secondSentence)
-        } else {
-            guard let mood = selectedMood, let date = self.dateLabel.text else { return }
-            pushToDiaryWriteViewController(date: date, mood: mood, sentence: secondSentence)
-        }
+        self.touchBotton(sentence: secondSentence)
     }
     
-    @IBAction func thirdButtonTouchUp(_ sender: UIButton) {
+    @IBAction func touchThirdButton(_ sender: UIButton) {
         guard let thirdSentence = self.thirdSentence else { return }
-        if changeUsage {
-            pushToOnboardingWriteViewController(sentence: thirdSentence)
-        } else {
-            guard let mood = selectedMood, let date = self.dateLabel.text else { return }
-            pushToDiaryWriteViewController(date: date, mood: mood, sentence: thirdSentence)
-        }
+        self.touchBotton(sentence: thirdSentence)
     }
     
-    func pushToOnboardingWriteViewController(sentence: AppSentence) {
+    private func pushToOnboardingWriteViewController(sentence: AppSentence) {
         
         guard let onboardingWriteViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.onboardingWriteViewController) as? OnboardingWriteViewController else { return }
         
@@ -162,7 +179,7 @@ class SentenceViewController: UIViewController {
         
     }
     
-    func pushToDiaryWriteViewController(date: String, mood: AppEmotion, sentence: AppSentence) {
+    private func pushToDiaryWriteViewController(date: String, mood: AppEmotion, sentence: AppSentence) {
         let diaryWriteStoryboard = UIStoryboard(name: Constants.Name.diaryWriteStoryboard, bundle: nil)
         guard let diaryWriteViewController = diaryWriteStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryWriteViewController) as? DiaryWriteViewController else {
             return
@@ -180,13 +197,17 @@ class SentenceViewController: UIViewController {
         self.navigationController?.pushViewController(diaryWriteViewController, animated: true)
     }
     
-    func hideButtons() {
+    private func hideButtons() {
         for button in self.buttons {
             button.button?.alpha = 0.0
         }
     }
     
-    func showButtonsWithAnimation() {
+    private func hideImages() {
+        self.circleImageView.alpha = 0.0
+    }
+    
+    private func showButtonsWithAnimation() {
         UIView.animate(
             withDuration: 0.8,
             delay: 0,
@@ -198,25 +219,25 @@ class SentenceViewController: UIViewController {
         )
     }
     
-    func hideNavigationButton() {
-        if !self.changeUsage {
-            let rightButton = UIBarButtonItem(image: Constants.Design.Image.btnCloseBlack, style: .plain, target: self, action: #selector(touchCloseButton))
-            self.navigationItem.rightBarButtonItems = [rightButton]
-            let leftButton = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchBackButton))
-            leftButton.tintColor = .black
-            self.navigationItem.leftBarButtonItems = [leftButton]
-        }
+    private func showImagesWithAnimation() {
+        UIView.animate(
+            withDuration: 1.0,
+            animations: {
+                self.circleImageView.alpha = 1.0
+                self.circleImageView.transform = CGAffineTransform(translationX: 0, y: 30)
+            }
+        )
     }
     
-    func hideimage() {
-        if changeUsage {
-            animateImage.isHidden = true
-        } else {
-            UIView.animate(withDuration: 1.0, animations: {
-                self.animateImage.transform = CGAffineTransform(translationX: 0, y: 30)
-            })
+    private func addNavigationRightButton() {
+        let rightButton = UIBarButtonItem(image: Constants.Design.Image.btnCloseBlack, style: .plain, target: self, action: #selector(touchCloseButton))
+        self.navigationItem.rightBarButtonItems = [rightButton]
+    }
     
-        }
+    private func addNavigationLeftButton() {
+        let leftButton = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchBackButton))
+        leftButton.tintColor = .black
+        self.navigationItem.leftBarButtonItems = [leftButton]
     }
     
     private func popToHomeViewController() {
@@ -239,7 +260,7 @@ class SentenceViewController: UIViewController {
 
 extension SentenceViewController {
     
-    func getSentencesWithAPI(emotionId: String, userId: String, completion: @escaping () -> Void) {
+    private func getSentencesWithAPI(emotionId: String, userId: String, completion: @escaping () -> Void) {
         SentencesService.shared.getSentences(emotionId: emotionId, userId: userId) { networkResult in
             switch networkResult {
             case .success(let data):
@@ -281,7 +302,7 @@ extension SentenceViewController {
         }
     }
     
-    func getOnboardingSentenceWithAPI(emotionId: Int, completion: @escaping () -> Void) {
+    private func getOnboardingSentenceWithAPI(emotionId: Int, completion: @escaping () -> Void) {
         OnboardingService.shared.getOnboardingWithEmotionId(emotionId: emotionId) { (result) in
             switch result {
             case .success(let data):
