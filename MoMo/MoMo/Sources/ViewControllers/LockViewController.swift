@@ -115,11 +115,8 @@ class LockViewController: UIViewController {
             self.infoLabel.text = "다시 한 번 입력해주세요."
             self.saveFirstLockNumber()
             self.popAllLockNumberListAndEmptyIndicator()
-            print("first \(self.firstLockNumberList)")
-            
         case .doubleChecking:
             self.saveSecondLockNumber()
-            print("second \(self.secondLockNumberList)")
             if self.doubleCheckingIsValid() {
                 self.saveLockNumber()
                 self.popToSettingViewController(lockIsUpdated: true)
