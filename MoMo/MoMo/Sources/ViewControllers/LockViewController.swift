@@ -32,13 +32,15 @@ class LockViewController: UIViewController {
     @IBOutlet weak var nineButton: UIButton!
     @IBOutlet weak var zerobutton: UIButton!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var stackViewVerticalSpacingConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
     var lockViewUsage: LockViewUsage?
     private var errorLabelHeight: CGFloat?
+    private let stackViewVerticalSpacingRatio: CGFloat = 157/812
     private var lockNumberList: [Int] = []
-    private var firstNumberList: [Int] = []
-    private var secondNumberList: [Int] = []
+    private var firstLockNumberList: [Int] = []
+    private var secondLockNumberList: [Int] = []
     private lazy var rightButton: UIBarButtonItem = {
         let button: UIBarButtonItem = UIBarButtonItem(image: Constants.Design.Image.btnCloseBlack, style: .plain, target: self, action: #selector(buttonPressed(sender:)))
         button.tag = 0
@@ -60,6 +62,7 @@ class LockViewController: UIViewController {
         self.indicatorRoundedUp()
         self.hideErrorLabel()
         self.initializeInfoLabel()
+        self.stackViewVerticalSpacingConstraint.constant = self.view.frame.height * stackViewVerticalSpacingRatio
     }
     
     private func initializeNavigationBar() {
@@ -108,12 +111,15 @@ class LockViewController: UIViewController {
     private func updateLockViewController() {
         switch self.lockViewUsage {
         case .setting:
+            self.lockViewUsage = .doubleChecking
             self.infoLabel.text = "다시 한 번 입력해주세요."
             self.saveFirstLockNumber()
-            self.lockViewUsage = .doubleChecking
             self.popAllLockNumberListAndEmptyIndicator()
+            print("first \(self.firstLockNumberList)")
+            
         case .doubleChecking:
             self.saveSecondLockNumber()
+            print("second \(self.secondLockNumberList)")
             if self.doubleCheckingIsValid() {
                 self.saveLockNumber()
                 self.popToSettingViewController(lockIsUpdated: true)
@@ -135,19 +141,19 @@ class LockViewController: UIViewController {
     }
     
     private func saveLockNumber() {
-        UserDefaults.standard.setValue(self.makeLockNumberToString(lockNumberList: self.firstNumberList), forKey: "LockNumber")
+        UserDefaults.standard.setValue(self.makeLockNumberToString(lockNumberList: self.firstLockNumberList), forKey: "LockNumber")
         UserDefaults.standard.setValue(true, forKey: "isLocked")
     }
     
     private func saveFirstLockNumber() {
         for number in self.lockNumberList {
-            self.firstNumberList.append(number)
+            self.firstLockNumberList.append(number)
         }
     }
     
     private func saveSecondLockNumber() {
         for number in self.lockNumberList {
-            self.secondNumberList.append(number)
+            self.secondLockNumberList.append(number)
         }
     }
     
@@ -161,10 +167,12 @@ class LockViewController: UIViewController {
     }
     
     private func doubleCheckingIsValid() -> Bool {
-        for (index, element) in self.secondNumberList.enumerated() {
-            if element != self.firstNumberList[index] {
-                return false
-            }
+        guard self.secondLockNumberList.count == 4,
+              self.firstLockNumberList.count == 4 else {
+            return false
+        }
+        for (firstNum, secondNum) in zip(self.firstLockNumberList, self.secondLockNumberList) where firstNum != secondNum {
+            return false
         }
         return true
     }
@@ -173,7 +181,11 @@ class LockViewController: UIViewController {
         self.appendLockNumber(lockNumber: lockNumber)
         self.fillIndicator()
         if self.lockNumberIsFilled() {
-            self.updateLockViewController()
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(100), execute: {
+                self.updateLockViewController()
+            })
+            
         }
     }
     
@@ -194,7 +206,7 @@ class LockViewController: UIViewController {
     }
     
     private func popAllSecondNumberList() {
-        self.secondNumberList = []
+        self.secondLockNumberList = []
     }
     
     private func lockNumberIsFilled() -> Bool {
