@@ -465,7 +465,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6AB-p1-ezy">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6AB-p1-ezy">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vye-hx-rAi">
@@ -1008,10 +1008,10 @@
                     </view>
                     <connections>
                         <outlet property="blurView" destination="poR-7a-CZ5" id="BHa-tJ-Jbz"/>
+                        <outlet property="depthSelectionButton" destination="ZXG-od-vzd" id="A9h-ge-ob9"/>
                         <outlet property="gradientBackgroundView" destination="bMY-nT-BLJ" id="Yl2-LH-fMb"/>
                         <outlet property="gradientScrollView" destination="g8e-nN-vav" id="ZyS-z0-eDH"/>
                         <outlet property="infoLabel" destination="sBR-vZ-nwc" id="Tge-4Z-zGf"/>
-                        <outlet property="startButton" destination="ZXG-od-vzd" id="A9h-ge-ob9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ctw-z8-QmU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1021,7 +1021,6 @@
     </scenes>
     <designables>
         <designable name="hue-vy-02C"/>
-        <designable name="rIQ-3J-AWL"/>
     </designables>
     <resources>
         <image name="btnIcCalender16" width="16" height="16"/>
