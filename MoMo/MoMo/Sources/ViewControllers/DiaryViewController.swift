@@ -41,6 +41,7 @@ class DiaryViewController: UIViewController {
     // MARK: - Properties
     
     var diaryId: Int?
+    var isFromListView: Bool = false
     private var menuToggleFlag: Bool = false
     private var seaObjets: [UIImageView: String]?
     private var diaryInfo: AppDiary?
@@ -283,7 +284,12 @@ class DiaryViewController: UIViewController {
         if let button = sender as? UIBarButtonItem {
             switch button.tag {
             case DiaryViewNavigationButton.leftButton.rawValue:
-                self.popToHomeViewController()
+                if self.isFromListView {
+                    self.isFromListView = false
+                    self.popToListViewController()
+                } else {
+                    self.popToHomeViewController()
+                }
             case DiaryViewNavigationButton.rightButton.rawValue:
                 if self.menuToggleFlag {
                     self.menuView?.removeFromSuperview()
@@ -325,6 +331,10 @@ class DiaryViewController: UIViewController {
         }
         homeViewController.isFromDiary = true
         self.navigationController?.popToViewController(homeViewController, animated: true)
+    }
+    
+    func popToListViewController() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     func presentUpdloadModalViewController() {
