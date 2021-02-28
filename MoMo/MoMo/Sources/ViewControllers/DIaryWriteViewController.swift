@@ -351,7 +351,7 @@ extension DiaryWriteViewController: UITextViewDelegate {
     }
 }
 
-// MARK: - diaryWriteViewControllerDelegate
+// MARK: - AlertModalDelegate
 
 extension DiaryWriteViewController: AlertModalDelegate {
     
