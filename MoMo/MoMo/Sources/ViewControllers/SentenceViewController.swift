@@ -46,7 +46,6 @@ class SentenceViewController: UIViewController {
     var date: String?
     var selectedMood: AppEmotion?
     var sentenveViewUsage: SentenceViewUsage = .onboarding
-    private let info: String = "감정과 어울리는 문장을\n매일 3개씩 소개해드릴게요"
     private let shadowOffsetButton: CGSize = CGSize(width: 4, height: 4)
     private var buttons: [MoodButton] = []
     private var firstSentence: AppSentence?
@@ -79,7 +78,6 @@ class SentenceViewController: UIViewController {
     private func initializeSentenceViewController() {
         
         self.initializeButtons()
-        self.infoLabel.text = self.info
         self.moodLabel.text = self.selectedMood?.toString()
         self.moodIcon.image = self.selectedMood?.toIcon()
         self.dateLabel.text = self.date
@@ -87,9 +85,11 @@ class SentenceViewController: UIViewController {
         
         switch self.sentenveViewUsage {
         case .onboarding:
+            self.infoLabel.text = "감정과 어울리는 문장을\n매일 3개씩 소개해드릴게요"
             self.hideImages()
             self.getOnboardingSentenceWithAPI(emotionId: emotionId, completion: updateSentenceLabel)
         case .upload:
+            self.infoLabel.text = "마음에 파동이\n이는 문장을 만나보세요"
             self.getSentencesWithAPI(emotionId: String(emotionId), userId: String(APIConstants.userId), completion: updateSentenceLabel)
         }
     }

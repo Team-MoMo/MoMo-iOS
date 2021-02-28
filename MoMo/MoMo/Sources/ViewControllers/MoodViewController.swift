@@ -29,7 +29,6 @@ class MoodViewController: UIViewController {
     
     // MARK: - Properties
     
-    let info: String = "먼저 오늘의\n감정을 선택해 주세요"
     var listNoDiary: Bool = false
     var moodViewUsage: MoodViewUsage = .onboarding
     private var buttons: [MoodButton] = []
@@ -54,7 +53,6 @@ class MoodViewController: UIViewController {
     
     private func initializeMoodViewController() {
         
-        self.infoLabel.text = self.info
         self.currentDate = AppDate()
         self.selectedDate = AppDate()
         self.modalView = UploadModalViewController()
@@ -64,9 +62,11 @@ class MoodViewController: UIViewController {
         
         switch self.moodViewUsage {
         case .onboarding:
+            self.infoLabel.text = "먼저 오늘의\n감정을 선택해 주세요"
             self.dateLabel.text = self.currentDate?.getFormattedDateAndWeekday(with: ". ")
             self.hideCalendarButton()
         case .upload:
+            self.infoLabel.text = "오늘의\n감정은 어땠나요?"
             guard let currentDate = self.currentDate else { return }
             self.getDiariesWithAPI(
                 userID: String(APIConstants.userId),

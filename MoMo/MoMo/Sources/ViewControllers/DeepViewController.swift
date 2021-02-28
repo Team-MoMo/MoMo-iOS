@@ -33,7 +33,6 @@ class DeepViewController: UIViewController {
     var depthSeclectionButtonUsage: DepthSelectionButtonUsage = .onboarding
     private var deepSliderValue: Float = 0
     private var deepSliderView: DeepSliderView?
-    private let info: String = "오늘의 감정은\n잔잔한가요, 깊은가요?\n스크롤을 움직여서 기록해보세요"
     private var viewWidth: CGFloat?
     private var viewHeight: CGFloat?
     private var viewXpos: CGFloat?
@@ -59,7 +58,6 @@ class DeepViewController: UIViewController {
     
     func initializeDeepViewController() {
         
-        self.infoLabel.text = self.info
         self.buttonRoundedUp()
         self.updateViewContraints()
         self.resizeGradientBackgroundView()
@@ -67,14 +65,17 @@ class DeepViewController: UIViewController {
         self.attachDeepSliderView()
         
         let buttonText: String
+        var infoText: String = "감정이 얼마나 깊은가요?\n나만의 바다에 기록해보세요"
         switch self.depthSeclectionButtonUsage {
         case .onboarding:
+            infoText = "오늘의 감정은\n잔잔한가요, 깊은가요?\n스크롤을 움직여서 기록해보세요"
             buttonText = "시작하기"
         case .upload:
             buttonText = "기록하기"
         case .diary:
             buttonText = "수정하기"
         }
+        self.infoLabel.text = infoText
         self.depthSelectionButton.setTitle(buttonText, for: .normal)
     }
     
