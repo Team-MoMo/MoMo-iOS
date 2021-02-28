@@ -59,12 +59,10 @@ class DeepViewController: UIViewController {
         self.initializeDeepViewController()
         self.initializeNavigationBar()
         self.addGradientOnGradientBackgroundView()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.addCircleIndicatorsOnDeepPointSliderView()
-        self.changeBackgroundWithAnimation(value: self.deepSliderValue)
+        DispatchQueue.main.async {
+            self.changeBackground(value: self.deepSliderValue)
+            self.addCircleIndicatorsOnDeepPointSliderView()
+        }
     }
     
     // MARK: - Functions
@@ -182,15 +180,17 @@ class DeepViewController: UIViewController {
     }
     
     private func addCircleIndicatorsOnDeepPointSliderView() {
-        let deepPointSliderHeight = deepSliderView!.deepPointSlider.frame.size.height
-        let deepPointSliderWidth = deepSliderView!.deepPointSlider.frame.size.width - deepPointSliderHeight
+        guard let deepSliderView = self.deepSliderView else { return}
+        
+        let deepPointSliderHeight = deepSliderView.deepPointSlider.frame.size.height
+        let deepPointSliderWidth = deepSliderView.deepPointSlider.frame.size.width - deepPointSliderHeight
         let circleIndicatorDiameter: CGFloat = 10
         
         for index in 0...6 {
             let circle = UIView(
                 frame: CGRect(
-                    x: deepPointSliderHeight/2 - deepPointSliderHeight/4 + deepPointSliderWidth/6 * CGFloat(index),
-                    y: deepPointSliderHeight/2 - deepPointSliderHeight/4,
+                    x: deepPointSliderHeight/2 - deepPointSliderHeight/4 + deepPointSliderWidth/6 * CGFloat(index) + circleIndicatorDiameter * 0.65,
+                    y: deepPointSliderHeight/2 - circleIndicatorDiameter * 0.65,
                     width: circleIndicatorDiameter,
                     height: circleIndicatorDiameter
                 )
@@ -198,7 +198,7 @@ class DeepViewController: UIViewController {
             
             circle.layer.cornerRadius = circleIndicatorDiameter/2
             circle.backgroundColor = UIColor.white.withAlphaComponent(0.5)
-            deepSliderView?.deepPointSlider.insertSubview(circle, at: 0)
+            deepSliderView.deepPointSlider.insertSubview(circle, at: 0)
         }
     }
     
