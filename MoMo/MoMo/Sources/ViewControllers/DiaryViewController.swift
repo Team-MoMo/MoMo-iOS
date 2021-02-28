@@ -215,7 +215,7 @@ class DiaryViewController: UIViewController {
     }
     
     private func addBlurEffectOnMenuView(view: UIView) {
-        self.addBlurEffectOnView(view: view, cornerRadius: 16, blurStyle: UIBlurEffect.Style.extraLight, alpha: 1.0)
+        self.addBlurEffectOnView(view: view, cornerRadius: 16, blurStyle: UIBlurEffect.Style.systemThinMaterialLight, alpha: 1.0)
     }
     
     private func addBlurEffectOnView(view: UIView, cornerRadius: CGFloat?, blurStyle: UIBlurEffect.Style, alpha: CGFloat) {
