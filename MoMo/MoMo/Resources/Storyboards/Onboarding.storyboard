@@ -138,10 +138,10 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWh-6I-dEs">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="824"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="먼저 오늘의 감정을 선택해주세요" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHn-Jh-Hfk" userLabel="InfoLabel">
-                                                <rect key="frame" x="32" y="66" width="256" height="64"/>
+                                                <rect key="frame" x="32" y="16" width="256" height="64"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="64" id="Eab-50-Q7u"/>
                                                     <constraint firstAttribute="width" secondItem="hHn-Jh-Hfk" secondAttribute="height" multiplier="4:1" id="rC9-bG-bQs"/>
@@ -151,13 +151,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020. 12. 26. 토요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sp6-o4-go3" userLabel="DateLabel">
-                                                <rect key="frame" x="32" y="152" width="144.5" height="19.5"/>
+                                                <rect key="frame" x="32" y="102" width="144.5" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                 <color key="textColor" name="Blue1"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="awt-ju-kKU">
-                                                <rect key="frame" x="32" y="205.5" width="350" height="509.5"/>
+                                                <rect key="frame" x="32" y="155.5" width="350" height="509.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="076-fd-okX">
                                                         <rect key="frame" x="0.0" y="0.0" width="350" height="113"/>
@@ -398,7 +398,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vt0-tw-gbG">
-                                                <rect key="frame" x="182.5" y="151" width="16" height="22"/>
+                                                <rect key="frame" x="182.5" y="101" width="16" height="22"/>
                                                 <state key="normal" image="btnIcCalender16"/>
                                                 <connections>
                                                     <action selector="touchCalendarButton:" destination="Ykz-9x-Zzr" eventType="touchUpInside" id="3yb-VH-RGT"/>
@@ -408,7 +408,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="vt0-tw-gbG" firstAttribute="centerY" secondItem="Sp6-o4-go3" secondAttribute="centerY" id="Ctf-iq-pac"/>
-                                            <constraint firstItem="hHn-Jh-Hfk" firstAttribute="top" secondItem="lWh-6I-dEs" secondAttribute="top" constant="66" id="Em1-sK-Ci2"/>
+                                            <constraint firstItem="hHn-Jh-Hfk" firstAttribute="top" secondItem="lWh-6I-dEs" secondAttribute="top" constant="16" id="Em1-sK-Ci2"/>
                                             <constraint firstItem="awt-ju-kKU" firstAttribute="leading" secondItem="lWh-6I-dEs" secondAttribute="leading" constant="32" id="Kme-af-c1O"/>
                                             <constraint firstAttribute="trailing" secondItem="awt-ju-kKU" secondAttribute="trailing" constant="32" id="NJZ-TY-A88"/>
                                             <constraint firstItem="vt0-tw-gbG" firstAttribute="leading" secondItem="Sp6-o4-go3" secondAttribute="trailing" constant="6" id="Ofy-Qx-NBR"/>
@@ -469,16 +469,16 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vye-hx-rAi">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="781"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="731"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uploadCircle" translatesAutoresizingMaskIntoConstraints="NO" id="xzK-Ir-zf5">
-                                                <rect key="frame" x="137" y="190" width="277" height="551"/>
+                                                <rect key="frame" x="137" y="140" width="277" height="551"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="xzK-Ir-zf5" secondAttribute="height" multiplier="248:493" id="zWc-pf-Mmh"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="감정과 어울리는 문장을 매일 3개씩 소개해드릴게요" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXU-gG-AVz" userLabel="InfoLabel">
-                                                <rect key="frame" x="32" y="66" width="256" height="64"/>
+                                                <rect key="frame" x="32" y="16" width="256" height="64"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="64" id="R9b-9r-tt7"/>
                                                     <constraint firstAttribute="width" secondItem="LXU-gG-AVz" secondAttribute="height" multiplier="4:1" id="rto-Vq-Do0"/>
@@ -488,13 +488,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020. 12. 26. 토요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a02-xn-NZ2" userLabel="DateLabel">
-                                                <rect key="frame" x="29" y="146" width="144.5" height="19.5"/>
+                                                <rect key="frame" x="29" y="96" width="144.5" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                 <color key="textColor" name="Black4"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icAngry14Black" translatesAutoresizingMaskIntoConstraints="NO" id="kGb-fF-h0A" userLabel="MoodIcon">
-                                                <rect key="frame" x="185.5" y="149" width="14" height="14"/>
+                                                <rect key="frame" x="185.5" y="99" width="14" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="14" id="IAW-Sd-K2G"/>
                                                     <constraint firstAttribute="height" constant="14" id="Keg-JG-N1P"/>
@@ -502,13 +502,13 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="화남" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOD-0Y-bKU" userLabel="MoodLabel">
-                                                <rect key="frame" x="201.5" y="147" width="26" height="18"/>
+                                                <rect key="frame" x="201.5" y="97" width="26" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" name="Black3List"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="7RL-Gy-HJL">
-                                                <rect key="frame" x="24" y="221.5" width="366" height="468.5"/>
+                                                <rect key="frame" x="24" y="171.5" width="366" height="468.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q1Q-pV-whx" userLabel="FirstSentenceButton" customClass="UIButton">
                                                         <rect key="frame" x="0.0" y="0.0" width="366" height="145.5"/>
@@ -727,7 +727,7 @@
                                             <constraint firstAttribute="trailing" secondItem="xzK-Ir-zf5" secondAttribute="trailing" id="MH0-LT-5Zd"/>
                                             <constraint firstItem="a02-xn-NZ2" firstAttribute="top" secondItem="LXU-gG-AVz" secondAttribute="bottom" constant="16" id="NKd-9o-hNh"/>
                                             <constraint firstItem="kGb-fF-h0A" firstAttribute="centerY" secondItem="a02-xn-NZ2" secondAttribute="centerY" id="U7C-PF-aWn"/>
-                                            <constraint firstItem="LXU-gG-AVz" firstAttribute="top" secondItem="Vye-hx-rAi" secondAttribute="top" constant="66" id="eCu-bf-1BV"/>
+                                            <constraint firstItem="LXU-gG-AVz" firstAttribute="top" secondItem="Vye-hx-rAi" secondAttribute="top" constant="16" id="eCu-bf-1BV"/>
                                             <constraint firstAttribute="trailing" secondItem="xzK-Ir-zf5" secondAttribute="trailing" id="fK8-r7-BtV"/>
                                             <constraint firstAttribute="bottom" secondItem="xzK-Ir-zf5" secondAttribute="bottom" constant="40" id="id3-ha-vV9"/>
                                             <constraint firstItem="7RL-Gy-HJL" firstAttribute="top" secondItem="a02-xn-NZ2" secondAttribute="bottom" constant="56" id="nzd-Xx-7yu"/>
@@ -954,7 +954,7 @@
                                 </constraints>
                             </imageView>
                             <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="poR-7a-CZ5" userLabel="BlurView">
-                                <rect key="frame" x="0.0" y="267" width="414" height="629"/>
+                                <rect key="frame" x="0.0" y="214" width="414" height="682"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZXG-od-vzd" userLabel="StartButton">
                                 <rect key="frame" x="97" y="800" width="220" height="50"/>
@@ -972,7 +972,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBR-vZ-nwc" userLabel="InfoLabel">
-                                <rect key="frame" x="32" y="113" width="276.5" height="79"/>
+                                <rect key="frame" x="32" y="60" width="276.5" height="79"/>
                                 <string key="text">오늘의 감정은
 잔잔한가요, 깊은가요?
 스크롤을 움직여서 기록해보세요</string>
@@ -984,7 +984,7 @@
                         <viewLayoutGuide key="safeArea" id="c2l-Tu-1Pv"/>
                         <color key="backgroundColor" name="Gradient1"/>
                         <constraints>
-                            <constraint firstItem="sBR-vZ-nwc" firstAttribute="top" secondItem="c2l-Tu-1Pv" secondAttribute="top" constant="69" id="04Z-cD-5x4"/>
+                            <constraint firstItem="sBR-vZ-nwc" firstAttribute="top" secondItem="c2l-Tu-1Pv" secondAttribute="top" constant="16" id="04Z-cD-5x4"/>
                             <constraint firstAttribute="top" secondItem="g8e-nN-vav" secondAttribute="top" id="0gu-Sf-Kvs"/>
                             <constraint firstItem="ZXG-od-vzd" firstAttribute="bottom" secondItem="c2l-Tu-1Pv" secondAttribute="bottom" constant="-12" id="8YA-FW-L0t"/>
                             <constraint firstItem="hup-je-MfH" firstAttribute="top" secondItem="kuc-O0-FKP" secondAttribute="top" id="93D-k4-Sh4"/>
@@ -1021,6 +1021,7 @@
     </scenes>
     <designables>
         <designable name="hue-vy-02C"/>
+        <designable name="rIQ-3J-AWL"/>
     </designables>
     <resources>
         <image name="btnIcCalender16" width="16" height="16"/>
