@@ -53,7 +53,6 @@ class SentenceViewController: UIViewController {
     private var firstSentence: AppSentence?
     private var secondSentence: AppSentence?
     private var thirdSentence: AppSentence?
-    private var alertModalView: AlertModalView?
     
     // MARK: - View Life Cycles
     
@@ -140,26 +139,6 @@ class SentenceViewController: UIViewController {
         self.thirdBookTitleLabel.text = self.changeToformattedText("<", self.thirdSentence?.bookTitle, ">")
         self.thirdPublisherLabel.text = self.changeToformattedText("(", self.thirdSentence?.publisher, ")")
         self.thirdSentenceLabel.text = self.thirdSentence?.sentence
-    }
-    
-    private func attachAlertModalView() {
-        self.alertModalView = AlertModalView.instantiate(
-            alertLabelText: "작성한 내용이 모두 삭제됩니다.\n정말 닫으시겠어요?",
-            leftButtonTitle: "취소",
-            rightButtonTitle: "닫기"
-        )
-
-        if let alertModalView = self.alertModalView {
-            alertModalView.alertModalDelegate = self
-            self.view.insertSubview(alertModalView, aboveSubview: self.view)
-            self.updateAlertModalViewConstraints(view: alertModalView)
-        }
-    }
-    
-    private func updateAlertModalViewConstraints(view: UIView) {
-        view.snp.makeConstraints({ (make) in
-            make.width.height.centerX.centerY.equalTo(self.view)
-        })
     }
     
     private func changeToformattedText(_ start: String, _ message: String?, _ end: String) -> String {
@@ -272,7 +251,7 @@ class SentenceViewController: UIViewController {
     }
     
     @objc func touchCloseButton() {
-        self.attachAlertModalView()
+        self.popToHomeViewController()
     }
     
     @objc func touchBackButton() {
@@ -363,19 +342,5 @@ extension SentenceViewController {
                 print("networkFail in getOnboardingSentenceWithAPI")
             }
         }
-    }
-}
-
-// MARK: - AlertModalDelegate
-
-extension SentenceViewController: AlertModalDelegate {
-    
-    func leftButtonTouchUp(button: UIButton) {
-        self.alertModalView?.removeFromSuperview()
-    }
-    
-    func rightButtonTouchUp(button: UIButton) {
-        self.alertModalView?.removeFromSuperview()
-        self.popToHomeViewController()
     }
 }
