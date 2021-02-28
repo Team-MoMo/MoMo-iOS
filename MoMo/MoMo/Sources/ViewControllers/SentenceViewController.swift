@@ -40,6 +40,7 @@ class SentenceViewController: UIViewController {
     @IBOutlet weak var thirdSentenceLabel: UILabel!
     
     @IBOutlet weak var circleImageView: UIImageView!
+    @IBOutlet weak var infoLabelVerticalSpacingContraint: NSLayoutConstraint!
     
     // MARK: - Properties
     
@@ -47,10 +48,12 @@ class SentenceViewController: UIViewController {
     var selectedMood: AppEmotion?
     var sentenveViewUsage: SentenceViewUsage = .onboarding
     private let shadowOffsetButton: CGSize = CGSize(width: 4, height: 4)
+    private let infoLabelVerticalSpacing: CGFloat = 66
     private var buttons: [MoodButton] = []
     private var firstSentence: AppSentence?
     private var secondSentence: AppSentence?
     private var thirdSentence: AppSentence?
+    private var alertModalView: AlertModalView?
     
     // MARK: - View Life Cycles
     
@@ -86,6 +89,7 @@ class SentenceViewController: UIViewController {
         switch self.sentenveViewUsage {
         case .onboarding:
             self.infoLabel.text = "감정과 어울리는 문장을\n매일 3개씩 소개해드릴게요"
+            self.infoLabelVerticalSpacingContraint.constant = self.infoLabelVerticalSpacing
             self.hideImages()
             self.getOnboardingSentenceWithAPI(emotionId: emotionId, completion: updateSentenceLabel)
         case .upload:
@@ -136,6 +140,26 @@ class SentenceViewController: UIViewController {
         self.thirdBookTitleLabel.text = self.changeToformattedText("<", self.thirdSentence?.bookTitle, ">")
         self.thirdPublisherLabel.text = self.changeToformattedText("(", self.thirdSentence?.publisher, ")")
         self.thirdSentenceLabel.text = self.thirdSentence?.sentence
+    }
+    
+    private func attachAlertModalView() {
+        self.alertModalView = AlertModalView.instantiate(
+            alertLabelText: "작성한 내용이 모두 삭제됩니다.\n정말 닫으시겠어요?",
+            leftButtonTitle: "취소",
+            rightButtonTitle: "닫기"
+        )
+
+        if let alertModalView = self.alertModalView {
+            alertModalView.alertModalDelegate = self
+            self.view.insertSubview(alertModalView, aboveSubview: self.view)
+            self.updateAlertModalViewConstraints(view: alertModalView)
+        }
+    }
+    
+    private func updateAlertModalViewConstraints(view: UIView) {
+        view.snp.makeConstraints({ (make) in
+            make.width.height.centerX.centerY.equalTo(self.view)
+        })
     }
     
     private func changeToformattedText(_ start: String, _ message: String?, _ end: String) -> String {
@@ -248,7 +272,7 @@ class SentenceViewController: UIViewController {
     }
     
     @objc func touchCloseButton() {
-        self.popToHomeViewController()
+        self.attachAlertModalView()
     }
     
     @objc func touchBackButton() {
@@ -339,5 +363,19 @@ extension SentenceViewController {
                 print("networkFail in getOnboardingSentenceWithAPI")
             }
         }
+    }
+}
+
+// MARK: - AlertModalDelegate
+
+extension SentenceViewController: AlertModalDelegate {
+    
+    func leftButtonTouchUp(button: UIButton) {
+        self.alertModalView?.removeFromSuperview()
+    }
+    
+    func rightButtonTouchUp(button: UIButton) {
+        self.alertModalView?.removeFromSuperview()
+        self.popToHomeViewController()
     }
 }
