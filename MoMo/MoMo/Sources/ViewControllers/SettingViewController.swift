@@ -421,7 +421,7 @@ class SettingViewController: UIViewController {
             guard let homeViewController = self.navigationController?.viewControllers.filter({$0 is HomeViewController}).first as? HomeViewController else {
                 return
             }
-            homeViewController.isFromLogout = true
+            homeViewController.isFromLogoutOrWithdrawal = true
             self.navigationController?.popToViewController(homeViewController, animated: true)
         }
     }
