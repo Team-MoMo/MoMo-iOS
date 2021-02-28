@@ -448,6 +448,7 @@
                         <outlet property="dateLabel" destination="Sp6-o4-go3" id="6Jh-Cf-xJ3"/>
                         <outlet property="happyButton" destination="WAU-KM-16L" id="Bem-ro-wxR"/>
                         <outlet property="infoLabel" destination="hHn-Jh-Hfk" id="Ozd-4x-cts"/>
+                        <outlet property="infoLabelVerticalSpacingContraint" destination="Em1-sK-Ci2" id="0Eo-kj-aF5"/>
                         <outlet property="loveButton" destination="Z6t-N3-7IR" id="CsV-7Y-2cA"/>
                         <outlet property="memoryButton" destination="iLq-G6-tzv" id="TUs-PW-1gs"/>
                         <outlet property="sadButton" destination="csv-jI-MP9" id="Gq0-aR-L3l"/>
@@ -767,6 +768,7 @@
                         <outlet property="firstPublisherLabel" destination="IqQ-rt-Pfw" id="ZTG-N2-Of5"/>
                         <outlet property="firstSentenceLabel" destination="iew-lZ-uvq" id="1V5-sq-whf"/>
                         <outlet property="infoLabel" destination="LXU-gG-AVz" id="sBY-0t-blE"/>
+                        <outlet property="infoLabelVerticalSpacingContraint" destination="eCu-bf-1BV" id="Ahc-Hz-zwU"/>
                         <outlet property="moodIcon" destination="kGb-fF-h0A" id="5ex-hZ-vu6"/>
                         <outlet property="moodLabel" destination="IOD-0Y-bKU" id="7b9-jE-IsB"/>
                         <outlet property="secondAuthorLabel" destination="uyF-Z1-S4q" id="upE-xg-Ekk"/>
@@ -1012,6 +1014,7 @@
                         <outlet property="gradientBackgroundView" destination="bMY-nT-BLJ" id="Yl2-LH-fMb"/>
                         <outlet property="gradientScrollView" destination="g8e-nN-vav" id="ZyS-z0-eDH"/>
                         <outlet property="infoLabel" destination="sBR-vZ-nwc" id="Tge-4Z-zGf"/>
+                        <outlet property="infoLabelVerticalSpacingConstraint" destination="04Z-cD-5x4" id="rbS-4n-37B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ctw-z8-QmU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
