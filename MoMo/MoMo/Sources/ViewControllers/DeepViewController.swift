@@ -25,6 +25,7 @@ class DeepViewController: UIViewController {
     @IBOutlet weak var gradientBackgroundView: UIView!
     @IBOutlet weak var blurView: UIView!
     @IBOutlet weak var depthSelectionButton: UIButton!
+    @IBOutlet weak var infoLabelVerticalSpacingConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
     
@@ -37,7 +38,19 @@ class DeepViewController: UIViewController {
     private var viewHeight: CGFloat?
     private var viewXpos: CGFloat?
     private var viewYpos: CGFloat?
+    private let infoLabelVerticalSpacing: CGFloat = 66
+    private var alertModalView: AlertModalView?
     weak var deepViewControllerDelegate: DeepViewControllerDelegate?
+    private lazy var leftButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchBackButton))
+        button.tintColor = .white
+        return button
+    }()
+    private lazy var rightButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: Constants.Design.Image.btnCloseWhite, style: .plain, target: self, action: #selector(touchCrossButton))
+        button.tintColor = .white
+        return button
+    }()
     
     // MARK: - View Life Cycle
     
@@ -56,7 +69,7 @@ class DeepViewController: UIViewController {
     
     // MARK: - Functions
     
-    func initializeDeepViewController() {
+    private func initializeDeepViewController() {
         
         self.buttonRoundedUp()
         self.updateViewContraints()
@@ -69,6 +82,7 @@ class DeepViewController: UIViewController {
         switch self.depthSeclectionButtonUsage {
         case .onboarding:
             infoText = "오늘의 감정은\n잔잔한가요, 깊은가요?\n스크롤을 움직여서 기록해보세요"
+            self.infoLabelVerticalSpacingConstraint.constant = self.infoLabelVerticalSpacing
             buttonText = "시작하기"
         case .upload:
             buttonText = "기록하기"
@@ -79,51 +93,74 @@ class DeepViewController: UIViewController {
         self.depthSelectionButton.setTitle(buttonText, for: .normal)
     }
     
-    func initializeNavigationBar() {
+    private func initializeNavigationBar() {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         
-        let leftButton = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchBackButton))
-        leftButton.tintColor = .white
-        self.navigationItem.leftBarButtonItems = [leftButton]
+        self.navigationItem.leftBarButtonItem = self.leftButton
+        switch self.depthSeclectionButtonUsage {
+        case .onboarding:
+            self.navigationItem.leftBarButtonItem = nil
+        case .upload:
+            self.navigationItem.rightBarButtonItem = self.rightButton
+        case .diary:
+            return
+        }
     }
     
-    func attachDeepSliderView() {
+    private func attachDeepSliderView() {
         self.deepSliderView = DeepSliderView.instantiate(initialDepth: self.initialDepth ?? .depth2m)
         self.deepSliderValue = Float(self.initialDepth?.rawValue ?? 0) / 6
         
         if let deepSliderView = self.deepSliderView {
-            
             deepSliderView.sliderDelegate = self
-            
             self.view.addSubview(deepSliderView)
-            
-            deepSliderView.snp.makeConstraints { (make) in
-                make.height.equalTo(self.view.frame.size.width * 2)
-                make.width.equalTo(self.view.frame.size.height * 0.5)
-            }
-            
-            deepSliderView.snp.makeConstraints { (make) in
-                make.centerX.equalTo(self.view.snp.leading).inset(47)
-                make.centerY.equalTo(self.blurView).offset(-35)
-            }
-            
+            self.updateDeepSliderViewContraints(view: deepSliderView)
         }
     }
     
-    func updateViewContraints() {
+    private func attachAlertModalView() {
+        self.alertModalView = AlertModalView.instantiate(
+            alertLabelText: "작성한 내용이 모두 삭제됩니다.\n정말 닫으시겠어요?",
+            leftButtonTitle: "취소",
+            rightButtonTitle: "닫기"
+        )
+
+        if let alertModalView = self.alertModalView {
+            alertModalView.alertModalDelegate = self
+            self.view.insertSubview(alertModalView, aboveSubview: self.view)
+            self.updateAlertModalViewConstraints(view: alertModalView)
+        }
+    }
+    
+    private func updateAlertModalViewConstraints(view: UIView) {
+        view.snp.makeConstraints({ (make) in
+            make.width.height.centerX.centerY.equalTo(self.view)
+        })
+    }
+    
+    private func updateDeepSliderViewContraints(view: UIView) {
+        view.snp.makeConstraints { (make) in
+            make.height.equalTo(self.view.frame.size.width * 2)
+            make.width.equalTo(self.view.frame.size.height * 0.5)
+            make.centerX.equalTo(self.view.snp.leading).inset(47)
+            make.centerY.equalTo(self.blurView).offset(-35)
+        }
+    }
+    
+    private func updateViewContraints() {
         self.viewWidth = self.view.frame.size.width
         self.viewHeight = self.view.frame.size.height
         self.viewXpos = self.view.frame.origin.x
         self.viewYpos = self.view.frame.origin.y
     }
     
-    func resizeGradientBackgroundView() {
+    private func resizeGradientBackgroundView() {
         self.gradientBackgroundView.frame = CGRect(x: self.viewXpos!, y: self.viewYpos!, width: self.viewWidth!, height: self.viewHeight! * 7)
     }
     
-    func buttonRoundedUp() {
+    private func buttonRoundedUp() {
         self.depthSelectionButton.layer.cornerRadius = self.depthSelectionButton.frame.size.height / 2
         self.depthSelectionButton.clipsToBounds = true
     }
@@ -132,7 +169,11 @@ class DeepViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func addBlurEffectOnBlurView() {
+    @objc func touchCrossButton() {
+        self.attachAlertModalView()
+    }
+    
+    private func addBlurEffectOnBlurView() {
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.blurView.bounds
@@ -140,7 +181,7 @@ class DeepViewController: UIViewController {
         self.blurView.addSubview(blurEffectView)
     }
     
-    func addCircleIndicatorsOnDeepPointSliderView() {
+    private func addCircleIndicatorsOnDeepPointSliderView() {
         let deepPointSliderHeight = deepSliderView!.deepPointSlider.frame.size.height
         let deepPointSliderWidth = deepSliderView!.deepPointSlider.frame.size.width - deepPointSliderHeight
         let circleIndicatorDiameter: CGFloat = 10
@@ -161,7 +202,7 @@ class DeepViewController: UIViewController {
         }
     }
     
-    func addGradientOnGradientBackgroundView() {
+    private func addGradientOnGradientBackgroundView() {
         for index in 0...6 {
             let gradientView = UIView(frame: CGRect(x: self.viewXpos!, y: self.viewHeight! * CGFloat(index), width: self.viewWidth!, height: self.viewHeight!))
             let gradientLayer = CAGradientLayer()
@@ -172,7 +213,7 @@ class DeepViewController: UIViewController {
         }
     }
     
-    func pushToLoginViewController() {
+    private func pushToLoginViewController() {
         let loginStoryboard = UIStoryboard(name: Constants.Name.loginStoryboard, bundle: nil)
         guard let loginViewController = loginStoryboard.instantiateViewController(identifier: Constants.Identifier.loginViewController) as? LoginViewController else { return }
         loginViewController.currentColorSet = Int(round(self.deepSliderValue * 6))
@@ -180,29 +221,14 @@ class DeepViewController: UIViewController {
         
     }
     
-    func postDiariesWithAPI(contents: String, depth: Int, userId: Int, sentenceId: Int, emotionId: Int, wroteAt: String) {
-        DiariesService.shared.postDiaries(contents: contents, depth: depth, userId: userId, sentenceId: sentenceId, emotionId: emotionId, wroteAt: wroteAt) { networkResult in
-            switch networkResult {
-            case .success(let data):
-                if let serverData = data as? CreateDiary {
-                    self.pushToDiaryViewController(diaryId: serverData.id)
-                }
-                
-            case .requestErr(let msg):
-                if let message = msg as? String {
-                    print(message)
-                }
-            case .pathErr:
-                print("pathErr in postDiariesWithAPI")
-            case .serverErr:
-                print("serverErr in postDiariesWithAPI")
-            case .networkFail:
-                print("networkFail in postDiariesWithAPI")
-            }
+    private func popToHomeViewController() {
+        guard let homeViewController = self.navigationController?.viewControllers.filter({$0 is HomeViewController}).first! as? HomeViewController else {
+            return
         }
+        self.navigationController?.popToViewController(homeViewController, animated: true)
     }
     
-    func pushToDiaryViewController(diaryId: Int) {
+    private func pushToDiaryViewController(diaryId: Int) {
         let diaryStoryboard = UIStoryboard(name: Constants.Name.diaryStoryboard, bundle: nil)
         guard let diaryViewController = diaryStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryViewController) as? DiaryViewController else { return }
         diaryViewController.diaryId = diaryId
@@ -238,6 +264,8 @@ class DeepViewController: UIViewController {
         }
     }
 }
+
+// MARK: - SliderDelegate
 
 extension DeepViewController: SliderDelegate {
     
@@ -283,5 +311,45 @@ extension DeepViewController: SliderDelegate {
     
     func labelChanged(value: Float) {
         deepSliderView?.deepLabelSlider.setThumbImage(deepSliderView?.labelImages[Int(value * 6)], for: .normal)
+    }
+}
+
+// MARK: - API Services
+extension DeepViewController {
+    private func postDiariesWithAPI(contents: String, depth: Int, userId: Int, sentenceId: Int, emotionId: Int, wroteAt: String) {
+        DiariesService.shared.postDiaries(contents: contents, depth: depth, userId: userId, sentenceId: sentenceId, emotionId: emotionId, wroteAt: wroteAt) { networkResult in
+            switch networkResult {
+            case .success(let data):
+                if let serverData = data as? CreateDiary {
+                    self.pushToDiaryViewController(diaryId: serverData.id)
+                }
+                
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr in postDiariesWithAPI")
+            case .serverErr:
+                print("serverErr in postDiariesWithAPI")
+            case .networkFail:
+                print("networkFail in postDiariesWithAPI")
+            }
+        }
+    }
+}
+
+
+// MARK: - AlertModalDelegate
+
+extension DeepViewController: AlertModalDelegate {
+    
+    func leftButtonTouchUp(button: UIButton) {
+        self.alertModalView?.removeFromSuperview()
+    }
+    
+    func rightButtonTouchUp(button: UIButton) {
+        self.alertModalView?.removeFromSuperview()
+        self.popToHomeViewController()
     }
 }
