@@ -26,6 +26,7 @@ class MoodViewController: UIViewController {
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var calendarButton: UIButton!
+    @IBOutlet weak var infoLabelVerticalSpacingContraint: NSLayoutConstraint!
     
     // MARK: - Properties
     
@@ -35,6 +36,7 @@ class MoodViewController: UIViewController {
     private var modalView: UploadModalViewController?
     private var currentDate: AppDate?
     private var selectedDate: AppDate?
+    private let infoLabelVerticalSpacing: CGFloat = 66
 
     // MARK: - View Life Cycle
     
@@ -63,6 +65,7 @@ class MoodViewController: UIViewController {
         switch self.moodViewUsage {
         case .onboarding:
             self.infoLabel.text = "먼저 오늘의\n감정을 선택해 주세요"
+            self.infoLabelVerticalSpacingContraint.constant = self.infoLabelVerticalSpacing
             self.dateLabel.text = self.currentDate?.getFormattedDateAndWeekday(with: ". ")
             self.hideCalendarButton()
         case .upload:
