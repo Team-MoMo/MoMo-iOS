@@ -81,7 +81,6 @@ class EmailLoginViewController: UIViewController {
     
     private func pushToHomeViewController() {
         if let homeViewController = self.navigationController?.viewControllers.filter({$0 is HomeViewController}).first as? HomeViewController {
-            homeViewController.isFromLogout = false
             self.navigationController?.popToViewController(homeViewController, animated: true)
         } else {
             let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
