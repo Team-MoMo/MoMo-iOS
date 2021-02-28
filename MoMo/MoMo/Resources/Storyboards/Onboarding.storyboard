@@ -17,16 +17,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rIQ-3J-AWL" userLabel="Wave Animation View" customClass="AnimationView" customModule="Lottie">
-                                <rect key="frame" x="0.0" y="217" width="414" height="102"/>
+                                <rect key="frame" x="0.0" y="206" width="414" height="102"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="onboarding_wave_ios"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tzr-4V-2qZ" userLabel="InfoLabel">
-                                <rect key="frame" x="32" y="110" width="256" height="64"/>
+                                <rect key="frame" x="32" y="110" width="212" height="53"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="kBe-VG-46L"/>
                                     <constraint firstAttribute="width" secondItem="Tzr-4V-2qZ" secondAttribute="height" multiplier="4:1" id="wZ7-KE-Baw"/>
                                 </constraints>
                                 <string key="text">감정 기록이 
@@ -36,7 +35,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ybM-6V-Bhf" userLabel="BackGroundView">
-                                <rect key="frame" x="0.0" y="319" width="414" height="577"/>
+                                <rect key="frame" x="0.0" y="308" width="414" height="588"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00Z-tE-UjX" userLabel="DescriptionLabel">
                                         <rect key="frame" x="40" y="40" width="302.5" height="76.5"/>
@@ -63,7 +62,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQb-7L-Dg6" userLabel="StartButton">
-                                        <rect key="frame" x="97" y="427" width="220" height="50"/>
+                                        <rect key="frame" x="97" y="438" width="220" height="50"/>
                                         <color key="backgroundColor" name="Blue7"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="k7N-Ck-qCP"/>
@@ -78,7 +77,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Stl-fv-u4C" userLabel="LoginButton">
-                                        <rect key="frame" x="147.5" y="492" width="119" height="32"/>
+                                        <rect key="frame" x="147.5" y="503" width="119" height="32"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                         <state key="normal" title="이미 계정이 있어요">
                                             <color key="titleColor" name="Blue7"/>
@@ -116,7 +115,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="8za-v1-JN6"/>
                     <connections>
-                        <outlet property="descriptionLabel" destination="00Z-tE-UjX" id="rEm-Tq-IM2"/>
+                        <outlet property="descriptionLabel" destination="00Z-tE-UjX" id="sxt-YV-Vrr"/>
+                        <outlet property="infoLabel" destination="Tzr-4V-2qZ" id="doy-L1-aFf"/>
                         <outlet property="loginButton" destination="Stl-fv-u4C" id="NEl-L0-2IG"/>
                         <outlet property="startButton" destination="pQb-7L-Dg6" id="XAp-Zm-CL0"/>
                         <outlet property="waveAnimationView" destination="rIQ-3J-AWL" id="e1a-WT-Kgl"/>
