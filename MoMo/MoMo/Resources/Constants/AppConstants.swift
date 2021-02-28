@@ -193,6 +193,7 @@ struct Constants {
             
             // button
             static let btnCloseBlack = UIImage(named: "btnCloseBlack")
+            static let btnCloseWhite = UIImage(named: "btnCloseWhite")
             static let btnBackWhite = UIImage(named: "btnBackWhite")
             static let btnBackBlack = UIImage(named: "btnBackBlack")
             static let listBtnFilterBlue = UIImage(named: "listBtnFilterBlue")
