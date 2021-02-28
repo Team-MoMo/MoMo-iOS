@@ -16,11 +16,13 @@ class OnboardingViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet var waveAnimationView: AnimationView!
+    @IBOutlet weak var infoLabel: UILabel!
     
     // MARK: - Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.initializeOnboardingViewController()
         self.initializeNavigationBar()
         self.hideDesciptionLabelWithAnimation()
         self.startWaveAnimation()
@@ -28,11 +30,17 @@ class OnboardingViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.buttonRoundedUp()
         self.showDesciptionLabelWithAnimation()
     }
     
     // MARK: - Functions
+    
+    private func initializeOnboardingViewController() {
+        self.buttonRoundedUp()
+        
+        self.infoLabel.attributedText = "감정 기록이\n어려웠던 적이 있나요?".textSpacing(lineSpacing: 32, fontHeight: self.infoLabel.font.lineHeight)
+        self.descriptionLabel.attributedText = "오늘부터는 책 속의 문장이\n당신의 감정 기록을 도와줄 거예요.\n\n다양한 감정의 폭을 바다의 깊이로 표현해보세요.".textSpacing(lineSpacing: 26, fontHeight: self.descriptionLabel.font.lineHeight)
+    }
     
     private func initializeNavigationBar() {
         self.navigationController?.navigationBar.topItem?.title = ""
