@@ -7,6 +7,12 @@
 
 import UIKit
 
+// MARK: - Protocols
+ 
+protocol HomeModalViewDelegate: class {
+    func passData(year: Int, month: Int)
+}
+
 protocol StatModalViewDelegate: class {
     func passData(year: Int, month: Int)
 }
@@ -26,6 +32,7 @@ class HomeModalViewController: UIViewController {
     
     var currentDate = AppDate()
     
+    weak var homeModalViewDelegate: HomeModalViewDelegate?
     weak var statModalViewDelegate: StatModalViewDelegate?
     
     override func viewDidLoad() {
@@ -93,18 +100,26 @@ class HomeModalViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    private func dismissToHomeViewController() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func touchCancelButton(_ sender: Any) {
         dismissToStatisticsViewController()
     }
   
     @IBAction func touchApplyButton(_ sender: Any) {
-        guard let modal = statModalViewDelegate else {
-            return
+        if let modal = statModalViewDelegate {
+            modal.passData(year: self.year, month: self.month)
+            dismissToStatisticsViewController()
         }
-        modal.passData(year: self.year, month: self.month)
-        dismissToStatisticsViewController()
+        if let modal = homeModalViewDelegate {
+            print(self.year)
+            print(self.month)
+            modal.passData(year: self.year, month: self.month)
+            dismissToHomeViewController()
+        }
     }
-    
 }
 
 extension HomeModalViewController: UIPickerViewDelegate {
