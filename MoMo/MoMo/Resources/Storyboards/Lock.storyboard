@@ -245,6 +245,7 @@
                         <outlet property="secondIndicator" destination="qaT-ib-J1d" id="AR3-Dc-Yth"/>
                         <outlet property="sevenButton" destination="glQ-LN-JJG" id="IsW-Rx-ZYF"/>
                         <outlet property="sixButton" destination="Hio-0R-0bL" id="OCu-2F-Cbd"/>
+                        <outlet property="stackViewVerticalSpacingConstraint" destination="GM1-Ha-lYF" id="3wZ-pa-B7x"/>
                         <outlet property="thirdIndicator" destination="npH-Wy-KuZ" id="BUW-LH-Jnk"/>
                         <outlet property="threeButton" destination="Uq4-g7-1x9" id="hPP-xl-yFw"/>
                         <outlet property="twoButton" destination="1ry-dD-NJA" id="9bt-1y-VXs"/>
