@@ -19,9 +19,6 @@ extension UINavigationController: UINavigationControllerDelegate {
         
         if responds(to: #selector(getter: self.interactivePopGestureRecognizer)) {
             
-            print(viewControllers.count)
-            print(viewControllers)
-            
             // 온보딩부터 시작하는지 검사
             if viewControllers[0].isKind(of: OnboardingViewController.self) {
                 

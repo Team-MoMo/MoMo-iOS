@@ -98,7 +98,7 @@ class ListTableViewCell: UITableViewCell {
     // 일기 분리 작업
     func divideJournal(_ text: String, _ size: CGFloat) {
         let textArray = text.split(separator: "\n")
-//        print(textArray[0].trimmingCharacters(in: .whitespaces))
+
         guard let font =  UIFont(name: "AppleSDGothicNeo-Regular", size: 12) else {
             return
         }

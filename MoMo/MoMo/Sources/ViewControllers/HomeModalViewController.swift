@@ -114,8 +114,6 @@ class HomeModalViewController: UIViewController {
             dismissToStatisticsViewController()
         }
         if let modal = homeModalViewDelegate {
-            print(self.year)
-            print(self.month)
             modal.passData(year: self.year, month: self.month)
             dismissToHomeViewController()
         }
