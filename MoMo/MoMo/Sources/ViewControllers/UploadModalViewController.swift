@@ -28,7 +28,8 @@ class UploadModalViewController: UIViewController {
     var dayArray: [[String]] = [
         (1...31).map {String($0)},
         (1...30).map {String($0)},
-        (1...29).map {String($0)}
+        (1...29).map {String($0)},
+        (1...28).map {String($0)}
     ]
     
     var currentMonthArray: [String] = []
@@ -154,11 +155,20 @@ class UploadModalViewController: UIViewController {
             }
             
         case 2:
-            if dayIndex != 2 || currentYearSelected {
-                dayIndex = 2
-                self.dayPickerView.reloadComponent(0)
+            guard let unwrappedYear = self.year else {
+                return
             }
-            
+            if findLeapYear(unwrappedYear) {
+                if dayIndex != 2 || currentYearSelected {
+                    dayIndex = 2
+                    self.dayPickerView.reloadComponent(0)
+                }
+            } else {
+                if dayIndex != 3 || currentYearSelected {
+                    dayIndex = 3
+                    self.dayPickerView.reloadComponent(0)
+                }
+            }
         default:
             if dayIndex != 1 ||  currentYearSelected {
                 dayIndex = 1
@@ -167,6 +177,17 @@ class UploadModalViewController: UIViewController {
         }
     }
     
+    private func findLeapYear(_ year: Int) -> Bool {
+        print(year)
+        if year%400 == 0 {
+            return true
+        } else if year%100 != 0 && year%4 == 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+ 
     private func getDiariesWithAPI(userID: String,
                                    year: String,
                                    month: String,
