@@ -29,6 +29,7 @@ class JoinViewController: UIViewController {
     
     // MARK: - @IBOutlet Properties
     
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var passwordCheckView: UIView!
