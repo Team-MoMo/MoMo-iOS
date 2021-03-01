@@ -407,6 +407,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     func attachDepth0Objet() {
         let sectionFrameY = sectionFrameArray[0].origin.y
         let sectionFrameBottom = sectionFrameArray[1].origin.y
+        let sectionFrameCenterY = sectionFrameBottom - ((sectionFrameBottom - sectionFrameY) / 2)
         let screenWidth = UIScreen.main.bounds.width
         
         // img 변수 선언
@@ -414,25 +415,31 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         let rock2 = Constants.Design.Image.depth0Rock2
         let fish1 = Constants.Design.Image.depth0Fish1
         let fish2 = Constants.Design.Image.depth0Fish2
+        let fish5 = Constants.Design.Image.depth0Fish5
         let seaweed1 = Constants.Design.Image.depth0Seaweed1
+        let bubble1 = Constants.Design.Image.depth0Bubble1
         
         // objet 붙이기
         attachObjet(frameX: screenWidth - (rock1?.size.width ?? CGFloat(0)), frameY: sectionFrameY, img: rock1 ?? UIImage())
         attachObjet(frameX: 0, frameY: sectionFrameBottom - (rock2?.size.height ?? CGFloat(0)), img: rock2 ?? UIImage())
-        attachObjet(frameX: 64, frameY: sectionFrameY + 161, img: fish1 ?? UIImage())
-        attachObjet(frameX: screenWidth - 47 - (fish2?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - 197 - (fish2?.size.height ?? CGFloat(0)), img: fish2 ?? UIImage())
+        attachObjet(frameX: 64, frameY: sectionFrameCenterY - 124 - (fish1?.size.height ?? CGFloat(0)), img: fish1 ?? UIImage())
+        attachObjet(frameX: screenWidth - 47 - (fish2?.size.width ?? CGFloat(0)), frameY: sectionFrameCenterY + 151, img: fish2 ?? UIImage())
         attachObjet(frameX: screenWidth - (seaweed1?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - (seaweed1?.size.height ?? CGFloat(0)), img: seaweed1 ?? UIImage())
+        attachObjet(frameX: 75, frameY: sectionFrameCenterY + 219, img: fish5 ?? UIImage())
+        attachObjet(frameX: screenWidth - 40 - (bubble1?.size.width ?? CGFloat(0)), frameY: sectionFrameCenterY - (bubble1?.size.height ?? CGFloat(0)), img: bubble1 ?? UIImage())
     }
     
     // 1단계 - 30m
     func attachDepth1Objet() {
         let sectionFrameY = sectionFrameArray[1].origin.y
         let sectionFrameBottom = sectionFrameArray[2].origin.y
+        let sectionFrameCenterY = sectionFrameBottom - ((sectionFrameBottom - sectionFrameY) / 2)
         let screenWidth = UIScreen.main.bounds.width
         
         // img 변수 선언
         let rock1 = Constants.Design.Image.depth1Rock1
         let seaweed = Constants.Design.Image.depth1Seaweed
+        let seaweed3 = Constants.Design.Image.depth1Seaweed3
         let dolphin1 = Constants.Design.Image.depth1Dolphin1
         let dolphin2 = Constants.Design.Image.depth1Dolphin2
         let coral1 = Constants.Design.Image.depth1Coral1
@@ -441,21 +448,24 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         // objet 붙이기
         attachObjet(frameX: 0, frameY: sectionFrameY, img: rock1 ?? UIImage())
         attachObjet(frameX: screenWidth - (seaweed?.size.width ?? CGFloat(0)), frameY: sectionFrameY, img: seaweed ?? UIImage())
-        attachObjet(frameX: 9, frameY: sectionFrameY + 260, img: dolphin1 ?? UIImage())
-        attachObjet(frameX: screenWidth - 22 - (dolphin2?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - 143 - (dolphin2?.size.width ?? CGFloat(0)), img: dolphin2 ?? UIImage())
+        attachObjet(frameX: 9, frameY: sectionFrameCenterY - 90, img: dolphin1 ?? UIImage())
+        attachObjet(frameX: screenWidth - 22 - (dolphin2?.size.width ?? CGFloat(0)), frameY: sectionFrameCenterY + 137, img: dolphin2 ?? UIImage())
         attachObjet(frameX: 0, frameY: sectionFrameBottom, img: coral1 ?? UIImage())
         attachObjet(frameX: screenWidth - (fish1?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom, img: fish1 ?? UIImage())
+        attachObjet(frameX: screenWidth - (seaweed3?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - 267 - (seaweed3?.size.height ?? CGFloat(0)), img: seaweed3 ?? UIImage())
     }
     
     // 2단계 - 100m
     func attachDepth2Objet() {
         let sectionFrameY = sectionFrameArray[2].origin.y
         let sectionFrameBottom = sectionFrameArray[3].origin.y
+        let sectionFrameCenterY = sectionFrameBottom - ((sectionFrameBottom - sectionFrameY) / 2)
         let screenWidth = UIScreen.main.bounds.width
         
         // img 변수 선언
         let fish1 = Constants.Design.Image.depth2Fish1
         let fish2 = Constants.Design.Image.depth2Fish2
+        let fish3 = Constants.Design.Image.depth2Fish3
         let turtle1 = Constants.Design.Image.depth2Turtle1
         let turtle2 = Constants.Design.Image.depth2Turtle2
         let seaweed1 = Constants.Design.Image.depth2Seaweed1
@@ -463,9 +473,10 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         // objet 붙이기
         attachObjet(frameX: screenWidth - (fish1?.size.width ?? CGFloat(0)), frameY: sectionFrameY, img: fish1 ?? UIImage())
-        attachObjet(frameX: 0, frameY: sectionFrameY + 147, img: fish2 ?? UIImage())
-        attachObjet(frameX: screenWidth - 68 - (turtle1?.size.width ?? CGFloat(0)), frameY: sectionFrameY + 118, img: turtle1 ?? UIImage())
-        attachObjet(frameX: 9, frameY: sectionFrameBottom - 148 - (turtle2?.size.height ?? CGFloat(0)), img: turtle2 ?? UIImage())
+        attachObjet(frameX: 0, frameY: sectionFrameBottom - 433 - (fish2?.size.height ?? CGFloat(0)), img: fish2 ?? UIImage())
+        attachObjet(frameX: 136, frameY: sectionFrameCenterY + 186, img: fish3 ?? UIImage())
+        attachObjet(frameX: screenWidth - 68 - (turtle1?.size.width ?? CGFloat(0)), frameY: sectionFrameCenterY - 134 - (turtle1?.size.height ?? CGFloat(0)), img: turtle1 ?? UIImage())
+        attachObjet(frameX: 9, frameY: sectionFrameCenterY + 17, img: turtle2 ?? UIImage())
         attachObjet(frameX: 0, frameY: sectionFrameBottom - (seaweed1?.size.height ?? CGFloat(0)), img: seaweed1 ?? UIImage())
         attachObjet(frameX: screenWidth - (seaweed2?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - (seaweed2?.size.height ?? CGFloat(0)), img: seaweed2 ?? UIImage())
     }
@@ -474,6 +485,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     func attachDepth3Objet() {
         let sectionFrameY = sectionFrameArray[3].origin.y
         let sectionFrameBottom = sectionFrameArray[4].origin.y
+        let sectionFrameCenterY = sectionFrameBottom - ((sectionFrameBottom - sectionFrameY) / 2)
         let screenWidth = UIScreen.main.bounds.width
         
         // img 변수 선언
@@ -489,9 +501,9 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         attachObjet(frameX: 0, frameY: sectionFrameY, img: seaweed1 ?? UIImage())
         attachObjet(frameX: screenWidth - (seaweed2?.size.width ?? CGFloat(0)), frameY: sectionFrameY, img: seaweed2 ?? UIImage())
         attachObjet(frameX: 0, frameY: sectionFrameBottom - (seaweed3?.size.height ?? CGFloat(0)), img: seaweed3 ?? UIImage())
-        attachObjet(frameX: 88, frameY: sectionFrameY + 7, img: fish1 ?? UIImage())
-        attachObjet(frameX: 0, frameY: sectionFrameBottom - 24 - (fish2?.size.height ?? CGFloat(0)), img: fish2 ?? UIImage())
-        attachObjet(frameX: screenWidth - 44 - (stingray1?.size.width ?? CGFloat(0)), frameY: sectionFrameY + 148, img: stingray1 ?? UIImage())
+        attachObjet(frameX: 88, frameY: sectionFrameCenterY - 177 - (fish1?.size.height ?? CGFloat(0)), img: fish1 ?? UIImage())
+        attachObjet(frameX: 0, frameY: sectionFrameCenterY + 174, img: fish2 ?? UIImage())
+        attachObjet(frameX: screenWidth - 44 - (stingray1?.size.width ?? CGFloat(0)), frameY: sectionFrameCenterY - (stingray1?.size.height ?? CGFloat(0)), img: stingray1 ?? UIImage())
         attachObjet(frameX: screenWidth - (rock1?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - (rock1?.size.height ?? CGFloat(0)), img: rock1 ?? UIImage())
     }
     
@@ -499,6 +511,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     func attachDepth4Objet() {
         let sectionFrameY = sectionFrameArray[4].origin.y
         let sectionFrameBottom = sectionFrameArray[5].origin.y
+        let sectionFrameCenterY = sectionFrameBottom - ((sectionFrameBottom - sectionFrameY) / 2)
         let screenWidth = UIScreen.main.bounds.width
         
         // img 변수 선언
@@ -512,39 +525,46 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         attachObjet(frameX: 0, frameY: sectionFrameY, img: seaweed1 ?? UIImage())
         attachObjet(frameX: 0, frameY: sectionFrameBottom - (seaweed2?.size.height ?? CGFloat(0)), img: seaweed2 ?? UIImage())
         attachObjet(frameX: screenWidth - (rock1?.size.width ?? CGFloat(0)), frameY: sectionFrameY, img: rock1 ?? UIImage())
-        attachObjet(frameX: 0, frameY: sectionFrameY + 67, img: whale1 ?? UIImage())
-        attachObjet(frameX: screenWidth - (fish1?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - (fish1?.size.height ?? CGFloat(0)), img: fish1 ?? UIImage())
+        attachObjet(frameX: 0, frameY: sectionFrameCenterY - (whale1?.size.height ?? CGFloat(0)), img: whale1 ?? UIImage())
+        attachObjet(frameX: screenWidth - (fish1?.size.width ?? CGFloat(0)), frameY: sectionFrameCenterY + 125, img: fish1 ?? UIImage())
     }
     
     // 5단계 - 1005m
     func attachDepth5Objet() {
         let sectionFrameY = sectionFrameArray[5].origin.y
         let sectionFrameBottom = sectionFrameArray[6].origin.y
+        let sectionFrameCenterY = sectionFrameBottom - ((sectionFrameBottom - sectionFrameY) / 2)
         let screenWidth = UIScreen.main.bounds.width
                 
         // img 변수 선언
         let seaweed1 = Constants.Design.Image.depth5Seaweed1
         let seaweed2 = Constants.Design.Image.depth5Seaweed2
+        let seaweed3 = Constants.Design.Image.depth5Seaweed3
         let shark = Constants.Design.Image.depth5Shark
         let rock1 = Constants.Design.Image.depth5Rock1
+        let bubble1 = Constants.Design.Image.depth5Bubble1
         
         // objet 붙이기
         attachObjet(frameX: 0, frameY: sectionFrameY, img: seaweed1 ?? UIImage())
         attachObjet(frameX: screenWidth - (seaweed2?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - (seaweed2?.size.height ?? CGFloat(0)), img: seaweed2 ?? UIImage())
-        attachObjet(frameX: screenWidth - (shark?.size.width ?? CGFloat(0)), frameY: sectionFrameY + 62, img: shark ?? UIImage())
+        attachObjet(frameX: screenWidth - (shark?.size.width ?? CGFloat(0)), frameY: sectionFrameCenterY - 82 - (shark?.size.height ?? CGFloat(0)), img: shark ?? UIImage())
         attachObjet(frameX: 0, frameY: sectionFrameBottom - (rock1?.size.height ?? CGFloat(0)), img: rock1 ?? UIImage())
+        attachObjet(frameX: screenWidth - (seaweed3?.size.width ?? CGFloat(0)), frameY: sectionFrameY + 174, img: seaweed3 ?? UIImage())
+        attachObjet(frameX: 84, frameY: sectionFrameCenterY + 160, img: bubble1 ?? UIImage())
     }
     
     // 6단계 - 심해
     func attachDepth6Objet() {
         let sectionFrameY = sectionFrameArray[6].origin.y
         let sectionFrameBottom = sectionFrameArray[6].origin.y + sectionFrameArray[6].size.height
+        let sectionFrameCenterY = sectionFrameBottom - ((sectionFrameBottom - sectionFrameY) / 2)
         let screenWidth = UIScreen.main.bounds.width
         
         // img 변수 선언
         let rock1 = Constants.Design.Image.depth6Rock1
         let seaweed1 = Constants.Design.Image.depth6Seaweed1
         let sea = Constants.Design.Image.depth6Sea
+        let fish1 = Constants.Design.Image.depth6Fish1
         
         // sea 이미지 높이 계산
         let imgWidth = sea?.size.width ?? CGFloat(0)
@@ -555,6 +575,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         // objet 붙이기
         attachObjet(frameX: 0, frameY: sectionFrameY, img: rock1 ?? UIImage())
         attachObjet(frameX: screenWidth - (seaweed1?.size.width ?? CGFloat(0)), frameY: sectionFrameY, img: seaweed1 ?? UIImage())
+        attachObjet(frameX: screenWidth - (fish1?.size.width ?? CGFloat(0)), frameY: sectionFrameCenterY - (fish1?.size.height ?? CGFloat(0)), img: fish1 ?? UIImage())
         attachBottomObjet(frameX: 0, frameY: sectionFrameBottom - height, img: sea ?? UIImage())
     }
     
