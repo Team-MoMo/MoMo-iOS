@@ -51,6 +51,15 @@ class DeepViewController: UIViewController {
         button.tintColor = .white
         return button
     }()
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = false
+        activityIndicator.style = UIActivityIndicatorView.Style.medium
+        activityIndicator.startAnimating()
+        return activityIndicator
+    }()
     
     // MARK: - View Life Cycle
     
@@ -132,6 +141,17 @@ class DeepViewController: UIViewController {
         }
     }
     
+    private func attachActivityIndicator() {
+        self.view.addSubview(self.activityIndicator)
+    }
+    
+    private func detachActivityIndicator() {
+        if self.activityIndicator.isAnimating {
+            self.activityIndicator.stopAnimating()
+        }
+        self.activityIndicator.removeFromSuperview()
+    }
+    
     private func updateAlertModalViewConstraints(view: UIView) {
         view.snp.makeConstraints({ (make) in
             make.width.height.centerX.centerY.equalTo(self.view)
@@ -161,6 +181,14 @@ class DeepViewController: UIViewController {
     private func buttonRoundedUp() {
         self.depthSelectionButton.layer.cornerRadius = self.depthSelectionButton.frame.size.height / 2
         self.depthSelectionButton.clipsToBounds = true
+    }
+    
+    private func enableDepthSelectionButtonUserInteraction() {
+        self.depthSelectionButton.isUserInteractionEnabled = true
+    }
+    
+    private func disableDepthSelectionButtonUserInteraction() {
+        self.depthSelectionButton.isUserInteractionEnabled = false
     }
     
     @objc func touchBackButton() {
@@ -236,19 +264,20 @@ class DeepViewController: UIViewController {
         
     }
     
-    @IBAction func startButtonTouchUp(_ sender: UIButton) {
+    @IBAction func touchDepthSelectionButton(_ sender: UIButton) {
         
         switch self.deepViewUsage {
         case .onboarding:
             self.pushToLoginViewController()
         case .upload:
+            self.disableDepthSelectionButtonUserInteraction()
+            self.attachActivityIndicator()
             guard let diary = self.diaryInfo?.diary,
                   let sentenceId = self.diaryInfo?.sentence?.id,
                   let emotionId = self.diaryInfo?.mood?.rawValue,
                   let wroteAt = self.diaryInfo?.date?.getFormattedDate(with: "-") else {
                 return
             }
-            
             self.postDiariesWithAPI(
                 contents: diary,
                 depth: Int(round(self.deepSliderValue * 6)),
@@ -258,6 +287,8 @@ class DeepViewController: UIViewController {
                 wroteAt: wroteAt
             )
         case .diary:
+            self.disableDepthSelectionButtonUserInteraction()
+            self.attachActivityIndicator()
             self.deepViewControllerDelegate?.passData(
                 selectedDepth: AppDepth(rawValue: Int(round(self.deepSliderValue * 6))) ?? AppDepth.depth2m)
             self.navigationController?.popViewController(animated: true)
@@ -318,8 +349,13 @@ extension DeepViewController: SliderDelegate {
 extension DeepViewController {
     private func postDiariesWithAPI(contents: String, depth: Int, userId: Int, sentenceId: Int, emotionId: Int, wroteAt: String) {
         DiariesService.shared.postDiaries(contents: contents, depth: depth, userId: userId, sentenceId: sentenceId, emotionId: emotionId, wroteAt: wroteAt) { networkResult in
+            
+            self.detachActivityIndicator()
+            self.enableDepthSelectionButtonUserInteraction()
+            
             switch networkResult {
             case .success(let data):
+                
                 if let serverData = data as? CreateDiary {
                     self.pushToDiaryViewController(diaryId: serverData.id)
                 }
@@ -338,7 +374,6 @@ extension DeepViewController {
         }
     }
 }
-
 
 // MARK: - AlertModalDelegate
 
