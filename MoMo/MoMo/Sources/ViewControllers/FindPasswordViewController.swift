@@ -29,6 +29,7 @@ class FindPasswordViewController: UIViewController {
     
     // MARK: - @IBOutlet Properties
     
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var emailErrorLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var emailView: UIView!
@@ -46,6 +47,7 @@ class FindPasswordViewController: UIViewController {
         initializeNavigationBar()
         initializeGetPasswordButtonCornerRadius()
         initializePlaceholder()
+        initializeTextSpacing()
         hideEmailError()
         makeClearButton()
         registerXib()
@@ -68,6 +70,13 @@ class FindPasswordViewController: UIViewController {
     
     func registerXib() {
         self.getPasswordAlertView = Bundle.main.loadNibNamed(Constants.Name.getPasswordAlertViewXib, owner: self, options: nil)?.last as? GetPasswordAlertView
+    }
+    
+    func initializeTextSpacing() {
+        descriptionLabel.attributedText = descriptionLabel.text?.textSpacing()
+        emailLabel.attributedText = emailLabel.text?.textSpacing()
+        emailErrorLabel.attributedText = emailErrorLabel.text?.textSpacing()
+        getPasswordButton.titleLabel?.attributedText = getPasswordButton.titleLabel?.text?.textSpacing()
     }
     
     func initializeTodayPasswordCount() {
