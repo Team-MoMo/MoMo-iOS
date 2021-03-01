@@ -192,6 +192,7 @@ extension LoginViewController {
                 if let signInData = data as? AuthData {
                     print("회원가입 성공")
                     // 회원가입 성공
+                    APIConstants.userId = signInData.user.id
                     UserDefaults.standard.setValue(signInData.token, forKey: "token")
                     UserDefaults.standard.setValue(signInData.user.id, forKey: "userId")
                     UserDefaults.standard.setValue(socialName, forKey: "loginType")
