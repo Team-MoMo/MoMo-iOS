@@ -48,7 +48,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     let depthLabelFontSize: CGFloat = 28
     
     // date
-    var dateArray: [String] = []
+    var dateArray: [String] = ["", "", ""]
     
     var objView = UIImageView()
     
@@ -565,17 +565,16 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         attachBottomObjet(frameX: 0, frameY: sectionFrameBottom - height, img: sea ?? UIImage())
     }
     
-    // MARK: 해찌꺼뽀려옴2
     func getCurrentFormattedDate() {
+        let today = AppDate()
+        let year = today.getYearToString()
+        let month = today.getMonthToString()
+        let day = today.getDayToString()
+        let weekDay = today.getWeekday().toKorean()
         
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy. MM. dd. EEEE"
-        dateFormatter.locale = Locale.current
-        
-        let formattedDate = dateFormatter.string(from: date)
-        dateArray = formattedDate.components(separatedBy: ". ")
+        dateArray[0] = year
+        dateArray[1] = month
+        dateArray[2] = day
     }
     
     // MARK: - @IBAction Properties
