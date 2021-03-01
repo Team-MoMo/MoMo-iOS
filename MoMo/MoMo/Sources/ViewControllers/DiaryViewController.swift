@@ -310,10 +310,11 @@ class DiaryViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
-        if let menuContainerView = self.menuView?.menuContainerView {
-            if touch?.view != menuContainerView {
-                self.detachMenuView()
-            }
+        
+        guard touch?.view == self.menuView?.dateMenuView || touch?.view == self.menuView?.depthMenuView ||
+            touch?.view == self.menuView?.diaryWriteMenuView || touch?.view == self.menuView?.deleteMenuView else {
+            self.detachMenuView()
+            return
         }
     }
     
@@ -375,21 +376,21 @@ class DiaryViewController: UIViewController {
 
 // MARK: - MenuDelegate
 
-extension DiaryViewController: MenuDelegate {
+extension DiaryViewController: MenuViewDelegate {
     
-    func dateMenuButtonTouchUp(sender: UIButton) {
+    func dateMenuButtonTouchUp(sender: UITapGestureRecognizer) {
         self.presentUpdloadModalViewController()
     }
     
-    func depthMenuButtonTouchUp(sender: UIButton) {
+    func depthMenuButtonTouchUp(sender: UITapGestureRecognizer) {
         self.pushToDeepViewController()
     }
     
-    func diaryMenuButtonTouchUp(sender: UIButton) {
+    func diaryMenuButtonTouchUp(sender: UITapGestureRecognizer) {
         self.pushToDiaryWriteController()
     }
     
-    func deleteMenubuttonTouchUp(sender: UIButton) {
+    func deleteMenubuttonTouchUp(sender: UITapGestureRecognizer) {
         self.attachAlertModalView()
     }
 }
