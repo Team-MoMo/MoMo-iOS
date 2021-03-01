@@ -111,24 +111,25 @@
                                 <color key="textColor" name="Black4"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISp-Vs-3LR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sdf dskf sdj kldj fklasdj flkasdjf kladjsf kljasdfkl jasdklfj lkasdjf lksadjfklsjdakfdjsk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISp-Vs-3LR">
                                 <rect key="frame" x="18" y="45" width="276" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="kma-13-osy"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
+                                <color key="textColor" name="Black4"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" name="Blue7"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="ISp-Vs-3LR" secondAttribute="bottom" constant="22" id="Elf-PF-qWY"/>
-                            <constraint firstItem="hS3-gL-hIJ" firstAttribute="centerY" secondItem="ISp-Vs-3LR" secondAttribute="centerY" id="IVn-6y-L4p"/>
+                            <constraint firstItem="ISp-Vs-3LR" firstAttribute="leading" secondItem="Erv-fW-23n" secondAttribute="leading" constant="18" id="RUd-RH-NgT"/>
                             <constraint firstItem="hS3-gL-hIJ" firstAttribute="leading" secondItem="ISp-Vs-3LR" secondAttribute="trailing" id="WXz-yf-nbj"/>
-                            <constraint firstItem="mcB-X1-Nss" firstAttribute="leading" secondItem="ISp-Vs-3LR" secondAttribute="leading" id="Y7i-Iu-MNP"/>
                             <constraint firstItem="mcB-X1-Nss" firstAttribute="leading" secondItem="Erv-fW-23n" secondAttribute="leading" constant="18" id="f8Q-CL-Hvk"/>
                             <constraint firstItem="mcB-X1-Nss" firstAttribute="top" secondItem="Erv-fW-23n" secondAttribute="top" constant="18" id="m3m-yP-yPx"/>
+                            <constraint firstItem="hS3-gL-hIJ" firstAttribute="centerY" secondItem="ISp-Vs-3LR" secondAttribute="centerY" id="nkU-9h-x0B"/>
+                            <constraint firstAttribute="trailing" secondItem="hS3-gL-hIJ" secondAttribute="trailing" constant="24" id="rh1-Xr-Vco"/>
                             <constraint firstAttribute="height" constant="87" id="wSE-xX-RFf"/>
                         </constraints>
                     </view>
@@ -181,7 +182,6 @@
                     <constraint firstItem="gXZ-9s-cei" firstAttribute="top" secondItem="yMW-U8-qip" secondAttribute="bottom" constant="16" id="W6Y-Ry-HLp"/>
                     <constraint firstItem="Egf-nS-7UG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="70" id="Xf7-rs-Lai"/>
                     <constraint firstItem="gXZ-9s-cei" firstAttribute="top" secondItem="yvB-uF-DGS" secondAttribute="bottom" constant="16" id="Z0J-TH-5l4"/>
-                    <constraint firstItem="hS3-gL-hIJ" firstAttribute="trailing" secondItem="6In-cK-Ism" secondAttribute="trailing" id="b6N-fm-8ea"/>
                     <constraint firstItem="6In-cK-Ism" firstAttribute="trailing" secondItem="gXZ-9s-cei" secondAttribute="trailing" id="cgt-1L-3pG"/>
                     <constraint firstItem="3DU-eR-q5i" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="ebP-sp-25n"/>
                     <constraint firstItem="Egf-nS-7UG" firstAttribute="top" secondItem="gXZ-9s-cei" secondAttribute="bottom" constant="16" id="efr-iE-kvk"/>

@@ -88,7 +88,7 @@ class ListTableViewCell: UITableViewCell {
         authorLabel.attributedText = diary.sentence.writer.textSpacing(lineSpacing: 4)
         titleLabel.attributedText = "<\(diary.sentence.bookName)>".textSpacing(lineSpacing: 4)
         publisherLabel.attributedText = "(\(diary.sentence.publisher))".textSpacing(lineSpacing: 4)
-        }
+    }
     
     // 문구 텍스트 작업
     func customQuote(_ text: String) {
@@ -112,7 +112,7 @@ class ListTableViewCell: UITableViewCell {
                 let charWidth = String(firstText[index]).size(withAttributes: [.font: font]).width
                 if length + charWidth > size {
                     self.journalLabel1.attributedText = addedString.textSpacing(lineSpacing: 4)
-                    self.journalLabel2.attributedText = String(firstText[index...]).textSpacing(lineSpacing: 4)
+                    self.journalLabel2.attributedText = String(firstText[index...]).wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: false, truncated: true)
                     break
                 }
                 length += charWidth
@@ -120,7 +120,7 @@ class ListTableViewCell: UITableViewCell {
             }
         } else if textArray.count > 1 {
             self.journalLabel1.attributedText = firstText.textSpacing(lineSpacing: 4)
-            self.journalLabel2.attributedText = String(textArray[1].trimmingCharacters(in: .whitespaces)).textSpacing(lineSpacing: 4)
+            self.journalLabel2.attributedText = String(textArray[1].trimmingCharacters(in: .whitespaces)).wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: false, truncated: true)
         } else {
             journalLabel1.attributedText = text.textSpacing(lineSpacing: 4)
         }
