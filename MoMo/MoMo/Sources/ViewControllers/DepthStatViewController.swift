@@ -141,8 +141,8 @@ class DepthStatViewController: UIViewController {
             return
         }
         for num in 0..<labels.count {
-            labels[num].attributedText = "\(depthStatData[num])".wordSpacing(-1)
-            unwrappedDepthLabel[num].attributedText = depth[num].wordSpacing(-0.6)
+            labels[num].attributedText = "\(depthStatData[num])".textSpacing(lineSpacing: 4)
+            unwrappedDepthLabel[num].attributedText = depth[num].textSpacing(lineSpacing: 4)
         }
     }
 

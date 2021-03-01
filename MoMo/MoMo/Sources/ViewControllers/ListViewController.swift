@@ -22,13 +22,13 @@ class ListViewController: UIViewController {
         return button
     }()
     
-    private lazy var statButton: UIBarButtonItem  = {
+    private lazy var statButton: UIButton = {
         let button: UIButton = UIButton.init(type: .custom)
         button.setImage(Constants.Design.Image.listBtnGraph, for: .normal)
         button.tintColor = .black
         button.addTarget(self, action: #selector(touchStatButton), for: .touchUpInside)
         button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        return UIBarButtonItem(customView: button)
+        return button
     }()
     
     private lazy var filterButton: UIButton = {
@@ -111,7 +111,7 @@ class ListViewController: UIViewController {
     }
     
     private func initializeWarningLabel() {
-        filterWarningLabel.attributedText = "검색된 결과가 없습니다".wordSpacing(-0.6)
+        filterWarningLabel.attributedText = "검색된 결과가 없습니다".textSpacing(lineSpacing: 4)
         warningLabel.attributedText = "아직 작성된 일기가 없습니다.\n새로운 문장을 만나러 가볼까요?".wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: true)
         filterWarningLabel.isHidden = true
         warningLabel.isHidden = true
@@ -154,7 +154,7 @@ class ListViewController: UIViewController {
             filterButton.setImage(Constants.Design.Image.listBtnFilterBlue, for: .normal)
         }
 
-        self.navigationItem.rightBarButtonItems = [statButton, UIBarButtonItem(customView: filterButton)]
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: statButton), UIBarButtonItem(customView: filterButton)]
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.titleView = UILabel()
     }

@@ -77,22 +77,22 @@ class ListTableViewCell: UITableViewCell {
         let appDepth = AppDepth(rawValue: diary.depth)
         
         iconImage.image = appEmotion?.toBlueIcon()
-        categoryLabel.attributedText = appEmotion?.toString().wordSpacing(-0.6)
+        categoryLabel.attributedText = appEmotion?.toString().textSpacing(lineSpacing: 4)
         let month = String(format: "%02d", date.getMonth())
         let day = String(format: "%02d", date.getDay())
-        dateLabel.attributedText = (month+"."+day).wordSpacing(-0.6)
-        dayLabel.attributedText = "\(date.getWeekday().toSimpleKorean())".wordSpacing(-0.6)
+        dateLabel.attributedText = (month+"."+day).textSpacing(lineSpacing: 4)
+        dayLabel.attributedText = "\(date.getWeekday().toSimpleKorean())".textSpacing(lineSpacing: 4)
         
-        depthLabel.attributedText = appDepth?.toString().wordSpacing(-0.6)
+        depthLabel.attributedText = appDepth?.toString().textSpacing(lineSpacing: 4)
         
-        authorLabel.attributedText = diary.sentence.writer.wordSpacing(-0.6)
-        titleLabel.attributedText = "<\(diary.sentence.bookName)>".wordSpacing(-0.6)
-        publisherLabel.attributedText = "(\(diary.sentence.publisher))".wordSpacing(-0.6)
+        authorLabel.attributedText = diary.sentence.writer.textSpacing(lineSpacing: 4)
+        titleLabel.attributedText = "<\(diary.sentence.bookName)>".textSpacing(lineSpacing: 4)
+        publisherLabel.attributedText = "(\(diary.sentence.publisher))".textSpacing(lineSpacing: 4)
         }
     
     // 문구 텍스트 작업
     func customQuote(_ text: String) {
-        quoteLabel.attributedText = text.wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: false)
+        quoteLabel.attributedText = text.textSpacing(lineSpacing: 4)
     }
     
     // 일기 분리 작업
@@ -111,18 +111,18 @@ class ListTableViewCell: UITableViewCell {
             for index in firstText.indices {
                 let charWidth = String(firstText[index]).size(withAttributes: [.font: font]).width
                 if length + charWidth > size {
-                    self.journalLabel1.attributedText = addedString.wordSpacing(-0.6)
-                    self.journalLabel2.attributedText = String(firstText[index...]).wordSpacing(-0.6)
+                    self.journalLabel1.attributedText = addedString.textSpacing(lineSpacing: 4)
+                    self.journalLabel2.attributedText = String(firstText[index...]).textSpacing(lineSpacing: 4)
                     break
                 }
                 length += charWidth
                 addedString += String(text[index])
             }
         } else if textArray.count > 1 {
-            self.journalLabel1.attributedText = firstText.wordSpacing(-0.6)
-            self.journalLabel2.attributedText = String(textArray[1].trimmingCharacters(in: .whitespaces)).wordSpacing(-0.6)
+            self.journalLabel1.attributedText = firstText.textSpacing(lineSpacing: 4)
+            self.journalLabel2.attributedText = String(textArray[1].trimmingCharacters(in: .whitespaces)).textSpacing(lineSpacing: 4)
         } else {
-            journalLabel1.attributedText = text.wordSpacing(-0.6)
+            journalLabel1.attributedText = text.textSpacing(lineSpacing: 4)
         }
     }
     

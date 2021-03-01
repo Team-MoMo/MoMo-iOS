@@ -144,7 +144,7 @@ class ServiceTermViewController: UIViewController {
     }
     
     private func initializeTextViewText() {
-        serviceTermTextView.attributedText = serviceTermText.wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: false)
+        serviceTermTextView.attributedText = serviceTermText.textSpacing(lineSpacing: 4)
     }
     
     private func initializeNavigationItem() {

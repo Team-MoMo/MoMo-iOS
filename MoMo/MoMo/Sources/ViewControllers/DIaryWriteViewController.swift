@@ -136,13 +136,13 @@ class DiaryWriteViewController: UIViewController {
               let publisher = self.diaryInfo?.sentence?.publisher,
               let quote = self.diaryInfo?.sentence?.sentence else { return }
         
-        self.dateLabel.attributedText = date.wordSpacing(-0.6)
+        self.dateLabel.attributedText = date.textSpacing(lineSpacing: 4)
         self.emotionImage.image = diaryInfo?.mood?.toIcon()
-        self.emotionLabel.attributedText = emotion.wordSpacing(-0.6)
-        self.authorLabel.attributedText = author.wordSpacing(-0.6)
-        self.bookLabel.attributedText = "<\(bookTitle)>".wordSpacing(-0.6)
-        self.publisherLabel.attributedText = "(\(publisher))".wordSpacing(-0.6)
-        self.quoteLabel.attributedText = quote.wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: false)
+        self.emotionLabel.attributedText = emotion.textSpacing(lineSpacing: 4)
+        self.authorLabel.attributedText = author.textSpacing(lineSpacing: 4)
+        self.bookLabel.attributedText = "<\(bookTitle)>".textSpacing(lineSpacing: 4)
+        self.publisherLabel.attributedText = "(\(publisher))".textSpacing(lineSpacing: 4)
+        self.quoteLabel.attributedText = quote.textSpacing(lineSpacing: 4)
         
         if self.isFromDiary {
             self.depthLabel.text = diaryInfo?.depth?.toString()

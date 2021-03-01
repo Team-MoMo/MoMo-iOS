@@ -125,7 +125,7 @@ class PersonalTermViewController: UIViewController {
     }
     
     private func initializeTextViewText() {
-        personalInfoTextView.attributedText = personalTermText.wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: false)
+        personalInfoTextView.attributedText = personalTermText.textSpacing(lineSpacing: 4)
     }
     
     private func initializeNavigationItem() {

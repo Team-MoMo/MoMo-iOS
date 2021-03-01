@@ -91,7 +91,7 @@ class StatisticsViewController: UIViewController {
             return
         }
         let monthString = String(format: "%02d", unwrappedMonth)
-        dateLabel.attributedText = ("\(unwrappedYear)년 " + monthString + "월").wordSpacing(-0.6)
+        dateLabel.attributedText = ("\(unwrappedYear)년 " + monthString + "월").textSpacing(lineSpacing: 4)
     }
     
     private func initializeNavigationItem() {

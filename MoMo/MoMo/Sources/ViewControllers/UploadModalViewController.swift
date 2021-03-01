@@ -82,7 +82,7 @@ class UploadModalViewController: UIViewController {
     }
     
     private func initializeDescriptionLabel() {
-        descriptionLabel.attributedText = "날짜 변경".wordSpacing(-0.6)
+        descriptionLabel.attributedText = "날짜 변경".textSpacing(lineSpacing: 4)
     }
     
     private func initializeViewLayer() {
