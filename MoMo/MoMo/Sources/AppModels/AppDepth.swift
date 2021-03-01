@@ -23,7 +23,7 @@ enum AppDepth: Int {
         case .depth700m:
             return "700m"
         case .depth1005m:
-            return "1005m"
+            return "1,005m"
         case .depthSimhae:
             return "심해"
         }
