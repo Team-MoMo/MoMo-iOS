@@ -48,7 +48,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     let depthLabelFontSize: CGFloat = 28
     
     // date
-    var dateArray: [String] = []
+    var dateArray: [String] = ["", "", ""]
     
     var objView = UIImageView()
     
@@ -176,15 +176,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
             }
             
             // 단계별 objet 배치
-            self.removeAllObjets()
-            self.paintGradientWithFrame()
-            self.attachDepth0Objet()
-            self.attachDepth1Objet()
-            self.attachDepth2Objet()
-            self.attachDepth3Objet()
-            self.attachDepth4Objet()
-            self.attachDepth5Objet()
-            self.attachDepth6Objet()
+            self.rearrangeObjet()
             
         }
     }
@@ -222,6 +214,19 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     // MARK: - Functions
+    
+    func rearrangeObjet() {
+        // 단계별 objet 배치
+        self.removeAllObjets()
+        self.paintGradientWithFrame()
+        self.attachDepth0Objet()
+        self.attachDepth1Objet()
+        self.attachDepth2Objet()
+        self.attachDepth3Objet()
+        self.attachDepth4Objet()
+        self.attachDepth5Objet()
+        self.attachDepth6Objet()
+    }
     
     func pushToLoginViewController() {
         let loginStoryboard = UIStoryboard(name: Constants.Name.loginStoryboard, bundle: nil)
@@ -579,17 +584,16 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         attachBottomObjet(frameX: 0, frameY: sectionFrameBottom - height, img: sea ?? UIImage())
     }
     
-    // MARK: 해찌꺼뽀려옴2
     func getCurrentFormattedDate() {
+        let today = AppDate()
+        let year = today.getYearToString()
+        let month = today.getMonthToString()
+        let day = today.getDayToString()
+        let weekDay = today.getWeekday().toKorean()
         
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy. MM. dd. EEEE"
-        dateFormatter.locale = Locale.current
-        
-        let formattedDate = dateFormatter.string(from: date)
-        dateArray = formattedDate.components(separatedBy: ". ")
+        dateArray[0] = year
+        dateArray[1] = month
+        dateArray[2] = day
     }
     
     // MARK: - @IBAction Properties
@@ -619,18 +623,17 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.navigationController?.pushViewController(dvc, animated: true)
     }
     @IBAction func touchUpCalendarButton(_ sender: Any) {
-        let uploadModalViewController = UploadModalViewController()
+        let homeModalViewController = HomeModalViewController()
         
-        uploadModalViewController.modalPresentationStyle = .custom
+        homeModalViewController.modalPresentationStyle = .custom
         
-        uploadModalViewController.transitioningDelegate = self
-        uploadModalViewController.uploadModalDataDelegate = self
+        homeModalViewController.transitioningDelegate = self
+        homeModalViewController.homeModalViewDelegate = self
         
-        uploadModalViewController.year = Int(dateArray[0]) ?? 0
-        uploadModalViewController.month = Int(dateArray[1]) ?? 0
-        uploadModalViewController.day = Int(dateArray[2]) ?? 0
+        homeModalViewController.year = Int(dateArray[0]) ?? 0
+        homeModalViewController.month = Int(dateArray[1]) ?? 0
         
-        self.present(uploadModalViewController, animated: true, completion: nil)
+        self.present(homeModalViewController, animated: true, completion: nil)
         
     }
     
@@ -893,20 +896,27 @@ extension HomeViewController {
             }
             self.calculateFramesOfSections()
             self.paintGradientWithFrame()
-            
-//            DispatchQueue.main.async {
-//                self.homeTableView.reloadData()
-//            }
+        }
+    }
+}
+
+extension HomeViewController: HomeModalViewDelegate {
+    func passData(year: Int, month: Int) {
+        self.dateArray[0] = "\(year)"
+        self.dateArray[1] = "\(month)"
+        
+        getDiariesWithAPI(
+            userId: "\(APIConstants.userId)",
+            year: "\(year)",
+            month: "\(month)",
+            order: "depth",
+            day: nil,
+            emotionId: nil,
+            depth: nil) {
+            self.homeTableView.reloadData()
             
             // 단계별 objet 배치
-            //self.removeAllObjets()
-//            self.attachDepth0Objet()
-//            self.attachDepth1Objet()
-//            self.attachDepth2Objet()
-//            self.attachDepth3Objet()
-//            self.attachDepth4Objet()
-//            self.attachDepth5Objet()
-//            self.attachDepth6Objet()
+            self.rearrangeObjet()
         }
     }
 }
