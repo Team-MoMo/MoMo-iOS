@@ -83,6 +83,9 @@
                                         <state key="normal" title="   카카오톡 로그인" image="icKakaoLogo">
                                             <color key="titleColor" red="0.29411764705882354" green="0.20784313725490194" blue="0.10980392156862745" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="touchKakaoLoginButton:" destination="hFo-W1-rx6" eventType="touchUpInside" id="XJf-76-rg8"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="baO-mW-3MQ">
                                         <rect key="frame" x="0.0" y="52" width="250" height="42"/>
