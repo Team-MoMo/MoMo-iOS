@@ -42,7 +42,8 @@ class HomeDayNightView: UIView {
     weak var homeDayNightViewDelegate: HomeDayNightViewDelegate?
     var gradientLayer: CAGradientLayer!
     var date: String?
-    var dateArray:[String] = []
+    // year, month, day
+    var dateArray: [String] = ["", "", ""]
     var todayDiary: [Diary] = []
     
     var diaryId: Int = 1
