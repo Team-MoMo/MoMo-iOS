@@ -109,21 +109,8 @@ class HomeDayNightView: UIView {
             self.createGradientLayer()
         }
     
-        // 자간, 행간 지정
-        dateLabel.attributedText = dateLabel.text?.textSpacing()
-        emotionLabel.attributedText = emotionLabel.text?.textSpacing()
-        depthLabel.attributedText = depthLabel.text?.textSpacing()
-        quoteLabel.attributedText = quoteLabel.text?.textSpacing()
-        writerLabel.attributedText = writerLabel.text?.textSpacing()
-        bookTitleLabel.attributedText = bookTitleLabel.text?.textSpacing()
-        publisherLabel.attributedText = publisherLabel.text?.textSpacing()
-        diaryLabel.attributedText = diaryLabel.text?.textSpacing()
-        
-        // 버튼 rounding 처리
-        writeButton.clipsToBounds = true
-        writeButton.layer.cornerRadius = 8
-        showAllButton.clipsToBounds = true
-        showAllButton.layer.cornerRadius = 8
+        initializeTextSpacing()
+        initializeButtonRounding()
         
         diaryLabel.lineBreakMode = .byTruncatingTail
         
@@ -134,14 +121,38 @@ class HomeDayNightView: UIView {
         // 오늘 쓴 일기 있는지 통신
         self.getSeletectedDateDiaryAPI()
         
+        initializeViewHidden()
+    }
+    
+    // MARK: - Functions
+    
+    func initializeTextSpacing() {
+        // 자간, 행간 지정
+        dateLabel.attributedText = dateLabel.text?.textSpacing()
+        emotionLabel.attributedText = emotionLabel.text?.textSpacing()
+        depthLabel.attributedText = depthLabel.text?.textSpacing()
+        quoteLabel.attributedText = quoteLabel.text?.textSpacing()
+        writerLabel.attributedText = writerLabel.text?.textSpacing()
+        bookTitleLabel.attributedText = bookTitleLabel.text?.textSpacing()
+        publisherLabel.attributedText = publisherLabel.text?.textSpacing()
+        diaryLabel.attributedText = diaryLabel.text?.textSpacing()
+    }
+    
+    func initializeButtonRounding() {
+        // 버튼 rounding 처리
+        writeButton.clipsToBounds = true
+        writeButton.layer.cornerRadius = 8
+        showAllButton.clipsToBounds = true
+        showAllButton.layer.cornerRadius = 8
+    }
+    
+    func initializeViewHidden() {
         // 맨 처음에 모든 뷰 가리기
         filledDiaryView.isHidden = true
         showAllButton.isHidden = true
         noDiaryStackView.isHidden = true
         writeButton.isHidden = true
     }
-    
-    // MARK: - Functions
     
     // empty view 보이게
     func showEmptyView() {
