@@ -224,7 +224,7 @@ class DiaryWriteViewController: UIViewController {
             }
             self.saveDiary()
             deepViewController.diaryInfo = self.diaryInfo
-            deepViewController.depthSeclectionButtonUsage = .upload
+            deepViewController.deepViewUsage = .upload
             self.navigationController?.pushViewController(deepViewController, animated: true)
         }
     }

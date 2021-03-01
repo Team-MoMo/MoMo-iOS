@@ -326,7 +326,7 @@ class DiaryViewController: UIViewController {
         guard let deepViewController = onboardingStoryboard.instantiateViewController(identifier: Constants.Identifier.deepViewController) as? DeepViewController else { return }
         deepViewController.deepViewControllerDelegate = self
         deepViewController.initialDepth = self.diaryInfo?.depth
-        deepViewController.depthSeclectionButtonUsage = .diary
+        deepViewController.deepViewUsage = .diary
         self.navigationController?.pushViewController(deepViewController, animated: true)
     }
     

@@ -231,7 +231,7 @@ extension OnboardingWriteViewController {
     
     func pushToDeepViewController(finished: Bool) {
         guard let deepViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.deepViewController) as? DeepViewController else { return }
-        deepViewController.depthSeclectionButtonUsage = .onboarding
+        deepViewController.deepViewUsage = .onboarding
         self.navigationController?.pushViewController(deepViewController, animated: true)
     }
 }

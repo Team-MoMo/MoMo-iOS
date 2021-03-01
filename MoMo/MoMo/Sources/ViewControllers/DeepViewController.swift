@@ -12,7 +12,7 @@ protocol DeepViewControllerDelegate: class {
     func passData(selectedDepth: AppDepth)
 }
 
-enum DepthSelectionButtonUsage: Int {
+enum DeepViewUsage: Int {
     case onboarding = 0, upload, diary
 }
 
@@ -31,7 +31,7 @@ class DeepViewController: UIViewController {
     
     var diaryInfo: AppDiary?
     var initialDepth: AppDepth?
-    var depthSeclectionButtonUsage: DepthSelectionButtonUsage = .onboarding
+    var deepViewUsage: DeepViewUsage = .onboarding
     private var deepSliderValue: Float = 0
     private var deepSliderView: DeepSliderView?
     private var viewWidth: CGFloat?
@@ -77,7 +77,7 @@ class DeepViewController: UIViewController {
         
         let buttonText: String
         var infoText: String = "감정이 얼마나 깊은가요?\n나만의 바다에 기록해보세요"
-        switch self.depthSeclectionButtonUsage {
+        switch self.deepViewUsage {
         case .onboarding:
             infoText = "오늘의 감정은\n잔잔한가요, 깊은가요?\n스크롤을 움직여서 기록해보세요"
             self.infoLabelVerticalSpacingConstraint.constant = self.infoLabelVerticalSpacing
@@ -97,7 +97,7 @@ class DeepViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         
         self.navigationItem.leftBarButtonItem = self.leftButton
-        switch self.depthSeclectionButtonUsage {
+        switch self.deepViewUsage {
         case .onboarding:
             self.navigationItem.leftBarButtonItem = nil
         case .upload:
@@ -238,7 +238,7 @@ class DeepViewController: UIViewController {
     
     @IBAction func startButtonTouchUp(_ sender: UIButton) {
         
-        switch self.depthSeclectionButtonUsage {
+        switch self.deepViewUsage {
         case .onboarding:
             self.pushToLoginViewController()
         case .upload:
