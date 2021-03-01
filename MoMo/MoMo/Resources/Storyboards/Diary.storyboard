@@ -301,6 +301,7 @@
                         <outlet property="dateLabel" destination="B6l-07-ryY" id="rQU-Ny-ohd"/>
                         <outlet property="depthImage" destination="kEd-fx-CuJ" id="HZF-Et-m0F"/>
                         <outlet property="depthLabel" destination="Fzn-bg-Xah" id="T3C-h0-nc8"/>
+                        <outlet property="descriptionView" destination="u4t-Dj-GtR" id="Q8q-hy-NRO"/>
                         <outlet property="diaryLabel" destination="3Dd-To-Grg" id="nKO-Ta-3VD"/>
                         <outlet property="diarySeaweed" destination="al3-hE-e9C" id="TGA-2E-1pW"/>
                         <outlet property="dolphin1" destination="6uY-ml-lVB" id="HrY-sd-RSh"/>
