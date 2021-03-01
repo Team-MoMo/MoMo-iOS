@@ -87,7 +87,6 @@ class EmailLoginViewController: UIViewController {
     
     private func pushToHomeViewController() {
         if let homeViewController = self.navigationController?.viewControllers.filter({$0 is HomeViewController}).first as? HomeViewController {
-            homeViewController.isFromLogout = false
             self.navigationController?.popToViewController(homeViewController, animated: true)
         } else {
             let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
@@ -162,6 +161,7 @@ extension EmailLoginViewController {
                     self.joinStackViewBottom.isActive = true
                     self.joinStackViewBottom.constant = 69
                     
+                    APIConstants.userId = signInData.user.id
                     UserDefaults.standard.setValue(signInData.token, forKey: "token")
                     UserDefaults.standard.setValue(signInData.user.id, forKey: "userId")
                     UserDefaults.standard.setValue("email", forKey: "loginType")

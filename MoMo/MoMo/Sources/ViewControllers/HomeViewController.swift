@@ -54,7 +54,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // flag
     var isFromDiary: Bool = false
-    var isFromLogout: Bool = false
+    var isFromLogoutOrWithdrawal: Bool = false
     
     //
     var headerView: HomeDayNightView?
@@ -200,7 +200,8 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         homeTableView.reloadData()
         
-        if self.isFromLogout {
+        if self.isFromLogoutOrWithdrawal {
+            self.isFromLogoutOrWithdrawal = false
             self.pushToLoginViewController()
         }
     }
