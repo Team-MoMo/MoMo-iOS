@@ -264,6 +264,13 @@ class ListViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @objc func tapTouchView(sender: UITapGestureRecognizer) {
+        guard let num = sender.view?.tag else {
+            return
+        }
+        pushToDiaryView(num)
+    }
+    
     func presentToListFilterModalView() {
         listFilterModalView = ListFilterModalViewController()
         updateDelegate()
@@ -278,10 +285,6 @@ class ListViewController: UIViewController {
         modalView.transitioningDelegate = self
         
         self.present(modalView, animated: true, completion: nil)
-    }
-    
-    @objc func touchMoreButton(sender: UIButton) {
-        pushToDiaryView(sender.tag)
     }
     
     func pushToDiaryView(_ diaryId: Int) {
@@ -363,13 +366,14 @@ extension ListViewController: UITableViewDataSource {
             }
             DispatchQueue.main.async {
                 cell.journalView.round(corners: [.topLeft, .bottomLeft], cornerRadius: 20)
+                cell.touchView.round(corners: [.topLeft, .bottomLeft], cornerRadius: 20)
             }
             cell.parseDiaryAll(diary: self.receivedData[indexPath.row])
             cell.customQuote(self.receivedData[indexPath.row].sentence.contents)
             cell.divideJournal(self.receivedData[indexPath.row].contents, self.journalLabel1WidthSize)
             cell.createLabelUnderline( self.journalLabel2WidthSize)
-            cell.moreButton.tag = self.receivedData[indexPath.row].id
-            cell.moreButton.addTarget(self, action: #selector(touchMoreButton(sender:)), for: .touchUpInside)
+            cell.touchView.tag = self.receivedData[indexPath.row].id
+            cell.touchView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapTouchView(sender:))))
             cell.selectionStyle = .none
                 
             return cell

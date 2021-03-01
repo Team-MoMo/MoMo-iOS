@@ -35,6 +35,7 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var journalLabel1: UILabel!
     @IBOutlet weak var journalLabel2: UILabel!
     @IBOutlet weak var moreButton: UIButton!
+    @IBOutlet weak var touchView: UIView!
     
     // 재사용할 때
     override func prepareForReuse() {

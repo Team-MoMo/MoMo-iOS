@@ -154,6 +154,9 @@
                             <constraint firstAttribute="height" constant="1" id="xUt-lG-WBp"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9WR-c5-wTE">
+                        <rect key="frame" x="72" y="123" width="342" height="87"/>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
@@ -164,12 +167,14 @@
                     <constraint firstItem="6In-cK-Ism" firstAttribute="leading" secondItem="N8k-nt-gds" secondAttribute="trailing" constant="6" id="4zO-LX-31b"/>
                     <constraint firstItem="yvB-uF-DGS" firstAttribute="leading" secondItem="yMW-U8-qip" secondAttribute="trailing" constant="6" id="6eJ-xD-fgt"/>
                     <constraint firstItem="mcB-X1-Nss" firstAttribute="trailing" secondItem="6In-cK-Ism" secondAttribute="trailing" id="C46-u1-TQX"/>
+                    <constraint firstItem="9WR-c5-wTE" firstAttribute="leading" secondItem="Erv-fW-23n" secondAttribute="leading" id="DzF-eE-hYx"/>
                     <constraint firstItem="gXZ-9s-cei" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="70" id="EM3-IO-q0y"/>
                     <constraint firstItem="Erv-fW-23n" firstAttribute="top" secondItem="Egf-nS-7UG" secondAttribute="bottom" constant="22" id="EP4-vL-pLe"/>
                     <constraint firstItem="Erv-fW-23n" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="72" id="F9v-Hc-pgc"/>
                     <constraint firstItem="N8k-nt-gds" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="36" id="FNe-fs-RtF"/>
                     <constraint firstAttribute="trailing" secondItem="Erv-fW-23n" secondAttribute="trailing" id="IOk-Le-f3y"/>
                     <constraint firstItem="6In-cK-Ism" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="32" id="IuP-1y-qpm"/>
+                    <constraint firstItem="9WR-c5-wTE" firstAttribute="bottom" secondItem="Erv-fW-23n" secondAttribute="bottom" id="MZt-w7-mkt"/>
                     <constraint firstItem="yMW-U8-qip" firstAttribute="leading" secondItem="gXZ-9s-cei" secondAttribute="leading" id="OrL-No-mSa"/>
                     <constraint firstItem="3DU-eR-q5i" firstAttribute="top" secondItem="Erv-fW-23n" secondAttribute="bottom" constant="41" id="UvT-zB-Gny"/>
                     <constraint firstItem="gXZ-9s-cei" firstAttribute="top" secondItem="yMW-U8-qip" secondAttribute="bottom" constant="16" id="W6Y-Ry-HLp"/>
@@ -181,8 +186,10 @@
                     <constraint firstItem="Egf-nS-7UG" firstAttribute="top" secondItem="gXZ-9s-cei" secondAttribute="bottom" constant="16" id="efr-iE-kvk"/>
                     <constraint firstItem="knD-eZ-Mjc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="32" id="lDJ-AO-ELq"/>
                     <constraint firstItem="yMW-U8-qip" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="32" id="qf2-SC-DIS"/>
+                    <constraint firstItem="9WR-c5-wTE" firstAttribute="trailing" secondItem="Erv-fW-23n" secondAttribute="trailing" id="r9T-MC-ZA0"/>
                     <constraint firstAttribute="trailingMargin" secondItem="gXZ-9s-cei" secondAttribute="trailing" constant="25" id="tkD-vY-dPn"/>
                     <constraint firstItem="knD-eZ-Mjc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="tkt-ov-l33"/>
+                    <constraint firstItem="9WR-c5-wTE" firstAttribute="top" secondItem="Erv-fW-23n" secondAttribute="top" id="xQ9-YW-fDc"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -201,6 +208,7 @@
                 <outlet property="publisherLabel" destination="XqV-tW-TbB" id="dtj-s2-N56"/>
                 <outlet property="quoteLabel" destination="gXZ-9s-cei" id="vMf-pU-9cY"/>
                 <outlet property="titleLabel" destination="vx6-iG-hvb" id="ZXJ-U6-15g"/>
+                <outlet property="touchView" destination="9WR-c5-wTE" id="xdX-9R-d99"/>
             </connections>
             <point key="canvasLocation" x="194.20289855072465" y="10.379464285714285"/>
         </tableViewCell>
