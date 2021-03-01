@@ -48,6 +48,7 @@ class HomeModalPresentationController: UIPresentationController {
     override func containerViewDidLayoutSubviews() {
         super.containerViewDidLayoutSubviews()
         blurEffectView.frame = containerView!.bounds
+        self.presentedView?.round(corners: [.topLeft, .topRight], cornerRadius: 15)
     }
     
     @objc func dismissController() {

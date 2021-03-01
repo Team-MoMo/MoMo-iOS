@@ -195,7 +195,7 @@ class ListViewController: UIViewController {
                                          day: day,
                                          emotionId: emotionID,
                                          depth: depth) {
-            (networkResult) -> Void in
+            (networkResult) -> () in
             switch networkResult {
 
             case .success(let data):
