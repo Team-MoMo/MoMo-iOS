@@ -351,7 +351,7 @@ class JoinViewController: UIViewController {
     
     // 비밀번호 정규식 검사
     func validatePassword(password: String) -> Bool {
-        let passwordRegEx = "(?=.*[A-Za-z])(?=.*[0-9]).{8,20}"
+        let passwordRegEx = "(?=.*[A-Za-z])(?=.*[0-9]).{6,20}"
         
         let predicate = NSPredicate(format: "SELF MATCHES %@", passwordRegEx)
         return predicate.evaluate(with: password)
