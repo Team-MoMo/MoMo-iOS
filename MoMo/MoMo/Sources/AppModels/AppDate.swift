@@ -127,6 +127,12 @@ class AppDate {
     
 }
 
+extension AppDate: Equatable {
+    static func == (lhs: AppDate, rhs: AppDate) -> Bool {
+        return lhs.getFormattedDate(with: ". ") == rhs.getFormattedDate(with: ". ")
+    }
+}
+
 enum AppWeekday: String {
     case monday = "Monday", tuesday = "Tuesday", wednesday = "Wednesday", thursday = "Thursday", friday = "Friday", saturday = "Saturday", sunday = "Sunday"
     

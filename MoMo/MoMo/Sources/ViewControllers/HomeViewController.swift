@@ -608,7 +608,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         guard let moodViewController = onboardingStoryboard.instantiateViewController(identifier: Constants.Identifier.moodViewController) as? MoodViewController else {
             return
         }
-        moodViewController.changeUsage = false
+        moodViewController.moodViewUsage = .upload
         self.navigationController?.pushViewController(moodViewController, animated: true)
     }
     
@@ -761,7 +761,7 @@ extension HomeViewController: UITableViewDelegate {
         depthLabel.font = UIFont.systemFont(ofSize: depthLabelFontSize, weight: .light)
         depthLabel.textColor = UIColor.white
         depthLabel.text = Constants.Content.depthNameArray[section]
-        depthLabel.attributedText = depthLabel.text?.textSpacing(lineSpacing: 7)
+        depthLabel.attributedText = depthLabel.text?.textSpacing(lineSpacing: 7, fontHeight: nil)
         sectionHeaderView.addSubview(depthLabel)
         sectionHeaderView.backgroundColor = UIColor.clear // 투명화
 
@@ -841,7 +841,7 @@ extension HomeViewController: HomeDayNightViewDelegate {
         guard let moodViewController = onboardingStoryboard.instantiateViewController(identifier: Constants.Identifier.moodViewController) as? MoodViewController else {
             return
         }
-        moodViewController.changeUsage = false
+        moodViewController.moodViewUsage = .upload
         self.navigationController?.pushViewController(moodViewController, animated: true)
     }
     
