@@ -54,18 +54,6 @@ class FindPasswordViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-        initializeKeyboardObserver()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        
-        removeKeyboardObserver()
-    }
-    
     // MARK: - Functions
     
     func registerXib() {
@@ -111,36 +99,6 @@ class FindPasswordViewController: UIViewController {
     func makeClearButton() {
         // clear button 만들기
         emailTextField.modifyClearButtonWithImage(image: Constants.Design.Image.textfieldDelete ?? UIImage())
-    }
-    
-    func initializeKeyboardObserver() {
-        // keyboardWillShow, keyboardWillHide observer 등록
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    func removeKeyboardObserver() {
-        // observer 제거
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    @objc func keyboardWillShow(_ notification: NSNotification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            let keyboardHeight = keyboardRectangle.height
-            
-            getPasswordButtonBottom.constant = CGFloat(getPasswordButtonBottomConstraint) + keyboardHeight
-        }
-    }
-    
-    @objc func keyboardWillHide(_ notification: NSNotification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            let keyboardHeight = keyboardRectangle.height
-            
-            getPasswordButtonBottom.constant = CGFloat(getPasswordButtonBottomConstraint)
-        }
     }
     
     private func popToLoginViewController() {
@@ -291,15 +249,3 @@ class FindPasswordViewController: UIViewController {
         }
     }
 }
-    
-    extension FindPasswordViewController: UITextFieldDelegate {
-        func textFieldDidEndEditing(_ textField: UITextField) {
-            
-            // 이메일
-            if textField == emailTextField {
-                checkEmail()
-                
-                // 비밀번호
-            }
-        }
-    }
