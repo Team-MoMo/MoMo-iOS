@@ -37,6 +37,7 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var publisherLabel: UILabel!
     @IBOutlet weak var diaryLabel: UILabel!
     @IBOutlet weak var blurView: UIView!
+    @IBOutlet weak var descriptionView: UIView!
     
     // MARK: - Properties
     
@@ -93,6 +94,7 @@ class DiaryViewController: UIViewController {
             self.shark1: "shark1"
         ]
         self.updateObjetsByDepth(depth: self.initialDepth)
+        self.hideDiaryViews()
     }
     
     private func initializeNavigationBar() {
@@ -108,6 +110,7 @@ class DiaryViewController: UIViewController {
         self.updateProperties(diaryInfo: safeDiaryInfo)
         self.updateObjetsByDepth(depth: safeDepth)
         self.updateBackgroundColorByDepth(depth: safeDiaryInfo.depth)
+        self.showDiaryViews()
     }
     
     private func updateProperties(diaryInfo: AppDiary?) {
@@ -284,6 +287,26 @@ class DiaryViewController: UIViewController {
         case .depthSimhae:
             self.updateObjects(keyword: "nothing")
         }
+    }
+    
+    private func hideDiaryViews() {
+        self.dateLabel.isHidden = true
+        self.descriptionView.isHidden = true
+        self.sentenceLabel.isHidden = true
+        self.bookTitleLabel.isHidden = true
+        self.authorLabel.isHidden = true
+        self.publisherLabel.isHidden = true
+        self.diaryLabel.isHidden = true
+    }
+    
+    private func showDiaryViews() {
+        self.dateLabel.isHidden = false
+        self.descriptionView.isHidden = false
+        self.sentenceLabel.isHidden = false
+        self.bookTitleLabel.isHidden = false
+        self.authorLabel.isHidden = false
+        self.publisherLabel.isHidden = false
+        self.diaryLabel.isHidden = false
     }
     
     @objc private func buttonPressed(sender: Any) {

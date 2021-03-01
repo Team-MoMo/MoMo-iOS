@@ -11,6 +11,12 @@ enum SentenceViewUsage: Int {
     case onboarding = 0, upload
 }
 
+enum SentenceCardUsage: Int {
+    case first = 0, second, third
+}
+
+typealias SentenceCard = (author: UILabel, bookTitle: UILabel, publisher: UILabel, sentence: UILabel)
+
 class SentenceViewController: UIViewController {
     
     // MARK: - @IBOutlet Properties
@@ -50,9 +56,8 @@ class SentenceViewController: UIViewController {
     private let shadowOffsetButton: CGSize = CGSize(width: 4, height: 4)
     private let infoLabelVerticalSpacing: CGFloat = 66
     private var buttons: [MoodButton] = []
-    private var firstSentence: AppSentence?
-    private var secondSentence: AppSentence?
-    private var thirdSentence: AppSentence?
+    private var sentences: [SentenceCardUsage: AppSentence] = [:]
+    private var sentenceCards: [SentenceCardUsage: SentenceCard] = [:]
     
     // MARK: - View Life Cycles
     
@@ -79,6 +84,19 @@ class SentenceViewController: UIViewController {
     
     private func initializeSentenceViewController() {
         
+        self.sentences = [
+            .first: AppSentence(id: nil, author: "", bookTitle: "", publisher: "", sentence: ""),
+            .second: AppSentence(id: nil, author: "", bookTitle: "", publisher: "", sentence: ""),
+            .third: AppSentence(id: nil, author: "", bookTitle: "", publisher: "", sentence: "")
+        ]
+        
+        self.sentenceCards = [
+            .first: (author: self.firstAuthorLabel, bookTitle: self.firstBookTitleLabel, publisher: self.firstPublisherLabel, sentence: self.firstSentenceLabel),
+            .second: (author: self.secondAuthorLabel, bookTitle: self.secondBookTitleLabel, publisher: self.secondPublisherLabel, sentence: self.secondSentenceLabel),
+            .third: (author: self.thirdAuthorLabel, bookTitle: self.thirdBookTitleLabel, publisher: self.thirdPublisherLabel, sentence: self.thirdSentenceLabel)
+        ]
+        
+        self.updateSentenceLabel()
         self.initializeButtons()
         self.moodLabel.text = self.selectedMood?.toString()
         self.moodIcon.image = self.selectedMood?.toIcon()
@@ -125,25 +143,16 @@ class SentenceViewController: UIViewController {
     }
     
     private func updateSentenceLabel() {
-        self.firstAuthorLabel.text = self.firstSentence?.author
-        self.firstBookTitleLabel.text = self.changeToformattedText("<", self.firstSentence?.bookTitle, ">")
-        self.firstPublisherLabel.text = self.changeToformattedText("(", self.firstSentence?.publisher, ")")
-        self.firstSentenceLabel.text = self.firstSentence?.sentence
+        for idx in 0...2 {
+            guard let usage: SentenceCardUsage = SentenceCardUsage.init(rawValue: idx) else { return }
+            guard let sentence = self.sentences[usage] else { return }
+            guard let sentenceCard = self.sentenceCards[usage] else { return }
             
-        self.secondAuthorLabel.text = self.secondSentence?.author
-        self.secondBookTitleLabel.text = self.changeToformattedText("<", self.secondSentence?.bookTitle, ">")
-        self.secondPublisherLabel.text = self.changeToformattedText("(", self.secondSentence?.publisher, ")")
-        self.secondSentenceLabel.text = self.secondSentence?.sentence
-            
-        self.thirdAuthorLabel.text = self.thirdSentence?.author
-        self.thirdBookTitleLabel.text = self.changeToformattedText("<", self.thirdSentence?.bookTitle, ">")
-        self.thirdPublisherLabel.text = self.changeToformattedText("(", self.thirdSentence?.publisher, ")")
-        self.thirdSentenceLabel.text = self.thirdSentence?.sentence
-    }
-    
-    private func changeToformattedText(_ start: String, _ message: String?, _ end: String) -> String {
-        guard let safeMessage = message else { return "" }
-        return "\(start)\(safeMessage)\(end)"
+            sentenceCard.author.attributedText = sentence.author.textSpacing()
+            sentenceCard.bookTitle.attributedText = sentence.bookTitle.isEmpty ? sentence.bookTitle : "<\(sentence.bookTitle)>".textSpacing()
+            sentenceCard.publisher.attributedText = sentence.publisher.isEmpty ? sentence.publisher : "(\(sentence.publisher))".textSpacing()
+            sentenceCard.sentence.attributedText = sentence.sentence.textSpacing()
+        }
     }
     
     private func touchBotton(sentence: AppSentence) {
@@ -157,17 +166,20 @@ class SentenceViewController: UIViewController {
     }
     
     @IBAction func touchFirstButton(_ sender: UIButton) {
-        guard let firstSentence = self.firstSentence else { return }
+        guard let firstSentence = self.sentences[.first] else { return }
+        guard !firstSentence.author.isEmpty, !firstSentence.bookTitle.isEmpty, !firstSentence.sentence.isEmpty else { return }
         self.touchBotton(sentence: firstSentence)
     }
     
     @IBAction func touchSecondButton(_ sender: UIButton) {
-        guard let secondSentence = self.secondSentence else { return }
+        guard let secondSentence = self.sentences[.second] else { return }
+        guard !secondSentence.author.isEmpty, !secondSentence.bookTitle.isEmpty, !secondSentence.sentence.isEmpty else { return }
         self.touchBotton(sentence: secondSentence)
     }
     
     @IBAction func touchThirdButton(_ sender: UIButton) {
-        guard let thirdSentence = self.thirdSentence else { return }
+        guard let thirdSentence = self.sentences[.third] else { return }
+        guard !thirdSentence.author.isEmpty, !thirdSentence.bookTitle.isEmpty, !thirdSentence.sentence.isEmpty else { return }
         self.touchBotton(sentence: thirdSentence)
     }
     
@@ -268,27 +280,11 @@ extension SentenceViewController {
             switch networkResult {
             case .success(let data):
                 if let serverData = data as? [Sentence] {
-                    self.firstSentence = AppSentence(
-                        id: serverData[0].id,
-                        author: serverData[0].writer,
-                        bookTitle: serverData[0].bookName,
-                        publisher: serverData[0].publisher,
-                        sentence: serverData[0].contents
-                    )
-                    self.secondSentence = AppSentence(
-                        id: serverData[1].id,
-                        author: serverData[1].writer,
-                        bookTitle: serverData[1].bookName,
-                        publisher: serverData[1].publisher,
-                        sentence: serverData[1].contents
-                    )
-                    self.thirdSentence = AppSentence(
-                        id: serverData[2].id,
-                        author: serverData[2].writer,
-                        bookTitle: serverData[2].bookName,
-                        publisher: serverData[2].publisher,
-                        sentence: serverData[2].contents
-                    )
+                    for idx in 0...2 {
+                        guard let usage = SentenceCardUsage.init(rawValue: idx) else { return }
+                        self.sentences[usage] = AppSentence(id: serverData[idx].id, author: serverData[idx].writer, bookTitle: serverData[idx].bookName, publisher: serverData[idx].publisher, sentence: serverData[idx].contents)
+                    }
+                    
                     DispatchQueue.main.async {
                         completion()
                     }
@@ -310,24 +306,13 @@ extension SentenceViewController {
             switch result {
             case .success(let data):
                 if let sentences = data as? OnboardingSentence {
-                    self.firstSentence = AppSentence(
-                        author: sentences.sentence01.writer,
-                        bookTitle: sentences.sentence01.bookName,
-                        publisher: sentences.sentence01.publisher,
-                        sentence: sentences.sentence01.contents
-                    )
-                    self.secondSentence = AppSentence(
-                        author: sentences.sentence02.writer,
-                        bookTitle: sentences.sentence02.bookName,
-                        publisher: sentences.sentence02.publisher,
-                        sentence: sentences.sentence02.contents
-                    )
-                    self.thirdSentence = AppSentence(
-                        author: sentences.sentence03.writer,
-                        bookTitle: sentences.sentence03.bookName,
-                        publisher: sentences.sentence03.publisher,
-                        sentence: sentences.sentence03.contents
-                    )
+                    
+                    self.sentences[.first] = AppSentence(id: nil, author: sentences.sentence01.writer, bookTitle: sentences.sentence01.bookName, publisher: sentences.sentence01.publisher, sentence: sentences.sentence01.contents)
+                    
+                    self.sentences[.second] = AppSentence(id: nil, author: sentences.sentence02.writer, bookTitle: sentences.sentence02.bookName, publisher: sentences.sentence02.publisher, sentence: sentences.sentence02.contents)
+                    
+                    self.sentences[.third] = AppSentence(id: nil, author: sentences.sentence03.writer, bookTitle: sentences.sentence03.bookName, publisher: sentences.sentence03.publisher, sentence: sentences.sentence03.contents)
+                    
                     DispatchQueue.main.async {
                         completion()
                     }
