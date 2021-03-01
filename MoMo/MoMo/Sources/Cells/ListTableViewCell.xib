@@ -97,7 +97,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hS3-gL-hIJ">
                                 <rect key="frame" x="273" y="43" width="24" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="hS3-gL-hIJ" secondAttribute="height" multiplier="1:1" id="Coi-ng-hC7"/>
+                                    <constraint firstAttribute="height" constant="24" id="1HH-HE-xYA"/>
+                                    <constraint firstAttribute="width" constant="24" id="6vF-vc-Z6p"/>
                                 </constraints>
                                 <state key="normal" image="icArrowRight"/>
                             </button>
@@ -111,7 +112,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISp-Vs-3LR">
-                                <rect key="frame" x="18" y="45" width="237" height="20"/>
+                                <rect key="frame" x="18" y="45" width="255" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="kma-13-osy"/>
                                 </constraints>
@@ -124,8 +125,8 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="ISp-Vs-3LR" secondAttribute="bottom" constant="22" id="Elf-PF-qWY"/>
                             <constraint firstItem="hS3-gL-hIJ" firstAttribute="centerY" secondItem="ISp-Vs-3LR" secondAttribute="centerY" id="IVn-6y-L4p"/>
+                            <constraint firstItem="hS3-gL-hIJ" firstAttribute="leading" secondItem="ISp-Vs-3LR" secondAttribute="trailing" id="WXz-yf-nbj"/>
                             <constraint firstItem="mcB-X1-Nss" firstAttribute="leading" secondItem="ISp-Vs-3LR" secondAttribute="leading" id="Y7i-Iu-MNP"/>
-                            <constraint firstItem="ISp-Vs-3LR" firstAttribute="width" secondItem="mcB-X1-Nss" secondAttribute="width" multiplier="0.85" id="cLN-SY-eZB"/>
                             <constraint firstItem="mcB-X1-Nss" firstAttribute="leading" secondItem="Erv-fW-23n" secondAttribute="leading" constant="18" id="f8Q-CL-Hvk"/>
                             <constraint firstItem="mcB-X1-Nss" firstAttribute="top" secondItem="Erv-fW-23n" secondAttribute="top" constant="18" id="m3m-yP-yPx"/>
                             <constraint firstAttribute="height" constant="87" id="wSE-xX-RFf"/>
