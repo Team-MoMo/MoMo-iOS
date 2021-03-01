@@ -514,11 +514,8 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q1Q-pV-whx" userLabel="FirstSentenceButton" customClass="UIButton">
                                                         <rect key="frame" x="0.0" y="0.0" width="366" height="145.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;우드 스탁!&quot; 그 애는 우리 둘만 있을 땐 나를 꼭 우드스탁이라고 불렀다. 시간이 지날수록 그 호칭은 나를 꽤나 들뜨게 했다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iew-lZ-uvq" userLabel="SentenceLabel">
-                                                                <rect key="frame" x="18" y="47" width="330" height="66"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="66" id="FbV-cj-1Hl"/>
-                                                                </constraints>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;우드 스탁!&quot; 그 애는 우리 둘만 있을 땐 나를 꼭 우드스탁이라고 불렀다. 시간이 지날수록 그 호칭은 나를 꽤나 들뜨게 했다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iew-lZ-uvq" userLabel="SentenceLabel">
+                                                                <rect key="frame" x="18" y="47" width="330" height="81.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <color key="textColor" name="Black3List"/>
                                                                 <nil key="highlightedColor"/>
@@ -560,6 +557,7 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="iew-lZ-uvq" secondAttribute="bottom" constant="17" id="2pc-QN-BBo"/>
                                                             <constraint firstItem="OcM-PB-5My" firstAttribute="top" secondItem="q1Q-pV-whx" secondAttribute="top" constant="17" id="8A6-Am-bQW"/>
                                                             <constraint firstItem="BhW-6x-Jml" firstAttribute="leading" secondItem="OcM-PB-5My" secondAttribute="trailing" constant="9" id="Kc9-y9-1Ri"/>
                                                             <constraint firstItem="IqQ-rt-Pfw" firstAttribute="leading" secondItem="6IA-uL-0Kw" secondAttribute="trailing" constant="6" id="LiG-YT-NRH"/>
@@ -580,11 +578,8 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sT0-XJ-CkK" userLabel="SecondSentenceButton" customClass="UIButton">
                                                         <rect key="frame" x="0.0" y="161.5" width="366" height="145.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;우드 스탁!&quot; 그 애는 우리 둘만 있을 땐 나를 꼭 우드스탁이라고 불렀다. 시간이 지날수록 그 호칭은 나를 꽤나 들뜨게 했다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PF5-pY-byW" userLabel="SentenceLabel">
-                                                                <rect key="frame" x="18" y="47" width="330" height="66"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="66" id="orY-tr-4Lw"/>
-                                                                </constraints>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;우드 스탁!&quot; 그 애는 우리 둘만 있을 땐 나를 꼭 우드스탁이라고 불렀다. 시간이 지날수록 그 호칭은 나를 꽤나 들뜨게 했다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PF5-pY-byW" userLabel="SentenceLabel">
+                                                                <rect key="frame" x="18" y="47" width="330" height="81.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <color key="textColor" name="Black3List"/>
                                                                 <nil key="highlightedColor"/>
@@ -635,6 +630,7 @@
                                                             <constraint firstItem="ykT-kU-JGV" firstAttribute="centerY" secondItem="uyF-Z1-S4q" secondAttribute="centerY" id="JrT-18-1bP"/>
                                                             <constraint firstAttribute="width" secondItem="sT0-XJ-CkK" secondAttribute="height" multiplier="327:130" id="XlX-pW-AKw"/>
                                                             <constraint firstItem="99x-h9-gi8" firstAttribute="leading" secondItem="sT0-XJ-CkK" secondAttribute="leading" constant="21" id="hJ3-GD-1t3"/>
+                                                            <constraint firstAttribute="bottom" secondItem="PF5-pY-byW" secondAttribute="bottom" constant="17" id="iqr-Fa-7Tg"/>
                                                             <constraint firstItem="99x-h9-gi8" firstAttribute="top" secondItem="sT0-XJ-CkK" secondAttribute="top" constant="17" id="kQu-Xi-7NW"/>
                                                             <constraint firstItem="XS0-ro-tFf" firstAttribute="centerY" secondItem="ykT-kU-JGV" secondAttribute="centerY" id="r64-nP-IFZ"/>
                                                             <constraint firstAttribute="trailing" secondItem="PF5-pY-byW" secondAttribute="trailing" constant="18" id="tMx-Ne-Wen"/>
@@ -649,11 +645,8 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="agy-sH-4UD" userLabel="ThirdSentenceButton" customClass="UIButton">
                                                         <rect key="frame" x="0.0" y="323" width="366" height="145.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;우드 스탁!&quot; 그 애는 우리 둘만 있을 땐 나를 꼭 우드스탁이라고 불렀다. 시간이 지날수록 그 호칭은 나를 꽤나 들뜨게 했다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WKi-5B-NP2" userLabel="SentenceLabel">
-                                                                <rect key="frame" x="18" y="47" width="330" height="66"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="66" id="02c-mV-hlW"/>
-                                                                </constraints>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;우드 스탁!&quot; 그 애는 우리 둘만 있을 땐 나를 꼭 우드스탁이라고 불렀다. 시간이 지날수록 그 호칭은 나를 꽤나 들뜨게 했다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WKi-5B-NP2" userLabel="SentenceLabel">
+                                                                <rect key="frame" x="18" y="47" width="330" height="81.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <color key="textColor" name="Black3List"/>
                                                                 <nil key="highlightedColor"/>
@@ -705,6 +698,7 @@
                                                             <constraint firstItem="ECG-K0-9Dx" firstAttribute="centerY" secondItem="2Ui-z4-9Nd" secondAttribute="centerY" id="G95-T5-ewT"/>
                                                             <constraint firstAttribute="width" secondItem="agy-sH-4UD" secondAttribute="height" multiplier="327:130" id="Gqx-oa-mEv"/>
                                                             <constraint firstItem="Qyr-A1-61V" firstAttribute="leading" secondItem="405-5j-xzZ" secondAttribute="trailing" constant="6" id="Suk-4C-glB"/>
+                                                            <constraint firstAttribute="bottom" secondItem="WKi-5B-NP2" secondAttribute="bottom" constant="17" id="V4J-Jn-mFf"/>
                                                             <constraint firstItem="WKi-5B-NP2" firstAttribute="leading" secondItem="agy-sH-4UD" secondAttribute="leading" constant="18" id="W5x-T1-foJ"/>
                                                             <constraint firstItem="ECG-K0-9Dx" firstAttribute="leading" secondItem="2Ui-z4-9Nd" secondAttribute="trailing" constant="9" id="gjZ-Em-xDM"/>
                                                             <constraint firstAttribute="trailing" secondItem="WKi-5B-NP2" secondAttribute="trailing" constant="18" id="iy4-zw-xbH"/>
