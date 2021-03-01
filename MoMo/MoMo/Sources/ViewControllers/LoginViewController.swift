@@ -34,12 +34,8 @@ class LoginViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         
-        kakaoLoginButton.clipsToBounds = true
-        kakaoLoginButton.layer.cornerRadius = 21
-        appleLoginButton.clipsToBounds = true
-        appleLoginButton.layer.cornerRadius = 21
-        emailLoginButton.clipsToBounds = true
-        emailLoginButton.layer.cornerRadius = 21
+        initializeButtonRounding()
+        initializeTextSpacing()
         
         createGradientColorSets()
         setGradientBackground(depth: currentColorSet)
@@ -49,6 +45,23 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: - Functions
+    
+    func initializeButtonRounding() {
+        kakaoLoginButton.clipsToBounds = true
+        kakaoLoginButton.layer.cornerRadius = 21
+        appleLoginButton.clipsToBounds = true
+        appleLoginButton.layer.cornerRadius = 21
+        emailLoginButton.clipsToBounds = true
+        emailLoginButton.layer.cornerRadius = 21
+    }
+    
+    func initializeTextSpacing() {
+        kakaoLoginButton.titleLabel?.attributedText = kakaoLoginButton.titleLabel?.text?.textSpacing()
+        appleLoginButton.titleLabel?.attributedText = appleLoginButton.titleLabel?.text?.textSpacing()
+        emailLoginButton.titleLabel?.attributedText = emailLoginButton.titleLabel?.text?.textSpacing()
+        descriptionLabel.attributedText = descriptionLabel.text?.textSpacing()
+    }
+    
     func initializeNavigationBar() {
         // navigation bar 투명화
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)

@@ -19,6 +19,11 @@ class EmailLoginViewController: UIViewController {
     @IBOutlet weak var loginButtonTop: NSLayoutConstraint!
     @IBOutlet weak var joinStackViewBottom: NSLayoutConstraint!
     
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var passwordLabel: UILabel!
+    @IBOutlet weak var joinButton: UIButton!
+    @IBOutlet weak var findPasswordButton: UIButton!
+    
     // MARK: - Properties
     
     // 가입하지 않은 회원일 때
@@ -44,32 +49,56 @@ class EmailLoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        initializeButtonRounding()
+        initializeErrorMessageLabel()
+        initializeTextSpacing()
+        initializePlaceholder()
+        initializeNavigationBar()
+        
+    }
+    
+    // MARK: - Functions
+    
+    private func initializeButtonRounding() {
         // 로그인 버튼 rounding
         loginButton.clipsToBounds = true
         loginButton.layer.cornerRadius = loginButton.frame.height / 2
+    }
+    
+    private func initializeTextSpacing() {
+        emailLabel.attributedText = emailLabel.text?.textSpacing()
+        passwordLabel.attributedText = passwordLabel.text?.textSpacing()
+        errorMessageLabel.attributedText = errorMessageLabel.text?.textSpacing()
+        loginButton.titleLabel?.attributedText = loginButton.titleLabel?.text?.textSpacing()
+        joinButton.titleLabel?.attributedText = joinButton.titleLabel?.text?.textSpacing()
+        findPasswordButton.titleLabel?.attributedText = findPasswordButton.titleLabel?.text?.textSpacing()
+    }
+    
+    private func initializePlaceholder() {
+        // placeholder
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "이메일을 입력해 주세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Blue5, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular), NSAttributedString.Key.kern: -0.6 ])
         
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "영문 + 숫자 6자리 이상 입력해 주세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Blue5, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular), NSAttributedString.Key.kern: -0.6])
+    }
+    
+    private func initializeErrorMessageLabel() {
         // 가입하지 않은 회원 label 분기 처리
         if isEmailCheckError {
             errorMessageTop.constant = 76
             errorMessageLabel.isHidden = false
             loginButtonTop.isActive = true
             loginButtonTop.constant = 72
-            //joinStackViewBottom.isActive = false
             joinStackViewBottom.constant = 0
         } else {
             errorMessageTop.constant = 0
             errorMessageLabel.isHidden = true
-            //loginButtonTop.isActive = false
             loginButtonTop.constant = 0
             joinStackViewBottom.isActive = true
             joinStackViewBottom.constant = 69
         }
-        
-        // placeholder
-        emailTextField.attributedPlaceholder = NSAttributedString(string: "이메일을 입력해 주세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Blue5, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
-        
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "영문 + 숫자 6자리 이상 입력해 주세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Blue5, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
-        
+    }
+    
+    private func initializeNavigationBar() {
         // navigation bar 투명화
         self.navigationItem.leftBarButtonItem = self.leftButton
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -77,13 +106,9 @@ class EmailLoginViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationItem.hidesBackButton = true
         
-        
         // navigation bar 숨기기 취소
         self.navigationController?.isNavigationBarHidden = false
-        
     }
-    
-    // MARK: - Functions
     
     private func pushToHomeViewController() {
         if let homeViewController = self.navigationController?.viewControllers.filter({$0 is HomeViewController}).first as? HomeViewController {

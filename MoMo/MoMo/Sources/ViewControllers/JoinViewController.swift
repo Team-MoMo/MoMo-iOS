@@ -29,6 +29,8 @@ class JoinViewController: UIViewController {
     
     // MARK: - @IBOutlet Properties
     
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
     @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var passwordCheckView: UIView!
@@ -64,6 +66,7 @@ class JoinViewController: UIViewController {
         initializePlaceholder()
         initializeAgreeButtons()
         initializeAgreeButtonTexts()
+        initializeTextSpacing()
         hideErrorLabels()
         makeClearButtons()
         assignDelegate()
@@ -137,14 +140,25 @@ class JoinViewController: UIViewController {
         let dvc = serviceTermStoryboard.instantiateViewController(identifier: Constants.Identifier.serviceTermViewController)
         self.present(dvc, animated: true, completion: nil)
     }
-    
-    
+     
     // MARK: - Functions
     
     func assignDelegate() {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         passwordCheckTextField.delegate = self
+    }
+    
+    func initializeTextSpacing() {
+        descriptionLabel.attributedText = descriptionLabel.text?.textSpacing()
+        emailLabel.attributedText = emailLabel.text?.textSpacing()
+        emailErrorLabel.attributedText = emailErrorLabel.text?.textSpacing()
+        passwordLabel.attributedText = passwordLabel.text?.textSpacing()
+        passwordErrorLabel.attributedText = passwordErrorLabel.text?.textSpacing()
+        passwordCheckLabel.attributedText = passwordCheckLabel.text?.textSpacing()
+        passwordCheckErrorLabel.attributedText = passwordCheckErrorLabel.text?.textSpacing()
+        
+        joinButton.titleLabel?.attributedText = joinButton.titleLabel?.text?.textSpacing()
     }
     
     func initializeViewBorders() {
@@ -191,15 +205,17 @@ class JoinViewController: UIViewController {
     func initializeAgreeButtonTexts() {
         // 약관 동의 체크박스 부분 bold처리
         let boldText = "[필수]"
-        let attrs = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)]
+        let attrs = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.kern: -0.6] as [NSAttributedString.Key : Any]
         let infoTermAttributedString = NSMutableAttributedString(string: boldText, attributes: attrs)
         let serviceTermAttributedString = NSMutableAttributedString(string: boldText, attributes: attrs)
+        
+        let kernAttr = [NSAttributedString.Key.kern: -0.6] as [NSAttributedString.Key : Any]
 
         let infoTerm = " 개인정보 수집이용 동의"
-        let infoTermString = NSMutableAttributedString(string: infoTerm)
+        let infoTermString = NSMutableAttributedString(string: infoTerm, attributes: kernAttr)
         
         let serviceTerm = " 서비스 이용약관 동의"
-        let serviceTermString = NSMutableAttributedString(string: serviceTerm)
+        let serviceTermString = NSMutableAttributedString(string: serviceTerm, attributes: kernAttr)
 
         infoTermAttributedString.append(infoTermString)
         serviceTermAttributedString.append(serviceTermString)

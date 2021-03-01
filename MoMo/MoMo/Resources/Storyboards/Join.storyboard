@@ -16,16 +16,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5a-nR-bIt">
-                                <rect key="frame" x="53" y="60" width="222.5" height="55"/>
-                                <string key="text">깊이 있는 감정 기록,
-MOMO와 함께 시작해요</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <color key="textColor" name="Blue2"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5a-nR-bIt">
+                                <rect key="frame" x="53" y="60" width="219" height="62.5"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">깊이 있는 감정 기록,
+</string>
+                                        <attributes>
+                                            <color key="NSColor" name="Blue2"/>
+                                            <font key="NSFont" size="23" name="AppleSDGothicNeo-Light"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="MOMO와 함께 시작해요">
+                                        <attributes>
+                                            <color key="NSColor" name="Blue2"/>
+                                            <font key="NSFont" size="23" name="AppleSDGothicNeo-Light"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="7" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="fbf-5t-bP4">
-                                <rect key="frame" x="53" y="216" width="308" height="285"/>
+                                <rect key="frame" x="53" y="223.5" width="308" height="285"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7Tc-JA-uQb">
                                         <rect key="frame" x="0.0" y="0.0" width="308" height="75"/>
@@ -156,7 +169,7 @@ MOMO와 함께 시작해요</string>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbn-sV-l3W">
-                                <rect key="frame" x="53" y="568" width="20" height="22"/>
+                                <rect key="frame" x="53" y="575.5" width="20" height="22"/>
                                 <state key="normal" image="loginCheckboxIntermediate">
                                     <color key="titleColor" name="Black2Nav"/>
                                 </state>
@@ -165,7 +178,7 @@ MOMO와 함께 시작해요</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSl-r2-yBZ">
-                                <rect key="frame" x="53" y="602" width="20" height="22"/>
+                                <rect key="frame" x="53" y="609.5" width="20" height="22"/>
                                 <state key="normal" image="loginCheckboxIntermediate">
                                     <color key="titleColor" name="Black2Nav"/>
                                 </state>
@@ -188,26 +201,26 @@ MOMO와 함께 시작해요</string>
                                     <action selector="touchJoinButton:" destination="EgC-Rq-djX" eventType="touchUpInside" id="c0C-m4-o8x"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g36-be-yo3">
-                                <rect key="frame" x="83" y="564.5" width="259" height="29"/>
+                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g36-be-yo3">
+                                <rect key="frame" x="83" y="574.5" width="259" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="259" id="0rG-uQ-mxw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="[필수] 개인정보 수집이용 동의">
+                                <state key="normal" title="[필수] 개인정보 수집이용 동의" image="btnArrowRightBlack">
                                     <color key="titleColor" name="Black2Nav"/>
                                 </state>
                                 <connections>
                                     <action selector="touchInfoTermButton:" destination="EgC-Rq-djX" eventType="touchUpInside" id="DcL-KR-YlQ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opi-Rw-cdh">
-                                <rect key="frame" x="83" y="598.5" width="259" height="29"/>
+                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opi-Rw-cdh">
+                                <rect key="frame" x="83" y="608.5" width="259" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="259" id="JsR-aG-0Hi"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="[필수] 서비스 이용약관 동의">
+                                <state key="normal" title="[필수] 서비스 이용약관 동의" image="btnArrowRightBlack">
                                     <color key="titleColor" name="Black2Nav"/>
                                 </state>
                                 <connections>
@@ -235,6 +248,7 @@ MOMO와 함께 시작해요</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="descriptionLabel" destination="c5a-nR-bIt" id="CDF-V2-QzQ"/>
                         <outlet property="emailErrorLabel" destination="hK8-6d-tLK" id="7hC-HV-bOh"/>
                         <outlet property="emailLabel" destination="JCn-Rf-msD" id="Bvi-Rw-xXO"/>
                         <outlet property="emailTextField" destination="jYJ-7U-UMa" id="Abl-lh-HiX"/>
@@ -260,6 +274,7 @@ MOMO와 함께 시작해요</string>
         </scene>
     </scenes>
     <resources>
+        <image name="btnArrowRightBlack" width="24" height="24"/>
         <image name="loginCheckboxIntermediate" width="20" height="20"/>
         <namedColor name="Black2Nav">
             <color red="0.23499999940395355" green="0.23499999940395355" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
