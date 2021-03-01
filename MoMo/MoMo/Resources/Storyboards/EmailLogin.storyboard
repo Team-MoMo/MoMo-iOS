@@ -181,12 +181,16 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emailLabel" destination="wNU-xm-k0A" id="WUl-OF-iup"/>
                         <outlet property="emailTextField" destination="SHW-Cz-qBE" id="Cao-o8-KGB"/>
                         <outlet property="errorMessageLabel" destination="kvH-fd-0D3" id="PqC-Yw-Wz5"/>
                         <outlet property="errorMessageTop" destination="2Gj-oO-06f" id="h70-PN-Ped"/>
+                        <outlet property="findPasswordButton" destination="tlt-uH-igb" id="Fbf-AT-t4W"/>
+                        <outlet property="joinButton" destination="4Qd-e2-3m9" id="a2p-cu-Uf7"/>
                         <outlet property="joinStackViewBottom" destination="3Mj-9a-ZHH" id="Sli-tA-GQe"/>
                         <outlet property="loginButton" destination="5B5-Ny-8Bp" id="7gz-vC-xuq"/>
                         <outlet property="loginButtonTop" destination="myQ-hb-Zfl" id="EZy-kh-pFd"/>
+                        <outlet property="passwordLabel" destination="VLi-HO-Q5U" id="wKJ-w8-f34"/>
                         <outlet property="passwordTextField" destination="OeH-qi-FYr" id="ma1-xB-xc0"/>
                     </connections>
                 </viewController>

@@ -37,6 +37,7 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var publisherLabel: UILabel!
     @IBOutlet weak var diaryLabel: UILabel!
     @IBOutlet weak var blurView: UIView!
+    @IBOutlet weak var descriptionView: UIView!
     
     // MARK: - Properties
     
@@ -93,6 +94,7 @@ class DiaryViewController: UIViewController {
             self.shark1: "shark1"
         ]
         self.updateObjetsByDepth(depth: self.initialDepth)
+        self.hideDiaryViews()
     }
     
     private func initializeNavigationBar() {
@@ -108,6 +110,7 @@ class DiaryViewController: UIViewController {
         self.updateProperties(diaryInfo: safeDiaryInfo)
         self.updateObjetsByDepth(depth: safeDepth)
         self.updateBackgroundColorByDepth(depth: safeDiaryInfo.depth)
+        self.showDiaryViews()
     }
     
     private func updateProperties(diaryInfo: AppDiary?) {
@@ -286,6 +289,26 @@ class DiaryViewController: UIViewController {
         }
     }
     
+    private func hideDiaryViews() {
+        self.dateLabel.isHidden = true
+        self.descriptionView.isHidden = true
+        self.sentenceLabel.isHidden = true
+        self.bookTitleLabel.isHidden = true
+        self.authorLabel.isHidden = true
+        self.publisherLabel.isHidden = true
+        self.diaryLabel.isHidden = true
+    }
+    
+    private func showDiaryViews() {
+        self.dateLabel.isHidden = false
+        self.descriptionView.isHidden = false
+        self.sentenceLabel.isHidden = false
+        self.bookTitleLabel.isHidden = false
+        self.authorLabel.isHidden = false
+        self.publisherLabel.isHidden = false
+        self.diaryLabel.isHidden = false
+    }
+    
     @objc private func buttonPressed(sender: Any) {
         if let button = sender as? UIBarButtonItem {
             switch button.tag {
@@ -310,10 +333,11 @@ class DiaryViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
-        if let menuContainerView = self.menuView?.menuContainerView {
-            if touch?.view != menuContainerView {
-                self.detachMenuView()
-            }
+        
+        guard touch?.view == self.menuView?.dateMenuView || touch?.view == self.menuView?.depthMenuView ||
+            touch?.view == self.menuView?.diaryWriteMenuView || touch?.view == self.menuView?.deleteMenuView else {
+            self.detachMenuView()
+            return
         }
     }
     
@@ -375,21 +399,21 @@ class DiaryViewController: UIViewController {
 
 // MARK: - MenuDelegate
 
-extension DiaryViewController: MenuDelegate {
+extension DiaryViewController: MenuViewDelegate {
     
-    func dateMenuButtonTouchUp(sender: UIButton) {
+    func dateMenuButtonTouchUp(sender: UITapGestureRecognizer) {
         self.presentUpdloadModalViewController()
     }
     
-    func depthMenuButtonTouchUp(sender: UIButton) {
+    func depthMenuButtonTouchUp(sender: UITapGestureRecognizer) {
         self.pushToDeepViewController()
     }
     
-    func diaryMenuButtonTouchUp(sender: UIButton) {
+    func diaryMenuButtonTouchUp(sender: UITapGestureRecognizer) {
         self.pushToDiaryWriteController()
     }
     
-    func deleteMenubuttonTouchUp(sender: UIButton) {
+    func deleteMenubuttonTouchUp(sender: UITapGestureRecognizer) {
         self.attachAlertModalView()
     }
 }

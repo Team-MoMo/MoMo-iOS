@@ -81,8 +81,8 @@ class MoodStatViewController: UIViewController {
             return
         }
         for num in 0..<labels.count {
-            labels[num].attributedText = "\(moodStatData[num])".textSpacing(lineSpacing: 4)
-            unwrappedEmotionLabel[num].attributedText = emotion[num].textSpacing(lineSpacing: 4)
+            labels[num].attributedText = "\(moodStatData[num])".wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: true, truncated: false)
+            unwrappedEmotionLabel[num].attributedText = emotion[num].textSpacing()
         }
     }
 }

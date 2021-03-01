@@ -111,7 +111,7 @@ class ListViewController: UIViewController {
     }
     
     private func initializeWarningLabel() {
-        filterWarningLabel.attributedText = "검색된 결과가 없습니다".textSpacing(lineSpacing: 4)
+        filterWarningLabel.attributedText = "검색된 결과가 없습니다".textSpacing()
         warningLabel.attributedText = "아직 작성된 일기가 없습니다.\n새로운 문장을 만나러 가볼까요?".wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: true, truncated: false)
         filterWarningLabel.isHidden = true
         warningLabel.isHidden = true
@@ -287,7 +287,7 @@ class ListViewController: UIViewController {
         guard let num = sender.view?.tag else {
             return
         }
-        pushToDiaryView(num)
+        pushToDiaryViewController(diaryId: num)
     }
     
     func presentToListFilterModalView() {

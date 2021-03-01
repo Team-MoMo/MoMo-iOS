@@ -91,8 +91,6 @@ class ListFilterModalViewController: UIViewController {
         super.viewDidLoad()
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerAction))
         view.addGestureRecognizer(panGesture)
-        view.layer.cornerRadius = 15
-        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         registerXib()
         initailizeConstraint()
         assignDelegate()

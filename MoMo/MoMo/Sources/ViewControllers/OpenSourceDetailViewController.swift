@@ -36,7 +36,7 @@ class OpenSourceDetailViewController: UIViewController {
     
     // MARK: - Functions
     func initializeTextView() {
-        self.openSourceDetailTextView.attributedText = openSourceDetailData.textSpacing(lineSpacing: 4)
+        self.openSourceDetailTextView.attributedText = openSourceDetailData.textSpacing()
     }
     
     // MARK: - Private Functions

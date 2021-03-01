@@ -104,6 +104,7 @@
                         <outlet property="depthButton" destination="4DF-5b-Wgo" id="9Md-n2-uNO"/>
                         <outlet property="moodButton" destination="NoS-Hk-OCr" id="tk8-cd-5Ek"/>
                         <outlet property="statContainerView" destination="MoS-pb-Vqh" id="fPu-TP-wIN"/>
+                        <outlet property="statNumLabel" destination="2AH-dY-6dt" id="7MN-Lf-Fhj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QdR-dO-vXz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -130,7 +131,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9br-H2-uHD">
                                                         <rect key="frame" x="0.0" y="0.0" width="28" height="149.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2co-pS-RWh">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2co-pS-RWh">
                                                                 <rect key="frame" x="4" y="0.0" width="20" height="21.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="3mb-e9-50M"/>
@@ -335,7 +336,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pGp-OB-UNq">
                                                         <rect key="frame" x="0.0" y="0.0" width="28" height="149.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4r6-Ii-1Rw">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4r6-Ii-1Rw">
                                                                 <rect key="frame" x="4" y="0.0" width="20" height="21.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="JYw-0F-Mkn"/>
