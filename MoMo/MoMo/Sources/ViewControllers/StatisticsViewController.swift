@@ -26,6 +26,7 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var moodButton: UIButton!
     @IBOutlet weak var statContainerView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var statNumLabel: UILabel!
     
     // MARK: - Override LifeCycle
     override func viewDidLoad() {
@@ -33,14 +34,21 @@ class StatisticsViewController: UIViewController {
         guard let unwrappedYear = year, let unwrappedMonth = month else {
             return
         }
+        updateLabelText()
+        addTapRecognizerToDateLabel()
         initializeDateModal()
         initializeNavigationItem()
         initializeSubLayer()
         getDiaryStatisticsWithAPI("\(unwrappedYear)", "\(unwrappedMonth)")
-        updateLabelText()
     }
 
     // MARK: - Private Function
+    
+    private func addTapRecognizerToDateLabel() {
+        let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapDateLabel(_:)))
+        self.dateLabel.isUserInteractionEnabled = true
+        self.dateLabel.addGestureRecognizer(tapRecognizer)
+    }
     
     private func initializeSubLayer() {
         let depthLayer = CALayer()
@@ -213,7 +221,11 @@ class StatisticsViewController: UIViewController {
         }
     }
     
-    private func updateMoodDepthData(_ emotion: [EmotionCount], _ depth: [DepthCount]){
+    private func updateStatNumLabel(_ cnt: Int) {
+        self.statNumLabel.text = "\(cnt)개의 일기"
+    }
+    
+    private func updateMoodDepthData(_ emotion: [EmotionCount], _ depth: [DepthCount]) {
         depthData = [0, 0, 0, 0, 0, 0, 0]
         emotionData = [0, 0, 0, 0, 0, 0, 0, 0]
         
@@ -223,11 +235,17 @@ class StatisticsViewController: UIViewController {
         for idx in 0..<depth.count {
             depthData[depth[idx].depth] = depth[idx].count
         }
+        updateStatNumLabel(depthData.reduce(0, +))
+        
     }
     
     // MARK: - Selector Function
     @objc func touchBackButton() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func tapDateLabel(_ sender: UITapGestureRecognizer) {
+        presentDateModal()
     }
     
     // MARK: - IBActions

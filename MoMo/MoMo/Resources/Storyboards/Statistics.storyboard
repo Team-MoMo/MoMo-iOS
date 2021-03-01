@@ -104,6 +104,7 @@
                         <outlet property="depthButton" destination="4DF-5b-Wgo" id="9Md-n2-uNO"/>
                         <outlet property="moodButton" destination="NoS-Hk-OCr" id="tk8-cd-5Ek"/>
                         <outlet property="statContainerView" destination="MoS-pb-Vqh" id="fPu-TP-wIN"/>
+                        <outlet property="statNumLabel" destination="2AH-dY-6dt" id="7MN-Lf-Fhj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QdR-dO-vXz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -130,10 +131,10 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="9br-H2-uHD">
                                                         <rect key="frame" x="0.0" y="0.0" width="28" height="148"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2co-pS-RWh">
-                                                                <rect key="frame" x="9" y="0.0" width="10" height="18"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2co-pS-RWh">
+                                                                <rect key="frame" x="4" y="0.0" width="20" height="18"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="10" id="3mb-e9-50M"/>
+                                                                    <constraint firstAttribute="width" constant="20" id="3mb-e9-50M"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                                 <color key="textColor" name="Blue1"/>
@@ -165,10 +166,10 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="tUO-Pf-2uQ">
                                                         <rect key="frame" x="0.0" y="0.0" width="28" height="148"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTL-OP-fQP">
-                                                                <rect key="frame" x="9" y="0.0" width="10" height="18"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTL-OP-fQP">
+                                                                <rect key="frame" x="4" y="0.0" width="20" height="18"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="10" id="wJH-av-gNb"/>
+                                                                    <constraint firstAttribute="width" constant="20" id="wJH-av-gNb"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                                 <color key="textColor" name="Blue1"/>
@@ -199,10 +200,10 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="nXj-lq-8mp">
                                                         <rect key="frame" x="0.0" y="0.0" width="28" height="148"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Med-Ml-b55">
-                                                                <rect key="frame" x="9" y="0.0" width="10" height="18"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Med-Ml-b55">
+                                                                <rect key="frame" x="4" y="0.0" width="20" height="18"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="10" id="iWN-Aa-X3A"/>
+                                                                    <constraint firstAttribute="width" constant="20" id="iWN-Aa-X3A"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                                 <color key="textColor" name="Blue1"/>
@@ -233,10 +234,10 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="dru-vd-FMw">
                                                         <rect key="frame" x="0.0" y="0.0" width="28" height="148"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCc-eE-sC7">
-                                                                <rect key="frame" x="9" y="0.0" width="10" height="18"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCc-eE-sC7">
+                                                                <rect key="frame" x="4" y="0.0" width="20" height="18"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="10" id="9GG-BW-Dil"/>
+                                                                    <constraint firstAttribute="width" constant="20" id="9GG-BW-Dil"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                                 <color key="textColor" name="Blue1"/>
@@ -267,10 +268,10 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="d6O-IU-xfk">
                                                         <rect key="frame" x="0.0" y="0.0" width="28" height="148"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90t-jZ-Lz1">
-                                                                <rect key="frame" x="9" y="0.0" width="10" height="18"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90t-jZ-Lz1">
+                                                                <rect key="frame" x="4" y="0.0" width="20" height="18"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="10" id="lTo-Rb-g29"/>
+                                                                    <constraint firstAttribute="width" constant="20" id="lTo-Rb-g29"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                                 <color key="textColor" name="Blue1"/>
@@ -301,10 +302,10 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="jbr-tv-yb7">
                                                         <rect key="frame" x="0.0" y="0.0" width="28" height="148"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVf-8I-d1d">
-                                                                <rect key="frame" x="9" y="0.0" width="10" height="18"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVf-8I-d1d">
+                                                                <rect key="frame" x="4" y="0.0" width="20" height="18"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="10" id="eX7-lT-Mbd"/>
+                                                                    <constraint firstAttribute="width" constant="20" id="eX7-lT-Mbd"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                                 <color key="textColor" name="Blue1"/>
@@ -335,10 +336,10 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="pGp-OB-UNq">
                                                         <rect key="frame" x="0.0" y="0.0" width="28" height="148"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4r6-Ii-1Rw">
-                                                                <rect key="frame" x="9" y="0.0" width="10" height="18"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4r6-Ii-1Rw">
+                                                                <rect key="frame" x="4" y="0.0" width="20" height="18"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="10" id="JYw-0F-Mkn"/>
+                                                                    <constraint firstAttribute="width" constant="20" id="JYw-0F-Mkn"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                                 <color key="textColor" name="Blue1"/>
