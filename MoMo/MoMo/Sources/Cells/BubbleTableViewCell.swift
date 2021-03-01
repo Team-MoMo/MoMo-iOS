@@ -41,14 +41,9 @@ class BubbleTableViewCell: UITableViewCell {
     }
     
     func setCell(bubble: Diary) {
-        let date: String = bubble.wroteAt
-        let monthStartIdx: String.Index = date.index(date.startIndex, offsetBy: 5)
-        let monthEndIdx: String.Index = date.index(date.startIndex, offsetBy: 7)
-        var month = String(date[monthStartIdx..<monthEndIdx])
-        
-        let dayStartIdx: String.Index = date.index(date.startIndex, offsetBy: 8)
-        let dayEndIdx: String.Index = date.index(date.startIndex, offsetBy: 10)
-        var day = String(date[dayStartIdx..<dayEndIdx])
+        let date = AppDate(serverDate: bubble.wroteAt)
+        let month = date.getMonthToString()
+        let day = date.getDayToString()
         
         dateLabel.text = "\(month).\(day)"
         emotionLabel.text = bubble.emotion.name.rawValue
