@@ -111,7 +111,7 @@
                                 <color key="textColor" name="Black4"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sdf dskf sdj kldj fklasdj flkasdjf kladjsf kljasdfkl jasdklfj lkasdjf lksadjfklsjdakfdjsk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISp-Vs-3LR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISp-Vs-3LR">
                                 <rect key="frame" x="18" y="45" width="276" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="kma-13-osy"/>

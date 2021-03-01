@@ -209,7 +209,7 @@ extension HomeDayNightView {
             case .success(let data):
                 if let diary = data as? [Diary] {
                     self.todayDiary = diary
-                    //print(self.todayDiary[0])
+
                     let length = self.todayDiary.count
                     if self.todayDiary.count >= 1 {
                         self.showFilledView()
@@ -227,8 +227,6 @@ extension HomeDayNightView {
                     } else {
                         self.showEmptyView()
                     }
-
-                    print("success at getSeletectedDateDiaryAPI")
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
