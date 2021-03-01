@@ -194,7 +194,7 @@ extension LoginViewController {
                     // 회원가입 성공
                     UserDefaults.standard.setValue(signInData.token, forKey: "token")
                     UserDefaults.standard.setValue(signInData.user.id, forKey: "userId")
-                    UserDefaults.standard.setValue("apple", forKey: "loginType")
+                    UserDefaults.standard.setValue(socialName, forKey: "loginType")
                     
                     // 뷰 전환
                     let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)
