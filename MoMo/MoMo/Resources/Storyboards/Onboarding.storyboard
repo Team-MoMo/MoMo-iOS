@@ -964,7 +964,7 @@
                                     <color key="titleColor" name="Blue2"/>
                                 </state>
                                 <connections>
-                                    <action selector="startButtonTouchUp:" destination="u0i-qW-CIe" eventType="touchUpInside" id="Ktl-qT-JPW"/>
+                                    <action selector="touchDepthSelectionButton:" destination="u0i-qW-CIe" eventType="touchUpInside" id="Ktl-qT-JPW"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBR-vZ-nwc" userLabel="InfoLabel">
