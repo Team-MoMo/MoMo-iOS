@@ -277,6 +277,14 @@ class ListViewController: UIViewController {
         guard let modalView = listFilterModalView else {
             return
         }
+        if let paramEmotion = filteredEmotion {
+            modalView.emotion = paramEmotion-1
+        }
+        print(filteredDepth)
+        if let paramDepth = filteredDepth {
+            modalView.depth = paramDepth
+        }
+        
         modalView.selectedYear = self.year
         modalView.selectedMonth = self.month
         modalView.width = view.bounds.width

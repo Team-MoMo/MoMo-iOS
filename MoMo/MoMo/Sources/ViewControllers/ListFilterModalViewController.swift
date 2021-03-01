@@ -104,11 +104,13 @@ class ListFilterModalViewController: UIViewController {
         self.datePickerStackView.isHidden = true
         initializePickerView()
         updateDate()
+        print("viewdidlaod")
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        initializeEmotionDepthProperties()
+//        initializeEmotionDepthProperties()
         DispatchQueue.main.async {
             self.yearPickerView.subviews[1].backgroundColor = UIColor.clear
             self.monthPickerView.subviews[1].backgroundColor = UIColor.clear
@@ -124,10 +126,10 @@ class ListFilterModalViewController: UIViewController {
     
     // MARK: - Private Functions
     
-    private func initializeEmotionDepthProperties() {
-        self.emotion = nil
-        self.depth = nil
-    }
+//    private func initializeEmotionDepthProperties() {
+//        self.emotion = nil
+//        self.depth = nil
+//    }
     
     private func initializePickerView() {
         self.yearPickerView.selectRow(selectedYear - 2000, inComponent: 0, animated: true)
@@ -331,6 +333,13 @@ extension ListFilterModalViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             cell.updateImage(appEmotionArray[indexPath.row].toUnselectedIcon())
+            cell.emotion = appEmotionArray[indexPath.row]
+            if let unwrappedEmotion = emotion {
+                if indexPath.row == unwrappedEmotion {
+                    cell.isSelected = true
+                    collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
+                }
+            }
             cell.tag = appEmotionArray[indexPath.row].rawValue
         
             return cell
@@ -339,11 +348,18 @@ extension ListFilterModalViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DepthCollectionViewCell", for: indexPath) as? DepthCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
         cell.initializeLabel(appDepthArray[indexPath.row].toString())
         cell.backView.layer.borderColor = UIColor.Black6.cgColor
         cell.backView.layer.borderWidth = 1
         cell.backView.layer.cornerRadius = cell.layer.frame.height * 0.5
+        
+        if let unwrappedDepth = depth {
+            if indexPath.row == unwrappedDepth {
+                cell.isSelected = true
+                collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
+            }
+        }
+        
         cell.tag = indexPath.row
         
         return cell
@@ -382,16 +398,15 @@ extension ListFilterModalViewController: UICollectionViewDelegateFlowLayout {
     
     // 셀 하나를 선택했을 때
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         if collectionView == self.emotionCollectionView {
             guard let cell = collectionView.cellForItem(at: indexPath) as? EmotionCollectionViewCell else {
                 return
             }
             if emotion == indexPath.row {
-                cell.updateImage(appEmotionArray[indexPath.row].toUnselectedIcon())
                 emotion = nil
+                collectionView.deselectItem(at: indexPath, animated: true)
+                cell.isSelected = false
             } else {
-                cell.updateImage(appEmotionArray[indexPath.row].toSelectedIcon())
                 emotion = indexPath.row
             }
         } else {
@@ -399,14 +414,10 @@ extension ListFilterModalViewController: UICollectionViewDelegateFlowLayout {
                 return
             }
             if depth == indexPath.row {
-                cell.backView.layer.borderColor = UIColor.Black6.cgColor
-                cell.depthLabel.textColor = UIColor.Black6
-                cell.backView.backgroundColor = UIColor.white
                 depth = nil
+                collectionView.deselectItem(at: indexPath, animated: true)
+                cell.isSelected = false
             } else {
-                cell.backView.layer.borderColor = UIColor.Blue2.cgColor
-                cell.depthLabel.textColor = UIColor.Blue2
-                cell.backView.backgroundColor = UIColor.Blue6
                 depth = indexPath.row
             }
         }
