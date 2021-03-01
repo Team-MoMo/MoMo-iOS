@@ -71,7 +71,11 @@ Copyright (c) 2021 Kakao Corp
     
     private lazy var navigationBarTitleLabel: UILabel = {
         let label = UILabel()
-        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.Black2Nav,
+        guard let font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16) else {
+            return UILabel()
+        }
+        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: font,
+                                                         NSAttributedString.Key.foregroundColor: UIColor.Black2Nav,
                                                          NSAttributedString.Key.kern: -0.6]
         label.attributedText = NSAttributedString(string: "오픈소스 라이선스", attributes: attributes)
         label.sizeToFit()

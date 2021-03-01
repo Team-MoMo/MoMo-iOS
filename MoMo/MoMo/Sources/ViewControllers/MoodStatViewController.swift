@@ -11,6 +11,14 @@ class MoodStatViewController: UIViewController {
     
     // MARK: - Constants
     let multiplier: Float = 0.35
+    let emotion: [String] = ["사랑",
+                             "행복",
+                             "위로",
+                             "화남",
+                             "슬픔",
+                             "우울",
+                             "추억",
+                             "일상"]
    
     // MARK: - Properties
     var maximum: CGFloat?
@@ -19,10 +27,11 @@ class MoodStatViewController: UIViewController {
     
     // MARK: - IBOutlets
     @IBOutlet var statNumLabel: [UILabel]?
+    @IBOutlet var emotionLabel: [UILabel]?
     @IBOutlet var statViewHeight: [NSLayoutConstraint]?
     @IBOutlet var statView: [UIView]?
     
-    //MARK: - Override LifeCycle
+    // MARK: - Override LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeStatBorderRadius()
@@ -32,7 +41,7 @@ class MoodStatViewController: UIViewController {
         initializeLabels()
     }
     
-    //MARK: - Private Function
+    // MARK: - Private Function
     private func initializeStatBorderRadius() {
         guard let views = statView else {
             return
@@ -48,6 +57,7 @@ class MoodStatViewController: UIViewController {
         }
         maximum = CGFloat(max)
     }
+    
     private func intializeStatViewMaximumHeight() {
         statViewMaximumHeight = self.view.frame.height * CGFloat(multiplier)
     }
@@ -66,13 +76,13 @@ class MoodStatViewController: UIViewController {
         }
     }
     
-    
     private func initializeLabels() {
-        guard let labels = statNumLabel else {
+        guard let labels = statNumLabel, let unwrappedEmotionLabel = emotionLabel else {
             return
         }
         for num in 0..<labels.count {
-            labels[num].text = "\(moodStatData[num])"
+            labels[num].attributedText = "\(moodStatData[num])".wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: true, truncated: false)
+            unwrappedEmotionLabel[num].attributedText = emotion[num].textSpacing()
         }
     }
 }

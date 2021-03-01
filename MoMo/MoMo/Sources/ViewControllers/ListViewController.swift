@@ -16,6 +16,28 @@ class ListViewController: UIViewController {
     @IBOutlet weak var warningPlusButton: UIButton!
     @IBOutlet weak var filterWarningLabel: UILabel!
     
+    private lazy var backButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchBackButton))
+        button.tintColor = .black
+        return button
+    }()
+    
+    private lazy var statButton: UIButton = {
+        let button: UIButton = UIButton.init(type: .custom)
+        button.setImage(Constants.Design.Image.listBtnGraph, for: .normal)
+        button.tintColor = .black
+        button.addTarget(self, action: #selector(touchStatButton), for: .touchUpInside)
+        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        return button
+    }()
+    
+    private lazy var filterButton: UIButton = {
+        let button: UIButton = UIButton.init(type: .custom)
+        button.addTarget(self, action: #selector(touchFilterButton), for: .touchUpInside )
+        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        return button
+    }()
+    
     private lazy var titleLabel: UILabel = {
         let label: UILabel = UILabel()
         label.sizeToFit()
@@ -71,7 +93,6 @@ class ListViewController: UIViewController {
     private func initializeProperty() {
         journalLabel1WidthSize = self.view.bounds.width * (261/zeplinWidth)
         journalLabel2WidthSize = self.view.bounds.width * (237/zeplinWidth)
-//        self.listFilterModalView = ListFilterModalViewController()
         // 홈에서 받은 데이트 변수에 대입
         date = "\(year)년 \(month)월"
         initializeNaviTitleLabel("\(year)년 \(month)월")
@@ -81,14 +102,20 @@ class ListViewController: UIViewController {
     }
     
     private func initializeNaviTitleLabel(_ date: String) {
-        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.Black2Nav,
-            NSAttributedString.Key.kern: -0.6]
-        titleLabel.attributedText = NSAttributedString(string: date, attributes: attributes)
+        if let font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16) {
+            let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: font,
+                                                             NSAttributedString.Key.foregroundColor: UIColor.Black2Nav,
+                                                             NSAttributedString.Key.kern: -0.6]
+            titleLabel.attributedText = NSAttributedString(string: date, attributes: attributes)
+        }
     }
     
     private func initializeWarningLabel() {
-        filterWarningLabel.attributedText = "검색된 결과가 없습니다".wordSpacing(-0.6)
-        warningLabel.attributedText = "아직 작성된 일기가 없습니다.\n새로운 문장을 만나러 가볼까요?".wordSpacing(-0.6)
+        filterWarningLabel.attributedText = "검색된 결과가 없습니다".textSpacing()
+        warningLabel.attributedText = "아직 작성된 일기가 없습니다.\n새로운 문장을 만나러 가볼까요?".wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: true, truncated: false)
+        filterWarningLabel.isHidden = true
+        warningLabel.isHidden = true
+        warningPlusButton.isHidden = true
     }
     
     private func assignDelegate() {
@@ -119,18 +146,15 @@ class ListViewController: UIViewController {
     }
     
     private func updateNavigationBarButton() {
-        let statButton = UIBarButtonItem(image: Constants.Design.Image.listBtnGraph, style: .plain, target: self, action: #selector(touchStatButton))
-        statButton.tintColor = .black
-        let backButton = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchBackButton))
-        backButton.tintColor = .black
-        let filterButton: UIBarButtonItem
+    
         if year == standardYear && month == standardMonth && filter.count == 0 {
-            filterButton = UIBarButtonItem(image: Constants.Design.Image.listBtnFilterBlack, style: .plain, target: self, action: #selector(touchFilterButton))
+            filterButton.setImage(Constants.Design.Image.listBtnFilterBlack, for: .normal)
             filterButton.tintColor = .black
         } else {
-            filterButton = UIBarButtonItem(image: Constants.Design.Image.listBtnFilterBlue, style: .plain, target: self, action: #selector(touchFilterButton))
+            filterButton.setImage(Constants.Design.Image.listBtnFilterBlue, for: .normal)
         }
-        self.navigationItem.rightBarButtonItems = [statButton, filterButton]
+
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: statButton), UIBarButtonItem(customView: filterButton)]
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.titleView = UILabel()
     }
@@ -194,8 +218,7 @@ class ListViewController: UIViewController {
                                          order: order,
                                          day: day,
                                          emotionId: emotionID,
-                                         depth: depth) {
-            (networkResult) -> () in
+                                         depth: depth) { (networkResult) in
             switch networkResult {
 
             case .success(let data):
@@ -260,12 +283,26 @@ class ListViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @objc func tapTouchView(sender: UITapGestureRecognizer) {
+        guard let num = sender.view?.tag else {
+            return
+        }
+        pushToDiaryViewController(diaryId: num)
+    }
+    
     func presentToListFilterModalView() {
         listFilterModalView = ListFilterModalViewController()
         updateDelegate()
         guard let modalView = listFilterModalView else {
             return
         }
+        if let paramEmotion = filteredEmotion {
+            modalView.emotion = paramEmotion-1
+        }
+        if let paramDepth = filteredDepth {
+            modalView.depth = paramDepth
+        }
+        
         modalView.selectedYear = self.year
         modalView.selectedMonth = self.month
         modalView.width = view.bounds.width
@@ -276,6 +313,7 @@ class ListViewController: UIViewController {
         self.present(modalView, animated: true, completion: nil)
     }
     
+
     @objc func touchMoreButton(sender: UIButton) {
         self.pushToDiaryViewController(diaryId: sender.tag)
     }
@@ -358,14 +396,16 @@ extension ListViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListTableViewCell") as? ListTableViewCell else {
                 return UITableViewCell()
             }
-
+            DispatchQueue.main.async {
+                cell.journalView.round(corners: [.topLeft, .bottomLeft], cornerRadius: 20)
+                cell.touchView.round(corners: [.topLeft, .bottomLeft], cornerRadius: 20)
+            }
             cell.parseDiaryAll(diary: self.receivedData[indexPath.row])
             cell.customQuote(self.receivedData[indexPath.row].sentence.contents)
-            cell.journalView.round(corners: [.topLeft, .bottomLeft], cornerRadius: 20)
             cell.divideJournal(self.receivedData[indexPath.row].contents, self.journalLabel1WidthSize)
             cell.createLabelUnderline( self.journalLabel2WidthSize)
-            cell.moreButton.tag = self.receivedData[indexPath.row].id
-            cell.moreButton.addTarget(self, action: #selector(touchMoreButton(sender:)), for: .touchUpInside)
+            cell.touchView.tag = self.receivedData[indexPath.row].id
+            cell.touchView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapTouchView(sender:))))
             cell.selectionStyle = .none
                 
             return cell
@@ -388,7 +428,7 @@ extension ListViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
+        return 5
     }
 }
 

@@ -28,6 +28,14 @@ class DepthStatViewController: UIViewController {
                                  Constants.Design.Image.graph1005M,
                                  Constants.Design.Image.graphUnder]
     
+    let depth: [String] = ["2m",
+                           "30m",
+                           "100m",
+                           "300m",
+                           "700m",
+                           "1,005m",
+                           "심해"]
+    
     // MARK: - Properties
     var maximum: CGFloat?
     var statViewMaximumHeight: CGFloat?
@@ -36,6 +44,7 @@ class DepthStatViewController: UIViewController {
     // MARK: - IBOutlets
     
     @IBOutlet var statNumLabel: [UILabel]?
+    @IBOutlet var depthLabel: [UILabel]?
     @IBOutlet var statViewHeight: [NSLayoutConstraint]?
     @IBOutlet var statView: [UIView]?
     
@@ -128,11 +137,12 @@ class DepthStatViewController: UIViewController {
     }
     
     private func initializeLabels() {
-        guard let labels = statNumLabel else {
+        guard let labels = statNumLabel, let unwrappedDepthLabel = depthLabel else {
             return
         }
         for num in 0..<labels.count {
-            labels[num].text = "\(depthStatData[num])"
+            labels[num].attributedText = "\(depthStatData[num])".wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: true, truncated: false)
+            unwrappedDepthLabel[num].attributedText = depth[num].textSpacing()
         }
     }
 

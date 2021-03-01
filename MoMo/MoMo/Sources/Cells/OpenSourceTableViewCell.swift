@@ -24,7 +24,7 @@ class OpenSourceTableViewCell: UITableViewCell {
     }
     
     func initializeLabel(_ text: String) {
-        self.titleLabel.attributedText = text.wordSpacing(-0.6)
+        self.titleLabel.attributedText = text.textSpacing()
     }
     
 }
