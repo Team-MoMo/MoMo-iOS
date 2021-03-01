@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DiaryWriteViewControllerDelegate: class {
-    func popToDiaryViewController(diaryInfo: AppDiary?)
+    func popToDiaryViewController(newDiaryInfo: AppDiary?)
 }
 
 enum DiaryWriteViewNavigationButton: Int {
@@ -31,6 +31,7 @@ class DiaryWriteViewController: UIViewController {
     @IBOutlet weak var depthImage: UIImageView!
     @IBOutlet weak var depthLabel: UILabel!
     @IBOutlet weak var journalTextView: UITextView!
+    @IBOutlet weak var diaryWriteScrollView: UIScrollView!
     @IBOutlet weak var quoteLabelTopConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
@@ -86,10 +87,12 @@ class DiaryWriteViewController: UIViewController {
         super.viewDidLoad()
         self.initializeNavigationBar()
         self.initializeDiaryWriteViewController()
+        self.addTapGestureOnDiaryWriteScrollView()
     }
     
     // MARK: - Functions
     
+
     private func updateTextView() {
         guard let font = UIFont(name: "AppleSDGothicNeo-Regular", size: 14) else {
             return
@@ -103,7 +106,8 @@ class DiaryWriteViewController: UIViewController {
                                                  NSAttributedString.Key.paragraphStyle: spacing]
     }
     
-    func initializeDiaryWriteViewController() {
+
+    private func initializeDiaryWriteViewController() {
         self.journalTextView.delegate = self
         self.updateDiaryWriteViewController()
         if self.isFromDiary {
@@ -118,7 +122,7 @@ class DiaryWriteViewController: UIViewController {
         }
     }
     
-    func initializeNavigationBar() {
+    private func initializeNavigationBar() {
         self.navigationItem.hidesBackButton = true
         if self.isFromDiary {
             self.navigationItem.leftBarButtonItem = self.leftButtonForDiary
@@ -126,6 +130,14 @@ class DiaryWriteViewController: UIViewController {
             self.navigationItem.rightBarButtonItem = self.rightButtonForUpload
             self.navigationItem.leftBarButtonItem = self.leftButtonForUpload
         }
+    }
+    
+    private func addTapGestureOnDiaryWriteScrollView() {
+        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(touchDiaryScrollView))
+        singleTapGestureRecognizer.numberOfTapsRequired = 1
+        singleTapGestureRecognizer.isEnabled = true
+        singleTapGestureRecognizer.cancelsTouchesInView = false
+        self.diaryWriteScrollView.addGestureRecognizer(singleTapGestureRecognizer)
     }
     
     private func updateDiaryWriteViewController() {
@@ -207,7 +219,7 @@ class DiaryWriteViewController: UIViewController {
         } else {
             self.saveDiary()
             self.navigationItem.rightBarButtonItem = nil
-            self.diaryWriteViewControllerDelegate?.popToDiaryViewController(diaryInfo: self.diaryInfo)
+            self.diaryWriteViewControllerDelegate?.popToDiaryViewController(newDiaryInfo: self.diaryInfo)
             self.navigationController?.popViewController(animated: true)
         }
     }
@@ -224,7 +236,7 @@ class DiaryWriteViewController: UIViewController {
             }
             self.saveDiary()
             deepViewController.diaryInfo = self.diaryInfo
-            deepViewController.buttonText = "기록하기"
+            deepViewController.deepViewUsage = .upload
             self.navigationController?.pushViewController(deepViewController, animated: true)
         }
     }
@@ -280,20 +292,18 @@ class DiaryWriteViewController: UIViewController {
     
     private func updateAlertModalViewConstraints(view: UIView) {
         view.snp.makeConstraints({ (make) in
-            make.width.equalTo(self.view)
-            make.height.equalTo(self.view)
-            make.centerX.equalTo(self.view)
-            make.centerY.equalTo(self.view)
+            make.width.height.centerX.centerY.equalTo(self.view)
         })
     }
     
     private func updateToastViewConstraints(view: UIView) {
         view.snp.makeConstraints({ (make) in
-            make.width.equalTo(self.view)
-            make.height.equalTo(self.view)
-            make.centerX.equalTo(self.view)
-            make.centerY.equalTo(self.view)
+            make.width.height.centerX.centerY.equalTo(self.view)
         })
+    }
+    
+    @objc private func touchDiaryScrollView(sender: UITapGestureRecognizer) {
+        self.journalTextView.becomeFirstResponder()
     }
     
     @IBAction func tapBackground(_ sender: Any) {
@@ -358,7 +368,7 @@ extension DiaryWriteViewController: UITextViewDelegate {
     }
 }
 
-// MARK: - diaryWriteViewControllerDelegate
+// MARK: - AlertModalDelegate
 
 extension DiaryWriteViewController: AlertModalDelegate {
     

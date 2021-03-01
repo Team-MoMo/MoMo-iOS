@@ -14,8 +14,7 @@ struct UserService {
     
     // MARK: - DELETE
     
-    func deleteUser(userId: Int,
-                    completion: @escaping (NetworkResult<Any>) -> (Void)) {
+    func deleteUser(completion: @escaping (NetworkResult<Any>) -> Void) {
         let url = APIConstants.userInfoURL
         let header: HTTPHeaders = [
             "Content-Type": "application/json",
