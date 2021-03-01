@@ -31,6 +31,7 @@ class DiaryWriteViewController: UIViewController {
     @IBOutlet weak var depthImage: UIImageView!
     @IBOutlet weak var depthLabel: UILabel!
     @IBOutlet weak var journalTextView: UITextView!
+    @IBOutlet weak var diaryWriteScrollView: UIScrollView!
     @IBOutlet weak var quoteLabelTopConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
@@ -77,11 +78,12 @@ class DiaryWriteViewController: UIViewController {
         super.viewDidLoad()
         self.initializeNavigationBar()
         self.initializeDiaryWriteViewController()
+        self.addTapGestureOnDiaryWriteScrollView()
     }
     
     // MARK: - Functions
     
-    func initializeDiaryWriteViewController() {
+    private func initializeDiaryWriteViewController() {
         self.journalTextView.delegate = self
         self.updateDiaryWriteViewController()
         if self.isFromDiary {
@@ -96,7 +98,7 @@ class DiaryWriteViewController: UIViewController {
         }
     }
     
-    func initializeNavigationBar() {
+    private func initializeNavigationBar() {
         self.navigationItem.hidesBackButton = true
         if self.isFromDiary {
             self.navigationItem.leftBarButtonItem = self.leftButtonForDiary
@@ -104,6 +106,14 @@ class DiaryWriteViewController: UIViewController {
             self.navigationItem.rightBarButtonItem = self.rightButtonForUpload
             self.navigationItem.leftBarButtonItem = self.leftButtonForUpload
         }
+    }
+    
+    private func addTapGestureOnDiaryWriteScrollView() {
+        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(touchDiaryScrollView))
+        singleTapGestureRecognizer.numberOfTapsRequired = 1
+        singleTapGestureRecognizer.isEnabled = true
+        singleTapGestureRecognizer.cancelsTouchesInView = false
+        self.diaryWriteScrollView.addGestureRecognizer(singleTapGestureRecognizer)
     }
     
     private func updateDiaryWriteViewController() {
@@ -288,6 +298,10 @@ class DiaryWriteViewController: UIViewController {
         view.snp.makeConstraints({ (make) in
             make.width.height.centerX.centerY.equalTo(self.view)
         })
+    }
+    
+    @objc private func touchDiaryScrollView(sender: UITapGestureRecognizer) {
+        self.journalTextView.becomeFirstResponder()
     }
     
     @IBAction func tapBackground(_ sender: Any) {
