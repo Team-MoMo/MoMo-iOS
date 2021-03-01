@@ -16,6 +16,28 @@ class ListViewController: UIViewController {
     @IBOutlet weak var warningPlusButton: UIButton!
     @IBOutlet weak var filterWarningLabel: UILabel!
     
+    private lazy var backButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchBackButton))
+        button.tintColor = .black
+        return button
+    }()
+    
+    private lazy var statButton: UIBarButtonItem  = {
+        let button: UIButton = UIButton.init(type: .custom)
+        button.setImage(Constants.Design.Image.listBtnGraph, for: .normal)
+        button.tintColor = .black
+        button.addTarget(self, action: #selector(touchStatButton), for: .touchUpInside)
+        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        return UIBarButtonItem(customView: button)
+    }()
+    
+    private lazy var filterButton: UIButton = {
+        let button: UIButton = UIButton.init(type: .custom)
+        button.addTarget(self, action: #selector(touchFilterButton), for: .touchUpInside )
+        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        return button
+    }()
+    
     private lazy var titleLabel: UILabel = {
         let label: UILabel = UILabel()
         label.sizeToFit()
@@ -124,18 +146,15 @@ class ListViewController: UIViewController {
     }
     
     private func updateNavigationBarButton() {
-        let statButton = UIBarButtonItem(image: Constants.Design.Image.listBtnGraph, style: .plain, target: self, action: #selector(touchStatButton))
-        statButton.tintColor = .black
-        let backButton = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchBackButton))
-        backButton.tintColor = .black
-        let filterButton: UIBarButtonItem
+    
         if year == standardYear && month == standardMonth && filter.count == 0 {
-            filterButton = UIBarButtonItem(image: Constants.Design.Image.listBtnFilterBlack, style: .plain, target: self, action: #selector(touchFilterButton))
+            filterButton.setImage(Constants.Design.Image.listBtnFilterBlack, for: .normal)
             filterButton.tintColor = .black
         } else {
-            filterButton = UIBarButtonItem(image: Constants.Design.Image.listBtnFilterBlue, style: .plain, target: self, action: #selector(touchFilterButton))
+            filterButton.setImage(Constants.Design.Image.listBtnFilterBlue, for: .normal)
         }
-        self.navigationItem.rightBarButtonItems = [statButton, filterButton]
+
+        self.navigationItem.rightBarButtonItems = [statButton, UIBarButtonItem(customView: filterButton)]
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.titleView = UILabel()
     }
@@ -280,7 +299,6 @@ class ListViewController: UIViewController {
         if let paramEmotion = filteredEmotion {
             modalView.emotion = paramEmotion-1
         }
-        print(filteredDepth)
         if let paramDepth = filteredDepth {
             modalView.depth = paramDepth
         }

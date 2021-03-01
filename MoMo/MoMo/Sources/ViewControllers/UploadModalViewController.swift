@@ -178,7 +178,6 @@ class UploadModalViewController: UIViewController {
     }
     
     private func findLeapYear(_ year: Int) -> Bool {
-        print(year)
         if year%400 == 0 {
             return true
         } else if year%100 != 0 && year%4 == 0 {

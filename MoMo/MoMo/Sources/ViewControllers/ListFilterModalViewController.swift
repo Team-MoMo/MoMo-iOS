@@ -103,9 +103,7 @@ class ListFilterModalViewController: UIViewController {
         self.initializeDateData()
         self.datePickerStackView.isHidden = true
         initializePickerView()
-        updateDate()
-        print("viewdidlaod")
-        
+        updateDate()        
     }
     
     override func viewWillAppear(_ animated: Bool) {
