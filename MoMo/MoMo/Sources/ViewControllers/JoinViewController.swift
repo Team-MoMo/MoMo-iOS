@@ -124,6 +124,21 @@ class JoinViewController: UIViewController {
         }
     }
     
+    @IBAction func touchInfoTermButton(_ sender: Any) {
+        let personalTermStoryboard = UIStoryboard(name: Constants.Name.personalTermStoryboard, bundle: nil)
+        
+        let dvc = personalTermStoryboard.instantiateViewController(identifier: Constants.Identifier.personalTermViewController)
+        self.present(dvc, animated: true, completion: nil)
+    }
+    
+    @IBAction func touchServiceTermButton(_ sender: Any) {
+        let serviceTermStoryboard = UIStoryboard(name: Constants.Name.serviceTermStoryboard, bundle: nil)
+        
+        let dvc = serviceTermStoryboard.instantiateViewController(identifier: Constants.Identifier.serviceTermViewController)
+        self.present(dvc, animated: true, completion: nil)
+    }
+    
+    
     // MARK: - Functions
     
     func assignDelegate() {
