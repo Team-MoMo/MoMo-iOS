@@ -1,19 +1,19 @@
 {
   "images" : [
     {
+      "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "homeIcSwipeDown.png",
+      "filename" : "homeIcSwipeDown.png"
+    },
+    {
+      "scale" : "2x",
+      "filename" : "homeIcSwipeDown@2x.png",
       "idiom" : "universal"
     },
     {
       "idiom" : "universal",
-      "filename" : "homeIcSwipeDown@2x.png",
-      "scale" : "2x"
-    },
-    {
-      "scale" : "3x",
-      "idiom" : "universal",
-      "filename" : "homeIcSwipeDown@3x.png"
+      "filename" : "homeIcSwipeDown@3x.png",
+      "scale" : "3x"
     }
   ],
   "info" : {
