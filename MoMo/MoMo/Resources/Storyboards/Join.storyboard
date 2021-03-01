@@ -201,26 +201,26 @@
                                     <action selector="touchJoinButton:" destination="EgC-Rq-djX" eventType="touchUpInside" id="c0C-m4-o8x"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g36-be-yo3">
-                                <rect key="frame" x="83" y="572" width="259" height="29"/>
+                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g36-be-yo3">
+                                <rect key="frame" x="83" y="574.5" width="259" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="259" id="0rG-uQ-mxw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="[필수] 개인정보 수집이용 동의">
+                                <state key="normal" title="[필수] 개인정보 수집이용 동의" image="btnArrowRightBlack">
                                     <color key="titleColor" name="Black2Nav"/>
                                 </state>
                                 <connections>
                                     <action selector="touchInfoTermButton:" destination="EgC-Rq-djX" eventType="touchUpInside" id="DcL-KR-YlQ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opi-Rw-cdh">
-                                <rect key="frame" x="83" y="606" width="259" height="29"/>
+                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opi-Rw-cdh">
+                                <rect key="frame" x="83" y="608.5" width="259" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="259" id="JsR-aG-0Hi"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="[필수] 서비스 이용약관 동의">
+                                <state key="normal" title="[필수] 서비스 이용약관 동의" image="btnArrowRightBlack">
                                     <color key="titleColor" name="Black2Nav"/>
                                 </state>
                                 <connections>
@@ -274,6 +274,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="btnArrowRightBlack" width="24" height="24"/>
         <image name="loginCheckboxIntermediate" width="20" height="20"/>
         <namedColor name="Black2Nav">
             <color red="0.23499999940395355" green="0.23499999940395355" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
