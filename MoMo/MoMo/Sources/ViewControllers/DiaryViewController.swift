@@ -51,6 +51,7 @@ class DiaryViewController: UIViewController {
     private var alertModalView: AlertModalView?
     private var diaryWriteViewController: DiaryWriteViewController?
     private var uploadModalViewController: UploadModalViewController?
+    private let initialDepth: AppDepth = AppDepth.depth2m
     
     lazy var leftButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: Constants.Design.Image.btnBackWhite, style: .plain, target: self, action: #selector(buttonPressed(sender:)))
@@ -91,6 +92,7 @@ class DiaryViewController: UIViewController {
             self.whale1: "whale1",
             self.shark1: "shark1"
         ]
+        self.updateObjetsByDepth(depth: self.initialDepth)
     }
     
     private func initializeNavigationBar() {
