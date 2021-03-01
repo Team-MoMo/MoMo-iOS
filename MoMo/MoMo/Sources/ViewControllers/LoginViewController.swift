@@ -7,6 +7,7 @@
 
 import UIKit
 import AuthenticationServices
+import KakaoSDKAuth
 
 class LoginViewController: UIViewController {
     
@@ -54,6 +55,9 @@ class LoginViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationItem.hidesBackButton = true
+        
+        // navigation bar 숨기기
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     func createGradientColorSets() {
@@ -118,6 +122,27 @@ class LoginViewController: UIViewController {
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
     }
+    
+    @IBAction func touchKakaoLoginButton(_ sender: Any) {
+        // 카카오톡 설치 여부 확인
+          if (AuthApi.isKakaoTalkLoginAvailable()) {
+            // 카카오톡 로그인. api 호출 결과를 클로저로 전달.
+            AuthApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+                if let error = error {
+                    // 예외 처리 (로그인 취소 등)
+                    print(error)
+                }
+                else {
+                    print("loginWithKakaoTalk() success.")
+                   // do something
+                    _ = oauthToken
+                   // 어세스토큰
+                   let accessToken = oauthToken?.accessToken
+                    self.postSocialSignInWithAPI(socialName: "kakao", accessToken: accessToken ?? "")
+                }
+            }
+          }
+    }
 }
 
 extension LoginViewController: ASAuthorizationControllerDelegate {
@@ -170,9 +195,10 @@ extension LoginViewController {
                 if let signInData = data as? AuthData {
                     print("회원가입 성공")
                     // 회원가입 성공
+                    APIConstants.userId = signInData.user.id
                     UserDefaults.standard.setValue(signInData.token, forKey: "token")
                     UserDefaults.standard.setValue(signInData.user.id, forKey: "userId")
-                    UserDefaults.standard.setValue("apple", forKey: "loginType")
+                    UserDefaults.standard.setValue(socialName, forKey: "loginType")
                     
                     // 뷰 전환
                     let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)

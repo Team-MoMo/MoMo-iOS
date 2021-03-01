@@ -74,8 +74,10 @@ extension OnboardingWriteViewController {
     func updateSentenceLabel() {
         self.authorLabel.text = self.selectedSentence?.author
         self.bookTitleLabel.text = self.changeToformattedText("<", self.selectedSentence?.bookTitle, ">")
-        self.publisherLabel.text = self.changeToformattedText("(", self.selectedSentence?.bookTitle, ")")
+        self.publisherLabel.text = self.changeToformattedText("(", self.selectedSentence?.publisher, ")")
         self.sentenceLabel.text = self.selectedSentence?.sentence
+        self.publisherLabel.numberOfLines = 1
+        self.publisherLabel.lineBreakMode = .byTruncatingTail
     }
     
     func updateTypingLabel() {
@@ -229,7 +231,7 @@ extension OnboardingWriteViewController {
     
     func pushToDeepViewController(finished: Bool) {
         guard let deepViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.deepViewController) as? DeepViewController else { return }
-        deepViewController.buttonText = "시작하기"
+        deepViewController.deepViewUsage = .onboarding
         self.navigationController?.pushViewController(deepViewController, animated: true)
     }
 }

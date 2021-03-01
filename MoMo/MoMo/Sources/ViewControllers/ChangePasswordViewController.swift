@@ -335,12 +335,6 @@ class ChangePasswordViewController: UIViewController {
         guard let newPassword = self.newPasswordTextField.text else { return }
         self.putPasswordWithAPI(newPassword: newPassword, completion: self.popToSettingViewController(passwordIsUpdated:))
     }
-    
-    private func raiseChangePasswordButton(keyboardSize: CGRect?) {
-        if let safeKeybaordSize = keyboardSize {
-            self.changePasswordButton.frame.origin.y = self.view.frame.size.height - safeKeybaordSize.height - changePasswordButton.frame.size.height - self.vSpacingChangePasswordButtonKeyboard
-        }
-    }
 
     private func dropChangePasswordButton() {
         self.changePasswordButton.frame.origin.y = self.view.frame.size.height - changePasswordButton.frame.size.height - self.vSpacingChangePasswordButtonViewBottom
@@ -349,9 +343,6 @@ class ChangePasswordViewController: UIViewController {
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             self.keyboardSize = keyboardSize
-            DispatchQueue.main.async {
-                self.raiseChangePasswordButton(keyboardSize: keyboardSize)
-            }
         }
     }
 
@@ -383,12 +374,10 @@ extension ChangePasswordViewController: UITextFieldDelegate {
         }
         textField.isSecureTextEntry = true
         passwordInputField.deleteButton.isHidden = false
-        self.raiseChangePasswordButton(keyboardSize: self.keyboardSize)
         return true
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        self.raiseChangePasswordButton(keyboardSize: self.keyboardSize)
         return true
     }
     
@@ -400,7 +389,6 @@ extension ChangePasswordViewController: UITextFieldDelegate {
         } else {
             self.newPasswordCheckTextField.resignFirstResponder()
         }
-        self.raiseChangePasswordButton(keyboardSize: self.keyboardSize)
         return true
     }
     

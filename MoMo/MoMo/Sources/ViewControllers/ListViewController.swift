@@ -277,10 +277,10 @@ class ListViewController: UIViewController {
     }
     
     @objc func touchMoreButton(sender: UIButton) {
-        pushToDiaryView(sender.tag)
+        self.pushToDiaryViewController(diaryId: sender.tag)
     }
     
-    func pushToDiaryView(_ diaryId: Int) {
+    func pushToDiaryViewController(diaryId: Int) {
         let diaryStoryboard = UIStoryboard(name: Constants.Name.diaryStoryboard, bundle: nil)
         
         guard let diaryViewController = diaryStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryViewController) as? DiaryViewController else {
@@ -288,6 +288,7 @@ class ListViewController: UIViewController {
         }
         
         diaryViewController.diaryId = diaryId
+        diaryViewController.isFromListView = true
         
         self.navigationController?.pushViewController(diaryViewController, animated: true)
     }
