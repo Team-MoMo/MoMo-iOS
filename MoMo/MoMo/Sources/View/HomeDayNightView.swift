@@ -110,14 +110,14 @@ class HomeDayNightView: UIView {
         }
     
         // 자간, 행간 지정
-        dateLabel.attributedText = dateLabel.text?.textSpacing(lineSpacing: 7, fontHeight: nil)
-        emotionLabel.attributedText = emotionLabel.text?.textSpacing(lineSpacing: 10, fontHeight: nil)
-        depthLabel.attributedText = depthLabel.text?.textSpacing(lineSpacing: 10, fontHeight: nil)
-        quoteLabel.attributedText = quoteLabel.text?.textSpacing(lineSpacing: 10, fontHeight: nil)
-        writerLabel.attributedText = writerLabel.text?.textSpacing(lineSpacing: 10, fontHeight: nil)
-        bookTitleLabel.attributedText = bookTitleLabel.text?.textSpacing(lineSpacing: 10, fontHeight: nil)
-        publisherLabel.attributedText = publisherLabel.text?.textSpacing(lineSpacing: 10, fontHeight: nil)
-        diaryLabel.attributedText = diaryLabel.text?.textSpacing(lineSpacing: 10, fontHeight: nil)
+        dateLabel.attributedText = dateLabel.text?.textSpacing()
+        emotionLabel.attributedText = emotionLabel.text?.textSpacing()
+        depthLabel.attributedText = depthLabel.text?.textSpacing()
+        quoteLabel.attributedText = quoteLabel.text?.textSpacing()
+        writerLabel.attributedText = writerLabel.text?.textSpacing()
+        bookTitleLabel.attributedText = bookTitleLabel.text?.textSpacing()
+        publisherLabel.attributedText = publisherLabel.text?.textSpacing()
+        diaryLabel.attributedText = diaryLabel.text?.textSpacing()
         
         // 버튼 rounding 처리
         writeButton.clipsToBounds = true
