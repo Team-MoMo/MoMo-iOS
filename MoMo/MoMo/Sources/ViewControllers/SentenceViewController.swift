@@ -151,7 +151,7 @@ class SentenceViewController: UIViewController {
             sentenceCard.author.attributedText = sentence.author.textSpacing()
             sentenceCard.bookTitle.attributedText = sentence.bookTitle.isEmpty ? sentence.bookTitle.textSpacing() : "<\(sentence.bookTitle)>".textSpacing()
             sentenceCard.publisher.attributedText = sentence.publisher.isEmpty ? sentence.publisher.textSpacing() : "(\(sentence.publisher))".textSpacing()
-            sentenceCard.sentence.attributedText = sentence.sentence.textSpacing()
+            sentenceCard.sentence.attributedText = sentence.sentence.wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: false, truncated: true)
         }
     }
     
