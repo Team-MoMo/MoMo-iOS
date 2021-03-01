@@ -211,8 +211,8 @@ extension HomeDayNightView {
                         self.depthLabel.text = AppDepth(rawValue: self.todayDiary[length-1].depth)?.toString()
                         self.quoteLabel.text = self.todayDiary[length-1].sentence.contents
                         self.writerLabel.text = self.todayDiary[length-1].sentence.writer
-                        self.bookTitleLabel.text = self.todayDiary[length-1].sentence.bookName
-                        self.publisherLabel.text = self.todayDiary[length-1].sentence.publisher
+                        self.bookTitleLabel.text = "<\(self.todayDiary[length-1].sentence.bookName)>"
+                        self.publisherLabel.text = "(\(self.todayDiary[length-1].sentence.publisher))"
                         self.diaryLabel.text = self.todayDiary[length-1].contents
                         
                         self.diaryId = self.todayDiary[length-1].id
