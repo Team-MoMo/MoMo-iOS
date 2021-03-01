@@ -12,12 +12,14 @@ class OpenSourceViewController: UIViewController {
     // MARK: - Constants
     
     let openSourceTitle: [String] = ["SwiftLint",
-                                    "AlamoFire",
-                                    "Moya",
-                                    "Lottie",
-                                    "SnapKit",
-                                    "IQKeyboardManager",
-                                    "CLTypingLabel"]
+                                     "AlamoFire",
+                                     "Moya",
+                                     "Lottie",
+                                     "SnapKit",
+                                     "IQKeyboardManager",
+                                     "CLTypingLabel",
+                                     "KakaoSDKCommon",
+                                     "KakaoSDKAuth"]
     let openSourceDetail: [String] = [
         """
 https://github.com/realm/SwiftLint
@@ -25,37 +27,45 @@ https://realm.github.io/SwiftLint/
 The MIT License (MIT)
 Copyright (c) 2020 Realm Inc.
 """,
-    """
+        """
 https://github.com/Alamofire/Alamofire
 http://alamofire.org
 The MIT License (MIT)
  Copyright (c) 2014-2020 Alamofire Software Foundation (http://alamofire.org/)
 """,
-    """
+        """
 https://github.com/Moya/Moya
 The MIT License (MIT)
 Copyright (c) 2014-present Artsy, Ash Furrow
 """,
-    """
+        """
 https://github.com/airbnb/lottie-ios
 Copyright 2018 Airbnb, Inc.
 Apache License,Version 2.0
 """,
-    """
+        """
 https://github.com/SnapKit
 The MIT License (MIT)
 Copyright (c) 2011-Present SnapKit Team
 """,
-    """
+        """
 https://github.com/hackiftekhar/IQKeyboardManager
 MIT License
 Copyright (c) 2013-2017 Iftekhar Qurashi
 """,
-    """
+        """
 https://github.com/cl7/CLTypingLabel
 MIT License
 Copyright (c) 2016 Chenglin Liu
-"""]
+""",
+        """
+https://developers.kakao.com/sdk/reference/ios/release/KakaoSDKAuth/index.html
+Copyright (c) 2021 Kakao Corp
+""",
+        """
+    https://developers.kakao.com/sdk/reference/ios/release/KakaoSDKCommon/Classes/KakaoSDKCommon.html
+    Copyright (c) 2021 Kakao Corp
+    """]
     
     // MARK: - Properties
     
@@ -67,7 +77,7 @@ Copyright (c) 2016 Chenglin Liu
         label.sizeToFit()
         return label
     }()
-
+    
     // MARK: - IBOutlets
     
     @IBOutlet weak var openSourceTableView: UITableView!

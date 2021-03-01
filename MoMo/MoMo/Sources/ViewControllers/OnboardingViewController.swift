@@ -38,8 +38,8 @@ class OnboardingViewController: UIViewController {
     private func initializeOnboardingViewController() {
         self.buttonRoundedUp()
         
-        self.infoLabel.attributedText = "감정 기록이\n어려웠던 적이 있나요?".textSpacing(lineSpacing: 32, fontHeight: self.infoLabel.font.lineHeight)
-        self.descriptionLabel.attributedText = "오늘부터는 책 속의 문장이\n당신의 감정 기록을 도와줄 거예요.\n\n다양한 감정의 폭을 바다의 깊이로 표현해보세요.".textSpacing(lineSpacing: 26, fontHeight: self.descriptionLabel.font.lineHeight)
+        self.infoLabel.attributedText = "감정 기록이\n어려웠던 적이 있나요?".textSpacing()
+        self.descriptionLabel.attributedText = "오늘부터는 책 속의 문장이\n당신의 감정 기록을 도와줄 거예요.\n\n다양한 감정의 폭을 바다의 깊이로 표현해보세요.".textSpacing()
     }
     
     private func initializeNavigationBar() {
