@@ -35,6 +35,11 @@ class BubbleTableViewCell: UITableViewCell {
     
     // MARK: - Functions
     
+    func initializeTextSpacing() {
+        dateLabel.attributedText = dateLabel.text?.textSpacing()
+        emotionLabel.attributedText = emotionLabel.text?.textSpacing()
+    }
+    
     func setCell(bubble: Diary) {
         let date: String = bubble.wroteAt
         let monthStartIdx: String.Index = date.index(date.startIndex, offsetBy: 5)
