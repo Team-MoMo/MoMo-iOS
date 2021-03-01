@@ -148,10 +148,10 @@ class SentenceViewController: UIViewController {
             guard let sentence = self.sentences[usage] else { return }
             guard let sentenceCard = self.sentenceCards[usage] else { return }
             
-            sentenceCard.author.text = sentence.author
-            sentenceCard.bookTitle.text = sentence.bookTitle.isEmpty ? sentence.bookTitle : "<\(sentence.bookTitle)>"
-            sentenceCard.publisher.text = sentence.publisher.isEmpty ? sentence.publisher : "(\(sentence.publisher))"
-            sentenceCard.sentence.text = sentence.sentence
+            sentenceCard.author.attributedText = sentence.author.textSpacing()
+            sentenceCard.bookTitle.attributedText = sentence.bookTitle.isEmpty ? sentence.bookTitle : "<\(sentence.bookTitle)>".textSpacing()
+            sentenceCard.publisher.attributedText = sentence.publisher.isEmpty ? sentence.publisher : "(\(sentence.publisher))".textSpacing()
+            sentenceCard.sentence.attributedText = sentence.sentence.textSpacing()
         }
     }
     
