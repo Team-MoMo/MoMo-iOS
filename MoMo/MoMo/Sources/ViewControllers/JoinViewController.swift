@@ -124,6 +124,21 @@ class JoinViewController: UIViewController {
         }
     }
     
+    @IBAction func touchInfoTermButton(_ sender: Any) {
+        let personalTermStoryboard = UIStoryboard(name: Constants.Name.personalTermStoryboard, bundle: nil)
+        
+        let dvc = personalTermStoryboard.instantiateViewController(identifier: Constants.Identifier.personalTermViewController)
+        self.present(dvc, animated: true, completion: nil)
+    }
+    
+    @IBAction func touchServiceTermButton(_ sender: Any) {
+        let serviceTermStoryboard = UIStoryboard(name: Constants.Name.serviceTermStoryboard, bundle: nil)
+        
+        let dvc = serviceTermStoryboard.instantiateViewController(identifier: Constants.Identifier.serviceTermViewController)
+        self.present(dvc, animated: true, completion: nil)
+    }
+    
+    
     // MARK: - Functions
     
     func assignDelegate() {
@@ -351,7 +366,7 @@ class JoinViewController: UIViewController {
     
     // 비밀번호 정규식 검사
     func validatePassword(password: String) -> Bool {
-        let passwordRegEx = "^[a-zA-Z0-9!@#$%^&*(),.?\":{}|<>_-]{6,}$"
+        let passwordRegEx = "(?=.*[A-Za-z])(?=.*[0-9]).{6,20}"
         
         let predicate = NSPredicate(format: "SELF MATCHES %@", passwordRegEx)
         return predicate.evaluate(with: password)
@@ -450,6 +465,7 @@ class JoinViewController: UIViewController {
                 if let signUpData = data as? AuthData {
                     print("회원가입 성공")
                     // 회원가입 성공
+                    APIConstants.userId = signUpData.user.id
                     UserDefaults.standard.setValue(signUpData.token, forKey: "token")
                     UserDefaults.standard.setValue(signUpData.user.id, forKey: "userId")
                     UserDefaults.standard.setValue("email", forKey: "loginType")

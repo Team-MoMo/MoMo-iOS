@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum MoodViewUsage: Int {
+    case onboarding = 0, upload
+}
+
 class MoodViewController: UIViewController {
     
     // MARK: - @IBOutlet Properties
@@ -22,39 +26,24 @@ class MoodViewController: UIViewController {
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var calendarButton: UIButton!
+    @IBOutlet weak var infoLabelVerticalSpacingContraint: NSLayoutConstraint!
     
     // MARK: - Properties
     
-    let info: String = "먼저 오늘의\n감정을 선택해 주세요"
-    var changeUsage: Bool = false // false는 Upload에서 사용
     var listNoDiary: Bool = false
+    var moodViewUsage: MoodViewUsage = .onboarding
     private var buttons: [MoodButton] = []
     private var modalView: UploadModalViewController?
     private var currentDate: AppDate?
     private var selectedDate: AppDate?
+    private let infoLabelVerticalSpacing: CGFloat = 66
 
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.initializeMoodViewController()
-        
-        guard let currentDate = self.currentDate else { return }
-        
-        self.getDiariesWithAPI(userID: String(APIConstants.userId),
-                               year: currentDate.getYearToString(),
-                               month: currentDate.getMonthToString(),
-                               order: "filter",
-                               day: currentDate.getDay(),
-                               emotionID: nil,
-                               depth: nil
-        )
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.hideCalendarButton()
-        self.hideNavigationButton()
+        self.initializeNavigationBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -64,8 +53,37 @@ class MoodViewController: UIViewController {
     
     // MARK: - Functions
     
-    func initializeMoodViewController() {
+    private func initializeMoodViewController() {
         
+        self.currentDate = AppDate()
+        self.selectedDate = AppDate()
+        self.modalView = UploadModalViewController()
+        self.modalView?.uploadModalDataDelegate = self
+        
+        self.initializeButtons()
+        
+        switch self.moodViewUsage {
+        case .onboarding:
+            self.infoLabel.text = "먼저 오늘의\n감정을 선택해 주세요"
+            self.infoLabelVerticalSpacingContraint.constant = self.infoLabelVerticalSpacing
+            self.dateLabel.text = self.currentDate?.getFormattedDateAndWeekday(with: ". ")
+            self.hideCalendarButton()
+        case .upload:
+            self.infoLabel.text = "오늘의\n감정은 어땠나요?"
+            guard let currentDate = self.currentDate else { return }
+            self.getDiariesWithAPI(
+                userID: String(APIConstants.userId),
+                year: currentDate.getYearToString(),
+                month: currentDate.getMonthToString(),
+                order: "filter",
+                day: currentDate.getDay(),
+                emotionID: nil,
+                depth: nil
+            )
+        }
+    }
+    
+    private func initializeButtons() {
         self.buttons = [
             MoodButton(button: self.loveButton),
             MoodButton(button: self.happyButton),
@@ -83,15 +101,20 @@ class MoodViewController: UIViewController {
         }
         
         self.hideButtons()
-        self.infoLabel.text = self.info
-        self.currentDate = AppDate()
-        self.selectedDate = AppDate()
-        self.modalView = UploadModalViewController()
-        self.modalView?.uploadModalDataDelegate = self
-        self.dateLabel.text = self.currentDate?.getFormattedDateAndWeekday(with: ". ")
     }
     
-    func initializeDateLabel(recentDate: String, verifyToday: Bool) {
+    private func initializeNavigationBar() {
+        self.hideNavigationBackButton()
+        
+        switch self.moodViewUsage {
+        case .onboarding:
+            return
+        case .upload:
+            self.addNavigationRightButton()
+        }
+    }
+    
+    private func initializeDateLabel(recentDate: String, verifyToday: Bool) {
         if !verifyToday {
             self.dateLabel.text = self.currentDate?.getFormattedDateAndWeekday(with: ". ")
             self.selectedDate = self.currentDate
@@ -105,27 +128,26 @@ class MoodViewController: UIViewController {
         }
     }
     
-    func hideNavigationButton() {
-        if !self.changeUsage {
-            let rightButton = UIBarButtonItem(image: Constants.Design.Image.btnCloseBlack, style: .plain, target: self, action: #selector(touchCloseButton))
-            self.navigationItem.rightBarButtonItems = [rightButton]
-            self.navigationItem.hidesBackButton = true
-        }
+    private func addNavigationRightButton() {
+        let rightButton = UIBarButtonItem(image: Constants.Design.Image.btnCloseBlack, style: .plain, target: self, action: #selector(touchCloseButton))
+        self.navigationItem.rightBarButtonItems = [rightButton]
     }
     
-    func hideCalendarButton() {
-        if self.changeUsage {
-            self.calendarButton.isHidden = true
-        }
+    private func hideNavigationBackButton() {
+        self.navigationItem.hidesBackButton = true
     }
     
-    func hideButtons() {
+    private func hideCalendarButton() {
+        self.calendarButton.isHidden = true
+    }
+    
+    private func hideButtons() {
         for button in self.buttons {
             button.button?.alpha = 0.0
         }
     }
     
-    func showButtonsWithAnimation() {
+    private func showButtonsWithAnimation() {
         UIView.animate(
             withDuration: 0.8,
             delay: 0,
@@ -137,7 +159,7 @@ class MoodViewController: UIViewController {
         )
     }
     
-    func presentUploadModalView(year: Int, month: Int, day: Int) {
+    private func presentUploadModalView(year: Int, month: Int, day: Int) {
         guard let modalView = self.modalView else { return }
         modalView.year = year
         modalView.month = month
@@ -148,12 +170,18 @@ class MoodViewController: UIViewController {
         self.present(modalView, animated: true, completion: nil)
     }
     
-    func pushToOnboardingSentenceViewController(mood: AppEmotion) {
+    private func pushToSentenceViewController(mood: AppEmotion) {
         guard let sentenceViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.sentenceViewController) as? SentenceViewController else { return }
         
         sentenceViewController.selectedMood = mood
         sentenceViewController.date = self.dateLabel.text
-        sentenceViewController.changeUsage = self.changeUsage
+        
+        switch self.moodViewUsage {
+        case .onboarding:
+            sentenceViewController.sentenveViewUsage = .onboarding
+        case .upload:
+            sentenceViewController.sentenveViewUsage = .upload
+        }
         
         self.navigationController?.pushViewController(sentenceViewController, animated: true)
         
@@ -169,35 +197,35 @@ class MoodViewController: UIViewController {
     }
     
     @IBAction func touchLoveButton(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.love)
+        pushToSentenceViewController(mood: AppEmotion.love)
     }
     
     @IBAction func touchHappyButton(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.happy)
+        pushToSentenceViewController(mood: AppEmotion.happy)
     }
     
     @IBAction func touchConsoleButton(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.console)
+        pushToSentenceViewController(mood: AppEmotion.console)
     }
     
     @IBAction func touchAngryButton(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.angry)
+        pushToSentenceViewController(mood: AppEmotion.angry)
     }
     
     @IBAction func touchSadButton(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.sad)
+        pushToSentenceViewController(mood: AppEmotion.sad)
     }
     
     @IBAction func touchBoredButton(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.bored)
+        pushToSentenceViewController(mood: AppEmotion.bored)
     }
     
     @IBAction func touchMemoryButton(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.memory)
+        pushToSentenceViewController(mood: AppEmotion.memory)
     }
     
     @IBAction func touchDailyButton(_ sender: UIButton) {
-        pushToOnboardingSentenceViewController(mood: AppEmotion.daily)
+        pushToSentenceViewController(mood: AppEmotion.daily)
     }
     
 }
@@ -222,13 +250,14 @@ extension MoodViewController: UploadModalViewDelegate {
 // MARK: - API
 
 extension MoodViewController {
-    func getDiariesWithAPI(userID: String,
-                           year: String,
-                           month: String,
-                           order: String,
-                           day: Int?,
-                           emotionID: Int?,
-                           depth: Int?
+    private func getDiariesWithAPI(
+        userID: String,
+        year: String,
+        month: String,
+        order: String,
+        day: Int?,
+        emotionID: Int?,
+        depth: Int?
     ) {
         DiariesService.shared.getDiaries(userId: userID,
                                          year: year,
@@ -260,7 +289,7 @@ extension MoodViewController {
         }
     }
     
-    func getDiaryRecentWithAPI(userID: String, verifyToday: Bool) {
+    private func getDiaryRecentWithAPI(userID: String, verifyToday: Bool) {
         DiaryRecentService.shared.getDiaryRecent(userId: userID) { networkResult in
             switch networkResult {
             case .success(let data):

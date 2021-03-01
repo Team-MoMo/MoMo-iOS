@@ -13,7 +13,12 @@ struct APIConstants {
     
     static let baseURL = "https://momodiary.ga"
     
-    static let userId: Int = UserDefaults.standard.integer(forKey: "userId")
+    static var userId: Int = UserDefaults.standard.integer(forKey: "userId") {
+        willSet(newUserId) {
+            userInfoURL = usersURL + "/\(newUserId)"
+            diaryWithUserIdURL = diariesURL + "/\(newUserId)"
+        }
+    }
     
     // MARK: - Users
     
@@ -26,11 +31,16 @@ struct APIConstants {
     // 소셜로그인 url
     static let socialSignInURL = signInURL + "/social"
     // 회원 조회(get), 회원 탈퇴(delete) url
-    static let userInfoURL = usersURL + "/\(userId)"
+    static var userInfoURL = usersURL + "/\(userId)" {
+        willSet(newUserInfoURL) {
+            alarmURL = newUserInfoURL + "/alarm"
+            passwordURL = newUserInfoURL + "/password"
+        }
+    }
     // 알람 변경 url
-    static let alarmURL = usersURL + "/\(userId)" + "/alarm"
+    static var alarmURL = userInfoURL + "/alarm"
     // 비밀번호 변경(put), 확인(post) url
-    static let passwordURL = usersURL + "/\(userId)" + "/password"
+    static var passwordURL = userInfoURL + "/password"
     // 임시 비밀번호 발급 url
     static let tempPasswordURL = usersURL + "/password/temp"
     
@@ -44,7 +54,7 @@ struct APIConstants {
     // 일기 통계 조회 url
     static let statisticsURL = diariesURL + "/statistics"
     // 일기 조회(get), 수정(put), 삭제(delete) url
-    static let diaryWithUserIdURL = diariesURL + "/\(userId)"
+    static var diaryWithUserIdURL = diariesURL + "/\(userId)"
     
     // MARK: - Sentences
     

@@ -106,6 +106,8 @@ struct Constants {
             static let depth0Rock2 = UIImage(named: "2MRock2")
             static let depth0Fish1 = UIImage(named: "2MFish1")
             static let depth0Fish2 = UIImage(named: "2MFish2")
+            static let depth0Fish5 = UIImage(named: "2MFish5")
+            static let depth0Bubble1 = UIImage(named: "2MBubble1")
             
             // objet - depth number 1
             static let depth1Rock1 = UIImage(named: "30MRock1")
@@ -114,10 +116,12 @@ struct Constants {
             static let depth1Dolphin2 = UIImage(named: "30MDolphin2")
             static let depth1Coral1 = UIImage(named: "30MCoral1")
             static let depth1Fish1 = UIImage(named: "30MFish1")
+            static let depth1Seaweed3 = UIImage(named: "30MSeaweed3")
             
             // objet - depth number 2
             static let depth2Fish1 = UIImage(named: "100MFish1")
             static let depth2Fish2 = UIImage(named: "100MFish2")
+            static let depth2Fish3 = UIImage(named: "100MFish3")
             static let depth2Turtle1 = UIImage(named: "100MTurtle1")
             static let depth2Turtle2 = UIImage(named: "100MTurtle2")
             static let depth2Seaweed1 = UIImage(named: "100MSeaweed1")
@@ -144,12 +148,17 @@ struct Constants {
             static let depth5Seaweed2 = UIImage(named: "1005MSeaweed2")
             static let depth5Shark = UIImage(named: "1005MShark")
             static let depth5Rock1 = UIImage(named: "1005MRock1")
+            static let depth5Seaweed3 = UIImage(named: "1005MSeaweed3")
+            static let depth5Bubble1 = UIImage(named: "1005MBubble1")
             
             // objet - depth number 6
             static let depth6Rock1 = UIImage(named: "underRock1")
             static let depth6Seaweed1 = UIImage(named: "underSeaweed1")
             static let depth6Sea = UIImage(named: "underSea")
             static let depth6bottom = UIImage(named: "bottomSea")
+            static let depth6Fish1 = UIImage(named: "underFish1")
+            
+            // icon
 
             static let icLove14Black = UIImage(named: "icLove14Black")
             static let icHappy14Black = UIImage(named: "icHappy14Black")
@@ -193,6 +202,7 @@ struct Constants {
             
             // button
             static let btnCloseBlack = UIImage(named: "btnCloseBlack")
+            static let btnCloseWhite = UIImage(named: "btnCloseWhite")
             static let btnBackWhite = UIImage(named: "btnBackWhite")
             static let btnBackBlack = UIImage(named: "btnBackBlack")
             static let listBtnFilterBlue = UIImage(named: "listBtnFilterBlue")

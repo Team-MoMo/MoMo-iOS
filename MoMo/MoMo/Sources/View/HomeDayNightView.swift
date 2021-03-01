@@ -42,7 +42,8 @@ class HomeDayNightView: UIView {
     weak var homeDayNightViewDelegate: HomeDayNightViewDelegate?
     var gradientLayer: CAGradientLayer!
     var date: String?
-    var dateArray:[String] = []
+    // year, month, day
+    var dateArray: [String] = ["", "", ""]
     var todayDiary: [Diary] = []
     
     var diaryId: Int = 1
@@ -60,24 +61,20 @@ class HomeDayNightView: UIView {
         self.backgroundView.layer.addSublayer(gradientLayer)
     }
     
-    // MARK: 해찌꺼뽀려옴2
     func getCurrentFormattedDate() -> String? {
         
-        let date = Date()
-        let dateFormatter = DateFormatter()
+        let today = AppDate()
+        let year = today.getYearToString()
+        let month = today.getMonthToString()
+        let day = today.getDayToString()
+        let weekDay = today.getWeekday().toKorean()
         
-        dateFormatter.dateFormat = "yyyy. MM. dd. EEEE"
-        dateFormatter.locale = Locale.current
+        dateArray[0] = year
+        dateArray[1] = month
+        dateArray[2] = day
         
-        let formattedDate = dateFormatter.string(from: date)
-        dateArray = formattedDate.components(separatedBy: ". ")
-        let weekday = dateArray.popLast()
+        let result = "\(year)년 \n\(month)월 \(day)일 \(weekDay)"
         
-        dateArray.append(weekdayEnglishToKorean(weekday: weekday ?? "Monday"))
-        
-        let formattedDateWithKorean = dateArray.joined(separator: ". ")
-        
-        let result = "\(dateArray[0])년 \n\(dateArray[1])월 \(dateArray[2])일 \(dateArray[3])"
         return result
     }
     
@@ -113,14 +110,14 @@ class HomeDayNightView: UIView {
         }
     
         // 자간, 행간 지정
-        dateLabel.attributedText = dateLabel.text?.textSpacing(lineSpacing: 7)
-        emotionLabel.attributedText = emotionLabel.text?.textSpacing(lineSpacing: 10)
-        depthLabel.attributedText = depthLabel.text?.textSpacing(lineSpacing: 10)
-        quoteLabel.attributedText = quoteLabel.text?.textSpacing(lineSpacing: 10)
-        writerLabel.attributedText = writerLabel.text?.textSpacing(lineSpacing: 10)
-        bookTitleLabel.attributedText = bookTitleLabel.text?.textSpacing(lineSpacing: 10)
-        publisherLabel.attributedText = publisherLabel.text?.textSpacing(lineSpacing: 10)
-        diaryLabel.attributedText = diaryLabel.text?.textSpacing(lineSpacing: 10)
+        dateLabel.attributedText = dateLabel.text?.textSpacing()
+        emotionLabel.attributedText = emotionLabel.text?.textSpacing()
+        depthLabel.attributedText = depthLabel.text?.textSpacing()
+        quoteLabel.attributedText = quoteLabel.text?.textSpacing()
+        writerLabel.attributedText = writerLabel.text?.textSpacing()
+        bookTitleLabel.attributedText = bookTitleLabel.text?.textSpacing()
+        publisherLabel.attributedText = publisherLabel.text?.textSpacing()
+        diaryLabel.attributedText = diaryLabel.text?.textSpacing()
         
         // 버튼 rounding 처리
         writeButton.clipsToBounds = true
@@ -211,8 +208,8 @@ extension HomeDayNightView {
                         self.depthLabel.text = AppDepth(rawValue: self.todayDiary[length-1].depth)?.toString()
                         self.quoteLabel.text = self.todayDiary[length-1].sentence.contents
                         self.writerLabel.text = self.todayDiary[length-1].sentence.writer
-                        self.bookTitleLabel.text = self.todayDiary[length-1].sentence.bookName
-                        self.publisherLabel.text = self.todayDiary[length-1].sentence.publisher
+                        self.bookTitleLabel.text = "<\(self.todayDiary[length-1].sentence.bookName)>"
+                        self.publisherLabel.text = "(\(self.todayDiary[length-1].sentence.publisher))"
                         self.diaryLabel.text = self.todayDiary[length-1].contents
                         
                         self.diaryId = self.todayDiary[length-1].id
