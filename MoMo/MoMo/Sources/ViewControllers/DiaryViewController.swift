@@ -340,9 +340,9 @@ class DiaryViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
-        
         guard touch?.view == self.menuView?.dateMenuView || touch?.view == self.menuView?.depthMenuView ||
-            touch?.view == self.menuView?.diaryWriteMenuView || touch?.view == self.menuView?.deleteMenuView else {
+                touch?.view == self.menuView?.diaryWriteMenuView || touch?.view == self.menuView?.deleteMenuView ||
+                touch?.view is UIVisualEffectView else {
             self.detachMenuView()
             return
         }
