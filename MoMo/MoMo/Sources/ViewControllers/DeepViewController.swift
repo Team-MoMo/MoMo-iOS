@@ -21,6 +21,9 @@ class DeepViewController: UIViewController {
     // MARK: - @IBOutlet Properties
     
     @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var moodImage: UIImageView!
+    @IBOutlet weak var moodLabel: UILabel!
     @IBOutlet weak var gradientScrollView: UIScrollView!
     @IBOutlet weak var gradientBackgroundView: UIView!
     @IBOutlet weak var blurView: UIView!
@@ -88,6 +91,8 @@ class DeepViewController: UIViewController {
         var infoText: String = "감정이 얼마나 깊은가요?\n나만의 바다에 기록해보세요"
         switch self.deepViewUsage {
         case .onboarding:
+            self.hideDateLabel()
+            self.hideMoodLabelAndImage()
             infoText = "오늘의 감정은\n잔잔한가요, 깊은가요?\n스크롤을 움직여서 기록해보세요"
             self.infoLabelVerticalSpacingConstraint.constant = self.infoLabelVerticalSpacing
             buttonText = "시작하기"
@@ -97,6 +102,8 @@ class DeepViewController: UIViewController {
             buttonText = "수정하기"
         }
         self.infoLabel.text = infoText
+        
+        self.updateDeepViewController()
         self.depthSelectionButton.setTitle(buttonText, for: .normal)
     }
     
@@ -113,6 +120,14 @@ class DeepViewController: UIViewController {
             self.navigationItem.rightBarButtonItem = self.rightButton
         case .diary:
             return
+        }
+    }
+    
+    private func updateDeepViewController() {
+        if let date = self.diaryInfo?.date, let mood = self.diaryInfo?.mood {
+            self.dateLabel.attributedText = date.getFormattedDateAndWeekday(with: ". ").textSpacing()
+            self.moodImage.image = mood.toWhiteIcon()
+            self.moodLabel.attributedText = mood.toString().textSpacing()
         }
     }
     
@@ -197,6 +212,15 @@ class DeepViewController: UIViewController {
     
     @objc func touchCrossButton() {
         self.attachAlertModalView()
+    }
+    
+    private func hideDateLabel() {
+        self.dateLabel.isHidden = true
+    }
+    
+    private func hideMoodLabelAndImage() {
+        self.moodImage.isHidden = true
+        self.moodLabel.isHidden = true
     }
     
     private func addBlurEffectOnBlurView() {

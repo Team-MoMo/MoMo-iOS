@@ -976,39 +976,69 @@
                                 <color key="textColor" name="Blue7"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020. 12. 26. 토요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pi1-gR-dGN" userLabel="DateLabel">
+                                <rect key="frame" x="32" y="155" width="144.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <color key="textColor" name="Blue7"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icAngry14White" translatesAutoresizingMaskIntoConstraints="NO" id="w7y-Ag-1Nx" userLabel="MoodIcon">
+                                <rect key="frame" x="188.5" y="158" width="14" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="w7y-Ag-1Nx" secondAttribute="height" multiplier="1:1" id="GvW-26-f7O"/>
+                                    <constraint firstAttribute="width" constant="14" id="PD3-eh-L9K"/>
+                                    <constraint firstAttribute="height" constant="14" id="hte-2q-H8W"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="화남" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bx-Dm-iZo" userLabel="MoodLabel">
+                                <rect key="frame" x="204.5" y="156" width="26" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" name="Blue7"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="c2l-Tu-1Pv"/>
                         <color key="backgroundColor" name="Gradient1"/>
                         <constraints>
                             <constraint firstItem="sBR-vZ-nwc" firstAttribute="top" secondItem="c2l-Tu-1Pv" secondAttribute="top" constant="16" id="04Z-cD-5x4"/>
                             <constraint firstAttribute="top" secondItem="g8e-nN-vav" secondAttribute="top" id="0gu-Sf-Kvs"/>
+                            <constraint firstItem="Pi1-gR-dGN" firstAttribute="top" secondItem="sBR-vZ-nwc" secondAttribute="bottom" constant="16" id="6Sd-1z-6tw"/>
                             <constraint firstItem="ZXG-od-vzd" firstAttribute="bottom" secondItem="c2l-Tu-1Pv" secondAttribute="bottom" constant="-12" id="8YA-FW-L0t"/>
                             <constraint firstItem="hup-je-MfH" firstAttribute="top" secondItem="kuc-O0-FKP" secondAttribute="top" id="93D-k4-Sh4"/>
                             <constraint firstItem="Ezr-HK-uSU" firstAttribute="trailing" secondItem="c2l-Tu-1Pv" secondAttribute="trailing" id="Blv-5C-xpx"/>
                             <constraint firstItem="sBR-vZ-nwc" firstAttribute="leading" secondItem="kuc-O0-FKP" secondAttribute="leading" constant="32" id="Cua-ib-BwO"/>
+                            <constraint firstItem="w7y-Ag-1Nx" firstAttribute="width" secondItem="w7y-Ag-1Nx" secondAttribute="height" multiplier="1:1" id="F09-Ob-PKL"/>
                             <constraint firstAttribute="bottom" secondItem="g8e-nN-vav" secondAttribute="bottom" id="HBb-vS-IBt"/>
                             <constraint firstAttribute="bottom" secondItem="Ezr-HK-uSU" secondAttribute="bottom" id="JAs-Gs-Azq"/>
                             <constraint firstAttribute="bottom" secondItem="poR-7a-CZ5" secondAttribute="bottom" id="MFE-Vo-hWq"/>
+                            <constraint firstItem="w7y-Ag-1Nx" firstAttribute="leading" secondItem="Pi1-gR-dGN" secondAttribute="trailing" constant="12" id="Thv-Rq-hMu"/>
+                            <constraint firstItem="Pi1-gR-dGN" firstAttribute="leading" secondItem="sBR-vZ-nwc" secondAttribute="leading" id="UdV-Ud-hQ9"/>
                             <constraint firstItem="g8e-nN-vav" firstAttribute="trailing" secondItem="kuc-O0-FKP" secondAttribute="trailing" id="W3C-7f-az7"/>
+                            <constraint firstItem="2bx-Dm-iZo" firstAttribute="leading" secondItem="w7y-Ag-1Nx" secondAttribute="trailing" constant="2" id="WxN-2I-71g"/>
                             <constraint firstItem="poR-7a-CZ5" firstAttribute="leading" secondItem="kuc-O0-FKP" secondAttribute="leading" id="YXC-iH-FEC"/>
                             <constraint firstItem="bMY-nT-BLJ" firstAttribute="width" secondItem="kuc-O0-FKP" secondAttribute="width" id="YvN-5v-6kf"/>
                             <constraint firstItem="bMY-nT-BLJ" firstAttribute="height" secondItem="kuc-O0-FKP" secondAttribute="height" priority="250" id="dBn-jO-BED"/>
                             <constraint firstAttribute="trailing" secondItem="poR-7a-CZ5" secondAttribute="trailing" id="fZe-1j-9zY"/>
                             <constraint firstItem="hup-je-MfH" firstAttribute="leading" secondItem="c2l-Tu-1Pv" secondAttribute="leading" id="fgk-xO-ep4"/>
+                            <constraint firstItem="w7y-Ag-1Nx" firstAttribute="centerY" secondItem="Pi1-gR-dGN" secondAttribute="centerY" id="gjf-gw-Rg6"/>
                             <constraint firstItem="c2l-Tu-1Pv" firstAttribute="trailing" secondItem="hup-je-MfH" secondAttribute="trailing" id="iOQ-UY-fi9"/>
                             <constraint firstItem="g8e-nN-vav" firstAttribute="leading" secondItem="kuc-O0-FKP" secondAttribute="leading" id="kXI-2k-7xf"/>
                             <constraint firstItem="poR-7a-CZ5" firstAttribute="top" secondItem="sBR-vZ-nwc" secondAttribute="bottom" constant="75" id="pS7-Uv-bzn"/>
+                            <constraint firstItem="2bx-Dm-iZo" firstAttribute="centerY" secondItem="w7y-Ag-1Nx" secondAttribute="centerY" id="q9a-HD-UpA"/>
                             <constraint firstItem="ZXG-od-vzd" firstAttribute="centerX" secondItem="c2l-Tu-1Pv" secondAttribute="centerX" id="rqj-TX-cFT"/>
                             <constraint firstItem="Ezr-HK-uSU" firstAttribute="leading" secondItem="c2l-Tu-1Pv" secondAttribute="leading" id="wRd-M5-Do0"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="blurView" destination="poR-7a-CZ5" id="BHa-tJ-Jbz"/>
+                        <outlet property="dateLabel" destination="Pi1-gR-dGN" id="cI5-4J-NMh"/>
                         <outlet property="depthSelectionButton" destination="ZXG-od-vzd" id="A9h-ge-ob9"/>
                         <outlet property="gradientBackgroundView" destination="bMY-nT-BLJ" id="Yl2-LH-fMb"/>
                         <outlet property="gradientScrollView" destination="g8e-nN-vav" id="ZyS-z0-eDH"/>
                         <outlet property="infoLabel" destination="sBR-vZ-nwc" id="Tge-4Z-zGf"/>
                         <outlet property="infoLabelVerticalSpacingConstraint" destination="04Z-cD-5x4" id="rbS-4n-37B"/>
+                        <outlet property="moodImage" destination="w7y-Ag-1Nx" id="yC8-s8-THo"/>
+                        <outlet property="moodLabel" destination="2bx-Dm-iZo" id="h9f-Ww-QRx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ctw-z8-QmU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1023,6 +1053,7 @@
     <resources>
         <image name="btnIcCalender16" width="16" height="16"/>
         <image name="icAngry14Black" width="14" height="14"/>
+        <image name="icAngry14White" width="14" height="14"/>
         <image name="icFeatherBlack" width="16.5" height="17.5"/>
         <image name="icFeatherColor" width="16.5" height="17.5"/>
         <image name="objectDeepSeaweedBottom" width="375" height="207"/>
