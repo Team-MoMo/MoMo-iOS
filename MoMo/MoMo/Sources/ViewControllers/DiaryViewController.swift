@@ -429,7 +429,12 @@ extension DiaryViewController: AlertModalDelegate {
     
     func rightButtonTouchUp(button: UIButton) {
         self.deleteDiaryWithAPI(completion: {
-            self.popToHomeViewController()
+            if self.isFromListView {
+                self.isFromListView = false
+                self.popToListViewController()
+            } else {
+                self.popToHomeViewController()
+            }
         })
     }
 }

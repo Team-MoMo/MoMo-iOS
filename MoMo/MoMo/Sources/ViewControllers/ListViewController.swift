@@ -75,6 +75,10 @@ class ListViewController: UIViewController {
         assignDelegate()
         updateNavigationBarButton()
         initializeWarningLabel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         getDiariesWithAPI(userID: String(APIConstants.userId), year: String(year), month: String(month), order: "filter", day: nil, emotionID: nil, depth: nil)
     }
     
