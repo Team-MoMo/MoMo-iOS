@@ -37,7 +37,7 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var publisherLabel: UILabel!
     @IBOutlet weak var diaryLabel: UILabel!
     @IBOutlet weak var blurView: UIView!
-    @IBOutlet weak var descriptionView: UIView!
+    @IBOutlet weak var descriptionStackView: UIStackView!
     
     // MARK: - Properties
     
@@ -94,6 +94,7 @@ class DiaryViewController: UIViewController {
             self.shark1: "shark1"
         ]
         self.updateObjetsByDepth(depth: self.initialDepth)
+        self.updateDescriptionStackViewContraints()
         self.hideDiaryViews()
     }
     
@@ -113,21 +114,27 @@ class DiaryViewController: UIViewController {
         self.showDiaryViews()
     }
     
+    private func updateDescriptionStackViewContraints() {
+        self.descriptionStackView.setCustomSpacing(2, after: self.moodImage)
+        self.descriptionStackView.setCustomSpacing(10, after: self.moodLabel)
+        self.descriptionStackView.setCustomSpacing(4, after: self.depthImage)
+    }
+    
     private func updateProperties(diaryInfo: AppDiary?) {
         guard let safeDate = diaryInfo?.date,
               let safeMood = diaryInfo?.mood,
               let safeDepth = diaryInfo?.depth,
               let safeSentence = diaryInfo?.sentence else { return }
-        self.dateLabel.text = safeDate.getFormattedDateAndWeekday(with: ". ")
+        self.dateLabel.attributedText = safeDate.getFormattedDateAndWeekday(with: ". ").textSpacing()
         self.moodImage.image = safeMood.toWhiteIcon()
-        self.moodLabel.text = safeMood.toString()
-        self.depthLabel.text = safeDepth.toString()
-        self.sentenceLabel.text = safeSentence.sentence
-        self.authorLabel.text = safeSentence.author
-        self.bookTitleLabel.text = "<\(safeSentence.bookTitle)>"
-        self.authorLabel.text = safeSentence.author
-        self.publisherLabel.text = "(\(safeSentence.publisher))"
-        self.diaryLabel.text = diaryInfo?.diary
+        self.moodLabel.attributedText = safeMood.toString().textSpacing()
+        self.depthLabel.attributedText = safeDepth.toString().textSpacing()
+        self.sentenceLabel.attributedText = safeSentence.sentence.textSpacing()
+        self.authorLabel.attributedText = safeSentence.author.textSpacing()
+        self.bookTitleLabel.attributedText = "<\(safeSentence.bookTitle)>".textSpacing()
+        self.authorLabel.attributedText = safeSentence.author.textSpacing()
+        self.publisherLabel.attributedText = "(\(safeSentence.publisher))".textSpacing()
+        self.diaryLabel.attributedText = diaryInfo?.diary?.textSpacing()
     }
     
     private func attachMenuView() {
@@ -291,7 +298,7 @@ class DiaryViewController: UIViewController {
     
     private func hideDiaryViews() {
         self.dateLabel.isHidden = true
-        self.descriptionView.isHidden = true
+        self.descriptionStackView.isHidden = true
         self.sentenceLabel.isHidden = true
         self.bookTitleLabel.isHidden = true
         self.authorLabel.isHidden = true
@@ -301,7 +308,7 @@ class DiaryViewController: UIViewController {
     
     private func showDiaryViews() {
         self.dateLabel.isHidden = false
-        self.descriptionView.isHidden = false
+        self.descriptionStackView.isHidden = false
         self.sentenceLabel.isHidden = false
         self.bookTitleLabel.isHidden = false
         self.authorLabel.isHidden = false
