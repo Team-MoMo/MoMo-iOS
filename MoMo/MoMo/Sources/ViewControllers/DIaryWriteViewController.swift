@@ -38,6 +38,7 @@ class DiaryWriteViewController: UIViewController {
     
     var isFromDiary: Bool = false
     var diaryInfo: AppDiary?
+    private var initialDiaryInfo: AppDiary?
     private var toastView: ToastView?
     private var alertModalView: AlertModalView?
     private var placeHolder: NSAttributedString = {
@@ -113,6 +114,7 @@ class DiaryWriteViewController: UIViewController {
         if self.isFromDiary {
             self.depthImage.isHidden = false
             self.depthLabel.isHidden = false
+            self.initialDiaryInfo = self.diaryInfo
         } else {
             self.depthImage.isHidden = true
             self.depthLabel.isHidden = true
@@ -191,6 +193,11 @@ class DiaryWriteViewController: UIViewController {
         self.diaryInfo?.diary = self.journalTextView.text
     }
     
+    private func isDiaryChanged() -> Bool {
+        guard let newDiary = self.diaryInfo?.diary, let oldDiary = self.initialDiaryInfo?.diary else { return false }
+        return newDiary == oldDiary
+    }
+    
     private func popToSentenceViewControllerWithAlert() {
         if self.journalTextView.text != self.placeHolderText {
             self.attachAlertModalView()
@@ -199,25 +206,16 @@ class DiaryWriteViewController: UIViewController {
         }
     }
     
-    private func popToDiaryViewControllerWithAlert() {
-        if self.diaryInfo?.diary != self.journalTextView.text {
-            self.attachAlertModalView()
-        } else {
-            self.popToDiaryViewController()
-        }
-    }
-    
     private func popToSentenceViewController() {
         self.navigationController?.popViewController(animated: true)
     }
     
-    private func popToDiaryViewController() {
+    private func popToDiaryViewController(save: Bool) {
         guard let textViewText = self.journalTextView.text else { return }
-        
         if textViewText.isEmpty {
             self.attachToastViewWithAnimation()
         } else {
-            self.saveDiary()
+            if save { self.saveDiary() }
             self.navigationItem.rightBarButtonItem = nil
             self.diaryWriteViewControllerDelegate?.popToDiaryViewController(newDiaryInfo: self.diaryInfo)
             self.navigationController?.popViewController(animated: true)
@@ -318,9 +316,9 @@ class DiaryWriteViewController: UIViewController {
         if let button = sender as? UIBarButtonItem {
             switch button.tag {
             case DiaryWriteViewNavigationButton.leftButtonForDiary.rawValue:
-                self.popToDiaryViewControllerWithAlert()
+                self.isDiaryChanged() ? self.attachAlertModalView() : self.popToDiaryViewController(save: false)
             case DiaryWriteViewNavigationButton.rightButtonForDiary.rawValue:
-                self.popToDiaryViewController()
+                self.popToDiaryViewController(save: true)
             case DiaryWriteViewNavigationButton.leftButtonForUpload.rawValue:
                 self.popToSentenceViewControllerWithAlert()
             case DiaryWriteViewNavigationButton.rightButtonForUpload.rawValue:
@@ -379,7 +377,7 @@ extension DiaryWriteViewController: AlertModalDelegate {
     func rightButtonTouchUp(button: UIButton) {
         self.alertModalView?.removeFromSuperview()
         if self.isFromDiary {
-            self.popToDiaryViewController()
+            self.popToDiaryViewController(save: false)
         } else {
             self.popToSentenceViewController()
         }
