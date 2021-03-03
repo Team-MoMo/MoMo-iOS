@@ -1,19 +1,19 @@
 {
   "images" : [
     {
-      "scale" : "1x",
       "idiom" : "universal",
-      "filename" : "iosFilterHappySelected.png"
+      "filename" : "iosFilterHappySelected.png",
+      "scale" : "1x"
     },
     {
+      "filename" : "iosFilterHappySelected@2x.png",
       "scale" : "2x",
-      "idiom" : "universal",
-      "filename" : "iosFilterHappySelected@2x.png"
+      "idiom" : "universal"
     },
     {
       "filename" : "iosFilterHappySelected@3x.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "idiom" : "universal"
     }
   ],
   "info" : {

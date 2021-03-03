@@ -1,8 +1,8 @@
 {
   "images" : [
     {
-      "filename" : "iosFilterAngrySelected.png",
       "idiom" : "universal",
+      "filename" : "iosFilterAngrySelected.png",
       "scale" : "1x"
     },
     {
@@ -11,9 +11,9 @@
       "scale" : "2x"
     },
     {
+      "filename" : "iosFilterAngrySelected@3x.png",
       "scale" : "3x",
-      "idiom" : "universal",
-      "filename" : "iosFilterAngrySelected@3x.png"
+      "idiom" : "universal"
     }
   ],
   "info" : {

@@ -1,19 +1,19 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
       "filename" : "iosFilterDailyUnselected.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "idiom" : "universal"
     },
     {
-      "filename" : "iosFilterDailyUnselected@2x.png",
       "idiom" : "universal",
+      "filename" : "iosFilterDailyUnselected@2x.png",
       "scale" : "2x"
     },
     {
       "filename" : "iosFilterDailyUnselected@3x.png",
-      "scale" : "3x",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

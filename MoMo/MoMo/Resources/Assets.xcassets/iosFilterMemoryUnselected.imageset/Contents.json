@@ -1,14 +1,14 @@
 {
   "images" : [
     {
+      "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "iosFilterMemoryUnselected.png",
-      "idiom" : "universal"
+      "filename" : "iosFilterMemoryUnselected.png"
     },
     {
-      "scale" : "2x",
+      "filename" : "iosFilterMemoryUnselected@2x.png",
       "idiom" : "universal",
-      "filename" : "iosFilterMemoryUnselected@2x.png"
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",

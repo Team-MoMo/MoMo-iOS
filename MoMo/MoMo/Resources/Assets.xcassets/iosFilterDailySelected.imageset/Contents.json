@@ -2,18 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "iosFilterDailySelected.png"
+      "filename" : "iosFilterDailySelected.png",
+      "scale" : "1x"
     },
     {
-      "filename" : "iosFilterDailySelected@2x.png",
+      "scale" : "2x",
       "idiom" : "universal",
-      "scale" : "2x"
+      "filename" : "iosFilterDailySelected@2x.png"
     },
     {
-      "scale" : "3x",
       "filename" : "iosFilterDailySelected@3x.png",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
