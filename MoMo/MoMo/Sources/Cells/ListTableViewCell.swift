@@ -97,32 +97,29 @@ class ListTableViewCell: UITableViewCell {
     
     // 일기 분리 작업
     func divideJournal(_ text: String, _ size: CGFloat) {
-        let textArray = text.split(separator: "\n")
+        let modifiedText = text.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "\n", with: " ")
 
         guard let font =  UIFont(name: "AppleSDGothicNeo-Regular", size: 12) else {
             return
         }
-        let firstText = String(textArray[0].trimmingCharacters(in: .whitespaces))
-        let labelSize: CGSize = firstText.size(withAttributes: [.font: font])
+        
+        let labelSize: CGSize = modifiedText.size(withAttributes: [.font: font])
         var length: CGFloat = 0
         var addedString: String = ""
         
         if labelSize.width > size {
-            for index in firstText.indices {
-                let charWidth = String(firstText[index]).size(withAttributes: [.font: font]).width
+            for index in modifiedText.indices {
+                let charWidth = String(modifiedText[index]).size(withAttributes: [.font: font]).width
                 if length + charWidth > size {
                     self.journalLabel1.attributedText = addedString.textSpacing()
-                    self.journalLabel2.attributedText = String(firstText[index...]).wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: false, truncated: true)
+                    self.journalLabel2.attributedText = String(modifiedText[index...]).wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: false, truncated: true)
                     break
                 }
                 length += charWidth
-                addedString += String(text[index])
+                addedString += String(modifiedText[index])
             }
-        } else if textArray.count > 1 {
-            self.journalLabel1.attributedText = firstText.textSpacing()
-            self.journalLabel2.attributedText = String(textArray[1].trimmingCharacters(in: .whitespaces)).wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: false, truncated: true)
         } else {
-            journalLabel1.attributedText = text.textSpacing()
+            journalLabel1.attributedText = modifiedText.textSpacing()
         }
     }
     
