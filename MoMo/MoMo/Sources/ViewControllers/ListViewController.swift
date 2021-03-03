@@ -272,8 +272,6 @@ class ListViewController: UIViewController {
         guard let statViewController = statStoryboard.instantiateViewController(identifier: Constants.Identifier.statisticsViewController) as? StatisticsViewController else {
             return
         }
-        statViewController.year = self.year
-        statViewController.month = self.month
         
         self.navigationController?.pushViewController(statViewController, animated: true)
 

@@ -43,6 +43,7 @@ class StatisticsViewController: UIViewController {
     // MARK: - Override LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeYearMonth()
         guard let unwrappedYear = year, let unwrappedMonth = month else {
             return
         }
@@ -55,6 +56,12 @@ class StatisticsViewController: UIViewController {
     }
 
     // MARK: - Private Function
+    
+    private func initializeYearMonth() {
+        let date = AppDate()
+        self.year = date.getYear()
+        self.month = date.getMonth()
+    }
     
     private func addTapRecognizerToDateLabel() {
         let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapDateLabel(_:)))
