@@ -101,10 +101,10 @@ class DeepViewController: UIViewController {
         case .diary:
             buttonText = "수정하기"
         }
-        self.infoLabel.text = infoText
+        self.infoLabel.attributedText = infoText.textSpacing()
         
         self.updateDeepViewController()
-        self.depthSelectionButton.setTitle(buttonText, for: .normal)
+        self.depthSelectionButton.setAttributedTitle(buttonText.textSpacing(), for: .normal)
     }
     
     private func initializeNavigationBar() {

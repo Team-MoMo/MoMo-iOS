@@ -28,7 +28,7 @@ class SettingTableViewCell: UITableViewCell {
     
     func setCell(image: UIImage?, labelText: String) {
         self.tableCellImage.image = image
-        self.tableCellLabel.text = labelText
+        self.tableCellLabel.attributedText = labelText.textSpacing()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

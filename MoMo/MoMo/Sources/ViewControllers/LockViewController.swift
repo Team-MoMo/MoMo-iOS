@@ -112,7 +112,7 @@ class LockViewController: UIViewController {
         switch self.lockViewUsage {
         case .setting:
             self.lockViewUsage = .doubleChecking
-            self.infoLabel.text = "다시 한 번 입력해주세요."
+            self.infoLabel.attributedText = "다시 한 번 입력해주세요.".textSpacing()
             self.saveFirstLockNumber()
             self.popAllLockNumberListAndEmptyIndicator()
         case .doubleChecking:
@@ -253,7 +253,7 @@ class LockViewController: UIViewController {
     
     private func showErrorMessage(message: String) {
         self.errorLabel.isHidden = false
-        self.errorLabel.text = message
+        self.errorLabel.attributedText = message.textSpacing()
         guard let errorLabelHeight = self.errorLabelHeight else { return }
         self.errorLabel.frame.size.height = errorLabelHeight
     }

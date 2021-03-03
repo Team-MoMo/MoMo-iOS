@@ -94,7 +94,6 @@ class ChangePasswordViewController: UIViewController {
         super.viewDidLoad()
         self.initializePasswordChangeViewController()
         self.initializeNavigationBar()
-        self.registerObserver()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -104,7 +103,6 @@ class ChangePasswordViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.cancelObserver()
     }
     
     // MARK: - Functions
@@ -148,7 +146,7 @@ class ChangePasswordViewController: UIViewController {
     }
     
     private func getPlaceholderWithAttributedString(message: String) -> NSAttributedString {
-        let placeholderAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Regular", size: 12)!, NSAttributedString.Key.foregroundColor: UIColor.Black6]
+        let placeholderAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.Black6]
         let placeholder: NSAttributedString = NSAttributedString(string: message, attributes: placeholderAttributes)
         return placeholder
     }
@@ -157,7 +155,7 @@ class ChangePasswordViewController: UIViewController {
         let titleLabelText: String = "비밀번호 변경"
         let titleLabel: UILabel = UILabel()
         let titleLabelColor = UIColor.Black2Nav
-        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16)!, NSAttributedString.Key.foregroundColor: titleLabelColor]
+        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .semibold), NSAttributedString.Key.foregroundColor: titleLabelColor]
         titleLabel.attributedText = NSAttributedString(string: titleLabelText, attributes: attributes)
         titleLabel.sizeToFit()
         
@@ -167,15 +165,6 @@ class ChangePasswordViewController: UIViewController {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
-    }
-    
-    private func registerObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    private func cancelObserver() {
-        NotificationCenter.default.removeObserver(self)
     }
     
     private func changePasswordButtonRoundedUp() {
@@ -396,7 +385,7 @@ extension ChangePasswordViewController: UITextFieldDelegate {
         guard let passwordInputUsage = PasswordInputUsage(rawValue: textField.tag) else { return }
         guard let passwordInputField = passwordInputFieldList[passwordInputUsage] else { return }
         passwordInputField.deleteButton.isHidden = true
-        let _ = self.verifyPassword(by: passwordInputUsage)
+        _ = self.verifyPassword(by: passwordInputUsage)
     }
 }
 
