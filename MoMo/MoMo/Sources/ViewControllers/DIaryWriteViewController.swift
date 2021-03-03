@@ -15,6 +15,10 @@ enum DiaryWriteViewNavigationButton: Int {
     case leftButtonForDiary = 0, rightButtonForDiary, leftButtonForUpload, rightButtonForUpload
 }
 
+enum DiaryJournalTextViewMode: Int {
+    case placeholder = 0, normal
+}
+
 class DiaryWriteViewController: UIViewController {
     
     // MARK: - IBOutlets
@@ -38,41 +42,36 @@ class DiaryWriteViewController: UIViewController {
     
     var isFromDiary: Bool = false
     var diaryInfo: AppDiary?
+    weak var diaryWriteViewControllerDelegate: DiaryWriteViewControllerDelegate?
     private var initialDiaryInfo: AppDiary?
     private var toastView: ToastView?
     private var alertModalView: AlertModalView?
     private lazy var placeHolder: NSAttributedString = {
-        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13),
-                                                         NSAttributedString.Key.foregroundColor: UIColor.Blue3,
-                                                         NSAttributedString.Key.kern: -0.6]
+        let attributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13),
+            NSAttributedString.Key.foregroundColor: UIColor.Blue3,
+            NSAttributedString.Key.kern: -0.6
+        ]
         return NSAttributedString(string: "파동을 충분히 느낀 후, 감정을 기록해보세요.", attributes: attributes)
     }()
-    
-    private var text: NSMutableAttributedString?
-    
-    weak var diaryWriteViewControllerDelegate: DiaryWriteViewControllerDelegate?
-    
     private lazy var leftButtonForDiary: UIBarButtonItem = {
         let button = UIBarButtonItem(image: Constants.Design.Image.btnBackWhite, style: .plain, target: self, action: #selector(touchNavigationButton(sender:)))
         button.tintColor = UIColor.Black1
         button.tag = DiaryWriteViewNavigationButton.leftButtonForDiary.rawValue
         return button
     }()
-    
     private lazy var rightButtonForDiary: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(touchNavigationButton(sender:)))
         button.tag = DiaryWriteViewNavigationButton.rightButtonForDiary.rawValue
         button.tintColor = UIColor.Blue2
         return button
     }()
-    
     private lazy var leftButtonForUpload: UIBarButtonItem = {
         let button = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchNavigationButton(sender:)))
         button.tag = DiaryWriteViewNavigationButton.leftButtonForUpload.rawValue
         button.tintColor = .black
         return button
     }()
-    
     private lazy var rightButtonForUpload: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "다음", style: .plain, target: self, action: #selector(touchNavigationButton(sender:)))
         button.tag = DiaryWriteViewNavigationButton.rightButtonForUpload.rawValue
@@ -94,6 +93,8 @@ class DiaryWriteViewController: UIViewController {
     private func initializeDiaryWriteViewController() {
         self.journalTextView.delegate = self
         self.updateDiaryWriteViewController()
+        self.journalTextView.tag = DiaryJournalTextViewMode.normal.rawValue
+        
         if self.isFromDiary {
             self.depthImage.isHidden = false
             self.depthLabel.isHidden = false
@@ -176,14 +177,15 @@ class DiaryWriteViewController: UIViewController {
     
     private func attachPlaceHolder() {
         self.journalTextView.attributedText = self.placeHolder
+        self.journalTextView.tag = DiaryJournalTextViewMode.placeholder.rawValue
     }
     
-    private func attachDiaryText() {
-        guard let text = self.isEmptyJournalTextView() ? " " : self.journalTextView.text else { return }
-        self.journalTextView.attributedText = self.returnDefaultText(text: text)
+    private func detachPlaceHolder() {
+        self.journalTextView.attributedText = nil
+        self.journalTextView.tag = DiaryJournalTextViewMode.normal.rawValue
     }
     
-    private func returnDefaultText(text: String) -> NSAttributedString {
+    private func changeToNormalAttributeString(text: String) -> NSAttributedString {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4
         let attributes: [NSAttributedString.Key : Any] = [
@@ -313,7 +315,14 @@ extension DiaryWriteViewController: UITextViewDelegate {
         if self.isEmptyJournalTextView() {
             self.shrinkQuoteLabel()
         }
-        self.attachDiaryText()
+        
+        guard let textViewMode = DiaryJournalTextViewMode(rawValue: self.journalTextView.tag) else { return true }
+        if textViewMode == .placeholder {
+            self.detachPlaceHolder()
+        } else {
+            textView.attributedText = changeToNormalAttributeString(text: textView.text)
+        }
+        
         return true
     }
     
@@ -324,7 +333,6 @@ extension DiaryWriteViewController: UITextViewDelegate {
         if self.isFromDiary {
             self.navigationItem.rightBarButtonItem = self.rightButtonForDiary
         }
-        self.saveDiary()
     }
     
     func textViewDidChange(_ textView: UITextView) {
@@ -332,6 +340,7 @@ extension DiaryWriteViewController: UITextViewDelegate {
             self.navigationItem.rightBarButtonItem = self.rightButtonForDiary
         }
         self.saveDiary()
+        textView.attributedText = changeToNormalAttributeString(text: textView.text)
     }
 }
 
