@@ -346,6 +346,7 @@ class ListViewController: UIViewController {
             return
         }
         moodViewController.listNoDiary = true
+        moodViewController.moodViewUsage = .upload
         
         self.navigationController?.pushViewController(moodViewController, animated: true)
     }
