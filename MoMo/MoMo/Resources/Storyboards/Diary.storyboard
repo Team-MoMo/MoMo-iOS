@@ -250,7 +250,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="oQJ-H7-hlt"/>
-                        <color key="backgroundColor" name="Gradient1"/>
+                        <color key="backgroundColor" name="Gradient6"/>
                         <constraints>
                             <constraint firstItem="5gZ-g4-ugS" firstAttribute="trailing" secondItem="oQJ-H7-hlt" secondAttribute="trailing" id="1FZ-tR-SfJ"/>
                             <constraint firstItem="oQJ-H7-hlt" firstAttribute="trailing" secondItem="JVd-oa-n8F" secondAttribute="trailing" constant="22" id="4Cn-MU-loO"/>
@@ -330,8 +330,8 @@
         <namedColor name="Blue7">
             <color red="0.96100002527236938" green="0.97600001096725464" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Gradient1">
-            <color red="0.41999998688697815" green="0.71799999475479126" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="Gradient6">
+            <color red="0.090000003576278687" green="0.59200000762939453" blue="0.94900000095367432" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
