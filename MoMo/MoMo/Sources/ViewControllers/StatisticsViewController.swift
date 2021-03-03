@@ -16,8 +16,8 @@ class StatisticsViewController: UIViewController {
     var depthButtonSubLayer: CALayer?
     var moodButtonSubLayer: CALayer?
     var dateModal: HomeModalViewController?
-    var year: Int? = 2021
-    var month: Int? = 01
+    var year: Int?
+    var month: Int?
     var depthData: [Int] = [0, 0, 0, 0, 0, 0, 0]
     var emotionData: [Int] = [0, 0, 0, 0, 0, 0, 0, 0]
     

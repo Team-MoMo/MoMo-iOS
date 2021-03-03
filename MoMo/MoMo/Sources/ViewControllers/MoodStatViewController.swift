@@ -23,7 +23,7 @@ class MoodStatViewController: UIViewController {
     // MARK: - Properties
     var maximum: CGFloat?
     var statViewMaximumHeight: CGFloat?
-    var moodStatData: [Int] = [6, 1, 8, 3, 5, 4, 3, 2]
+    var moodStatData: [Int] = [0, 0, 0, 0, 0, 0, 0, 0]
     
     // MARK: - IBOutlets
     @IBOutlet var statNumLabel: [UILabel]?

@@ -39,7 +39,7 @@ class DepthStatViewController: UIViewController {
     // MARK: - Properties
     var maximum: CGFloat?
     var statViewMaximumHeight: CGFloat?
-    var depthStatData: [Int] = [6, 1, 8, 3, 5, 4, 3]
+    var depthStatData: [Int] = [0, 0, 0, 0, 0, 0, 0]
     
     // MARK: - IBOutlets
     
