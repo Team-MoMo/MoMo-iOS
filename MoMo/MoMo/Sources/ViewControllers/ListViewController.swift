@@ -376,7 +376,7 @@ extension ListViewController: UITableViewDataSource {
             cell.selectionStyle = .none
             return cell
         case 1:
-            if pattern {
+            if filter.count > 0 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListFilterTableViewCell") as? ListFilterTableViewCell else {
                 return UITableViewCell()
                 }
