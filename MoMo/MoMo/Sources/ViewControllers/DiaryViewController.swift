@@ -229,7 +229,7 @@ class DiaryViewController: UIViewController {
     
     private func addBlurEffectOnBlurView(view: UIView) {
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
-        self.blurEffectView = CustomIntensityVisualEffectView(effect: blurEffect, intensity: 0.3)
+        self.blurEffectView = CustomIntensityVisualEffectView(effect: blurEffect, intensity: 0.2)
         if let blurEffectView = self.blurEffectView {
             blurEffectView.frame = view.bounds
             blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
