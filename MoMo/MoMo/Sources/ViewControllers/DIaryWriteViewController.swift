@@ -130,7 +130,8 @@ class DiaryWriteViewController: UIViewController {
               let author = self.diaryInfo?.sentence?.author,
               let bookTitle = self.diaryInfo?.sentence?.bookTitle,
               let publisher = self.diaryInfo?.sentence?.publisher,
-              let quote = self.diaryInfo?.sentence?.sentence else { return }
+              let quote = self.diaryInfo?.sentence?.sentence,
+              let diary = self.diaryInfo?.diary else { return }
         
         self.dateLabel.attributedText = date.textSpacing()
         self.emotionImage.image = diaryInfo?.mood?.toIcon()
@@ -141,8 +142,8 @@ class DiaryWriteViewController: UIViewController {
         self.quoteLabel.attributedText = quote.textSpacing()
         
         if self.isFromDiary {
-            self.depthLabel.text = diaryInfo?.depth?.toString()
-            self.journalTextView.text = diaryInfo?.diary
+            self.depthLabel.attributedText = diaryInfo?.depth?.toString().textSpacing()
+            self.journalTextView.attributedText = self.changeToNormalAttributeString(text: diary)
         }
     }
     
@@ -319,8 +320,6 @@ extension DiaryWriteViewController: UITextViewDelegate {
         guard let textViewMode = DiaryJournalTextViewMode(rawValue: self.journalTextView.tag) else { return true }
         if textViewMode == .placeholder {
             self.detachPlaceHolder()
-        } else {
-            textView.attributedText = changeToNormalAttributeString(text: textView.text)
         }
         
         return true
