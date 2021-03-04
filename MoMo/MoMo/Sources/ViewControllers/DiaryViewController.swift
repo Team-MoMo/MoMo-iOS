@@ -129,7 +129,7 @@ class DiaryViewController: UIViewController {
         self.moodImage.image = safeMood.toWhiteIcon()
         self.moodLabel.attributedText = safeMood.toString().textSpacing()
         self.depthLabel.attributedText = safeDepth.toString().textSpacing()
-        self.sentenceLabel.attributedText = safeSentence.sentence.textSpacing()
+        self.sentenceLabel.attributedText = safeSentence.sentence.wordTextSpacing(textSpacing: -0.4, lineSpacing: 4, center: true, truncated: false)
         self.authorLabel.attributedText = safeSentence.author.textSpacing()
         self.bookTitleLabel.attributedText = "<\(safeSentence.bookTitle)>".textSpacing()
         self.authorLabel.attributedText = safeSentence.author.textSpacing()
