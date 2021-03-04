@@ -229,7 +229,7 @@ class DeepViewController: UIViewController {
     
     private func addBlurEffectOnBlurView() {
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        let blurEffectView = CustomIntensityVisualEffectView(effect: blurEffect, intensity: 0.1)
         blurEffectView.frame = self.blurView.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.blurView.addSubview(blurEffectView)

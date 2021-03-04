@@ -52,6 +52,7 @@ class DiaryViewController: UIViewController {
     private var alertModalView: AlertModalView?
     private var diaryWriteViewController: DiaryWriteViewController?
     private var uploadModalViewController: UploadModalViewController?
+    private var blurEffectView: CustomIntensityVisualEffectView?
     private let initialDepth: AppDepth = AppDepth.depthSimhae
     
     lazy var leftButton: UIBarButtonItem = {
@@ -75,8 +76,12 @@ class DiaryViewController: UIViewController {
         
         self.initializeDiaryViewController()
         self.getDiaryWithAPI(completion: updateDiaryViewController(diaryInfo:))
-        self.addBlurEffectOnBlurView(view: self.blurView)
         self.initializeNavigationBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.blurEffectView?.removeFromSuperview()
+        self.addBlurEffectOnBlurView(view: self.blurView)
     }
     
     // MARK: - Functions
@@ -223,22 +228,29 @@ class DiaryViewController: UIViewController {
     }
     
     private func addBlurEffectOnBlurView(view: UIView) {
-        self.addBlurEffectOnView(view: view, cornerRadius: 17, blurStyle: UIBlurEffect.Style.light, alpha: 0.3)
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
+        self.blurEffectView = CustomIntensityVisualEffectView(effect: blurEffect, intensity: 0.3)
+        if let blurEffectView = self.blurEffectView {
+            blurEffectView.frame = view.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            blurEffectView.layer.cornerRadius = 17
+            blurEffectView.clipsToBounds = true
+            view.insertSubview(blurEffectView, at: 0)
+        }
     }
     
     private func addBlurEffectOnMenuView(view: UIView) {
-        self.addBlurEffectOnView(view: view, cornerRadius: 16, blurStyle: UIBlurEffect.Style.systemThinMaterialLight, alpha: 1.0)
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.extraLight)
+        let blurEffectMenuView = CustomIntensityVisualEffectView(effect: blurEffect, intensity: 0.8)
+        blurEffectMenuView.frame = view.bounds
+        blurEffectMenuView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectMenuView.layer.cornerRadius = 16
+        blurEffectMenuView.clipsToBounds = true
+        view.insertSubview(blurEffectMenuView, at: 0)
     }
     
-    private func addBlurEffectOnView(view: UIView, cornerRadius: CGFloat?, blurStyle: UIBlurEffect.Style, alpha: CGFloat) {
-        let blurEffect = UIBlurEffect(style: blurStyle)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.alpha = alpha
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurEffectView.layer.cornerRadius = cornerRadius ?? 0
-        blurEffectView.clipsToBounds = true
-        view.insertSubview(blurEffectView, at: 0)
+    private func addBlurEffectOnView(view: UIView, cornerRadius: CGFloat?, blurStyle: UIBlurEffect.Style, intensity: CGFloat) {
+        
     }
     
     private func updateBackgroundColorByDepth(depth: AppDepth?) {

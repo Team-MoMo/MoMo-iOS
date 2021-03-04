@@ -90,6 +90,7 @@
 		1CAD05B425AC3DEF007ECA40 /* DeepSliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CAD05B325AC3DEF007ECA40 /* DeepSliderView.xib */; };
 		1CAD05BA25AC59C1007ECA40 /* UISlider+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD05B925AC59C1007ECA40 /* UISlider+Extension.swift */; };
 		1CD8F82F25C1EEA5003F57D1 /* AppDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD8F82E25C1EEA5003F57D1 /* AppDate.swift */; };
+		1CDF3F8325F180F10048127A /* CustomVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDF3F8225F180F10048127A /* CustomVisualEffectView.swift */; };
 		1CEF46BF25A6DA7600AF3D81 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46BE25A6DA7600AF3D81 /* OnboardingViewController.swift */; };
 		1CEF46C225A6DAA000AF3D81 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CEF46C125A6DAA000AF3D81 /* Onboarding.storyboard */; };
 		1CEF46C525A6E09100AF3D81 /* MoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46C425A6E09100AF3D81 /* MoodViewController.swift */; };
@@ -228,6 +229,7 @@
 		1CAD05B325AC3DEF007ECA40 /* DeepSliderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeepSliderView.xib; sourceTree = "<group>"; };
 		1CAD05B925AC59C1007ECA40 /* UISlider+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISlider+Extension.swift"; sourceTree = "<group>"; };
 		1CD8F82E25C1EEA5003F57D1 /* AppDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDate.swift; sourceTree = "<group>"; };
+		1CDF3F8225F180F10048127A /* CustomVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVisualEffectView.swift; sourceTree = "<group>"; };
 		1CEF46BE25A6DA7600AF3D81 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		1CEF46C125A6DAA000AF3D81 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		1CEF46C425A6E09100AF3D81 /* MoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewController.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				1C8DD8FA25C8851A00C7A3BA /* ToastView.xib */,
 				562C649025D0554300AA9AB6 /* GetPasswordAlertView.swift */,
 				562C648D25D0553700AA9AB6 /* GetPasswordAlertView.xib */,
+				1CDF3F8225F180F10048127A /* CustomVisualEffectView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -795,6 +798,7 @@
 				56DD504B25E7EE8A003FBC38 /* UINavigationControllerDelegate+Extension.swift in Sources */,
 				10F092AE25CC3FA900342B18 /* OpenSourceDetailViewController.swift in Sources */,
 				1CAD05A525AACB36007ECA40 /* DeepViewController.swift in Sources */,
+				1CDF3F8325F180F10048127A /* CustomVisualEffectView.swift in Sources */,
 				10F092AA25CC356F00342B18 /* OpenSourceTableViewCell.swift in Sources */,
 				10F092A625CC351200342B18 /* OpenSourceViewController.swift in Sources */,
 				1CD8F82F25C1EEA5003F57D1 /* AppDate.swift in Sources */,

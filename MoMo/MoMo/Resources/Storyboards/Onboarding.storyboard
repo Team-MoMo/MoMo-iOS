@@ -949,7 +949,7 @@
                                     <constraint firstAttribute="width" secondItem="hup-je-MfH" secondAttribute="height" multiplier="375:411" id="LSB-Ol-kmv"/>
                                 </constraints>
                             </imageView>
-                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="poR-7a-CZ5" userLabel="BlurView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="poR-7a-CZ5" userLabel="BlurView">
                                 <rect key="frame" x="0.0" y="249" width="414" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oh8-Vs-YAQ">
