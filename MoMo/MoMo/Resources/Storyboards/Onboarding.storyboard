@@ -950,7 +950,17 @@
                                 </constraints>
                             </imageView>
                             <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="poR-7a-CZ5" userLabel="BlurView">
-                                <rect key="frame" x="0.0" y="214" width="414" height="682"/>
+                                <rect key="frame" x="0.0" y="249" width="414" height="647"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oh8-Vs-YAQ">
+                                        <rect key="frame" x="0.0" y="39" width="414" height="480"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="oh8-Vs-YAQ" secondAttribute="trailing" id="MRL-Vm-yOY"/>
+                                    <constraint firstItem="oh8-Vs-YAQ" firstAttribute="leading" secondItem="poR-7a-CZ5" secondAttribute="leading" id="ij7-gj-Rj1"/>
+                                    <constraint firstItem="oh8-Vs-YAQ" firstAttribute="top" secondItem="poR-7a-CZ5" secondAttribute="top" constant="39" id="mu6-c1-40P"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZXG-od-vzd" userLabel="StartButton">
                                 <rect key="frame" x="97" y="800" width="220" height="50"/>
@@ -1005,6 +1015,7 @@
                             <constraint firstItem="Pi1-gR-dGN" firstAttribute="top" secondItem="sBR-vZ-nwc" secondAttribute="bottom" constant="16" id="6Sd-1z-6tw"/>
                             <constraint firstItem="ZXG-od-vzd" firstAttribute="bottom" secondItem="c2l-Tu-1Pv" secondAttribute="bottom" constant="-12" id="8YA-FW-L0t"/>
                             <constraint firstItem="hup-je-MfH" firstAttribute="top" secondItem="kuc-O0-FKP" secondAttribute="top" id="93D-k4-Sh4"/>
+                            <constraint firstItem="ZXG-od-vzd" firstAttribute="top" secondItem="oh8-Vs-YAQ" secondAttribute="bottom" constant="32" id="Ada-v8-LZb"/>
                             <constraint firstItem="Ezr-HK-uSU" firstAttribute="trailing" secondItem="c2l-Tu-1Pv" secondAttribute="trailing" id="Blv-5C-xpx"/>
                             <constraint firstItem="sBR-vZ-nwc" firstAttribute="leading" secondItem="kuc-O0-FKP" secondAttribute="leading" constant="32" id="Cua-ib-BwO"/>
                             <constraint firstItem="w7y-Ag-1Nx" firstAttribute="width" secondItem="w7y-Ag-1Nx" secondAttribute="height" multiplier="1:1" id="F09-Ob-PKL"/>
@@ -1012,6 +1023,7 @@
                             <constraint firstAttribute="bottom" secondItem="Ezr-HK-uSU" secondAttribute="bottom" id="JAs-Gs-Azq"/>
                             <constraint firstAttribute="bottom" secondItem="poR-7a-CZ5" secondAttribute="bottom" id="MFE-Vo-hWq"/>
                             <constraint firstItem="w7y-Ag-1Nx" firstAttribute="leading" secondItem="Pi1-gR-dGN" secondAttribute="trailing" constant="12" id="Thv-Rq-hMu"/>
+                            <constraint firstItem="poR-7a-CZ5" firstAttribute="top" secondItem="sBR-vZ-nwc" secondAttribute="bottom" constant="110" id="Typ-pN-1bh"/>
                             <constraint firstItem="Pi1-gR-dGN" firstAttribute="leading" secondItem="sBR-vZ-nwc" secondAttribute="leading" id="UdV-Ud-hQ9"/>
                             <constraint firstItem="g8e-nN-vav" firstAttribute="trailing" secondItem="kuc-O0-FKP" secondAttribute="trailing" id="W3C-7f-az7"/>
                             <constraint firstItem="2bx-Dm-iZo" firstAttribute="leading" secondItem="w7y-Ag-1Nx" secondAttribute="trailing" constant="2" id="WxN-2I-71g"/>
@@ -1023,7 +1035,6 @@
                             <constraint firstItem="w7y-Ag-1Nx" firstAttribute="centerY" secondItem="Pi1-gR-dGN" secondAttribute="centerY" id="gjf-gw-Rg6"/>
                             <constraint firstItem="c2l-Tu-1Pv" firstAttribute="trailing" secondItem="hup-je-MfH" secondAttribute="trailing" id="iOQ-UY-fi9"/>
                             <constraint firstItem="g8e-nN-vav" firstAttribute="leading" secondItem="kuc-O0-FKP" secondAttribute="leading" id="kXI-2k-7xf"/>
-                            <constraint firstItem="poR-7a-CZ5" firstAttribute="top" secondItem="sBR-vZ-nwc" secondAttribute="bottom" constant="75" id="pS7-Uv-bzn"/>
                             <constraint firstItem="2bx-Dm-iZo" firstAttribute="centerY" secondItem="w7y-Ag-1Nx" secondAttribute="centerY" id="q9a-HD-UpA"/>
                             <constraint firstItem="ZXG-od-vzd" firstAttribute="centerX" secondItem="c2l-Tu-1Pv" secondAttribute="centerX" id="rqj-TX-cFT"/>
                             <constraint firstItem="Ezr-HK-uSU" firstAttribute="leading" secondItem="c2l-Tu-1Pv" secondAttribute="leading" id="wRd-M5-Do0"/>
@@ -1031,7 +1042,9 @@
                     </view>
                     <connections>
                         <outlet property="blurView" destination="poR-7a-CZ5" id="BHa-tJ-Jbz"/>
+                        <outlet property="blurViewVerticalSpacingConstraint" destination="Typ-pN-1bh" id="eaA-Cm-bW6"/>
                         <outlet property="dateLabel" destination="Pi1-gR-dGN" id="cI5-4J-NMh"/>
+                        <outlet property="deepSliderContainerView" destination="oh8-Vs-YAQ" id="BmL-KZ-nm5"/>
                         <outlet property="depthSelectionButton" destination="ZXG-od-vzd" id="A9h-ge-ob9"/>
                         <outlet property="gradientBackgroundView" destination="bMY-nT-BLJ" id="Yl2-LH-fMb"/>
                         <outlet property="gradientScrollView" destination="g8e-nN-vav" id="ZyS-z0-eDH"/>

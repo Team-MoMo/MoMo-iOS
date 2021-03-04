@@ -27,8 +27,10 @@ class DeepViewController: UIViewController {
     @IBOutlet weak var gradientScrollView: UIScrollView!
     @IBOutlet weak var gradientBackgroundView: UIView!
     @IBOutlet weak var blurView: UIView!
+    @IBOutlet weak var deepSliderContainerView: UIView!
     @IBOutlet weak var depthSelectionButton: UIButton!
     @IBOutlet weak var infoLabelVerticalSpacingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var blurViewVerticalSpacingConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
     
@@ -42,6 +44,7 @@ class DeepViewController: UIViewController {
     private var viewXpos: CGFloat?
     private var viewYpos: CGFloat?
     private let infoLabelVerticalSpacing: CGFloat = 66
+    private let blurViewVerticalSpacing: CGFloat = 75
     private var alertModalView: AlertModalView?
     weak var deepViewControllerDelegate: DeepViewControllerDelegate?
     private lazy var leftButton: UIBarButtonItem = {
@@ -95,6 +98,7 @@ class DeepViewController: UIViewController {
             self.hideMoodLabelAndImage()
             infoText = "오늘의 감정은\n잔잔한가요, 깊은가요?\n스크롤을 움직여서 기록해보세요"
             self.infoLabelVerticalSpacingConstraint.constant = self.infoLabelVerticalSpacing
+            self.blurViewVerticalSpacingConstraint.constant = self.blurViewVerticalSpacing
             buttonText = "시작하기"
         case .upload:
             buttonText = "기록하기"
@@ -175,10 +179,10 @@ class DeepViewController: UIViewController {
     
     private func updateDeepSliderViewContraints(view: UIView) {
         view.snp.makeConstraints { (make) in
-            make.height.equalTo(self.view.frame.size.width * 2)
-            make.width.equalTo(self.view.frame.size.height * 0.5)
-            make.centerX.equalTo(self.view.snp.leading).inset(47)
-            make.centerY.equalTo(self.blurView).offset(-35)
+            make.height.equalTo(self.deepSliderContainerView.snp.width)
+            make.width.equalTo(self.deepSliderContainerView.snp.height)
+            make.centerX.equalTo(self.deepSliderContainerView.snp.centerX).offset(30)
+            make.centerY.equalTo(self.deepSliderContainerView.snp.centerY)
         }
     }
     
@@ -365,7 +369,7 @@ extension DeepViewController: SliderDelegate {
     }
     
     func labelChanged(value: Float) {
-        deepSliderView?.deepLabelSlider.setThumbImage(deepSliderView?.labelImages[Int(value * 6)], for: .normal)
+        deepSliderView?.deepLabelSlider.setThumbImage(AppDepth(rawValue: Int(value * 6))?.toLabelImage(), for: .normal)
     }
 }
 

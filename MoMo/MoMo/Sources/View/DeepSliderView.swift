@@ -23,15 +23,6 @@ class DeepSliderView: UIView {
     // MARK: - Properties
     
     weak var sliderDelegate: SliderDelegate!
-    var labelImages: [UIImage?] = [
-        Constants.Design.Image.label2m,
-        Constants.Design.Image.label30m,
-        Constants.Design.Image.label100m,
-        Constants.Design.Image.label300m,
-        Constants.Design.Image.label700m,
-        Constants.Design.Image.label1005m,
-        Constants.Design.Image.labelDeepSea
-    ]
     
     // MARK: - View Life Cycle
     
@@ -65,17 +56,13 @@ class DeepSliderView: UIView {
         deepSliderView?.deepLineSlider.setValue(initialSliderValue, animated: false)
         deepSliderView?.deepLineSlider.minimumTrackTintColor = UIColor.white.withAlphaComponent(0)
         deepSliderView?.deepLineSlider.maximumTrackTintColor = UIColor.white.withAlphaComponent(0)
-        let line = UIView(frame: CGRect(x: 0, y: 0, width: 105, height: 0.5))
-        line.backgroundColor = UIColor.white.withAlphaComponent(0.5)
-        let lineImage = line.asImage()
-        let rotatedImage = lineImage.rotate(radians: -(.pi / 2))
-        deepSliderView?.deepLineSlider.setThumbImage(rotatedImage, for: .normal)
+        deepSliderView?.deepLineSlider.setThumbImage(Constants.Design.Image.deepLine, for: .normal)
         
         // deepLabelSlider 설정
         deepSliderView?.deepLabelSlider.setValue(initialSliderValue, animated: false)
         deepSliderView?.deepLabelSlider.minimumTrackTintColor = UIColor.white.withAlphaComponent(0)
         deepSliderView?.deepLabelSlider.maximumTrackTintColor = UIColor.white.withAlphaComponent(0)
-        deepSliderView?.deepLabelSlider.setThumbImage(deepSliderView?.labelImages[initialDepth.rawValue], for: .normal)
+        deepSliderView?.deepLabelSlider.setThumbImage(initialDepth.toLabelImage(), for: .normal)
         
         return deepSliderView
     }
