@@ -181,7 +181,7 @@ class DeepViewController: UIViewController {
         view.snp.makeConstraints { (make) in
             make.height.equalTo(self.deepSliderContainerView.snp.width)
             make.width.equalTo(self.deepSliderContainerView.snp.height)
-            make.centerX.equalTo(self.deepSliderContainerView.snp.centerX).offset(30)
+            make.centerX.equalTo(self.deepSliderContainerView.snp.centerX)
             make.centerY.equalTo(self.deepSliderContainerView.snp.centerY)
         }
     }

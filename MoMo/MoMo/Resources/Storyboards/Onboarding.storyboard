@@ -953,12 +953,12 @@
                                 <rect key="frame" x="0.0" y="249" width="414" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oh8-Vs-YAQ">
-                                        <rect key="frame" x="0.0" y="39" width="414" height="480"/>
+                                        <rect key="frame" x="47" y="39" width="367" height="480"/>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="oh8-Vs-YAQ" secondAttribute="trailing" id="MRL-Vm-yOY"/>
-                                    <constraint firstItem="oh8-Vs-YAQ" firstAttribute="leading" secondItem="poR-7a-CZ5" secondAttribute="leading" id="ij7-gj-Rj1"/>
+                                    <constraint firstItem="oh8-Vs-YAQ" firstAttribute="leading" secondItem="poR-7a-CZ5" secondAttribute="leading" constant="47" id="ij7-gj-Rj1"/>
                                     <constraint firstItem="oh8-Vs-YAQ" firstAttribute="top" secondItem="poR-7a-CZ5" secondAttribute="top" constant="39" id="mu6-c1-40P"/>
                                 </constraints>
                             </view>
