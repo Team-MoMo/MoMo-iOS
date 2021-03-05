@@ -316,6 +316,7 @@ class DiaryViewController: UIViewController {
         self.authorLabel.isHidden = true
         self.publisherLabel.isHidden = true
         self.diaryLabel.isHidden = true
+        self.diarySeaweed.isHidden = true
     }
     
     private func showDiaryViews() {
@@ -326,6 +327,7 @@ class DiaryViewController: UIViewController {
         self.authorLabel.isHidden = false
         self.publisherLabel.isHidden = false
         self.diaryLabel.isHidden = false
+        self.diarySeaweed.isHidden = false
     }
     
     @objc private func buttonPressed(sender: Any) {
