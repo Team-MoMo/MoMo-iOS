@@ -459,7 +459,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         attachObjet(frameX: screenWidth - (seaweed?.size.width ?? CGFloat(0)), frameY: sectionFrameY, img: seaweed ?? UIImage())
         attachObjet(frameX: 9, frameY: sectionFrameCenterY - 90, img: dolphin1 ?? UIImage())
         attachObjet(frameX: screenWidth - 22 - (dolphin2?.size.width ?? CGFloat(0)), frameY: sectionFrameCenterY + 137, img: dolphin2 ?? UIImage())
-        attachObjet(frameX: 0, frameY: sectionFrameBottom, img: coral1 ?? UIImage())
+        attachObjet(frameX: 0, frameY: sectionFrameBottom - (coral1?.size.height ?? CGFloat(0)), img: coral1 ?? UIImage())
         attachObjet(frameX: screenWidth - (fish1?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom, img: fish1 ?? UIImage())
         attachObjet(frameX: screenWidth - (seaweed3?.size.width ?? CGFloat(0)), frameY: sectionFrameBottom - 267 - (seaweed3?.size.height ?? CGFloat(0)), img: seaweed3 ?? UIImage())
     }
