@@ -200,7 +200,8 @@ class ChangePasswordViewController: UIViewController {
     
     private func isValidPassword(password: String?) -> Bool {
         guard let safePassword = password else { return false }
-        guard let regex = try? NSRegularExpression(pattern: "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,16}$") else { return false }
+        guard let regex = try? NSRegularExpression(pattern: "(?=.*[A-Za-z])(?=.*[0-9]).{6,20}") else { return false }
+        
         let range = NSRange(location: 0, length: safePassword.utf16.count)
         return regex.firstMatch(in: safePassword, options: [], range: range) != nil
     }
