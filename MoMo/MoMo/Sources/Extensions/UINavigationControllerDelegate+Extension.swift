@@ -20,7 +20,7 @@ extension UINavigationController: UINavigationControllerDelegate {
         if responds(to: #selector(getter: self.interactivePopGestureRecognizer)) {
             
             // 현재 VC가 Home, Login, teamMOMO일 때 gesture 비활성화
-            if viewController.isKind(of: HomeViewController.self) || viewController.isKind(of: LoginViewController.self) || viewController.isKind(of: TeamViewController.self) {
+            if viewController.isKind(of: HomeViewController.self) || viewController.isKind(of: LoginViewController.self) {
                 interactivePopGestureRecognizer?.isEnabled = false
             } else {
                 interactivePopGestureRecognizer?.isEnabled = true
