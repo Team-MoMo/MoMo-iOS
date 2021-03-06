@@ -19,9 +19,9 @@
                     <color key="backgroundColor" name="HomeDay1"/>
                 </view>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dayCloud" translatesAutoresizingMaskIntoConstraints="NO" id="f51-lL-qV3">
-                    <rect key="frame" x="0.0" y="77" width="414" height="165.5"/>
+                    <rect key="frame" x="0.0" y="77" width="414" height="179"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="f51-lL-qV3" secondAttribute="height" multiplier="5:2" id="UnV-9R-8LQ"/>
+                        <constraint firstAttribute="width" secondItem="f51-lL-qV3" secondAttribute="height" multiplier="375:162" id="UnV-9R-8LQ"/>
                     </constraints>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="daySea" translatesAutoresizingMaskIntoConstraints="NO" id="OaN-tO-Ogn">
