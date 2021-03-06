@@ -99,13 +99,13 @@ class ListViewController: UIViewController {
         journalLabel2WidthSize = self.view.bounds.width * (237/zeplinWidth)
         // 홈에서 받은 데이트 변수에 대입
         date = "\(year)년 \(month)월"
-        initializeNaviTitleLabel("\(year)년 \(month)월")
+        updateNaviTitleLabel(self.date)
         // 필터에서 기준으로 잡을 년과 월 저장
         standardYear = year
         standardMonth = month
     }
     
-    private func initializeNaviTitleLabel(_ date: String) {
+    private func updateNaviTitleLabel(_ date: String) {
         if let font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16) {
             let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: font,
                                                              NSAttributedString.Key.foregroundColor: UIColor.Black2Nav,
@@ -381,7 +381,7 @@ extension ListViewController: UITableViewDataSource {
             cell.selectionStyle = .none
             return cell
         case 1:
-            if pattern {
+            if filter.count > 0 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListFilterTableViewCell") as? ListFilterTableViewCell else {
                 return UITableViewCell()
                 }
@@ -479,6 +479,7 @@ extension ListViewController: ListFilterModalViewDelegate {
         self.month = month
         self.filter = filterArray
         self.date = "\(year)년 \(month)월"
+        updateNaviTitleLabel(self.date)
         updateNavigationBarButton()
 
         if filterArray.count > 0 || self.year != standardYear || self.month != standardMonth {
