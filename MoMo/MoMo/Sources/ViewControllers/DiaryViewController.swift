@@ -37,7 +37,7 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var publisherLabel: UILabel!
     @IBOutlet weak var diaryLabel: UILabel!
     @IBOutlet weak var blurView: UIView!
-    @IBOutlet weak var descriptionView: UIView!
+    @IBOutlet weak var descriptionStackView: UIStackView!
     
     // MARK: - Properties
     
@@ -52,7 +52,8 @@ class DiaryViewController: UIViewController {
     private var alertModalView: AlertModalView?
     private var diaryWriteViewController: DiaryWriteViewController?
     private var uploadModalViewController: UploadModalViewController?
-    private let initialDepth: AppDepth = AppDepth.depth2m
+    private var blurEffectView: CustomIntensityVisualEffectView?
+    private let initialDepth: AppDepth = AppDepth.depthSimhae
     
     lazy var leftButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: Constants.Design.Image.btnBackWhite, style: .plain, target: self, action: #selector(buttonPressed(sender:)))
@@ -75,8 +76,12 @@ class DiaryViewController: UIViewController {
         
         self.initializeDiaryViewController()
         self.getDiaryWithAPI(completion: updateDiaryViewController(diaryInfo:))
-        self.addBlurEffectOnBlurView(view: self.blurView)
         self.initializeNavigationBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.blurEffectView?.removeFromSuperview()
+        self.addBlurEffectOnBlurView(view: self.blurView)
     }
     
     // MARK: - Functions
@@ -94,6 +99,7 @@ class DiaryViewController: UIViewController {
             self.shark1: "shark1"
         ]
         self.updateObjetsByDepth(depth: self.initialDepth)
+        self.updateDescriptionStackViewContraints()
         self.hideDiaryViews()
     }
     
@@ -113,21 +119,27 @@ class DiaryViewController: UIViewController {
         self.showDiaryViews()
     }
     
+    private func updateDescriptionStackViewContraints() {
+        self.descriptionStackView.setCustomSpacing(2, after: self.moodImage)
+        self.descriptionStackView.setCustomSpacing(10, after: self.moodLabel)
+        self.descriptionStackView.setCustomSpacing(4, after: self.depthImage)
+    }
+    
     private func updateProperties(diaryInfo: AppDiary?) {
         guard let safeDate = diaryInfo?.date,
               let safeMood = diaryInfo?.mood,
               let safeDepth = diaryInfo?.depth,
               let safeSentence = diaryInfo?.sentence else { return }
-        self.dateLabel.text = safeDate.getFormattedDateAndWeekday(with: ". ")
+        self.dateLabel.attributedText = safeDate.getFormattedDateAndWeekday(with: ". ").textSpacing()
         self.moodImage.image = safeMood.toWhiteIcon()
-        self.moodLabel.text = safeMood.toString()
-        self.depthLabel.text = safeDepth.toString()
-        self.sentenceLabel.text = safeSentence.sentence
-        self.authorLabel.text = safeSentence.author
-        self.bookTitleLabel.text = "<\(safeSentence.bookTitle)>"
-        self.authorLabel.text = safeSentence.author
-        self.publisherLabel.text = "(\(safeSentence.publisher))"
-        self.diaryLabel.text = diaryInfo?.diary
+        self.moodLabel.attributedText = safeMood.toString().textSpacing()
+        self.depthLabel.attributedText = safeDepth.toString().textSpacing()
+        self.sentenceLabel.attributedText = safeSentence.sentence.wordTextSpacing(textSpacing: -0.4, lineSpacing: 4, center: true, truncated: false)
+        self.authorLabel.attributedText = safeSentence.author.textSpacing()
+        self.bookTitleLabel.attributedText = "<\(safeSentence.bookTitle)>".textSpacing()
+        self.authorLabel.attributedText = safeSentence.author.textSpacing()
+        self.publisherLabel.attributedText = "(\(safeSentence.publisher))".textSpacing()
+        self.diaryLabel.attributedText = diaryInfo?.diary?.textSpacing()
     }
     
     private func attachMenuView() {
@@ -216,22 +228,29 @@ class DiaryViewController: UIViewController {
     }
     
     private func addBlurEffectOnBlurView(view: UIView) {
-        self.addBlurEffectOnView(view: view, cornerRadius: 17, blurStyle: UIBlurEffect.Style.light, alpha: 0.3)
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
+        self.blurEffectView = CustomIntensityVisualEffectView(effect: blurEffect, intensity: 0.2)
+        if let blurEffectView = self.blurEffectView {
+            blurEffectView.frame = view.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            blurEffectView.layer.cornerRadius = 17
+            blurEffectView.clipsToBounds = true
+            view.insertSubview(blurEffectView, at: 0)
+        }
     }
     
     private func addBlurEffectOnMenuView(view: UIView) {
-        self.addBlurEffectOnView(view: view, cornerRadius: 16, blurStyle: UIBlurEffect.Style.systemThinMaterialLight, alpha: 1.0)
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.extraLight)
+        let blurEffectMenuView = CustomIntensityVisualEffectView(effect: blurEffect, intensity: 0.8)
+        blurEffectMenuView.frame = view.bounds
+        blurEffectMenuView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectMenuView.layer.cornerRadius = 16
+        blurEffectMenuView.clipsToBounds = true
+        view.insertSubview(blurEffectMenuView, at: 0)
     }
     
-    private func addBlurEffectOnView(view: UIView, cornerRadius: CGFloat?, blurStyle: UIBlurEffect.Style, alpha: CGFloat) {
-        let blurEffect = UIBlurEffect(style: blurStyle)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.alpha = alpha
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurEffectView.layer.cornerRadius = cornerRadius ?? 0
-        blurEffectView.clipsToBounds = true
-        view.insertSubview(blurEffectView, at: 0)
+    private func addBlurEffectOnView(view: UIView, cornerRadius: CGFloat?, blurStyle: UIBlurEffect.Style, intensity: CGFloat) {
+        
     }
     
     private func updateBackgroundColorByDepth(depth: AppDepth?) {
@@ -291,22 +310,24 @@ class DiaryViewController: UIViewController {
     
     private func hideDiaryViews() {
         self.dateLabel.isHidden = true
-        self.descriptionView.isHidden = true
+        self.descriptionStackView.isHidden = true
         self.sentenceLabel.isHidden = true
         self.bookTitleLabel.isHidden = true
         self.authorLabel.isHidden = true
         self.publisherLabel.isHidden = true
         self.diaryLabel.isHidden = true
+        self.diarySeaweed.isHidden = true
     }
     
     private func showDiaryViews() {
         self.dateLabel.isHidden = false
-        self.descriptionView.isHidden = false
+        self.descriptionStackView.isHidden = false
         self.sentenceLabel.isHidden = false
         self.bookTitleLabel.isHidden = false
         self.authorLabel.isHidden = false
         self.publisherLabel.isHidden = false
         self.diaryLabel.isHidden = false
+        self.diarySeaweed.isHidden = false
     }
     
     @objc private func buttonPressed(sender: Any) {
@@ -333,9 +354,9 @@ class DiaryViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
-        
         guard touch?.view == self.menuView?.dateMenuView || touch?.view == self.menuView?.depthMenuView ||
-            touch?.view == self.menuView?.diaryWriteMenuView || touch?.view == self.menuView?.deleteMenuView else {
+                touch?.view == self.menuView?.diaryWriteMenuView || touch?.view == self.menuView?.deleteMenuView ||
+                touch?.view is UIVisualEffectView else {
             self.detachMenuView()
             return
         }
@@ -350,6 +371,7 @@ class DiaryViewController: UIViewController {
         guard let deepViewController = onboardingStoryboard.instantiateViewController(identifier: Constants.Identifier.deepViewController) as? DeepViewController else { return }
         deepViewController.deepViewControllerDelegate = self
         deepViewController.initialDepth = self.diaryInfo?.depth
+        deepViewController.diaryInfo = self.diaryInfo
         deepViewController.deepViewUsage = .diary
         self.navigationController?.pushViewController(deepViewController, animated: true)
     }
@@ -428,7 +450,12 @@ extension DiaryViewController: AlertModalDelegate {
     
     func rightButtonTouchUp(button: UIButton) {
         self.deleteDiaryWithAPI(completion: {
-            self.popToHomeViewController()
+            if self.isFromListView {
+                self.isFromListView = false
+                self.popToListViewController()
+            } else {
+                self.popToHomeViewController()
+            }
         })
     }
 }

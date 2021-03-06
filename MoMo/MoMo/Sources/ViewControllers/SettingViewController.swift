@@ -56,7 +56,7 @@ class SettingViewController: UIViewController {
         let button: UIButton = UIButton()
         let buttonLabelText: String = "회원탈퇴"
         let buttonLabelColor = UIColor.Black6
-        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Regular", size: 14)!, NSAttributedString.Key.foregroundColor: buttonLabelColor]
+        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular), NSAttributedString.Key.foregroundColor: buttonLabelColor]
         let buttonLabelAttributedText = NSAttributedString(string: buttonLabelText, attributes: attributes)
         button.setAttributedTitle(buttonLabelAttributedText, for: .normal)
         button.addTarget(self, action: #selector(touchWithDrawalButton(sender:)), for: .touchUpInside)
@@ -66,7 +66,7 @@ class SettingViewController: UIViewController {
         let label: UILabel = UILabel()
         let labelText: String = "Ver. 1.0"
         let labelColor = UIColor.Blue4
-        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Medium", size: 14)!, NSAttributedString.Key.foregroundColor: labelColor]
+        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .medium), NSAttributedString.Key.foregroundColor: labelColor]
         label.attributedText = NSAttributedString(string: labelText, attributes: attributes)
         label.sizeToFit()
         return label

@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class ToastView: UIView {
     
     @IBOutlet weak var toastViewContainer: UIView!
@@ -30,7 +29,7 @@ class ToastView: UIView {
         
         let toastView: ToastView? = initFromNib()
         toastView?.toastViewContainer.round(corners: UIRectCorner.allCorners, cornerRadius: Double(toastView?.toastViewContainer.frame.size.height ?? 48 / 2))
-        toastView?.toastMessage.text = message
+        toastView?.toastMessage.attributedText = message.textSpacing()
         
         return toastView
     }

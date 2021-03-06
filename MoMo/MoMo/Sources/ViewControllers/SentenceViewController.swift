@@ -98,19 +98,19 @@ class SentenceViewController: UIViewController {
         
         self.updateSentenceLabel()
         self.initializeButtons()
-        self.moodLabel.text = self.selectedMood?.toString()
+        self.moodLabel.attributedText = self.selectedMood?.toString().textSpacing()
         self.moodIcon.image = self.selectedMood?.toIcon()
-        self.dateLabel.text = self.date
+        self.dateLabel.attributedText = self.date?.textSpacing()
         guard let emotionId = self.selectedMood?.rawValue else { return }
         
         switch self.sentenveViewUsage {
         case .onboarding:
-            self.infoLabel.text = "감정과 어울리는 문장을\n매일 3개씩 소개해드릴게요"
+            self.infoLabel.attributedText = "감정과 어울리는 문장을\n매일 3개씩 소개해드릴게요".textSpacing()
             self.infoLabelVerticalSpacingContraint.constant = self.infoLabelVerticalSpacing
             self.hideImages()
             self.getOnboardingSentenceWithAPI(emotionId: emotionId, completion: updateSentenceLabel)
         case .upload:
-            self.infoLabel.text = "마음에 파동이\n이는 문장을 만나보세요"
+            self.infoLabel.attributedText = "마음에 파동이\n이는 문장을 만나보세요".textSpacing()
             self.getSentencesWithAPI(emotionId: String(emotionId), userId: String(APIConstants.userId), completion: updateSentenceLabel)
         }
     }

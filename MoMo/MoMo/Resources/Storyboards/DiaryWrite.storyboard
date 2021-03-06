@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bxo-SG-ApH">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="381"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="405"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="접입가경, 이게 웬 심장이 콧구멍으로 쏟아질 얘긴가 싶지만 그저 지레짐작이나 얻어걸린 이야기일 가능성이 더 많으니 조각은 표정을 바꾸지 않는다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1C-K4-oQ0">
                                                 <rect key="frame" x="33" y="150.5" width="348" height="50.5"/>
@@ -72,12 +72,19 @@
                                                     <constraint firstAttribute="height" constant="1" id="iLY-dy-NDh"/>
                                                 </constraints>
                                             </view>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="CjR-iA-mcL">
-                                                <rect key="frame" x="33" y="248" width="348" height="133"/>
-                                                <string key="text">문장을 마음껏 느껴보고, 오늘의 감정을 기록해보세요. 왜냐면요 그냥요 할말이 없으니까 아무말이나 적긴할건데 진심 업로드뷰개처어려워요 ㅋ 아니 이것보다 어려운건 깊이 임 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ깊이뷰 진짜 개패고싶당 어쩔수없지 내가 맞는수밖에 헤헹; 아니 일단 뎇ㅊ대충이런 일기를 쓰겠지 뭐
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CjR-iA-mcL">
+                                                <rect key="frame" x="33" y="248" width="348" height="157"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment>
+                                                        <string key="content">문장을 마음껏 느껴보고, 오늘의 감정을 기록해보세요. 왜냐면요 그냥요 할말이 없으니까 아무말이나 적긴할건데 진심 업로드뷰개처어려워요 ㅋ 아니 이것보다 어려운건 깊이 임 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ깊이뷰 진짜 개패고싶당 어쩔수없지 내가 맞는수밖에 헤헹; 아니 일단 뎇ㅊ대충이런 일기를 쓰겠지 뭐
 </string>
-                                                <color key="textColor" name="Black3List"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <attributes>
+                                                            <color key="NSColor" name="Black3List"/>
+                                                            <font key="NSFont" metaFont="system" size="14"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                         </subviews>

@@ -38,13 +38,13 @@ class AlertModalView: UIView {
         
         let alertModalView: AlertModalView? = initFromNib()
         
-        let leftButtonTitleText = NSMutableAttributedString(string: leftButtonTitle)
-        let rightButtonTitleText = NSMutableAttributedString(string: rightButtonTitle)
+        let leftButtonTitleText = leftButtonTitle.textSpacing()
+        let rightButtonTitleText = rightButtonTitle.textSpacing()
         rightButtonTitleText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.AlertRightButtonGray, range: NSRange(location: 0, length: rightButtonTitleText.length))
         
         alertModalView?.leftButton.setAttributedTitle(leftButtonTitleText, for: .normal)
         alertModalView?.rightButton.setAttributedTitle(rightButtonTitleText, for: .normal)
-        alertModalView?.alertLabel.text = alertLabelText
+        alertModalView?.alertLabel.attributedText = alertLabelText.wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: true, truncated: false)
         alertModalView?.modalContainerView.layer.cornerRadius = 10
         alertModalView?.modalContainerView.clipsToBounds = true
         alertModalView?.backgroundColor = UIColor.black.withAlphaComponent(0.3)

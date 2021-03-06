@@ -47,4 +47,23 @@ enum AppDepth: Int {
             return [UIColor.Gradient7.cgColor, UIColor.Gradient8.cgColor]
         }
     }
+    
+    func toLabelImage() -> UIImage? {
+        switch self {
+        case .depth2m:
+            return Constants.Design.Image.label2m
+        case .depth30m:
+            return Constants.Design.Image.label30m
+        case .depth100m:
+            return Constants.Design.Image.label100m
+        case .depth300m:
+            return Constants.Design.Image.label300m
+        case .depth700m:
+            return Constants.Design.Image.label700m
+        case .depth1005m:
+            return Constants.Design.Image.label1005m
+        case .depthSimhae:
+            return Constants.Design.Image.labelDeepSea
+        }
+    }
 }

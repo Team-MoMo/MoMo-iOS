@@ -21,11 +21,16 @@ class DeepViewController: UIViewController {
     // MARK: - @IBOutlet Properties
     
     @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var moodImage: UIImageView!
+    @IBOutlet weak var moodLabel: UILabel!
     @IBOutlet weak var gradientScrollView: UIScrollView!
     @IBOutlet weak var gradientBackgroundView: UIView!
     @IBOutlet weak var blurView: UIView!
+    @IBOutlet weak var deepSliderContainerView: UIView!
     @IBOutlet weak var depthSelectionButton: UIButton!
     @IBOutlet weak var infoLabelVerticalSpacingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var blurViewVerticalSpacingConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
     
@@ -39,6 +44,7 @@ class DeepViewController: UIViewController {
     private var viewXpos: CGFloat?
     private var viewYpos: CGFloat?
     private let infoLabelVerticalSpacing: CGFloat = 66
+    private let blurViewVerticalSpacing: CGFloat = 75
     private var alertModalView: AlertModalView?
     weak var deepViewControllerDelegate: DeepViewControllerDelegate?
     private lazy var leftButton: UIBarButtonItem = {
@@ -88,16 +94,21 @@ class DeepViewController: UIViewController {
         var infoText: String = "감정이 얼마나 깊은가요?\n나만의 바다에 기록해보세요"
         switch self.deepViewUsage {
         case .onboarding:
+            self.hideDateLabel()
+            self.hideMoodLabelAndImage()
             infoText = "오늘의 감정은\n잔잔한가요, 깊은가요?\n스크롤을 움직여서 기록해보세요"
             self.infoLabelVerticalSpacingConstraint.constant = self.infoLabelVerticalSpacing
+            self.blurViewVerticalSpacingConstraint.constant = self.blurViewVerticalSpacing
             buttonText = "시작하기"
         case .upload:
             buttonText = "기록하기"
         case .diary:
             buttonText = "수정하기"
         }
-        self.infoLabel.text = infoText
-        self.depthSelectionButton.setTitle(buttonText, for: .normal)
+        self.infoLabel.attributedText = infoText.textSpacing()
+        
+        self.updateDeepViewController()
+        self.depthSelectionButton.setAttributedTitle(buttonText.textSpacing(), for: .normal)
     }
     
     private func initializeNavigationBar() {
@@ -113,6 +124,14 @@ class DeepViewController: UIViewController {
             self.navigationItem.rightBarButtonItem = self.rightButton
         case .diary:
             return
+        }
+    }
+    
+    private func updateDeepViewController() {
+        if let date = self.diaryInfo?.date, let mood = self.diaryInfo?.mood {
+            self.dateLabel.attributedText = date.getFormattedDateAndWeekday(with: ". ").textSpacing()
+            self.moodImage.image = mood.toWhiteIcon()
+            self.moodLabel.attributedText = mood.toString().textSpacing()
         }
     }
     
@@ -160,10 +179,10 @@ class DeepViewController: UIViewController {
     
     private func updateDeepSliderViewContraints(view: UIView) {
         view.snp.makeConstraints { (make) in
-            make.height.equalTo(self.view.frame.size.width * 2)
-            make.width.equalTo(self.view.frame.size.height * 0.5)
-            make.centerX.equalTo(self.view.snp.leading).inset(47)
-            make.centerY.equalTo(self.blurView).offset(-35)
+            make.height.equalTo(self.deepSliderContainerView.snp.width)
+            make.width.equalTo(self.deepSliderContainerView.snp.height)
+            make.centerX.equalTo(self.deepSliderContainerView.snp.centerX)
+            make.centerY.equalTo(self.deepSliderContainerView.snp.centerY)
         }
     }
     
@@ -199,9 +218,18 @@ class DeepViewController: UIViewController {
         self.attachAlertModalView()
     }
     
+    private func hideDateLabel() {
+        self.dateLabel.isHidden = true
+    }
+    
+    private func hideMoodLabelAndImage() {
+        self.moodImage.isHidden = true
+        self.moodLabel.isHidden = true
+    }
+    
     private func addBlurEffectOnBlurView() {
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        let blurEffectView = CustomIntensityVisualEffectView(effect: blurEffect, intensity: 0.1)
         blurEffectView.frame = self.blurView.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.blurView.addSubview(blurEffectView)
@@ -341,7 +369,7 @@ extension DeepViewController: SliderDelegate {
     }
     
     func labelChanged(value: Float) {
-        deepSliderView?.deepLabelSlider.setThumbImage(deepSliderView?.labelImages[Int(value * 6)], for: .normal)
+        deepSliderView?.deepLabelSlider.setThumbImage(AppDepth(rawValue: Int(value * 6))?.toLabelImage(), for: .normal)
     }
 }
 

@@ -26,6 +26,15 @@ class LoginViewController: UIViewController {
     var colorSets = [[CGColor]]() // 단계 별 gradient color 배열
     // TODO: - currentColorSet, depth 중 뭐 쓸건지 정리 필요
     var currentColorSet: Int = 0
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = false
+        activityIndicator.style = UIActivityIndicatorView.Style.medium
+        activityIndicator.startAnimating()
+        return activityIndicator
+    }()
     
     // MARK: - View Life Cycle
     
@@ -119,13 +128,25 @@ class LoginViewController: UIViewController {
         self.navigationController?.pushViewController(emailLoginViewController, animated: true)
     }
     
+    private func attachActivityIndicator() {
+        self.view.addSubview(self.activityIndicator)
+    }
+    
+    private func detachActivityIndicator() {
+        if self.activityIndicator.isAnimating {
+            self.activityIndicator.stopAnimating()
+        }
+        self.activityIndicator.removeFromSuperview()
+    }
+    
     // MARK: - @IBAction Properties
-
+    
     @IBAction func touchEmailLoginButton(_ sender: UIButton) {
         self.pushToEmailLoginViewController()
     }
     
     @IBAction func touchAppleLoginButton(_ sender: Any) {
+        self.attachActivityIndicator()
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
@@ -137,24 +158,26 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func touchKakaoLoginButton(_ sender: Any) {
+        self.attachActivityIndicator()
         // 카카오톡 설치 여부 확인
-          if (AuthApi.isKakaoTalkLoginAvailable()) {
+        if AuthApi.isKakaoTalkLoginAvailable() {
             // 카카오톡 로그인. api 호출 결과를 클로저로 전달.
             AuthApi.shared.loginWithKakaoTalk {(oauthToken, error) in
                 if let error = error {
                     // 예외 처리 (로그인 취소 등)
                     print(error)
-                }
-                else {
+                } else {
                     print("loginWithKakaoTalk() success.")
-                   // do something
+                    // do something
                     _ = oauthToken
-                   // 어세스토큰
-                   let accessToken = oauthToken?.accessToken
+                    // 어세스토큰
+                    let accessToken = oauthToken?.accessToken
                     self.postSocialSignInWithAPI(socialName: "kakao", accessToken: accessToken ?? "")
                 }
             }
-          }
+        } else {
+            self.detachActivityIndicator()
+        }
     }
 }
 
@@ -164,9 +187,9 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             
             // Create an account in your system.
-            let userIdentifier = appleIDCredential.user
-            let fullName = appleIDCredential.fullName
-            let email = appleIDCredential.email
+            // let userIdentifier = appleIDCredential.user
+            // let fullName = appleIDCredential.fullName
+            // let email = appleIDCredential.email
             
             if let identityToken = appleIDCredential.identityToken,
                let tokenString = String(data: identityToken, encoding: .utf8) {
@@ -176,8 +199,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         case let passwordCredential as ASPasswordCredential:
             
             // Sign in using an existing iCloud Keychain credential.
-            let username = passwordCredential.user
-            let password = passwordCredential.password
+            // let username = passwordCredential.user
+            // let password = passwordCredential.password
             
             // For the purpose of this demo app, show the password credential as an alert.
             DispatchQueue.main.async {
@@ -203,6 +226,7 @@ extension LoginViewController: ASAuthorizationControllerPresentationContextProvi
 extension LoginViewController {
     func postSocialSignInWithAPI(socialName: String, accessToken: String) {
         SignInService.shared.postSocialSignIn(socialName: socialName, accessToken: accessToken) { (networkResult) -> Void in
+            self.detachActivityIndicator()
             switch networkResult {
             case .success(let data):
                 if let signInData = data as? AuthData {

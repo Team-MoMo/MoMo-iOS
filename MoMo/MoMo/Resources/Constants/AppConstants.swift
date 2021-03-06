@@ -99,6 +99,7 @@ struct Constants {
             static let btnIcMyBlue = UIImage(named: "btnIcMyBlue")
             static let icFeatherBlack = UIImage(named: "icFeatherBlack")
             static let btnIcMy = UIImage(named: "btnIcMy")
+            static let deepLine = UIImage(named: "deepLine")
             
             // objet - depth number 0
             static let depth0Seaweed1 = UIImage(named: "2MSeaweed1")

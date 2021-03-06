@@ -29,7 +29,6 @@ class OnboardingWriteViewController: UIViewController {
     var selectedSentence: AppSentence?
     var selectedMood: AppEmotion?
     private var sentenceWasShown: Bool = false
-    private let info: String = "문장이 감성을 자극하고\n깊이있는 기록을 도와줄 거예요"
     private let vspaingInfoLabelFeatherImage: CGFloat = 74
     private let vspaingInfoLabelSentenceInfoStackView: CGFloat = 116
     private let vspaingInfoLabelSentenceLabel: CGFloat = 147
@@ -39,7 +38,7 @@ class OnboardingWriteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.infoLabel.text = self.info
+        self.infoLabel.attributedText = "문장이 감성을 자극하고\n깊이있는 기록을 도와줄 거예요".textSpacing()
         self.hideTypingCursorLabel()
         self.typingLabel.onTypingAnimationFinished = self.showTypingCursorBlinkWithAnimation
         self.updateSentenceLabel()
@@ -72,17 +71,17 @@ class OnboardingWriteViewController: UIViewController {
 extension OnboardingWriteViewController {
     
     func updateSentenceLabel() {
-        self.authorLabel.text = self.selectedSentence?.author
-        self.bookTitleLabel.text = self.changeToformattedText("<", self.selectedSentence?.bookTitle, ">")
-        self.publisherLabel.text = self.changeToformattedText("(", self.selectedSentence?.publisher, ")")
-        self.sentenceLabel.text = self.selectedSentence?.sentence
+        self.authorLabel.attributedText = self.selectedSentence?.author.textSpacing()
+        self.bookTitleLabel.attributedText = self.changeToformattedText("<", self.selectedSentence?.bookTitle, ">").textSpacing()
+        self.publisherLabel.attributedText = self.changeToformattedText("(", self.selectedSentence?.publisher, ")").textSpacing()
+        self.sentenceLabel.attributedText = self.selectedSentence?.sentence.textSpacing()
         self.publisherLabel.numberOfLines = 1
         self.publisherLabel.lineBreakMode = .byTruncatingTail
     }
     
     func updateTypingLabel() {
         guard let typingText = self.selectedMood?.toTypingLabelText() else { return }
-        self.typingLabel.text = typingText
+        self.typingLabel.attributedText = typingText.textSpacing()
     }
     
     func changeToformattedText(_ start: String, _ message: String?, _ end: String) -> String {

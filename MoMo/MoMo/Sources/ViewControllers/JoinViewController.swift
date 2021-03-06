@@ -26,6 +26,15 @@ class JoinViewController: UIViewController {
         button.tag = 0
         return button
     }()
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = false
+        activityIndicator.style = UIActivityIndicatorView.Style.medium
+        activityIndicator.startAnimating()
+        return activityIndicator
+    }()
     
     // MARK: - @IBOutlet Properties
     
@@ -120,6 +129,7 @@ class JoinViewController: UIViewController {
             guard let password = passwordTextField.text else {
                 return
             }
+            self.attachActivityIndicator()
             postSignUpWithAPI(email: email, password: password)
         } else {
             print("가입 조건 부족")
@@ -441,6 +451,17 @@ class JoinViewController: UIViewController {
             }
     }
     
+    private func attachActivityIndicator() {
+        self.view.addSubview(self.activityIndicator)
+    }
+    
+    private func detachActivityIndicator() {
+        if self.activityIndicator.isAnimating {
+            self.activityIndicator.stopAnimating()
+        }
+        self.activityIndicator.removeFromSuperview()
+    }
+    
     // MARK: - API Functions
     // 이메일 확인
     func getSignUpWithAPI(email: String) {
@@ -475,6 +496,7 @@ class JoinViewController: UIViewController {
     // 회원가입 통신
     func postSignUpWithAPI(email: String, password: String) {
         SignUpService.shared.postSignUp(email: email, password: password) { (networkResult) -> Void in
+            self.detachActivityIndicator()
             switch networkResult {
             case .success(let data):
                 if let signUpData = data as? AuthData {
