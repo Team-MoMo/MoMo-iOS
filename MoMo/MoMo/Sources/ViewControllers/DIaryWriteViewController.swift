@@ -125,23 +125,19 @@ class DiaryWriteViewController: UIViewController {
     }
     
     private func updateDiaryWriteViewController() {
-        guard let date = diaryInfo?.date?.getFormattedDateAndWeekday(with: ". "),
-              let emotion = self.diaryInfo?.mood?.toString(),
-              let author = self.diaryInfo?.sentence?.author,
-              let bookTitle = self.diaryInfo?.sentence?.bookTitle,
-              let publisher = self.diaryInfo?.sentence?.publisher,
-              let quote = self.diaryInfo?.sentence?.sentence,
-              let diary = self.diaryInfo?.diary else { return }
+        guard let bookTitle = self.diaryInfo?.sentence?.bookTitle,
+              let publisher = self.diaryInfo?.sentence?.publisher else { return }
         
-        self.dateLabel.attributedText = date.textSpacing()
+        self.dateLabel.attributedText = diaryInfo?.date?.getFormattedDateAndWeekday(with: ". ").textSpacing()
         self.emotionImage.image = diaryInfo?.mood?.toIcon()
-        self.emotionLabel.attributedText = emotion.textSpacing()
-        self.authorLabel.attributedText = author.textSpacing()
+        self.emotionLabel.attributedText = self.diaryInfo?.mood?.toString().textSpacing()
+        self.authorLabel.attributedText = self.diaryInfo?.sentence?.author.textSpacing()
         self.bookLabel.attributedText = "<\(bookTitle)>".textSpacing()
         self.publisherLabel.attributedText = "(\(publisher))".textSpacing()
-        self.quoteLabel.attributedText = quote.textSpacing()
+        self.quoteLabel.attributedText = self.diaryInfo?.sentence?.sentence.textSpacing()
         
         if self.isFromDiary {
+            guard let diary = self.diaryInfo?.diary else { return }
             self.depthLabel.attributedText = diaryInfo?.depth?.toString().textSpacing()
             self.journalTextView.attributedText = self.changeToNormalAttributeString(text: diary)
         }
