@@ -113,6 +113,7 @@ class HomeDayNightView: UIView {
         initializeButtonRounding()
         
         diaryLabel.lineBreakMode = .byTruncatingTail
+        quoteLabel.lineBreakMode = .byTruncatingTail
         
         // 오늘 날짜 받아오기
         date = getCurrentFormattedDate()
