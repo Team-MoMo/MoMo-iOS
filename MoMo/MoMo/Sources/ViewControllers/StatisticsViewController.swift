@@ -16,8 +16,8 @@ class StatisticsViewController: UIViewController {
     var depthButtonSubLayer: CALayer?
     var moodButtonSubLayer: CALayer?
     var dateModal: HomeModalViewController?
-    var year: Int? = 2021
-    var month: Int? = 01
+    var year: Int?
+    var month: Int?
     var depthData: [Int] = [0, 0, 0, 0, 0, 0, 0]
     var emotionData: [Int] = [0, 0, 0, 0, 0, 0, 0, 0]
     
@@ -43,6 +43,7 @@ class StatisticsViewController: UIViewController {
     // MARK: - Override LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeYearMonth()
         guard let unwrappedYear = year, let unwrappedMonth = month else {
             return
         }
@@ -55,6 +56,12 @@ class StatisticsViewController: UIViewController {
     }
 
     // MARK: - Private Function
+    
+    private func initializeYearMonth() {
+        let date = AppDate()
+        self.year = date.getYear()
+        self.month = date.getMonth()
+    }
     
     private func addTapRecognizerToDateLabel() {
         let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapDateLabel(_:)))
