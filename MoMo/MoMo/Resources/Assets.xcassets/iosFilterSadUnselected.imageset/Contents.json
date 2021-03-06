@@ -6,13 +6,13 @@
       "idiom" : "universal"
     },
     {
-      "filename" : "iosFilterSadUnselected@2x.png",
       "idiom" : "universal",
+      "filename" : "iosFilterSadUnselected@2x.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
       "scale" : "3x",
+      "idiom" : "universal",
       "filename" : "iosFilterSadUnselected@3x.png"
     }
   ],

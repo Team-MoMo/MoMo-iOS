@@ -12,7 +12,7 @@ struct SignInService {
     
     static let shared = SignInService()
     
-    // MARK: - POST
+    // MARK: - POST 로그인
     
     func postSignIn(email: String,
                    password: String,
@@ -58,7 +58,68 @@ struct SignInService {
         switch status {
         case 200:
             // 로그인 성공
-            //print(decodedData.data)
+            return .success(decodedData.data)
+        case 400:
+            // 존재하지 않는 회원
+            print("400")
+            return .requestErr(decodedData.message)
+        case 500:
+            // 서버 내부 에러
+            print("500")
+            return .serverErr
+        default:
+            print("default")
+            return .networkFail
+            
+        }
+    }
+    
+    // MARK: - POST 소셜 로그인
+    
+    func postSocialSignIn(socialName: String,
+                          accessToken: String,
+                   completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        let url = APIConstants.socialSignInURL
+        let header: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+        let body: Parameters = [
+            "socialName": socialName,
+            "accessToken": accessToken
+        ]
+        
+        let dataRequest = AF.request(url,
+                                     method: .post,
+                                     parameters: body,
+                                     encoding: JSONEncoding.default,
+                                     headers: header)
+        dataRequest.responseData { (response) in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else {
+                    return
+                }
+                guard let data = response.value else {
+                    return
+                }
+                completion(doSocialSignIn(status: statusCode, data: data))
+            case .failure(let err):
+                print(err)
+                completion(.networkFail)
+            }
+        }
+    }
+    
+    private func doSocialSignIn(status: Int, data: Data) -> NetworkResult<Any> {
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(GenericResponse<AuthData>.self, from: data) else {
+            return .pathErr
+        }
+        print(decodedData)
+        
+        switch status {
+        case 200:
+            // 로그인 성공
             return .success(decodedData.data)
         case 400:
             // 존재하지 않는 회원

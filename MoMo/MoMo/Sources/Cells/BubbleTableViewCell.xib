@@ -40,23 +40,16 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XMg-gp-4Tu">
-                                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
-                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Hpk-cV-VrE" firstAttribute="centerY" secondItem="VBT-BL-pqH" secondAttribute="centerY" id="96F-UT-Ixu"/>
                             <constraint firstItem="jZL-OB-QHp" firstAttribute="top" secondItem="VBT-BL-pqH" secondAttribute="top" id="M7i-Bl-Jl1"/>
-                            <constraint firstAttribute="bottom" secondItem="XMg-gp-4Tu" secondAttribute="bottom" id="MnE-BS-DUd"/>
                             <constraint firstAttribute="trailing" secondItem="jZL-OB-QHp" secondAttribute="trailing" id="XKc-Ql-SBf"/>
                             <constraint firstAttribute="width" constant="90" id="YA9-8G-BOI"/>
                             <constraint firstAttribute="width" secondItem="VBT-BL-pqH" secondAttribute="height" multiplier="1:1" id="Yqi-l1-kym"/>
                             <constraint firstItem="jZL-OB-QHp" firstAttribute="leading" secondItem="VBT-BL-pqH" secondAttribute="leading" id="bn4-de-Ea6"/>
-                            <constraint firstAttribute="trailing" secondItem="XMg-gp-4Tu" secondAttribute="trailing" id="de4-om-2A1"/>
                             <constraint firstAttribute="bottom" secondItem="jZL-OB-QHp" secondAttribute="bottom" id="djj-0d-Sn4"/>
-                            <constraint firstItem="XMg-gp-4Tu" firstAttribute="leading" secondItem="VBT-BL-pqH" secondAttribute="leading" id="the-v0-YJg"/>
                             <constraint firstItem="Hpk-cV-VrE" firstAttribute="centerX" secondItem="VBT-BL-pqH" secondAttribute="centerX" id="tht-hE-47a"/>
-                            <constraint firstItem="XMg-gp-4Tu" firstAttribute="top" secondItem="VBT-BL-pqH" secondAttribute="top" id="wP2-zZ-Jnb"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -72,7 +65,6 @@
                 <outlet property="bubbleView" destination="VBT-BL-pqH" id="mgl-Ou-kV7"/>
                 <outlet property="dateLabel" destination="bEK-Dy-3La" id="33P-zh-Ybo"/>
                 <outlet property="emotionLabel" destination="40T-wU-l1J" id="xHL-pI-5cQ"/>
-                <outlet property="touchButton" destination="XMg-gp-4Tu" id="pGr-Lv-jtW"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="133.92857142857142"/>
         </tableViewCell>

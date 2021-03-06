@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Open Source View Controller-->
+        <scene sceneID="6CX-w1-JbX">
+            <objects>
+                <viewController storyboardIdentifier="OpenSourceViewController" id="oTF-dk-dDG" customClass="OpenSourceViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gcE-wx-zFH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ykd-XD-f8L">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="yVE-Mk-qnf"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yVE-Mk-qnf" firstAttribute="bottom" secondItem="ykd-XD-f8L" secondAttribute="bottom" id="2Oc-7L-7Yg"/>
+                            <constraint firstItem="ykd-XD-f8L" firstAttribute="top" secondItem="yVE-Mk-qnf" secondAttribute="top" id="7NF-rP-NNo"/>
+                            <constraint firstItem="ykd-XD-f8L" firstAttribute="leading" secondItem="yVE-Mk-qnf" secondAttribute="leading" id="YuA-xx-anF"/>
+                            <constraint firstItem="yVE-Mk-qnf" firstAttribute="trailing" secondItem="ykd-XD-f8L" secondAttribute="trailing" id="an2-vb-Dfn"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="openSourceTableView" destination="ykd-XD-f8L" id="eNR-Ef-8yF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mm4-Ik-UMe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-159" y="138"/>
+        </scene>
+        <!--Open Source Detail View Controller-->
+        <scene sceneID="KoJ-N3-Pmk">
+            <objects>
+                <viewController storyboardIdentifier="OpenSourceDetailViewController" id="CBz-9Q-MTw" customClass="OpenSourceDetailViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ex0-Dh-YDT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zqV-bC-ShS">
+                                <rect key="frame" x="27" y="68" width="360" height="794"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" name="Black1"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kge-zG-Xjh"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kge-zG-Xjh" firstAttribute="trailing" secondItem="zqV-bC-ShS" secondAttribute="trailing" constant="27" id="0FZ-ud-uL3"/>
+                            <constraint firstItem="zqV-bC-ShS" firstAttribute="top" secondItem="kge-zG-Xjh" secondAttribute="top" constant="24" id="1pY-kf-bSQ"/>
+                            <constraint firstItem="zqV-bC-ShS" firstAttribute="leading" secondItem="kge-zG-Xjh" secondAttribute="leading" constant="27" id="fgd-s9-I6T"/>
+                            <constraint firstItem="kge-zG-Xjh" firstAttribute="bottom" secondItem="zqV-bC-ShS" secondAttribute="bottom" id="l1j-Qf-B2i"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="openSourceDetailTextView" destination="zqV-bC-ShS" id="lnD-s6-WNc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pvy-u3-H5E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="832" y="156"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="Black1">
+            <color red="0.12200000137090683" green="0.12200000137090683" blue="0.12200000137090683" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

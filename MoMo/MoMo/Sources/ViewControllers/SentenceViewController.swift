@@ -7,13 +7,15 @@
 
 import UIKit
 
-struct MoodSentence {
-    var id: Int?
-    var author: String
-    var bookTitle: String
-    var publisher: String
-    var sentence: String
+enum SentenceViewUsage: Int {
+    case onboarding = 0, upload
 }
+
+enum SentenceCardUsage: Int {
+    case first = 0, second, third
+}
+
+typealias SentenceCard = (author: UILabel, bookTitle: UILabel, publisher: UILabel, sentence: UILabel)
 
 class SentenceViewController: UIViewController {
     
@@ -43,42 +45,93 @@ class SentenceViewController: UIViewController {
     @IBOutlet weak var thirdPublisherLabel: UILabel!
     @IBOutlet weak var thirdSentenceLabel: UILabel!
     
-    @IBOutlet weak var animateImage: UIImageView!
-    @IBOutlet weak var animateImageTop: NSLayoutConstraint!
-    @IBOutlet weak var animateImageBottom: NSLayoutConstraint!
+    @IBOutlet weak var circleImageView: UIImageView!
+    @IBOutlet weak var infoLabelVerticalSpacingContraint: NSLayoutConstraint!
     
     // MARK: - Properties
     
-    private var buttons: [Button] = []
-    var selectedMood: Mood?
     var date: String?
-    let defaultInfo: String = "감정과 어울리는 문장을\n매일 3개씩 소개해드릴게요"
-    let defaultSentence: MoodSentence = MoodSentence(
-        author: "김모모",
-        bookTitle: "모모책",
-        publisher: "모모출판사",
-        sentence: "모모 사랑해요"
-    )
-    let shadowOffsetButton: CGSize = CGSize(width: 4, height: 4)
-    var firstSentence: MoodSentence?
-    var secondSentence: MoodSentence?
-    var thirdSentence: MoodSentence?
+    var selectedMood: AppEmotion?
+    var sentenveViewUsage: SentenceViewUsage = .onboarding
+    private let shadowOffsetButton: CGSize = CGSize(width: 4, height: 4)
+    private let infoLabelVerticalSpacing: CGFloat = 66
+    private var buttons: [MoodButton] = []
+    private var sentences: [SentenceCardUsage: AppSentence] = [:]
+    private var sentenceCards: [SentenceCardUsage: SentenceCard] = [:]
     
-    // false일 때 upload
-    var changeUsage: Bool = false
-    
-    var receivedData: [Sentence] = []
-    // MARK: - View Life Cycle
+    // MARK: - View Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.initializeSentenceViewController()
+        self.initializeNavigationBar()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.showButtonsWithAnimation()
+        
+        switch self.sentenveViewUsage {
+        case .onboarding:
+            return
+        case .upload:
+            self.showImagesWithAnimation()
+        }
+    }
+    
+    // MARK: - Functions
+    
+    private func initializeSentenceViewController() {
+        
+        self.sentences = [
+            .first: AppSentence(id: nil, author: "", bookTitle: "", publisher: "", sentence: ""),
+            .second: AppSentence(id: nil, author: "", bookTitle: "", publisher: "", sentence: ""),
+            .third: AppSentence(id: nil, author: "", bookTitle: "", publisher: "", sentence: "")
+        ]
+        
+        self.sentenceCards = [
+            .first: (author: self.firstAuthorLabel, bookTitle: self.firstBookTitleLabel, publisher: self.firstPublisherLabel, sentence: self.firstSentenceLabel),
+            .second: (author: self.secondAuthorLabel, bookTitle: self.secondBookTitleLabel, publisher: self.secondPublisherLabel, sentence: self.secondSentenceLabel),
+            .third: (author: self.thirdAuthorLabel, bookTitle: self.thirdBookTitleLabel, publisher: self.thirdPublisherLabel, sentence: self.thirdSentenceLabel)
+        ]
+        
+        self.updateSentenceLabel()
+        self.initializeButtons()
+        self.moodLabel.attributedText = self.selectedMood?.toString().textSpacing()
+        self.moodIcon.image = self.selectedMood?.toIcon()
+        self.dateLabel.attributedText = self.date?.textSpacing()
+        guard let emotionId = self.selectedMood?.rawValue else { return }
+        
+        switch self.sentenveViewUsage {
+        case .onboarding:
+            self.infoLabel.attributedText = "감정과 어울리는 문장을\n매일 3개씩 소개해드릴게요".textSpacing()
+            self.infoLabelVerticalSpacingContraint.constant = self.infoLabelVerticalSpacing
+            self.hideImages()
+            self.getOnboardingSentenceWithAPI(emotionId: emotionId, completion: updateSentenceLabel)
+        case .upload:
+            self.infoLabel.attributedText = "마음에 파동이\n이는 문장을 만나보세요".textSpacing()
+            self.getSentencesWithAPI(emotionId: String(emotionId), userId: String(APIConstants.userId), completion: updateSentenceLabel)
+        }
+    }
+    
+    private func initializeNavigationBar() {
         self.navigationItem.hidesBackButton = true
-
+        
+        switch self.sentenveViewUsage {
+        case .onboarding:
+            return
+        case .upload:
+            self.addNavigationRightButton()
+            self.addNavigationLeftButton()
+        }
+    }
+    
+    private func initializeButtons() {
         self.buttons = [
-            Button(button: firstButton, shadowOffset: shadowOffsetButton),
-            Button(button: secondButton, shadowOffset: shadowOffsetButton),
-            Button(button: thirdButton, shadowOffset: shadowOffsetButton)
+            MoodButton(button: firstButton, shadowOffset: shadowOffsetButton),
+            MoodButton(button: secondButton, shadowOffset: shadowOffsetButton),
+            MoodButton(button: thirdButton, shadowOffset: shadowOffsetButton)
         ]
         
         for button in buttons {
@@ -86,143 +139,51 @@ class SentenceViewController: UIViewController {
             button.buttonsAddShadow()
         }
         
-        self.infoLabel.text = self.defaultInfo
-        
-        self.moodLabel.text = self.selectedMood?.toString()
-        self.moodIcon.image = self.selectedMood?.toIcon()
-        self.dateLabel.text = self.date
-        
-        if changeUsage {
-            self.getSentenceDataFromAPI(emotionId: self.selectedMood?.rawValue ?? 1, completion: setSentenceLabel)
-        } else {
-            self.connectServer(emotionId: String(self.selectedMood?.rawValue ?? 1), userId: String(APIConstants.userId))
-        }
-        
         self.hideButtons()
-        
-        self.hideimage()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.hideNavigationButton()
-        self.showButtonsWithAnimation()
-    }
-    
-    // MARK: - Functions
-    
-    func connectServer(emotionId: String, userId: String) {
-        SentencesService.shared.getSentences(emotionId: emotionId, userId: userId) {
-            (networkResult) -> (Void) in
-            switch networkResult {
-
-            case .success(let data):
-                if let serverData = data as? [Sentence] {
-                    self.receivedData = serverData
-                    self.setReceivedSentenceLabel()
-                }
-                
-            case .requestErr(let msg):
-                if let message = msg as? String {
-                    print(message)
-                }
-            case .pathErr:
-                print("pathErr")
-            case .serverErr:
-                print("serverErr")
-            case .networkFail:
-                print("networkFail")
-            }
-        } 
-    }
-    
-    func setSentenceLabel() {
-        self.firstAuthorLabel.text = self.firstSentence?.author
-        self.firstBookTitleLabel.text = self.getFormattedBookTitle(self.firstSentence?.bookTitle)
-        self.firstPublisherLabel.text = self.getFormattedPublisher(self.firstSentence?.publisher)
-        self.firstSentenceLabel.text = self.firstSentence?.sentence
+    private func updateSentenceLabel() {
+        for idx in 0...2 {
+            guard let usage: SentenceCardUsage = SentenceCardUsage.init(rawValue: idx) else { return }
+            guard let sentence = self.sentences[usage] else { return }
+            guard let sentenceCard = self.sentenceCards[usage] else { return }
             
-        self.secondAuthorLabel.text = self.secondSentence?.author
-        self.secondBookTitleLabel.text = self.getFormattedBookTitle(self.secondSentence?.bookTitle)
-        self.secondPublisherLabel.text = self.getFormattedPublisher(self.secondSentence?.publisher)
-        self.secondSentenceLabel.text = self.secondSentence?.sentence
-            
-        self.thirdAuthorLabel.text = self.thirdSentence?.author
-        self.thirdBookTitleLabel.text = self.getFormattedBookTitle(self.thirdSentence?.bookTitle)
-        self.thirdPublisherLabel.text = self.getFormattedPublisher(self.thirdSentence?.publisher)
-        self.thirdSentenceLabel.text = self.thirdSentence?.sentence
-    }
-    
-    func setReceivedSentenceLabel() {
-        self.firstAuthorLabel.text = self.receivedData[0].writer
-        self.firstBookTitleLabel.text = self.receivedData[0].bookName
-        self.firstPublisherLabel.text = self.receivedData[0].publisher
-        self.firstSentenceLabel.text = self.receivedData[0].contents
-            
-        self.secondAuthorLabel.text = self.receivedData[1].writer
-        self.secondBookTitleLabel.text = self.receivedData[1].bookName
-        self.secondPublisherLabel.text = self.receivedData[1].publisher
-        self.secondSentenceLabel.text = self.receivedData[1].contents
-            
-        self.thirdAuthorLabel.text = self.receivedData[2].writer
-        self.thirdBookTitleLabel.text = self.receivedData[2].bookName
-        self.thirdPublisherLabel.text = self.receivedData[2].publisher
-        self.thirdSentenceLabel.text = self.receivedData[2].contents
-    }
-    
-    func getFormattedBookTitle(_ bookTitle: String?) -> String {
-        return "<\(bookTitle ?? self.defaultSentence.bookTitle)>"
-    }
-    
-    func getFormattedPublisher(_ publisher: String?) -> String {
-        return "(\(publisher ?? self.defaultSentence.publisher))"
-    }
-    
-    @IBAction func firstButtonTouchUp(_ sender: UIButton) {
-        if changeUsage {
-            pushToOnboardingWriteViewController(
-                sentence: self.firstSentence ?? self.defaultSentence
-            )
-        } else {
-            guard let mood = selectedMood else {
-                return
-            }
-            pushToDiaryWriteViewController(self.dateLabel.text ?? "",
-                                           mood,
-                                           receivedData[0])
+            sentenceCard.author.attributedText = sentence.author.textSpacing()
+            sentenceCard.bookTitle.attributedText = sentence.bookTitle.isEmpty ? sentence.bookTitle.textSpacing() : "<\(sentence.bookTitle)>".textSpacing()
+            sentenceCard.publisher.attributedText = sentence.publisher.isEmpty ? sentence.publisher.textSpacing() : "(\(sentence.publisher))".textSpacing()
+            sentenceCard.sentence.attributedText = sentence.sentence.wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: false, truncated: true)
         }
     }
     
-    @IBAction func secondButtonTouchUp(_ sender: UIButton) {
-        if changeUsage {
-            pushToOnboardingWriteViewController(
-                sentence: self.secondSentence ?? self.defaultSentence
-            )
-        } else {
-            guard let mood = selectedMood else {
-                return
-            }
-            pushToDiaryWriteViewController(self.dateLabel.text ?? "",
-                                           mood,
-                                           receivedData[1])
-        }
-    }
-    @IBAction func thirdButtonTouchUp(_ sender: UIButton) {
-        if changeUsage {
-            pushToOnboardingWriteViewController(
-                sentence: self.thirdSentence ?? self.defaultSentence
-            )
-        } else {
-            guard let mood = selectedMood else {
-                return
-            }
-            pushToDiaryWriteViewController(self.dateLabel.text ?? "",
-                                           mood,
-                                           receivedData[2])
+    private func touchBotton(sentence: AppSentence) {
+        switch self.sentenveViewUsage {
+        case .onboarding:
+            pushToOnboardingWriteViewController(sentence: sentence)
+        case .upload:
+            guard let mood = selectedMood, let date = self.dateLabel.text else { return }
+            pushToDiaryWriteViewController(date: date, mood: mood, sentence: sentence)
         }
     }
     
-    func pushToOnboardingWriteViewController(sentence: MoodSentence) {
+    @IBAction func touchFirstButton(_ sender: UIButton) {
+        guard let firstSentence = self.sentences[.first] else { return }
+        guard !firstSentence.author.isEmpty, !firstSentence.bookTitle.isEmpty, !firstSentence.sentence.isEmpty else { return }
+        self.touchBotton(sentence: firstSentence)
+    }
+    
+    @IBAction func touchSecondButton(_ sender: UIButton) {
+        guard let secondSentence = self.sentences[.second] else { return }
+        guard !secondSentence.author.isEmpty, !secondSentence.bookTitle.isEmpty, !secondSentence.sentence.isEmpty else { return }
+        self.touchBotton(sentence: secondSentence)
+    }
+    
+    @IBAction func touchThirdButton(_ sender: UIButton) {
+        guard let thirdSentence = self.sentences[.third] else { return }
+        guard !thirdSentence.author.isEmpty, !thirdSentence.bookTitle.isEmpty, !thirdSentence.sentence.isEmpty else { return }
+        self.touchBotton(sentence: thirdSentence)
+    }
+    
+    private func pushToOnboardingWriteViewController(sentence: AppSentence) {
         
         guard let onboardingWriteViewController = self.storyboard?.instantiateViewController(identifier: Constants.Identifier.onboardingWriteViewController) as? OnboardingWriteViewController else { return }
         
@@ -233,28 +194,35 @@ class SentenceViewController: UIViewController {
         
     }
     
-    func pushToDiaryWriteViewController(_ date: String,
-                                        _ mood: Mood,
-                                        _ sentence: Sentence){
-        let writeStorybaord = UIStoryboard(name: Constants.Name.diaryWriteStoryboard, bundle: nil)
-        guard let uploadWriteViewController = writeStorybaord.instantiateViewController(identifier: Constants.Identifier.diaryWriteViewController) as? DiaryWriteViewController else {
+    private func pushToDiaryWriteViewController(date: String, mood: AppEmotion, sentence: AppSentence) {
+        let diaryWriteStoryboard = UIStoryboard(name: Constants.Name.diaryWriteStoryboard, bundle: nil)
+        guard let diaryWriteViewController = diaryWriteStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryWriteViewController) as? DiaryWriteViewController else {
             return
         }
-        uploadWriteViewController.date = date
-        uploadWriteViewController.mood = mood
-        uploadWriteViewController.sentence = sentence
-        uploadWriteViewController.isFromDiary = false
+        let diaryInfo = AppDiary(
+            date: AppDate(formattedDate: date, with: ". "),
+            mood: mood,
+            depth: nil,
+            sentence: sentence,
+            diary: nil
+        )
+        diaryWriteViewController.diaryInfo = diaryInfo
+        diaryWriteViewController.isFromDiary = false
         
-        self.navigationController?.pushViewController(uploadWriteViewController, animated: true)
+        self.navigationController?.pushViewController(diaryWriteViewController, animated: true)
     }
     
-    func hideButtons() {
+    private func hideButtons() {
         for button in self.buttons {
             button.button?.alpha = 0.0
         }
     }
     
-    func showButtonsWithAnimation() {
+    private func hideImages() {
+        self.circleImageView.alpha = 0.0
+    }
+    
+    private func showButtonsWithAnimation() {
         UIView.animate(
             withDuration: 0.8,
             delay: 0,
@@ -266,29 +234,36 @@ class SentenceViewController: UIViewController {
         )
     }
     
-    func hideNavigationButton() {
-            if !self.changeUsage {
-                let rightButton = UIBarButtonItem(image: Constants.Design.Image.btnCloseBlack, style: .plain, target: self, action: #selector(touchCloseButton))
-                self.navigationItem.rightBarButtonItems = [rightButton]
-                let leftButton = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchBackButton))
-                leftButton.tintColor = .black
-                self.navigationItem.leftBarButtonItems = [leftButton]
+    private func showImagesWithAnimation() {
+        UIView.animate(
+            withDuration: 1.0,
+            animations: {
+                self.circleImageView.alpha = 1.0
+                self.circleImageView.transform = CGAffineTransform(translationX: 0, y: 30)
             }
-        }
+        )
+    }
     
-    func hideimage() {
-        if changeUsage {
-            animateImage.isHidden = true
-        } else {
-            UIView.animate(withDuration: 1.0, animations: {
-                self.animateImage.transform = CGAffineTransform(translationX: 0, y: 30)
-            })
+    private func addNavigationRightButton() {
+        let rightButton = UIBarButtonItem(image: Constants.Design.Image.btnCloseBlack, style: .plain, target: self, action: #selector(touchCloseButton))
+        self.navigationItem.rightBarButtonItems = [rightButton]
+    }
     
+    private func addNavigationLeftButton() {
+        let leftButton = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchBackButton))
+        leftButton.tintColor = .black
+        self.navigationItem.leftBarButtonItems = [leftButton]
+    }
+    
+    private func popToHomeViewController() {
+        guard let homeViewController = self.navigationController?.viewControllers.filter({$0 is HomeViewController}).first! as? HomeViewController else {
+            return
         }
+        self.navigationController?.popToViewController(homeViewController, animated: true)
     }
     
     @objc func touchCloseButton() {
-        self.navigationController?.popToRootViewController(animated: true)
+        self.popToHomeViewController()
     }
     
     @objc func touchBackButton() {
@@ -296,37 +271,20 @@ class SentenceViewController: UIViewController {
     }
 }
 
-// API
+// MARK: - APIServices
 
 extension SentenceViewController {
     
-    func getSentenceDataFromAPI(emotionId: Int, completion: @escaping () -> Void) {
-        
-        OnboardingService.shared.getOnboardingWithEmotionId(emotionId: emotionId) { (result) in
-            switch(result) {
+    private func getSentencesWithAPI(emotionId: String, userId: String, completion: @escaping () -> Void) {
+        SentencesService.shared.getSentences(emotionId: emotionId, userId: userId) { networkResult in
+            switch networkResult {
             case .success(let data):
-                if let sentences = data as? OnboardingSentence {
+                if let serverData = data as? [Sentence] {
+                    for idx in 0...2 {
+                        guard let usage = SentenceCardUsage.init(rawValue: idx) else { return }
+                        self.sentences[usage] = AppSentence(id: serverData[idx].id, author: serverData[idx].writer, bookTitle: serverData[idx].bookName, publisher: serverData[idx].publisher, sentence: serverData[idx].contents)
+                    }
                     
-                    self.firstSentence = MoodSentence(
-                        author: sentences.sentence01.writer,
-                        bookTitle: sentences.sentence01.bookName,
-                        publisher: sentences.sentence01.publisher,
-                        sentence: sentences.sentence01.contents
-                    )
-                    
-                    self.secondSentence = MoodSentence(
-                        author: sentences.sentence02.writer,
-                        bookTitle: sentences.sentence02.bookName,
-                        publisher: sentences.sentence02.publisher,
-                        sentence: sentences.sentence02.contents
-                    )
-                    
-                    self.thirdSentence = MoodSentence(
-                        author: sentences.sentence03.writer,
-                        bookTitle: sentences.sentence03.bookName,
-                        publisher: sentences.sentence03.publisher,
-                        sentence: sentences.sentence03.contents
-                    )
                     DispatchQueue.main.async {
                         completion()
                     }
@@ -334,11 +292,39 @@ extension SentenceViewController {
             case .requestErr(let errorMessage):
                 print(errorMessage)
             case .pathErr:
-                print("pathErr")
+                print("pathErr in getSentencesWithAPI")
             case .serverErr:
-                print("serverErr")
+                print("serverErr in getSentencesWithAPI")
             case .networkFail:
-                print("networkFail")
+                print("networkFail in getSentencesWithAPI")
+            }
+        }
+    }
+    
+    private func getOnboardingSentenceWithAPI(emotionId: Int, completion: @escaping () -> Void) {
+        OnboardingService.shared.getOnboardingWithEmotionId(emotionId: emotionId) { (result) in
+            switch result {
+            case .success(let data):
+                if let sentences = data as? OnboardingSentence {
+                    
+                    self.sentences[.first] = AppSentence(id: nil, author: sentences.sentence01.writer, bookTitle: sentences.sentence01.bookName, publisher: sentences.sentence01.publisher, sentence: sentences.sentence01.contents)
+                    
+                    self.sentences[.second] = AppSentence(id: nil, author: sentences.sentence02.writer, bookTitle: sentences.sentence02.bookName, publisher: sentences.sentence02.publisher, sentence: sentences.sentence02.contents)
+                    
+                    self.sentences[.third] = AppSentence(id: nil, author: sentences.sentence03.writer, bookTitle: sentences.sentence03.bookName, publisher: sentences.sentence03.publisher, sentence: sentences.sentence03.contents)
+                    
+                    DispatchQueue.main.async {
+                        completion()
+                    }
+                }
+            case .requestErr(let errorMessage):
+                print(errorMessage)
+            case .pathErr:
+                print("pathErr in getOnboardingSentenceWithAPI")
+            case .serverErr:
+                print("serverErr in getOnboardingSentenceWithAPI")
+            case .networkFail:
+                print("networkFail in getOnboardingSentenceWithAPI")
             }
         }
     }

@@ -1,19 +1,19 @@
 {
   "images" : [
     {
+      "scale" : "1x",
       "idiom" : "universal",
-      "filename" : "icAngryBlue.png",
-      "scale" : "1x"
+      "filename" : "icAngryBlue.png"
     },
     {
-      "idiom" : "universal",
+      "filename" : "icAngryBlue@2x.png",
       "scale" : "2x",
-      "filename" : "icAngryBlue@2x.png"
+      "idiom" : "universal"
     },
     {
       "scale" : "3x",
-      "filename" : "icAngryBlue@3x.png",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "filename" : "icAngryBlue@3x.png"
     }
   ],
   "info" : {

@@ -18,8 +18,22 @@ class DepthCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func setLabel(_ depth: String) {
-        depthLabel.text = depth
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                backView.layer.borderColor = UIColor.Blue2.cgColor
+                depthLabel.textColor = UIColor.Blue2
+                backView.backgroundColor = UIColor.Blue6
+            } else {
+                backView.layer.borderColor = UIColor.Black6.cgColor
+                depthLabel.textColor = UIColor.Black6
+                backView.backgroundColor = UIColor.white
+            }
+        }
+    }
+    
+    func initializeLabel(_ depth: String) {
+        depthLabel.attributedText = depth.textSpacing()
     }
 
 }

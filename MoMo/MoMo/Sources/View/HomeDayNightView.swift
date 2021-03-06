@@ -42,7 +42,8 @@ class HomeDayNightView: UIView {
     weak var homeDayNightViewDelegate: HomeDayNightViewDelegate?
     var gradientLayer: CAGradientLayer!
     var date: String?
-    var dateArray:[String] = []
+    // year, month, day
+    var dateArray: [String] = ["", "", ""]
     var todayDiary: [Diary] = []
     
     var diaryId: Int = 1
@@ -60,24 +61,20 @@ class HomeDayNightView: UIView {
         self.backgroundView.layer.addSublayer(gradientLayer)
     }
     
-    // MARK: 해찌꺼뽀려옴2
     func getCurrentFormattedDate() -> String? {
         
-        let date = Date()
-        let dateFormatter = DateFormatter()
+        let today = AppDate()
+        let year = today.getYearToString()
+        let month = today.getMonthToString()
+        let day = today.getDayToString()
+        let weekDay = today.getWeekday().toKorean()
         
-        dateFormatter.dateFormat = "yyyy. MM. dd. EEEE"
-        dateFormatter.locale = Locale.current
+        dateArray[0] = year
+        dateArray[1] = month
+        dateArray[2] = day
         
-        let formattedDate = dateFormatter.string(from: date)
-        dateArray = formattedDate.components(separatedBy: ". ")
-        let weekday = dateArray.popLast()
+        let result = "\(year)년 \n\(month)월 \(day)일 \(weekDay)"
         
-        dateArray.append(weekdayEnglishToKorean(weekday: weekday ?? "Monday"))
-        
-        let formattedDateWithKorean = dateArray.joined(separator: ". ")
-        
-        let result = "\(dateArray[0])년 \n\(dateArray[1])월 \(dateArray[2])일 \(dateArray[3])"
         return result
     }
     
@@ -102,7 +99,6 @@ class HomeDayNightView: UIView {
         }
     }
   
-    
     // MARK: - View Life Cycle
     
     override func awakeFromNib() {
@@ -113,23 +109,11 @@ class HomeDayNightView: UIView {
             self.createGradientLayer()
         }
     
-        // 자간, 행간 지정
-        dateLabel.attributedText = dateLabel.text?.textSpacing(lineSpacing: 7)
-        emotionLabel.attributedText = emotionLabel.text?.textSpacing(lineSpacing: 10)
-        depthLabel.attributedText = depthLabel.text?.textSpacing(lineSpacing: 10)
-        quoteLabel.attributedText = quoteLabel.text?.textSpacing(lineSpacing: 10)
-        writerLabel.attributedText = writerLabel.text?.textSpacing(lineSpacing: 10)
-        bookTitleLabel.attributedText = bookTitleLabel.text?.textSpacing(lineSpacing: 10)
-        publisherLabel.attributedText = publisherLabel.text?.textSpacing(lineSpacing: 10)
-        diaryLabel.attributedText = diaryLabel.text?.textSpacing(lineSpacing: 10)
-        
-        // 버튼 rounding 처리
-        writeButton.clipsToBounds = true
-        writeButton.layer.cornerRadius = 8
-        showAllButton.clipsToBounds = true
-        showAllButton.layer.cornerRadius = 8
+        initializeTextSpacing()
+        initializeButtonRounding()
         
         diaryLabel.lineBreakMode = .byTruncatingTail
+        quoteLabel.lineBreakMode = .byTruncatingTail
         
         // 오늘 날짜 받아오기
         date = getCurrentFormattedDate()
@@ -137,9 +121,39 @@ class HomeDayNightView: UIView {
         
         // 오늘 쓴 일기 있는지 통신
         self.getSeletectedDateDiaryAPI()
+        
+        initializeViewHidden()
     }
     
     // MARK: - Functions
+    
+    func initializeTextSpacing() {
+        // 자간, 행간 지정
+        dateLabel.attributedText = dateLabel.text?.textSpacing()
+        emotionLabel.attributedText = emotionLabel.text?.textSpacing()
+        depthLabel.attributedText = depthLabel.text?.textSpacing()
+        quoteLabel.attributedText = quoteLabel.text?.textSpacing()
+        writerLabel.attributedText = writerLabel.text?.textSpacing()
+        bookTitleLabel.attributedText = bookTitleLabel.text?.textSpacing()
+        publisherLabel.attributedText = publisherLabel.text?.textSpacing()
+        diaryLabel.attributedText = diaryLabel.text?.textSpacing()
+    }
+    
+    func initializeButtonRounding() {
+        // 버튼 rounding 처리
+        writeButton.clipsToBounds = true
+        writeButton.layer.cornerRadius = 8
+        showAllButton.clipsToBounds = true
+        showAllButton.layer.cornerRadius = 8
+    }
+    
+    func initializeViewHidden() {
+        // 맨 처음에 모든 뷰 가리기
+        filledDiaryView.isHidden = true
+        showAllButton.isHidden = true
+        noDiaryStackView.isHidden = true
+        writeButton.isHidden = true
+    }
     
     // empty view 보이게
     func showEmptyView() {
@@ -181,7 +195,10 @@ class HomeDayNightView: UIView {
 
 extension HomeDayNightView {
     func getSeletectedDateDiaryAPI() {
-        DiariesService.shared.getDiaries(userId: "\(APIConstants.userId)",
+        
+        let userId = UserDefaults.standard.integer(forKey: "userId")
+        
+        DiariesService.shared.getDiaries(userId: "\(userId)",
                                          year: dateArray[0],
                                          month: dateArray[1],
                                          order: "filter",
@@ -193,36 +210,35 @@ extension HomeDayNightView {
             case .success(let data):
                 if let diary = data as? [Diary] {
                     self.todayDiary = diary
-                    //print(self.todayDiary[0])
+
                     let length = self.todayDiary.count
                     if self.todayDiary.count >= 1 {
                         self.showFilledView()
                         let moodEnumCase = self.todayDiary[length-1].emotionID
-                        self.emotionImageView.image = Mood(rawValue: moodEnumCase)?.toBlueIcon()
-                        self.emotionLabel.text = Mood(rawValue: moodEnumCase)?.toString()
-                        self.depthLabel.text = Depth(rawValue: self.todayDiary[length-1].depth)?.toString()
+                        self.emotionImageView.image = AppEmotion(rawValue: moodEnumCase)?.toBlueIcon()
+                        self.emotionLabel.text = AppEmotion(rawValue: moodEnumCase)?.toString()
+                        self.depthLabel.text = AppDepth(rawValue: self.todayDiary[length-1].depth)?.toString()
                         self.quoteLabel.text = self.todayDiary[length-1].sentence.contents
                         self.writerLabel.text = self.todayDiary[length-1].sentence.writer
-                        self.bookTitleLabel.text = self.todayDiary[length-1].sentence.bookName
-                        self.publisherLabel.text = self.todayDiary[length-1].sentence.publisher
+                        self.bookTitleLabel.text = "<\(self.todayDiary[length-1].sentence.bookName)>"
+                        self.publisherLabel.text = "(\(self.todayDiary[length-1].sentence.publisher))"
                         self.diaryLabel.text = self.todayDiary[length-1].contents
                         
                         self.diaryId = self.todayDiary[length-1].id
                     } else {
                         self.showEmptyView()
                     }
-
                 }
             case .requestErr(let msg):
                 if let message = msg as? String {
                     print(message)
                 }
             case .pathErr:
-                print("pathErr")
+                print("pathErr at getSeletectedDateDiaryAPI")
             case .serverErr:
-                print("serverErr")
+                print("serverErr at getSeletectedDateDiaryAPI")
             case .networkFail:
-                print("networkFail")
+                print("networkFail at getSeletectedDateDiaryAPI")
             }
         }
     }

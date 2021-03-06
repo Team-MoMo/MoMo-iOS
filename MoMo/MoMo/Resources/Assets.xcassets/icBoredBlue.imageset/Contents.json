@@ -1,18 +1,18 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
       "filename" : "icBoredBlue.png",
+      "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "scale" : "2x",
       "filename" : "icBoredBlue@2x.png",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "scale" : "2x"
     },
     {
-      "scale" : "3x",
       "filename" : "icBoredBlue@3x.png",
+      "scale" : "3x",
       "idiom" : "universal"
     }
   ],

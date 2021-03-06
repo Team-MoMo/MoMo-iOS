@@ -7,8 +7,17 @@
 
 import UIKit
 
-class HomeModalViewController: UIViewController {
+// MARK: - Protocols
+ 
+protocol HomeModalViewDelegate: class {
+    func passData(year: Int, month: Int)
+}
 
+protocol StatModalViewDelegate: class {
+    func passData(year: Int, month: Int)
+}
+
+class HomeModalViewController: UIViewController {
 
     @IBOutlet weak var yearPickerView: UIPickerView!
     @IBOutlet weak var monthPickerView: UIPickerView!
@@ -19,8 +28,19 @@ class HomeModalViewController: UIViewController {
     var yearArray: [String] = []
     var monthArray: [String] = []
     
+    var currentYearMonths: [String] = []
+    
+    var currentDate = AppDate()
+    
+    weak var homeModalViewDelegate: HomeModalViewDelegate?
+    weak var statModalViewDelegate: StatModalViewDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setData()
+        assignDelegate()
+        assignDatasource()
+        setPickerInitialSetting()
 
         // Do any additional setup after loading the view.
     }
@@ -32,14 +52,28 @@ class HomeModalViewController: UIViewController {
             self.monthPickerView.subviews[1].backgroundColor = UIColor.clear
         }
     }
+    
+    private func assignDatasource() {
+        self.monthPickerView.dataSource = self
+        self.yearPickerView.dataSource = self
+    }
+    
+    private func assignDelegate() {
+        self.monthPickerView.delegate = self
+        self.yearPickerView.delegate = self
+    }
 
     private func setData() {
-        for tempYear in 2000...2021 {
-            yearArray.append(String(tempYear))
+        for tempYear in 2000...currentDate.getYear() {
+            self.yearArray.append(String(tempYear))
         }
         for tempMonth in 1...12 {
-            monthArray.append(String(tempMonth))
+            if tempMonth <= self.currentDate.getMonth() {
+                self.currentYearMonths.append(String(tempMonth))
+            }
+            self.monthArray.append(String(tempMonth))
         }
+        
     }
     
     private func setPickerInitialSetting() {
@@ -47,31 +81,73 @@ class HomeModalViewController: UIViewController {
         self.monthPickerView.selectRow(self.month - 1, inComponent: 0, animated: true)
     }
     
-    @IBAction func touchCancelButton(_ sender: Any) {
+    private func updateMonthDatePickerData(_ unwrappedYear: Int) {
+        if unwrappedYear == currentDate.getYear() && self.year != currentDate.getYear() {
+            if month > currentDate.getMonth() {
+                month = currentDate.getMonth()
+            }
+            self.year = unwrappedYear
+            self.monthPickerView.reloadComponent(0)
+        } else if unwrappedYear != currentDate.getYear() && self.year == currentDate.getYear() {
+            self.year = unwrappedYear
+            self.monthPickerView.reloadComponent(0)
+        } else {
+            self.year = unwrappedYear
+        }
+    }
+    
+    private func dismissToStatisticsViewController() {
         self.dismiss(animated: true, completion: nil)
     }
-  
     
-    @IBAction func touchApplyButton(_ sender: Any) {
+    private func dismissToHomeViewController() {
+        self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func touchCancelButton(_ sender: Any) {
+        dismissToStatisticsViewController()
+    }
+  
+    @IBAction func touchApplyButton(_ sender: Any) {
+        if let modal = statModalViewDelegate {
+            modal.passData(year: self.year, month: self.month)
+            dismissToStatisticsViewController()
+        }
+        if let modal = homeModalViewDelegate {
+            modal.passData(year: self.year, month: self.month)
+            dismissToHomeViewController()
+        }
+    }
 }
 
 extension HomeModalViewController: UIPickerViewDelegate {
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         if pickerView == self.yearPickerView {
-            return yearArray[row]
+            return NSAttributedString(string: yearArray[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        } else if year == currentDate.getYear() {
+            return NSAttributedString(string: currentYearMonths[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         } else {
-            return monthArray[row]
+            return NSAttributedString(string: monthArray[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == self.yearPickerView {
-            year = Int(yearArray[row]) ?? 0
+            guard let unwrappedYear = Int(yearArray[row]) else {
+                return
+            }
+            updateMonthDatePickerData(unwrappedYear)
+        } else if year == currentDate.getYear() {
+            guard let unwrappedMonth = Int(currentYearMonths[row]) else {
+                return
+            }
+            self.month = unwrappedMonth
         } else {
-            month = Int(monthArray[row]) ?? 0
+            guard let unwrappedMonth = Int(monthArray[row]) else {
+                return
+            }
+            self.month = unwrappedMonth
         }
     }
 }
@@ -84,6 +160,8 @@ extension HomeModalViewController: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == self.yearPickerView {
             return yearArray.count
+        } else if self.year == currentDate.getYear() {
+            return currentYearMonths.count
         } else {
             return monthArray.count
         }

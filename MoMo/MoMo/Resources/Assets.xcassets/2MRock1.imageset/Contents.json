@@ -1,13 +1,13 @@
 {
   "images" : [
     {
+      "filename" : "2MRock1.png",
       "scale" : "1x",
-      "idiom" : "universal",
-      "filename" : "2MRock1.png"
+      "idiom" : "universal"
     },
     {
-      "filename" : "2MRock1@2x.png",
       "idiom" : "universal",
+      "filename" : "2MRock1@2x.png",
       "scale" : "2x"
     },
     {

@@ -15,11 +15,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="120" translatesAutoresizingMaskIntoConstraints="NO" id="j0z-cg-GOC">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="120" translatesAutoresizingMaskIntoConstraints="NO" id="j0z-cg-GOC">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wTF-lg-nqf">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wTF-lg-nqf">
                                 <rect key="frame" x="189" y="844" width="36" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="36" id="7af-UH-hxj"/>
@@ -27,7 +27,7 @@
                                 </constraints>
                                 <state key="normal" image="homeIcSwipeDown"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bO-SE-8qf">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bO-SE-8qf">
                                 <rect key="frame" x="189" y="52" width="36" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="36" id="6W0-Yz-nfS"/>
@@ -75,6 +75,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="btnIcMyBlue"/>
+                                        <connections>
+                                            <action selector="touchMyPageButton:" destination="svO-LC-Z4h" eventType="touchUpInside" id="9wU-re-vd9"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Kqd-lh-9gO">
                                         <rect key="frame" x="0.0" y="40" width="24" height="24"/>

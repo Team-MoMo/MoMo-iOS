@@ -16,7 +16,7 @@ class ListTableViewCell: UITableViewCell {
                                  Constants.Design.Image.icSadBlue!,
                                  Constants.Design.Image.icBoredBlue!,
                                  Constants.Design.Image.icMemoryBlue!,
-                                 Constants.Design.Image.icDailyBlue!,
+                                 Constants.Design.Image.icDailyBlue!
     ]
     
     let emotion: [String] = ["사랑", "헹복", "위로", "화남", "슬픔", "우울", "추억", "일상"]
@@ -35,10 +35,24 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var journalLabel1: UILabel!
     @IBOutlet weak var journalLabel2: UILabel!
     @IBOutlet weak var moreButton: UIButton!
+    @IBOutlet weak var touchView: UIView!
     
     // 재사용할 때
     override func prepareForReuse() {
         super.prepareForReuse()
+        initializeIBOutlets()
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.translatesAutoresizingMaskIntoConstraints = false
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
+    private func initializeIBOutlets() {
         journalLabel1.layer.sublayers = nil
         journalLabel2.layer.sublayers = nil
         journalLabel1.text = ""
@@ -55,86 +69,84 @@ class ListTableViewCell: UITableViewCell {
         self.layoutIfNeeded()
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.translatesAutoresizingMaskIntoConstraints = false
+    // 리스트테이블뷰셀 데이터 입력 문구와 일기를 제외한 모든 데이터 추가
+    func parseDiaryAll(diary: Diary) {
+        
+        let date = AppDate(serverDate: diary.wroteAt)
+        let appEmotion = AppEmotion(rawValue: diary.emotionID)
+        let appDepth = AppDepth(rawValue: diary.depth)
+        
+        iconImage.image = appEmotion?.toBlueIcon()
+        categoryLabel.attributedText = appEmotion?.toString().textSpacing()
+        let month = String(format: "%02d", date.getMonth())
+        let day = String(format: "%02d", date.getDay())
+        dateLabel.attributedText = (month+"."+day).textSpacing()
+        dayLabel.attributedText = "\(date.getWeekday().toSimpleKorean())".textSpacing()
+        
+        depthLabel.attributedText = appDepth?.toString().textSpacing()
+        
+        authorLabel.attributedText = diary.sentence.writer.textSpacing()
+        titleLabel.attributedText = "<\(diary.sentence.bookName)>".textSpacing()
+        publisherLabel.attributedText = "(\(diary.sentence.publisher))".textSpacing()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
-    // 리스트테이블뷰셀 데이터 입력
-    func setCell(diary: Diary) {
-        let date = diary.wroteAt.split(separator: "T")[0]
-        let specificDate = date.split(separator: "-")
-        iconImage.image = icon[diary.emotionID - 1]
-        categoryLabel.attributedText = Mood(rawValue: diary.emotionID)?.toString().wordSpacing(-0.6)
-        dateLabel.attributedText = "\(specificDate[0])년 \(specificDate[1])월".wordSpacing(-0.6)
-        dayLabel.attributedText = "\(specificDate[2])일".wordSpacing(-0.6)
-        depthLabel.attributedText = Depth(rawValue: diary.depth)?.toString().wordSpacing(-0.6)
-        authorLabel.attributedText = diary.sentence.writer.wordSpacing(-0.6)
-        titleLabel.attributedText = diary.sentence.bookName.wordSpacing(-0.6)
-        publisherLabel.attributedText = diary.sentence.publisher.wordSpacing(-0.6)
-        }
     
     // 문구 텍스트 작업
-    func quoteSpacing(_ text: String) {
-        let attributedString = NSMutableAttributedString(string: text)
-        let paragraphStyle = NSMutableParagraphStyle()
-        
-        paragraphStyle.lineSpacing = 4
-        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
-        attributedString.addAttribute(NSAttributedString.Key.kern, value: -0.6, range: NSRange(location: 0, length: attributedString.length))
-
-        quoteLabel.attributedText = attributedString
+    func customQuote(_ text: String) {
+        quoteLabel.attributedText = text.textSpacing()
     }
     
     // 일기 분리 작업
-    func journaltext(_ text: String, _ size: CGFloat) {
-        let labelSize: CGSize = text.size(withAttributes: [.font: UIFont.systemFont(ofSize: 13, weight: .regular)])
-        let verify = "힣".size(withAttributes: [.font: UIFont.systemFont(ofSize: 12, weight: .regular)]).width
-        let breakpoint: Int
+    func divideJournal(_ text: String, _ size: CGFloat) {
+        let modifiedText = text.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "\n", with: " ")
+
+        guard let font =  UIFont(name: "AppleSDGothicNeo-Regular", size: 12) else {
+            return
+        }
+        
+        let labelSize: CGSize = modifiedText.size(withAttributes: [.font: font])
+        var length: CGFloat = 0
+        var addedString: String = ""
         
         if labelSize.width > size {
-            breakpoint = Int(size/verify)+1
-            let breakIndex: String.Index = text.index(text.startIndex, offsetBy: breakpoint)
-            let firstString = NSMutableAttributedString(string: String(text[..<breakIndex]))
-            let secondString = NSMutableAttributedString(string: String(text[breakIndex...]))
-            firstString.addAttribute(NSAttributedString.Key.kern, value: -0.6, range: NSRange(location: 0, length: firstString.length))
-            secondString.addAttribute(NSAttributedString.Key.kern, value: -0.6, range: NSRange(location: 0, length: secondString.length))
-            
-            journalLabel1.attributedText = firstString
-            journalLabel2.attributedText = secondString
+            for index in modifiedText.indices {
+                let charWidth = String(modifiedText[index]).size(withAttributes: [.font: font]).width
+                if length + charWidth > size {
+                    self.journalLabel1.attributedText = addedString.textSpacing()
+                    self.journalLabel2.attributedText = String(modifiedText[index...]).wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: false, truncated: true)
+                    break
+                }
+                length += charWidth
+                addedString += String(modifiedText[index])
+            }
         } else {
-            journalLabel1.attributedText = text.wordSpacing(-0.6)
+            journalLabel1.attributedText = modifiedText.textSpacing()
         }
     }
     
     // 일기 라벨에 밑줄 처리
-    func setLabelUnderline(_ size1: CGFloat, _ size2: CGFloat) {
+    func createLabelUnderline(_ secondJournalLabelSize: CGFloat) {
         DispatchQueue.main.async {
-            let firstString = self.journalLabel1.text!
-            let secondString = self.journalLabel2.text!
-            let firstLabelSize: CGSize = firstString.size(withAttributes: [.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
-            let secondLabelSize: CGSize = secondString.size(withAttributes: [.font: UIFont.systemFont(ofSize: 12, weight: .regular)])
-
-            let border1 = CALayer()
-            let border2 = CALayer()
-            
-            border1.frame = CGRect(x: 0, y: Int(self.journalLabel1.frame.height) - 1, width: Int(firstLabelSize.width), height: 1)
-            border1.backgroundColor = UIColor.LineLightGray.cgColor
-            
-            if secondLabelSize.width < size2 {
-                border2.frame = CGRect(x: 0, y: self.journalLabel2.frame.height - 1, width: secondLabelSize.width, height: 1)
-            } else {
-                border2.frame = CGRect(x: 0, y: self.journalLabel2.frame.height - 1, width: size2, height: 1)
+            guard let firstString = self.journalLabel1.text, let secondString = self.journalLabel2.text, let font =  UIFont(name: "AppleSDGothicNeo-Regular", size: 12) else {
+                return
             }
-            border2.backgroundColor = UIColor.LineLightGray.cgColor
+            let firstLabelSize: CGSize = firstString.size(withAttributes: [.font: font])
+            let secondLabelSize: CGSize = secondString.size(withAttributes: [.font: font])
 
-            self.journalLabel1.layer.addSublayer(border1)
-            self.journalLabel2.layer.addSublayer(border2)
+            let topBorder = CALayer()
+            let bottomBorder = CALayer()
+            
+            topBorder.frame = CGRect(x: 0, y: Int(self.journalLabel1.frame.height) - 1, width: Int(firstLabelSize.width), height: 1)
+            topBorder.backgroundColor = UIColor.LineLightGray.cgColor
+            
+            if secondLabelSize.width < secondJournalLabelSize {
+                bottomBorder.frame = CGRect(x: 0, y: self.journalLabel2.frame.height - 1, width: secondLabelSize.width, height: 1)
+            } else {
+                bottomBorder.frame = CGRect(x: 0, y: self.journalLabel2.frame.height - 1, width: secondJournalLabelSize, height: 1)
+            }
+            bottomBorder.backgroundColor = UIColor.LineLightGray.cgColor
+
+            self.journalLabel1.layer.addSublayer(topBorder)
+            self.journalLabel2.layer.addSublayer(bottomBorder)
         }
     }
-
 }

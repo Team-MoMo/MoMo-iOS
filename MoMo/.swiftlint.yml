@@ -4,9 +4,22 @@ disabled_rules:
 - orphaned_doc_comment
 - nesting
 - type_body_length
+- parameter
+
 included:
 excluded:
 - Pods
 - MoMo/Sources/AppDelegate.swift
 - MoMo/Sources/SceneDelegate.swift
 - MoMo/Resources/Constants/APIConstants.swift
+
+file_length:
+  warning: 1000
+  error: 1200
+
+identifier_name:
+  min_length:
+    error: 2
+  excluded:
+    - id
+    - URL

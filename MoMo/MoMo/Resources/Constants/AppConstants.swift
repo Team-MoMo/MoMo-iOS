@@ -24,12 +24,22 @@ struct Constants {
         static let loginStoryboard: String = "Login"
         static let diaryWriteStoryboard: String = "DiaryWrite"
         static let listStoryboard: String = "List"
-        static let findPasswordStoryboard: String = "FindPassword" 
-        // MARK: - Nib Name Constants
+        static let findPasswordStoryboard: String = "FindPassword"
+        static let statisticsStoryboard: String = "Statistics"
+        static let settingStoryboard: String = "Setting"
+        static let teamStoryboard: String = "Team"
+        static let lockStoryboard: String = "Lock"
+        static let openSourceStoryboard: String = "OpenSource"
+        static let personalTermStoryboard: String = "PersonalTerm"
+        static let changePasswordStoryboard: String = "ChangePassword"
+        static let serviceTermStoryboard: String = "ServiceTerm"
+        
+      // MARK: - Nib Name Constants
         
         static let homeDayNightViewXib: String = "HomeDayNightView"
         static let bubbleTableViewCell: String = "BubbleTableViewCell"
-        
+        static let getPasswordAlertViewXib: String = "GetPasswordAlertView"
+        static let settingTableViewCell: String = "SettingTableViewCell"
     }
     
     // MARK: - Identifier Contants
@@ -50,6 +60,17 @@ struct Constants {
         static let loginViewController: String = "LoginViewController"
         static let listViewController: String = "ListViewController"
         static let findPasswordViewController: String = "FindPasswordViewController"
+        static let statisticsViewController: String = "StatisticsViewController"
+        static let depthStatViewController: String = "DepthStatViewController"
+        static let moodStatViewController: String = "MoodStatViewController"
+        static let settingViewController: String = "SettingViewController"
+        static let teamViewController: String = "TeamViewController"
+        static let lockViewController: String = "LockViewController"
+        static let openSourceViewController: String = "OpenSourceViewController"
+        static let openSourceDetailViewController: String = "OpenSourceDetailViewController"
+        static let personalTermViewController: String = "PersonalTermViewController"
+        static let changePasswordViewController: String = "ChangePasswordViewController"
+        static let serviceTermViewController: String = "ServiceTermViewController"
         
         // MARK: - UIView
         
@@ -58,6 +79,7 @@ struct Constants {
         // MARK: - Xib Cell
         
         static let bubbleTableViewCell: String = "BubbleTableViewCell"
+        static let settingTableViewCell: String = "SettingTableViewCell"
     }
     
     // MARK: - Design Constants
@@ -77,6 +99,7 @@ struct Constants {
             static let btnIcMyBlue = UIImage(named: "btnIcMyBlue")
             static let icFeatherBlack = UIImage(named: "icFeatherBlack")
             static let btnIcMy = UIImage(named: "btnIcMy")
+            static let deepLine = UIImage(named: "deepLine")
             
             // objet - depth number 0
             static let depth0Seaweed1 = UIImage(named: "2MSeaweed1")
@@ -84,6 +107,8 @@ struct Constants {
             static let depth0Rock2 = UIImage(named: "2MRock2")
             static let depth0Fish1 = UIImage(named: "2MFish1")
             static let depth0Fish2 = UIImage(named: "2MFish2")
+            static let depth0Fish5 = UIImage(named: "2MFish5")
+            static let depth0Bubble1 = UIImage(named: "2MBubble1")
             
             // objet - depth number 1
             static let depth1Rock1 = UIImage(named: "30MRock1")
@@ -92,10 +117,12 @@ struct Constants {
             static let depth1Dolphin2 = UIImage(named: "30MDolphin2")
             static let depth1Coral1 = UIImage(named: "30MCoral1")
             static let depth1Fish1 = UIImage(named: "30MFish1")
+            static let depth1Seaweed3 = UIImage(named: "30MSeaweed3")
             
             // objet - depth number 2
             static let depth2Fish1 = UIImage(named: "100MFish1")
             static let depth2Fish2 = UIImage(named: "100MFish2")
+            static let depth2Fish3 = UIImage(named: "100MFish3")
             static let depth2Turtle1 = UIImage(named: "100MTurtle1")
             static let depth2Turtle2 = UIImage(named: "100MTurtle2")
             static let depth2Seaweed1 = UIImage(named: "100MSeaweed1")
@@ -122,12 +149,17 @@ struct Constants {
             static let depth5Seaweed2 = UIImage(named: "1005MSeaweed2")
             static let depth5Shark = UIImage(named: "1005MShark")
             static let depth5Rock1 = UIImage(named: "1005MRock1")
+            static let depth5Seaweed3 = UIImage(named: "1005MSeaweed3")
+            static let depth5Bubble1 = UIImage(named: "1005MBubble1")
             
             // objet - depth number 6
             static let depth6Rock1 = UIImage(named: "underRock1")
             static let depth6Seaweed1 = UIImage(named: "underSeaweed1")
             static let depth6Sea = UIImage(named: "underSea")
             static let depth6bottom = UIImage(named: "bottomSea")
+            static let depth6Fish1 = UIImage(named: "underFish1")
+            
+            // icon
 
             static let icLove14Black = UIImage(named: "icLove14Black")
             static let icHappy14Black = UIImage(named: "icHappy14Black")
@@ -171,11 +203,13 @@ struct Constants {
             
             // button
             static let btnCloseBlack = UIImage(named: "btnCloseBlack")
+            static let btnCloseWhite = UIImage(named: "btnCloseWhite")
             static let btnBackWhite = UIImage(named: "btnBackWhite")
             static let btnBackBlack = UIImage(named: "btnBackBlack")
             static let listBtnFilterBlue = UIImage(named: "listBtnFilterBlue")
             static let listBtnGraph = UIImage(named: "listBtnGraph")
             static let listBtnFilterBlack = UIImage(named: "listBtnFilterBlack")
+            static let btnResetting = UIImage(named: "btnResetting")
             
             // listView icon
             static let icLoveBlue = UIImage(named: "icLoveBlue")
@@ -186,6 +220,59 @@ struct Constants {
             static let icBoredBlue = UIImage(named: "icBoredBlue")
             static let icMemoryBlue = UIImage(named: "icMemoryBlue")
             static let icDailyBlue = UIImage(named: "icDailyBlue")
+            
+            // listEmotionFilterUnselected icon
+            static let iosFilterLoveUnselected = UIImage(named: "iosFilterLoveUnselected")
+            static let iosFilterHappyUnselected = UIImage(named: "iosFilterHappyUnselected")
+            static let iosFilterConsoleUnselected = UIImage(named: "iosFilterConsoleUnselected")
+            static let iosFilterAngryUnselected = UIImage(named: "iosFilterAngryUnselected")
+            static let iosFilterSadUnselected = UIImage(named: "iosFilterSadUnselected")
+            static let iosFilterBoredUnselected = UIImage(named: "iosFilterBoredUnselected")
+            static let iosFilterMemoryUnselected = UIImage(named: "iosFilterMemoryUnselected")
+            static let iosFilterDailyUnselected = UIImage(named: "iosFilterDailyUnselected")
+            
+            // listEmotionFilterSelected icon
+            
+            static let iosFilterLoveSelected = UIImage(named: "iosFilterLoveSelected")
+            static let iosFilterHappySelected = UIImage(named: "iosFilterHappySelected")
+            static let iosFilterConsoleSelected = UIImage(named: "iosFilterConsoleSelected")
+            static let iosFilterAngrySelected = UIImage(named: "iosFilterAngrySelected")
+            static let iosFilterSadSelected = UIImage(named: "iosFilterSadSelected")
+            static let iosFilterBoredSelected = UIImage(named: "iosFilterBoredSelected")
+            static let iosFilterMemorySelected = UIImage(named: "iosFilterMemorySelected")
+            static let iosFilterDailySelected = UIImage(named: "iosFilterDailySelected")
+            
+            // statViewObjet
+            static let graph2M = UIImage(named: "graph2M")
+            static let graph30M = UIImage(named: "graph30M")
+            static let graph100M = UIImage(named: "graph100M")
+            static let graph300M = UIImage(named: "graph300M")
+            static let graph700M = UIImage(named: "graph700M")
+            static let graph1005M = UIImage(named: "graph1005M")
+            static let graphUnder = UIImage(named: "graphUnder")
+            
+            // navigation
+            static let icSubtab = UIImage(named: "icSubtab")
+            
+            // get password alert icon
+            static let modalIcWarning = UIImage(named: "modalIcWarning")
+            static let modalIcCheck = UIImage(named: "modalIcCheck")
+            static let icCount1 = UIImage(named: "icCount1")
+            static let icCount2 = UIImage(named: "icCount2")
+            static let icCount3 = UIImage(named: "icCount3")
+            // setting
+            static let icUser = UIImage(named: "icUser")
+            static let icLock = UIImage(named: "icLock")
+            static let icLicense = UIImage(named: "icLicense")
+            static let icTeam = UIImage(named: "icTeam")
+            static let icInstaLogo = UIImage(named: "icInstaLogo")
+            static let icPwChange = UIImage(named: "icPwChange")
+            static let icDoc1 = UIImage(named: "icDoc1")
+            static let icDoc2 = UIImage(named: "icDoc2")
+            static let icLogout = UIImage(named: "icLogout")
+            
+            // team MoMo
+            static let imgTypoMomo = UIImage(named: "imgTypoMomo")
         }
         
         struct Font {

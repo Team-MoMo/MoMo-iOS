@@ -25,9 +25,9 @@ class HomeModalPresentationController: UIPresentationController {
     
     override var frameOfPresentedViewInContainerView: CGRect {
         CGRect(origin: CGPoint(x: 0,
-                              y: self.containerView!.frame.height*0.57),
+                              y: self.containerView!.frame.height*0.55),
                size: CGSize(width: self.containerView!.frame.width,
-                            height: self.containerView!.frame.height * 0.43))
+                            height: self.containerView!.frame.height * 0.45))
     }
     
     // 모달이 올라갈 때 뒤에 있는 배경을 검은색 처리해주는 용도
@@ -48,10 +48,10 @@ class HomeModalPresentationController: UIPresentationController {
     override func containerViewDidLayoutSubviews() {
         super.containerViewDidLayoutSubviews()
         blurEffectView.frame = containerView!.bounds
+        self.presentedView?.round(corners: [.topLeft, .topRight], cornerRadius: 15)
     }
     
     @objc func dismissController() {
         self.presentedViewController.dismiss(animated: true, completion: nil)
     }
 }
-

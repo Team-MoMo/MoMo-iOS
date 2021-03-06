@@ -23,4 +23,3 @@ extension UITextField {
         sendActions(for: .editingChanged)
     }
 }
-

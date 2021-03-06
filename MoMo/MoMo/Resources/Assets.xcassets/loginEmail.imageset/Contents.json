@@ -1,18 +1,18 @@
 {
   "images" : [
     {
-      "filename" : "loginEmail.png",
       "idiom" : "universal",
+      "filename" : "loginEmail.png",
       "scale" : "1x"
     },
     {
+      "filename" : "loginEmail@2x.png",
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "loginEmail@2x.png"
+      "scale" : "2x"
     },
     {
-      "idiom" : "universal",
       "filename" : "loginEmail@3x.png",
+      "idiom" : "universal",
       "scale" : "3x"
     }
   ],

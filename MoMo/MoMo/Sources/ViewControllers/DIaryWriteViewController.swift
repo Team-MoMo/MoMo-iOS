@@ -8,38 +8,20 @@
 import UIKit
 
 protocol DiaryWriteViewControllerDelegate: class {
-    func popDiaryWirteViewController(diaryInfo: DiaryInfo)
+    func popToDiaryViewController(newDiaryInfo: AppDiary?)
 }
 
-enum NavigationButton: Int {
-    case leftButton = 0, rightButton
+enum DiaryWriteViewNavigationButton: Int {
+    case leftButtonForDiary = 0, rightButtonForDiary, leftButtonForUpload, rightButtonForUpload
+}
+
+enum DiaryJournalTextViewMode: Int {
+    case placeholder = 0, normal
 }
 
 class DiaryWriteViewController: UIViewController {
     
-    // MARK: - Properties
-    var mood: Mood?
-    var sentence: Sentence?
-    
-    
-    
-    var date: String = "2020. 12. 26 토요일"
-    var emotionOriginalImage: UIImage = UIImage()
-    var emotion: String = "화남"
-    var author: String = "구병모"
-    var book: String = "파괴"
-    var publisher: String = "위즈덤 하우스"
-    var quote: String = "접입가경, 이게 웬 심장이 콧구멍으로 쏟아질 얘긴가 싶지만 그저 지레짐작이나 얻어걸린 이야기일 가능성이 더 많으니 조각은 표정을 바꾸지 않는다."
-    var journal: String = ""
-    var placeHolder: NSMutableAttributedString = NSMutableAttributedString()
-    // TODO: - isFromeDiary를 사용하지 않고 prevViewController: String 또는
-    // prevViewController: EnumType??? 으로 만들고 switch 문으로 분기처리하도록 리팩토링
-    var isFromDiary: Bool = false
-    var diaryInfo: DiaryInfo?
-    var alertModalView: AlertModalView?
-    weak var diaryWriteViewControllerDelegate: DiaryWriteViewControllerDelegate?
-    
-    // MARK: - IBOutlet
+    // MARK: - IBOutlets
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var emotionImage: UIImageView!
@@ -53,171 +35,121 @@ class DiaryWriteViewController: UIViewController {
     @IBOutlet weak var depthImage: UIImageView!
     @IBOutlet weak var depthLabel: UILabel!
     @IBOutlet weak var journalTextView: UITextView!
+    @IBOutlet weak var diaryWriteScrollView: UIScrollView!
     @IBOutlet weak var quoteLabelTopConstraint: NSLayoutConstraint!
     
-    lazy var leftButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(image: Constants.Design.Image.btnBackWhite, style: .plain, target: self, action: #selector(buttonPressed(sender:)))
+    // MARK: - Properties
+    
+    var isFromDiary: Bool = false
+    var diaryInfo: AppDiary?
+    weak var diaryWriteViewControllerDelegate: DiaryWriteViewControllerDelegate?
+    private var initialDiaryInfo: AppDiary?
+    private var toastView: ToastView?
+    private var alertModalView: AlertModalView?
+    private lazy var placeHolder: NSAttributedString = {
+        let attributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13),
+            NSAttributedString.Key.foregroundColor: UIColor.Blue3,
+            NSAttributedString.Key.kern: -0.6
+        ]
+        return NSAttributedString(string: "파동을 충분히 느낀 후, 감정을 기록해보세요.", attributes: attributes)
+    }()
+    private lazy var leftButtonForDiary: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: Constants.Design.Image.btnBackWhite, style: .plain, target: self, action: #selector(touchNavigationButton(sender:)))
         button.tintColor = UIColor.Black1
-        button.tag = NavigationButton.leftButton.rawValue
+        button.tag = DiaryWriteViewNavigationButton.leftButtonForDiary.rawValue
         return button
     }()
-    
-    lazy var rightButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(buttonPressed(sender:)))
-        button.tag = NavigationButton.rightButton.rawValue
+    private lazy var rightButtonForDiary: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(touchNavigationButton(sender:)))
+        button.tag = DiaryWriteViewNavigationButton.rightButtonForDiary.rawValue
         button.tintColor = UIColor.Blue2
         return button
     }()
+    private lazy var leftButtonForUpload: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchNavigationButton(sender:)))
+        button.tag = DiaryWriteViewNavigationButton.leftButtonForUpload.rawValue
+        button.tintColor = .black
+        return button
+    }()
+    private lazy var rightButtonForUpload: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "다음", style: .plain, target: self, action: #selector(touchNavigationButton(sender:)))
+        button.tag = DiaryWriteViewNavigationButton.rightButtonForUpload.rawValue
+        button.tintColor = UIColor.Blue3
+        return button
+    }()
+    
+    // MARK: - Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.initializeNavigationBar()
+        self.initializeDiaryWriteViewController()
+        self.addTapGestureOnDiaryWriteScrollView()
+    }
+    
+    // MARK: - Functions
+
+    private func initializeDiaryWriteViewController() {
         self.journalTextView.delegate = self
+        self.updateDiaryWriteViewController()
+        self.journalTextView.tag = DiaryJournalTextViewMode.normal.rawValue
         
-        self.setWordSpace()
-        
-        if isFromDiary {
-            self.setValuesFromDiaryView()
-            self.navigationItem.leftBarButtonItem = self.leftButton
+        if self.isFromDiary {
             self.depthImage.isHidden = false
             self.depthLabel.isHidden = false
+            self.initialDiaryInfo = self.diaryInfo
         } else {
-            setValuesFromUploadView()
-            self.setPlaceholder()
-            self.setNavigationButton()
-            self.journalTextView.attributedText = self.placeHolder
             self.depthImage.isHidden = true
             self.depthLabel.isHidden = true
+            self.attachPlaceHolder()
         }
     }
     
-    // MARK: - IBAction
-    
-    @IBAction func tapBackground(_ sender: Any) {
-        self.journalTextView.endEditing(true)
-    }
-    
-    @IBAction func touchMoreButton(_ sender: Any) {
-        self.shrinkQuoteLabel()
-    }
-    
-    // MARK: - Private function for settings
-    
-    private func setValuesFromDiaryView() {
-        self.dateLabel.text = diaryInfo?.date
-        self.emotionImage.image = diaryInfo?.mood.toIcon()
-        self.emotionLabel.text = diaryInfo?.mood.toString()
-        self.depthLabel.text = diaryInfo?.depth.toString()
-        self.authorLabel.text = diaryInfo?.sentence.author
-        self.bookLabel.text = diaryInfo?.sentence.bookTitle
-        self.quoteLabel.text = diaryInfo?.sentence.sentence
-        self.journalTextView.text = diaryInfo?.diary
-    }
-    
-    private func setValuesFromUploadView() {
-        guard let usableMood = mood, let usableSentence = sentence else {
-            return
-        }
-        self.dateLabel.text = self.date
-        self.emotionImage.image = usableMood.toIcon()
-        print(usableMood.toIcon())
-        self.emotionLabel.text = usableMood.toString()
-        self.authorLabel.text = usableSentence.writer
-        self.bookLabel.text = usableSentence.bookName
-        self.quoteLabel.text = usableSentence.contents
-        
-    }
-    
-    func setNavigationButton() {
+    private func initializeNavigationBar() {
         self.navigationItem.hidesBackButton = true
-        if isFromDiary {
-            
+        if self.isFromDiary {
+            self.navigationItem.leftBarButtonItem = self.leftButtonForDiary
         } else {
-            let rightButton = UIBarButtonItem(title: "다음", style: .plain, target: self, action: #selector(touchNextButton))
-            rightButton.tintColor = UIColor.Blue3
-            self.navigationItem.rightBarButtonItems = [rightButton]
-            let leftButton = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchBackButton))
-            leftButton.tintColor = .black
-            self.navigationItem.leftBarButtonItems = [leftButton]
+            self.navigationItem.rightBarButtonItem = self.rightButtonForUpload
+            self.navigationItem.leftBarButtonItem = self.leftButtonForUpload
         }
     }
     
-    @objc func touchNextButton() {
+    private func addTapGestureOnDiaryWriteScrollView() {
+        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(touchDiaryScrollView))
+        singleTapGestureRecognizer.numberOfTapsRequired = 1
+        singleTapGestureRecognizer.isEnabled = true
+        singleTapGestureRecognizer.cancelsTouchesInView = false
+        self.diaryWriteScrollView.addGestureRecognizer(singleTapGestureRecognizer)
+    }
+    
+    private func updateDiaryWriteViewController() {
+        guard let bookTitle = self.diaryInfo?.sentence?.bookTitle,
+              let publisher = self.diaryInfo?.sentence?.publisher else { return }
         
-        guard let textViewText = self.journalTextView.text else {
-            return
+        self.dateLabel.attributedText = diaryInfo?.date?.getFormattedDateAndWeekday(with: ". ").textSpacing()
+        self.emotionImage.image = diaryInfo?.mood?.toIcon()
+        self.emotionLabel.attributedText = self.diaryInfo?.mood?.toString().textSpacing()
+        self.authorLabel.attributedText = self.diaryInfo?.sentence?.author.textSpacing()
+        self.bookLabel.attributedText = "<\(bookTitle)>".textSpacing()
+        self.publisherLabel.attributedText = "(\(publisher))".textSpacing()
+        self.quoteLabel.attributedText = self.diaryInfo?.sentence?.sentence.textSpacing()
+        
+        if self.isFromDiary {
+            guard let diary = self.diaryInfo?.diary else { return }
+            self.depthLabel.attributedText = diaryInfo?.depth?.toString().textSpacing()
+            self.journalTextView.attributedText = self.changeToNormalAttributeString(text: diary)
         }
-        if textViewText != "" && textViewText != "파동을 충분히 느낀 후, 감정을 기록해보세요." {
-            self.journal = textViewText
-            let writeStorybaord = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
-            guard let deepViewController = writeStorybaord.instantiateViewController(identifier: Constants.Identifier.deepViewController) as? DeepViewController else {
-                return
-            }
-            guard let selectedMood = mood, let selectedSentence = sentence else {
-                return
-            }
-            deepViewController.mood = selectedMood
-            deepViewController.sentence = selectedSentence
-            deepViewController.journal = self.journal
-            deepViewController.date = self.date
-            deepViewController.buttonText = "기록하기"
-            
-            self.navigationController?.pushViewController(deepViewController, animated: true)
-        }
-    }
-    
-    @objc func touchBackButton() {
-        self.attachAlertModalView()
-    }
-    
-    private func setWordSpace() {
-        dateLabel.attributedText = date.wordSpacing(-0.6)
-        emotionLabel.attributedText = emotion.wordSpacing(-0.6)
-        authorLabel.attributedText = author.wordSpacing(-0.6)
-        bookLabel.attributedText = "<\(book)>".wordSpacing(-0.6)
-        publisherLabel.attributedText = "(\(publisher))".wordSpacing(-0.6)
-        
-        let attributedString = NSMutableAttributedString(string: quote)
-        attributedString.addAttribute(NSAttributedString.Key.kern, value: -0.6, range: NSRange(location: 0, length: attributedString.length))
-        
-        let paragraphStyle = NSMutableParagraphStyle()
-        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
-        paragraphStyle.lineSpacing = 4
-        
-        self.quoteLabel.attributedText = attributedString
-    }
-    
-    private func setPlaceholder() {
-        let text = "파동을 충분히 느낀 후, 감정을 기록해보세요."
-        let attributedString = NSMutableAttributedString(string: text)
-        
-        attributedString.addAttribute(NSAttributedString.Key.kern, value: -0.6, range: NSRange(location: 0, length: attributedString.length))
-        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.Blue3, range: NSRange(location: 0, length: attributedString.length))
-        
-        self.placeHolder = attributedString
-    }
-    
-    private func coordinateTextView() -> [NSAttributedString.Key: Any] {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 4
-        
-        let attribute: [NSAttributedString.Key: Any] = [
-            .kern: -0.6,
-            .paragraphStyle: paragraphStyle,
-            .foregroundColor: UIColor.Black3List
-        ]
-        
-        return attribute
     }
     
     private func shrinkQuoteLabel() {
         if quoteLabel.text == "" {
             UIView.animate(withDuration: 0.5) {
                 self.moreButton.transform = CGAffineTransform(rotationAngle: -.pi*2)
-                self.quoteLabel.text = self.quote
+                self.quoteLabel.text = self.diaryInfo?.sentence?.sentence
                 self.quoteLabelTopConstraint.constant = 24
             }
-            
         } else {
             UIView.animate(withDuration: 0.5) {
                 self.moreButton.transform = CGAffineTransform(rotationAngle: .pi)
@@ -227,54 +159,147 @@ class DiaryWriteViewController: UIViewController {
         }
     }
     
-    @objc private func buttonPressed(sender: Any) {
-        if let button = sender as? UIBarButtonItem {
-            switch button.tag {
-            case NavigationButton.leftButton.rawValue:
-                self.popDiaryWirteViewController()
-            case NavigationButton.rightButton.rawValue:
-                self.saveDiary()
-                self.popDiaryWirteViewController()
-            default:
-                print("error")
-            }
-        }
+    private func saveDiary() {
+        self.diaryInfo?.diary = self.journalTextView.text
     }
     
-    func saveDiary() {
-        self.diaryInfo?.diary = journalTextView.text
-        self.navigationItem.rightBarButtonItem = nil
+    private func isDiaryChanged() -> Bool {
+        guard let newDiary = self.diaryInfo?.diary, let oldDiary = self.initialDiaryInfo?.diary else { return false }
+        return newDiary != oldDiary
     }
     
-    func popDiaryWirteViewController() {
-        if self.diaryInfo?.diary != self.journalTextView.text {
-            self.attachAlertModalView()
-        } else {
-            self.passDataAndPopViewController()
-        }
+    private func isEmptyJournalTextView() -> Bool {
+        return self.journalTextView.text == self.placeHolder.string || self.journalTextView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
     
-    func passDataAndPopViewController() {
-        if let diaryInfo = self.diaryInfo {
-            self.diaryWriteViewControllerDelegate?.popDiaryWirteViewController(diaryInfo: diaryInfo)
-        }
+    private func attachPlaceHolder() {
+        self.journalTextView.attributedText = self.placeHolder
+        self.journalTextView.tag = DiaryJournalTextViewMode.placeholder.rawValue
+    }
+    
+    private func detachPlaceHolder() {
+        self.journalTextView.attributedText = nil
+        self.journalTextView.tag = DiaryJournalTextViewMode.normal.rawValue
+    }
+    
+    private func changeToNormalAttributeString(text: String) -> NSAttributedString {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 4
+        let attributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.paragraphStyle: paragraphStyle,
+            NSAttributedString.Key.kern: -0.6,
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
+            NSAttributedString.Key.foregroundColor: UIColor.Black3List
+        ]
+        return NSAttributedString(string: text, attributes: attributes)
+    }
+    
+    private func popToSentenceViewController() {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func attachAlertModalView() {
-        let attributedString = NSMutableAttributedString(string: "확인")
-        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(red: 119/255, green: 119/255, blue: 119/255, alpha: 1.0), range: NSRange(location: 0, length: attributedString.length))
-        
+    private func popToDiaryViewController(save: Bool) {
+        self.navigationItem.rightBarButtonItem = nil
+        self.diaryWriteViewControllerDelegate?.popToDiaryViewController(newDiaryInfo: save ? self.diaryInfo : self.initialDiaryInfo)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    private func pushToDeepViewController() {
+        let onboardingStorybaord = UIStoryboard(name: Constants.Name.onboardingStoryboard, bundle: nil)
+        guard let deepViewController = onboardingStorybaord.instantiateViewController(identifier: Constants.Identifier.deepViewController) as? DeepViewController else { return }
+        self.saveDiary()
+        deepViewController.diaryInfo = self.diaryInfo
+        deepViewController.deepViewUsage = .upload
+        self.navigationController?.pushViewController(deepViewController, animated: true)
+    }
+    
+    private func attachAlertModalView() {
         self.alertModalView = AlertModalView.instantiate(
             alertLabelText: "작성한 일기가 저장되지 않습니다.\n정말 뒤로 가시겠어요?",
-            leftButtonTitle: NSMutableAttributedString(string: "취소"),
-            rightButtonTitle: attributedString
+            leftButtonTitle: "취소",
+            rightButtonTitle: "확인"
         )
 
         if let alertModalView = self.alertModalView {
             alertModalView.alertModalDelegate = self
             self.view.insertSubview(alertModalView, aboveSubview: self.view)
-            alertModalView.setConstraints(view: alertModalView, superView: self.view)
+            self.updateAlertModalViewConstraints(view: alertModalView)
+        }
+    }
+    
+    private func attachToastViewWithAnimation() {
+        self.attachToastView()
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            animations: {
+                self.toastView?.alpha = 1.0
+            },
+            completion: { _ in
+                UIView.animate(
+                    withDuration: 0.5,
+                    delay: 0.5,
+                    animations: {
+                        self.toastView?.alpha = 0.0
+                    },
+                    completion: { _ in
+                        self.detachToastView()
+                    }
+                )
+            }
+        )
+    }
+    
+    private func attachToastView() {
+        self.toastView = ToastView.instantiate(message: "일기를 작성해 주세요!")
+        guard let toastView = self.toastView else { return }
+        toastView.alpha = 0.0
+        self.view.insertSubview(toastView, aboveSubview: self.view)
+        self.updateToastViewConstraints(view: toastView)
+    }
+    
+    private func detachToastView() {
+        self.toastView?.removeFromSuperview()
+    }
+    
+    private func updateAlertModalViewConstraints(view: UIView) {
+        view.snp.makeConstraints({ (make) in
+            make.width.height.centerX.centerY.equalTo(self.view)
+        })
+    }
+    
+    private func updateToastViewConstraints(view: UIView) {
+        view.snp.makeConstraints({ (make) in
+            make.width.height.centerX.centerY.equalTo(self.view)
+        })
+    }
+    
+    @objc private func touchDiaryScrollView(sender: UITapGestureRecognizer) {
+        self.journalTextView.becomeFirstResponder()
+    }
+    
+    @IBAction func tapBackground(_ sender: Any) {
+        self.journalTextView.endEditing(true)
+    }
+    
+    @IBAction func touchMoreButton(_ sender: Any) {
+        self.shrinkQuoteLabel()
+    }
+    
+    @objc private func touchNavigationButton(sender: Any) {
+        if let button = sender as? UIBarButtonItem {
+            switch button.tag {
+            case DiaryWriteViewNavigationButton.leftButtonForDiary.rawValue:
+                self.isDiaryChanged() ? self.attachAlertModalView() : self.popToDiaryViewController(save: false)
+            case DiaryWriteViewNavigationButton.rightButtonForDiary.rawValue:
+                self.isEmptyJournalTextView() ? self.attachToastViewWithAnimation() : self.popToDiaryViewController(save: true)
+            case DiaryWriteViewNavigationButton.leftButtonForUpload.rawValue:
+                self.isEmptyJournalTextView() ? self.popToSentenceViewController() : self.attachAlertModalView()
+            case DiaryWriteViewNavigationButton.rightButtonForUpload.rawValue:
+                self.isEmptyJournalTextView() ? self.attachToastViewWithAnimation() : self.pushToDeepViewController()
+            default:
+                return
+            }
         }
     }
 }
@@ -284,56 +309,50 @@ class DiaryWriteViewController: UIViewController {
 extension DiaryWriteViewController: UITextViewDelegate {
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        if self.journalTextView.text == "파동을 충분히 느낀 후, 감정을 기록해보세요." {
-            self.journalTextView.text = ""
-            self.journalTextView.typingAttributes = coordinateTextView()
+        if self.isEmptyJournalTextView() {
+            self.shrinkQuoteLabel()
         }
         
-        if self.quoteLabel.text == "" {
-            return true
+        guard let textViewMode = DiaryJournalTextViewMode(rawValue: self.journalTextView.tag) else { return true }
+        if textViewMode == .placeholder {
+            self.detachPlaceHolder()
         }
-        
-        self.shrinkQuoteLabel()
         
         return true
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        if self.journalTextView.text == "" {
-            self.journalTextView.attributedText = self.placeHolder
+        if self.isEmptyJournalTextView() {
+            self.attachPlaceHolder()
         }
-        self.journal = journalTextView.text
-        if isFromDiary {
-            self.navigationItem.rightBarButtonItem = self.rightButton
+        if self.isFromDiary {
+            self.navigationItem.rightBarButtonItem = self.rightButtonForDiary
         }
     }
     
     func textViewDidChange(_ textView: UITextView) {
         if self.navigationItem.rightBarButtonItem == nil {
-            self.navigationItem.rightBarButtonItem = self.rightButton
+            self.navigationItem.rightBarButtonItem = self.rightButtonForDiary
         }
+        self.saveDiary()
+        textView.attributedText = changeToNormalAttributeString(text: textView.text)
     }
 }
 
-// MARK: - diaryWriteViewControllerDelegate
+// MARK: - AlertModalDelegate
 
 extension DiaryWriteViewController: AlertModalDelegate {
     
     func leftButtonTouchUp(button: UIButton) {
-        if isFromDiary {
-            self.alertModalView?.removeFromSuperview()
-        } else {
-            self.alertModalView?.removeFromSuperview()
-        }
-        
+        self.alertModalView?.removeFromSuperview()
     }
     
     func rightButtonTouchUp(button: UIButton) {
-        if isFromDiary {
-            self.passDataAndPopViewController()
+        self.alertModalView?.removeFromSuperview()
+        if self.isFromDiary {
+            self.popToDiaryViewController(save: false)
         } else {
-            self.alertModalView?.removeFromSuperview()
-            self.navigationController?.popViewController(animated: true)
+            self.popToSentenceViewController()
         }
     }
 }

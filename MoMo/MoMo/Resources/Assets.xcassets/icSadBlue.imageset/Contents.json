@@ -2,13 +2,13 @@
   "images" : [
     {
       "scale" : "1x",
-      "filename" : "icSadBlue.png",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "filename" : "icSadBlue.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "icSadBlue@2x.png"
+      "filename" : "icSadBlue@2x.png",
+      "scale" : "2x"
     },
     {
       "scale" : "3x",

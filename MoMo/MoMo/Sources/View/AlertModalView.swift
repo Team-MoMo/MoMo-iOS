@@ -34,27 +34,22 @@ class AlertModalView: UIView {
     
     // MARK: - Functions
     
-    static func instantiate(alertLabelText: String, leftButtonTitle: NSMutableAttributedString, rightButtonTitle: NSMutableAttributedString) -> AlertModalView? {
+    static func instantiate(alertLabelText: String, leftButtonTitle: String, rightButtonTitle: String) -> AlertModalView? {
         
         let alertModalView: AlertModalView? = initFromNib()
         
-        alertModalView?.leftButton.setAttributedTitle(leftButtonTitle, for: .normal)
-        alertModalView?.rightButton.setAttributedTitle(rightButtonTitle, for: .normal)
-        alertModalView?.alertLabel.text = alertLabelText
+        let leftButtonTitleText = leftButtonTitle.textSpacing()
+        let rightButtonTitleText = rightButtonTitle.textSpacing()
+        rightButtonTitleText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.AlertRightButtonGray, range: NSRange(location: 0, length: rightButtonTitleText.length))
+        
+        alertModalView?.leftButton.setAttributedTitle(leftButtonTitleText, for: .normal)
+        alertModalView?.rightButton.setAttributedTitle(rightButtonTitleText, for: .normal)
+        alertModalView?.alertLabel.attributedText = alertLabelText.wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: true, truncated: false)
         alertModalView?.modalContainerView.layer.cornerRadius = 10
         alertModalView?.modalContainerView.clipsToBounds = true
         alertModalView?.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         
         return alertModalView
-    }
-    
-    func setConstraints(view: UIView, superView: UIView) {
-        view.snp.makeConstraints({ (make) in
-            make.width.equalTo(superView)
-            make.height.equalTo(superView)
-            make.centerX.equalTo(superView)
-            make.centerY.equalTo(superView)
-        })
     }
     
     @IBAction func leftButtonTouchUp(_ sender: UIButton) {
