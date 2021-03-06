@@ -44,7 +44,7 @@ class AlertModalView: UIView {
         
         alertModalView?.leftButton.setAttributedTitle(leftButtonTitleText, for: .normal)
         alertModalView?.rightButton.setAttributedTitle(rightButtonTitleText, for: .normal)
-        alertModalView?.alertLabel.attributedText = alertLabelText.textSpacing()
+        alertModalView?.alertLabel.attributedText = alertLabelText.wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: true, truncated: false)
         alertModalView?.modalContainerView.layer.cornerRadius = 10
         alertModalView?.modalContainerView.clipsToBounds = true
         alertModalView?.backgroundColor = UIColor.black.withAlphaComponent(0.3)
