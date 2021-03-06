@@ -47,6 +47,8 @@ class ListViewController: UIViewController {
     // MARK: - Constant
     
     let zeplinWidth: CGFloat = 375
+    let filterCollectionViewSideAuto = 48
+    let filterCollectionViewCellSpacing = 5
     
     // MARK: - Property
     
@@ -343,6 +345,7 @@ class ListViewController: UIViewController {
         guard let moodViewController = onboardingStoryboard.instantiateViewController(identifier: Constants.Identifier.moodViewController) as? MoodViewController else {
             return
         }
+        moodViewController.moodViewUsage = .upload
         moodViewController.listNoDiary = true
         moodViewController.moodViewUsage = .upload
         
@@ -384,6 +387,7 @@ extension ListViewController: UITableViewDataSource {
                 return UITableViewCell()
                 }
                 cell.filterCollectionView.register(UINib(nibName: "FilterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FilterCollectionViewCell")
+                cell.filterCollectionView.register(UINib(nibName: "EmptyCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EmptyCollectionViewCell")
                 cell.filterCollectionView.delegate = self
                 cell.filterCollectionView.dataSource = self
                 cell.selectionStyle = .none
@@ -426,12 +430,21 @@ extension ListViewController: UITableViewDataSource {
 
 extension ListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let filterOptionCellWidth = filter[indexPath.row].size(withAttributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular)]).width + 34
-        return CGSize(width: Int(filterOptionCellWidth), height: 24)
+        if indexPath.row < filter.count {
+            let filterOptionCellWidth = filter[indexPath.row].size(withAttributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular)]).width + 34
+            return CGSize(width: Int(filterOptionCellWidth), height: 24)
+        } else {
+            var size: Int = 0
+            for idx in 0..<filter.count {
+                size += Int(filter[idx].size(withAttributes: [.font: UIFont.systemFont(ofSize: 14, weight: .regular)]).width) + 34
+            }
+            size = Int(self.view.frame.width) - size - self.filterCollectionViewSideAuto - (self.filterCollectionViewCellSpacing * filter.count)
+            return CGSize(width: size, height: 0)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 5
+        return CGFloat(filterCollectionViewCellSpacing)
     }
 }
 
@@ -439,25 +452,32 @@ extension ListViewController: UICollectionViewDelegateFlowLayout {
 
 extension ListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filter.count
+        return filter.count+1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCollectionViewCell", for: indexPath) as? FilterCollectionViewCell else {
-            return UICollectionViewCell()
+        if indexPath.row < filter.count {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCollectionViewCell", for: indexPath) as? FilterCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            cell.clipsToBounds = true
+            cell.layer.cornerRadius = 8
+            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapEmptySpace(_:)))
+            cell.filterLabel.text = filter[indexPath.row]
+            // index 값을 tag에 넣어서 배열에 쉽게 접근
+            cell.cancelButton.tag = indexPath.row
+            cell.cancelButton.accessibilityIdentifier = filter[indexPath.row]
+            cell.cancelButton.addTarget(self, action: #selector(touchCancelButton(sender:)), for: .touchUpInside)
+            cell.filterTouchAreaView.tag = indexPath.row
+            cell.filterTouchAreaView.accessibilityIdentifier = filter[indexPath.row]
+            cell.filterTouchAreaView.addGestureRecognizer(tapRecognizer)
+            return cell
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmptyCollectionViewCell", for: indexPath) as? EmptyCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            return cell
         }
-        cell.clipsToBounds = true
-        cell.layer.cornerRadius = 8
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapEmptySpace(_:)))
-        cell.filterLabel.text = filter[indexPath.row]
-        // index 값을 tag에 넣어서 배열에 쉽게 접근
-        cell.cancelButton.tag = indexPath.row
-        cell.cancelButton.accessibilityIdentifier = filter[indexPath.row]
-        cell.cancelButton.addTarget(self, action: #selector(touchCancelButton(sender:)), for: .touchUpInside)
-        cell.filterTouchAreaView.tag = indexPath.row
-        cell.filterTouchAreaView.accessibilityIdentifier = filter[indexPath.row]
-        cell.filterTouchAreaView.addGestureRecognizer(tapRecognizer)
-        return cell
     }
 }
 
