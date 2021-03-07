@@ -62,19 +62,22 @@
                     <rect key="frame" x="24" y="76" width="301" height="141"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ia-x0-rHX">
-                            <rect key="frame" x="0.0" y="1" width="29.5" height="20.5"/>
-                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="17"/>
+                            <rect key="frame" x="0.0" y="1" width="24.5" height="17"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="17" id="Awt-To-49Q"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="14"/>
                             <color key="textColor" name="Blue3"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020년 1월" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0yQ-cc-lwq">
-                            <rect key="frame" x="53.5" y="0.0" width="75.5" height="19.5"/>
+                            <rect key="frame" x="48.5" y="0.0" width="75.5" height="19"/>
                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="16"/>
                             <color key="textColor" name="Blue2"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FAp-Og-c5I">
-                            <rect key="frame" x="145" y="-1" width="14" height="22"/>
+                            <rect key="frame" x="140" y="-1.5" width="14" height="22"/>
                             <state key="normal" image="btnArrowRight14"/>
                             <connections>
                                 <action selector="touchMoreButton:" destination="-1" eventType="touchUpInside" id="0cd-fe-fDJ"/>
@@ -128,6 +131,7 @@
                         <constraint firstItem="0yQ-cc-lwq" firstAttribute="top" secondItem="95D-Hc-PLk" secondAttribute="top" id="8po-Sm-IGM"/>
                         <constraint firstItem="X5n-B8-kqT" firstAttribute="leading" secondItem="95D-Hc-PLk" secondAttribute="leading" constant="5" id="Amq-au-oLe"/>
                         <constraint firstItem="0yQ-cc-lwq" firstAttribute="leading" secondItem="1Ia-x0-rHX" secondAttribute="trailing" constant="24" id="HGP-Sg-svq"/>
+                        <constraint firstItem="1Ia-x0-rHX" firstAttribute="centerY" secondItem="0yQ-cc-lwq" secondAttribute="centerY" id="HJM-y0-H5r"/>
                         <constraint firstItem="FAp-Og-c5I" firstAttribute="leading" secondItem="0yQ-cc-lwq" secondAttribute="trailing" constant="16" id="Vui-he-fSv"/>
                         <constraint firstItem="1Ia-x0-rHX" firstAttribute="top" secondItem="95D-Hc-PLk" secondAttribute="top" constant="1" id="WJG-JF-awG"/>
                         <constraint firstAttribute="bottom" secondItem="X5n-B8-kqT" secondAttribute="bottom" constant="5" id="dig-cf-zMa"/>
