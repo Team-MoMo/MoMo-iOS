@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 else {
                     if UserDefaults.standard.object(forKey: "token") != nil && UserDefaults.standard.object(forKey: "userId") != nil {
                         if UserDefaults.standard.bool(forKey: "isLocked") {
-                            self.updateRootToLockViewController(usage: LockViewUsage.verifying)
+                            self.updateRootToLockViewController(usage: .verifying)
                         } else {
                             self.updateRootToHomeViewController()
                         }
