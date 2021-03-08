@@ -39,7 +39,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             else {
                 if UserDefaults.standard.object(forKey: "token") != nil && UserDefaults.standard.object(forKey: "userId") != nil {
                     if UserDefaults.standard.bool(forKey: "isLocked") {
-                        self.updateRootToLockViewController(usage: LockViewUsage.verifying)
+                        self.updateRootToLockViewController(usage: .verifying)
                     } else {
                         self.updateRootToHomeViewController()
                     }
@@ -78,6 +78,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let loginViewController = loginStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.loginViewController)
         self.navigationController = UINavigationController(rootViewController: loginViewController)
     }
+    
+    private func pushToLockViewController(usage: LockViewUsage) {
+        let lockStoryboard = UIStoryboard(name: Constants.Name.lockStoryboard, bundle: nil)
+        guard let lockViewController = lockStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.lockViewController) as? LockViewController else { return }
+        lockViewController.lockViewUsage = usage
+        self.navigationController?.pushViewController(lockViewController, animated: false)
+    }
+    
+    private func hasLock() -> Bool {
+        return UserDefaults.standard.object(forKey: "isLocked") != nil
+    }
+    
+    private func isLocked() -> Bool {
+        return UserDefaults.standard.bool(forKey: "isLocked")
+    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -89,6 +104,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        if self.hasLock() {
+            if self.isLocked() {
+                self.pushToLockViewController(usage: .verifying)
+            }
+        }
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
