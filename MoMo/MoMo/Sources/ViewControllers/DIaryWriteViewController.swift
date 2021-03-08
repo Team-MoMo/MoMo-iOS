@@ -47,7 +47,10 @@ class DiaryWriteViewController: UIViewController {
     private var toastView: ToastView?
     private var alertModalView: AlertModalView?
     private lazy var placeHolder: NSAttributedString = {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 4
         let attributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.paragraphStyle: paragraphStyle,
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13),
             NSAttributedString.Key.foregroundColor: UIColor.Blue3,
             NSAttributedString.Key.kern: -0.6
@@ -139,7 +142,7 @@ class DiaryWriteViewController: UIViewController {
         if self.isFromDiary {
             guard let diary = self.diaryInfo?.diary else { return }
             self.depthLabel.attributedText = diaryInfo?.depth?.toString().textSpacing()
-            self.journalTextView.attributedText = self.changeToNormalAttributeString(text: diary)
+            self.journalTextView.attributedText = self.changeToNormalText(text: diary)
         }
     }
     
@@ -182,7 +185,12 @@ class DiaryWriteViewController: UIViewController {
         self.journalTextView.tag = DiaryJournalTextViewMode.normal.rawValue
     }
     
-    private func changeToNormalAttributeString(text: String) -> NSAttributedString {
+    private func changeToNormalText() {
+        self.journalTextView.textColor = UIColor.Black3List
+        self.journalTextView.font = UIFont.systemFont(ofSize: 14)
+    }
+    
+    private func changeToNormalText(text: String) -> NSAttributedString {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4
         let attributes: [NSAttributedString.Key : Any] = [
@@ -316,6 +324,7 @@ extension DiaryWriteViewController: UITextViewDelegate {
         guard let textViewMode = DiaryJournalTextViewMode(rawValue: self.journalTextView.tag) else { return true }
         if textViewMode == .placeholder {
             self.detachPlaceHolder()
+            self.changeToNormalText()
         }
         
         return true
@@ -335,7 +344,6 @@ extension DiaryWriteViewController: UITextViewDelegate {
             self.navigationItem.rightBarButtonItem = self.rightButtonForDiary
         }
         self.saveDiary()
-        textView.attributedText = changeToNormalAttributeString(text: textView.text)
     }
 }
 
