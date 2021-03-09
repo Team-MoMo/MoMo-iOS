@@ -26,19 +26,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
-        let splashStoryboard = UIStoryboard(name: "Splash", bundle: nil)
-        let splashViewController = splashStoryboard.instantiateViewController(withIdentifier: "SplashViewController")
-        self.window?.rootViewController = splashViewController
-        self.window?.makeKeyAndVisible()
+        self.updateRootToSplashViewController()
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1500)) {
-            if !UserDefaults.standard.bool(forKey: "didLaunch") {
+            if !self.didLaunched() {
                 UserDefaults.standard.set(true, forKey: "didLaunch")
                 self.updateRootToOnboadingViewController()
-            }
-            else {
-                if UserDefaults.standard.object(forKey: "token") != nil && UserDefaults.standard.object(forKey: "userId") != nil {
-                    if UserDefaults.standard.bool(forKey: "isLocked") {
+            } else {
+                if self.hasUserIdAndToken() {
+                    if self.isLocked() {
                         self.updateRootToLockViewController(usage: .verifying)
                     } else {
                         self.updateRootToHomeViewController()
@@ -52,6 +48,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         guard let _ = (scene as? UIWindowScene) else { return }
+    }
+    
+    private func updateRootToSplashViewController() {
+        let splashStoryboard = UIStoryboard(name: Constants.Name.splashStoryboard, bundle: nil)
+        let splashViewController = splashStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.splashViewController)
+        self.window?.rootViewController = splashViewController
+        self.window?.makeKeyAndVisible()
     }
     
     private func updateRootToOnboadingViewController() {
@@ -86,8 +89,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.navigationController?.pushViewController(lockViewController, animated: false)
     }
     
-    private func hasLock() -> Bool {
-        return UserDefaults.standard.object(forKey: "isLocked") != nil
+    private func didLaunched() -> Bool {
+        return UserDefaults.standard.bool(forKey: "didLaunch")
+    }
+    
+    private func hasUserIdAndToken() -> Bool {
+        return UserDefaults.standard.object(forKey: "token") != nil && UserDefaults.standard.object(forKey: "userId") != nil
     }
     
     private func isLocked() -> Bool {
@@ -104,10 +111,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
-        if self.hasLock() {
-            if self.isLocked() {
-                self.pushToLockViewController(usage: .verifying)
-            }
+        if self.isLocked() {
+            self.pushToLockViewController(usage: .verifying)
         }
     }
 
