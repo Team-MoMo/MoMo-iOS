@@ -16,6 +16,7 @@ struct Constants {
         
         // MARK: - Storyboard Name Constants
         
+        static let splashStoryboard: String = "Splash"
         static let homeStoryboard: String = "Home"
         static let onboardingStoryboard: String = "Onboarding"
         static let diaryStoryboard: String = "Diary"
@@ -47,6 +48,7 @@ struct Constants {
     struct Identifier {
         // MARK: - ViewController
         
+        static let splashViewController: String = "SplashViewController"
         static let homeViewController: String = "HomeViewController"
         static let onboardingViewController: String = "OnboardingViewController"
         static let diaryWriteViewController: String = "DiaryWriteViewController"
