@@ -161,7 +161,6 @@ class EmailLoginViewController: UIViewController {
     // MARK: - @IBAction Properties
     
     @IBAction func touchUpLoginButton(_ sender: Any) {
-        self.attachActivityIndicator()
         self.postSignInWithAPI(completion: self.pushToHomeViewController)
     }
     
@@ -186,8 +185,9 @@ extension EmailLoginViewController {
               let passwordText = passwordTextField.text else {
             return
         }
-        
+        self.attachActivityIndicator()
         SignInService.shared.postSignIn(email: emailText, password: passwordText) { networkResult in
+            self.detachActivityIndicator()
             switch networkResult {
             case .success(let data):
                 if let signInData = data as? AuthData {
@@ -203,16 +203,11 @@ extension EmailLoginViewController {
                     UserDefaults.standard.setValue(signInData.user.id, forKey: "userId")
                     UserDefaults.standard.setValue("email", forKey: "loginType")
                     
-                    self.detachActivityIndicator()
-                    
                     DispatchQueue.main.async {
                         completion()
                     }
                 }
             case .requestErr(let msg):
-                
-                self.detachActivityIndicator()
-                
                 if let _ = msg as? String {
                     self.errorMessageTop.constant = 76
                     self.errorMessageLabel.isHidden = false
