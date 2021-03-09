@@ -80,8 +80,8 @@ class DiaryViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.blurEffectView?.removeFromSuperview()
-        self.addBlurEffectOnBlurView(view: self.blurView)
+        self.removeBlurEffectOnBlurView()
+        self.addBlurEffectOnBlurView()
     }
     
     // MARK: - Functions
@@ -225,6 +225,14 @@ class DiaryViewController: UIViewController {
         view.snp.makeConstraints({ (make) in
             make.width.height.centerX.centerY.equalTo(self.view)
         })
+    }
+    
+    func removeBlurEffectOnBlurView() {
+        self.blurEffectView?.removeFromSuperview()
+    }
+    
+    func addBlurEffectOnBlurView() {
+        self.addBlurEffectOnBlurView(view: self.blurView)
     }
     
     private func addBlurEffectOnBlurView(view: UIView) {
