@@ -235,7 +235,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     func pushToLoginViewController() {
         let loginStoryboard = UIStoryboard(name: Constants.Name.loginStoryboard, bundle: nil)
         guard let loginViewController = loginStoryboard.instantiateViewController(identifier: Constants.Identifier.loginViewController) as? LoginViewController else { return }
-        self.navigationController?.pushViewController(loginViewController, animated: true)
+        self.navigationController?.pushViewController(loginViewController, animated: false)
     }
     
     func attachTableHeaderView() {
