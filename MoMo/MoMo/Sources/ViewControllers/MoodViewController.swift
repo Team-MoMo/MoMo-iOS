@@ -30,7 +30,6 @@ class MoodViewController: UIViewController {
     
     // MARK: - Properties
     
-    var listNoDiary: Bool = false
     var moodViewUsage: MoodViewUsage = .onboarding
     private var buttons: [MoodButton] = []
     private var modalView: UploadModalViewController?
@@ -121,10 +120,8 @@ class MoodViewController: UIViewController {
         } else {
             let date = AppDate(serverDate: recentDate)
             self.selectedDate = date
+            self.presentUploadModalView(year: date.getYear(), month: date.getMonth(), day: date.getDay())
             self.dateLabel.attributedText = date.getFormattedDateAndWeekday(with: ". ").textSpacing()
-            if listNoDiary {
-                self.presentUploadModalView(year: date.getYear(), month: date.getMonth(), day: date.getDay())
-            }
         }
     }
     

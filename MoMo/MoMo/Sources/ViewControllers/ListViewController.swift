@@ -320,7 +320,6 @@ class ListViewController: UIViewController {
         guard let moodViewController = onboardingStoryboard.instantiateViewController(identifier: Constants.Identifier.moodViewController) as? MoodViewController else {
             return
         }
-        moodViewController.listNoDiary = true
         moodViewController.moodViewUsage = .upload
         
         self.navigationController?.pushViewController(moodViewController, animated: true)
