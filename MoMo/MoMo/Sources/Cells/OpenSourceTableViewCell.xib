@@ -31,25 +31,27 @@
                             <constraint firstAttribute="height" constant="1" id="xbd-FK-IfL"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="713-CA-GSf">
-                        <rect key="frame" x="288" y="11" width="14" height="22"/>
-                        <state key="normal" image="btnArrowRight14"/>
-                    </button>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btnArrowRight14" translatesAutoresizingMaskIntoConstraints="NO" id="bTx-Gf-SgV">
+                        <rect key="frame" x="288" y="15" width="14" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="14" id="S7P-Uq-Ibd"/>
+                            <constraint firstAttribute="height" constant="14" id="hml-is-8Xv"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
+                    <constraint firstItem="bTx-Gf-SgV" firstAttribute="centerY" secondItem="AoZ-Y5-7jS" secondAttribute="centerY" id="2UH-Bv-ESW"/>
                     <constraint firstItem="AoZ-Y5-7jS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="2zX-kz-P8q"/>
                     <constraint firstAttribute="bottom" secondItem="ZHx-MU-g0I" secondAttribute="bottom" id="6Er-yu-Nel"/>
                     <constraint firstAttribute="trailing" secondItem="ZHx-MU-g0I" secondAttribute="trailing" id="8P3-pi-Pen"/>
-                    <constraint firstAttribute="trailing" secondItem="713-CA-GSf" secondAttribute="trailing" constant="18" id="CX0-MQ-64U"/>
-                    <constraint firstItem="713-CA-GSf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="S2m-Tp-MiS"/>
+                    <constraint firstAttribute="trailing" secondItem="bTx-Gf-SgV" secondAttribute="trailing" constant="18" id="Nf5-ua-WMI"/>
                     <constraint firstItem="ZHx-MU-g0I" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="kpl-yS-mEe"/>
                     <constraint firstItem="AoZ-Y5-7jS" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ycx-pT-93H"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="detailButton" destination="713-CA-GSf" id="q91-P8-NJW"/>
                 <outlet property="titleLabel" destination="AoZ-Y5-7jS" id="LsD-Gv-xUh"/>
             </connections>
             <point key="canvasLocation" x="35" y="83"/>
