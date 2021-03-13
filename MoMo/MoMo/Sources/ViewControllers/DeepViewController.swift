@@ -81,6 +81,12 @@ class DeepViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.removeBlurEffectOnBlurView()
+        self.addBlurEffectOnBlurView()
+    }
+    
     // MARK: - Functions
     
     private func initializeDeepViewController() {
