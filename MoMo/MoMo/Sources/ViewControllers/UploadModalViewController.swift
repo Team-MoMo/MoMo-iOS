@@ -71,6 +71,7 @@ class UploadModalViewController: UIViewController {
             self.monthPickerView.subviews[1].backgroundColor = UIColor.clear
             self.dayPickerView.subviews[1].backgroundColor = UIColor.clear
             self.initializePickerViews()
+            self.initializeModalApplyButton()
         }
     }
     
@@ -100,6 +101,21 @@ class UploadModalViewController: UIViewController {
         self.monthPickerView.selectRow(unwrappedMonth - 1, inComponent: 0, animated: true)
         updateDayData()
         self.dayPickerView.selectRow(unwrappedDay - 1, inComponent: 0, animated: true)
+    }
+    
+    private func initializeModalApplyButton() {
+        guard let unwrappedYear = self.year,
+              let unwrappedMonth = self.month,
+              let unwrappedDay = self.day else {
+            return
+        }
+        getDiariesWithAPI(userID: String(APIConstants.userId),
+                      year: "\(unwrappedYear)",
+                      month: "\(unwrappedMonth)",
+                      order: "filter",
+                      day: unwrappedDay,
+                      emotionID: nil,
+                      depth: nil)
     }
     
     private func initializeDateData() {

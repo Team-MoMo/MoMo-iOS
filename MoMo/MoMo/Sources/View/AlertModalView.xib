@@ -15,7 +15,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJG-tL-5et" userLabel="Modal Container View">
-                    <rect key="frame" x="62" y="242" width="290" height="241"/>
+                    <rect key="frame" x="62" y="332.5" width="290" height="241"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="modalImgWave290" translatesAutoresizingMaskIntoConstraints="NO" id="uPh-R3-AYn">
                             <rect key="frame" x="0.0" y="0.0" width="290" height="79.5"/>
@@ -118,7 +118,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="xJG-tL-5et" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="iDG-CM-ls2"/>
-                <constraint firstItem="xJG-tL-5et" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" multiplier="0.8" id="lFn-Qm-7dd"/>
+                <constraint firstItem="xJG-tL-5et" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="lFn-Qm-7dd"/>
             </constraints>
             <connections>
                 <outlet property="alertLabel" destination="fyj-jp-ZmR" id="Lqm-Zv-xQr"/>

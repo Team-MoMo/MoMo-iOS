@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "invalidName.png",
+      "filename" : "deepSea.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "invalidName@2x.png",
+      "filename" : "deepSea@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "invalidName@3x.png",
+      "filename" : "deepSea@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

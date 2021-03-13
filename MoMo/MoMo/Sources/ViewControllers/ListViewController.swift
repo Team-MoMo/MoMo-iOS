@@ -9,6 +9,8 @@ import UIKit
 
 class ListViewController: UIViewController {
 
+    typealias DiaryId = Int
+    
     // MARK: - Properities
     
     @IBOutlet weak var listTableView: UITableView!
@@ -44,14 +46,19 @@ class ListViewController: UIViewController {
         return label
     }()
     
-    // MARK: - Constant
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = false
+        activityIndicator.style = UIActivityIndicatorView.Style.medium
+        activityIndicator.startAnimating()
+        return activityIndicator
+    }()
     
     let zeplinWidth: CGFloat = 375
     let filterCollectionViewSideAuto = 48
     let filterCollectionViewCellSpacing = 5
-    
-    // MARK: - Property
-    
     var filteredEmotion: Int?
     var filteredDepth: Int?
     var journalLabel1WidthSize: CGFloat = 0.0
@@ -65,7 +72,10 @@ class ListViewController: UIViewController {
     var year: Int = 2010
     var month: Int = 5
     var listFilterModalView: ListFilterModalViewController?
+    private var cellInfos: [DiaryId: AppDepth] = [:]
 
+    // MARK: - View Life Cycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         listTableView.delegate = self
@@ -151,6 +161,17 @@ class ListViewController: UIViewController {
         filterWarningLabel.isHidden = true
     }
     
+    private func attachActivityIndicator() {
+        self.view.addSubview(self.activityIndicator)
+    }
+    
+    private func detachActivityIndicator() {
+        if self.activityIndicator.isAnimating {
+            self.activityIndicator.stopAnimating()
+        }
+        self.activityIndicator.removeFromSuperview()
+    }
+    
     private func updateNavigationBarButton() {
     
         if year == standardYear && month == standardMonth && filter.count == 0 {
@@ -210,43 +231,6 @@ class ListViewController: UIViewController {
     private func scrollTableViewToTop() {
         self.listTableView.contentOffset = .zero
     }
-    // MARK: - 서버 통신
-    func getDiariesWithAPI(userID: String,
-                           year: String,
-                           month: String,
-                           order: String,
-                           day: Int?,
-                           emotionID: Int?,
-                           depth: Int?) {
-        DiariesService.shared.getDiaries(userId: userID,
-                                         year: year,
-                                         month: month,
-                                         order: order,
-                                         day: day,
-                                         emotionId: emotionID,
-                                         depth: depth) { (networkResult) in
-            switch networkResult {
-
-            case .success(let data):
-                if let diary = data as? [Diary] {
-                    self.receivedData = diary
-                    self.listTableView.reloadData()
-                    self.showWarningLabelAndButton()
-                }
-                
-            case .requestErr(let msg):
-                if let message = msg as? String {
-                    print(message)
-                }
-            case .pathErr:
-                print("pathErr in getDiariesWithAPI")
-            case .serverErr:
-                print("serverErr in getDiariesWithAPI")
-            case .networkFail:
-                print("networkFail in getDiariesWithAPI")
-            }
-        }
-    }
     
     // MARK: - Selector Functions
     
@@ -288,10 +272,8 @@ class ListViewController: UIViewController {
     }
     
     @objc func tapTouchView(sender: UITapGestureRecognizer) {
-        guard let num = sender.view?.tag else {
-            return
-        }
-        pushToDiaryViewController(diaryId: num)
+        guard let diaryId = sender.view?.tag else { return }
+        self.pushToDiaryViewController(diaryId: diaryId, depth: self.cellInfos[diaryId])
     }
     
     func presentToListFilterModalView() {
@@ -317,21 +299,14 @@ class ListViewController: UIViewController {
         self.present(modalView, animated: true, completion: nil)
     }
     
-
-    @objc func touchMoreButton(sender: UIButton) {
-        self.pushToDiaryViewController(diaryId: sender.tag)
-    }
-    
-    func pushToDiaryViewController(diaryId: Int) {
+    func pushToDiaryViewController(diaryId: Int, depth: AppDepth?) {
         let diaryStoryboard = UIStoryboard(name: Constants.Name.diaryStoryboard, bundle: nil)
-        
         guard let diaryViewController = diaryStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryViewController) as? DiaryViewController else {
             return
         }
-        
         diaryViewController.diaryId = diaryId
+        diaryViewController.initialDepth = depth
         diaryViewController.isFromListView = true
-        
         self.navigationController?.pushViewController(diaryViewController, animated: true)
     }
     
@@ -410,6 +385,7 @@ extension ListViewController: UITableViewDataSource {
             cell.divideJournal(self.receivedData[indexPath.row].contents, self.journalLabel1WidthSize)
             cell.createLabelUnderline( self.journalLabel2WidthSize)
             cell.touchView.tag = self.receivedData[indexPath.row].id
+            self.cellInfos[cell.touchView.tag] = AppDepth(rawValue: self.receivedData[indexPath.row].depth)
             cell.touchView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapTouchView(sender:))))
             cell.selectionStyle = .none
                 
@@ -575,6 +551,49 @@ extension ListViewController: ListFilterModalViewDelegate {
                           day: nil,
                           emotionID: nil,
                           depth: nil)
+        }
+    }
+}
+
+// MARK: - API Services
+
+extension ListViewController {
+    func getDiariesWithAPI(userID: String,
+                           year: String,
+                           month: String,
+                           order: String,
+                           day: Int?,
+                           emotionID: Int?,
+                           depth: Int?) {
+        self.attachActivityIndicator()
+        DiariesService.shared.getDiaries(userId: userID,
+                                         year: year,
+                                         month: month,
+                                         order: order,
+                                         day: day,
+                                         emotionId: emotionID,
+                                         depth: depth) { (networkResult) in
+            self.detachActivityIndicator()
+            switch networkResult {
+
+            case .success(let data):
+                if let diary = data as? [Diary] {
+                    self.receivedData = diary
+                    self.listTableView.reloadData()
+                    self.showWarningLabelAndButton()
+                }
+                
+            case .requestErr(let msg):
+                if let message = msg as? String {
+                    print(message)
+                }
+            case .pathErr:
+                print("pathErr in getDiariesWithAPI")
+            case .serverErr:
+                print("serverErr in getDiariesWithAPI")
+            case .networkFail:
+                print("networkFail in getDiariesWithAPI")
+            }
         }
     }
 }
