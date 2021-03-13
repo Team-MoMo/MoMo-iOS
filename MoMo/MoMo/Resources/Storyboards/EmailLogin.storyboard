@@ -36,14 +36,14 @@
                                         <rect key="frame" x="0.0" y="25" width="308" height="50"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginPassword" translatesAutoresizingMaskIntoConstraints="NO" id="qaF-qr-110">
-                                                <rect key="frame" x="17" y="16" width="14" height="18"/>
+                                                <rect key="frame" x="16" y="13" width="24" height="24"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="18" id="b16-o7-A6n"/>
-                                                    <constraint firstAttribute="width" constant="14" id="bRE-Q2-bsq"/>
+                                                    <constraint firstAttribute="height" constant="24" id="b16-o7-A6n"/>
+                                                    <constraint firstAttribute="width" constant="24" id="bRE-Q2-bsq"/>
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="영문 + 숫자 6자리 이상 입력해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OeH-qi-FYr">
-                                                <rect key="frame" x="51" y="0.0" width="237" height="50"/>
+                                                <rect key="frame" x="60" y="0.0" width="228" height="50"/>
                                                 <color key="textColor" name="Blue2"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
@@ -54,7 +54,7 @@
                                             <constraint firstItem="OeH-qi-FYr" firstAttribute="height" secondItem="4uq-d0-SMw" secondAttribute="height" id="0hc-SU-3wy"/>
                                             <constraint firstAttribute="width" constant="308" id="1f8-b2-p1z"/>
                                             <constraint firstItem="OeH-qi-FYr" firstAttribute="centerY" secondItem="4uq-d0-SMw" secondAttribute="centerY" id="FjC-wj-jCd"/>
-                                            <constraint firstItem="qaF-qr-110" firstAttribute="leading" secondItem="4uq-d0-SMw" secondAttribute="leading" constant="17" id="JWN-tE-hyC"/>
+                                            <constraint firstItem="qaF-qr-110" firstAttribute="leading" secondItem="4uq-d0-SMw" secondAttribute="leading" constant="16" id="JWN-tE-hyC"/>
                                             <constraint firstItem="OeH-qi-FYr" firstAttribute="leading" secondItem="qaF-qr-110" secondAttribute="trailing" constant="20" id="TxK-r0-6Fl"/>
                                             <constraint firstItem="qaF-qr-110" firstAttribute="centerY" secondItem="4uq-d0-SMw" secondAttribute="centerY" id="ZTr-zJ-W1u"/>
                                             <constraint firstAttribute="trailing" secondItem="OeH-qi-FYr" secondAttribute="trailing" constant="20" id="aBf-AT-mhA"/>
@@ -76,14 +76,14 @@
                                         <rect key="frame" x="0.0" y="25" width="308" height="50"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginEmail" translatesAutoresizingMaskIntoConstraints="NO" id="BDn-mW-Kx5">
-                                                <rect key="frame" x="17" y="15" width="20" height="20"/>
+                                                <rect key="frame" x="16" y="13" width="24" height="24"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="Dbn-ak-yOO"/>
-                                                    <constraint firstAttribute="width" constant="20" id="u1W-wV-1yG"/>
+                                                    <constraint firstAttribute="height" constant="24" id="Dbn-ak-yOO"/>
+                                                    <constraint firstAttribute="width" constant="24" id="u1W-wV-1yG"/>
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="이메일을 입력해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SHW-Cz-qBE">
-                                                <rect key="frame" x="57" y="0.0" width="231" height="50"/>
+                                                <rect key="frame" x="60" y="0.0" width="228" height="50"/>
                                                 <color key="textColor" name="Blue2"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
@@ -98,7 +98,7 @@
                                             <constraint firstItem="SHW-Cz-qBE" firstAttribute="height" secondItem="bvm-Fv-kCy" secondAttribute="height" id="abX-Zg-Oc0"/>
                                             <constraint firstAttribute="height" constant="50" id="m1K-Hv-aGJ"/>
                                             <constraint firstItem="SHW-Cz-qBE" firstAttribute="leading" secondItem="BDn-mW-Kx5" secondAttribute="trailing" constant="20" id="or4-z5-MBc"/>
-                                            <constraint firstItem="BDn-mW-Kx5" firstAttribute="leading" secondItem="bvm-Fv-kCy" secondAttribute="leading" constant="17" id="tsV-2w-Pq5"/>
+                                            <constraint firstItem="BDn-mW-Kx5" firstAttribute="leading" secondItem="bvm-Fv-kCy" secondAttribute="leading" constant="16" id="tsV-2w-Pq5"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -187,12 +187,12 @@
                         <outlet property="emailLabel" destination="wNU-xm-k0A" id="WUl-OF-iup"/>
                         <outlet property="emailTextField" destination="SHW-Cz-qBE" id="Cao-o8-KGB"/>
                         <outlet property="errorMessageLabel" destination="kvH-fd-0D3" id="PqC-Yw-Wz5"/>
-                        <outlet property="errorMessageTop" destination="2Gj-oO-06f" id="h70-PN-Ped"/>
+                        <outlet property="errorMessageTop" destination="2Gj-oO-06f" id="RZr-fM-iAs"/>
                         <outlet property="findPasswordButton" destination="tlt-uH-igb" id="Fbf-AT-t4W"/>
                         <outlet property="joinButton" destination="4Qd-e2-3m9" id="a2p-cu-Uf7"/>
                         <outlet property="joinStackViewBottom" destination="3Mj-9a-ZHH" id="Sli-tA-GQe"/>
                         <outlet property="loginButton" destination="5B5-Ny-8Bp" id="7gz-vC-xuq"/>
-                        <outlet property="loginButtonTop" destination="myQ-hb-Zfl" id="EZy-kh-pFd"/>
+                        <outlet property="loginButtonTop" destination="myQ-hb-Zfl" id="IMk-C5-fZa"/>
                         <outlet property="passwordLabel" destination="VLi-HO-Q5U" id="wKJ-w8-f34"/>
                         <outlet property="passwordTextField" destination="OeH-qi-FYr" id="ma1-xB-xc0"/>
                     </connections>
@@ -203,8 +203,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="loginEmail" width="21" height="21"/>
-        <image name="loginPassword" width="15" height="19"/>
+        <image name="loginEmail" width="24" height="24"/>
+        <image name="loginPassword" width="24" height="24"/>
         <image name="splashTextLogo" width="150" height="27"/>
         <namedColor name="Black4">
             <color red="0.45500001311302185" green="0.45500001311302185" blue="0.45500001311302185" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
