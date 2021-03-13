@@ -130,7 +130,15 @@ class LockViewController: UIViewController {
             }
         case .verifying:
             if self.isValid() {
-                self.pushToHomeViewController()
+                guard let rootViewController = self.navigationController?.viewControllers.first  else { return }
+                guard let viewCounter = self.navigationController?.viewControllers.count else {
+                    return
+                }
+                if rootViewController is LockViewController && viewCounter == 1 {
+                    self.pushToHomeViewController()
+                } else {
+                    self.navigationController?.popViewController(animated: false)
+                }
             } else {
                 self.showErrorMessage(message: "현재 암호와 달라요!")
                 self.popAllLockNumberListAndEmptyIndicator()
