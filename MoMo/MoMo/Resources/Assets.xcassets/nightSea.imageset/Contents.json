@@ -1,14 +1,14 @@
 {
   "images" : [
     {
-      "filename" : "nightSea.png",
       "scale" : "1x",
+      "filename" : "nightSea.png",
       "idiom" : "universal"
     },
     {
-      "filename" : "nightSea@2x.png",
+      "idiom" : "universal",
       "scale" : "2x",
-      "idiom" : "universal"
+      "filename" : "nightSea@2x.png"
     },
     {
       "idiom" : "universal",
