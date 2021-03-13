@@ -202,11 +202,11 @@ class DeepViewController: UIViewController {
         self.depthSelectionButton.clipsToBounds = true
     }
     
-    private func enableDepthSelectionButtonUserInteraction() {
+    private func enableDepthSelectionButton() {
         self.depthSelectionButton.isUserInteractionEnabled = true
     }
     
-    private func disableDepthSelectionButtonUserInteraction() {
+    private func disableDepthSelectionButton() {
         self.depthSelectionButton.isUserInteractionEnabled = false
     }
     
@@ -284,22 +284,24 @@ class DeepViewController: UIViewController {
         self.navigationController?.popToViewController(homeViewController, animated: true)
     }
     
-    private func pushToDiaryViewController(diaryId: Int) {
+    private func popToDiaryViewController() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    private func pushToDiaryViewController(diaryId: Int, depth: AppDepth?) {
         let diaryStoryboard = UIStoryboard(name: Constants.Name.diaryStoryboard, bundle: nil)
         guard let diaryViewController = diaryStoryboard.instantiateViewController(identifier: Constants.Identifier.diaryViewController) as? DiaryViewController else { return }
         diaryViewController.diaryId = diaryId
+        diaryViewController.initialDepth = depth
         self.navigationController?.pushViewController(diaryViewController, animated: true)
-        
     }
     
     @IBAction func touchDepthSelectionButton(_ sender: UIButton) {
-        
         switch self.deepViewUsage {
         case .onboarding:
             self.pushToLoginViewController()
         case .upload:
-            self.disableDepthSelectionButtonUserInteraction()
-            self.attachActivityIndicator()
+            self.disableDepthSelectionButton()
             guard let diary = self.diaryInfo?.diary,
                   let sentenceId = self.diaryInfo?.sentence?.id,
                   let emotionId = self.diaryInfo?.mood?.rawValue,
@@ -315,11 +317,10 @@ class DeepViewController: UIViewController {
                 wroteAt: wroteAt
             )
         case .diary:
-            self.disableDepthSelectionButtonUserInteraction()
-            self.attachActivityIndicator()
+            self.disableDepthSelectionButton()
             self.deepViewControllerDelegate?.passData(
                 selectedDepth: AppDepth(rawValue: Int(round(self.deepSliderValue * 6))) ?? AppDepth.depth2m)
-            self.navigationController?.popViewController(animated: true)
+            self.popToDiaryViewController()
         }
     }
 }
@@ -376,18 +377,16 @@ extension DeepViewController: SliderDelegate {
 // MARK: - API Services
 extension DeepViewController {
     private func postDiariesWithAPI(contents: String, depth: Int, userId: Int, sentenceId: Int, emotionId: Int, wroteAt: String) {
+        self.attachActivityIndicator()
         DiariesService.shared.postDiaries(contents: contents, depth: depth, userId: userId, sentenceId: sentenceId, emotionId: emotionId, wroteAt: wroteAt) { networkResult in
-            
             self.detachActivityIndicator()
-            self.enableDepthSelectionButtonUserInteraction()
+            self.enableDepthSelectionButton()
             
             switch networkResult {
             case .success(let data):
-                
                 if let serverData = data as? CreateDiary {
-                    self.pushToDiaryViewController(diaryId: serverData.id)
+                    self.pushToDiaryViewController(diaryId: serverData.id, depth: AppDepth(rawValue: serverData.depth))
                 }
-                
             case .requestErr(let msg):
                 if let message = msg as? String {
                     print(message)

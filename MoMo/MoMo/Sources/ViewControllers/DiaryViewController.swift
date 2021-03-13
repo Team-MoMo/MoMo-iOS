@@ -43,6 +43,7 @@ class DiaryViewController: UIViewController {
     
     var diaryId: Int?
     var isFromListView: Bool = false
+    var initialDepth: AppDepth?
     private var menuToggleFlag: Bool = false
     private var seaObjets: [UIImageView: String]?
     private var diaryInfo: AppDiary?
@@ -53,30 +54,35 @@ class DiaryViewController: UIViewController {
     private var diaryWriteViewController: DiaryWriteViewController?
     private var uploadModalViewController: UploadModalViewController?
     private var blurEffectView: CustomIntensityVisualEffectView?
-    private let initialDepth: AppDepth = AppDepth.depthSimhae
-    
     lazy var leftButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: Constants.Design.Image.btnBackWhite, style: .plain, target: self, action: #selector(buttonPressed(sender:)))
         button.tag = DiaryViewNavigationButton.leftButton.rawValue
         button.tintColor = UIColor.white
         return button
     }()
-    
     lazy var rightButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: UIImage(named: "icSubtab"), style: .done, target: self, action: #selector(buttonPressed(sender:)))
         button.tag = DiaryViewNavigationButton.rightButton.rawValue
         button.tintColor = UIColor.white
         return button
     }()
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = false
+        activityIndicator.style = UIActivityIndicatorView.Style.medium
+        activityIndicator.startAnimating()
+        return activityIndicator
+    }()
     
     // MARK: - View Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.initializeDiaryViewController()
-        self.getDiaryWithAPI(completion: updateDiaryViewController(diaryInfo:))
         self.initializeNavigationBar()
+        self.getDiaryWithAPI(completion: updateDiaryViewController(diaryInfo:))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,7 +104,13 @@ class DiaryViewController: UIViewController {
             self.whale1: "whale1",
             self.shark1: "shark1"
         ]
-        self.updateObjetsByDepth(depth: self.initialDepth)
+        
+        if let initialDepth = self.initialDepth {
+            DispatchQueue.main.async {
+                self.updateObjetsByDepth(depth: initialDepth)
+                self.updateBackgroundColorByDepth(depth: initialDepth)
+            }
+        }
         self.updateDescriptionStackViewContraints()
         self.hideDiaryViews()
     }
@@ -200,6 +212,17 @@ class DiaryViewController: UIViewController {
         toastView.alpha = 0.0
         self.view.insertSubview(toastView, aboveSubview: self.view)
         self.updateToastViewConstraints(view: toastView)
+    }
+    
+    private func attachActivityIndicator() {
+        self.view.addSubview(self.activityIndicator)
+    }
+    
+    private func detachActivityIndicator() {
+        if self.activityIndicator.isAnimating {
+            self.activityIndicator.stopAnimating()
+        }
+        self.activityIndicator.removeFromSuperview()
     }
     
     private func detachToastView() {
@@ -316,7 +339,6 @@ class DiaryViewController: UIViewController {
         self.authorLabel.isHidden = true
         self.publisherLabel.isHidden = true
         self.diaryLabel.isHidden = true
-        self.diarySeaweed.isHidden = true
     }
     
     private func showDiaryViews() {
@@ -327,7 +349,6 @@ class DiaryViewController: UIViewController {
         self.authorLabel.isHidden = false
         self.publisherLabel.isHidden = false
         self.diaryLabel.isHidden = false
-        self.diarySeaweed.isHidden = false
     }
     
     @objc private func buttonPressed(sender: Any) {
@@ -473,15 +494,12 @@ extension DiaryViewController: UIViewControllerTransitioningDelegate {
 extension DiaryViewController: UploadModalViewDelegate {
     func passData(_ date: String) {
         self.detachMenuView()
-        
         guard let oldDate = self.diaryInfo?.date else { return }
         let newDate: AppDate = AppDate(formattedDate: date, with: ". ")
         
         if self.isChanged(oldValue: oldDate, newValue: newDate) {
-            
             self.diaryInfo?.date = newDate
             guard let safeDiaryInfo = self.diaryInfo else { return }
-            
             self.putDiaryWithAPI(newDiary: safeDiaryInfo, completion: {
                 self.getDiaryWithAPI(completion: self.updateDiaryViewController(diaryInfo:))
                 self.attachToastViewWithAnimation(message: "날짜가 수정되었습니다")
@@ -495,14 +513,11 @@ extension DiaryViewController: UploadModalViewDelegate {
 extension DiaryViewController: DiaryWriteViewControllerDelegate {
     func popToDiaryViewController(newDiaryInfo: AppDiary?) {
         self.detachMenuView()
-        
         guard let oldDiary = self.diaryInfo?.diary else { return }
         guard let newDiary = newDiaryInfo?.diary else { return }
         
         if self.isChanged(oldValue: oldDiary, newValue: newDiary) {
-            
             guard let safeDiaryInfo = newDiaryInfo else { return }
-            
             self.putDiaryWithAPI(newDiary: safeDiaryInfo, completion: {
                 self.getDiaryWithAPI(completion: self.updateDiaryViewController(diaryInfo:))
                 self.attachToastViewWithAnimation(message: "일기가 수정되었습니다")
@@ -516,20 +531,15 @@ extension DiaryViewController: DiaryWriteViewControllerDelegate {
 extension DiaryViewController: DeepViewControllerDelegate {
     func passData(selectedDepth: AppDepth) {
         self.detachMenuView()
-        
         guard let oldDepth: AppDepth = self.diaryInfo?.depth else { return }
         let newDepth: AppDepth = selectedDepth
         
         if self.isChanged(oldValue: oldDepth, newValue: newDepth) {
-            
             self.diaryInfo?.depth = newDepth
             guard let safeDiaryInfo = self.diaryInfo else { return }
-            
             self.putDiaryWithAPI(newDiary: safeDiaryInfo, completion: {
                 self.getDiaryWithAPI(completion: self.updateDiaryViewController(diaryInfo:))
-                
                 self.attachToastViewWithAnimation(message: "깊이가 수정되었습니다")
-                
             })
         }
     }
@@ -540,8 +550,9 @@ extension DiaryViewController: DeepViewControllerDelegate {
 extension DiaryViewController {
     private func getDiaryWithAPI(completion: @escaping (AppDiary?) -> Void) {
         guard let diaryId = self.diaryId else { return }
-        
+        self.attachActivityIndicator()
         DiariesWithIDService.shared.getDiaryWithDiaryId(diaryId: diaryId) { (result) in
+            self.detachActivityIndicator()
             switch result {
             case .success(let data):
                 if let diaryData = data as? Diary {
@@ -582,7 +593,7 @@ extension DiaryViewController {
               let diary = newDiary.diary,
               let moodId = newDiary.mood?.rawValue,
               let date = newDiary.date else { return }
-        
+        self.attachActivityIndicator()
         DiariesWithIDService.shared.putDiaryWithDiaryId(
             diaryId: diaryId,
             depth: depthId,
@@ -592,6 +603,7 @@ extension DiaryViewController {
             emotionId: moodId,
             wroteAt: date.getFormattedDate(with: "-")
         ) { (result) in
+            self.detachActivityIndicator()
             switch result {
             case .success:
                 completion()
@@ -609,7 +621,9 @@ extension DiaryViewController {
     
     private func deleteDiaryWithAPI(completion: @escaping () -> Void) {
         guard let diaryId = self.diaryId else { return }
+        self.attachActivityIndicator()
         DiariesWithIDService.shared.deleteDiaryWithDiaryId(diaryId: diaryId) { (result) in
+            self.detachActivityIndicator()
             switch result {
             case .success:
                 completion()

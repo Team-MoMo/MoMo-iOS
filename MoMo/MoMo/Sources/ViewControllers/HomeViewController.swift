@@ -735,6 +735,7 @@ extension HomeViewController: UITableViewDataSource {
                 return
             }
             dvc.diaryId = bubbleDepthArray[indexPath.section][indexPath.row].id
+            dvc.initialDepth = AppDepth(rawValue: bubbleDepthArray[indexPath.section][indexPath.row].depth)
             self.navigationController?.pushViewController(dvc, animated: true)
         }
     }
