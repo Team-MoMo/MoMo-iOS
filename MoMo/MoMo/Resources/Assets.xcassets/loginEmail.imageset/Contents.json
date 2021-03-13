@@ -1,13 +1,13 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "scale" : "1x",
       "filename" : "loginEmail.png",
-      "scale" : "1x"
+      "idiom" : "universal"
     },
     {
-      "filename" : "loginEmail@2x.png",
       "idiom" : "universal",
+      "filename" : "loginEmail@2x.png",
       "scale" : "2x"
     },
     {

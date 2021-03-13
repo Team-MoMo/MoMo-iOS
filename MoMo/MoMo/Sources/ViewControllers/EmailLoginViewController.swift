@@ -50,6 +50,7 @@ class EmailLoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        initializeConstraints()
         initializeButtonRounding()
         initializeErrorMessageLabel()
         initializeTextSpacing()
@@ -60,6 +61,13 @@ class EmailLoginViewController: UIViewController {
     
     // MARK: - Functions
     
+    private func initializeConstraints() {
+        errorMessageTop.constant = 50
+        loginButtonTop.isActive = true
+        loginButtonTop.constant = 50
+        joinStackViewBottom.constant = 10
+    }
+    
     private func initializeButtonRounding() {
         // 로그인 버튼 rounding
         loginButton.clipsToBounds = true
@@ -69,7 +77,7 @@ class EmailLoginViewController: UIViewController {
     private func initializeTextSpacing() {
         emailLabel.attributedText = emailLabel.text?.textSpacing()
         passwordLabel.attributedText = passwordLabel.text?.textSpacing()
-        errorMessageLabel.attributedText = errorMessageLabel.text?.textSpacing()
+        errorMessageLabel.attributedText = errorMessageLabel.text?.wordTextSpacing(textSpacing: -0.6, lineSpacing: 4, center: true, truncated: false)
         loginButton.titleLabel?.attributedText = loginButton.titleLabel?.text?.textSpacing()
         joinButton.titleLabel?.attributedText = joinButton.titleLabel?.text?.textSpacing()
         findPasswordButton.titleLabel?.attributedText = findPasswordButton.titleLabel?.text?.textSpacing()
@@ -85,17 +93,9 @@ class EmailLoginViewController: UIViewController {
     private func initializeErrorMessageLabel() {
         // 가입하지 않은 회원 label 분기 처리
         if isEmailCheckError {
-            errorMessageTop.constant = 76
             errorMessageLabel.isHidden = false
-            loginButtonTop.isActive = true
-            loginButtonTop.constant = 72
-            joinStackViewBottom.constant = 0
         } else {
-            errorMessageTop.constant = 0
             errorMessageLabel.isHidden = true
-            loginButtonTop.constant = 0
-            joinStackViewBottom.isActive = true
-            joinStackViewBottom.constant = 69
         }
         
         // placeholder
@@ -191,12 +191,7 @@ extension EmailLoginViewController {
             switch networkResult {
             case .success(let data):
                 if let signInData = data as? AuthData {
-                    self.errorMessageTop.constant = 0
                     self.errorMessageLabel.isHidden = true
-                    // self.loginButtonTop.isActive = false
-                    self.loginButtonTop.constant = 0
-                    self.joinStackViewBottom.isActive = true
-                    self.joinStackViewBottom.constant = 69
                     
                     APIConstants.userId = signInData.user.id
                     UserDefaults.standard.setValue(signInData.token, forKey: "token")
@@ -214,12 +209,7 @@ extension EmailLoginViewController {
                 self.detachActivityIndicator()
                 
                 if let _ = msg as? String {
-                    self.errorMessageTop.constant = 76
                     self.errorMessageLabel.isHidden = false
-                    self.loginButtonTop.isActive = true
-                    self.loginButtonTop.constant = 72
-                    // joinStackViewBottom.isActive = false
-                    self.joinStackViewBottom.constant = 0
                 }
             case .pathErr:
                 print("pathErr")
