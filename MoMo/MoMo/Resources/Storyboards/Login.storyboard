@@ -89,13 +89,12 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="baO-mW-3MQ">
                                         <rect key="frame" x="0.0" y="52" width="250" height="42"/>
-                                        <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="Wbt-RY-JNP"/>
                                             <constraint firstAttribute="width" constant="250" id="v64-ql-jZM"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <state key="normal" title="   Apple 로그인" image="icAppleLogo"/>
+                                        <state key="normal" title=""/>
                                         <connections>
                                             <action selector="touchAppleLoginButton:" destination="hFo-W1-rx6" eventType="touchUpInside" id="3DG-Mt-OYa"/>
                                         </connections>
@@ -115,6 +114,23 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="TUs-iu-IKG">
+                                <rect key="frame" x="147.5" y="700.5" width="119" height="29"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JKS-G7-Jz5">
+                                        <rect key="frame" x="0.0" y="0.0" width="17" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apple로 로그인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfb-Wd-kxw">
+                                        <rect key="frame" x="29" y="0.0" width="90" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wnX-lB-ZNZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -122,7 +138,9 @@
                             <constraint firstItem="bs6-O4-lpE" firstAttribute="leading" secondItem="wnX-lB-ZNZ" secondAttribute="leading" id="EYY-99-a3p"/>
                             <constraint firstItem="JUk-Ox-tIB" firstAttribute="centerX" secondItem="wnX-lB-ZNZ" secondAttribute="centerX" id="YBe-kB-6MY"/>
                             <constraint firstItem="bs6-O4-lpE" firstAttribute="top" secondItem="bzN-bS-Rld" secondAttribute="top" id="dkq-rA-2rU"/>
+                            <constraint firstItem="TUs-iu-IKG" firstAttribute="centerY" secondItem="baO-mW-3MQ" secondAttribute="centerY" id="jBY-FW-bSh"/>
                             <constraint firstItem="bs6-O4-lpE" firstAttribute="trailing" secondItem="wnX-lB-ZNZ" secondAttribute="trailing" id="n3x-U5-5g3"/>
+                            <constraint firstItem="TUs-iu-IKG" firstAttribute="centerX" secondItem="baO-mW-3MQ" secondAttribute="centerX" id="t3P-qb-avD"/>
                             <constraint firstAttribute="bottom" secondItem="bs6-O4-lpE" secondAttribute="bottom" id="tk3-Ak-165"/>
                             <constraint firstItem="wnX-lB-ZNZ" firstAttribute="bottom" secondItem="JUk-Ox-tIB" secondAttribute="bottom" constant="74" id="yXN-Ph-mVg"/>
                         </constraints>
@@ -142,7 +160,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icAppleLogo" width="16" height="19"/>
         <image name="icKakaoLogo" width="19" height="18"/>
         <image name="icMomoLogo" width="17" height="16"/>
         <image name="momoTextLogo" width="179" height="33"/>
