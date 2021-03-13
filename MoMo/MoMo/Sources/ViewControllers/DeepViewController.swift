@@ -46,6 +46,7 @@ class DeepViewController: UIViewController {
     private let infoLabelVerticalSpacing: CGFloat = 66
     private let blurViewVerticalSpacing: CGFloat = 75
     private var alertModalView: AlertModalView?
+    private var blurEffectView: CustomIntensityVisualEffectView?
     weak var deepViewControllerDelegate: DeepViewControllerDelegate?
     private lazy var leftButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: Constants.Design.Image.btnBackBlack, style: .plain, target: self, action: #selector(touchBackButton))
@@ -227,12 +228,18 @@ class DeepViewController: UIViewController {
         self.moodLabel.isHidden = true
     }
     
-    private func addBlurEffectOnBlurView() {
+    func removeBlurEffectOnBlurView() {
+        self.blurEffectView?.removeFromSuperview()
+    }
+    
+    func addBlurEffectOnBlurView() {
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
-        let blurEffectView = CustomIntensityVisualEffectView(effect: blurEffect, intensity: 0.1)
-        blurEffectView.frame = self.blurView.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.blurView.addSubview(blurEffectView)
+        self.blurEffectView = CustomIntensityVisualEffectView(effect: blurEffect, intensity: 0.1)
+        if let blurEffectView = self.blurEffectView {
+            blurEffectView.frame = self.blurView.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            self.blurView.addSubview(blurEffectView)
+        }
     }
     
     private func addCircleIndicatorsOnDeepPointSliderView() {

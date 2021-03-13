@@ -111,6 +111,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        if let lastViewController = self.navigationController?.viewControllers.last {
+            if lastViewController is DiaryViewController {
+                guard let diaryViewController = lastViewController as? DiaryViewController else { return }
+                diaryViewController.addBlurEffectOnBlurView()
+            } else if lastViewController is DeepViewController {
+                guard let deepViewController = lastViewController as? DeepViewController else { return }
+                deepViewController.addBlurEffectOnBlurView()
+            }
+        }
+        
         if self.isLocked() {
             self.pushToLockViewController(usage: .verifying)
         }
@@ -119,6 +129,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
+        if let lastViewController = self.navigationController?.viewControllers.last {
+            if lastViewController is DiaryViewController {
+                guard let diaryViewController = lastViewController as? DiaryViewController else { return }
+                diaryViewController.removeBlurEffectOnBlurView()
+            } else if lastViewController is DeepViewController {
+                guard let deepViewController = lastViewController as? DeepViewController else { return }
+                deepViewController.removeBlurEffectOnBlurView()
+            }
+        }
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
