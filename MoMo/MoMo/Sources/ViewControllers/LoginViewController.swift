@@ -8,6 +8,7 @@
 import UIKit
 import AuthenticationServices
 import KakaoSDKAuth
+import KakaoSDKUser
 
 class LoginViewController: UIViewController {
     
@@ -159,23 +160,37 @@ class LoginViewController: UIViewController {
     
     @IBAction func touchKakaoLoginButton(_ sender: Any) {
         self.attachActivityIndicator()
+        
         // 카카오톡 설치 여부 확인
         if AuthApi.isKakaoTalkLoginAvailable() {
-            // 카카오톡 로그인. api 호출 결과를 클로저로 전달.
             AuthApi.shared.loginWithKakaoTalk {(oauthToken, error) in
                 if let error = error {
-                    // 예외 처리 (로그인 취소 등)
                     print(error)
                 } else {
                     print("loginWithKakaoTalk() success.")
+                    
                     // do something
                     _ = oauthToken
-                    // 어세스토큰
+                    
                     let accessToken = oauthToken?.accessToken
                     self.postSocialSignInWithAPI(socialName: "kakao", accessToken: accessToken ?? "")
                 }
             }
+            self.detachActivityIndicator()
         } else {
+            AuthApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+                if let error = error {
+                    print(error)
+                } else {
+                    print("loginWithKakaoAccount() success.")
+                    
+                    // do something
+                    _ = oauthToken
+                    
+                    let accessToken = oauthToken?.accessToken
+                    self.postSocialSignInWithAPI(socialName: "kakao", accessToken: accessToken ?? "")
+                }
+            }
             self.detachActivityIndicator()
         }
     }
