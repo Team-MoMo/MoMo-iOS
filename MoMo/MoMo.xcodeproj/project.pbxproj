@@ -98,6 +98,7 @@
 		1CEF46C525A6E09100AF3D81 /* MoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46C425A6E09100AF3D81 /* MoodViewController.swift */; };
 		1CEF46C825A6E0A000AF3D81 /* SentenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46C725A6E0A000AF3D81 /* SentenceViewController.swift */; };
 		1CEF46CB25A6E0B200AF3D81 /* OnboardingWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46CA25A6E0B200AF3D81 /* OnboardingWriteViewController.swift */; };
+		5612D1A72606305400D96FF7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5612D1A62606305400D96FF7 /* GoogleService-Info.plist */; };
 		562C645425C1AED800AA9AB6 /* AppEmotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562C645325C1AED800AA9AB6 /* AppEmotion.swift */; };
 		562C645925C1AFAD00AA9AB6 /* AppDepth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562C645825C1AFAD00AA9AB6 /* AppDepth.swift */; };
 		562C645C25C1B14F00AA9AB6 /* AppSentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562C645B25C1B14F00AA9AB6 /* AppSentence.swift */; };
@@ -239,6 +240,7 @@
 		1CEF46C425A6E09100AF3D81 /* MoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewController.swift; sourceTree = "<group>"; };
 		1CEF46C725A6E0A000AF3D81 /* SentenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceViewController.swift; sourceTree = "<group>"; };
 		1CEF46CA25A6E0B200AF3D81 /* OnboardingWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWriteViewController.swift; sourceTree = "<group>"; };
+		5612D1A62606305400D96FF7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		562C645325C1AED800AA9AB6 /* AppEmotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEmotion.swift; sourceTree = "<group>"; };
 		562C645825C1AFAD00AA9AB6 /* AppDepth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDepth.swift; sourceTree = "<group>"; };
 		562C645B25C1B14F00AA9AB6 /* AppSentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSentence.swift; sourceTree = "<group>"; };
@@ -441,6 +443,7 @@
 		568764212599DEDF009CB486 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5612D1A62606305400D96FF7 /* GoogleService-Info.plist */,
 				5687641A2599AD3C009CB486 /* Info.plist */,
 				568764152599AD3C009CB486 /* Assets.xcassets */,
 				568764CD259F6A80009CB486 /* Colors.xcassets */,
@@ -693,6 +696,7 @@
 				1CEF46C225A6DAA000AF3D81 /* Onboarding.storyboard in Resources */,
 				568764162599AD3C009CB486 /* Assets.xcassets in Resources */,
 				563B047425ADF46200DA74C5 /* FindPassword.storyboard in Resources */,
+				5612D1A72606305400D96FF7 /* GoogleService-Info.plist in Resources */,
 				1C42358F25AE2E31008FB838 /* momo_splash.json in Resources */,
 				568764142599AD3A009CB486 /* Main.storyboard in Resources */,
 				563B034325A8970E00DA74C5 /* Home.storyboard in Resources */,
@@ -911,6 +915,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -972,6 +977,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1032,14 +1038,15 @@
 				CODE_SIGN_ENTITLEMENTS = MoMo/MoMo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 52W8853QH6;
 				INFOPLIST_FILE = MoMo/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = team.MoMo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1057,14 +1064,15 @@
 				CODE_SIGN_ENTITLEMENTS = MoMo/MoMo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 52W8853QH6;
 				INFOPLIST_FILE = MoMo/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = team.MoMo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -8,6 +8,7 @@
 import UIKit
 import IQKeyboardManagerSwift
 import KakaoSDKCommon
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        
+        // 구글 애널리틱스
+        FirebaseApp.configure()
         
         return true
     }
