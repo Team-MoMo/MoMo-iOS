@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        //카카오 로그인
+        // 카카오 로그인
         KakaoSDKCommon.initSDK(appKey: "22d667f3f3395c4adb5d4c37364a4f58")
         
         IQKeyboardManager.shared.enable = true
