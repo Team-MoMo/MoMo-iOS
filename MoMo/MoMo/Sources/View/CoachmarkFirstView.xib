@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CoachmarkFirstView" customModule="MoMo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coachFish2" translatesAutoresizingMaskIntoConstraints="NO" id="i4H-BM-at6">
+                    <rect key="frame" x="23" y="104" width="55" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="55" id="GRf-pc-Okh"/>
+                        <constraint firstAttribute="height" constant="37" id="l5S-Zd-3PY"/>
+                    </constraints>
+                </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Cgw-Ux-JIP">
+                    <rect key="frame" x="67" y="153" width="280.5" height="24"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="모모에서" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2J-5x-fhy">
+                            <rect key="frame" x="0.0" y="0.0" width="69.5" height="24"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="하루를 더 즐겁게" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHD-7c-stD">
+                            <rect key="frame" x="72.5" y="0.0" width="130" height="24"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기록하기!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38P-JX-AUs">
+                            <rect key="frame" x="205.5" y="0.0" width="75" height="24"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uzC-8E-Q8e">
+                    <rect key="frame" x="139.5" y="179" width="130" height="2"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="BR6-O9-cfC"/>
+                    </constraints>
+                </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coachFish1" translatesAutoresizingMaskIntoConstraints="NO" id="Vpl-jS-EU7">
+                    <rect key="frame" x="308" y="189" width="96" height="66"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="96" id="5Lz-TF-jBQ"/>
+                        <constraint firstAttribute="height" constant="66" id="a7d-3a-s2l"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coachBtn1" translatesAutoresizingMaskIntoConstraints="NO" id="YV4-5I-KZO">
+                    <rect key="frame" x="312" y="818" width="95" height="44"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coachArrow1" translatesAutoresizingMaskIntoConstraints="NO" id="xpY-FD-BMr">
+                    <rect key="frame" x="274" y="717" width="112" height="92"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldD-Aa-L4V">
+                    <rect key="frame" x="274" y="667" width="131" height="41"/>
+                    <string key="text">모든 일기는
+여기서 한 번에 봐요</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RjW-mh-K6J">
+                    <rect key="frame" x="168" y="717" width="93" height="41"/>
+                    <string key="text">새로운 일기를
+작성하세요!</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="uzC-8E-Q8e" firstAttribute="leading" secondItem="oHD-7c-stD" secondAttribute="leading" id="3Cr-Om-Vkz"/>
+                <constraint firstItem="Cgw-Ux-JIP" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="5Ss-D1-omX"/>
+                <constraint firstItem="uzC-8E-Q8e" firstAttribute="top" secondItem="Cgw-Ux-JIP" secondAttribute="bottom" constant="2" id="6Kj-Ca-sIk"/>
+                <constraint firstItem="Cgw-Ux-JIP" firstAttribute="top" secondItem="i4H-BM-at6" secondAttribute="bottom" constant="12" id="98C-Nq-pv2"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="xpY-FD-BMr" secondAttribute="trailing" constant="28" id="CcH-uE-1Fe"/>
+                <constraint firstItem="YV4-5I-KZO" firstAttribute="top" secondItem="xpY-FD-BMr" secondAttribute="bottom" constant="9" id="DZR-OG-v66"/>
+                <constraint firstItem="i4H-BM-at6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="23" id="aIK-EE-fEm"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Vpl-jS-EU7" secondAttribute="trailing" constant="10" id="gYQ-MA-b7W"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="YV4-5I-KZO" secondAttribute="trailing" constant="7" id="hog-c4-JcE"/>
+                <constraint firstItem="Vpl-jS-EU7" firstAttribute="top" secondItem="uzC-8E-Q8e" secondAttribute="bottom" constant="8" id="mla-bt-TZO"/>
+                <constraint firstItem="RjW-mh-K6J" firstAttribute="top" secondItem="xpY-FD-BMr" secondAttribute="top" id="mqM-y3-rFP"/>
+                <constraint firstItem="uzC-8E-Q8e" firstAttribute="trailing" secondItem="oHD-7c-stD" secondAttribute="trailing" id="mwC-TC-wJo"/>
+                <constraint firstItem="i4H-BM-at6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="104" id="pNw-PW-LTH"/>
+                <constraint firstItem="xpY-FD-BMr" firstAttribute="leading" secondItem="RjW-mh-K6J" secondAttribute="trailing" constant="13" id="paq-NS-3CM"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ldD-Aa-L4V" secondAttribute="trailing" constant="9" id="q8L-s3-ORP"/>
+                <constraint firstItem="YV4-5I-KZO" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="rae-72-Sgd"/>
+                <constraint firstItem="xpY-FD-BMr" firstAttribute="top" secondItem="ldD-Aa-L4V" secondAttribute="bottom" constant="9" id="ysh-yA-qKa"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="coachLabel01" destination="ldD-Aa-L4V" id="bJV-HS-qvb"/>
+                <outlet property="coachLabel02" destination="RjW-mh-K6J" id="9JT-jI-NpY"/>
+            </connections>
+            <point key="canvasLocation" x="133" y="89"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="coachArrow1" width="112" height="92"/>
+        <image name="coachBtn1" width="95" height="44"/>
+        <image name="coachFish1" width="96.5" height="66"/>
+        <image name="coachFish2" width="55" height="37"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

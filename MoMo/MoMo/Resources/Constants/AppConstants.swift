@@ -41,6 +41,8 @@ struct Constants {
         static let bubbleTableViewCell: String = "BubbleTableViewCell"
         static let getPasswordAlertViewXib: String = "GetPasswordAlertView"
         static let settingTableViewCell: String = "SettingTableViewCell"
+        static let coachmarkFirstViewXib: String = "CoachmarkFirstView"
+        static let coachmarkSecondViewXib: String = "CoachmarkSecondView"
     }
     
     // MARK: - Identifier Contants

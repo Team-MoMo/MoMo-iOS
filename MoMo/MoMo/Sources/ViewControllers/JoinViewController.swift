@@ -506,6 +506,7 @@ class JoinViewController: UIViewController {
                     UserDefaults.standard.setValue(signUpData.token, forKey: "token")
                     UserDefaults.standard.setValue(signUpData.user.id, forKey: "userId")
                     UserDefaults.standard.setValue("email", forKey: "loginType")
+                    UserDefaults.standard.setValue(false, forKey: "didLogin")
                     
                     // 뷰 전환
                     let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)

@@ -31,6 +31,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1500)) {
             if !self.didLaunched() {
                 UserDefaults.standard.set(true, forKey: "didLaunch")
+                // 로그인 여부 판단
+                UserDefaults.standard.set(false, forKey: "didLogin")
                 self.updateRootToOnboadingViewController()
             } else {
                 if self.hasUserIdAndToken() {

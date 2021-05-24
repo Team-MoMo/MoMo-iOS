@@ -21,6 +21,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var listButton: UIButton!
     @IBOutlet weak var swipeUpButtonTop: NSLayoutConstraint!
     @IBOutlet weak var homeTopButtonBottom: NSLayoutConstraint!
+    @IBOutlet weak var coachmarkView: UIView!
     
     // MARK: - Properties
     
@@ -59,6 +60,9 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     //
     var headerView: HomeDayNightView?
     var tagNum: Int = 0
+    
+    // coachmark
+    var coachmarkTouchCount = 0
     
     // MARK: - View Life Cycle
     
@@ -130,6 +134,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         // 네비게이션 백버튼 숨김
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.isNavigationBarHidden = true
+        
         
         let userId = UserDefaults.standard.integer(forKey: "userId")
         
@@ -207,6 +212,8 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
             self.isFromLogoutOrWithdrawal = false
             self.pushToLoginViewController()
         }
+        
+        initCoachmarkView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -218,6 +225,47 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     // MARK: - Functions
+    
+    private func initCoachmarkView() {
+        
+        if !UserDefaults.standard.bool(forKey: "didLogin") {
+            coachmarkView.isHidden = false
+            coachmarkView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            
+            // 첫번째 코치마크 뷰 register
+            if let coachmark1 = Bundle.main.loadNibNamed(Constants.Name.coachmarkFirstViewXib, owner: nil, options: nil)?.first as? UIView {
+                coachmark1.frame = self.coachmarkView.bounds
+                coachmarkView.addSubview(coachmark1)
+            }
+            
+            let coachmarkGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(touchCoachmark(_:)))
+            coachmarkView.addGestureRecognizer(coachmarkGesture)
+        } else {
+            coachmarkView.isHidden = true
+        }
+    }
+    
+    @objc func touchCoachmark(_ gesture: UITapGestureRecognizer) {
+        coachmarkTouchCount += 1
+        if coachmarkTouchCount == 1 {
+            // 두번째 코치마크 뷰
+            for view in coachmarkView.subviews {
+                view.removeFromSuperview()
+            }
+            if let coachmark2 = Bundle.main.loadNibNamed(Constants.Name.coachmarkSecondViewXib, owner: nil, options: nil)?.first as? UIView {
+                coachmark2.frame = self.coachmarkView.bounds
+                coachmarkView.addSubview(coachmark2)
+            }
+        } else {
+            // 코치마크 뷰 숨기기
+            for view in coachmarkView.subviews {
+                view.removeFromSuperview()
+            }
+            coachmarkView.isHidden = true
+            UserDefaults.standard.setValue(true, forKey: "didLogin")
+            coachmarkTouchCount = 0
+        }
+    }
     
     func rearrangeObjet() {
         // 단계별 objet 배치

@@ -5,6 +5,7 @@ disabled_rules:
 - nesting
 - type_body_length
 - parameter
+- force_cast
 
 included:
 excluded:
