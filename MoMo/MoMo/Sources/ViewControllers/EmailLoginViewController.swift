@@ -197,6 +197,7 @@ extension EmailLoginViewController {
                     UserDefaults.standard.setValue(signInData.token, forKey: "token")
                     UserDefaults.standard.setValue(signInData.user.id, forKey: "userId")
                     UserDefaults.standard.setValue("email", forKey: "loginType")
+                    UserDefaults.standard.setValue(false, forKey: "didLogin")
                     
                     DispatchQueue.main.async {
                         completion()

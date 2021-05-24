@@ -251,6 +251,7 @@ extension LoginViewController {
                     UserDefaults.standard.setValue(signInData.token, forKey: "token")
                     UserDefaults.standard.setValue(signInData.user.id, forKey: "userId")
                     UserDefaults.standard.setValue(socialName, forKey: "loginType")
+                    UserDefaults.standard.setValue(false, forKey: "didLogin")
                     
                     // 뷰 전환
                     let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)

@@ -145,6 +145,10 @@
 		568764D1259F6EDE009CB486 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568764D0259F6EDE009CB486 /* UIColor+Extension.swift */; };
 		5699DDB525D669FB00493243 /* TempPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5699DDB425D669FB00493243 /* TempPassword.swift */; };
 		56DD504B25E7EE8A003FBC38 /* UINavigationControllerDelegate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DD504A25E7EE8A003FBC38 /* UINavigationControllerDelegate+Extension.swift */; };
+		56EE71B2265B5148005AC12A /* CoachmarkFirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56EE71B1265B5148005AC12A /* CoachmarkFirstView.xib */; };
+		56EE71B4265B515D005AC12A /* CoachmarkFirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EE71B3265B515D005AC12A /* CoachmarkFirstView.swift */; };
+		56EE71B6265B6316005AC12A /* CoachmarkSecondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56EE71B5265B6316005AC12A /* CoachmarkSecondView.xib */; };
+		56EE71B8265B6331005AC12A /* CoachmarkSecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EE71B7265B6331005AC12A /* CoachmarkSecondView.swift */; };
 		9360320992DCEB38E63381C5 /* Pods_MoMo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF70C440F3CE67275FF3023 /* Pods_MoMo.framework */; };
 /* End PBXBuildFile section */
 
@@ -290,6 +294,10 @@
 		568764D0259F6EDE009CB486 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		5699DDB425D669FB00493243 /* TempPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempPassword.swift; sourceTree = "<group>"; };
 		56DD504A25E7EE8A003FBC38 /* UINavigationControllerDelegate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationControllerDelegate+Extension.swift"; sourceTree = "<group>"; };
+		56EE71B1265B5148005AC12A /* CoachmarkFirstView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoachmarkFirstView.xib; sourceTree = "<group>"; };
+		56EE71B3265B515D005AC12A /* CoachmarkFirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachmarkFirstView.swift; sourceTree = "<group>"; };
+		56EE71B5265B6316005AC12A /* CoachmarkSecondView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoachmarkSecondView.xib; sourceTree = "<group>"; };
+		56EE71B7265B6331005AC12A /* CoachmarkSecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachmarkSecondView.swift; sourceTree = "<group>"; };
 		596A64056F40D8E627DE76D5 /* Pods-MoMo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoMo.debug.xcconfig"; path = "Target Support Files/Pods-MoMo/Pods-MoMo.debug.xcconfig"; sourceTree = "<group>"; };
 		BC74336F4AB884589C6C3095 /* Pods-MoMo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoMo.release.xcconfig"; path = "Target Support Files/Pods-MoMo/Pods-MoMo.release.xcconfig"; sourceTree = "<group>"; };
 		FCF70C440F3CE67275FF3023 /* Pods_MoMo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoMo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -355,6 +363,10 @@
 				562C649025D0554300AA9AB6 /* GetPasswordAlertView.swift */,
 				562C648D25D0553700AA9AB6 /* GetPasswordAlertView.xib */,
 				1CDF3F8225F180F10048127A /* CustomVisualEffectView.swift */,
+				56EE71B1265B5148005AC12A /* CoachmarkFirstView.xib */,
+				56EE71B3265B515D005AC12A /* CoachmarkFirstView.swift */,
+				56EE71B5265B6316005AC12A /* CoachmarkSecondView.xib */,
+				56EE71B7265B6331005AC12A /* CoachmarkSecondView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -695,11 +707,13 @@
 				563B037C25AA106F00DA74C5 /* BubbleTableViewCell.xib in Resources */,
 				1CEF46C225A6DAA000AF3D81 /* Onboarding.storyboard in Resources */,
 				568764162599AD3C009CB486 /* Assets.xcassets in Resources */,
+				56EE71B2265B5148005AC12A /* CoachmarkFirstView.xib in Resources */,
 				563B047425ADF46200DA74C5 /* FindPassword.storyboard in Resources */,
 				5612D1A72606305400D96FF7 /* GoogleService-Info.plist in Resources */,
 				1C42358F25AE2E31008FB838 /* momo_splash.json in Resources */,
 				568764142599AD3A009CB486 /* Main.storyboard in Resources */,
 				563B034325A8970E00DA74C5 /* Home.storyboard in Resources */,
+				56EE71B6265B6316005AC12A /* CoachmarkSecondView.xib in Resources */,
 				1C52BE0825AD656700D02771 /* AlertModalView.xib in Resources */,
 				1C5876C525D04C57004537A5 /* Lock.storyboard in Resources */,
 				563B03DF25ACB59800DA74C5 /* Login.storyboard in Resources */,
@@ -808,6 +822,7 @@
 				10DDA34225AF09A900620C41 /* EmotionCollectionViewCell.swift in Sources */,
 				56DD504B25E7EE8A003FBC38 /* UINavigationControllerDelegate+Extension.swift in Sources */,
 				10F092AE25CC3FA900342B18 /* OpenSourceDetailViewController.swift in Sources */,
+				56EE71B4265B515D005AC12A /* CoachmarkFirstView.swift in Sources */,
 				1CAD05A525AACB36007ECA40 /* DeepViewController.swift in Sources */,
 				1CDF3F8325F180F10048127A /* CustomVisualEffectView.swift in Sources */,
 				10F092AA25CC356F00342B18 /* OpenSourceTableViewCell.swift in Sources */,
@@ -873,6 +888,7 @@
 				1C7CD80725ACA5EC00B7CB60 /* DiaryViewController.swift in Sources */,
 				1038B6A225CAAFB600C577B6 /* Statistics.swift in Sources */,
 				5637606A25B04ABC00651EAA /* SignInService.swift in Sources */,
+				56EE71B8265B6331005AC12A /* CoachmarkSecondView.swift in Sources */,
 				563B047A25ADF63900DA74C5 /* UITextField+Extension.swift in Sources */,
 				10029DBF25B11D4800060E14 /* DiaryRecent.swift in Sources */,
 				563B047725ADF47200DA74C5 /* FindPasswordViewController.swift in Sources */,
