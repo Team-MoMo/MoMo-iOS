@@ -92,9 +92,6 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         swipeUpButton.isHidden = true
         homeTopButton.isHidden = true
         
-        // 오늘 작성한 일기가 없을 때
-         uploadButton.isHidden = false
-        
         // 권한 위임
         self.homeTableView.dataSource = self
         self.homeTableView.delegate = self
