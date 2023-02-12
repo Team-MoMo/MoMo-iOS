@@ -87,7 +87,7 @@ private extension ServiceEndViewController {
                 self?.isRequesting = false
             }
         } else {
-            showToast(message: "메일은 하루에 2번만 받으실 수 있습니다.")
+            showToast(message: "메일은 하루에 \(serviceEndUseCase.maximumDownloadLinkRequestCountPerDay)번만 받으실 수 있습니다.")
         }
     }
     

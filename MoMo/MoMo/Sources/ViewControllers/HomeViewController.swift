@@ -133,7 +133,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         if serviceEndUseCase.shouldShowPopUp {
             let modalView: ServiceEndModalView = ServiceEndModalView.loadNib()
             modalView.didTapDownloadButtonHandler = { [weak self] _ in
-                //self?.serviceEndUseCase.agreeNotToSeeAgainFor3Days()
+                self?.serviceEndUseCase.agreeNotToSeeAgainFor3Days()
                 self?.dismissServiceEndModalView()
                 self?.pushToServiceEndViewController()
             }
