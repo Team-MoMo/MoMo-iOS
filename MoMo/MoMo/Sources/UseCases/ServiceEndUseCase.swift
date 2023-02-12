@@ -63,15 +63,6 @@ final class ServiceEndUseCaseImpl {
     
     private var currentDate: Date { Date() }
     
-    private var isDoNotSeeAgainConfirmed: Bool {
-        get {
-            _isDoNotSeeAgainConfirmed
-        }
-        set {
-            _isDoNotSeeAgainConfirmed = newValue
-        }
-    }
-    
     private var isDoNotSeeAgainFor3DaysConfirmed: Bool {
         guard let lastConfirmDate = _lastConfirmDateDoNotSeeAgainFor3Days else {
             return false
@@ -87,7 +78,7 @@ final class ServiceEndUseCaseImpl {
 extension ServiceEndUseCaseImpl: ServiceEndUseCase {
     
     var shouldShowPopUp: Bool {
-        !isDoNotSeeAgainConfirmed && !isDoNotSeeAgainFor3DaysConfirmed
+        !_isDoNotSeeAgainConfirmed && !isDoNotSeeAgainFor3DaysConfirmed
     }
     
     var shouldRequestDownloadLink: Bool {
