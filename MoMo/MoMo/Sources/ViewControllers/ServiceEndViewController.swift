@@ -50,7 +50,7 @@ final class ServiceEndViewController: UIViewController {
     
     private var isRequesting: Bool = false
     
-    private let serviceEndUseCase: ServiceEndModalUseCase = ServiceEndModalUseCaseImpl()
+    private let serviceEndUseCase: ServiceEndUseCase = ServiceEndUseCaseImpl()
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -92,7 +92,7 @@
 		1CAD05B125AC3DC4007ECA40 /* DeepSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD05B025AC3DC4007ECA40 /* DeepSliderView.swift */; };
 		1CAD05B425AC3DEF007ECA40 /* DeepSliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CAD05B325AC3DEF007ECA40 /* DeepSliderView.xib */; };
 		1CAD05BA25AC59C1007ECA40 /* UISlider+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD05B925AC59C1007ECA40 /* UISlider+Extension.swift */; };
-		1CCA450B2998DF150053B951 /* ServiceEndModalUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCA450A2998DF150053B951 /* ServiceEndModalUseCase.swift */; };
+		1CCA450B2998DF150053B951 /* ServiceEndUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCA450A2998DF150053B951 /* ServiceEndUseCase.swift */; };
 		1CCA450D2998F15D0053B951 /* ServiceEndModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CCA450C2998F15D0053B951 /* ServiceEndModalView.xib */; };
 		1CCA450F299900A50053B951 /* ServiceEndModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCA450E299900A50053B951 /* ServiceEndModalView.swift */; };
 		1CCA451129990ED60053B951 /* ServiceEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCA451029990ED60053B951 /* ServiceEndViewController.swift */; };
@@ -243,7 +243,7 @@
 		1CAD05B025AC3DC4007ECA40 /* DeepSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepSliderView.swift; sourceTree = "<group>"; };
 		1CAD05B325AC3DEF007ECA40 /* DeepSliderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeepSliderView.xib; sourceTree = "<group>"; };
 		1CAD05B925AC59C1007ECA40 /* UISlider+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISlider+Extension.swift"; sourceTree = "<group>"; };
-		1CCA450A2998DF150053B951 /* ServiceEndModalUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEndModalUseCase.swift; sourceTree = "<group>"; };
+		1CCA450A2998DF150053B951 /* ServiceEndUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEndUseCase.swift; sourceTree = "<group>"; };
 		1CCA450C2998F15D0053B951 /* ServiceEndModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceEndModalView.xib; sourceTree = "<group>"; };
 		1CCA450E299900A50053B951 /* ServiceEndModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEndModalView.swift; sourceTree = "<group>"; };
 		1CCA451029990ED60053B951 /* ServiceEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEndViewController.swift; sourceTree = "<group>"; };
@@ -337,7 +337,7 @@
 		1CCA45092998DDA80053B951 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				1CCA450A2998DF150053B951 /* ServiceEndModalUseCase.swift */,
+				1CCA450A2998DF150053B951 /* ServiceEndUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -903,7 +903,7 @@
 				1CA39A1825B1BF3E00E58209 /* OnboardingSentence.swift in Sources */,
 				1C5876C225D04C45004537A5 /* LockViewController.swift in Sources */,
 				1CEF46BF25A6DA7600AF3D81 /* OnboardingViewController.swift in Sources */,
-				1CCA450B2998DF150053B951 /* ServiceEndModalUseCase.swift in Sources */,
+				1CCA450B2998DF150053B951 /* ServiceEndUseCase.swift in Sources */,
 				1014894425AC417E00639F98 /* DiaryWriteViewController.swift in Sources */,
 				563B033325A884A200DA74C5 /* HomeDayNightView.swift in Sources */,
 				1038B69F25CAAF7D00C577B6 /* DepthCount.swift in Sources */,

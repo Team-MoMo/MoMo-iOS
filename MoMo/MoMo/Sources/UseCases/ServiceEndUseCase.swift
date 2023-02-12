@@ -1,5 +1,5 @@
 //
-//  ServiceEndModalUseCase.swift
+//  ServiceEndUseCase.swift
 //  MoMo
 //
 //  Created by Haeseok Lee on 2023/02/12.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ServiceEndModalUseCase {
+protocol ServiceEndUseCase {
     
     var shouldShowPopUp: Bool { get }
     
@@ -22,7 +22,7 @@ protocol ServiceEndModalUseCase {
     func requestDownloadLink(completion: @escaping () -> Void)
 }
 
-final class ServiceEndModalUseCaseImpl {
+final class ServiceEndUseCaseImpl {
 
 
     private var _isDoNotSeeAgainConfirmed: Bool {
@@ -84,7 +84,7 @@ final class ServiceEndModalUseCaseImpl {
     }
 }
 
-extension ServiceEndModalUseCaseImpl: ServiceEndModalUseCase {
+extension ServiceEndUseCaseImpl: ServiceEndUseCase {
     
     var shouldShowPopUp: Bool {
         !isDoNotSeeAgainConfirmed && !isDoNotSeeAgainFor3DaysConfirmed
@@ -125,7 +125,7 @@ extension ServiceEndModalUseCaseImpl: ServiceEndModalUseCase {
     }
 }
 
-private extension ServiceEndModalUseCaseImpl {
+private extension ServiceEndUseCaseImpl {
     
     func dayToSecond(_ day: Int) -> TimeInterval {
         Double(day) * 24 * 60 * 60

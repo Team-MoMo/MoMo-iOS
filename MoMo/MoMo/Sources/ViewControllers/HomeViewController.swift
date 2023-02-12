@@ -64,7 +64,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     // coachmark
     var coachmarkTouchCount = 0
     
-    let serviceEndUseCase: ServiceEndModalUseCase = ServiceEndModalUseCaseImpl()
+    let serviceEndUseCase: ServiceEndUseCase = ServiceEndUseCaseImpl()
     
     var serviceEndModalView: ServiceEndModalView?
     
