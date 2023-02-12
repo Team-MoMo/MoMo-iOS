@@ -15,7 +15,7 @@ class OnboardingViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet var waveAnimationView: AnimationView!
+    @IBOutlet var waveAnimationView: LottieAnimationView!
     @IBOutlet weak var infoLabel: UILabel!
     
     // MARK: - Life Cycles

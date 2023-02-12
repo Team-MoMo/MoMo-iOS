@@ -10,7 +10,7 @@ import Lottie
 
 class SplashViewController: UIViewController {
 
-    @IBOutlet weak var momoSplashAnimationView: AnimationView!
+    @IBOutlet weak var momoSplashAnimationView: LottieAnimationView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

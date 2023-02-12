@@ -162,8 +162,8 @@ class LoginViewController: UIViewController {
         self.attachActivityIndicator()
         
         // 카카오톡 설치 여부 확인
-        if AuthApi.isKakaoTalkLoginAvailable() {
-            AuthApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+        if UserApi.isKakaoTalkLoginAvailable() {
+            UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
                 if let error = error {
                     print(error)
                 } else {
@@ -178,7 +178,7 @@ class LoginViewController: UIViewController {
             }
             self.detachActivityIndicator()
         } else {
-            AuthApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+            UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
                 if let error = error {
                     print(error)
                 } else {

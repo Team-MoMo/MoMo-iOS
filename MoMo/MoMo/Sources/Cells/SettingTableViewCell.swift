@@ -27,7 +27,12 @@ class SettingTableViewCell: UITableViewCell {
     // MARK: - Functions
     
     func setCell(image: UIImage?, labelText: String) {
-        self.tableCellImage.image = image
+        if image == nil {
+            self.tableCellImage.isHidden = true
+        } else {
+            self.tableCellImage.isHidden = false
+            self.tableCellImage.image = image
+        }
         self.tableCellLabel.attributedText = labelText.textSpacing()
     }
     

@@ -64,6 +64,10 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     // coachmark
     var coachmarkTouchCount = 0
     
+    let serviceEndUseCase: ServiceEndModalUseCase = ServiceEndModalUseCaseImpl()
+    
+    var serviceEndModalView: ServiceEndModalView?
+    
     // MARK: - View Life Cycle
     
     // viewDidLoad
@@ -124,6 +128,54 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         } else {
             statusBarHeight = UIApplication.shared.statusBarFrame.height
         }
+        
+        // 서비스 종료 팝업
+        if serviceEndUseCase.shouldShowPopUp {
+            let modalView: ServiceEndModalView = ServiceEndModalView.loadNib()
+            modalView.didTapDownloadButtonHandler = { [weak self] _ in
+                //self?.serviceEndUseCase.agreeNotToSeeAgainFor3Days()
+                self?.dismissServiceEndModalView()
+                self?.pushToServiceEndViewController()
+            }
+            modalView.didTapDoNotSeeAgainFor3DaysConfirmButtonHandler = { [weak self] _ in
+                self?.serviceEndUseCase.agreeNotToSeeAgainFor3Days()
+                self?.dismissServiceEndModalView()
+            }
+            modalView.didTapDoNotSeeAgainConfirmButton = { [weak self] _ in
+                self?.serviceEndUseCase.agreeNotToSeeAgain()
+                self?.dismissServiceEndModalView()
+            }
+            serviceEndModalView = modalView
+            showServiceEndModalViewWithAnimation(modalView: modalView)
+        }
+    }
+    
+    func showServiceEndModalViewWithAnimation(modalView: ServiceEndModalView) {
+        modalView.translatesAutoresizingMaskIntoConstraints = false
+        modalView.isHidden = true
+        view.addSubview(modalView)
+        NSLayoutConstraint.activate([
+            modalView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            modalView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            modalView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            modalView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+        UIView.animate(withDuration: 0.3) {
+            modalView.isHidden = false
+        }
+    }
+    
+    func dismissServiceEndModalView() {
+        if let view = serviceEndModalView, view.superview != nil {
+            view.removeFromSuperview()
+            serviceEndModalView = nil
+        }
+    }
+    
+    func pushToServiceEndViewController() {
+        let storyboard = UIStoryboard(name: Constants.Name.serviceEndStoryboard, bundle: nil)
+        guard let vc = storyboard.instantiateViewController(identifier: Constants.Identifier.serviceEndViewController) as? ServiceEndViewController else { return }
+        self.navigationController?.pushViewController(vc, animated: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {

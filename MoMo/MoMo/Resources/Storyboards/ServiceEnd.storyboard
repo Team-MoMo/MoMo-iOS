@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Service End View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="ServiceEndViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="ServiceEndViewController" customModule="MoMo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xes-Nj-owB">
+                                <rect key="frame" x="0.0" y="59" width="393" height="689"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUG-uy-1vE">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="561.66666666666663"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="alY-qw-bMA">
+                                                <rect key="frame" x="34" y="0.0" width="325" height="521.66666666666663"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="tni-yV-rJ2">
+                                                        <rect key="frame" x="0.0" y="0.0" width="325" height="407.66666666666669"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="VgF-bA-q6Z">
+                                                                <rect key="frame" x="0.0" y="0.0" width="325" height="68"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PZj-R1-Xgc">
+                                                                        <rect key="frame" x="25" y="0.0" width="275" height="48"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="good_bye_momo" translatesAutoresizingMaskIntoConstraints="NO" id="7t0-A5-Qqp">
+                                                                                <rect key="frame" x="2.6666666666666572" y="0.0" width="270" height="48"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" constant="270" id="VLU-pH-kA5"/>
+                                                                                    <constraint firstAttribute="height" constant="48" id="oJa-0g-IVK"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="bottom" secondItem="7t0-A5-Qqp" secondAttribute="bottom" id="HNm-AF-HLG"/>
+                                                                            <constraint firstItem="7t0-A5-Qqp" firstAttribute="centerX" secondItem="PZj-R1-Xgc" secondAttribute="centerX" id="YgZ-V6-6LA"/>
+                                                                            <constraint firstItem="7t0-A5-Qqp" firstAttribute="top" secondItem="PZj-R1-Xgc" secondAttribute="top" id="snG-mX-Pij"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="모모 서비스 종료 안내" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Gr-uD-XIr">
+                                                                        <rect key="frame" x="89.666666666666671" y="52" width="145.66666666666663" height="16"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="68" id="60f-5X-8QC"/>
+                                                                </constraints>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="XcE-Ak-JHy">
+                                                                <rect key="frame" x="0.0" y="92" width="325" height="315.66666666666669"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cw-KN-Qfg">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="325" height="50.333333333333336"/>
+                                                                        <string key="text">안녕하세요. MOMO를 만든 Team MOMO입니다.
+내부적인 사정으로 인해 아쉽게도 서비스 종료 소식을
+알려드리게 되었습니다.</string>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hUe-uN-oVg">
+                                                                        <rect key="frame" x="0.0" y="66.333333333333343" width="325" height="42"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="서비스 종료일 : 2023년 5월 31일" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJN-pq-pKh">
+                                                                                <rect key="frame" x="79" y="14" width="167" height="14.333333333333336"/>
+                                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                                                <color key="textColor" name="BlueModalAble"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="42" id="g84-e6-TOU"/>
+                                                                            <constraint firstItem="iJN-pq-pKh" firstAttribute="centerX" secondItem="hUe-uN-oVg" secondAttribute="centerX" id="lj2-vr-xhe"/>
+                                                                            <constraint firstItem="iJN-pq-pKh" firstAttribute="centerY" secondItem="hUe-uN-oVg" secondAttribute="centerY" id="ooM-KU-eWj"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="그 동안 MOMO 다이어리에 작성하신 일기는 다운로드 링크를 통해 xml 파일로 다운 받으실 수 있습니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eiC-tY-OFd">
+                                                                        <rect key="frame" x="0.0" y="124.33333333333333" width="325" height="33.666666666666671"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="1xY-oY-oKn">
+                                                                        <rect key="frame" x="0.0" y="174" width="325" height="54.666666666666657"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="다운로드 방법" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uc8-hm-ec6">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="325" height="17"/>
+                                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                                                <color key="textColor" name="BlueModalAble"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="다운로드를 받을 이메일을 입력한 후 링크 받기 버튼을 눌러주세요." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Cj-ZU-9HQ">
+                                                                                <rect key="frame" x="0.0" y="20.999999999999996" width="325" height="33.666666666666657"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                <color key="textColor" name="Black1"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="87A-EK-Tds">
+                                                                        <rect key="frame" x="0.0" y="244.66666666666669" width="325" height="38"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="다운로드 시 유의사항" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8HB-Io-PTW">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="325" height="17"/>
+                                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                                                <color key="textColor" name="BlueModalAble"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이메일은 하루에 2번까지 받으실 수 있습니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJZ-LL-c8b">
+                                                                                <rect key="frame" x="0.0" y="21" width="325" height="17"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                <color key="textColor" name="Black1"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MOMO 다이어리를 사용해 주셔서 진심으로 감사합니다!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Q1-hn-31B">
+                                                                        <rect key="frame" x="0.0" y="298.66666666666669" width="325" height="17"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <color key="textColor" name="Black1"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="r8K-o5-ZN9">
+                                                        <rect key="frame" x="0.0" y="446.66666666666669" width="325" height="75.000000000000057"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이메일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFb-hU-dgv">
+                                                                <rect key="frame" x="0.0" y="0.0" width="325" height="17"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                                <color key="textColor" name="BlueModalAble"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DB7-pf-bVt">
+                                                                <rect key="frame" x="0.0" y="24.999999999999943" width="325" height="50"/>
+                                                                <subviews>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="이메일을 입력해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8kb-2n-QJy">
+                                                                        <rect key="frame" x="19" y="13" width="287" height="24"/>
+                                                                        <color key="textColor" name="Black2Nav"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                    </textField>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="trailing" secondItem="8kb-2n-QJy" secondAttribute="trailing" constant="19" id="C2Q-J6-GGO"/>
+                                                                    <constraint firstAttribute="height" constant="50" id="JDm-92-OtF"/>
+                                                                    <constraint firstItem="8kb-2n-QJy" firstAttribute="top" secondItem="DB7-pf-bVt" secondAttribute="top" constant="13" id="LhD-l3-7Qm"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="8kb-2n-QJy" secondAttribute="bottom" constant="13" id="cco-qI-4kR"/>
+                                                                    <constraint firstItem="8kb-2n-QJy" firstAttribute="leading" secondItem="DB7-pf-bVt" secondAttribute="leading" constant="19" id="oib-W8-UG5"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="alY-qw-bMA" secondAttribute="trailing" constant="34" id="92j-tS-E6F"/>
+                                            <constraint firstAttribute="bottom" secondItem="alY-qw-bMA" secondAttribute="bottom" constant="40" id="b3n-Zw-Tcq"/>
+                                            <constraint firstItem="alY-qw-bMA" firstAttribute="leading" secondItem="GUG-uy-1vE" secondAttribute="leading" constant="34" id="dXe-qe-nwV"/>
+                                            <constraint firstItem="alY-qw-bMA" firstAttribute="top" secondItem="GUG-uy-1vE" secondAttribute="top" id="lc0-qm-eE2"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="GUG-uy-1vE" firstAttribute="top" secondItem="fAs-qK-zr1" secondAttribute="top" id="0XR-aA-KrG"/>
+                                    <constraint firstItem="GUG-uy-1vE" firstAttribute="leading" secondItem="fAs-qK-zr1" secondAttribute="leading" id="3ER-pR-hmN"/>
+                                    <constraint firstItem="GUG-uy-1vE" firstAttribute="height" secondItem="bOL-Li-VBP" secondAttribute="height" priority="250" id="BXf-v3-6rh"/>
+                                    <constraint firstItem="GUG-uy-1vE" firstAttribute="width" secondItem="bOL-Li-VBP" secondAttribute="width" id="Kce-PE-7jC"/>
+                                    <constraint firstItem="GUG-uy-1vE" firstAttribute="bottom" secondItem="fAs-qK-zr1" secondAttribute="bottom" id="gNv-AT-U4g"/>
+                                    <constraint firstItem="GUG-uy-1vE" firstAttribute="trailing" secondItem="fAs-qK-zr1" secondAttribute="trailing" id="zXR-G0-91O"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="fAs-qK-zr1"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="bOL-Li-VBP"/>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iUV-vB-SBH">
+                                <rect key="frame" x="43" y="748" width="307" height="50"/>
+                                <color key="backgroundColor" name="BlueModalAble"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" priority="750" constant="307" id="7qg-CQ-DLU"/>
+                                    <constraint firstAttribute="height" constant="50" id="MMv-fR-y0a"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="링크 받기"/>
+                                <connections>
+                                    <action selector="didTapDownloadButtonWithSender:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="iJn-Fb-Ivd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Xes-Nj-owB" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="5NW-qg-Hjr"/>
+                            <constraint firstItem="iUV-vB-SBH" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="Gae-xh-Knt"/>
+                            <constraint firstItem="Xes-Nj-owB" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="j6O-Pm-h2e"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Xes-Nj-owB" secondAttribute="trailing" id="pfs-WG-Qqe"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="iUV-vB-SBH" secondAttribute="trailing" constant="34" id="q0S-DG-re1"/>
+                            <constraint firstItem="Xes-Nj-owB" firstAttribute="bottom" secondItem="iUV-vB-SBH" secondAttribute="top" id="ubG-ZH-4B6"/>
+                            <constraint firstItem="iUV-vB-SBH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="34" id="xRn-dt-huN"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="iUV-vB-SBH" secondAttribute="bottom" constant="20" id="yZd-9a-L7m"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="downloadButton" destination="iUV-vB-SBH" id="m44-ph-GLa"/>
+                        <outlet property="emailTextContainerView" destination="DB7-pf-bVt" id="rtN-jW-Kty"/>
+                        <outlet property="emailTextField" destination="8kb-2n-QJy" id="jN7-M7-TZk"/>
+                        <outlet property="goodbyeDateContainerView" destination="hUe-uN-oVg" id="dzs-ZU-1jl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-56" y="5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="good_bye_momo" width="270" height="48"/>
+        <namedColor name="Black1">
+            <color red="0.12200000137090683" green="0.12200000137090683" blue="0.12200000137090683" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Black2Nav">
+            <color red="0.23499999940395355" green="0.23499999940395355" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="BlueModalAble">
+            <color red="0.38400000333786011" green="0.54100000858306885" blue="0.72200000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mb6-je-E0a">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mb6-je-E0a">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,15 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rIQ-3J-AWL" userLabel="Wave Animation View" customClass="AnimationView" customModule="Lottie">
-                                <rect key="frame" x="0.0" y="206" width="414" height="102"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rIQ-3J-AWL" userLabel="Wave Animation View" customClass="LottieAnimationView" customModule="Lottie">
+                                <rect key="frame" x="0.0" y="210" width="414" height="102"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="onboarding_wave_ios"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tzr-4V-2qZ" userLabel="InfoLabel">
-                                <rect key="frame" x="32" y="110" width="212" height="53"/>
+                                <rect key="frame" x="32" y="114" width="212" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Tzr-4V-2qZ" secondAttribute="height" multiplier="4:1" id="wZ7-KE-Baw"/>
                                 </constraints>
@@ -35,7 +36,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ybM-6V-Bhf" userLabel="BackGroundView">
-                                <rect key="frame" x="0.0" y="308" width="414" height="588"/>
+                                <rect key="frame" x="0.0" y="312" width="414" height="584"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00Z-tE-UjX" userLabel="DescriptionLabel">
                                         <rect key="frame" x="40" y="40" width="302.5" height="76.5"/>
@@ -62,7 +63,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQb-7L-Dg6" userLabel="StartButton">
-                                        <rect key="frame" x="97" y="438" width="220" height="50"/>
+                                        <rect key="frame" x="97" y="434" width="220" height="50"/>
                                         <color key="backgroundColor" name="Blue7"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="k7N-Ck-qCP"/>
@@ -77,7 +78,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Stl-fv-u4C" userLabel="LoginButton">
-                                        <rect key="frame" x="147.5" y="503" width="119" height="32"/>
+                                        <rect key="frame" x="147.5" y="499" width="119" height="32"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                         <state key="normal" title="이미 계정이 있어요">
                                             <color key="titleColor" name="Blue7"/>
@@ -135,7 +136,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6p-az-0Fw">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWh-6I-dEs">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
@@ -467,7 +468,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6AB-p1-ezy">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vye-hx-rAi">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="731"/>
@@ -802,7 +803,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="문장이 감성을 자극하고 깊이있는 기록을 도와줄 거예요" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qs6-k4-d8u" userLabel="InfoLabel">
-                                <rect key="frame" x="32" y="110" width="320" height="64"/>
+                                <rect key="frame" x="32" y="114" width="320" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Qs6-k4-d8u" secondAttribute="height" multiplier="5:1" id="Gh0-WA-OSH"/>
                                     <constraint firstAttribute="height" constant="64" id="H92-pS-YZv"/>
@@ -812,14 +813,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icFeatherBlack" translatesAutoresizingMaskIntoConstraints="NO" id="0az-mV-RDc" userLabel="FeatherImage">
-                                <rect key="frame" x="199.5" y="339" width="15" height="17"/>
+                                <rect key="frame" x="199.5" y="343" width="15" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="15" id="c2d-5w-cF7"/>
                                     <constraint firstAttribute="height" constant="17" id="dep-bF-uCQ"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="CIU-gA-1Gb">
-                                <rect key="frame" x="111.5" y="381" width="191" height="13.5"/>
+                                <rect key="frame" x="111.5" y="385" width="191" height="13.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="안드래 애치먼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LY1-xN-Dct" userLabel="AuthorLabel">
                                         <rect key="frame" x="0.0" y="0.0" width="60.5" height="13.5"/>
@@ -842,7 +843,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hue-vy-02C" userLabel="TypingLabel" customClass="CLTypingLabel" customModule="CLTypingLabel">
-                                <rect key="frame" x="207" y="505" width="0.0" height="0.0"/>
+                                <rect key="frame" x="207" y="509" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <color key="textColor" name="Blue2"/>
                                 <nil key="highlightedColor"/>
@@ -853,13 +854,13 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="|" textAlignment="natural" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZz-or-IGh" userLabel="TypingCursorLabel">
-                                <rect key="frame" x="207" y="498.5" width="7" height="30"/>
+                                <rect key="frame" x="207" y="502.5" width="7" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
                                 <color key="textColor" name="Blue3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yhd-1M-YOZ" userLabel="SentenceLabel">
-                                <rect key="frame" x="44" y="414.5" width="326" height="69.5"/>
+                                <rect key="frame" x="44" y="418.5" width="326" height="69.5"/>
                                 <attributedString key="attributedText">
                                     <fragment content="그럼 겨울에는 뭘 하지?  대답을 떠오리며 미소 짓자 그가 눈치를 챘다. “말 하지 마. 여름이 오길 기다리는 거지?” 마음을 읽힌 것이 좋았다.">
                                         <attributes>
@@ -950,10 +951,10 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="poR-7a-CZ5" userLabel="BlurView">
-                                <rect key="frame" x="0.0" y="249" width="414" height="647"/>
+                                <rect key="frame" x="0.0" y="253" width="414" height="643"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oh8-Vs-YAQ">
-                                        <rect key="frame" x="47" y="39" width="367" height="480"/>
+                                        <rect key="frame" x="47" y="39" width="367" height="476"/>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -978,7 +979,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBR-vZ-nwc" userLabel="InfoLabel">
-                                <rect key="frame" x="32" y="60" width="276.5" height="79"/>
+                                <rect key="frame" x="32" y="64" width="276.5" height="79"/>
                                 <string key="text">오늘의 감정은
 잔잔한가요, 깊은가요?
 스크롤을 움직여서 기록해보세요</string>
@@ -987,13 +988,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020. 12. 26. 토요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pi1-gR-dGN" userLabel="DateLabel">
-                                <rect key="frame" x="32" y="155" width="144.5" height="19.5"/>
+                                <rect key="frame" x="32" y="159" width="144.5" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <color key="textColor" name="Blue7"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icAngry14White" translatesAutoresizingMaskIntoConstraints="NO" id="w7y-Ag-1Nx" userLabel="MoodIcon">
-                                <rect key="frame" x="188.5" y="158" width="14" height="14"/>
+                                <rect key="frame" x="188.5" y="162" width="14" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="w7y-Ag-1Nx" secondAttribute="height" multiplier="1:1" id="GvW-26-f7O"/>
                                     <constraint firstAttribute="width" constant="14" id="PD3-eh-L9K"/>
@@ -1001,7 +1002,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="화남" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bx-Dm-iZo" userLabel="MoodLabel">
-                                <rect key="frame" x="204.5" y="156" width="26" height="18"/>
+                                <rect key="frame" x="204.5" y="160" width="26" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" name="Blue7"/>
                                 <nil key="highlightedColor"/>
@@ -1061,7 +1062,6 @@
     </scenes>
     <designables>
         <designable name="hue-vy-02C"/>
-        <designable name="rIQ-3J-AWL"/>
     </designables>
     <resources>
         <image name="btnIcCalender16" width="16" height="16"/>
