@@ -53,7 +53,7 @@ class OnboardingViewController: UIViewController {
     }
     
     private func startWaveAnimation() {
-        self.waveAnimationView.contentMode = .scaleAspectFit
+        self.waveAnimationView.contentMode = .scaleAspectFill
         self.waveAnimationView.loopMode = .loop
         self.waveAnimationView.animationSpeed = 0.5
         self.waveAnimationView.play()

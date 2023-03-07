@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xes-Nj-owB">
-                                <rect key="frame" x="0.0" y="59" width="393" height="689"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="679"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUG-uy-1vE">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="561.66666666666663"/>
@@ -91,7 +91,7 @@
                                                                             <constraint firstItem="iJN-pq-pKh" firstAttribute="centerY" secondItem="hUe-uN-oVg" secondAttribute="centerY" id="ooM-KU-eWj"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="그 동안 MOMO 다이어리에 작성하신 일기는 다운로드 링크를 통해 xml 파일로 다운 받으실 수 있습니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eiC-tY-OFd">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="그 동안 MOMO 다이어리에 작성하신 일기는 다운로드 링크를 통해 csv 파일로 다운 받으실 수 있습니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eiC-tY-OFd">
                                                                         <rect key="frame" x="0.0" y="124.33333333333333" width="325" height="33.666666666666671"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <nil key="textColor"/>
@@ -217,7 +217,7 @@
                             <constraint firstItem="Xes-Nj-owB" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="j6O-Pm-h2e"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Xes-Nj-owB" secondAttribute="trailing" id="pfs-WG-Qqe"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="iUV-vB-SBH" secondAttribute="trailing" constant="34" id="q0S-DG-re1"/>
-                            <constraint firstItem="Xes-Nj-owB" firstAttribute="bottom" secondItem="iUV-vB-SBH" secondAttribute="top" id="ubG-ZH-4B6"/>
+                            <constraint firstItem="Xes-Nj-owB" firstAttribute="bottom" secondItem="iUV-vB-SBH" secondAttribute="top" constant="-10" id="ubG-ZH-4B6"/>
                             <constraint firstItem="iUV-vB-SBH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="34" id="xRn-dt-huN"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="iUV-vB-SBH" secondAttribute="bottom" constant="20" id="yZd-9a-L7m"/>
                         </constraints>

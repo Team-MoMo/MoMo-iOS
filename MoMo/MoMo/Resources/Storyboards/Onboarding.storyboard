@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rIQ-3J-AWL" userLabel="Wave Animation View" customClass="LottieAnimationView" customModule="Lottie">
+                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rIQ-3J-AWL" userLabel="Wave Animation View" customClass="LottieAnimationView" customModule="Lottie">
                                 <rect key="frame" x="0.0" y="210" width="414" height="102"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
@@ -104,10 +104,10 @@
                         <constraints>
                             <constraint firstItem="ybM-6V-Bhf" firstAttribute="leading" secondItem="NzE-KR-8tl" secondAttribute="leading" id="47c-6h-bDJ"/>
                             <constraint firstItem="rIQ-3J-AWL" firstAttribute="top" secondItem="Tzr-4V-2qZ" secondAttribute="bottom" constant="43" id="69g-ga-M0p"/>
-                            <constraint firstItem="NzE-KR-8tl" firstAttribute="trailing" secondItem="rIQ-3J-AWL" secondAttribute="trailing" id="FjL-O1-6NP"/>
+                            <constraint firstAttribute="trailing" secondItem="rIQ-3J-AWL" secondAttribute="trailing" id="FjL-O1-6NP"/>
                             <constraint firstItem="ybM-6V-Bhf" firstAttribute="top" secondItem="Tzr-4V-2qZ" secondAttribute="bottom" constant="145" id="GFf-9t-9qQ"/>
                             <constraint firstItem="Tzr-4V-2qZ" firstAttribute="leading" secondItem="NzE-KR-8tl" secondAttribute="leading" constant="32" id="ODp-bM-dGk"/>
-                            <constraint firstItem="rIQ-3J-AWL" firstAttribute="leading" secondItem="NzE-KR-8tl" secondAttribute="leading" id="Rph-RL-Qvb"/>
+                            <constraint firstItem="rIQ-3J-AWL" firstAttribute="leading" secondItem="f3q-cn-bRc" secondAttribute="leading" id="Rph-RL-Qvb"/>
                             <constraint firstItem="NzE-KR-8tl" firstAttribute="trailing" secondItem="ybM-6V-Bhf" secondAttribute="trailing" id="RxY-38-4Du"/>
                             <constraint firstItem="Tzr-4V-2qZ" firstAttribute="top" secondItem="NzE-KR-8tl" secondAttribute="top" constant="66" id="apW-EV-JqW"/>
                             <constraint firstItem="rIQ-3J-AWL" firstAttribute="bottom" secondItem="ybM-6V-Bhf" secondAttribute="top" id="vDt-Uo-egP"/>
@@ -1062,6 +1062,7 @@
     </scenes>
     <designables>
         <designable name="hue-vy-02C"/>
+        <designable name="rIQ-3J-AWL"/>
     </designables>
     <resources>
         <image name="btnIcCalender16" width="16" height="16"/>

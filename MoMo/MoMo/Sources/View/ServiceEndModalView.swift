@@ -51,7 +51,7 @@ final class ServiceEndModalView: UIView {
     
     @IBOutlet private weak var descriptionLabel2: UILabel! {
         willSet {
-            newValue.attributedText = "그 동안 MOMO 다이어리에 작성하신 일기는 다운로드 링크를 통해 xml 파일로 다운 받으실 수 있습니다.\nMOMO 다이어리를 사용해 주셔서 진심으로 감사합니다!".textSpacing()
+            newValue.attributedText = "그 동안 MOMO 다이어리에 작성하신 일기는 다운로드 링크를 통해 csv 파일로 다운 받으실 수 있습니다.\nMOMO 다이어리를 사용해 주셔서 진심으로 감사합니다!".textSpacing()
             newValue.font = UIFont.systemFont(ofSize: 14, weight: .regular)
             newValue.textColor = .black
         }

@@ -82,8 +82,15 @@ private extension ServiceEndViewController {
         
         if serviceEndUseCase.shouldRequestDownloadLink {
             isRequesting = true
-            serviceEndUseCase.requestDownloadLink() { [weak self] in
-                self?.showToast(message: "링크가 발송되었습니다. 메일을 확인해주세요.")
+            serviceEndUseCase.requestDownloadLink(
+                userID: UserDefaults.standard.integer(forKey: "userId"),
+                email: email
+            ) { [weak self] isSuccess in
+                if isSuccess {
+                    self?.showToast(message: "링크가 발송되었습니다. 메일을 확인해주세요.")
+                } else {
+                    self?.showToast(message: "실패했습니다. 다시 시도해주세요.")
+                }
                 self?.isRequesting = false
             }
         } else {

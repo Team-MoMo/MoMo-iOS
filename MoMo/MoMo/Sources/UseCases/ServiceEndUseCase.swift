@@ -19,11 +19,12 @@ protocol ServiceEndUseCase {
     
     func agreeNotToSeeAgainFor3Days()
     
-    func requestDownloadLink(completion: @escaping () -> Void)
+    func requestDownloadLink(userID: Int, email: String, completion: @escaping (Bool) -> Void)
 }
 
 final class ServiceEndUseCaseImpl {
-
+    
+    let serviceEndService = ServiceEndService.shared
 
     private var _isDoNotSeeAgainConfirmed: Bool {
         get {
@@ -104,14 +105,21 @@ extension ServiceEndUseCaseImpl: ServiceEndUseCase {
         _lastConfirmDateDoNotSeeAgainFor3Days = currentDate
     }
     
-    func requestDownloadLink(completion: @escaping () -> Void) {
-        // TODO: - API 요청 ~~~
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) { [weak self] in
-            // TODO: API 요청 성공시 아래 구문 실행
-            completion()
-            self?.initializeDownloadLinkRequestCountPerDayIfNeeded()
-            self?._downloadLinkRequestCountPerDay += 1
-            self?._lastRequestDateDownloadLink = self?.currentDate ?? Date()
+    func requestDownloadLink(userID: Int, email: String, completion: @escaping (Bool) -> Void) {
+        serviceEndService.postDiaryExport(userID: userID, email: email) { [weak self] result in
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    completion(true)
+                    self?.initializeDownloadLinkRequestCountPerDayIfNeeded()
+                    self?._downloadLinkRequestCountPerDay += 1
+                    self?._lastRequestDateDownloadLink = self?.currentDate ?? Date()
+                }
+            default:
+                DispatchQueue.main.async {
+                    completion(false)
+                }
+            }
         }
     }
 }

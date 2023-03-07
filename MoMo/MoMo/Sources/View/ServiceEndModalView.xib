@@ -96,7 +96,7 @@
                                                                         </view>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wcp-Lb-mCe">
                                                                             <rect key="frame" x="0.0" y="124.33333333333331" width="303" height="67"/>
-                                                                            <string key="text">그 동안 MOMO 다이어리에 작성하신 일기는 다운로드 링크를 통해 xml 파일로 다운 받으실 수 있습니다.
+                                                                            <string key="text">그 동안 MOMO 다이어리에 작성하신 일기는 다운로드 링크를 통해 csv 파일로 다운 받으실 수 있습니다.
 MOMO 다이어리를 사용해 주셔서 진심으로 감사합니다!</string>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                             <nil key="textColor"/>

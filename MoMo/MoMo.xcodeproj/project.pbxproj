@@ -103,6 +103,7 @@
 		1CEF46C525A6E09100AF3D81 /* MoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46C425A6E09100AF3D81 /* MoodViewController.swift */; };
 		1CEF46C825A6E0A000AF3D81 /* SentenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46C725A6E0A000AF3D81 /* SentenceViewController.swift */; };
 		1CEF46CB25A6E0B200AF3D81 /* OnboardingWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46CA25A6E0B200AF3D81 /* OnboardingWriteViewController.swift */; };
+		1CF3817F29B760E800CB3777 /* ServiceEndService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF3817E29B760E800CB3777 /* ServiceEndService.swift */; };
 		5612D1A72606305400D96FF7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5612D1A62606305400D96FF7 /* GoogleService-Info.plist */; };
 		562C645425C1AED800AA9AB6 /* AppEmotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562C645325C1AED800AA9AB6 /* AppEmotion.swift */; };
 		562C645925C1AFAD00AA9AB6 /* AppDepth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562C645825C1AFAD00AA9AB6 /* AppDepth.swift */; };
@@ -254,6 +255,7 @@
 		1CEF46C425A6E09100AF3D81 /* MoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewController.swift; sourceTree = "<group>"; };
 		1CEF46C725A6E0A000AF3D81 /* SentenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceViewController.swift; sourceTree = "<group>"; };
 		1CEF46CA25A6E0B200AF3D81 /* OnboardingWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWriteViewController.swift; sourceTree = "<group>"; };
+		1CF3817E29B760E800CB3777 /* ServiceEndService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEndService.swift; sourceTree = "<group>"; };
 		5612D1A62606305400D96FF7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		562C645325C1AED800AA9AB6 /* AppEmotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEmotion.swift; sourceTree = "<group>"; };
 		562C645825C1AFAD00AA9AB6 /* AppDepth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDepth.swift; sourceTree = "<group>"; };
@@ -342,6 +344,14 @@
 			path = UseCases;
 			sourceTree = "<group>";
 		};
+		1CF3817D29B760C600CB3777 /* ServiceEnd */ = {
+			isa = PBXGroup;
+			children = (
+				1CF3817E29B760E800CB3777 /* ServiceEndService.swift */,
+			);
+			path = ServiceEnd;
+			sourceTree = "<group>";
+		};
 		562C644E25C1AD6800AA9AB6 /* AppModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -422,6 +432,7 @@
 		563B048725AE06F700DA74C5 /* APIServices */ = {
 			isa = PBXGroup;
 			children = (
+				1CF3817D29B760C600CB3777 /* ServiceEnd */,
 				10F1F72B25B04AB200BF7D37 /* Sentences */,
 				563B048925AE0BA900DA74C5 /* GenericResponse.swift */,
 				563B048C25AE0BD500DA74C5 /* NetworkResult.swift */,
@@ -858,6 +869,7 @@
 				562C645C25C1B14F00AA9AB6 /* AppSentence.swift in Sources */,
 				563B034725A8973100DA74C5 /* HomeViewController.swift in Sources */,
 				10DC0CBD25C7D9640048A5C8 /* MoodStatViewController.swift in Sources */,
+				1CF3817F29B760E800CB3777 /* ServiceEndService.swift in Sources */,
 				1C4235F125B0D5A8008FB838 /* DiaryWithId.swift in Sources */,
 				10C9CECB25C3ECBC0036CE98 /* DepthStatViewController.swift in Sources */,
 				1C8DD90A25C92D5000C7A3BA /* SettingTableViewCell.swift in Sources */,
@@ -1083,7 +1095,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3885XCJRT2;
 				INFOPLIST_FILE = MoMo/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1109,7 +1121,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3885XCJRT2;
 				INFOPLIST_FILE = MoMo/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
