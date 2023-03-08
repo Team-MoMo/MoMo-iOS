@@ -49,7 +49,7 @@ struct APIConstants {
     static let diariesURL = baseURL + "/diaries"
     
     // 일기 다운로드
-    static let diariesExportURL = diariesURL + "/exported"
+    static let diariesExportURL = diariesURL + "/export"
     
     // 일기 작성이 안된 가장 최근 날짜 조회
     static let diaryRecentURL = baseURL + "/diaries/recent"
