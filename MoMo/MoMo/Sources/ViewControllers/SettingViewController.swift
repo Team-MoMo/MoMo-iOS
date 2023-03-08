@@ -182,7 +182,8 @@ class SettingViewController: UIViewController {
             (image: Constants.Design.Image.icLock, labelText: "암호 잠금", touchAction: {}),
             (image: Constants.Design.Image.icLicense, labelText: "오픈 소스 라이선스", touchAction: self.pushToOpenSourceLicenseViewController),
             (image: Constants.Design.Image.icTeam, labelText: "Team MOMO", touchAction: self.pushToTeamMomoViewController),
-            (image: Constants.Design.Image.icInstaLogo, labelText: "MOMO 인스타그램", touchAction: self.openTeamMomoInstagram)
+            (image: Constants.Design.Image.icInstaLogo, labelText: "MOMO 인스타그램", touchAction: self.openTeamMomoInstagram),
+            (image: nil, labelText: "일기 데이터 다운받기", touchAction: { self.pushToServiceEndViewController() })
         ]
     }
     
@@ -199,7 +200,7 @@ class SettingViewController: UIViewController {
         ]
         
         if self.isSocialLogin() {
-            self.cellInfos = self.cellInfos?.filter { cell in return cell.image != Constants.Design.Image.icPwChange }
+            self.cellInfos = self.cellInfos?.filter { cell in cell.image != Constants.Design.Image.icPwChange }
         }
     }
     
@@ -262,6 +263,16 @@ class SettingViewController: UIViewController {
     private func attachSwitch(superView: UITableViewCell) {
         superView.addSubview(self.controlSwitch)
         self.updateSwitchConstraints(superView: superView)
+    }
+    
+    private func attachArrow(superView: UITableViewCell) {
+        let imageView = UIImageView()
+        imageView.image = UIImage.init(named: "icArrowRight")
+        superView.addSubview(imageView)
+        imageView.snp.makeConstraints { make in
+            make.centerY.equalTo(superView.snp.centerY)
+            make.trailing.equalTo(superView.snp.trailing).inset(26)
+        }
     }
     
     private func attachResetButton(superView: UITableViewCell) {
@@ -400,6 +411,12 @@ class SettingViewController: UIViewController {
         self.navigationController?.pushViewController(teamViewController, animated: true)
     }
     
+    private func pushToServiceEndViewController() {
+        let storyboard = UIStoryboard(name: Constants.Name.serviceEndStoryboard, bundle: nil)
+        guard let vc = storyboard.instantiateViewController(identifier: Constants.Identifier.serviceEndViewController) as? ServiceEndViewController else { return }
+        self.navigationController?.pushViewController(vc, animated: false)
+    }
+    
     private func openTeamMomoInstagram() {
         let username: String = "momo.__.diary"
         let appURL: URL = URL(string: "instagram://user?username=\(username)")!
@@ -525,6 +542,10 @@ extension SettingViewController: UITableViewDataSource {
             self.controlSwitch.isOn = self.isLocked
             self.attachResetButton(superView: cell)
             self.resetButton.isHidden = !self.isLocked
+        }
+        
+        if self.settingViewUsage == .setting && cellInfo.labelText == "일기 데이터 다운받기" {
+            attachArrow(superView: cell)
         }
         
         if self.settingViewUsage == .info && cellInfo.labelText.isEmpty {

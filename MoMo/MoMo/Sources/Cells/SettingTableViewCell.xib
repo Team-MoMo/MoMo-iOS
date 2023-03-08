@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,19 +18,24 @@
                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5YR-MJ-erT">
                     <rect key="frame" x="0.0" y="0.0" width="397" height="138"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O8V-Ae-0Xk" userLabel="Table Cell Image">
-                            <rect key="frame" x="16" y="57" width="24" height="24"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="24" id="Zhw-B3-dA2"/>
-                                <constraint firstAttribute="height" constant="24" id="jfH-80-3cY"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cR4-BS-awo" userLabel="Table Cell Label">
-                            <rect key="frame" x="64" y="60.5" width="36" height="17"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" name="Black1"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="LSw-d1-dfu">
+                            <rect key="frame" x="16" y="57" width="83.5" height="24"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O8V-Ae-0Xk" userLabel="Table Cell Image">
+                                    <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="24" id="Zhw-B3-dA2"/>
+                                        <constraint firstAttribute="height" constant="24" id="jfH-80-3cY"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cR4-BS-awo" userLabel="Table Cell Label">
+                                    <rect key="frame" x="48" y="0.0" width="35.5" height="24"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" name="Black1"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
                         <view contentMode="scaleToFill" restorationIdentifier="SeparatorView" translatesAutoresizingMaskIntoConstraints="NO" id="ybN-EW-pD5" userLabel="Separator View">
                             <rect key="frame" x="0.0" y="137" width="397" height="1"/>
                             <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
@@ -39,13 +45,11 @@
                         </view>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="cR4-BS-awo" firstAttribute="centerY" secondItem="O8V-Ae-0Xk" secondAttribute="centerY" id="2Te-I0-lP9"/>
                         <constraint firstAttribute="bottom" secondItem="ybN-EW-pD5" secondAttribute="bottom" id="9n0-Yp-mqb"/>
                         <constraint firstItem="ybN-EW-pD5" firstAttribute="leading" secondItem="5YR-MJ-erT" secondAttribute="leading" id="CgP-cH-53R"/>
                         <constraint firstAttribute="trailing" secondItem="ybN-EW-pD5" secondAttribute="trailing" id="Lmb-G3-ldV"/>
-                        <constraint firstItem="O8V-Ae-0Xk" firstAttribute="centerY" secondItem="5YR-MJ-erT" secondAttribute="centerY" id="Mf3-yN-Akd"/>
-                        <constraint firstItem="O8V-Ae-0Xk" firstAttribute="leading" secondItem="5YR-MJ-erT" secondAttribute="leading" constant="16" id="bLQ-0M-QEG"/>
-                        <constraint firstItem="cR4-BS-awo" firstAttribute="leading" secondItem="O8V-Ae-0Xk" secondAttribute="trailing" constant="24" id="dD9-N9-m7c"/>
+                        <constraint firstItem="LSw-d1-dfu" firstAttribute="centerY" secondItem="5YR-MJ-erT" secondAttribute="centerY" id="RC1-pd-mrJ"/>
+                        <constraint firstItem="LSw-d1-dfu" firstAttribute="leading" secondItem="5YR-MJ-erT" secondAttribute="leading" constant="16" id="zyr-DL-YaG"/>
                     </constraints>
                 </view>
             </subviews>

@@ -6,6 +6,8 @@ disabled_rules:
 - type_body_length
 - parameter
 - force_cast
+- large_tuple
+- identifier_name
 
 included:
 excluded:
@@ -17,10 +19,3 @@ excluded:
 file_length:
   warning: 1000
   error: 1200
-
-identifier_name:
-  min_length:
-    error: 2
-  excluded:
-    - id
-    - URL

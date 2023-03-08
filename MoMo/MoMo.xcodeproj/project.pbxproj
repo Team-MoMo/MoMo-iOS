@@ -61,6 +61,7 @@
 		10F1F73625B053A900BF7D37 /* CreateDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F1F73525B053A900BF7D37 /* CreateDiary.swift */; };
 		10F8723425AAF2D9009FE6F1 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10F8723225AAF2D9009FE6F1 /* ListTableViewCell.xib */; };
 		10F8723525AAF2D9009FE6F1 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F8723325AAF2D9009FE6F1 /* ListTableViewCell.swift */; };
+		1C0B18CF29992CA700359212 /* ServiceEnd.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C0B18CE29992CA600359212 /* ServiceEnd.storyboard */; };
 		1C42357325AE26B9008FB838 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C42357225AE26B9008FB838 /* SplashViewController.swift */; };
 		1C42357625AE26D2008FB838 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C42357525AE26D2008FB838 /* Splash.storyboard */; };
 		1C42358F25AE2E31008FB838 /* momo_splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C42358E25AE2E31008FB838 /* momo_splash.json */; };
@@ -91,6 +92,10 @@
 		1CAD05B125AC3DC4007ECA40 /* DeepSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD05B025AC3DC4007ECA40 /* DeepSliderView.swift */; };
 		1CAD05B425AC3DEF007ECA40 /* DeepSliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CAD05B325AC3DEF007ECA40 /* DeepSliderView.xib */; };
 		1CAD05BA25AC59C1007ECA40 /* UISlider+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD05B925AC59C1007ECA40 /* UISlider+Extension.swift */; };
+		1CCA450B2998DF150053B951 /* ServiceEndUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCA450A2998DF150053B951 /* ServiceEndUseCase.swift */; };
+		1CCA450D2998F15D0053B951 /* ServiceEndModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CCA450C2998F15D0053B951 /* ServiceEndModalView.xib */; };
+		1CCA450F299900A50053B951 /* ServiceEndModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCA450E299900A50053B951 /* ServiceEndModalView.swift */; };
+		1CCA451129990ED60053B951 /* ServiceEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCA451029990ED60053B951 /* ServiceEndViewController.swift */; };
 		1CD8F82F25C1EEA5003F57D1 /* AppDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD8F82E25C1EEA5003F57D1 /* AppDate.swift */; };
 		1CDF3F8325F180F10048127A /* CustomVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDF3F8225F180F10048127A /* CustomVisualEffectView.swift */; };
 		1CEF46BF25A6DA7600AF3D81 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46BE25A6DA7600AF3D81 /* OnboardingViewController.swift */; };
@@ -98,6 +103,7 @@
 		1CEF46C525A6E09100AF3D81 /* MoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46C425A6E09100AF3D81 /* MoodViewController.swift */; };
 		1CEF46C825A6E0A000AF3D81 /* SentenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46C725A6E0A000AF3D81 /* SentenceViewController.swift */; };
 		1CEF46CB25A6E0B200AF3D81 /* OnboardingWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEF46CA25A6E0B200AF3D81 /* OnboardingWriteViewController.swift */; };
+		1CF3817F29B760E800CB3777 /* ServiceEndService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF3817E29B760E800CB3777 /* ServiceEndService.swift */; };
 		5612D1A72606305400D96FF7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5612D1A62606305400D96FF7 /* GoogleService-Info.plist */; };
 		562C645425C1AED800AA9AB6 /* AppEmotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562C645325C1AED800AA9AB6 /* AppEmotion.swift */; };
 		562C645925C1AFAD00AA9AB6 /* AppDepth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562C645825C1AFAD00AA9AB6 /* AppDepth.swift */; };
@@ -207,6 +213,7 @@
 		10F1F73525B053A900BF7D37 /* CreateDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiary.swift; sourceTree = "<group>"; };
 		10F8723225AAF2D9009FE6F1 /* ListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
 		10F8723325AAF2D9009FE6F1 /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		1C0B18CE29992CA600359212 /* ServiceEnd.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ServiceEnd.storyboard; sourceTree = "<group>"; };
 		1C42357225AE26B9008FB838 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		1C42357525AE26D2008FB838 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		1C42358E25AE2E31008FB838 /* momo_splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = momo_splash.json; sourceTree = "<group>"; };
@@ -237,6 +244,10 @@
 		1CAD05B025AC3DC4007ECA40 /* DeepSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepSliderView.swift; sourceTree = "<group>"; };
 		1CAD05B325AC3DEF007ECA40 /* DeepSliderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeepSliderView.xib; sourceTree = "<group>"; };
 		1CAD05B925AC59C1007ECA40 /* UISlider+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISlider+Extension.swift"; sourceTree = "<group>"; };
+		1CCA450A2998DF150053B951 /* ServiceEndUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEndUseCase.swift; sourceTree = "<group>"; };
+		1CCA450C2998F15D0053B951 /* ServiceEndModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceEndModalView.xib; sourceTree = "<group>"; };
+		1CCA450E299900A50053B951 /* ServiceEndModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEndModalView.swift; sourceTree = "<group>"; };
+		1CCA451029990ED60053B951 /* ServiceEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEndViewController.swift; sourceTree = "<group>"; };
 		1CD8F82E25C1EEA5003F57D1 /* AppDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDate.swift; sourceTree = "<group>"; };
 		1CDF3F8225F180F10048127A /* CustomVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVisualEffectView.swift; sourceTree = "<group>"; };
 		1CEF46BE25A6DA7600AF3D81 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -244,6 +255,7 @@
 		1CEF46C425A6E09100AF3D81 /* MoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewController.swift; sourceTree = "<group>"; };
 		1CEF46C725A6E0A000AF3D81 /* SentenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceViewController.swift; sourceTree = "<group>"; };
 		1CEF46CA25A6E0B200AF3D81 /* OnboardingWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWriteViewController.swift; sourceTree = "<group>"; };
+		1CF3817E29B760E800CB3777 /* ServiceEndService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEndService.swift; sourceTree = "<group>"; };
 		5612D1A62606305400D96FF7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		562C645325C1AED800AA9AB6 /* AppEmotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEmotion.swift; sourceTree = "<group>"; };
 		562C645825C1AFAD00AA9AB6 /* AppDepth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDepth.swift; sourceTree = "<group>"; };
@@ -324,6 +336,22 @@
 			path = Sentences;
 			sourceTree = "<group>";
 		};
+		1CCA45092998DDA80053B951 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				1CCA450A2998DF150053B951 /* ServiceEndUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		1CF3817D29B760C600CB3777 /* ServiceEnd */ = {
+			isa = PBXGroup;
+			children = (
+				1CF3817E29B760E800CB3777 /* ServiceEndService.swift */,
+			);
+			path = ServiceEnd;
+			sourceTree = "<group>";
+		};
 		562C644E25C1AD6800AA9AB6 /* AppModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,6 +395,8 @@
 				56EE71B3265B515D005AC12A /* CoachmarkFirstView.swift */,
 				56EE71B5265B6316005AC12A /* CoachmarkSecondView.xib */,
 				56EE71B7265B6331005AC12A /* CoachmarkSecondView.swift */,
+				1CCA450C2998F15D0053B951 /* ServiceEndModalView.xib */,
+				1CCA450E299900A50053B951 /* ServiceEndModalView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -402,6 +432,7 @@
 		563B048725AE06F700DA74C5 /* APIServices */ = {
 			isa = PBXGroup;
 			children = (
+				1CF3817D29B760C600CB3777 /* ServiceEnd */,
 				10F1F72B25B04AB200BF7D37 /* Sentences */,
 				563B048925AE0BA900DA74C5 /* GenericResponse.swift */,
 				563B048C25AE0BD500DA74C5 /* NetworkResult.swift */,
@@ -473,6 +504,7 @@
 				5687640C2599AD3A009CB486 /* AppDelegate.swift */,
 				5687640E2599AD3A009CB486 /* SceneDelegate.swift */,
 				563B048725AE06F700DA74C5 /* APIServices */,
+				1CCA45092998DDA80053B951 /* UseCases */,
 				563B037425AA0B7F00DA74C5 /* APIModels */,
 				562C644E25C1AD6800AA9AB6 /* AppModels */,
 				568764282599E33F009CB486 /* Extensions */,
@@ -532,6 +564,7 @@
 				10B5913B25CBDB2D0063C7B9 /* PersonalTerm.storyboard */,
 				1C5876C825D28BDF004537A5 /* ChangePassword.storyboard */,
 				10008E7F25DD520E00B508C0 /* ServiceTerm.storyboard */,
+				1C0B18CE29992CA600359212 /* ServiceEnd.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -599,6 +632,7 @@
 				10B5914225CBE0700063C7B9 /* PersonalTermViewController.swift */,
 				1C5876CB25D28BEF004537A5 /* ChangePasswordViewController.swift */,
 				10008E8225DD525C00B508C0 /* ServiceTermViewController.swift */,
+				1CCA451029990ED60053B951 /* ServiceEndViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -697,6 +731,7 @@
 				568764CE259F6A80009CB486 /* Colors.xcassets in Resources */,
 				568764362599EEC9009CB486 /* .swiftlint.yml in Resources */,
 				1C42357625AE26D2008FB838 /* Splash.storyboard in Resources */,
+				1C0B18CF29992CA700359212 /* ServiceEnd.storyboard in Resources */,
 				1C8DD8FB25C8851A00C7A3BA /* ToastView.xib in Resources */,
 				10574EE225F146940065A5F1 /* EmptyCollectionViewCell.xib in Resources */,
 				1C7CD82825ACEBAB00B7CB60 /* MenuView.xib in Resources */,
@@ -735,6 +770,7 @@
 				10F092AB25CC356F00342B18 /* OpenSourceTableViewCell.xib in Resources */,
 				105661EE25A5F79300E111B2 /* EmptyTableViewCell.xib in Resources */,
 				1C5876C925D28BDF004537A5 /* ChangePassword.storyboard in Resources */,
+				1CCA450D2998F15D0053B951 /* ServiceEndModalView.xib in Resources */,
 				1C52BE0F25AD7A9500D02771 /* onboarding_wave_ios.json in Resources */,
 				563B03FB25ACCDF700DA74C5 /* EmailLogin.storyboard in Resources */,
 			);
@@ -818,6 +854,7 @@
 				10029DAB25B108E000060E14 /* HomeModalPresentation.swift in Sources */,
 				10C9CEC825C3E7B90036CE98 /* StatisticsViewController.swift in Sources */,
 				568764612599FB56009CB486 /* APIConstants.swift in Sources */,
+				1CCA451129990ED60053B951 /* ServiceEndViewController.swift in Sources */,
 				563B049625AE0E6800DA74C5 /* Diary.swift in Sources */,
 				10DDA34225AF09A900620C41 /* EmotionCollectionViewCell.swift in Sources */,
 				56DD504B25E7EE8A003FBC38 /* UINavigationControllerDelegate+Extension.swift in Sources */,
@@ -832,6 +869,7 @@
 				562C645C25C1B14F00AA9AB6 /* AppSentence.swift in Sources */,
 				563B034725A8973100DA74C5 /* HomeViewController.swift in Sources */,
 				10DC0CBD25C7D9640048A5C8 /* MoodStatViewController.swift in Sources */,
+				1CF3817F29B760E800CB3777 /* ServiceEndService.swift in Sources */,
 				1C4235F125B0D5A8008FB838 /* DiaryWithId.swift in Sources */,
 				10C9CECB25C3ECBC0036CE98 /* DepthStatViewController.swift in Sources */,
 				1C8DD90A25C92D5000C7A3BA /* SettingTableViewCell.swift in Sources */,
@@ -844,6 +882,7 @@
 				5637607625B0519F00651EAA /* PasswordData.swift in Sources */,
 				1C52BE0525AD655300D02771 /* AlertModalView.swift in Sources */,
 				10BECB8F25D2F2960091C53D /* TeamViewController.swift in Sources */,
+				1CCA450F299900A50053B951 /* ServiceEndModalView.swift in Sources */,
 				1CAD05A225A9C98F007ECA40 /* UILabel+Extension.swift in Sources */,
 				1038B69825CAABF300C577B6 /* DiariesStatistics.swift in Sources */,
 				562C645925C1AFAD00AA9AB6 /* AppDepth.swift in Sources */,
@@ -876,6 +915,7 @@
 				1CA39A1825B1BF3E00E58209 /* OnboardingSentence.swift in Sources */,
 				1C5876C225D04C45004537A5 /* LockViewController.swift in Sources */,
 				1CEF46BF25A6DA7600AF3D81 /* OnboardingViewController.swift in Sources */,
+				1CCA450B2998DF150053B951 /* ServiceEndUseCase.swift in Sources */,
 				1014894425AC417E00639F98 /* DiaryWriteViewController.swift in Sources */,
 				563B033325A884A200DA74C5 /* HomeDayNightView.swift in Sources */,
 				1038B69F25CAAF7D00C577B6 /* DepthCount.swift in Sources */,
@@ -1055,7 +1095,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 52W8853QH6;
+				DEVELOPMENT_TEAM = 3885XCJRT2;
 				INFOPLIST_FILE = MoMo/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1081,7 +1121,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 52W8853QH6;
+				DEVELOPMENT_TEAM = 3885XCJRT2;
 				INFOPLIST_FILE = MoMo/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
