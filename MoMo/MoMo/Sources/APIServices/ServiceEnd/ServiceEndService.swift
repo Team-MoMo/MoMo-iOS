@@ -27,9 +27,9 @@ struct ServiceEndService {
         ]
         
         let dataRequest = AF.request(url,
-                                     method: .delete,
+                                     method: .post,
                                      parameters: body,
-                                     encoding: URLEncoding.default,
+                                     encoding: JSONEncoding.default,
                                      headers: header)
         dataRequest.responseData { (response) in
             switch response.result {
