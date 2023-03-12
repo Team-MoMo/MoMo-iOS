@@ -125,9 +125,9 @@ class DepthStatViewController: UIViewController {
             guard let img = objetImage[idx] else {
                 return
             }
-            if views[idx].bounds.height > 85 {
+            if views[idx].bounds.height > 90 {
                 let imgView = UIImageView(frame: CGRect(x: 0,
-                                                        y: 30,
+                                                        y: 20,
                                                         width: views[idx].bounds.width,
                                                         height: img.size.height))
                 imgView.image = img

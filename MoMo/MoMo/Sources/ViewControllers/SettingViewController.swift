@@ -43,7 +43,7 @@ class SettingViewController: UIViewController {
     private lazy var controlSwitch: UISwitch = {
         let swicth: UISwitch = UISwitch()
         swicth.isOn = self.isLocked
-        swicth.addTarget(self, action: #selector(onClickSwitch(sender:)), for: UIControl.Event.valueChanged)
+        swicth.addTarget(self, action: #selector(touchSwitch(sender:)), for: UIControl.Event.valueChanged)
         return swicth
     }()
     private lazy var resetButton: UIButton = {
@@ -84,7 +84,6 @@ class SettingViewController: UIViewController {
         super.viewWillAppear(animated)
         self.updateIsLocked()
         self.updateControlSwitch()
-        self.settingTableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -169,22 +168,22 @@ class SettingViewController: UIViewController {
         }
     }
     
-    private func updateIsLocked(isLocked: Bool) {
-        UserDefaults.standard.setValue(isLocked, forKey: "isLocked")
-        self.isLocked = isLocked
-    }
-    
     private func updateControlSwitch() {
-        self.controlSwitch.isOn = self.isLocked
+        if self.lockIsUpdated {
+            self.controlSwitch.isOn = self.isLocked
+            self.controlSwitch.isOn ? self.showResetButton() : self.hideResetButton()
+        }
+        self.settingTableView.reloadData()
     }
     
     private func updateSellInfosForSetting() {
         self.cellInfos = [
             (image: Constants.Design.Image.icUser, labelText: "내 정보", touchAction: self.pushToInfoViewController),
-            (image: Constants.Design.Image.icLock, labelText: "암호 잠금", touchAction: { self.hasLock() ? {}() : self.pushToLockViewController()}),
+            (image: Constants.Design.Image.icLock, labelText: "암호 잠금", touchAction: {}),
             (image: Constants.Design.Image.icLicense, labelText: "오픈 소스 라이선스", touchAction: self.pushToOpenSourceLicenseViewController),
             (image: Constants.Design.Image.icTeam, labelText: "Team MOMO", touchAction: self.pushToTeamMomoViewController),
-            (image: Constants.Design.Image.icInstaLogo, labelText: "MOMO 인스타그램", touchAction: self.openTeamMomoInstagram)
+            (image: Constants.Design.Image.icInstaLogo, labelText: "MOMO 인스타그램", touchAction: self.openTeamMomoInstagram),
+            (image: nil, labelText: "일기 데이터 다운받기", touchAction: { self.pushToServiceEndViewController() })
         ]
     }
     
@@ -201,7 +200,7 @@ class SettingViewController: UIViewController {
         ]
         
         if self.isSocialLogin() {
-            self.cellInfos = self.cellInfos?.filter { cell in return cell.image != Constants.Design.Image.icPwChange }
+            self.cellInfos = self.cellInfos?.filter { cell in cell.image != Constants.Design.Image.icPwChange }
         }
     }
     
@@ -264,6 +263,16 @@ class SettingViewController: UIViewController {
     private func attachSwitch(superView: UITableViewCell) {
         superView.addSubview(self.controlSwitch)
         self.updateSwitchConstraints(superView: superView)
+    }
+    
+    private func attachArrow(superView: UITableViewCell) {
+        let imageView = UIImageView()
+        imageView.image = UIImage.init(named: "icArrowRight")
+        superView.addSubview(imageView)
+        imageView.snp.makeConstraints { make in
+            make.centerY.equalTo(superView.snp.centerY)
+            make.trailing.equalTo(superView.snp.trailing).inset(26)
+        }
     }
     
     private func attachResetButton(superView: UITableViewCell) {
@@ -356,10 +365,10 @@ class SettingViewController: UIViewController {
         self.navigationController?.pushViewController(infoViewController, animated: true)
     }
     
-    private func pushToLockViewController() {
+    private func pushToLockViewController(usage: LockViewUsage) {
         let lockStoryboard = UIStoryboard(name: Constants.Name.lockStoryboard, bundle: nil)
         guard let lockViewController = lockStoryboard.instantiateViewController(identifier: Constants.Identifier.lockViewController) as? LockViewController else { return }
-        lockViewController.lockViewUsage = .setting
+        lockViewController.lockViewUsage = usage
         self.navigationController?.pushViewController(lockViewController, animated: true)
     }
     
@@ -400,6 +409,12 @@ class SettingViewController: UIViewController {
             return
         }
         self.navigationController?.pushViewController(teamViewController, animated: true)
+    }
+    
+    private func pushToServiceEndViewController() {
+        let storyboard = UIStoryboard(name: Constants.Name.serviceEndStoryboard, bundle: nil)
+        guard let vc = storyboard.instantiateViewController(identifier: Constants.Identifier.serviceEndViewController) as? ServiceEndViewController else { return }
+        self.navigationController?.pushViewController(vc, animated: false)
     }
     
     private func openTeamMomoInstagram() {
@@ -450,22 +465,16 @@ class SettingViewController: UIViewController {
         }
     }
     
-    @objc func onClickSwitch(sender: UISwitch) {
+    @objc func touchSwitch(sender: UISwitch) {
         if self.hasLock() {
-            if sender.isOn {
-                self.showResetButton()
-                self.updateIsLocked(isLocked: true)
-            } else {
-                self.hideResetButton()
-                self.updateIsLocked(isLocked: false)
-            }
+            self.pushToLockViewController(usage: .switching)
         } else {
-            self.pushToLockViewController()
+            self.pushToLockViewController(usage: .setting)
         }
     }
     
     @objc func touchResetButton(sender: UIButton) {
-        self.pushToLockViewController()
+        self.pushToLockViewController(usage: .resetting)
     }
     
     @objc func touchWithDrawalButton(sender: UIButton) {
@@ -533,6 +542,10 @@ extension SettingViewController: UITableViewDataSource {
             self.controlSwitch.isOn = self.isLocked
             self.attachResetButton(superView: cell)
             self.resetButton.isHidden = !self.isLocked
+        }
+        
+        if self.settingViewUsage == .setting && cellInfo.labelText == "일기 데이터 다운받기" {
+            attachArrow(superView: cell)
         }
         
         if self.settingViewUsage == .info && cellInfo.labelText.isEmpty {

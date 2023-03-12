@@ -16,6 +16,7 @@ struct Constants {
         
         // MARK: - Storyboard Name Constants
         
+        static let splashStoryboard: String = "Splash"
         static let homeStoryboard: String = "Home"
         static let onboardingStoryboard: String = "Onboarding"
         static let diaryStoryboard: String = "Diary"
@@ -33,6 +34,7 @@ struct Constants {
         static let personalTermStoryboard: String = "PersonalTerm"
         static let changePasswordStoryboard: String = "ChangePassword"
         static let serviceTermStoryboard: String = "ServiceTerm"
+        static let serviceEndStoryboard: String = "ServiceEnd"
         
       // MARK: - Nib Name Constants
         
@@ -40,6 +42,8 @@ struct Constants {
         static let bubbleTableViewCell: String = "BubbleTableViewCell"
         static let getPasswordAlertViewXib: String = "GetPasswordAlertView"
         static let settingTableViewCell: String = "SettingTableViewCell"
+        static let coachmarkFirstViewXib: String = "CoachmarkFirstView"
+        static let coachmarkSecondViewXib: String = "CoachmarkSecondView"
     }
     
     // MARK: - Identifier Contants
@@ -47,6 +51,7 @@ struct Constants {
     struct Identifier {
         // MARK: - ViewController
         
+        static let splashViewController: String = "SplashViewController"
         static let homeViewController: String = "HomeViewController"
         static let onboardingViewController: String = "OnboardingViewController"
         static let diaryWriteViewController: String = "DiaryWriteViewController"
@@ -71,6 +76,7 @@ struct Constants {
         static let personalTermViewController: String = "PersonalTermViewController"
         static let changePasswordViewController: String = "ChangePasswordViewController"
         static let serviceTermViewController: String = "ServiceTermViewController"
+        static let serviceEndViewController: String = "ServiceEndViewController"
         
         // MARK: - UIView
         

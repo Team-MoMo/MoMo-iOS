@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="svO-LC-Z4h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="svO-LC-Z4h">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -92,6 +92,11 @@
                                     <constraint firstAttribute="width" constant="24" id="loQ-yI-lBU"/>
                                 </constraints>
                             </stackView>
+                            <view contentMode="scaleToFill" id="FG3-2p-jXr">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="W7t-UN-yPD"/>
                         <constraints>
@@ -115,6 +120,7 @@
                     </view>
                     <connections>
                         <outlet property="calendarButton" destination="Kqd-lh-9gO" id="4MO-jy-K1K"/>
+                        <outlet property="coachmarkView" destination="FG3-2p-jXr" id="G5T-Wz-LGt"/>
                         <outlet property="homeTableView" destination="j0z-cg-GOC" id="ITQ-tS-0Zr"/>
                         <outlet property="homeTopButton" destination="5an-dN-IuA" id="Zgk-SH-hfq"/>
                         <outlet property="homeTopButtonBottom" destination="6Wd-8I-mxB" id="X6c-Za-RoB"/>

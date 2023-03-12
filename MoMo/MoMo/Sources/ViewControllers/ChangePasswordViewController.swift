@@ -23,13 +23,15 @@ struct PasswordInputError {
     }
 
     enum NewPasswordError: Error {
-        case noInputError, inValidInputError
+        case noInputError, inValidInputError, sameAsCurrentPasswordError
         func toMessage() -> String {
             switch self {
             case .noInputError:
                 return "새로운 비밀번호를 입력해 주세요"
             case .inValidInputError:
                 return "영문+숫자 6자리 이상 입력해 주세요"
+            case .sameAsCurrentPasswordError:
+                return "현재 비밀번호와 동일합니다"
             }
         }
     }
@@ -206,6 +208,10 @@ class ChangePasswordViewController: UIViewController {
         return regex.firstMatch(in: safePassword, options: [], range: range) != nil
     }
     
+    private func sameAsCurrentPassword(password: String?) -> Bool {
+        return self.currentPasswordTextField.text == password
+    }
+    
     private func isMatchedPassword(password: String?, secondPassword: String?) -> Bool {
         return password == secondPassword
     }
@@ -235,6 +241,9 @@ class ChangePasswordViewController: UIViewController {
         }
         guard self.isValidPassword(password: inputField.textField.text) == true else {
             throw PasswordInputError.NewPasswordError.inValidInputError
+        }
+        guard self.sameAsCurrentPassword(password: inputField.textField.text) == false else {
+            throw PasswordInputError.NewPasswordError.sameAsCurrentPasswordError
         }
         self.showLabelAndTextField(inputField: inputField)
     }
@@ -318,7 +327,8 @@ class ChangePasswordViewController: UIViewController {
         sender.isHidden = true
     }
     
-    @IBAction func changePasswordButtonTouch(_ sender: UIButton) {
+    @IBAction func touchChangePasswordButton(_ sender: UIButton) {
+        guard self.verifyPassword(by: .current) == true else { return }
         guard self.verifyPassword(by: .new) == true else { return }
         guard self.verifyPassword(by: .newCheck) == true else { return }
         guard self.isMatching == true else { return }
@@ -424,6 +434,9 @@ extension ChangePasswordViewController {
                     completion(true)
                 }
             case .requestErr(let errorMessage):
+                DispatchQueue.main.async {
+                    completion(false)
+                }
                 print(errorMessage)
             case .pathErr:
                 print("pathErr")

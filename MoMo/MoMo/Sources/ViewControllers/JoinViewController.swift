@@ -129,7 +129,6 @@ class JoinViewController: UIViewController {
             guard let password = passwordTextField.text else {
                 return
             }
-            self.attachActivityIndicator()
             postSignUpWithAPI(email: email, password: password)
         } else {
             print("가입 조건 부족")
@@ -495,6 +494,7 @@ class JoinViewController: UIViewController {
     
     // 회원가입 통신
     func postSignUpWithAPI(email: String, password: String) {
+        self.attachActivityIndicator()
         SignUpService.shared.postSignUp(email: email, password: password) { (networkResult) -> Void in
             self.detachActivityIndicator()
             switch networkResult {
@@ -506,6 +506,7 @@ class JoinViewController: UIViewController {
                     UserDefaults.standard.setValue(signUpData.token, forKey: "token")
                     UserDefaults.standard.setValue(signUpData.user.id, forKey: "userId")
                     UserDefaults.standard.setValue("email", forKey: "loginType")
+                    UserDefaults.standard.setValue(false, forKey: "didLogin")
                     
                     // 뷰 전환
                     let homeStoryboard = UIStoryboard(name: Constants.Name.homeStoryboard, bundle: nil)

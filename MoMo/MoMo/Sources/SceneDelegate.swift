@@ -26,20 +26,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
-        let splashStoryboard = UIStoryboard(name: "Splash", bundle: nil)
-        let splashViewController = splashStoryboard.instantiateViewController(withIdentifier: "SplashViewController")
-        self.window?.rootViewController = splashViewController
-        self.window?.makeKeyAndVisible()
+        self.updateRootToSplashViewController()
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1500)) {
-            if !UserDefaults.standard.bool(forKey: "didLaunch") {
+            if !self.didLaunched() {
                 UserDefaults.standard.set(true, forKey: "didLaunch")
+                // 로그인 여부 판단
+                UserDefaults.standard.set(false, forKey: "didLogin")
                 self.updateRootToOnboadingViewController()
-            }
-            else {
-                if UserDefaults.standard.object(forKey: "token") != nil && UserDefaults.standard.object(forKey: "userId") != nil {
-                    if UserDefaults.standard.bool(forKey: "isLocked") {
-                        self.updateRootToLockViewController(usage: LockViewUsage.verifying)
+            } else {
+                if self.hasUserIdAndToken() {
+                    if self.isLocked() {
+                        self.updateRootToLockViewController(usage: .verifying)
                     } else {
                         self.updateRootToHomeViewController()
                     }
@@ -52,6 +50,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         guard let _ = (scene as? UIWindowScene) else { return }
+    }
+    
+    private func updateRootToSplashViewController() {
+        let splashStoryboard = UIStoryboard(name: Constants.Name.splashStoryboard, bundle: nil)
+        let splashViewController = splashStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.splashViewController)
+        self.window?.rootViewController = splashViewController
+        self.window?.makeKeyAndVisible()
     }
     
     private func updateRootToOnboadingViewController() {
@@ -78,6 +83,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let loginViewController = loginStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.loginViewController)
         self.navigationController = UINavigationController(rootViewController: loginViewController)
     }
+    
+    private func pushToLockViewController(usage: LockViewUsage) {
+        let lockStoryboard = UIStoryboard(name: Constants.Name.lockStoryboard, bundle: nil)
+        guard let lockViewController = lockStoryboard.instantiateViewController(withIdentifier: Constants.Identifier.lockViewController) as? LockViewController else { return }
+        lockViewController.lockViewUsage = usage
+        self.navigationController?.pushViewController(lockViewController, animated: false)
+    }
+    
+    private func didLaunched() -> Bool {
+        return UserDefaults.standard.bool(forKey: "didLaunch")
+    }
+    
+    private func hasUserIdAndToken() -> Bool {
+        return UserDefaults.standard.object(forKey: "token") != nil && UserDefaults.standard.object(forKey: "userId") != nil
+    }
+    
+    private func isLocked() -> Bool {
+        return UserDefaults.standard.bool(forKey: "isLocked")
+    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -89,11 +113,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        if let lastViewController = self.navigationController?.viewControllers.last {
+            if lastViewController is DiaryViewController {
+                guard let diaryViewController = lastViewController as? DiaryViewController else { return }
+                diaryViewController.addBlurEffectOnBlurView()
+            } else if lastViewController is DeepViewController {
+                guard let deepViewController = lastViewController as? DeepViewController else { return }
+                deepViewController.addBlurEffectOnBlurView()
+            }
+        }
+        
+        if self.isLocked() {
+            self.pushToLockViewController(usage: .verifying)
+        }
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
+        if let lastViewController = self.navigationController?.viewControllers.last {
+            if lastViewController is DiaryViewController {
+                guard let diaryViewController = lastViewController as? DiaryViewController else { return }
+                diaryViewController.removeBlurEffectOnBlurView()
+            } else if lastViewController is DeepViewController {
+                guard let deepViewController = lastViewController as? DeepViewController else { return }
+                deepViewController.removeBlurEffectOnBlurView()
+            }
+        }
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {

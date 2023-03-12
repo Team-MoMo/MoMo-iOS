@@ -127,11 +127,19 @@ Copyright (c) 2021 Kakao Corp
         self.navigationController?.popViewController(animated: true)
     }
     
-    @objc func pushToOpenSourceDetailView(_ sender: UIButton) {
+//    @objc func pushToOpenSourceDetailView(_ sender: UIButton) {
+//        guard let openSourceDetailViewController = storyboard?.instantiateViewController(identifier: "OpenSourceDetailViewController") as? OpenSourceDetailViewController else {
+//            return
+//        }
+//        openSourceDetailViewController.openSourceDetailData = self.openSourceDetail[sender.tag]
+//        self.navigationController?.pushViewController(openSourceDetailViewController, animated: true)
+//    }
+//
+    private func pushToOpenSourceDetailView(_ num: Int) {
         guard let openSourceDetailViewController = storyboard?.instantiateViewController(identifier: "OpenSourceDetailViewController") as? OpenSourceDetailViewController else {
             return
         }
-        openSourceDetailViewController.openSourceDetailData = self.openSourceDetail[sender.tag]
+        openSourceDetailViewController.openSourceDetailData = self.openSourceDetail[num]
         self.navigationController?.pushViewController(openSourceDetailViewController, animated: true)
     }
 }
@@ -139,6 +147,10 @@ Copyright (c) 2021 Kakao Corp
 extension OpenSourceViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 56
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        pushToOpenSourceDetailView(indexPath.row)
     }
     
 }
@@ -151,8 +163,8 @@ extension OpenSourceViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "OpenSourceTableViewCell") as? OpenSourceTableViewCell else {
             return UITableViewCell()
         }
-        cell.detailButton.tag = indexPath.row
-        cell.detailButton.addTarget(self, action: #selector(pushToOpenSourceDetailView(_:)), for: .touchUpInside)
+        cell.tag = indexPath.row
+//        cell.detailButton.addTarget(self, action: #selector(pushToOpenSourceDetailView(_:)), for: .touchUpInside)
         cell.initializeLabel(openSourceTitle[indexPath.row])
         return cell
     }

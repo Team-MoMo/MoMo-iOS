@@ -63,12 +63,12 @@ class MoodViewController: UIViewController {
         
         switch self.moodViewUsage {
         case .onboarding:
-            self.infoLabel.text = "먼저 오늘의\n감정을 선택해 주세요"
+            self.infoLabel.attributedText = "먼저 오늘의\n감정을 선택해 주세요".textSpacing()
             self.infoLabelVerticalSpacingContraint.constant = self.infoLabelVerticalSpacing
-            self.dateLabel.text = self.currentDate?.getFormattedDateAndWeekday(with: ". ")
+            self.dateLabel.attributedText = self.currentDate?.getFormattedDateAndWeekday(with: ". ").textSpacing()
             self.hideCalendarButton()
         case .upload:
-            self.infoLabel.text = "오늘의\n감정은 어땠나요?"
+            self.infoLabel.attributedText = "오늘의\n감정은 어땠나요?".textSpacing()
             guard let currentDate = self.currentDate else { return }
             self.getDiariesWithAPI(
                 userID: String(APIConstants.userId),
@@ -115,13 +115,13 @@ class MoodViewController: UIViewController {
     
     private func initializeDateLabel(recentDate: String, verifyToday: Bool) {
         if !verifyToday {
-            self.dateLabel.text = self.currentDate?.getFormattedDateAndWeekday(with: ". ")
+            self.dateLabel.attributedText = self.currentDate?.getFormattedDateAndWeekday(with: ". ").textSpacing()
             self.selectedDate = self.currentDate
         } else {
             let date = AppDate(serverDate: recentDate)
             self.selectedDate = date
-            self.dateLabel.text = date.getFormattedDateAndWeekday(with: ". ")
             self.presentUploadModalView(year: date.getYear(), month: date.getMonth(), day: date.getDay())
+            self.dateLabel.attributedText = date.getFormattedDateAndWeekday(with: ". ").textSpacing()
         }
     }
     

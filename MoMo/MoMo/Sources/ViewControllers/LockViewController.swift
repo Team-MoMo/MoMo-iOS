@@ -8,7 +8,7 @@
 import UIKit
 
 enum LockViewUsage: Int {
-    case setting = 0, doubleChecking, verifying
+    case setting = 0, doubleChecking, verifying, resetting, switching
 }
 
 class LockViewController: UIViewController {
@@ -47,6 +47,16 @@ class LockViewController: UIViewController {
         button.tintColor = UIColor.Black1
         return button
     }()
+    private lazy var titleLabel: UILabel = {
+        let titleLabelText: String
+        let titleLabel = UILabel()
+        let titleLabelColor = UIColor.Black2Nav
+        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16)!, NSAttributedString.Key.foregroundColor: titleLabelColor]
+        titleLabelText = "암호 잠금"
+        titleLabel.attributedText = NSAttributedString(string: titleLabelText, attributes: attributes)
+        titleLabel.sizeToFit()
+        return titleLabel
+    }()
     
     // MARK: - View Life Cycles
     
@@ -66,24 +76,17 @@ class LockViewController: UIViewController {
     }
     
     private func initializeNavigationBar() {
-        let titleLabelText: String
-        let titleLabel = UILabel()
-        let titleLabelColor = UIColor.Black2Nav
-        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16)!, NSAttributedString.Key.foregroundColor: titleLabelColor]
-        titleLabelText = "암호 잠금"
-        titleLabel.attributedText = NSAttributedString(string: titleLabelText, attributes: attributes)
-        titleLabel.sizeToFit()
         
         switch self.lockViewUsage {
         case .setting:
             self.navigationItem.rightBarButtonItem = self.rightButton
-        case .verifying:
+        case .verifying, .resetting, .switching:
             self.navigationItem.rightBarButtonItem = nil
         default:
             return
         }
         
-        self.navigationItem.titleView = titleLabel
+        self.navigationItem.titleView = self.titleLabel
         self.navigationItem.hidesBackButton = true
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -93,9 +96,9 @@ class LockViewController: UIViewController {
     private func initializeInfoLabel() {
         switch self.lockViewUsage {
         case .setting:
-            self.infoLabel.text = "새 암호를 입력해 주세요."
-        case .verifying:
-            self.infoLabel.text = "현재 암호를 입력해 주세요."
+            self.infoLabel.attributedText = "새 암호를 입력해 주세요.".textSpacing()
+        case .verifying, .resetting, .switching:
+            self.infoLabel.attributedText = "현재 암호를 입력해 주세요.".textSpacing()
         default:
             return
         }
@@ -127,7 +130,34 @@ class LockViewController: UIViewController {
             }
         case .verifying:
             if self.isValid() {
-                self.pushToHomeViewController()
+                guard let rootViewController = self.navigationController?.viewControllers.first  else { return }
+                guard let viewCounter = self.navigationController?.viewControllers.count else {
+                    return
+                }
+                if rootViewController is LockViewController && viewCounter == 1 {
+                    self.pushToHomeViewController()
+                } else {
+                    self.navigationController?.popViewController(animated: false)
+                }
+            } else {
+                self.showErrorMessage(message: "현재 암호와 달라요!")
+                self.popAllLockNumberListAndEmptyIndicator()
+            }
+        case .switching:
+            if self.isValid() {
+                let isLocked = UserDefaults.standard.bool(forKey: "isLocked")
+                UserDefaults.standard.setValue(!isLocked, forKey: "isLocked")
+                self.popToSettingViewController(lockIsUpdated: true)
+            } else {
+                self.showErrorMessage(message: "현재 암호와 달라요!")
+                self.popAllLockNumberListAndEmptyIndicator()
+            }
+        case .resetting:
+            if self.isValid() {
+                self.lockViewUsage = .setting
+                self.hideErrorLabel()
+                self.infoLabel.attributedText = "새 암호를 입력해 주세요.".textSpacing()
+                self.popAllLockNumberListAndEmptyIndicator()
             } else {
                 self.showErrorMessage(message: "현재 암호와 달라요!")
                 self.popAllLockNumberListAndEmptyIndicator()
@@ -160,7 +190,7 @@ class LockViewController: UIViewController {
     }
     
     private func isValid() -> Bool {
-        return UserDefaults.standard.bool(forKey: "isLocked") && self.makeLockNumberToString(lockNumberList: self.lockNumberList) == UserDefaults.standard.string(forKey: "LockNumber")
+        return self.makeLockNumberToString(lockNumberList: self.lockNumberList) == UserDefaults.standard.string(forKey: "LockNumber")
     }
     
     private func doubleCheckingIsValid() -> Bool {
@@ -178,11 +208,9 @@ class LockViewController: UIViewController {
         self.appendLockNumber(lockNumber: lockNumber)
         self.fillIndicator()
         if self.lockNumberIsFilled() {
-            
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(100), execute: {
                 self.updateLockViewController()
             })
-            
         }
     }
     
@@ -212,7 +240,7 @@ class LockViewController: UIViewController {
     
     private func popLockNumber() {
         guard self.lockNumberList.count > 0 else { return }
-        let _ = self.lockNumberList.popLast()
+        _ = self.lockNumberList.popLast()
     }
     
     private func fillIndicator() {

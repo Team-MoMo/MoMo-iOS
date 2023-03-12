@@ -21,6 +21,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var listButton: UIButton!
     @IBOutlet weak var swipeUpButtonTop: NSLayoutConstraint!
     @IBOutlet weak var homeTopButtonBottom: NSLayoutConstraint!
+    @IBOutlet weak var coachmarkView: UIView!
     
     // MARK: - Properties
     
@@ -60,6 +61,13 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     var headerView: HomeDayNightView?
     var tagNum: Int = 0
     
+    // coachmark
+    var coachmarkTouchCount = 0
+    
+    let serviceEndUseCase: ServiceEndUseCase = ServiceEndUseCaseImpl()
+    
+    var serviceEndModalView: ServiceEndModalView?
+    
     // MARK: - View Life Cycle
     
     // viewDidLoad
@@ -87,9 +95,6 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         calendarButton.isHidden = true
         swipeUpButton.isHidden = true
         homeTopButton.isHidden = true
-        
-        // 오늘 작성한 일기가 없을 때
-         uploadButton.isHidden = false
         
         // 권한 위임
         self.homeTableView.dataSource = self
@@ -123,6 +128,54 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         } else {
             statusBarHeight = UIApplication.shared.statusBarFrame.height
         }
+        
+        // 서비스 종료 팝업
+        if serviceEndUseCase.shouldShowPopUp {
+            let modalView: ServiceEndModalView = ServiceEndModalView.loadNib()
+            modalView.didTapDownloadButtonHandler = { [weak self] _ in
+                self?.serviceEndUseCase.agreeNotToSeeAgainFor3Days()
+                self?.dismissServiceEndModalView()
+                self?.pushToServiceEndViewController()
+            }
+            modalView.didTapDoNotSeeAgainFor3DaysConfirmButtonHandler = { [weak self] _ in
+                self?.serviceEndUseCase.agreeNotToSeeAgainFor3Days()
+                self?.dismissServiceEndModalView()
+            }
+            modalView.didTapDoNotSeeAgainConfirmButton = { [weak self] _ in
+                self?.serviceEndUseCase.agreeNotToSeeAgain()
+                self?.dismissServiceEndModalView()
+            }
+            serviceEndModalView = modalView
+            showServiceEndModalViewWithAnimation(modalView: modalView)
+        }
+    }
+    
+    func showServiceEndModalViewWithAnimation(modalView: ServiceEndModalView) {
+        modalView.translatesAutoresizingMaskIntoConstraints = false
+        modalView.isHidden = true
+        view.addSubview(modalView)
+        NSLayoutConstraint.activate([
+            modalView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            modalView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            modalView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            modalView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+        UIView.animate(withDuration: 0.3) {
+            modalView.isHidden = false
+        }
+    }
+    
+    func dismissServiceEndModalView() {
+        if let view = serviceEndModalView, view.superview != nil {
+            view.removeFromSuperview()
+            serviceEndModalView = nil
+        }
+    }
+    
+    func pushToServiceEndViewController() {
+        let storyboard = UIStoryboard(name: Constants.Name.serviceEndStoryboard, bundle: nil)
+        guard let vc = storyboard.instantiateViewController(identifier: Constants.Identifier.serviceEndViewController) as? ServiceEndViewController else { return }
+        self.navigationController?.pushViewController(vc, animated: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -130,6 +183,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         // 네비게이션 백버튼 숨김
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.isNavigationBarHidden = true
+        
         
         let userId = UserDefaults.standard.integer(forKey: "userId")
         
@@ -207,6 +261,8 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
             self.isFromLogoutOrWithdrawal = false
             self.pushToLoginViewController()
         }
+        
+        initCoachmarkView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -218,6 +274,47 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     // MARK: - Functions
+    
+    private func initCoachmarkView() {
+        
+        if !UserDefaults.standard.bool(forKey: "didLogin") {
+            coachmarkView.isHidden = false
+            coachmarkView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            
+            // 첫번째 코치마크 뷰 register
+            if let coachmark1 = Bundle.main.loadNibNamed(Constants.Name.coachmarkFirstViewXib, owner: nil, options: nil)?.first as? UIView {
+                coachmark1.frame = self.coachmarkView.bounds
+                coachmarkView.addSubview(coachmark1)
+            }
+            
+            let coachmarkGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(touchCoachmark(_:)))
+            coachmarkView.addGestureRecognizer(coachmarkGesture)
+        } else {
+            coachmarkView.isHidden = true
+        }
+    }
+    
+    @objc func touchCoachmark(_ gesture: UITapGestureRecognizer) {
+        coachmarkTouchCount += 1
+        if coachmarkTouchCount == 1 {
+            // 두번째 코치마크 뷰
+            for view in coachmarkView.subviews {
+                view.removeFromSuperview()
+            }
+            if let coachmark2 = Bundle.main.loadNibNamed(Constants.Name.coachmarkSecondViewXib, owner: nil, options: nil)?.first as? UIView {
+                coachmark2.frame = self.coachmarkView.bounds
+                coachmarkView.addSubview(coachmark2)
+            }
+        } else {
+            // 코치마크 뷰 숨기기
+            for view in coachmarkView.subviews {
+                view.removeFromSuperview()
+            }
+            coachmarkView.isHidden = true
+            UserDefaults.standard.setValue(true, forKey: "didLogin")
+            coachmarkTouchCount = 0
+        }
+    }
     
     func rearrangeObjet() {
         // 단계별 objet 배치
@@ -235,7 +332,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     func pushToLoginViewController() {
         let loginStoryboard = UIStoryboard(name: Constants.Name.loginStoryboard, bundle: nil)
         guard let loginViewController = loginStoryboard.instantiateViewController(identifier: Constants.Identifier.loginViewController) as? LoginViewController else { return }
-        self.navigationController?.pushViewController(loginViewController, animated: true)
+        self.navigationController?.pushViewController(loginViewController, animated: false)
     }
     
     func attachTableHeaderView() {
@@ -735,6 +832,7 @@ extension HomeViewController: UITableViewDataSource {
                 return
             }
             dvc.diaryId = bubbleDepthArray[indexPath.section][indexPath.row].id
+            dvc.initialDepth = AppDepth(rawValue: bubbleDepthArray[indexPath.section][indexPath.row].depth)
             self.navigationController?.pushViewController(dvc, animated: true)
         }
     }
