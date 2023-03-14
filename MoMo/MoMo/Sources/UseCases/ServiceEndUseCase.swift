@@ -26,14 +26,7 @@ final class ServiceEndUseCaseImpl {
     
     let serviceEndService = ServiceEndService.shared
 
-    private var _isDoNotSeeAgainConfirmed: Bool {
-        get {
-            UserDefaults.standard.bool(forKey: "_isDoNotSeeAgainConfirmed")
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "_isDoNotSeeAgainConfirmed")
-        }
-    }
+    private var _isDoNotSeeAgainConfirmed: Bool = false
     
     private var _lastConfirmDateDoNotSeeAgainFor3Days: Date? {
         get {
