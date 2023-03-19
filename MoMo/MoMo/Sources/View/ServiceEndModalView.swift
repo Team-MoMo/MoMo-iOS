@@ -21,7 +21,6 @@ final class ServiceEndModalView: UIView {
         willSet {
             newValue.text = "모모 서비스 종료 안내"
             newValue.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight(rawValue: 600))
-            newValue.textColor = .black
         }
     }
     
@@ -29,13 +28,12 @@ final class ServiceEndModalView: UIView {
         willSet {
             newValue.attributedText = "안녕하세요. MOMO를 만든 Team MOMO입니다.\n내부적인 사정으로 인해 아쉽게도 서비스 종료 소식을\n알려드리게 되었습니다.".textSpacing()
             newValue.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-            newValue.textColor = .black
         }
     }
     
     @IBOutlet private weak var goodbyeDateContainerView: UIView! {
         willSet {
-            newValue.backgroundColor = UIColor.systemGray6.withAlphaComponent(0.7)
+            newValue.backgroundColor = UIColor.Blue7.withAlphaComponent(0.7)
             newValue.layer.cornerRadius = 8
             newValue.layer.cornerCurve = .continuous
         }
@@ -53,7 +51,6 @@ final class ServiceEndModalView: UIView {
         willSet {
             newValue.attributedText = "그 동안 MOMO 다이어리에 작성하신 일기는 다운로드 링크를 통해 csv 파일로 다운 받으실 수 있습니다.\nMOMO 다이어리를 사용해 주셔서 진심으로 감사합니다!".textSpacing()
             newValue.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-            newValue.textColor = .black
         }
     }
     
