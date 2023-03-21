@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -47,7 +46,7 @@
                                                                                     </constraints>
                                                                                 </imageView>
                                                                             </subviews>
-                                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="bottom" secondItem="hwR-Fo-kxw" secondAttribute="bottom" id="XAr-xy-w2v"/>
                                                                                 <constraint firstItem="hwR-Fo-kxw" firstAttribute="top" secondItem="9Et-dr-UZ3" secondAttribute="top" id="hWk-Ya-mu4"/>
@@ -57,7 +56,7 @@
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="모모 서비스 종료 안내" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sSE-qp-b5C">
                                                                             <rect key="frame" x="78.666666666666671" y="52.000000000000028" width="145.66666666666663" height="16"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                            <nil key="textColor"/>
+                                                                            <color key="textColor" name="Black1"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
@@ -74,7 +73,7 @@
 내부적인 사정으로 인해 아쉽게도 서비스 종료 소식을
 알려드리게 되었습니다.</string>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                            <nil key="textColor"/>
+                                                                            <color key="textColor" name="Black1"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CDW-Qk-sdI">
@@ -87,7 +86,7 @@
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                             </subviews>
-                                                                            <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                                            <color key="backgroundColor" name="Blue7"/>
                                                                             <constraints>
                                                                                 <constraint firstItem="Tlu-YC-gWf" firstAttribute="centerX" secondItem="CDW-Qk-sdI" secondAttribute="centerX" id="BA5-Ui-T6E"/>
                                                                                 <constraint firstItem="Tlu-YC-gWf" firstAttribute="centerY" secondItem="CDW-Qk-sdI" secondAttribute="centerY" id="Faz-I1-IKe"/>
@@ -99,7 +98,7 @@
                                                                             <string key="text">그 동안 MOMO 다이어리에 작성하신 일기는 다운로드 링크를 통해 csv 파일로 다운 받으실 수 있습니다.
 MOMO 다이어리를 사용해 주셔서 진심으로 감사합니다!</string>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                            <nil key="textColor"/>
+                                                                            <color key="textColor" name="Black1"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
@@ -107,7 +106,7 @@ MOMO 다이어리를 사용해 주셔서 진심으로 감사합니다!</string>
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="eQG-mY-k7l" firstAttribute="leading" secondItem="tRM-Nl-Yjf" secondAttribute="leading" id="8u8-GS-fhz"/>
                                                         <constraint firstItem="eQG-mY-k7l" firstAttribute="top" secondItem="tRM-Nl-Yjf" secondAttribute="top" id="HVk-27-yff"/>
@@ -142,7 +141,7 @@ MOMO 다이어리를 사용해 주셔서 진심으로 감사합니다!</string>
                                             </constraints>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="UKZ-Or-rov" secondAttribute="trailing" constant="25" id="L5x-k8-AKs"/>
                                         <constraint firstItem="UKZ-Or-rov" firstAttribute="top" secondItem="ScZ-MH-rXB" secondAttribute="top" constant="25" id="T05-yQ-iaH"/>
@@ -223,20 +222,20 @@ MOMO 다이어리를 사용해 주셔서 진심으로 감사합니다!</string>
     </objects>
     <resources>
         <image name="good_bye_momo" width="270" height="48"/>
+        <namedColor name="Black1">
+            <color red="0.12200000137090683" green="0.12200000137090683" blue="0.12200000137090683" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Black3List">
             <color red="0.27799999713897705" green="0.27799999713897705" blue="0.27799999713897705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Black6">
             <color red="0.83099997043609619" green="0.83099997043609619" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="Blue7">
+            <color red="0.96100002527236938" green="0.97600001096725464" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="BlueModalAble">
             <color red="0.38400000333786011" green="0.54100000858306885" blue="0.72200000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>

@@ -12,7 +12,7 @@ final class ServiceEndViewController: UIViewController {
     
     @IBOutlet private weak var goodbyeDateContainerView: UIView! {
         willSet {
-            newValue.backgroundColor = UIColor.systemGray6.withAlphaComponent(0.7)
+            newValue.backgroundColor = UIColor.Blue7.withAlphaComponent(0.7)
             newValue.layer.cornerRadius = 8
             newValue.layer.cornerCurve = .continuous
         }
